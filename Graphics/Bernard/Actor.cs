@@ -24,8 +24,17 @@ public class Actor : MonoBehaviour {
     }
 
     Vector3 wdir = destination - transform.position;
-    if (wdir.y > 0) dir = Dir.B;
-    if (wdir.y < 0) dir = Dir.F;
+    float speed = 5;
+    if (Mathf.Abs(wdir.y) > Mathf.Abs(wdir.x) * 1.05f) {
+      if (wdir.y > 0) dir = Dir.B;
+      if (wdir.y < 0) dir = Dir.F;
+    }
+    else {
+      if (wdir.x > 0) dir = Dir.R;
+      if (wdir.x < 0) dir = Dir.L;
+      speed = 7.5f;
+    }
+
     anim.Play("Walk" + dir);
     wdir.z = 0;
     if (wdir.sqrMagnitude < .25f) {
@@ -34,7 +43,7 @@ public class Actor : MonoBehaviour {
     }
 
     wdir.Normalize();
-    transform.position += wdir * 5 * Time.deltaTime;
+    transform.position += wdir * speed * Time.deltaTime;
 
   }
 }

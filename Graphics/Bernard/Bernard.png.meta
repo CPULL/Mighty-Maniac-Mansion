@@ -137,6 +137,240 @@ TextureImporter:
   - first:
       213: -6344241616438635722
     second: Bernard_29
+  - first:
+      213: 1905052796859350222
+    second: Bernard_15
+  - first:
+      213: 5912102844399733656
+    second: Bernard_16
+  - first:
+      213: -5815393239024020001
+    second: Bernard_17
+  - first:
+      213: 8481926826038606395
+    second: Bernard_18
+  - first:
+      213: 4731240904539505072
+    second: Bernard_19
+  - first:
+      213: 2863987217652472238
+    second: Bernard_20
+  - first:
+      213: -6660772795180048757
+    second: Bernard_21
+  - first:
+      213: -707649188447442373
+    second: Bernard_22
+  - first:
+      213: -480769965550251318
+    second: Bernard_23
+  - first:
+      213: 3314458871274877783
+    second: Bernard_24
+  - first:
+      213: -6534348309166841332
+    second: Bernard_25
+  - first:
+      213: 1324209519922570964
+    second: Bernard_26
+  - first:
+      213: -4526158765140232198
+    second: Bernard_27
+  - first:
+      213: 2114501463568905843
+    second: Bernard_28
+  - first:
+      213: -2785137895187270360
+    second: Bernard_29
+  - first:
+      213: 4957965997881566074
+    second: Bernard_30
+  - first:
+      213: 6634090284382210437
+    second: Bernard_31
+  - first:
+      213: 1400993241614289348
+    second: Bernard_32
+  - first:
+      213: -4188521144126844227
+    second: Bernard_33
+  - first:
+      213: 258526150660172522
+    second: Bernard_34
+  - first:
+      213: 2059701668977575899
+    second: Bernard_35
+  - first:
+      213: 8530157568904729249
+    second: Bernard_36
+  - first:
+      213: 5314381641188760411
+    second: Bernard_37
+  - first:
+      213: -2332383573255350690
+    second: Bernard_38
+  - first:
+      213: -8488713824572178234
+    second: Bernard_39
+  - first:
+      213: 1547717490596165831
+    second: Bernard_40
+  - first:
+      213: -4846852422772416976
+    second: Bernard_41
+  - first:
+      213: -4323920121056704120
+    second: Bernard_42
+  - first:
+      213: -3880316486824920323
+    second: Bernard_43
+  - first:
+      213: 6278295844644781281
+    second: Bernard_44
+  - first:
+      213: 8408333851340013624
+    second: Bernard_45
+  - first:
+      213: 5234384389940882085
+    second: Bernard_46
+  - first:
+      213: -8333147443048105103
+    second: Bernard_47
+  - first:
+      213: 2402400989513272009
+    second: Bernard_48
+  - first:
+      213: 8055348889529129453
+    second: Bernard_49
+  - first:
+      213: 477075514377198053
+    second: Bernard_50
+  - first:
+      213: 4414654526230624182
+    second: Bernard_51
+  - first:
+      213: -8695676570933139958
+    second: Bernard_52
+  - first:
+      213: -144073465852607914
+    second: Bernard_53
+  - first:
+      213: -6653375138301920232
+    second: Bernard_54
+  - first:
+      213: -2220165544545290193
+    second: Bernard_55
+  - first:
+      213: 6556330668691357096
+    second: Bernard_56
+  - first:
+      213: 2345600437117629751
+    second: Bernard_57
+  - first:
+      213: 5320318167757148307
+    second: Bernard_58
+  - first:
+      213: -163347990100589127
+    second: Bernard_59
+  - first:
+      213: 5061200594346454604
+    second: Bernard_60
+  - first:
+      213: -3752208386422153910
+    second: Bernard_61
+  - first:
+      213: 3482308025680564670
+    second: Bernard_62
+  - first:
+      213: -4639370939990856875
+    second: Bernard_30
+  - first:
+      213: 6857702412427698336
+    second: Bernard_31
+  - first:
+      213: -2251801473014050083
+    second: Bernard_32
+  - first:
+      213: -4905820729290632642
+    second: Bernard_33
+  - first:
+      213: 3995672551274150458
+    second: Bernard_34
+  - first:
+      213: -4121104993492796475
+    second: Bernard_35
+  - first:
+      213: -8070020952272072260
+    second: Bernard_36
+  - first:
+      213: 8330860306509312041
+    second: Bernard_37
+  - first:
+      213: -4458361993605602048
+    second: Bernard_38
+  - first:
+      213: 7564427557051860669
+    second: Bernard_39
+  - first:
+      213: -4068633091484470289
+    second: Bernard_40
+  - first:
+      213: -7749034136689888420
+    second: Bernard_41
+  - first:
+      213: 4574986572499485815
+    second: Bernard_42
+  - first:
+      213: -669551249587090227
+    second: Bernard_43
+  - first:
+      213: 8447809191982082740
+    second: Bernard_44
+  - first:
+      213: 5747622924532512854
+    second: Bernard_45
+  - first:
+      213: -5269517858127531416
+    second: Bernard_46
+  - first:
+      213: 4333511086050087256
+    second: Bernard_47
+  - first:
+      213: 754712246389957083
+    second: Bernard_48
+  - first:
+      213: 3803248101892629155
+    second: Bernard_49
+  - first:
+      213: -6791843996054845504
+    second: Bernard_50
+  - first:
+      213: -2947430624554027702
+    second: Bernard_51
+  - first:
+      213: -2376826420310361491
+    second: Bernard_52
+  - first:
+      213: -2401924632002870986
+    second: Bernard_53
+  - first:
+      213: 1190147268219181494
+    second: Bernard_54
+  - first:
+      213: 1240757466769088348
+    second: Bernard_55
+  - first:
+      213: -3090574354920157513
+    second: Bernard_56
+  - first:
+      213: -5922538244960692429
+    second: Bernard_57
+  - first:
+      213: -57909961828154858
+    second: Bernard_58
+  - first:
+      213: 556048149974973237
+    second: Bernard_59
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -244,7 +478,7 @@ TextureImporter:
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -265,7 +499,7 @@ TextureImporter:
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,7 +520,7 @@ TextureImporter:
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -307,7 +541,7 @@ TextureImporter:
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -323,12 +557,12 @@ TextureImporter:
       name: Bernard_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2048
+        x: 1280
+        y: 2560
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -344,12 +578,12 @@ TextureImporter:
       name: Bernard_6
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2048
+        x: 1536
+        y: 2560
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -365,12 +599,12 @@ TextureImporter:
       name: Bernard_7
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2048
+        x: 1792
+        y: 2560
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -386,12 +620,12 @@ TextureImporter:
       name: Bernard_8
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2048
+        x: 2048
+        y: 2560
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -408,11 +642,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -429,11 +663,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 1536
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -450,11 +684,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 1536
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -471,11 +705,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
-        y: 1536
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -496,7 +730,7 @@ TextureImporter:
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -512,12 +746,12 @@ TextureImporter:
       name: Bernard_9
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2048
+        x: 2304
+        y: 2560
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -534,18 +768,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 1536
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a46851f4c896c420800000000000000
-      internalID: 2649973402384229536
+      spriteID: 22ac64c1d2c9a08e0800000000000000
+      internalID: -1726395789581301214
       vertices: []
       indices: 
       edges: []
@@ -554,19 +788,19 @@ TextureImporter:
       name: Bernard_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1024
+        x: 1280
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0f7022604a414740800000000000000
-      internalID: 5134466690563735311
+      spriteID: ecc7a23ec6b107a10800000000000000
+      internalID: 1905052796859350222
       vertices: []
       indices: 
       edges: []
@@ -575,19 +809,19 @@ TextureImporter:
       name: Bernard_16
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1024
+        x: 1536
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0e4fde1e7237ed20800000000000000
-      internalID: 3307667968592137743
+      spriteID: 89bc50c96320c0250800000000000000
+      internalID: 5912102844399733656
       vertices: []
       indices: 
       edges: []
@@ -596,19 +830,19 @@ TextureImporter:
       name: Bernard_17
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1024
+        x: 1792
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d36b8e150b6e352f0800000000000000
-      internalID: -985190248501168579
+      spriteID: fd5d3ce09a29b4fa0800000000000000
+      internalID: -5815393239024020001
       vertices: []
       indices: 
       edges: []
@@ -617,19 +851,19 @@ TextureImporter:
       name: Bernard_18
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1024
+        x: 2048
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a7090d1b78b6d930800000000000000
-      internalID: 4167721344085591969
+      spriteID: b3a33e4528bd5b570800000000000000
+      internalID: 8481926826038606395
       vertices: []
       indices: 
       edges: []
@@ -638,19 +872,19 @@ TextureImporter:
       name: Bernard_19
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
+        x: 2304
+        y: 2048
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd752de9060c01840800000000000000
-      internalID: 5192861891572160479
+      spriteID: 0b100e5198eb8a140800000000000000
+      internalID: 4731240904539505072
       vertices: []
       indices: 
       edges: []
@@ -660,18 +894,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cf97d97326510410800000000000000
-      internalID: 1441528066103287749
+      spriteID: ea95f6d433deeb720800000000000000
+      internalID: 2863987217652472238
       vertices: []
       indices: 
       edges: []
@@ -681,18 +915,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 512
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 601ab50b44f4a3d70800000000000000
-      internalID: 9023611959825375494
+      spriteID: b8e15bdde6e2093a0800000000000000
+      internalID: -6660772795180048757
       vertices: []
       indices: 
       edges: []
@@ -702,18 +936,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 512
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bc4a595b7221ce60800000000000000
-      internalID: 7980697927852641461
+      spriteID: b3a2ff8ffcced26f0800000000000000
+      internalID: -707649188447442373
       vertices: []
       indices: 
       edges: []
@@ -723,18 +957,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
-        y: 512
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3dfd6cd0ced6da8f0800000000000000
-      internalID: -527644720721633325
+      spriteID: ac253b87346f359f0800000000000000
+      internalID: -480769965550251318
       vertices: []
       indices: 
       edges: []
@@ -744,18 +978,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 512
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 360462eb9f4a5d380800000000000000
-      internalID: -8947063692157632413
+      spriteID: 7533bfc58c25ffd20800000000000000
+      internalID: 3314458871274877783
       vertices: []
       indices: 
       edges: []
@@ -764,19 +998,19 @@ TextureImporter:
       name: Bernard_25
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 1280
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa59623914bed2800800000000000000
-      internalID: 589385793129584047
+      spriteID: c02af6155d45155a0800000000000000
+      internalID: -6534348309166841332
       vertices: []
       indices: 
       edges: []
@@ -785,19 +1019,19 @@ TextureImporter:
       name: Bernard_26
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
+        x: 1536
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5c3ddce4bf470bd0800000000000000
-      internalID: -2664073016079729569
+      spriteID: 4d6ec2bda89806210800000000000000
+      internalID: 1324209519922570964
       vertices: []
       indices: 
       edges: []
@@ -806,19 +1040,19 @@ TextureImporter:
       name: Bernard_27
       rect:
         serializedVersion: 2
-        x: 512
-        y: 0
+        x: 1792
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a02f06bdb699356c0800000000000000
-      internalID: -4155809342611721718
+      spriteID: af7bbce659adf21c0800000000000000
+      internalID: -4526158765140232198
       vertices: []
       indices: 
       edges: []
@@ -827,19 +1061,19 @@ TextureImporter:
       name: Bernard_28
       rect:
         serializedVersion: 2
-        x: 768
-        y: 0
+        x: 2048
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8092c5a331965450800000000000000
-      internalID: 6077204398193414282
+      spriteID: 3767115c0e7385d10800000000000000
+      internalID: 2114501463568905843
       vertices: []
       indices: 
       edges: []
@@ -848,19 +1082,649 @@ TextureImporter:
       name: Bernard_29
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 0
+        x: 2304
+        y: 1536
         width: 256
         height: 512
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 633dce2fcd9b4f7a0800000000000000
-      internalID: -6344241616438635722
+      spriteID: 82532e237d33959d0800000000000000
+      internalID: -2785137895187270360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b2394e5b4ad9fb0800000000000000
+      internalID: -4639370939990856875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a0a71ca2047b2f50800000000000000
+      internalID: 6857702412427698336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_32
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd2db48ad7effb0e0800000000000000
+      internalID: -2251801473014050083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_33
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3252e2f9060bebb0800000000000000
+      internalID: -4905820729290632642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_34
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3a7971f30b737730800000000000000
+      internalID: 3995672551274150458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_35
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cbf5ccc7d4eec6c0800000000000000
+      internalID: -4121104993492796475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_36
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb11dd163b6810090800000000000000
+      internalID: -8070020952272072260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_37
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 920b3ea5f492d9370800000000000000
+      internalID: 8330860306509312041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_38
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00529036367b022c0800000000000000
+      internalID: -4458361993605602048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_39
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db6804bf8ce3af860800000000000000
+      internalID: 7564427557051860669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe33ba482cf4987c0800000000000000
+      internalID: -4068633091484470289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_41
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5339324286e57490800000000000000
+      internalID: -7749034136689888420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_42
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77483026c0e9d7f30800000000000000
+      internalID: 4574986572499485815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_43
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcc41799fa645b6f0800000000000000
+      internalID: -669551249587090227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_44
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba2f52a3b5ac3570800000000000000
+      internalID: 8447809191982082740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_45
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 658f6aff898a3cf40800000000000000
+      internalID: 5747622924532512854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_46
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8623bb85d69eed6b0800000000000000
+      internalID: -5269517858127531416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_47
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8519b327f59b32c30800000000000000
+      internalID: 4333511086050087256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_48
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1e5b91ac6497a00800000000000000
+      internalID: 754712246389957083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_49
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a22df98ff9d7c430800000000000000
+      internalID: 3803248101892629155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7084dced58eb1a0800000000000000
+      internalID: -6791843996054845504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_51
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a45795f867f9817d0800000000000000
+      internalID: -2947430624554027702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_52
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a33a4b6f0d30fd0800000000000000
+      internalID: -2376826420310361491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_53
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 631453ce546aaaed0800000000000000
+      internalID: -2401924632002870986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_54
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b91b9082a0448010800000000000000
+      internalID: 1190147268219181494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_55
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f5f2b975e083110800000000000000
+      internalID: 1240757466769088348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_56
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be4d0faff21c15d0800000000000000
+      internalID: -3090574354920157513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_57
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 337d37c58daeecda0800000000000000
+      internalID: -5922538244960692429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_58
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 612c6405233423ff0800000000000000
+      internalID: -57909961828154858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bernard_59
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53b7549a8da77b700800000000000000
+      internalID: 556048149974973237
       vertices: []
       indices: 
       edges: []

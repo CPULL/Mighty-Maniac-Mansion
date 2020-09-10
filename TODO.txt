@@ -15,12 +15,9 @@ On the Idle, have some movement, like expression or breathing
 Add expressions and mouth movements for actors
 
 
-Add L animations (Idle and Walk) -> Bernard
-Add R animations (Idle and Walk) -> Bernard
 
 
 
-Balloon: Make balloon follo the speaker, when the speaker is moving
 Balloon: count how much time it should be shown, hide it after the specified time or th eclick (and handle the next dialogue if any)
 
 
@@ -39,5 +36,8 @@ Balloon: count how much time it should be shown, hide it after the specified tim
 ! basic walkF anim for Bernard
 ! Add B animations (Idle and Walk) -> Bernard
 ! Add balloon
+! Balloon: Make balloon follow the speaker, when the speaker is moving
+! Add L animations (Idle and Walk) -> Bernard
+! Add R animations (Idle and Walk) -> Bernard
 
 
