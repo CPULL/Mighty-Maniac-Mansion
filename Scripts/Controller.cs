@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Controller : MonoBehaviour {
@@ -7,6 +8,7 @@ public class Controller : MonoBehaviour {
   float cursorTime = 0;
   Vector2 center32 = new Vector2(32, 32);
   Camera cam;
+
   public Actor bernard;
 
 
@@ -79,5 +81,18 @@ public class Controller : MonoBehaviour {
     c.debugObj.transform.position = eventData.position;
   }
 
+  internal static void SetCurrentItem(Item item) {
+    if (item == null) return;
+
+    if (item.type == ItemType.Readable) {
+      Balloon.Show(item.description, c.bernard.transform);
+    }
+
+  }
+
+
 
 }
+
+
+public enum ItemType { None, Readable };

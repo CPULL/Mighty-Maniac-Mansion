@@ -9,12 +9,9 @@ Create some assets for the rooms
 Create assets for the actors
 
 
-
 On the Idle, have some movement, like expression or breathing
 
 Add expressions and mouth movements for actors
-
-
 
 
 
@@ -22,10 +19,14 @@ Balloon: count how much time it should be shown, hide it after the specified tim
 
 
 
+Have the selectable item. Show the name on the top when over with the mouse.
+Left click is default action, right click is alternate action
 
+Add camera movement when the current actor goes ouside the visible area
+Add face of actors, and change them when clicking the face
+Have inventory that can be open/closed by clicking on it. (Grapich icons + text for the items)
 
-
-
+Add cursor for reading/inspecting -> The action should move the actor close, and then read what is written
 
 
 
@@ -39,5 +40,5 @@ Balloon: count how much time it should be shown, hide it after the specified tim
 ! Balloon: Make balloon follow the speaker, when the speaker is moving
 ! Add L animations (Idle and Walk) -> Bernard
 ! Add R animations (Idle and Walk) -> Bernard
-
+! Added stars
 
