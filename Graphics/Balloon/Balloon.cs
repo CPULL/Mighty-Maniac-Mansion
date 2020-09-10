@@ -12,13 +12,22 @@ public class Balloon : MonoBehaviour {
   }
 
   public static void Show(string message, Transform speaker) {
+    Vector2 size = b.text.GetPreferredValues(message);
     b.text.text = message;
 
     Vector3 location = speaker.position;
-    location.y += .5f;
-    location.z = 0;
+    location.y += 8f + size.y / 2;
+    location.x -= 2f;
+    location.z = -.5f;
     b.transform.position = location;
+
+    size.x += .5f;
+    size.y += .5f;
+    b.body.size = size;
+
+    b.tip.transform.localPosition = new Vector3(-size.x / 4, -size.y / 2 + 0.235f, 0);
   }
+
 
 }
 

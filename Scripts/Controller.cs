@@ -13,7 +13,7 @@ public class Controller : MonoBehaviour {
   public GameObject debugObj;
   public Collider2D walkable;
 
-
+  int rm = 0;
   string[] rndmsg = {
     "I am Bernard",
     "Small",
@@ -46,8 +46,10 @@ public class Controller : MonoBehaviour {
   
   
   
-    if (Input.GetKeyDown(KeyCode.Space)) {
-      Balloon.Show(rndmsg[Random.Range(0, 5)], bernard.transform);
+    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) {
+      Balloon.Show(rndmsg[rm], bernard.transform);
+      rm++;
+      if (rm >= rndmsg.Length) rm = 0;
     }
   
   }
