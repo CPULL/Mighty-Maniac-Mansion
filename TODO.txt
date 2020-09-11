@@ -40,3 +40,28 @@ Add options: music volume, text speed, text size, highlight objects (never, on o
 ! Add camera movement when the current actor goes ouside the visible area
 ! Define some basic stuff for the "rooms": name, camera orientation, max left and right allowed
 ! Have the selectable item. Show the name on the top when over with the mouse.
+! Improved the side walking anim
+
+
+
+
+* CHARS ************************************************************************************************************
+
+Dr. Fred
+Nurse Edna
+Cousin Ted
+Ed
+Edwige
+Green Tentacle
+Purple Tentacle
+Dave
+Bernard
+Hoagie
+Michael
+Razor
+Sandy
+Syd
+Wendy
+Jeff
+Sandy
+??Javid??

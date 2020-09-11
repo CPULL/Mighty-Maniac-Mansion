@@ -16,10 +16,19 @@ public class Actor : MonoBehaviour {
     anim = GetComponent<Animator>();
   }
 
-  public void WalkTo(Vector2 dest, System.Action action = null) {
+  public void WalkTo(Vector3 dest, System.Action action = null) {
     callBack = action;
     destination = dest;
+    destination.y = transform.position.y;
     walking = true;
+
+    Vector3 wdir = destination - transform.position;
+    float angle = Mathf.Atan2(transform.forward.z - wdir.z, transform.forward.x - wdir.x) * Mathf.Rad2Deg;
+    if (60 < angle && angle < 120) { dir = Dir.F; }
+    if (120 <= angle && angle <= 240) { dir = Dir.R; }
+    if (240 < angle || angle < -60) { dir = Dir.B; }
+    if (-60 <= angle && angle <= 60) { dir = Dir.L; }
+    anim.Play("Walk" + dir);
   }
 
   private void Update() {
@@ -42,29 +51,19 @@ public class Actor : MonoBehaviour {
       return;
     }
 
-    Vector3 wdir = destination - transform.position;
-    float speed = 5;
-    if (Mathf.Abs(wdir.y) > Mathf.Abs(wdir.x) * 1.05f) {
-      if (wdir.y > 0) dir = Dir.B;
-      if (wdir.y < 0) dir = Dir.F;
-    }
-    else {
-      if (wdir.x > 0) dir = Dir.R;
-      if (wdir.x < 0) dir = Dir.L;
-      speed = 7.5f;
-    }
+    Vector3 wdir = (destination - transform.position).normalized;
+    float dist = Vector3.Distance(transform.position, destination);
+    float speed = Mathf.Clamp(dist, 2.5f, 5f);
+    Vector3 np = transform.position + wdir * speed * Time.deltaTime;
 
-    anim.Play("Walk" + dir);
-    wdir.z = 0;
-    if (wdir.sqrMagnitude < .25f) {
+    if (Vector3.Dot(np, destination) < 0 || dist < .15f) {
+      transform.position = destination;
       walking = false;
       callBack?.Invoke();
       callBack = null;
       return;
     }
-
-    wdir.Normalize();
-    transform.position += wdir * speed * Time.deltaTime;
+    transform.position = np;
   }
 
   bool isSpeaking = false;

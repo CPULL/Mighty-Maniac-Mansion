@@ -10,14 +10,18 @@ public class Controller : MonoBehaviour {
   Vector2 center32 = new Vector2(32, 32);
   Camera cam;
 
+  public ActorClickHandler ActorPortrait1;
+  public ActorClickHandler ActorPortrait2;
+  public ActorClickHandler ActorPortrait3;
+  public Actor dave;
   public Actor bernard;
   Actor currentActor = null;
   Room currentRoom;
+  Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
+  Color32 selectedActor = new Color32(200, 232, 152, 255);
 
   public Room debugr;
 
-
-  public Collider2D walkable;
 
   int rm = 0; // FIXME remove
   string[] rndmsg = {
@@ -33,6 +37,7 @@ public class Controller : MonoBehaviour {
     c = this;
     cam = Camera.main;
     currentActor = bernard;
+    ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
 
     currentRoom = debugr;
     StartCoroutine(StartDelayed());
@@ -86,12 +91,10 @@ public class Controller : MonoBehaviour {
     // RMB -> Default action
 
     if (Input.GetMouseButtonDown(0)) {
-      // Check intersection?
-      Vector3 worldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-      if (walkable.OverlapPoint(worldPoint)) {
-        worldPoint.z = 0;
-        currentActor.WalkTo(worldPoint);
-      }
+
+      Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+      if (Physics.Raycast(ray, out RaycastHit hit))
+        currentActor.WalkTo(hit.point);
       else
         Debug.Log("Outside");
 
@@ -100,10 +103,9 @@ public class Controller : MonoBehaviour {
       if (overObject != null && overObject.type == ItemType.Readable) {
         // Are we close enough?
         float distx = Mathf.Abs(currentActor.transform.position.x - overObject.transform.position.x);
-        float disty = Mathf.Abs(currentActor.transform.position.y - overObject.transform.position.y);
+        float disty = Mathf.Abs(currentActor.transform.position.z - overObject.transform.position.z);
         if (distx > 6 || disty > 3) { // Need to walk
-          Vector2 dst = overObject.transform.position;
-          dst.y -= 5;
+          Vector3 dst = overObject.transform.position - overObject.transform.forward;
           Actor a = currentActor;
           string d = overObject.Description;
           currentActor.WalkTo(dst, new System.Action(() => {
@@ -116,11 +118,11 @@ public class Controller : MonoBehaviour {
       }
     }
 
-
+    // FIXME this will not work if the scene is rotated
     // Handle camera
     Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
-    if (cpos.x < .2f * Screen.width && cam.transform.position.x > currentRoom.minL) { cam.transform.position += Vector3.left * Time.deltaTime * (.2f * Screen.width - cpos.x) / 10; }
-    if (cpos.x > .8f * Screen.width && cam.transform.position.x < currentRoom.maxR) { cam.transform.position += Vector3.right * Time.deltaTime * (cpos.x - .8f * Screen.width) / 10; }
+    if (cpos.x < .2f * Screen.width && cam.transform.position.x > currentRoom.minL) { cam.transform.position -= cam.transform.right * Time.deltaTime * (.2f * Screen.width - cpos.x) / 10; }
+    if (cpos.x > .8f * Screen.width && cam.transform.position.x < currentRoom.maxR) { cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .8f * Screen.width) / 10; }
 
 
     if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2)) { // FIXME remove it is just for debug
@@ -207,8 +209,27 @@ public class Controller : MonoBehaviour {
   }
 
 
-  internal static void SendEventData(PointerEventData eventData) {
-    Debug.LogError("What called us?");
+  internal static void SendEventData(PointerEventData eventData, IPointerClickHandler handler) {
+    ActorClickHandler h = (ActorClickHandler)handler;
+    if (h == c.ActorPortrait1) {
+      c.currentActor = c.dave;
+      c.ShowName("Selected: Dave");
+      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+
+
+    }
+    else if (h == c.ActorPortrait2) {
+      c.currentActor = c.bernard;
+      c.ShowName("Selected: Bernard");
+      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    }
+    else if (handler as GroundClickHandler) {
+      Debug.Log(" the ground!");
+    }
+    else
+      Debug.LogError("What called us?");
   }
 
   internal static void SetCurrentItem(Item item) {

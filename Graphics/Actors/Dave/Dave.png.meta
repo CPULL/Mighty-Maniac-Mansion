@@ -1,376 +1,187 @@
 fileFormatVersion: 2
-guid: e7abc97291bfd854b9972151e1637e89
+guid: 0b2dbb4b86c778941b8b0948610c8b04
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1830611011517696425
-    second: Bernard_0
+      213: -7888902146871769836
+    second: Dave_0
   - first:
-      213: 6707717784937357259
-    second: Bernard_1
+      213: 8135646650573657831
+    second: Dave_1
   - first:
-      213: 5593877690448800856
-    second: Bernard_2
+      213: -747637553039879534
+    second: Dave_2
   - first:
-      213: -4529906794766806387
-    second: Bernard_3
+      213: -1440088328506575641
+    second: Dave_3
   - first:
-      213: -6744113979953716183
-    second: Bernard_4
+      213: 4910842507438598899
+    second: Dave_4
   - first:
-      213: 7229376970501403744
-    second: Bernard_5
+      213: 7363506383079820997
+    second: Dave_5
   - first:
-      213: 8662177564830451401
-    second: Bernard_6
+      213: -8782635571135245053
+    second: Dave_6
   - first:
-      213: -33185854701467937
-    second: Bernard_7
+      213: 3731878887476337298
+    second: Dave_7
   - first:
-      213: 1309753488421363942
-    second: Bernard_8
+      213: 7546045763806733465
+    second: Dave_8
   - first:
-      213: 1199956514815594128
-    second: Bernard_9
+      213: -2959794242114279973
+    second: Dave_9
   - first:
-      213: 2702817635140980545
-    second: Bernard_10
+      213: 5330956352606089964
+    second: Dave_10
   - first:
-      213: 595272954190060680
-    second: Bernard_11
+      213: -3175745282777762671
+    second: Dave_11
   - first:
-      213: -2463178905321794826
-    second: Bernard_12
+      213: -9046547721153642166
+    second: Dave_12
   - first:
-      213: 3207995751808175030
-    second: Bernard_13
+      213: 4474842964128040499
+    second: Dave_13
   - first:
-      213: 2649973402384229536
-    second: Bernard_14
+      213: -2065442670624400489
+    second: Dave_14
   - first:
-      213: 8096700764720507885
-    second: Bernard_0
+      213: 504732061343106302
+    second: Dave_15
   - first:
-      213: -4909545356726679201
-    second: Bernard_1
+      213: -7460426139253168013
+    second: Dave_16
   - first:
-      213: 4379508278506364529
-    second: Bernard_2
+      213: -6937367103375319229
+    second: Dave_17
   - first:
-      213: 356088277095250681
-    second: Bernard_3
+      213: 2992607042968343019
+    second: Dave_18
   - first:
-      213: 6129605173887861254
-    second: Bernard_4
+      213: 4106430136202557391
+    second: Dave_19
   - first:
-      213: -6969695099777187004
-    second: Bernard_5
+      213: -7867146419528734320
+    second: Dave_20
   - first:
-      213: -2209551896470905385
-    second: Bernard_6
+      213: 5248252073891279038
+    second: Dave_21
   - first:
-      213: -3399964567267949828
-    second: Bernard_7
+      213: -7479142128241946483
+    second: Dave_22
   - first:
-      213: 412500723270576051
-    second: Bernard_8
+      213: 8115595807947430086
+    second: Dave_23
   - first:
-      213: -3853386130209403623
-    second: Bernard_9
+      213: 3579380359600087385
+    second: Dave_24
   - first:
-      213: -5240641633384411121
-    second: Bernard_10
+      213: 7196515420006497057
+    second: Dave_25
   - first:
-      213: -2288346873981230791
-    second: Bernard_11
+      213: -6081496003259615544
+    second: Dave_26
   - first:
-      213: 2395208979078932236
-    second: Bernard_12
+      213: -5621260984230191386
+    second: Dave_27
   - first:
-      213: -6002125637972390336
-    second: Bernard_13
+      213: 9028926393286250709
+    second: Dave_28
   - first:
-      213: -1726395789581301214
-    second: Bernard_14
+      213: 5191425839080472334
+    second: Dave_29
   - first:
-      213: 5134466690563735311
-    second: Bernard_15
+      213: 4349575693236251115
+    second: Dave_30
   - first:
-      213: 3307667968592137743
-    second: Bernard_16
+      213: -4090228576586214124
+    second: Dave_31
   - first:
-      213: -985190248501168579
-    second: Bernard_17
+      213: 3897520715677047314
+    second: Dave_32
   - first:
-      213: 4167721344085591969
-    second: Bernard_18
+      213: 6305682278443167625
+    second: Dave_33
   - first:
-      213: 5192861891572160479
-    second: Bernard_19
+      213: -7313390019080279291
+    second: Dave_34
   - first:
-      213: 1441528066103287749
-    second: Bernard_20
+      213: 6747765485996531226
+    second: Dave_35
   - first:
-      213: 9023611959825375494
-    second: Bernard_21
+      213: 8301271887010317657
+    second: Dave_36
   - first:
-      213: 7980697927852641461
-    second: Bernard_22
+      213: 3737286752727135133
+    second: Dave_37
   - first:
-      213: -527644720721633325
-    second: Bernard_23
+      213: -6359221482647622273
+    second: Dave_38
   - first:
-      213: -8947063692157632413
-    second: Bernard_24
+      213: 8873806063167362163
+    second: Dave_39
   - first:
-      213: 589385793129584047
-    second: Bernard_25
+      213: 1010070456023070211
+    second: Dave_40
   - first:
-      213: -2664073016079729569
-    second: Bernard_26
+      213: 3775120826718300322
+    second: Dave_41
   - first:
-      213: -4155809342611721718
-    second: Bernard_27
+      213: -3973395767477190763
+    second: Dave_42
   - first:
-      213: 6077204398193414282
-    second: Bernard_28
+      213: 6325384408593354156
+    second: Dave_43
   - first:
-      213: -6344241616438635722
-    second: Bernard_29
+      213: -8789017560267634472
+    second: Dave_44
   - first:
-      213: 1905052796859350222
-    second: Bernard_15
+      213: -5518103293305504867
+    second: Dave_45
   - first:
-      213: 5912102844399733656
-    second: Bernard_16
+      213: 7343898637269568886
+    second: Dave_46
   - first:
-      213: -5815393239024020001
-    second: Bernard_17
+      213: 8990550243722228724
+    second: Dave_47
   - first:
-      213: 8481926826038606395
-    second: Bernard_18
+      213: 8648186765697932861
+    second: Dave_48
   - first:
-      213: 4731240904539505072
-    second: Bernard_19
+      213: 4168226659324570698
+    second: Dave_49
   - first:
-      213: 2863987217652472238
-    second: Bernard_20
+      213: -3896855140342960559
+    second: Dave_50
   - first:
-      213: -6660772795180048757
-    second: Bernard_21
+      213: -5053805227437848470
+    second: Dave_51
   - first:
-      213: -707649188447442373
-    second: Bernard_22
+      213: -5029619571608823755
+    second: Dave_52
   - first:
-      213: -480769965550251318
-    second: Bernard_23
+      213: 6141925264097652475
+    second: Dave_53
   - first:
-      213: 3314458871274877783
-    second: Bernard_24
+      213: 8442050147283572108
+    second: Dave_54
   - first:
-      213: -6534348309166841332
-    second: Bernard_25
+      213: -6427586263114401296
+    second: Dave_55
   - first:
-      213: 1324209519922570964
-    second: Bernard_26
+      213: -4213635897947632198
+    second: Dave_56
   - first:
-      213: -4526158765140232198
-    second: Bernard_27
+      213: -4374184652258226299
+    second: Dave_57
   - first:
-      213: 2114501463568905843
-    second: Bernard_28
+      213: -9149808062453588639
+    second: Dave_58
   - first:
-      213: -2785137895187270360
-    second: Bernard_29
-  - first:
-      213: 4957965997881566074
-    second: Bernard_30
-  - first:
-      213: 6634090284382210437
-    second: Bernard_31
-  - first:
-      213: 1400993241614289348
-    second: Bernard_32
-  - first:
-      213: -4188521144126844227
-    second: Bernard_33
-  - first:
-      213: 258526150660172522
-    second: Bernard_34
-  - first:
-      213: 2059701668977575899
-    second: Bernard_35
-  - first:
-      213: 8530157568904729249
-    second: Bernard_36
-  - first:
-      213: 5314381641188760411
-    second: Bernard_37
-  - first:
-      213: -2332383573255350690
-    second: Bernard_38
-  - first:
-      213: -8488713824572178234
-    second: Bernard_39
-  - first:
-      213: 1547717490596165831
-    second: Bernard_40
-  - first:
-      213: -4846852422772416976
-    second: Bernard_41
-  - first:
-      213: -4323920121056704120
-    second: Bernard_42
-  - first:
-      213: -3880316486824920323
-    second: Bernard_43
-  - first:
-      213: 6278295844644781281
-    second: Bernard_44
-  - first:
-      213: 8408333851340013624
-    second: Bernard_45
-  - first:
-      213: 5234384389940882085
-    second: Bernard_46
-  - first:
-      213: -8333147443048105103
-    second: Bernard_47
-  - first:
-      213: 2402400989513272009
-    second: Bernard_48
-  - first:
-      213: 8055348889529129453
-    second: Bernard_49
-  - first:
-      213: 477075514377198053
-    second: Bernard_50
-  - first:
-      213: 4414654526230624182
-    second: Bernard_51
-  - first:
-      213: -8695676570933139958
-    second: Bernard_52
-  - first:
-      213: -144073465852607914
-    second: Bernard_53
-  - first:
-      213: -6653375138301920232
-    second: Bernard_54
-  - first:
-      213: -2220165544545290193
-    second: Bernard_55
-  - first:
-      213: 6556330668691357096
-    second: Bernard_56
-  - first:
-      213: 2345600437117629751
-    second: Bernard_57
-  - first:
-      213: 5320318167757148307
-    second: Bernard_58
-  - first:
-      213: -163347990100589127
-    second: Bernard_59
-  - first:
-      213: 5061200594346454604
-    second: Bernard_60
-  - first:
-      213: -3752208386422153910
-    second: Bernard_61
-  - first:
-      213: 3482308025680564670
-    second: Bernard_62
-  - first:
-      213: -4639370939990856875
-    second: Bernard_30
-  - first:
-      213: 6857702412427698336
-    second: Bernard_31
-  - first:
-      213: -2251801473014050083
-    second: Bernard_32
-  - first:
-      213: -4905820729290632642
-    second: Bernard_33
-  - first:
-      213: 3995672551274150458
-    second: Bernard_34
-  - first:
-      213: -4121104993492796475
-    second: Bernard_35
-  - first:
-      213: -8070020952272072260
-    second: Bernard_36
-  - first:
-      213: 8330860306509312041
-    second: Bernard_37
-  - first:
-      213: -4458361993605602048
-    second: Bernard_38
-  - first:
-      213: 7564427557051860669
-    second: Bernard_39
-  - first:
-      213: -4068633091484470289
-    second: Bernard_40
-  - first:
-      213: -7749034136689888420
-    second: Bernard_41
-  - first:
-      213: 4574986572499485815
-    second: Bernard_42
-  - first:
-      213: -669551249587090227
-    second: Bernard_43
-  - first:
-      213: 8447809191982082740
-    second: Bernard_44
-  - first:
-      213: 5747622924532512854
-    second: Bernard_45
-  - first:
-      213: -5269517858127531416
-    second: Bernard_46
-  - first:
-      213: 4333511086050087256
-    second: Bernard_47
-  - first:
-      213: 754712246389957083
-    second: Bernard_48
-  - first:
-      213: 3803248101892629155
-    second: Bernard_49
-  - first:
-      213: -6791843996054845504
-    second: Bernard_50
-  - first:
-      213: -2947430624554027702
-    second: Bernard_51
-  - first:
-      213: -2376826420310361491
-    second: Bernard_52
-  - first:
-      213: -2401924632002870986
-    second: Bernard_53
-  - first:
-      213: 1190147268219181494
-    second: Bernard_54
-  - first:
-      213: 1240757466769088348
-    second: Bernard_55
-  - first:
-      213: -3090574354920157513
-    second: Bernard_56
-  - first:
-      213: -5922538244960692429
-    second: Bernard_57
-  - first:
-      213: -57909961828154858
-    second: Bernard_58
-  - first:
-      213: 556048149974973237
-    second: Bernard_59
+      213: 8553650366293852298
+    second: Dave_59
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -432,7 +243,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -444,7 +255,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -456,7 +267,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -470,7 +281,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bernard_0
+      name: Dave_0
       rect:
         serializedVersion: 2
         x: 0
@@ -484,14 +295,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: debacc582724d5070800000000000000
-      internalID: 8096700764720507885
+      spriteID: 41544eb6b4df48290800000000000000
+      internalID: -7888902146871769836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_1
+      name: Dave_1
       rect:
         serializedVersion: 2
         x: 256
@@ -505,14 +316,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5943ab828acddbb0800000000000000
-      internalID: -4909545356726679201
+      spriteID: 7e61a81368f97e070800000000000000
+      internalID: 8135646650573657831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_2
+      name: Dave_2
       rect:
         serializedVersion: 2
         x: 512
@@ -526,14 +337,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17e114f539327cc30800000000000000
-      internalID: 4379508278506364529
+      spriteID: 292d05e4b9bdf95f0800000000000000
+      internalID: -747637553039879534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_3
+      name: Dave_3
       rect:
         serializedVersion: 2
         x: 768
@@ -547,14 +358,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fa71f0c66411f400800000000000000
-      internalID: 356088277095250681
+      spriteID: 7e4fd2e8b47c30ce0800000000000000
+      internalID: -1440088328506575641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_5
+      name: Dave_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fa24c3ed31d62440800000000000000
+      internalID: 4910842507438598899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dave_5
       rect:
         serializedVersion: 2
         x: 1280
@@ -568,14 +400,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4430009db3ba64f90800000000000000
-      internalID: -6969695099777187004
+      spriteID: 5ce4bc8ba0e603660800000000000000
+      internalID: 7363506383079820997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_6
+      name: Dave_6
       rect:
         serializedVersion: 2
         x: 1536
@@ -589,14 +421,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dd9f02c1481651e0800000000000000
-      internalID: -2209551896470905385
+      spriteID: 30516cefa7fcd1680800000000000000
+      internalID: -8782635571135245053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_7
+      name: Dave_7
       rect:
         serializedVersion: 2
         x: 1792
@@ -610,14 +442,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf244176d36e0d0d0800000000000000
-      internalID: -3399964567267949828
+      spriteID: 29a9ec8631c4ac330800000000000000
+      internalID: 3731878887476337298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_8
+      name: Dave_8
       rect:
         serializedVersion: 2
         x: 2048
@@ -631,14 +463,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b76228e83f79b500800000000000000
-      internalID: 412500723270576051
+      spriteID: 994aa8a34a0f8b860800000000000000
+      internalID: 7546045763806733465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_10
+      name: Dave_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd5288681d2bce6d0800000000000000
+      internalID: -2959794242114279973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dave_10
       rect:
         serializedVersion: 2
         x: 0
@@ -652,14 +505,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f00dff653308547b0800000000000000
-      internalID: -5240641633384411121
+      spriteID: ce2b23ede8c5bf940800000000000000
+      internalID: 5330956352606089964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_11
+      name: Dave_11
       rect:
         serializedVersion: 2
         x: 256
@@ -673,14 +526,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 931297d64a82e30e0800000000000000
-      internalID: -2288346873981230791
+      spriteID: 194b8eabd7c7de3d0800000000000000
+      internalID: -3175745282777762671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_12
+      name: Dave_12
       rect:
         serializedVersion: 2
         x: 512
@@ -694,14 +547,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0763d840ed7d3120800000000000000
-      internalID: 2395208979078932236
+      spriteID: a41840d37c4347280800000000000000
+      internalID: -9046547721153642166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_13
+      name: Dave_13
       rect:
         serializedVersion: 2
         x: 768
@@ -715,56 +568,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04e046b688a24bca0800000000000000
-      internalID: -6002125637972390336
+      spriteID: 336028697f5d91e30800000000000000
+      internalID: 4474842964128040499
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_4
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 2560
-        width: 256
-        height: 512
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6028bfafd6bb01550800000000000000
-      internalID: 6129605173887861254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bernard_9
-      rect:
-        serializedVersion: 2
-        x: 2304
-        y: 2560
-        width: 256
-        height: 512
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91d837e0bb5068ac0800000000000000
-      internalID: -3853386130209403623
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bernard_14
+      name: Dave_14
       rect:
         serializedVersion: 2
         x: 1024
@@ -778,14 +589,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22ac64c1d2c9a08e0800000000000000
-      internalID: -1726395789581301214
+      spriteID: 79b9f7195d21653e0800000000000000
+      internalID: -2065442670624400489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_15
+      name: Dave_15
       rect:
         serializedVersion: 2
         x: 1280
@@ -799,14 +610,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecc7a23ec6b107a10800000000000000
-      internalID: 1905052796859350222
+      spriteID: ef44b17b22b210700800000000000000
+      internalID: 504732061343106302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_16
+      name: Dave_16
       rect:
         serializedVersion: 2
         x: 1536
@@ -820,14 +631,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89bc50c96320c0250800000000000000
-      internalID: 5912102844399733656
+      spriteID: 378a6c014fd377890800000000000000
+      internalID: -7460426139253168013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_17
+      name: Dave_17
       rect:
         serializedVersion: 2
         x: 1792
@@ -841,14 +652,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd5d3ce09a29b4fa0800000000000000
-      internalID: -5815393239024020001
+      spriteID: 34f55de006589bf90800000000000000
+      internalID: -6937367103375319229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_18
+      name: Dave_18
       rect:
         serializedVersion: 2
         x: 2048
@@ -862,14 +673,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3a33e4528bd5b570800000000000000
-      internalID: 8481926826038606395
+      spriteID: be1d5740040e78920800000000000000
+      internalID: 2992607042968343019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_19
+      name: Dave_19
       rect:
         serializedVersion: 2
         x: 2304
@@ -883,14 +694,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b100e5198eb8a140800000000000000
-      internalID: 4731240904539505072
+      spriteID: fc7ff4bb378fcf830800000000000000
+      internalID: 4106430136202557391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_20
+      name: Dave_20
       rect:
         serializedVersion: 2
         x: 0
@@ -904,14 +715,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea95f6d433deeb720800000000000000
-      internalID: 2863987217652472238
+      spriteID: 099e00c630842d290800000000000000
+      internalID: -7867146419528734320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_21
+      name: Dave_21
       rect:
         serializedVersion: 2
         x: 256
@@ -925,14 +736,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8e15bdde6e2093a0800000000000000
-      internalID: -6660772795180048757
+      spriteID: eb03ffb647985d840800000000000000
+      internalID: 5248252073891279038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_22
+      name: Dave_22
       rect:
         serializedVersion: 2
         x: 512
@@ -946,14 +757,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3a2ff8ffcced26f0800000000000000
-      internalID: -707649188447442373
+      spriteID: d80da7d4cdfb43890800000000000000
+      internalID: -7479142128241946483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_23
+      name: Dave_23
       rect:
         serializedVersion: 2
         x: 768
@@ -967,14 +778,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac253b87346f359f0800000000000000
-      internalID: -480769965550251318
+      spriteID: 6c81b59936360a070800000000000000
+      internalID: 8115595807947430086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_24
+      name: Dave_24
       rect:
         serializedVersion: 2
         x: 1024
@@ -988,14 +799,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7533bfc58c25ffd20800000000000000
-      internalID: 3314458871274877783
+      spriteID: 95129f109738ca130800000000000000
+      internalID: 3579380359600087385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_25
+      name: Dave_25
       rect:
         serializedVersion: 2
         x: 1280
@@ -1009,14 +820,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c02af6155d45155a0800000000000000
-      internalID: -6534348309166841332
+      spriteID: 12bbb1e45a82fd360800000000000000
+      internalID: 7196515420006497057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_26
+      name: Dave_26
       rect:
         serializedVersion: 2
         x: 1536
@@ -1030,14 +841,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d6ec2bda89806210800000000000000
-      internalID: 1324209519922570964
+      spriteID: 8c6b0ce2b9f2a9ba0800000000000000
+      internalID: -6081496003259615544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_27
+      name: Dave_27
       rect:
         serializedVersion: 2
         x: 1792
@@ -1051,14 +862,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af7bbce659adf21c0800000000000000
-      internalID: -4526158765140232198
+      spriteID: 6ee5235eae44df1b0800000000000000
+      internalID: -5621260984230191386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_28
+      name: Dave_28
       rect:
         serializedVersion: 2
         x: 2048
@@ -1072,14 +883,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3767115c0e7385d10800000000000000
-      internalID: 2114501463568905843
+      spriteID: 5d0d9f6a7b03d4d70800000000000000
+      internalID: 9028926393286250709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_29
+      name: Dave_29
       rect:
         serializedVersion: 2
         x: 2304
@@ -1093,14 +904,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82532e237d33959d0800000000000000
-      internalID: -2785137895187270360
+      spriteID: e0ffc289b46ab0840800000000000000
+      internalID: 5191425839080472334
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_30
+      name: Dave_30
       rect:
         serializedVersion: 2
         x: 0
@@ -1114,14 +925,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55b2394e5b4ad9fb0800000000000000
-      internalID: -4639370939990856875
+      spriteID: be925074c0ccc5c30800000000000000
+      internalID: 4349575693236251115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_31
+      name: Dave_31
       rect:
         serializedVersion: 2
         x: 256
@@ -1135,14 +946,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a0a71ca2047b2f50800000000000000
-      internalID: 6857702412427698336
+      spriteID: 4155d62d7c69c37c0800000000000000
+      internalID: -4090228576586214124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_32
+      name: Dave_32
       rect:
         serializedVersion: 2
         x: 512
@@ -1156,14 +967,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd2db48ad7effb0e0800000000000000
-      internalID: -2251801473014050083
+      spriteID: 21a18a2e076c61630800000000000000
+      internalID: 3897520715677047314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_33
+      name: Dave_33
       rect:
         serializedVersion: 2
         x: 768
@@ -1177,14 +988,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3252e2f9060bebb0800000000000000
-      internalID: -4905820729290632642
+      spriteID: 98fa4119f98428750800000000000000
+      internalID: 6305682278443167625
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_34
+      name: Dave_34
       rect:
         serializedVersion: 2
         x: 1024
@@ -1198,14 +1009,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3a7971f30b737730800000000000000
-      internalID: 3995672551274150458
+      spriteID: 50b25d0968e918a90800000000000000
+      internalID: -7313390019080279291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_35
+      name: Dave_35
       rect:
         serializedVersion: 2
         x: 1280
@@ -1219,14 +1030,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cbf5ccc7d4eec6c0800000000000000
-      internalID: -4121104993492796475
+      spriteID: a1ed67455f0e4ad50800000000000000
+      internalID: 6747765485996531226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_36
+      name: Dave_36
       rect:
         serializedVersion: 2
         x: 1536
@@ -1240,14 +1051,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb11dd163b6810090800000000000000
-      internalID: -8070020952272072260
+      spriteID: 955cf299cca043370800000000000000
+      internalID: 8301271887010317657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_37
+      name: Dave_37
       rect:
         serializedVersion: 2
         x: 1792
@@ -1261,14 +1072,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 920b3ea5f492d9370800000000000000
-      internalID: 8330860306509312041
+      spriteID: d93f21820828dd330800000000000000
+      internalID: 3737286752727135133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_38
+      name: Dave_38
       rect:
         serializedVersion: 2
         x: 2048
@@ -1282,14 +1093,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00529036367b022c0800000000000000
-      internalID: -4458361993605602048
+      spriteID: f7d61ce01c18fb7a0800000000000000
+      internalID: -6359221482647622273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_39
+      name: Dave_39
       rect:
         serializedVersion: 2
         x: 2304
@@ -1303,14 +1114,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db6804bf8ce3af860800000000000000
-      internalID: 7564427557051860669
+      spriteID: 3745cc85997162b70800000000000000
+      internalID: 8873806063167362163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_40
+      name: Dave_40
       rect:
         serializedVersion: 2
         x: 0
@@ -1324,14 +1135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe33ba482cf4987c0800000000000000
-      internalID: -4068633091484470289
+      spriteID: 3063f596abd740e00800000000000000
+      internalID: 1010070456023070211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_41
+      name: Dave_41
       rect:
         serializedVersion: 2
         x: 256
@@ -1345,14 +1156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5339324286e57490800000000000000
-      internalID: -7749034136689888420
+      spriteID: 2a829b4f36ce36430800000000000000
+      internalID: 3775120826718300322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_42
+      name: Dave_42
       rect:
         serializedVersion: 2
         x: 512
@@ -1366,14 +1177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77483026c0e9d7f30800000000000000
-      internalID: 4574986572499485815
+      spriteID: 59f3b77f999abd8c0800000000000000
+      internalID: -3973395767477190763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_43
+      name: Dave_43
       rect:
         serializedVersion: 2
         x: 768
@@ -1387,14 +1198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcc41799fa645b6f0800000000000000
-      internalID: -669551249587090227
+      spriteID: cad40063b9748c750800000000000000
+      internalID: 6325384408593354156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_44
+      name: Dave_44
       rect:
         serializedVersion: 2
         x: 1024
@@ -1408,14 +1219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ba2f52a3b5ac3570800000000000000
-      internalID: 8447809191982082740
+      spriteID: 8d8c39b5813270680800000000000000
+      internalID: -8789017560267634472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_45
+      name: Dave_45
       rect:
         serializedVersion: 2
         x: 1280
@@ -1429,14 +1240,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 658f6aff898a3cf40800000000000000
-      internalID: 5747622924532512854
+      spriteID: d9bbc987a42cb63b0800000000000000
+      internalID: -5518103293305504867
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_46
+      name: Dave_46
       rect:
         serializedVersion: 2
         x: 1536
@@ -1450,14 +1261,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8623bb85d69eed6b0800000000000000
-      internalID: -5269517858127531416
+      spriteID: 67d8de4a6e4cae560800000000000000
+      internalID: 7343898637269568886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_47
+      name: Dave_47
       rect:
         serializedVersion: 2
         x: 1792
@@ -1471,14 +1282,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8519b327f59b32c30800000000000000
-      internalID: 4333511086050087256
+      spriteID: 4f37d5c00d9d4cc70800000000000000
+      internalID: 8990550243722228724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_48
+      name: Dave_48
       rect:
         serializedVersion: 2
         x: 2048
@@ -1492,14 +1303,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd1e5b91ac6497a00800000000000000
-      internalID: 754712246389957083
+      spriteID: d3ed8a81b08840870800000000000000
+      internalID: 8648186765697932861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_49
+      name: Dave_49
       rect:
         serializedVersion: 2
         x: 2304
@@ -1513,14 +1324,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a22df98ff9d7c430800000000000000
-      internalID: 3803248101892629155
+      spriteID: a4caa5cff0488d930800000000000000
+      internalID: 4168226659324570698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_50
+      name: Dave_50
       rect:
         serializedVersion: 2
         x: 0
@@ -1534,14 +1345,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c7084dced58eb1a0800000000000000
-      internalID: -6791843996054845504
+      spriteID: 15ee3b275e69be9c0800000000000000
+      internalID: -3896855140342960559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_51
+      name: Dave_51
       rect:
         serializedVersion: 2
         x: 256
@@ -1555,14 +1366,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a45795f867f9817d0800000000000000
-      internalID: -2947430624554027702
+      spriteID: a680e8efbe64dd9b0800000000000000
+      internalID: -5053805227437848470
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_52
+      name: Dave_52
       rect:
         serializedVersion: 2
         x: 512
@@ -1576,14 +1387,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6a33a4b6f0d30fd0800000000000000
-      internalID: -2376826420310361491
+      spriteID: 53857eec5a3333ab0800000000000000
+      internalID: -5029619571608823755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_53
+      name: Dave_53
       rect:
         serializedVersion: 2
         x: 768
@@ -1597,14 +1408,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 631453ce546aaaed0800000000000000
-      internalID: -2401924632002870986
+      spriteID: bfea9838c708c3550800000000000000
+      internalID: 6141925264097652475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_54
+      name: Dave_54
       rect:
         serializedVersion: 2
         x: 1024
@@ -1618,14 +1429,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b91b9082a0448010800000000000000
-      internalID: 1190147268219181494
+      spriteID: c851fdc81ef282570800000000000000
+      internalID: 8442050147283572108
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_55
+      name: Dave_55
       rect:
         serializedVersion: 2
         x: 1280
@@ -1639,14 +1450,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5f5f2b975e083110800000000000000
-      internalID: 1240757466769088348
+      spriteID: 0f9b2e73950acc6a0800000000000000
+      internalID: -6427586263114401296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_56
+      name: Dave_56
       rect:
         serializedVersion: 2
         x: 1536
@@ -1660,14 +1471,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7be4d0faff21c15d0800000000000000
-      internalID: -3090574354920157513
+      spriteID: abd4ff1c9782685c0800000000000000
+      internalID: -4213635897947632198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_57
+      name: Dave_57
       rect:
         serializedVersion: 2
         x: 1792
@@ -1681,14 +1492,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 337d37c58daeecda0800000000000000
-      internalID: -5922538244960692429
+      spriteID: 58fce24fb36cb43c0800000000000000
+      internalID: -4374184652258226299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_58
+      name: Dave_58
       rect:
         serializedVersion: 2
         x: 2048
@@ -1702,14 +1513,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 612c6405233423ff0800000000000000
-      internalID: -57909961828154858
+      spriteID: 16dd2728b0a550180800000000000000
+      internalID: -9149808062453588639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bernard_59
+      name: Dave_59
       rect:
         serializedVersion: 2
         x: 2304
@@ -1723,8 +1534,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53b7549a8da77b700800000000000000
-      internalID: 556048149974973237
+      spriteID: a80c5df50bba4b670800000000000000
+      internalID: 8553650366293852298
       vertices: []
       indices: 
       edges: []

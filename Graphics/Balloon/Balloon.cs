@@ -26,11 +26,9 @@ public class Balloon : MonoBehaviour {
     b.size = b.text.GetPreferredValues(message);
     b.text.text = message;
 
-    Vector3 location = speaker.position;
-    location.y += 8f + b.size.y / 2;
-    location.x -= 2f;
-    location.z = -.5f;
+    Vector3 location = b.anchor.position + b.transform.up * b.size.y * .15f - b.transform.right * b.size.x * 0.05f;
     b.transform.position = location;
+    b.transform.rotation = b.anchor.rotation;
 
     b.size.x += .5f;
     b.size.y += .5f;
@@ -55,25 +53,15 @@ public class Balloon : MonoBehaviour {
       return;
     }
 
-    Vector3 location = b.anchor.position;
-    location.y += 8f + size.y / 2;
-    location.x -= 2f;
-    location.z = -.5f;
+    Vector3 location = b.anchor.position + transform.up * b.size.y * .15f + transform.right * b.size.x * 0.05f;
     b.transform.position = location;
+    b.transform.rotation = b.anchor.rotation;
     b.tip.transform.localPosition = new Vector3(-b.size.x / 4, -b.size.y / 2 + 0.235f, 0);
   }
 
   private void OnMouseDown() {
     b.delay = Time.deltaTime;
   }
-
 }
 
 
-/*
- Show it immediately of the correct size
-  Position it in a way it is stuck to the player at about the specified position (but try to respect the height and the tip should be over the head
-  Handle left/right for the tip
-  Show it for a while (should the mout of the speaker animate?
-  Stop it when clicking (move to next dialogue line)
- */
