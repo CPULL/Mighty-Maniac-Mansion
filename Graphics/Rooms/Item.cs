@@ -3,8 +3,9 @@
 public class Item : MonoBehaviour {
   SpriteRenderer img;
   public ItemType type;
+  public string ItemName;
   [TextArea(3, 10)]
-  public string description;
+  public string Description;
 
   private void Awake() {
     img = GetComponent<SpriteRenderer>();

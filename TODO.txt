@@ -1,36 +1,27 @@
 Mighty Maniac Mansion
 
 
-************************************************************************************************************
+Have a queue of "actions" for each actor, or global for the game? 
+
+
+* TODO ************************************************************************************************************
 
 Create assets for the outside part of the home
-
 Create some assets for the rooms
-Create assets for the actors
-
-
-On the Idle, have some movement, like expression or breathing
-
 
 Try 3d ground
 
 
-Balloon: count how much time it should be shown, hide it after the specified time or the click (and handle the next dialogue if any)
-
-
-
-Have the selectable item. Show the name on the top when over with the mouse.
 Left click is default action, right click is alternate action
 
-Add camera movement when the current actor goes ouside the visible area
 Add face of actors, and change them when clicking the face
 Have inventory that can be open/closed by clicking on it. (Grapich icons + text for the items)
 
-Reading/inspecting -> The action should move the actor close, and then read what is written
+Add options: music volume, text speed, text size, highlight objects (never, on over, when entering)
 
 
 
-************************************************************************************************************
+* DONE ************************************************************************************************************
 
 ! added logo
 ! added c64 animated cursor
@@ -44,3 +35,8 @@ Reading/inspecting -> The action should move the actor close, and then read what
 ! No more flickering cursors
 ! Added cursor for reading/inspecting
 ! Added expressions and mouth movements for actors
+! Reading/inspecting -> The action should move the actor close, and then read what is written
+! Balloon: count how much time it should be shown, hide it after the specified time or the click (and handle the next dialogue if any)
+! Add camera movement when the current actor goes ouside the visible area
+! Define some basic stuff for the "rooms": name, camera orientation, max left and right allowed
+! Have the selectable item. Show the name on the top when over with the mouse.

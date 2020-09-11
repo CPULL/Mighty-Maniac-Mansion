@@ -6,6 +6,7 @@ public class Balloon : MonoBehaviour {
   public TMPro.TextMeshPro text;
   public SpriteRenderer body;
   public SpriteRenderer tip;
+  public BoxCollider2D boxc;
   Transform anchor;
   Vector2 size = Vector2.zero;
   int numWords = 0;
@@ -34,6 +35,7 @@ public class Balloon : MonoBehaviour {
     b.size.x += .5f;
     b.size.y += .5f;
     b.body.size = b.size;
+    b.boxc.size = b.size;
 
     b.tip.transform.localPosition = new Vector3(-b.size.x / 4, -b.size.y / 2 + 0.235f, 0);
 
@@ -59,6 +61,10 @@ public class Balloon : MonoBehaviour {
     location.z = -.5f;
     b.transform.position = location;
     b.tip.transform.localPosition = new Vector3(-b.size.x / 4, -b.size.y / 2 + 0.235f, 0);
+  }
+
+  private void OnMouseDown() {
+    b.delay = Time.deltaTime;
   }
 
 }

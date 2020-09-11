@@ -8,6 +8,7 @@ public class Actor : MonoBehaviour {
   public SpriteRenderer Face;
   Animator anim;
   Vector3 destination = Vector2.zero;
+  System.Action callBack = null;
   bool walking = false;
   Dir dir = Dir.F;
 
@@ -15,7 +16,8 @@ public class Actor : MonoBehaviour {
     anim = GetComponent<Animator>();
   }
 
-  public void WalkTo(Vector2 dest) {
+  public void WalkTo(Vector2 dest, System.Action action = null) {
+    callBack = action;
     destination = dest;
     walking = true;
   }
@@ -56,6 +58,8 @@ public class Actor : MonoBehaviour {
     wdir.z = 0;
     if (wdir.sqrMagnitude < .25f) {
       walking = false;
+      callBack?.Invoke();
+      callBack = null;
       return;
     }
 

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Controller : MonoBehaviour {
@@ -9,12 +11,15 @@ public class Controller : MonoBehaviour {
   Camera cam;
 
   public Actor bernard;
+  Actor currentActor = null;
+  Room currentRoom;
+
+  public Room debugr;
 
 
-  public GameObject debugObj;
   public Collider2D walkable;
 
-  int rm = 0;
+  int rm = 0; // FIXME remove
   string[] rndmsg = {
     "I am Bernard",
     "Small",
@@ -27,11 +32,54 @@ public class Controller : MonoBehaviour {
   private void Awake() {
     c = this;
     cam = Camera.main;
+    currentActor = bernard;
+
+    currentRoom = debugr;
+    StartCoroutine(StartDelayed());
   }
+
+  IEnumerator StartDelayed() {
+    yield return new WaitForSeconds(.5f);
+    ShowName(currentRoom.RoomName);
+  }
+
 
   void Update() {
     cursorTime += Time.deltaTime;
     HandleCursor();
+
+    // Handling of text messages
+    if (textMsgTime > 0) {
+      textMsgTime -= Time.deltaTime;
+      switch (txtMsgMode) {
+        case TextMsgMode.Appearing:
+          TextMsgRT.sizeDelta = new Vector2(textSizeX * 4 * (.25f - textMsgTime), 50);
+          TextBackRT.sizeDelta = TextMsgRT.sizeDelta;
+          break;
+        case TextMsgMode.Disappearing:
+          TextMsgRT.sizeDelta = new Vector2(textSizeX * 4 * (textMsgTime), 50);
+          TextBackRT.sizeDelta = TextMsgRT.sizeDelta;
+          break;
+      }
+      if (textMsgTime <= 0) {
+        switch (txtMsgMode) {
+          case TextMsgMode.Appearing:
+            txtMsgMode = TextMsgMode.Visible;
+            textMsgTime = 3;
+            break;
+          case TextMsgMode.Disappearing:
+            txtMsgMode = TextMsgMode.None;
+            TextMsg.text = "";
+            break;
+          case TextMsgMode.Visible:
+            txtMsgMode = TextMsgMode.Disappearing;
+            textMsgTime = .25f;
+            break;
+          case TextMsgMode.None:
+            break;
+        }
+      }
+    }
 
 
     // LMB -> Walk or secondary action
@@ -42,7 +90,7 @@ public class Controller : MonoBehaviour {
       Vector3 worldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
       if (walkable.OverlapPoint(worldPoint)) {
         worldPoint.z = 0;
-        bernard.WalkTo(worldPoint);
+        currentActor.WalkTo(worldPoint);
       }
       else
         Debug.Log("Outside");
@@ -50,17 +98,41 @@ public class Controller : MonoBehaviour {
     }
     if (Input.GetMouseButtonDown(1)) {
       if (overObject != null && overObject.type == ItemType.Readable) {
-        bernard.Say(overObject.description);
+        // Are we close enough?
+        float distx = Mathf.Abs(currentActor.transform.position.x - overObject.transform.position.x);
+        float disty = Mathf.Abs(currentActor.transform.position.y - overObject.transform.position.y);
+        if (distx > 6 || disty > 3) { // Need to walk
+          Vector2 dst = overObject.transform.position;
+          dst.y -= 5;
+          Actor a = currentActor;
+          string d = overObject.Description;
+          currentActor.WalkTo(dst, new System.Action(() => {
+            a.Say(d);
+          }));
+          return;
+        }
+
+        currentActor.Say(overObject.Description);
       }
     }
-  
-  
-    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2)) {
-      bernard.Say(rndmsg[rm]);
+
+
+    // Handle camera
+    Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
+    if (cpos.x < .2f * Screen.width && cam.transform.position.x > currentRoom.minL) { cam.transform.position += Vector3.left * Time.deltaTime * (.2f * Screen.width - cpos.x) / 10; }
+    if (cpos.x > .8f * Screen.width && cam.transform.position.x < currentRoom.maxR) { cam.transform.position += Vector3.right * Time.deltaTime * (cpos.x - .8f * Screen.width) / 10; }
+
+
+    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2)) { // FIXME remove it is just for debug
+      currentActor.Say(rndmsg[rm]);
       rm++;
       if (rm >= rndmsg.Length) rm = 0;
     }
   
+
+
+
+
   }
 
   private CursorTypes forcedCursor = CursorTypes.None;
@@ -111,20 +183,46 @@ public class Controller : MonoBehaviour {
 
 
 
+  public TextMeshProUGUI TextMsg;
+  public RectTransform TextMsgRT;
+  public RectTransform TextBackRT;
+  TextMsgMode txtMsgMode = TextMsgMode.None;
+  float textMsgTime = 0;
+  float textSizeX = 0;
+
+  void ShowName(string name) {
+    if (TextMsg.text == name) return;
+    textSizeX = TextMsg.GetPreferredValues(name).x;
+    TextMsgRT.sizeDelta = new Vector2(0, 50);
+    TextBackRT.sizeDelta = TextMsgRT.sizeDelta;
+    TextMsg.text = name;
+    textMsgTime = .25f;
+    txtMsgMode = TextMsgMode.Appearing;
+  }
+
+  void HideName() {
+    if (txtMsgMode == TextMsgMode.Disappearing || txtMsgMode == TextMsgMode.None) return;
+    textMsgTime = .25f;
+    txtMsgMode = TextMsgMode.Disappearing;
+  }
+
+
   internal static void SendEventData(PointerEventData eventData) {
-    c.debugObj.transform.position = eventData.position;
+    Debug.LogError("What called us?");
   }
 
   internal static void SetCurrentItem(Item item) {
     if (item == null) {
       c.forcedCursor = CursorTypes.None;
       c.overObject = null;
+      if (c.TextMsg.text != "") c.HideName();
       return;
     }
 
     if (item.type == ItemType.Readable) {
       c.forcedCursor = CursorTypes.Examine;
       c.overObject = item;
+      c.ShowName(item.ItemName);
     }
 
   }
