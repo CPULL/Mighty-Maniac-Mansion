@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Controller : MonoBehaviour {
@@ -34,6 +33,10 @@ public class Controller : MonoBehaviour {
     cursorTime += Time.deltaTime;
     HandleCursor();
 
+
+    // LMB -> Walk or secondary action
+    // RMB -> Default action
+
     if (Input.GetMouseButtonDown(0)) {
       // Check intersection?
       Vector3 worldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -45,33 +48,64 @@ public class Controller : MonoBehaviour {
         Debug.Log("Outside");
 
     }
+    if (Input.GetMouseButtonDown(1)) {
+      if (overObject != null && overObject.type == ItemType.Readable) {
+        bernard.Say(overObject.description);
+      }
+    }
   
   
-  
-    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) {
-      Balloon.Show(rndmsg[rm], bernard.transform);
+    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2)) {
+      bernard.Say(rndmsg[rm]);
       rm++;
       if (rm >= rndmsg.Length) rm = 0;
     }
   
   }
 
+  private CursorTypes forcedCursor = CursorTypes.None;
+  private Item overObject = null;
+  private Item usedObject = null;
+  private Texture2D oldCursor = null;
   void HandleCursor() {
+    if (forcedCursor == CursorTypes.Examine) {
+      if (oldCursor != Cursors[3]) {
+        Cursor.SetCursor(Cursors[3], center32, CursorMode.Auto);
+        oldCursor = Cursors[3];
+      }
+      return;
+    }
+
     if (0 <= cursorTime && cursorTime <= .5f) {
-      Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
+      if (oldCursor != Cursors[0]) {
+        Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
+        oldCursor = Cursors[0];
+      }
     }
     else if (.5f < cursorTime && cursorTime <= .75f) {
-      Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
+      if (oldCursor != Cursors[1]) {
+        Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
+        oldCursor = Cursors[1];
+      }
     }
     else if (.75f < cursorTime && cursorTime <= .9f) {
-      Cursor.SetCursor(Cursors[2], center32, CursorMode.Auto);
+      if (oldCursor != Cursors[2]) {
+        Cursor.SetCursor(Cursors[2], center32, CursorMode.Auto);
+        oldCursor = Cursors[2];
+      }
     }
     else if (.9f < cursorTime && cursorTime <= 1.05f) {
-      Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
+      if (oldCursor != Cursors[1]) {
+        Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
+        oldCursor = Cursors[1];
+      }
     }
     else {
       cursorTime = 0;
-      Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
+      if (oldCursor != Cursors[0]) {
+        Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
+        oldCursor = Cursors[0];
+      }
     }
   }
 
@@ -82,10 +116,15 @@ public class Controller : MonoBehaviour {
   }
 
   internal static void SetCurrentItem(Item item) {
-    if (item == null) return;
+    if (item == null) {
+      c.forcedCursor = CursorTypes.None;
+      c.overObject = null;
+      return;
+    }
 
     if (item.type == ItemType.Readable) {
-      Balloon.Show(item.description, c.bernard.transform);
+      c.forcedCursor = CursorTypes.Examine;
+      c.overObject = item;
     }
 
   }
@@ -95,4 +134,3 @@ public class Controller : MonoBehaviour {
 }
 
 
-public enum ItemType { None, Readable };

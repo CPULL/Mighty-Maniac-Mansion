@@ -1,8 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Actor : MonoBehaviour {
+  public Sprite[] facesF;
+  public Sprite[] facesB;
+  public Sprite[] facesL;
+  public Sprite[] facesR;
+  public SpriteRenderer Face;
   Animator anim;
   Vector3 destination = Vector2.zero;
   bool walking = false;
@@ -18,6 +21,20 @@ public class Actor : MonoBehaviour {
   }
 
   private void Update() {
+    if (isSpeaking) {
+      speakt += Time.deltaTime;
+      if (speakt > .15f) {
+        speakt = 0;
+        faceNum = Random.Range(2, 5);
+      }
+    }
+
+    switch (dir) {
+      case Dir.F: Face.sprite = facesF[faceNum]; break;
+      case Dir.B: Face.sprite = facesB[faceNum]; break;
+      case Dir.L: Face.sprite = facesL[faceNum]; break;
+      case Dir.R: Face.sprite = facesR[faceNum]; break;
+    }
     if (!walking) {
       anim.Play("Idle" + dir);
       return;
@@ -44,8 +61,23 @@ public class Actor : MonoBehaviour {
 
     wdir.Normalize();
     transform.position += wdir * speed * Time.deltaTime;
+  }
 
+  bool isSpeaking = false;
+  int faceNum = 0;
+  float speakt = 0;
+
+
+  public void Say(string message) {
+    isSpeaking = true;
+    faceNum = 0;
+    speakt = 0;
+    Balloon.Show(message, transform, CompleteSpeaking);
+  }
+
+  public void CompleteSpeaking() {
+    isSpeaking = false;
+    faceNum = 0;
   }
 }
 
-public enum Dir {  F, B, L, R };

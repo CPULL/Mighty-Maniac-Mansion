@@ -1167,6 +1167,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 06f839f73dc1f374986c70328bcbd60a, type: 3}
   - {fileID: 2800000, guid: 93130964161e87a4ba9c4f33f7dab02d, type: 3}
   - {fileID: 2800000, guid: d9812c36323a4bf42b08ca811ae6a49b, type: 3}
+  - {fileID: 2800000, guid: 2a45e606b6c8a2c46aaff3fdad3dd7bd, type: 3}
   bernard: {fileID: 1379030970}
   debugObj: {fileID: 0}
   walkable: {fileID: 1939775570}
@@ -1664,6 +1665,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29677a0e7fbc50f489151e35bed62b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  facesF:
+  - {fileID: 1830611011517696425, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 6707717784937357259, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 5593877690448800856, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: -4529906794766806387, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: -6744113979953716183, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  facesB:
+  - {fileID: 4957965997881566074, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 6634090284382210437, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 1400993241614289348, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: -4188521144126844227, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 258526150660172522, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  facesL:
+  - {fileID: 7229376970501403744, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 8662177564830451401, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: -33185854701467937, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 1309753488421363942, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 1199956514815594128, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  facesR:
+  - {fileID: 2059701668977575899, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 8530157568904729249, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: 5314381641188760411, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: -2332383573255350690, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  - {fileID: -8488713824572178234, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
+  Face: {fileID: 471896663}
 --- !u!1 &1544750703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,7 +2247,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.796875, y: 2.171875}
+    oldSize: {x: 2.8125, y: 2.1875}
     newSize: {x: 1.79, y: 1.39}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
