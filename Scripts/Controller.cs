@@ -121,8 +121,16 @@ public class Controller : MonoBehaviour {
     // FIXME this will not work if the scene is rotated
     // Handle camera
     Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
-    if (cpos.x < .2f * Screen.width && cam.transform.position.x > currentRoom.minL) { cam.transform.position -= cam.transform.right * Time.deltaTime * (.2f * Screen.width - cpos.x) / 10; }
-    if (cpos.x > .8f * Screen.width && cam.transform.position.x < currentRoom.maxR) { cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .8f * Screen.width) / 10; }
+    if (cpos.x < .2f * Screen.width) {
+      if ((currentRoom.axis == Axis.X && cam.transform.position.x > currentRoom.minL) || (currentRoom.axis == Axis.Z && cam.transform.position.z > currentRoom.minL)) { 
+        cam.transform.position -= cam.transform.right * Time.deltaTime * (.2f * Screen.width - cpos.x) / 10; 
+      }
+    }
+    if (cpos.x > .8f * Screen.width) {
+      if ((currentRoom.axis == Axis.X && cam.transform.position.x < currentRoom.maxR) || (currentRoom.axis == Axis.Z && cam.transform.position.z < currentRoom.maxR)) {
+        cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .8f * Screen.width) / 10;
+      }
+    }
 
 
     if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2)) { // FIXME remove it is just for debug
