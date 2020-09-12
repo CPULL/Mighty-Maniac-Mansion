@@ -41,7 +41,7 @@ public class Balloon : MonoBehaviour {
     foreach (char c in message)
       if (char.IsWhiteSpace(c)) b.numWords++;
 
-    b.delay = 1.05f * b.numWords;
+    b.delay = .75f * b.numWords;
   }
 
   private void Update() {

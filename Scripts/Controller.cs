@@ -1,7 +1,9 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using SimpleJSON;
 
 public class Controller : MonoBehaviour {
   private static Controller c;
@@ -15,13 +17,20 @@ public class Controller : MonoBehaviour {
   public ActorClickHandler ActorPortrait3;
   public Actor dave;
   public Actor bernard;
+  public Actor wendy;
+
+  Actor actor1;
+  Actor actor2;
+  Actor actor3;
+  Actor kidnappedActor;
+
   Actor currentActor = null;
   Room currentRoom;
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
   Color32 selectedActor = new Color32(200, 232, 152, 255);
 
   public Room debugr;
-
+  GameStatus status = GameStatus.IntroDialogue;
 
   int rm = 0; // FIXME remove
   string[] rndmsg = {
@@ -36,11 +45,21 @@ public class Controller : MonoBehaviour {
   private void Awake() {
     c = this;
     cam = Camera.main;
-    currentActor = bernard;
-    ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+
+    actor1 = dave;
+    actor2 = bernard;
+    actor3 = wendy;
+
+    LoadSequences();
+    PickValidSequence();
+
 
     currentRoom = debugr;
     StartCoroutine(StartDelayed());
+    Cursor.SetCursor(Cursors[4], center32, CursorMode.Auto);
+    status = GameStatus.IntroDialogue;
+    currentActor = actor1;
+    ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
   }
 
   IEnumerator StartDelayed() {
@@ -87,6 +106,67 @@ public class Controller : MonoBehaviour {
     }
 
 
+    // Do we have a sequence?
+    if (currentSequence != null) {
+      // Do we have the action?
+
+      // No action -> We may want to check if we have a sequence, if not get one valid
+      // Action not playing
+      // Action playing
+
+      if (currentAction == null) {
+        currentAction = currentSequence.GetNextAction();
+        if (currentAction == null) currentSequence = null;
+      }
+      else if (currentAction.NotStarted()) {
+        Debug.Log(currentAction.ToString());
+
+        if (currentAction.type == ActionType.Teleport) {
+          if (currentAction.actor == Chars.Actor1) {
+            actor1.transform.position = currentAction.pos;
+            actor1.SetDirection(currentAction.dir);
+          }
+          if (currentAction.actor == Chars.Actor2) {
+            actor2.transform.position = currentAction.pos;
+            actor2.SetDirection(currentAction.dir);
+          }
+          if (currentAction.actor == Chars.Actor3) {
+            actor3.transform.position = currentAction.pos;
+            actor3.SetDirection(currentAction.dir);
+          }
+          currentAction.Complete();
+        }
+        else if (currentAction.type == ActionType.Speak) {
+          dave.Say(currentAction.msg, currentAction); // FIXME make generic
+          actor1.SetDirection(currentAction.dir);
+          currentAction.Play();
+        }
+        else if (currentAction.type == ActionType.Expression) {
+          actor2.SetDirection(currentAction.dir); // FIXME make generic
+          actor2.SetExpression(currentAction.expr); // FIXME make generic
+          currentAction.Play();
+          // FIXME this will never end, because we do not count the time
+        }
+        else {
+          // FIXME do the other actions
+        }
+
+      }
+      else if (currentAction.IsPlaying()) {
+        currentAction.AddTime(Time.deltaTime);
+      }
+      else if (currentAction.IsCompleted()) {
+        currentAction = currentSequence.GetNextAction();
+        if (currentAction == null) {
+          status = GameStatus.NormalGamePlay;
+        }
+      }
+    }
+
+
+
+    if (c.status != GameStatus.NormalGamePlay) return;
+
     // LMB -> Walk or secondary action
     // RMB -> Default action
 
@@ -118,7 +198,6 @@ public class Controller : MonoBehaviour {
       }
     }
 
-    // FIXME this will not work if the scene is rotated
     // Handle camera
     Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
     if (cpos.x < .2f * Screen.width) {
@@ -138,9 +217,18 @@ public class Controller : MonoBehaviour {
       rm++;
       if (rm >= rndmsg.Length) rm = 0;
     }
-  
 
 
+    /*
+     
+    Actions should have a condition. And probably a sequence.
+
+    If the condition is true, as soon there are no actions to do, the sequence should start (conditions are on sequences)
+    We may need to do things in parallel with multiple actors
+
+
+
+     */
 
 
   }
@@ -150,6 +238,7 @@ public class Controller : MonoBehaviour {
   private Item usedObject = null;
   private Texture2D oldCursor = null;
   void HandleCursor() {
+    if (c.status != GameStatus.NormalGamePlay) return;
     if (forcedCursor == CursorTypes.Examine) {
       if (oldCursor != Cursors[3]) {
         Cursor.SetCursor(Cursors[3], center32, CursorMode.Auto);
@@ -218,20 +307,28 @@ public class Controller : MonoBehaviour {
 
 
   internal static void SendEventData(PointerEventData eventData, IPointerClickHandler handler) {
+    if (c.status != GameStatus.NormalGamePlay) return;
     ActorClickHandler h = (ActorClickHandler)handler;
     if (h == c.ActorPortrait1) {
       c.currentActor = c.dave;
       c.ShowName("Selected: Dave");
       c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
       c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-
-
+      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
     }
     else if (h == c.ActorPortrait2) {
       c.currentActor = c.bernard;
       c.ShowName("Selected: Bernard");
       c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
       c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    }
+    else if (h == c.ActorPortrait3) {
+      c.currentActor = c.wendy;
+      c.ShowName("Selected: Wendy");
+      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
     }
     else if (handler as GroundClickHandler) {
       Debug.Log(" the ground!");
@@ -241,6 +338,7 @@ public class Controller : MonoBehaviour {
   }
 
   internal static void SetCurrentItem(Item item) {
+    if (c.status != GameStatus.NormalGamePlay) return;
     if (item == null) {
       c.forcedCursor = CursorTypes.None;
       c.overObject = null;
@@ -256,7 +354,60 @@ public class Controller : MonoBehaviour {
 
   }
 
+  GameSequence currentSequence;
+  GameAction currentAction;
+  public List<GameSequence> sequences;
 
+  void LoadSequences() {
+    string path = Application.dataPath + "/Actions/";
+
+    foreach(string file in System.IO.Directory.GetFiles(path, "*.json")) {
+      Debug.Log(file);
+      string json = System.IO.File.ReadAllText(file);
+
+      try {
+        JSONNode j = JSON.Parse(json);
+
+        GameSequence seq = new GameSequence(j["name"].Value);
+        // FIXME conditions
+        // Actions
+        JSONNode.ValueEnumerator vals = j["actions"].Values;
+        foreach (JSONNode val in vals) {
+          GameAction a = new GameAction(val["type"].Value);
+          if (a.type == ActionType.Teleport) {
+            a.SetActor(val["actor"].Value);
+            a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat, val["pos"][2].AsFloat);
+            a.SetDir(val["dir"].Value);
+          }
+          else if (a.type == ActionType.Speak) {
+            a.SetActor(val["actor"].Value);
+            a.SetOther(val["other"].Value);
+            a.SetDir(val["dir"].Value);
+            a.SetText(val["msg"].Value);
+          }
+          else if (a.type == ActionType.Expression) {
+            a.SetActor(val["actor"].Value);
+            a.SetDir(val["dir"].Value);
+            a.SetExpr(val["expr"].Value);
+          }
+          a.SetWait(val["wait"].AsFloat);
+          seq.actions.Add(a);
+        }
+        sequences.Add(seq);
+
+      } catch (System.Exception e) {
+        Debug.Log("ERROR (" + file + "): " + e.Message);
+      }
+    }
+
+  }
+
+  void PickValidSequence() {
+    // Check all conditions and pick a valid sequence. In case there are more pick one random
+    currentSequence = sequences[0];
+    currentSequence.Start();
+    currentAction = currentSequence.GetNextAction();
+  }
 
 }
 

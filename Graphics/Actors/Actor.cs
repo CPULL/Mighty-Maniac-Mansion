@@ -69,18 +69,28 @@ public class Actor : MonoBehaviour {
   bool isSpeaking = false;
   int faceNum = 0;
   float speakt = 0;
+  GameAction fromAction = null;
 
-
-  public void Say(string message) {
+  public void Say(string message, GameAction action = null) {
     isSpeaking = true;
     faceNum = 0;
     speakt = 0;
+    fromAction = action;
     Balloon.Show(message, transform, CompleteSpeaking);
   }
 
   public void CompleteSpeaking() {
     isSpeaking = false;
     faceNum = 0;
+    if (fromAction != null) fromAction.Complete();
+  }
+
+  internal void SetDirection(Dir d) {
+    dir = d;
+  }
+
+  internal void SetExpression(Expression exp) {
+    faceNum = (int)exp;
   }
 }
 
