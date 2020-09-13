@@ -388,17 +388,23 @@ public class Controller : MonoBehaviour {
     if (item.type == ItemType.Readable) {
       c.forcedCursor = CursorTypes.Examine;
       c.overObject = item;
-      c.ShowName(item.ItemName);
+      c.ShowName("Examine " + item.ItemName);
     }
     else if (item.type == ItemType.Openable) {
-      c.forcedCursor = item.isOpen ? CursorTypes.Close :  CursorTypes.Open;
+      if (item.isOpen) {
+        c.forcedCursor = CursorTypes.Close;
+        c.ShowName("Close " + item.ItemName);
+      }
+      else {
+        c.forcedCursor = CursorTypes.Open;
+        c.ShowName("Open " + item.ItemName);
+      }
       c.overObject = item;
-      c.ShowName(item.ItemName);
     }
     else if (item.type == ItemType.Activable) {
-      c.forcedCursor = item.isOpen ? CursorTypes.TurnOff :  CursorTypes.TurnOn;
+      c.forcedCursor = CursorTypes.Use;
       c.overObject = item;
-      c.ShowName(item.ItemName);
+      c.ShowName((item.isOpen ? "Deactivate " : "Activate ") + item.ItemName);
     }
     else if (item.type == ItemType.Pickable) {
       c.forcedCursor = CursorTypes.PickUp;
@@ -408,7 +414,7 @@ public class Controller : MonoBehaviour {
     else if (item.type == ItemType.Usable) {
       c.forcedCursor = CursorTypes.Use;
       c.overObject = item;
-      c.ShowName(item.ItemName);
+      c.ShowName("Use " + item.ItemName);
     }
 
   }

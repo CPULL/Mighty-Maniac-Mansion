@@ -2003,8 +2003,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: a9be4d282cd68f84e8ffaca7723bfb60, type: 3}
   - {fileID: 2800000, guid: c5d4ac43e095c5f4ab77faa70d36bc57, type: 3}
   - {fileID: 2800000, guid: c8524e36b802bc94d846c1fec61bcdeb, type: 3}
-  - {fileID: 2800000, guid: 3506ed8c30d500d42a7f71b8844f9bb1, type: 3}
-  - {fileID: 2800000, guid: 3506ed8c30d500d42a7f71b8844f9bb1, type: 3}
   - {fileID: 2800000, guid: 062d294b4aaa017429098ce3fb3cc584, type: 3}
   - {fileID: 2800000, guid: 3506ed8c30d500d42a7f71b8844f9bb1, type: 3}
   ActorPortrait1: {fileID: 1687621014}

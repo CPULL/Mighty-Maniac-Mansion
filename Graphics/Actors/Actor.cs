@@ -24,12 +24,14 @@ public class Actor : MonoBehaviour {
     walking = true;
 
     Vector3 wdir = destination - transform.position;
-    float angle = Mathf.Atan2(transform.forward.z - wdir.z, transform.forward.x - wdir.x) * Mathf.Rad2Deg;
-    if (60 < angle && angle < 120) { dir = Dir.F; }
-    if (120 <= angle && angle <= 240) { dir = Dir.R; }
-    if (240 < angle || angle < -60) { dir = Dir.B; }
-    if (-60 <= angle && angle <= 60) { dir = Dir.L; }
-    anim.Play("Walk" + dir);
+    if (wdir != Vector3.zero) {
+      float angle = Mathf.Atan2(transform.forward.z - wdir.z, transform.forward.x - wdir.x) * Mathf.Rad2Deg;
+      if (60 < angle && angle < 120) { dir = Dir.F; }
+      if (120 <= angle && angle <= 240) { dir = Dir.R; }
+      if (240 < angle || angle < -60) { dir = Dir.B; }
+      if (-60 <= angle && angle <= 60) { dir = Dir.L; }
+      anim.Play("Walk" + dir);
+    }
   }
 
   private void Update() {
