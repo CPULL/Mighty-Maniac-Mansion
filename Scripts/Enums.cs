@@ -24,11 +24,10 @@ public enum GameStatus { IntroVideo, CharSelection, IntroDialogue, NormalGamePla
 public enum ActionType { Synchro=0, MoveRelative=1, MoveAbsolute=2, Teleport=3, Disappear=4, Speak=5, Expression=6 };
 
 public enum Chars {
-  None,
-  Fred, Edna, Ted, Ed, Edwige,
-  GreenTentacle, PurpleTentacle,
-  Actor1, Actor2, Actor3, KidnappedActor,
-  Dave, Bernard, Hoagie, Michael, Razor, Sandy, Syd, Wendy, Jeff, Javid
+  None = 0, Actor1 = 1, Actor2 = 2, Actor3= 3, KidnappedActor = 4,
+  Fred = 5, Edna = 6, Ted = 7, Ed = 8, Edwige = 9, GreenTentacle = 10, PurpleTentacle = 11,
+  Dave = 12, Bernard = 13, Hoagie = 14, Michael = 15, Razor = 16, Sandy = 17, Syd = 18, Wendy = 19, Jeff = 20, Javid = 21,
+  otheractorslikepolice=99
 };
 
 // Used to control facial exprfessions

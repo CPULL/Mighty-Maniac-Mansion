@@ -1626,9 +1626,29 @@ MonoBehaviour:
   ActorPortrait1: {fileID: 1687621014}
   ActorPortrait2: {fileID: 1443085112}
   ActorPortrait3: {fileID: 1970159875}
-  dave: {fileID: 1532743334}
-  bernard: {fileID: 1379030970}
-  wendy: {fileID: 1347792468}
+  actors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1532743334}
+  - {fileID: 1379030970}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1347792468}
+  - {fileID: 0}
+  - {fileID: 0}
   debugr: {fileID: 777865682}
   TextMsg: {fileID: 1516758395}
   TextMsgRT: {fileID: 1516758394}
@@ -2558,6 +2578,7 @@ MonoBehaviour:
   - {fileID: 1288894957171633056, guid: fe98f187393d1864e99aebfc4ebb3931, type: 3}
   - {fileID: -2228426028099186227, guid: fe98f187393d1864e99aebfc4ebb3931, type: 3}
   Face: {fileID: 1218445518}
+  currentRoom: {fileID: 0}
 --- !u!95 &1347792469
 Animator:
   serializedVersion: 3
@@ -2769,6 +2790,7 @@ MonoBehaviour:
   - {fileID: -2332383573255350690, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
   - {fileID: -8488713824572178234, guid: e7abc97291bfd854b9972151e1637e89, type: 3}
   Face: {fileID: 471896663}
+  currentRoom: {fileID: 0}
 --- !u!1 &1410360367
 GameObject:
   m_ObjectHideFlags: 0
@@ -3246,8 +3268,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000006, y: 0.8521984, z: 0}
-  m_Center: {x: 0, y: -0.07390089, z: 0.00000095367426}
+  m_Size: {x: 1.0000006, y: 0.7364498, z: 0}
+  m_Center: {x: 0, y: -0.1317754, z: 0.0000009536742}
 --- !u!1 &1532743332
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,6 +3342,7 @@ MonoBehaviour:
   - {fileID: -6359221482647622273, guid: 0b2dbb4b86c778941b8b0948610c8b04, type: 3}
   - {fileID: 8873806063167362163, guid: 0b2dbb4b86c778941b8b0948610c8b04, type: 3}
   Face: {fileID: 1773877622}
+  currentRoom: {fileID: 0}
 --- !u!95 &1532743335
 Animator:
   serializedVersion: 3

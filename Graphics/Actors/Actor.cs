@@ -6,6 +6,7 @@ public class Actor : MonoBehaviour {
   public Sprite[] facesL;
   public Sprite[] facesR;
   public SpriteRenderer Face;
+  public Room currentRoom;
   Animator anim;
   Vector3 destination = Vector2.zero;
   System.Action callBack = null;

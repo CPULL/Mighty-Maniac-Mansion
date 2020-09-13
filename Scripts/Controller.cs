@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using SimpleJSON;
+using System;
 
 public class Controller : MonoBehaviour {
   private static Controller c;
@@ -15,10 +16,8 @@ public class Controller : MonoBehaviour {
   public ActorClickHandler ActorPortrait1;
   public ActorClickHandler ActorPortrait2;
   public ActorClickHandler ActorPortrait3;
-  public Actor dave;
-  public Actor bernard;
-  public Actor wendy;
 
+  public Actor[] actors;
   Actor actor1;
   Actor actor2;
   Actor actor3;
@@ -46,9 +45,9 @@ public class Controller : MonoBehaviour {
     c = this;
     cam = Camera.main;
 
-    actor1 = dave;
-    actor2 = bernard;
-    actor3 = wendy;
+    actor1 = actors[(int)Chars.Dave];
+    actor2 = actors[(int)Chars.Bernard];
+    actor3 = actors[(int)Chars.Wendy];
 
     LoadSequences();
     PickValidSequence();
@@ -122,30 +121,19 @@ public class Controller : MonoBehaviour {
         Debug.Log(currentAction.ToString());
 
         if (currentAction.type == ActionType.Teleport) {
-          if (currentAction.actor == Chars.Actor1) {
-            actor1.transform.position = currentAction.pos;
-            actor1.SetDirection(currentAction.dir);
-          }
-          if (currentAction.actor == Chars.Actor2) {
-            actor2.transform.position = currentAction.pos;
-            actor2.SetDirection(currentAction.dir);
-          }
-          if (currentAction.actor == Chars.Actor3) {
-            actor3.transform.position = currentAction.pos;
-            actor3.SetDirection(currentAction.dir);
-          }
+          GetActor(currentAction).transform.position = currentAction.pos;
+          GetActor(currentAction).SetDirection(currentAction.dir);
           currentAction.Complete();
         }
         else if (currentAction.type == ActionType.Speak) {
-          dave.Say(currentAction.msg, currentAction); // FIXME make generic
-          actor1.SetDirection(currentAction.dir);
+          GetActor(currentAction).Say(currentAction.msg, currentAction);
+          GetActor(currentAction).SetDirection(currentAction.dir);
           currentAction.Play();
         }
         else if (currentAction.type == ActionType.Expression) {
-          actor2.SetDirection(currentAction.dir); // FIXME make generic
-          actor2.SetExpression(currentAction.expr); // FIXME make generic
+          GetActor(currentAction).SetDirection(currentAction.dir);
+          GetActor(currentAction).SetExpression(currentAction.expr);
           currentAction.Play();
-          // FIXME this will never end, because we do not count the time
         }
         else {
           // FIXME do the other actions
@@ -310,22 +298,22 @@ public class Controller : MonoBehaviour {
     if (c.status != GameStatus.NormalGamePlay) return;
     ActorClickHandler h = (ActorClickHandler)handler;
     if (h == c.ActorPortrait1) {
-      c.currentActor = c.dave;
-      c.ShowName("Selected: Dave");
+      c.currentActor = c.actor1;
+      c.ShowName("Selected: " + c.actor1.name);
       c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
       c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
       c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
     }
     else if (h == c.ActorPortrait2) {
-      c.currentActor = c.bernard;
-      c.ShowName("Selected: Bernard");
+      c.currentActor = c.actor2;
+      c.ShowName("Selected: " + c.actor2.name);
       c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
       c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
       c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
     }
     else if (h == c.ActorPortrait3) {
-      c.currentActor = c.wendy;
-      c.ShowName("Selected: Wendy");
+      c.currentActor = c.actor3;
+      c.ShowName("Selected: " + c.actor3.name);
       c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
       c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
       c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
@@ -408,6 +396,16 @@ public class Controller : MonoBehaviour {
     currentSequence.Start();
     currentAction = currentSequence.GetNextAction();
   }
+
+
+  private Actor GetActor(GameAction a) {
+    if (a.actor == Chars.Actor1) return actor1;
+    if (a.actor == Chars.Actor2) return actor2;
+    if (a.actor == Chars.Actor3) return actor3;
+    return actors[(int)a.actor];
+  }
+
+
 
 }
 

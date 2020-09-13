@@ -1,22 +1,22 @@
 Mighty Maniac Mansion
 
 
-Have a queue of "actions" for each actor, or global for the game? 
-
-
 * TODO ************************************************************************************************************
 
 Create assets for the outside part of the home
 Create some assets for the rooms
-
-
 Left click is default action, right click is alternate action
-
 Have inventory that can be open/closed by clicking on it. (Grapich icons + text for the items)
-
 Add options: music volume, text speed, text size, highlight objects (never, on over, when entering)
+Complete intro, adding variations for each character.
+Get music cover from BGO
+Add some sounds: door open/close, footsteps
+Add start game selection, with selection of kidnapped character and 3 players
 
 
+Add camera switch when going to another rooms
+Change camera to room settings when selecting another actor and the room for the actor is different
+Add currentRoom to actors
 
 * DONE ************************************************************************************************************
 
@@ -39,8 +39,9 @@ Add options: music volume, text speed, text size, highlight objects (never, on o
 ! Have the selectable item. Show the name on the top when over with the mouse.
 ! Improved the side walking anim
 ! Add face of actors, and change them when clicking the face
-
-
+! Added basic automatic actions
+! Added initial intro
+!Make actor selection completely automatic, and avoid hardcoded references to actors
 
 
 * CHARS ************************************************************************************************************
@@ -59,7 +60,7 @@ Michael
 Razor
 Sandy
 Syd
-Wendy
+!Wendy
 Jeff
 Sandy
 ??Javid??
