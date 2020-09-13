@@ -277,8 +277,6 @@ public class Controller : MonoBehaviour {
   void HandleCursor() {
     if (c.status != GameStatus.NormalGamePlay) return;
 
-
-
     if (forcedCursor == CursorTypes.None) {
       if (0 <= cursorTime && cursorTime <= .5f) {
         if (oldCursor != Cursors[0]) {

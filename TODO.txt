@@ -5,7 +5,6 @@ Mighty Maniac Mansion
 
 Create assets for the outside part of the home
 Create some assets for the rooms
-Left click is default action, right click is alternate action
 Have inventory that can be open/closed by clicking on it. (Grapich icons + text for the items)
 Add options: music volume, text speed, text size, highlight objects (never, on over, when entering)
 Complete intro, adding variations for each character.
@@ -17,12 +16,11 @@ Add start game selection, with selection of kidnapped character and 3 players
 Add camera switch when going to another rooms
 Change camera to room settings when selecting another actor and the room for the actor is different
 
-Complete Ed
+
 
 
 * BUGS ************************************************************************************************************
-In some cases the actor goes beyond the sprites
-Wa;k should go to a specific "interaction position and direction", add it to the Item
+
 
 * DONE ************************************************************************************************************
 
@@ -50,14 +48,15 @@ Wa;k should go to a specific "interaction position and direction", add it to the
 ! Make actor selection completely automatic, and avoid hardcoded references to actors
 ! Add currentRoom to actors
 ! Added Mailbox
-
+! It is possible to specify a specific interaction position for the obejcts, and a direction
+! Ed Completed
 
 * CHARS ************************************************************************************************************
 
 Dr. Fred
 Nurse Edna
 Cousin Ted
-Ed
+!Ed
 Edwige
 Green Tentacle
 Purple Tentacle
