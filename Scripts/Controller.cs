@@ -190,7 +190,7 @@ public class Controller : MonoBehaviour {
             currentActor.Say(overObject.Description);
           }
         }
-        if (overObject.type == ItemType.Openable) {
+        else if (overObject.type == ItemType.Openable) {
           // Are we close enough?
           float distx = Mathf.Abs(currentActor.transform.position.x - (overObject.transform.position.x + overObject.InteractionPosition.x));
           float disty = Mathf.Abs(currentActor.transform.position.z - (overObject.transform.position.z + overObject.InteractionPosition.y));
@@ -207,6 +207,25 @@ public class Controller : MonoBehaviour {
           else {
             currentActor.SetDirection(overObject.preferredDirection);
             if (overObject.Open()) currentActor.Say("Is locked");
+          }
+        }
+        else if (overObject.type == ItemType.Activable) {
+          // Are we close enough?
+          float distx = Mathf.Abs(currentActor.transform.position.x - (overObject.transform.position.x + overObject.InteractionPosition.x));
+          float disty = Mathf.Abs(currentActor.transform.position.z - (overObject.transform.position.z + overObject.InteractionPosition.y));
+          if (distx > 1 || disty > .5f) { // Need to walk
+            Vector3 dst = overObject.transform.position + overObject.InteractionPosition;
+            Actor a = currentActor;
+            Item o = overObject;
+            currentActor.WalkTo(dst, new System.Action(() => {
+              a.SetDirection(o.preferredDirection);
+              if (o.Open()) a.Say("Does not work");
+            }));
+            return;
+          }
+          else {
+            currentActor.SetDirection(overObject.preferredDirection);
+            if (overObject.Open()) currentActor.Say("Does not work");
           }
         }
       }
@@ -257,58 +276,48 @@ public class Controller : MonoBehaviour {
   private Texture2D oldCursor = null;
   void HandleCursor() {
     if (c.status != GameStatus.NormalGamePlay) return;
-    if (forcedCursor == CursorTypes.Examine) {
-      if (oldCursor != Cursors[(int)CursorTypes.Examine]) {
-        Cursor.SetCursor(Cursors[(int)CursorTypes.Examine], center32, CursorMode.Auto);
-        oldCursor = Cursors[(int)CursorTypes.Examine];
+
+
+
+    if (forcedCursor == CursorTypes.None) {
+      if (0 <= cursorTime && cursorTime <= .5f) {
+        if (oldCursor != Cursors[0]) {
+          Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
+          oldCursor = Cursors[0];
+        }
       }
-      return;
-    }
-    if (forcedCursor == CursorTypes.Open) {
-      if (oldCursor != Cursors[(int)CursorTypes.Open]) {
-        Cursor.SetCursor(Cursors[(int)CursorTypes.Open], center32, CursorMode.Auto);
-        oldCursor = Cursors[(int)CursorTypes.Open];
+      else if (.5f < cursorTime && cursorTime <= .75f) {
+        if (oldCursor != Cursors[1]) {
+          Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
+          oldCursor = Cursors[1];
+        }
       }
-      return;
-    }
-    if (forcedCursor == CursorTypes.Close) {
-      if (oldCursor != Cursors[(int)CursorTypes.Close]) {
-        Cursor.SetCursor(Cursors[(int)CursorTypes.Close], center32, CursorMode.Auto);
-        oldCursor = Cursors[(int)CursorTypes.Close];
+      else if (.75f < cursorTime && cursorTime <= .9f) {
+        if (oldCursor != Cursors[2]) {
+          Cursor.SetCursor(Cursors[2], center32, CursorMode.Auto);
+          oldCursor = Cursors[2];
+        }
+      }
+      else if (.9f < cursorTime && cursorTime <= 1.05f) {
+        if (oldCursor != Cursors[1]) {
+          Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
+          oldCursor = Cursors[1];
+        }
+      }
+      else {
+        cursorTime = 0;
+        if (oldCursor != Cursors[0]) {
+          Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
+          oldCursor = Cursors[0];
+        }
       }
       return;
     }
 
-    if (0 <= cursorTime && cursorTime <= .5f) {
-      if (oldCursor != Cursors[0]) {
-        Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
-        oldCursor = Cursors[0];
-      }
-    }
-    else if (.5f < cursorTime && cursorTime <= .75f) {
-      if (oldCursor != Cursors[1]) {
-        Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
-        oldCursor = Cursors[1];
-      }
-    }
-    else if (.75f < cursorTime && cursorTime <= .9f) {
-      if (oldCursor != Cursors[2]) {
-        Cursor.SetCursor(Cursors[2], center32, CursorMode.Auto);
-        oldCursor = Cursors[2];
-      }
-    }
-    else if (.9f < cursorTime && cursorTime <= 1.05f) {
-      if (oldCursor != Cursors[1]) {
-        Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
-        oldCursor = Cursors[1];
-      }
-    }
-    else {
-      cursorTime = 0;
-      if (oldCursor != Cursors[0]) {
-        Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
-        oldCursor = Cursors[0];
-      }
+
+    if (oldCursor != Cursors[(int)forcedCursor]) {
+      Cursor.SetCursor(Cursors[(int)forcedCursor], center32, CursorMode.Auto);
+      oldCursor = Cursors[(int)forcedCursor];
     }
   }
 
@@ -385,6 +394,21 @@ public class Controller : MonoBehaviour {
     }
     else if (item.type == ItemType.Openable) {
       c.forcedCursor = item.isOpen ? CursorTypes.Close :  CursorTypes.Open;
+      c.overObject = item;
+      c.ShowName(item.ItemName);
+    }
+    else if (item.type == ItemType.Activable) {
+      c.forcedCursor = item.isOpen ? CursorTypes.TurnOff :  CursorTypes.TurnOn;
+      c.overObject = item;
+      c.ShowName(item.ItemName);
+    }
+    else if (item.type == ItemType.Pickable) {
+      c.forcedCursor = CursorTypes.PickUp;
+      c.overObject = item;
+      c.ShowName(item.ItemName);
+    }
+    else if (item.type == ItemType.Usable) {
+      c.forcedCursor = CursorTypes.Use;
       c.overObject = item;
       c.ShowName(item.ItemName);
     }

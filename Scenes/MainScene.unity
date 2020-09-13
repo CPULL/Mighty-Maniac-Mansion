@@ -2003,6 +2003,10 @@ MonoBehaviour:
   - {fileID: 2800000, guid: a9be4d282cd68f84e8ffaca7723bfb60, type: 3}
   - {fileID: 2800000, guid: c5d4ac43e095c5f4ab77faa70d36bc57, type: 3}
   - {fileID: 2800000, guid: c8524e36b802bc94d846c1fec61bcdeb, type: 3}
+  - {fileID: 2800000, guid: 0a4d19e76203e764593e4cf5e16a2a3e, type: 3}
+  - {fileID: 2800000, guid: 094550d469626e54d906c90c912dfadb, type: 3}
+  - {fileID: 2800000, guid: 062d294b4aaa017429098ce3fb3cc584, type: 3}
+  - {fileID: 2800000, guid: 3506ed8c30d500d42a7f71b8844f9bb1, type: 3}
   ActorPortrait1: {fileID: 1687621014}
   ActorPortrait2: {fileID: 1443085112}
   ActorPortrait3: {fileID: 1970159875}
@@ -3014,7 +3018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276415eab6f481549ab58250dcd62089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 3
   ItemName: Mailbox flag
   Description: 
   InteractionPosition: {x: -0.15, y: 0, z: -0.526}

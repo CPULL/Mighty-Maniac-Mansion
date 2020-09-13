@@ -29,7 +29,7 @@ public class Item : MonoBehaviour {
   }
 
   internal bool Open() {
-    if (type != ItemType.Openable) return false;
+    if (type != ItemType.Openable && type != ItemType.Activable) return false;
     if (isLocked) return true;
 
     isOpen = !isOpen;

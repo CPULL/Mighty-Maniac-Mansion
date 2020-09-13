@@ -17,7 +17,6 @@ Add start game selection, with selection of kidnapped character and 3 players
 Add camera switch when going to another rooms
 Change camera to room settings when selecting another actor and the room for the actor is different
 
-Add Mailbox
 Complete Ed
 
 
@@ -50,6 +49,7 @@ Wa;k should go to a specific "interaction position and direction", add it to the
 ! Added initial intro
 ! Make actor selection completely automatic, and avoid hardcoded references to actors
 ! Add currentRoom to actors
+! Added Mailbox
 
 
 * CHARS ************************************************************************************************************
