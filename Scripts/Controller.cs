@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using SimpleJSON;
-using System;
 
 public class Controller : MonoBehaviour {
   private static Controller c;
@@ -55,7 +54,7 @@ public class Controller : MonoBehaviour {
 
     currentRoom = debugr;
     StartCoroutine(StartDelayed());
-    Cursor.SetCursor(Cursors[4], center32, CursorMode.Auto);
+    Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], center32, CursorMode.Auto);
     status = GameStatus.IntroDialogue;
     currentActor = actor1;
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
@@ -159,31 +158,62 @@ public class Controller : MonoBehaviour {
     // RMB -> Default action
 
     if (Input.GetMouseButtonDown(0)) {
-
       Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
       if (Physics.Raycast(ray, out RaycastHit hit))
         currentActor.WalkTo(hit.point);
-      else
-        Debug.Log("Outside");
+
+    }
+    else if (!currentActor.IsWalking() && Input.GetMouseButton(0)) {
+      Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+      if (Physics.Raycast(ray, out RaycastHit hit))
+        currentActor.WalkTo(hit.point);
 
     }
     if (Input.GetMouseButtonDown(1)) {
-      if (overObject != null && overObject.type == ItemType.Readable) {
-        // Are we close enough?
-        float distx = Mathf.Abs(currentActor.transform.position.x - overObject.transform.position.x);
-        float disty = Mathf.Abs(currentActor.transform.position.z - overObject.transform.position.z);
-        if (distx > 6 || disty > 3) { // Need to walk
-          Vector3 dst = overObject.transform.position - overObject.transform.forward;
-          Actor a = currentActor;
-          string d = overObject.Description;
-          currentActor.WalkTo(dst, new System.Action(() => {
-            a.Say(d);
-          }));
-          return;
+      if (overObject != null) {
+        if (overObject.type == ItemType.Readable) {
+          // Are we close enough?
+          float distx = Mathf.Abs(currentActor.transform.position.x - (overObject.transform.position.x + overObject.InteractionPosition.x));
+          float disty = Mathf.Abs(currentActor.transform.position.z - (overObject.transform.position.z + overObject.InteractionPosition.y));
+          if (distx > 1 || disty > .5f) { // Need to walk
+            Vector3 dst = overObject.transform.position + overObject.InteractionPosition;
+            Actor a = currentActor;
+            Item o = overObject;
+            currentActor.WalkTo(dst, new System.Action(() => {
+              a.SetDirection(o.preferredDirection);
+              a.Say(o.Description);
+            }));
+            return;
+          }
+          else {
+            currentActor.SetDirection(overObject.preferredDirection);
+            currentActor.Say(overObject.Description);
+          }
         }
-
-        currentActor.Say(overObject.Description);
+        if (overObject.type == ItemType.Openable) {
+          // Are we close enough?
+          float distx = Mathf.Abs(currentActor.transform.position.x - (overObject.transform.position.x + overObject.InteractionPosition.x));
+          float disty = Mathf.Abs(currentActor.transform.position.z - (overObject.transform.position.z + overObject.InteractionPosition.y));
+          if (distx > 1 || disty > .5f) { // Need to walk
+            Vector3 dst = overObject.transform.position + overObject.InteractionPosition;
+            Actor a = currentActor;
+            Item o = overObject;
+            currentActor.WalkTo(dst, new System.Action(() => {
+              a.SetDirection(o.preferredDirection);
+              if (o.Open()) a.Say("Is locked");
+            }));
+            return;
+          }
+          else {
+            currentActor.SetDirection(overObject.preferredDirection);
+            if (overObject.Open()) currentActor.Say("Is locked");
+          }
+        }
       }
+
+
+
+
     }
 
     // Handle camera
@@ -228,9 +258,23 @@ public class Controller : MonoBehaviour {
   void HandleCursor() {
     if (c.status != GameStatus.NormalGamePlay) return;
     if (forcedCursor == CursorTypes.Examine) {
-      if (oldCursor != Cursors[3]) {
-        Cursor.SetCursor(Cursors[3], center32, CursorMode.Auto);
-        oldCursor = Cursors[3];
+      if (oldCursor != Cursors[(int)CursorTypes.Examine]) {
+        Cursor.SetCursor(Cursors[(int)CursorTypes.Examine], center32, CursorMode.Auto);
+        oldCursor = Cursors[(int)CursorTypes.Examine];
+      }
+      return;
+    }
+    if (forcedCursor == CursorTypes.Open) {
+      if (oldCursor != Cursors[(int)CursorTypes.Open]) {
+        Cursor.SetCursor(Cursors[(int)CursorTypes.Open], center32, CursorMode.Auto);
+        oldCursor = Cursors[(int)CursorTypes.Open];
+      }
+      return;
+    }
+    if (forcedCursor == CursorTypes.Close) {
+      if (oldCursor != Cursors[(int)CursorTypes.Close]) {
+        Cursor.SetCursor(Cursors[(int)CursorTypes.Close], center32, CursorMode.Auto);
+        oldCursor = Cursors[(int)CursorTypes.Close];
       }
       return;
     }
@@ -336,6 +380,11 @@ public class Controller : MonoBehaviour {
 
     if (item.type == ItemType.Readable) {
       c.forcedCursor = CursorTypes.Examine;
+      c.overObject = item;
+      c.ShowName(item.ItemName);
+    }
+    else if (item.type == ItemType.Openable) {
+      c.forcedCursor = item.isOpen ? CursorTypes.Close :  CursorTypes.Open;
       c.overObject = item;
       c.ShowName(item.ItemName);
     }

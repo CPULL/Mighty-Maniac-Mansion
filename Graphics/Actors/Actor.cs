@@ -87,11 +87,16 @@ public class Actor : MonoBehaviour {
   }
 
   internal void SetDirection(Dir d) {
+    if (d == Dir.None) return;
     dir = d;
   }
 
   internal void SetExpression(Expression exp) {
     faceNum = (int)exp;
+  }
+
+  internal bool IsWalking() {
+    return walking;
   }
 }
 

@@ -1,14 +1,14 @@
 ﻿
 
 // Used to identify what a cliickable object does
-public enum ItemType { None, Readable };
+public enum ItemType { None, Readable, Openable, Activable };
 
 // Direction of an actor, to use the correct sprites
-public enum Dir { F=0, B=2, L=1, R=3 };
+public enum Dir { F=0, B=2, L=1, R=3, None = 99 };
 
 
 // Used to specify which cursor to use
-public enum CursorTypes {  None, Examine };
+public enum CursorTypes {  None=0, Examine=3, Wait=4, Open=5, Close=6 };
 
 
 // Used to show and hide the text
