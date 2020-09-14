@@ -1,7 +1,7 @@
 ﻿
 
 // Used to identify what a cliickable object does
-public enum ItemType { None, Readable, Openable, Activable, Usable, Pickable };
+public enum ItemType { None, Readable, Openable, Activable, Usable, Pickable, Walkable };
 
 // Direction of an actor, to use the correct sprites
 public enum Dir { F=0, B=2, L=1, R=3, None = 99 };
@@ -18,7 +18,7 @@ public enum TextMsgMode {  None, Appearing, Disappearing, Visible };
 public enum Axis { X, Y, Z };
 
 // Global status of the game
-public enum GameStatus { IntroVideo, CharSelection, IntroDialogue, NormalGamePlay };
+public enum GameStatus { IntroVideo, CharSelection, IntroDialogue, NormalGamePlay, RoomTransition };
 
 // Used to specify the type of actions
 public enum ActionType { Synchro=0, MoveRelative=1, MoveAbsolute=2, Teleport=3, Disappear=4, Speak=5, Expression=6 };

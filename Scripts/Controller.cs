@@ -117,7 +117,7 @@ public class Controller : MonoBehaviour {
         if (currentAction == null) currentSequence = null;
       }
       else if (currentAction.NotStarted()) {
-        Debug.Log(currentAction.ToString());
+// FIXME        Debug.Log(currentAction.ToString());
 
         if (currentAction.type == ActionType.Teleport) {
           GetActor(currentAction).transform.position = currentAction.pos;
@@ -172,79 +172,30 @@ public class Controller : MonoBehaviour {
     if (Input.GetMouseButtonDown(1)) {
       if (overObject != null) {
         if (overObject.type == ItemType.Readable) {
-          // Are we close enough?
-          float distx = Mathf.Abs(currentActor.transform.position.x - (overObject.transform.position.x + overObject.InteractionPosition.x));
-          float disty = Mathf.Abs(currentActor.transform.position.z - (overObject.transform.position.z + overObject.InteractionPosition.y));
-          if (distx > 1 || disty > .5f) { // Need to walk
-            Vector3 dst = overObject.transform.position + overObject.InteractionPosition;
-            Actor a = currentActor;
-            Item o = overObject;
-            currentActor.WalkTo(dst, new System.Action(() => {
-              a.SetDirection(o.preferredDirection);
-              a.Say(o.Description);
-            }));
-            return;
-          }
-          else {
-            currentActor.SetDirection(overObject.preferredDirection);
-            currentActor.Say(overObject.Description);
-          }
+          ActionSay(currentActor, overObject);
         }
         else if (overObject.type == ItemType.Openable) {
-          // Are we close enough?
-          float distx = Mathf.Abs(currentActor.transform.position.x - (overObject.transform.position.x + overObject.InteractionPosition.x));
-          float disty = Mathf.Abs(currentActor.transform.position.z - (overObject.transform.position.z + overObject.InteractionPosition.y));
-          if (distx > 1 || disty > .5f) { // Need to walk
-            Vector3 dst = overObject.transform.position + overObject.InteractionPosition;
-            Actor a = currentActor;
-            Item o = overObject;
-            currentActor.WalkTo(dst, new System.Action(() => {
-              a.SetDirection(o.preferredDirection);
-              if (o.Open()) a.Say("Is locked");
-            }));
-            return;
-          }
-          else {
-            currentActor.SetDirection(overObject.preferredDirection);
-            if (overObject.Open()) currentActor.Say("Is locked");
-          }
+          ActionOpen(currentActor, overObject);
         }
         else if (overObject.type == ItemType.Activable) {
-          // Are we close enough?
-          float distx = Mathf.Abs(currentActor.transform.position.x - (overObject.transform.position.x + overObject.InteractionPosition.x));
-          float disty = Mathf.Abs(currentActor.transform.position.z - (overObject.transform.position.z + overObject.InteractionPosition.y));
-          if (distx > 1 || disty > .5f) { // Need to walk
-            Vector3 dst = overObject.transform.position + overObject.InteractionPosition;
-            Actor a = currentActor;
-            Item o = overObject;
-            currentActor.WalkTo(dst, new System.Action(() => {
-              a.SetDirection(o.preferredDirection);
-              if (o.Open()) a.Say("Does not work");
-            }));
-            return;
-          }
-          else {
-            currentActor.SetDirection(overObject.preferredDirection);
-            if (overObject.Open()) currentActor.Say("Does not work");
-          }
+          ActionActivate(currentActor, overObject);
+        }
+        else if (overObject.type == ItemType.Walkable) { // This should be Open/Close, normal mouse to walk, and msg if it is closed
+          ActionChangeRoom(currentActor, overObject);
         }
       }
-
-
-
-
     }
 
     // Handle camera
     Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
-    if (cpos.x < .2f * Screen.width) {
+    if (cpos.x < .3f * Screen.width) {
       if ((currentRoom.axis == Axis.X && cam.transform.position.x > currentRoom.minL) || (currentRoom.axis == Axis.Z && cam.transform.position.z > currentRoom.minL)) { 
-        cam.transform.position -= cam.transform.right * Time.deltaTime * (.2f * Screen.width - cpos.x) / 10; 
+        cam.transform.position -= cam.transform.right * Time.deltaTime * (.3f * Screen.width - cpos.x) / 10; 
       }
     }
-    if (cpos.x > .8f * Screen.width) {
+    if (cpos.x > .7f * Screen.width) {
       if ((currentRoom.axis == Axis.X && cam.transform.position.x < currentRoom.maxR) || (currentRoom.axis == Axis.Z && cam.transform.position.z < currentRoom.maxR)) {
-        cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .8f * Screen.width) / 10;
+        cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .7f * Screen.width) / 10;
       }
     }
 
@@ -270,9 +221,90 @@ public class Controller : MonoBehaviour {
 
   }
 
+  void ActionSay(Actor actor, Item item) {
+    Vector3 one = actor.transform.position;
+    one.y = 0;
+    Vector3 two = item.InteractionPosition;
+    two.y = 0;
+    float dist = Vector3.Distance(one, two);
+    if (dist > 1) { // Need to walk
+      currentActor.WalkTo(overObject.InteractionPosition, new System.Action(() => {
+        actor.SetDirection(item.preferredDirection);
+        actor.Say(item.Description);
+      }));
+      return;
+    }
+    else {
+      actor.SetDirection(item.preferredDirection);
+      actor.Say(item.Description);
+    }
+  }
+
+  void ActionOpen(Actor actor, Item item) {
+    Vector3 one = actor.transform.position;
+    one.y = 0;
+    Vector3 two = item.InteractionPosition;
+    two.y = 0;
+    float dist = Vector3.Distance(one, two);
+    if (dist > 1) { // Need to walk
+      currentActor.WalkTo(overObject.InteractionPosition, new System.Action(() => {
+        actor.SetDirection(item.preferredDirection);
+        if (item.Open()) actor.Say("Is locked");
+      }));
+      return;
+    }
+    else {
+      actor.SetDirection(item.preferredDirection);
+      if (item.Open()) actor.Say("Is locked");
+    }
+  }
+
+  void ActionActivate(Actor actor, Item item) {
+    Vector3 one = actor.transform.position;
+    one.y = 0;
+    Vector3 two = item.InteractionPosition;
+    two.y = 0;
+    float dist = Vector3.Distance(one, two);
+    if (dist > 1) { // Need to walk
+      currentActor.WalkTo(overObject.InteractionPosition, new System.Action(() => {
+        actor.SetDirection(item.preferredDirection);
+        if (item.Open()) actor.Say("Does not work");
+      }));
+      return;
+    }
+    else {
+      actor.SetDirection(item.preferredDirection);
+      if (item.Open()) actor.Say("Does not work");
+    }
+  }
+  void ActionChangeRoom(Actor actor, Item item) {
+    Vector3 one = actor.transform.position;
+    one.y = 0;
+    Vector3 two = item.InteractionPosition;
+    two.y = 0;
+    float dist = Vector3.Distance(one, two);
+    if (dist > 1) { // Need to walk
+      currentActor.WalkTo(overObject.InteractionPosition, new System.Action(() => {
+        if (!item.isOpen && item.Open()) {
+          actor.Say("Is locked");
+          return;
+        }
+        StartCoroutine(ChangeRoom(actor, (item as Door)));
+      }));
+      return;
+    }
+    else {
+      if (!item.isOpen && item.Open()) {
+        actor.Say("Is locked");
+        return;
+      }
+      StartCoroutine(ChangeRoom(actor, (item as Door)));
+    }
+  }
+
   private CursorTypes forcedCursor = CursorTypes.None;
   private Item overObject = null;
-  private Item usedObject = null;
+  // FIXME private Item usedObject = null;
   private Texture2D oldCursor = null;
   void HandleCursor() {
     if (c.status != GameStatus.NormalGamePlay) return;
@@ -442,7 +474,20 @@ public class Controller : MonoBehaviour {
       c.overObject = item;
       c.ShowName("Use " + item.ItemName);
     }
+    else if (item.type == ItemType.Walkable) {
+      c.forcedCursor = CursorTypes.None;
+      c.overObject = item;
+      c.ShowName(item.ItemName);
+    }
 
+  }
+
+
+  internal static void OverDoor(Door door) {
+    // Highlight
+    // Set currentItem
+    // Show open/close cursor
+    SetCurrentItem(door);
   }
 
   GameSequence currentSequence;
@@ -453,7 +498,7 @@ public class Controller : MonoBehaviour {
     string path = Application.dataPath + "/Actions/";
 
     foreach(string file in System.IO.Directory.GetFiles(path, "*.json")) {
-      Debug.Log(file);
+//FIXME Debug.Log(file);
       string json = System.IO.File.ReadAllText(file);
 
       try {
@@ -506,6 +551,59 @@ public class Controller : MonoBehaviour {
     if (a.actor == Chars.Actor2) return actor2;
     if (a.actor == Chars.Actor3) return actor3;
     return actors[(int)a.actor];
+  }
+
+
+  private IEnumerator ChangeRoom(Actor actor, Door door) {
+    // Disable gameplay
+    status = GameStatus.RoomTransition;
+    yield return null;
+
+    // Enable dst
+    door.dst.gameObject.SetActive(true);
+
+    // Get dst camera pos + door dst pos
+    Vector3 dstp = door.camerapos;
+    Vector3 euler = cam.transform.rotation.eulerAngles;
+    euler.y = door.dst.orientation;
+    Quaternion dsta = Quaternion.Euler(euler);
+
+    // Move camera quickly from current to dst
+    float time = 0;
+    while (time < 1.0f) {
+      cam.transform.position = Vector3.Lerp(cam.transform.position, dstp, time);
+      cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, dsta, time);
+
+      time += Time.deltaTime;
+      yield return null;
+
+      if (Vector3.Distance(cam.transform.position, dstp) < .1f) break;
+    }
+    cam.transform.position = dstp;
+    cam.transform.rotation = dsta;
+
+    // Disable src
+    door.src.gameObject.SetActive(false);
+    actor.Stop();
+
+    // Move actor to dst door pos
+    currentRoom = door.dst;
+    currentActor = actor;
+    Vector3 pos = door.correspondingDoor.InteractionPosition;
+    pos.y = currentRoom.ground;
+    actor.transform.position = pos;
+    actor.transform.rotation = dsta;
+    actor.currentRoom = currentRoom;
+    yield return null;
+
+    // Disable actors not in current room
+    foreach (Actor a in actors) {
+      if (a == null) continue;
+      a.gameObject.SetActive(a.currentRoom == currentRoom);
+    }
+
+    // Enable gmaeplay
+    status = GameStatus.NormalGamePlay;
   }
 
 

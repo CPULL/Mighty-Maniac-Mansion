@@ -7,7 +7,8 @@ Create assets for the outside part of the home
 Create some assets for the rooms
 Have inventory that can be open/closed by clicking on it. (Grapich icons + text for the items)
 Add options: music volume, text speed, text size, highlight objects (never, on over, when entering)
-Complete intro, adding variations for each character.
+Complete intro, adding variations for each character. -> May need extension to the Actions
+Implement Conditions on actions (JSON serialization, class storage and actual checking of conditions)
 Get music cover from BGO
 Add some sounds: door open/close, footsteps
 Add start game selection, with selection of kidnapped character and 3 players
@@ -16,10 +17,11 @@ Add start game selection, with selection of kidnapped character and 3 players
 Add camera switch when going to another rooms
 Change camera to room settings when selecting another actor and the room for the actor is different
 
-
+Add some "doors" to move between rooms
 
 
 * BUGS ************************************************************************************************************
+Have the area where camera should move smaller
 
 
 * DONE ************************************************************************************************************
@@ -51,6 +53,7 @@ Change camera to room settings when selecting another actor and the room for the
 ! It is possible to specify a specific interaction position for the obejcts, and a direction
 ! Ed Completed
 ! Actors are not selectable by clicking on them
+! Big improvement on interaction points
 
 * CHARS ************************************************************************************************************
 
