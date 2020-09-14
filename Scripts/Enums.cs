@@ -1,7 +1,7 @@
 ﻿
 
 // Used to identify what a cliickable object does
-public enum ItemType { None, Readable, Openable, Activable, Usable, Pickable, Walkable };
+public enum ItemType { None, Readable, Openable, Activable, Usable, Pickable, Walkable, Stairs };
 
 // Direction of an actor, to use the correct sprites
 public enum Dir { F=0, B=2, L=1, R=3, None = 99 };

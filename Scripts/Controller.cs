@@ -158,15 +158,25 @@ public class Controller : MonoBehaviour {
     // RMB -> Default action
 
     if (Input.GetMouseButtonDown(0)) {
-      Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-      if (Physics.Raycast(ray, out RaycastHit hit))
-        currentActor.WalkTo(hit.point);
-
+      if (overObject != null && overObject.type == ItemType.Stairs) {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit)) {
+          currentActor.WalkStairsTo(hit.point, CalculateDirection(hit.point));
+        }
+      }
+      else {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit)) {
+          currentActor.WalkTo(hit.point, currentRoom.ground, CalculateDirection(hit.point));
+        }
+      }
     }
-    else if (!currentActor.IsWalking() && Input.GetMouseButton(0)) {
-      Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-      if (Physics.Raycast(ray, out RaycastHit hit))
-        currentActor.WalkTo(hit.point);
+    else if (currentActor.IsWalking() && Input.GetMouseButton(0) && (overObject == null || overObject.type != ItemType.Stairs)) {
+      Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+      if (Physics.Raycast(ray, out RaycastHit hit)) {
+        if (Vector3.Distance(hit.point, currentActor.transform.position) > .1f)
+          currentActor.WalkTo(hit.point, currentRoom.ground, CalculateDirection(hit.point));
+      }
 
     }
     if (Input.GetMouseButtonDown(1)) {
@@ -221,6 +231,31 @@ public class Controller : MonoBehaviour {
 
   }
 
+
+
+  Dir CalculateDirection(Vector3 point) {
+    Vector3 ap = cam.WorldToScreenPoint(currentActor.transform.position);
+    Vector3 mp = cam.WorldToScreenPoint(point);
+
+    float dx = ap.x - mp.x;
+    float dy = ap.y - mp.y;
+
+    // Vert or Horiz?
+    if (Mathf.Abs(dx) * 1.2f < Mathf.Abs(dy)) {
+      // Vert
+      if (dy < 0) return Dir.B;
+      return Dir.F;
+    }
+    else {
+      // Horiz
+      if (dx < 0) return Dir.R;
+      return Dir.L;
+    }
+  }
+
+
+
+
   void ActionSay(Actor actor, Item item) {
     Vector3 one = actor.transform.position;
     one.y = 0;
@@ -228,7 +263,7 @@ public class Controller : MonoBehaviour {
     two.y = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > 1) { // Need to walk
-      currentActor.WalkTo(overObject.InteractionPosition, new System.Action(() => {
+      currentActor.WalkTo(overObject.InteractionPosition, currentRoom.ground, CalculateDirection(overObject.InteractionPosition), new System.Action(() => {
         actor.SetDirection(item.preferredDirection);
         actor.Say(item.Description);
       }));
@@ -247,7 +282,7 @@ public class Controller : MonoBehaviour {
     two.y = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > 1) { // Need to walk
-      currentActor.WalkTo(overObject.InteractionPosition, new System.Action(() => {
+      currentActor.WalkTo(overObject.InteractionPosition, currentRoom.ground, CalculateDirection(overObject.InteractionPosition), new System.Action(() => {
         actor.SetDirection(item.preferredDirection);
         if (item.Open()) actor.Say("Is locked");
       }));
@@ -266,7 +301,7 @@ public class Controller : MonoBehaviour {
     two.y = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > 1) { // Need to walk
-      currentActor.WalkTo(overObject.InteractionPosition, new System.Action(() => {
+      currentActor.WalkTo(overObject.InteractionPosition, currentRoom.ground, CalculateDirection(overObject.InteractionPosition), new System.Action(() => {
         actor.SetDirection(item.preferredDirection);
         if (item.Open()) actor.Say("Does not work");
       }));
@@ -284,7 +319,7 @@ public class Controller : MonoBehaviour {
     two.y = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > 1) { // Need to walk
-      currentActor.WalkTo(overObject.InteractionPosition, new System.Action(() => {
+      currentActor.WalkTo(overObject.InteractionPosition, currentRoom.ground, CalculateDirection(overObject.InteractionPosition), new System.Action(() => {
         if (!item.isOpen && item.Open()) {
           actor.Say("Is locked");
           return;
@@ -478,6 +513,10 @@ public class Controller : MonoBehaviour {
       c.forcedCursor = CursorTypes.None;
       c.overObject = item;
       c.ShowName(item.ItemName);
+    }
+    else if (item.type == ItemType.Stairs) {
+      c.forcedCursor = CursorTypes.None;
+      c.overObject = item;
     }
 
   }

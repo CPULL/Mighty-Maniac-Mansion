@@ -14,14 +14,14 @@ Add some sounds: door open/close, footsteps
 Add start game selection, with selection of kidnapped character and 3 players
 
 
-Add camera switch when going to another rooms
 Change camera to room settings when selecting another actor and the room for the actor is different
 
-Add some "doors" to move between rooms
 
 
 * BUGS ************************************************************************************************************
-Have the area where camera should move smaller
+
+
+
 
 
 * DONE ************************************************************************************************************
@@ -54,6 +54,11 @@ Have the area where camera should move smaller
 ! Ed Completed
 ! Actors are not selectable by clicking on them
 ! Big improvement on interaction points
+! Added camera switch when going to another rooms
+! Added "doors" to move between rooms
+! The area for the camera movement is made smaller
+! Implemented the stairs with better perspective
+
 
 * CHARS ************************************************************************************************************
 

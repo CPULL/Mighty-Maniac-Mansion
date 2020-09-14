@@ -17,19 +17,27 @@ public class Actor : MonoBehaviour {
     anim = GetComponent<Animator>();
   }
 
-  public void WalkTo(Vector3 dest, System.Action action = null) {
+  public void WalkTo(Vector3 dest, float groundLevel, Dir d, System.Action action = null) {
     callBack = action;
     destination = dest;
-    destination.y = transform.position.y;
+    destination.y = groundLevel;
     walking = true;
 
     Vector3 wdir = destination - transform.position;
     if (wdir != Vector3.zero) {
-      float angle = Mathf.Atan2(transform.forward.z - wdir.z, transform.forward.x - wdir.x) * Mathf.Rad2Deg + currentRoom.orientation;
-      if (60 < angle && angle < 120) { dir = Dir.F; }
-      if (120 <= angle && angle <= 240) { dir = Dir.R; }
-      if (240 < angle || angle < -60) { dir = Dir.B; }
-      if (-60 <= angle && angle <= 60) { dir = Dir.L; }
+      dir = d;
+      anim.Play("Walk" + dir);
+    }
+  }
+
+  public void WalkStairsTo(Vector3 dest, Dir d, System.Action action = null) {
+    callBack = action;
+    destination = dest;
+    walking = true;
+
+    Vector3 wdir = destination - transform.position;
+    if (wdir != Vector3.zero) {
+      dir = d;
       anim.Play("Walk" + dir);
     }
   }
