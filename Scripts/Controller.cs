@@ -12,9 +12,9 @@ public class Controller : MonoBehaviour {
   Vector2 center32 = new Vector2(32, 32);
   Camera cam;
 
-  public ActorClickHandler ActorPortrait1;
-  public ActorClickHandler ActorPortrait2;
-  public ActorClickHandler ActorPortrait3;
+  public PortraitClickHandler ActorPortrait1;
+  public PortraitClickHandler ActorPortrait2;
+  public PortraitClickHandler ActorPortrait3;
 
   public Actor[] actors;
   Actor actor1;
@@ -347,7 +347,7 @@ public class Controller : MonoBehaviour {
 
   internal static void SendEventData(PointerEventData eventData, IPointerClickHandler handler) {
     if (c.status != GameStatus.NormalGamePlay) return;
-    ActorClickHandler h = (ActorClickHandler)handler;
+    PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
       c.currentActor = c.actor1;
       c.ShowName("Selected: " + c.actor1.name);
@@ -370,10 +370,36 @@ public class Controller : MonoBehaviour {
       c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
     }
     else if (handler as GroundClickHandler) {
-      Debug.Log(" the ground!");
+      Debug.Log(" the ground!"); // Not used
     }
     else
       Debug.LogError("What called us?");
+  }
+
+  internal static void SendActorEventData(Actor actor, bool click) {
+    c.ShowName(actor.name);
+    if (c.status != GameStatus.NormalGamePlay || !click) return;
+    if (actor == c.actor1) {
+      c.currentActor = c.actor1;
+      c.ShowName("Selected: " + c.actor1.name);
+      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    }
+    else if (actor == c.actor2) {
+      c.currentActor = c.actor2;
+      c.ShowName("Selected: " + c.actor2.name);
+      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    }
+    else if (actor == c.actor3) {
+      c.currentActor = c.actor3;
+      c.ShowName("Selected: " + c.actor3.name);
+      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    }
   }
 
   internal static void SetCurrentItem(Item item) {

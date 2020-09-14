@@ -100,5 +100,14 @@ public class Actor : MonoBehaviour {
   internal bool IsWalking() {
     return walking;
   }
+
+  void OnMouseEnter() {
+    Controller.SendActorEventData(this, false);
+  }
+
+  void OnMouseDown() {
+    Controller.SendActorEventData(this, true);
+  }
+
 }
 

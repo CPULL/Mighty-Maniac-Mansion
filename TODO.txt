@@ -50,6 +50,7 @@ Change camera to room settings when selecting another actor and the room for the
 ! Added Mailbox
 ! It is possible to specify a specific interaction position for the obejcts, and a direction
 ! Ed Completed
+! Actors are not selectable by clicking on them
 
 * CHARS ************************************************************************************************************
 
