@@ -1,28 +1,45 @@
 ﻿
 
-// Used to identify what a cliickable object does
+/// <summary>
+/// Used to identify what a cliickable object does
+/// </summary>
 public enum ItemType { None, Readable, Openable, Activable, Usable, Pickable, Walkable, Stairs };
 
-// Direction of an actor, to use the correct sprites
+/// <summary>
+/// Direction of an actor, to use the correct sprites
+/// </summary>
 public enum Dir { F=0, B=2, L=1, R=3, None = 99 };
 
 
-// Used to specify which cursor to use
+/// <summary>
+/// Used to specify which cursor to use
+/// </summary>
 public enum CursorTypes {  None=0, Examine=3, Wait=4, Open=5, Close=6, PickUp=7, Use=8 };
 
 
-// Used to show and hide the text
+/// <summary>
+/// Used to show and hide the text
+/// </summary>
 public enum TextMsgMode {  None, Appearing, Disappearing, Visible };
 
-// Used to understand what axis we are talking about
+/// <summary>
+/// Used to understand what axis we are talking about
+/// </summary>
 public enum Axis { X, Y, Z };
 
-// Global status of the game
+/// <summary>
+/// Global status of the game
+/// </summary>
 public enum GameStatus { IntroVideo, CharSelection, IntroDialogue, NormalGamePlay, RoomTransition };
 
-// Used to specify the type of actions
+/// <summary>
+/// Used to specify the type of actions
+/// </summary>
 public enum ActionType { Synchro=0, MoveRelative=1, MoveAbsolute=2, Teleport=3, Disappear=4, Speak=5, Expression=6 };
 
+/// <summary>
+/// List of all actors and generic actor references, like Actor1
+/// </summary>
 public enum Chars {
   None = 0, Actor1 = 1, Actor2 = 2, Actor3= 3, KidnappedActor = 4,
   Fred = 5, Edna = 6, Ted = 7, Ed = 8, Edwige = 9, GreenTentacle = 10, PurpleTentacle = 11,
@@ -30,8 +47,18 @@ public enum Chars {
   otheractorslikepolice=99
 };
 
-// Used to control facial exprfessions
+/// <summary>
+/// Used to control facial exprfessions
+/// </summary>
 public enum Expression { Normal = 2, Happy = 0, Sad = 1, Open = 3, BigOpen = 4 };
 
-// Used for Sequences and Actions
-public enum Running { NotStarted, Running, Completed }
+/// <summary>
+/// Used for Sequences and Actions
+/// </summary>
+public enum Running { NotStarted, Running, Completed };
+
+
+/// <summary>
+/// Used to transition between rooms 
+/// </summary>
+public enum TransitionType { ScrollL, ScrollR, ScrollU, ScrollD, ZoomIn, ZoomOut };

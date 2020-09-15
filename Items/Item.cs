@@ -40,20 +40,6 @@ public class Item : MonoBehaviour {
 
   void OnDrawGizmosSelected() {
     Gizmos.color = new Color(1, 0, 1, 0.75F);
-    Vector3 pos = InteractionPosition;
-
-    float roomy = transform.position.y;
-    Transform p = transform.parent;
-    while (p != null) {
-      Room r = p.GetComponent<Room>();
-      if (r == null) p = p.parent;
-      else {
-        roomy = r.ground;
-        p = null;
-      }
-    }
-
-    pos.y = roomy;
-    Gizmos.DrawSphere(pos, .1f);
+    Gizmos.DrawSphere(InteractionPosition, .1f);
   }
 }

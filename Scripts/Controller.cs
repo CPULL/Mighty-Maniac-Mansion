@@ -20,7 +20,7 @@ public class Controller : MonoBehaviour {
   Actor actor1;
   Actor actor2;
   Actor actor3;
-  Actor kidnappedActor;
+  readonly Actor kidnappedActor;
 
   Actor currentActor = null;
   Room currentRoom;
@@ -29,15 +29,6 @@ public class Controller : MonoBehaviour {
 
   public Room debugr;
   GameStatus status = GameStatus.IntroDialogue;
-
-  int rm = 0; // FIXME remove
-  string[] rndmsg = {
-    "I am Bernard",
-    "Small",
-    "A very long\nmessage, that should\ngo on three lines.",
-    "One\nTwo\nThree\nFour",
-    "One One One One One One \nTwo Two Two Two Two Two \nThree Three Three Three Three \nFour Four Four Four Four Four\nFive"
-  };
 
 
   private void Awake() {
@@ -65,6 +56,8 @@ public class Controller : MonoBehaviour {
     ShowName(currentRoom.RoomName);
   }
 
+  public LayerMask pathLayer;
+  public UnityEngine.UI.Image BlackFade;
 
   void Update() {
     cursorTime += Time.deltaTime;
@@ -120,8 +113,14 @@ public class Controller : MonoBehaviour {
 // FIXME        Debug.Log(currentAction.ToString());
 
         if (currentAction.type == ActionType.Teleport) {
-          GetActor(currentAction).transform.position = currentAction.pos;
-          GetActor(currentAction).SetDirection(currentAction.dir);
+          Actor a = GetActor(currentAction);
+          a.transform.position = currentAction.pos;
+          a.SetDirection(currentAction.dir);
+          RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
+          if (hit.collider != null) {
+            Path p = hit.collider.GetComponent<Path>();
+            a.WalkTo(currentAction.pos, currentAction.dir, p);
+          }
           currentAction.Complete();
         }
         else if (currentAction.type == ActionType.Speak) {
@@ -151,6 +150,30 @@ public class Controller : MonoBehaviour {
     }
 
 
+    // Handle camera
+    Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
+    if (cam.transform.position.x < currentRoom.minL) {
+      Vector3 p = cam.transform.position;
+      p.x = currentRoom.minL;
+      cam.transform.position = p;
+    }
+    else if (cam.transform.position.x > currentRoom.maxR) {
+      Vector3 p = cam.transform.position;
+      p.x = currentRoom.maxR;
+      cam.transform.position = p;
+    }
+    else if (cpos.x < .3f * Screen.width) {
+      if (cam.transform.position.x > currentRoom.minL) {
+        cam.transform.position -= cam.transform.right * Time.deltaTime * (.3f * Screen.width - cpos.x) / 10;
+      }
+    }
+    else if (cpos.x > .7f * Screen.width) {
+      if (cam.transform.position.x < currentRoom.maxR) {
+        cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .7f * Screen.width) / 10;
+      }
+    }
+
+
 
     if (c.status != GameStatus.NormalGamePlay) return;
 
@@ -158,26 +181,18 @@ public class Controller : MonoBehaviour {
     // RMB -> Default action
 
     if (Input.GetMouseButtonDown(0)) {
-      if (overObject != null && overObject.type == ItemType.Stairs) {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit)) {
-          currentActor.WalkStairsTo(hit.point, CalculateDirection(hit.point));
-        }
-      }
-      else {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit)) {
-          currentActor.WalkTo(hit.point, currentRoom.ground, CalculateDirection(hit.point));
-        }
-      }
-    }
-    else if (currentActor.IsWalking() && Input.GetMouseButton(0) && (overObject == null || overObject.type != ItemType.Stairs)) {
-      Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-      if (Physics.Raycast(ray, out RaycastHit hit)) {
-        if (Vector3.Distance(hit.point, currentActor.transform.position) > .1f)
-          currentActor.WalkTo(hit.point, currentRoom.ground, CalculateDirection(hit.point));
+      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
+      if (hit.collider != null) {
+        Path p = hit.collider.GetComponent<Path>();
+
+        // FIXME We need to check if we may need to follow a series of paths (A*-ish?)
+
+        currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
       }
 
+    }
+    else if (currentActor.IsWalking() && Input.GetMouseButton(0) && (overObject == null || overObject.type != ItemType.Stairs)) {
+// FIXME continous walking
     }
     if (Input.GetMouseButtonDown(1)) {
       if (overObject != null) {
@@ -196,25 +211,6 @@ public class Controller : MonoBehaviour {
       }
     }
 
-    // Handle camera
-    Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
-    if (cpos.x < .3f * Screen.width) {
-      if ((currentRoom.axis == Axis.X && cam.transform.position.x > currentRoom.minL) || (currentRoom.axis == Axis.Z && cam.transform.position.z > currentRoom.minL)) { 
-        cam.transform.position -= cam.transform.right * Time.deltaTime * (.3f * Screen.width - cpos.x) / 10; 
-      }
-    }
-    if (cpos.x > .7f * Screen.width) {
-      if ((currentRoom.axis == Axis.X && cam.transform.position.x < currentRoom.maxR) || (currentRoom.axis == Axis.Z && cam.transform.position.z < currentRoom.maxR)) {
-        cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .7f * Screen.width) / 10;
-      }
-    }
-
-
-    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2)) { // FIXME remove it is just for debug
-      currentActor.Say(rndmsg[rm]);
-      rm++;
-      if (rm >= rndmsg.Length) rm = 0;
-    }
 
 
     /*
@@ -263,10 +259,14 @@ public class Controller : MonoBehaviour {
     two.y = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > 1) { // Need to walk
-      currentActor.WalkTo(overObject.InteractionPosition, currentRoom.ground, CalculateDirection(overObject.InteractionPosition), new System.Action(() => {
-        actor.SetDirection(item.preferredDirection);
-        actor.Say(item.Description);
-      }));
+      RaycastHit2D hit = Physics2D.Raycast(overObject.InteractionPosition, cam.transform.forward, 10000, pathLayer);
+      if (hit.collider != null) {
+        Path p = hit.collider.GetComponent<Path>();
+        currentActor.WalkTo(overObject.InteractionPosition, CalculateDirection(overObject.InteractionPosition), p, new System.Action(() => {
+          actor.SetDirection(item.preferredDirection);
+          actor.Say(item.Description);
+        }));
+      }
       return;
     }
     else {
@@ -274,7 +274,6 @@ public class Controller : MonoBehaviour {
       actor.Say(item.Description);
     }
   }
-
   void ActionOpen(Actor actor, Item item) {
     Vector3 one = actor.transform.position;
     one.y = 0;
@@ -282,10 +281,14 @@ public class Controller : MonoBehaviour {
     two.y = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > 1) { // Need to walk
-      currentActor.WalkTo(overObject.InteractionPosition, currentRoom.ground, CalculateDirection(overObject.InteractionPosition), new System.Action(() => {
-        actor.SetDirection(item.preferredDirection);
-        if (item.Open()) actor.Say("Is locked");
-      }));
+      RaycastHit2D hit = Physics2D.Raycast(overObject.InteractionPosition, cam.transform.forward, 10000, pathLayer);
+      if (hit.collider != null) {
+        Path p = hit.collider.GetComponent<Path>();
+        currentActor.WalkTo(overObject.InteractionPosition, CalculateDirection(overObject.InteractionPosition), p, new System.Action(() => {
+          actor.SetDirection(item.preferredDirection);
+          if (item.Open()) actor.Say("Is locked");
+        }));
+      }
       return;
     }
     else {
@@ -293,7 +296,6 @@ public class Controller : MonoBehaviour {
       if (item.Open()) actor.Say("Is locked");
     }
   }
-
   void ActionActivate(Actor actor, Item item) {
     Vector3 one = actor.transform.position;
     one.y = 0;
@@ -301,10 +303,14 @@ public class Controller : MonoBehaviour {
     two.y = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > 1) { // Need to walk
-      currentActor.WalkTo(overObject.InteractionPosition, currentRoom.ground, CalculateDirection(overObject.InteractionPosition), new System.Action(() => {
-        actor.SetDirection(item.preferredDirection);
-        if (item.Open()) actor.Say("Does not work");
-      }));
+      RaycastHit2D hit = Physics2D.Raycast(overObject.InteractionPosition, cam.transform.forward, 10000, pathLayer);
+      if (hit.collider != null) {
+        Path p = hit.collider.GetComponent<Path>();
+        currentActor.WalkTo(overObject.InteractionPosition, CalculateDirection(overObject.InteractionPosition), p, new System.Action(() => {
+          actor.SetDirection(item.preferredDirection);
+          if (item.Open()) actor.Say("Does not work");
+        }));
+      }
       return;
     }
     else {
@@ -319,13 +325,17 @@ public class Controller : MonoBehaviour {
     two.y = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > 1) { // Need to walk
-      currentActor.WalkTo(overObject.InteractionPosition, currentRoom.ground, CalculateDirection(overObject.InteractionPosition), new System.Action(() => {
-        if (!item.isOpen && item.Open()) {
-          actor.Say("Is locked");
-          return;
-        }
-        StartCoroutine(ChangeRoom(actor, (item as Door)));
-      }));
+      RaycastHit2D hit = Physics2D.Raycast(overObject.InteractionPosition, cam.transform.forward, 10000, pathLayer);
+      if (hit.collider != null) {
+        Path p = hit.collider.GetComponent<Path>();
+        currentActor.WalkTo(overObject.InteractionPosition, CalculateDirection(overObject.InteractionPosition), p, new System.Action(() => {
+          if (!item.isOpen && item.Open()) {
+            actor.Say("Is locked");
+            return;
+          }
+          StartCoroutine(ChangeRoom(actor, (item as Door)));
+        }));
+      }
       return;
     }
     else {
@@ -412,7 +422,7 @@ public class Controller : MonoBehaviour {
   }
 
 
-  internal static void SendEventData(PointerEventData eventData, IPointerClickHandler handler) {
+  internal static void SendEventData(IPointerClickHandler handler) {
     if (c.status != GameStatus.NormalGamePlay) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
@@ -551,7 +561,7 @@ public class Controller : MonoBehaviour {
           GameAction a = new GameAction(val["type"].Value);
           if (a.type == ActionType.Teleport) {
             a.SetActor(val["actor"].Value);
-            a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat, val["pos"][2].AsFloat);
+            a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat, val["pos"][1].AsFloat);
             a.SetDir(val["dir"].Value);
           }
           else if (a.type == ActionType.Speak) {
@@ -602,24 +612,28 @@ public class Controller : MonoBehaviour {
     door.dst.gameObject.SetActive(true);
 
     // Get dst camera pos + door dst pos
+    Vector3 orgp = cam.transform.position;
     Vector3 dstp = door.camerapos;
-    Vector3 euler = cam.transform.rotation.eulerAngles;
-    euler.y = door.dst.orientation;
-    Quaternion dsta = Quaternion.Euler(euler);
 
     // Move camera quickly from current to dst
     float time = 0;
-    while (time < 1.0f) {
-      cam.transform.position = Vector3.Lerp(cam.transform.position, dstp, time);
-      cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, dsta, time);
-
+    while (time < .125f) {
+      // Fade black
+      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (time * 8)));
+      cam.transform.position = (1 - time * 4) * orgp + (time * 4) * dstp;
       time += Time.deltaTime;
       yield return null;
-
-      if (Vector3.Distance(cam.transform.position, dstp) < .1f) break;
+    }
+    actor.transform.position = door.correspondingDoor.InteractionPosition;
+    yield return null;
+    while (time < .25f) {
+      // Fade black
+      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (1 - (8 * (time - .125f)))));
+      cam.transform.position = (1 - time * 4) * orgp + (time * 4) * dstp;
+      time += Time.deltaTime;
+      yield return null;
     }
     cam.transform.position = dstp;
-    cam.transform.rotation = dsta;
 
     // Disable src
     door.src.gameObject.SetActive(false);
@@ -628,10 +642,7 @@ public class Controller : MonoBehaviour {
     // Move actor to dst door pos
     currentRoom = door.dst;
     currentActor = actor;
-    Vector3 pos = door.correspondingDoor.InteractionPosition;
-    pos.y = currentRoom.ground;
-    actor.transform.position = pos;
-    actor.transform.rotation = dsta;
+    actor.transform.position = door.correspondingDoor.InteractionPosition;
     actor.currentRoom = currentRoom;
     yield return null;
 

@@ -20,7 +20,7 @@ Change camera to room settings when selecting another actor and the room for the
 
 * BUGS ************************************************************************************************************
 
-
+If we walk to an item and the item is on stairs, we cannot use the normal walkto. We should do "paths" (navmesh?)
 
 
 
@@ -58,6 +58,7 @@ Change camera to room settings when selecting another actor and the room for the
 ! Added "doors" to move between rooms
 ! The area for the camera movement is made smaller
 ! Implemented the stairs with better perspective
+! Removed the perspective camera. Now all is flat and orthogonal.
 
 
 * CHARS ************************************************************************************************************

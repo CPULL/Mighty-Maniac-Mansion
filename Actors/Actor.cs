@@ -11,23 +11,11 @@ public class Actor : MonoBehaviour {
   Vector3 destination = Vector2.zero;
   System.Action callBack = null;
   bool walking = false;
+  Path path = null;
   Dir dir = Dir.F;
 
   private void Awake() {
     anim = GetComponent<Animator>();
-  }
-
-  public void WalkTo(Vector3 dest, float groundLevel, Dir d, System.Action action = null) {
-    callBack = action;
-    destination = dest;
-    destination.y = groundLevel;
-    walking = true;
-
-    Vector3 wdir = destination - transform.position;
-    if (wdir != Vector3.zero) {
-      dir = d;
-      anim.Play("Walk" + dir);
-    }
   }
 
   public void WalkStairsTo(Vector3 dest, Dir d, System.Action action = null) {
@@ -65,9 +53,17 @@ public class Actor : MonoBehaviour {
     Vector3 wdir = (destination - transform.position).normalized;
     float dist = Vector3.Distance(transform.position, destination);
     float speed = Mathf.Clamp(dist, Input.GetMouseButton(0) ? 5f : 2.5f, 5f);
+    wdir.z = wdir.y;
     Vector3 np = transform.position + wdir * speed * Time.deltaTime;
 
-    if (Vector3.Dot(np, destination) < 0 || dist < .15f) {
+    float ty = transform.position.y;
+    float sh = path.maxY - path.minY;
+    float th = path.maxSize - path.minSize;
+    float scaley = (ty - path.minY) / sh;
+    scaley = (1 - scaley) * path.minSize + scaley * path.maxSize;
+    transform.localScale = new Vector3(scaley, scaley, 1);
+
+    if (wdir.sqrMagnitude < .1f || dist < .15f) {
       transform.position = destination;
       walking = false;
       callBack?.Invoke();
@@ -120,6 +116,20 @@ public class Actor : MonoBehaviour {
   public void Stop() {
     isSpeaking = false;
     walking = false;
+  }
+
+  internal void WalkTo(Vector2 dest, Dir d, Path p, System.Action action = null) {
+    callBack = action;
+    destination = dest;
+    destination.z = destination.y;
+    path = p;
+    dir = d;
+    walking = true;
+
+    Vector3 wdir = destination - transform.position;
+    if (wdir != Vector3.zero) {
+      anim.Play("Walk" + dir);
+    }
   }
 }
 

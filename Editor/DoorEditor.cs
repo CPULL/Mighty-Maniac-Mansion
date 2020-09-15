@@ -12,7 +12,7 @@ class ItemEditor : Editor {
       Transform spawn = item.transform.GetChild(0);
       Debug.Log(spawn.name + " is at " + spawn.transform.position);
       item.InteractionPosition = spawn.transform.position;
-      item.InteractionPosition.y = 0; // FIXME we should go to the ground...
+      item.InteractionPosition.z = 0;
     }
   }
 }
@@ -27,7 +27,7 @@ class DoorEditor : Editor {
       Transform spawn = item.transform.GetChild(0);
       Debug.Log(spawn.name + " is at " + spawn.transform.position);
       item.InteractionPosition = spawn.transform.position;
-      item.InteractionPosition.y = 0; // FIXME we should go to the ground...
+      item.InteractionPosition.z = 0;
     }
   }
 }

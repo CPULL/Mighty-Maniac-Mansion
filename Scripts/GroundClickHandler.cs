@@ -3,6 +3,6 @@ using UnityEngine.EventSystems;
 
 public class GroundClickHandler : MonoBehaviour, IPointerClickHandler {
   public void OnPointerClick(PointerEventData eventData) {
-    Controller.SendEventData(eventData, this);
+    Controller.SendEventData(this);
   }
 }
