@@ -349,7 +349,7 @@ Transform:
   m_LocalScale: {x: 78.526375, y: 3.9666967, z: 1}
   m_Children: []
   m_Father: {fileID: 1117025434}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &92995109
 PolygonCollider2D:
@@ -434,9 +434,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1985881147
+  m_SortingLayer: -2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7c289e6c2511aaf4b8d5987e220207e8, type: 3}
   m_Color: {r: 0.14622633, g: 0.33262676, b: 0.8773585, a: 0.27450982}
   m_FlipX: 0
@@ -633,8 +633,8 @@ Transform:
   m_LocalPosition: {x: 20.419998, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1117025434}
-  m_RootOrder: 5
+  m_Father: {fileID: 1017353098}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &146923899
 SpriteRenderer:
@@ -2032,7 +2032,7 @@ Transform:
   m_Children:
   - {fileID: 2095316969}
   m_Father: {fileID: 1117025434}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &527044916
 BoxCollider:
@@ -2275,6 +2275,7 @@ MonoBehaviour:
   orientation: 0
   minL: 0
   maxR: 0
+  CameraGround: 0
   roomCamera: {fileID: 0}
   Doors: []
 --- !u!1 &608392968
@@ -2831,6 +2832,7 @@ MonoBehaviour:
   orientation: 0
   minL: 10
   maxR: 18
+  CameraGround: 0
   roomCamera: {fileID: 0}
   Doors: []
 --- !u!82 &777865683
@@ -3040,7 +3042,7 @@ Transform:
   m_LocalScale: {x: 0.55, y: 0.55, z: 1}
   m_Children: []
   m_Father: {fileID: 1117025434}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &983076614
 SpriteRenderer:
@@ -3447,6 +3449,40 @@ MeshRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 52
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1017353097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1017353098}
+  m_Layer: 0
+  m_Name: Grass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1017353098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017353097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1967415418}
+  - {fileID: 1805491018}
+  - {fileID: 1103690920}
+  - {fileID: 146923898}
+  m_Father: {fileID: 1117025434}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1047687765
 GameObject:
   m_ObjectHideFlags: 0
@@ -3632,8 +3668,8 @@ Transform:
   m_LocalPosition: {x: -15.580002, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1117025434}
-  m_RootOrder: 4
+  m_Father: {fileID: 1017353098}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1103690921
 SpriteRenderer:
@@ -3716,14 +3752,11 @@ Transform:
   m_Children:
   - {fileID: 729354871}
   - {fileID: 1956777061}
-  - {fileID: 1967415418}
-  - {fileID: 1805491018}
-  - {fileID: 1103690920}
-  - {fileID: 146923898}
   - {fileID: 983076613}
   - {fileID: 527044915}
   - {fileID: 92995108}
   - {fileID: 1615168877}
+  - {fileID: 1017353098}
   m_Father: {fileID: 2059794975}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3743,6 +3776,7 @@ MonoBehaviour:
   orientation: 90
   minL: -66
   maxR: -29
+  CameraGround: 2
   roomCamera: {fileID: 0}
   Doors: []
 --- !u!1 &1129312857
@@ -5262,6 +5296,7 @@ MonoBehaviour:
   orientation: 0
   minL: -0.5
   maxR: 8.85
+  CameraGround: 2
   roomCamera: {fileID: 0}
   Doors: []
 --- !u!1 &1443085110
@@ -6271,7 +6306,7 @@ Transform:
   m_LocalScale: {x: 9.681595, y: 2.8336885, z: 1}
   m_Children: []
   m_Father: {fileID: 1117025434}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &1615168878
 PolygonCollider2D:
@@ -6356,9 +6391,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1985881147
+  m_SortingLayer: -2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7c289e6c2511aaf4b8d5987e220207e8, type: 3}
   m_Color: {r: 0.14622633, g: 0.33262676, b: 0.8773585, a: 0.27450982}
   m_FlipX: 0
@@ -6856,11 +6891,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805491017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.42, y: 0, z: 0}
+  m_LocalPosition: {x: 8.419998, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1117025434}
-  m_RootOrder: 3
+  m_Father: {fileID: 1017353098}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1805491019
 SpriteRenderer:
@@ -7389,7 +7424,7 @@ GameObject:
   - component: {fileID: 1967415418}
   - component: {fileID: 1967415419}
   m_Layer: 0
-  m_Name: Grass
+  m_Name: Grass (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7406,8 +7441,8 @@ Transform:
   m_LocalPosition: {x: -3.5800018, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1117025434}
-  m_RootOrder: 2
+  m_Father: {fileID: 1017353098}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1967415419
 SpriteRenderer:

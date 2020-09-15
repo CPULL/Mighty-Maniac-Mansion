@@ -426,56 +426,33 @@ public class Controller : MonoBehaviour {
     if (c.status != GameStatus.NormalGamePlay) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
-      c.currentActor = c.actor1;
-      c.ShowName("Selected: " + c.actor1.name);
-      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      SendActorEventData(c.actor1, true);
+    } else if (h == c.ActorPortrait2) {
+      SendActorEventData(c.actor2, true);
+    } else if (h == c.ActorPortrait3) {
+      SendActorEventData(c.actor3, true);
     }
-    else if (h == c.ActorPortrait2) {
-      c.currentActor = c.actor2;
-      c.ShowName("Selected: " + c.actor2.name);
-      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    }
-    else if (h == c.ActorPortrait3) {
-      c.currentActor = c.actor3;
-      c.ShowName("Selected: " + c.actor3.name);
-      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-    }
-    else if (handler as GroundClickHandler) {
-      Debug.Log(" the ground!"); // Not used
-    }
-    else
-      Debug.LogError("What called us?");
   }
 
   internal static void SendActorEventData(Actor actor, bool click) {
-    c.ShowName(actor.name);
     if (c.status != GameStatus.NormalGamePlay || !click) return;
+    c.currentActor = actor;
+
+    c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
     if (actor == c.actor1) {
-      c.currentActor = c.actor1;
-      c.ShowName("Selected: " + c.actor1.name);
       c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
     }
     else if (actor == c.actor2) {
-      c.currentActor = c.actor2;
-      c.ShowName("Selected: " + c.actor2.name);
-      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
       c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
     }
-    else if (actor == c.actor3) {
-      c.currentActor = c.actor3;
-      c.ShowName("Selected: " + c.actor3.name);
-      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    if (actor == c.actor3) {
       c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    }
+    c.ShowName("Selected: " + c.currentActor.name);
+    if (!c.currentActor.gameObject.activeSelf) { // Different room
+      c.StartCoroutine(c.FadeToRoomActor());
     }
   }
 
@@ -656,7 +633,46 @@ public class Controller : MonoBehaviour {
     status = GameStatus.NormalGamePlay;
   }
 
+  private IEnumerator FadeToRoomActor() {
+    // Disable gameplay
+    status = GameStatus.RoomTransition;
+    yield return null;
 
+    Room prev = currentRoom;
+    currentRoom = currentActor.currentRoom;
+
+    // Get dst camera pos + door dst pos
+    Vector3 dstp = currentActor.transform.position;
+    dstp.y = currentRoom.CameraGround;
+    dstp.z = -10;
+
+    // Move camera quickly from current to dst
+    float time = 0;
+    while (time < .125f) {
+      // Fade black
+      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (time * 8)));
+      time += Time.deltaTime;
+      yield return null;
+    }
+    prev.gameObject.SetActive(false);
+    currentRoom.gameObject.SetActive(true);
+    cam.transform.position = dstp;
+    status = GameStatus.NormalGamePlay; // Enable gmaeplay, this will make the camera to adjust
+    yield return null;
+
+    // Disable actors not in current room
+    foreach (Actor a in actors) {
+      if (a == null) continue;
+      a.gameObject.SetActive(a.currentRoom == currentRoom);
+    }
+
+    while (time < .25f) {
+      // Fade black
+      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (1 - (8 * (time - .125f)))));
+      time += Time.deltaTime;
+      yield return null;
+    }
+  }
 
 }
 

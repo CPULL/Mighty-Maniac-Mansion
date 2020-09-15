@@ -14,7 +14,14 @@ Add some sounds: door open/close, footsteps
 Add start game selection, with selection of kidnapped character and 3 players
 
 
-Change camera to room settings when selecting another actor and the room for the actor is different
+
+FrontDoot:
+-> Doorbell (starts sequence where Ed checks for package and then screams to you to go away)
+-> House Spare Key (visible under the doormat when the doormat is open)
+-> Bush on the very left to stop walking
+-> Graves on the right afte rthe mailbox
+-> Backyard entrance on the left
+-> Grate covered in grass close to the door on the left
 
 
 
@@ -59,6 +66,7 @@ If we walk to an item and the item is on stairs, we cannot use the normal walkto
 ! The area for the camera movement is made smaller
 ! Implemented the stairs with better perspective
 ! Removed the perspective camera. Now all is flat and orthogonal.
+! Transition between actors that are in different rooms
 
 
 * CHARS ************************************************************************************************************
