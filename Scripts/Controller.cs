@@ -27,9 +27,10 @@ public class Controller : MonoBehaviour {
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
   Color32 selectedActor = new Color32(200, 232, 152, 255);
 
-  public Room debugr;
+  public Room[] rooms;
   GameStatus status = GameStatus.IntroDialogue;
-
+  public AudioClip[] Sounds;
+  public Options options;
 
   private void Awake() {
     c = this;
@@ -43,12 +44,14 @@ public class Controller : MonoBehaviour {
     PickValidSequence();
 
 
-    currentRoom = debugr;
+    currentRoom = rooms[0];
     StartCoroutine(StartDelayed());
     Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], center32, CursorMode.Auto);
     status = GameStatus.IntroDialogue;
     currentActor = actor1;
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+
+    options.Init();
   }
 
   IEnumerator StartDelayed() {
@@ -96,59 +99,22 @@ public class Controller : MonoBehaviour {
       }
     }
 
-
-    // Do we have a sequence?
-    if (currentSequence != null) {
-      // Do we have the action?
-
-      // No action -> We may want to check if we have a sequence, if not get one valid
-      // Action not playing
-      // Action playing
-
-      if (currentAction == null) {
-        currentAction = currentSequence.GetNextAction();
-        if (currentAction == null) currentSequence = null;
-      }
-      else if (currentAction.NotStarted()) {
-// FIXME        Debug.Log(currentAction.ToString());
-
-        if (currentAction.type == ActionType.Teleport) {
-          Actor a = GetActor(currentAction);
-          a.transform.position = currentAction.pos;
-          a.SetDirection(currentAction.dir);
-          RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
-          if (hit.collider != null) {
-            Path p = hit.collider.GetComponent<Path>();
-            a.WalkTo(currentAction.pos, currentAction.dir, p);
-          }
-          currentAction.Complete();
-        }
-        else if (currentAction.type == ActionType.Speak) {
-          GetActor(currentAction).Say(currentAction.msg, currentAction);
-          GetActor(currentAction).SetDirection(currentAction.dir);
-          currentAction.Play();
-        }
-        else if (currentAction.type == ActionType.Expression) {
-          GetActor(currentAction).SetDirection(currentAction.dir);
-          GetActor(currentAction).SetExpression(currentAction.expr);
-          currentAction.Play();
-        }
-        else {
-          // FIXME do the other actions
-        }
-
-      }
-      else if (currentAction.IsPlaying()) {
-        currentAction.AddTime(Time.deltaTime);
-      }
-      else if (currentAction.IsCompleted()) {
+    // Sequences of actions
+    if (currentSequence != null) { // Do we have a sequence?
+      if (currentAction == null) { // Do we have the action?
         currentAction = currentSequence.GetNextAction();
         if (currentAction == null) {
-          status = GameStatus.NormalGamePlay;
+          currentSequence = null;
+          if (actions.Count > 0) currentAction = actions.GetFirst();
         }
       }
     }
+    else if (actions.Count > 0) currentAction = actions.GetFirst();
 
+    if (currentAction != null) {
+      PlayCurrentAction();
+      return;
+    }
 
     // Handle camera
     Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
@@ -180,6 +146,7 @@ public class Controller : MonoBehaviour {
     // LMB -> Walk or secondary action
     // RMB -> Default action
 
+    // Mouse control
     if (Input.GetMouseButtonDown(0)) {
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
@@ -192,7 +159,11 @@ public class Controller : MonoBehaviour {
 
     }
     else if (currentActor.IsWalking() && Input.GetMouseButton(0) && (overObject == null || overObject.type != ItemType.Stairs)) {
-// FIXME continous walking
+      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
+      if (hit.collider != null) {
+        Path p = hit.collider.GetComponent<Path>();
+        currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
+      }
     }
     if (Input.GetMouseButtonDown(1)) {
       if (overObject != null) {
@@ -205,25 +176,14 @@ public class Controller : MonoBehaviour {
         else if (overObject.type == ItemType.Activable) {
           ActionActivate(currentActor, overObject);
         }
+        else if (overObject.type == ItemType.Usable) {
+          ActionActivate(currentActor, overObject);
+        }
         else if (overObject.type == ItemType.Walkable) { // This should be Open/Close, normal mouse to walk, and msg if it is closed
           ActionChangeRoom(currentActor, overObject);
         }
       }
     }
-
-
-
-    /*
-     
-    Actions should have a condition. And probably a sequence.
-
-    If the condition is true, as soon there are no actions to do, the sequence should start (conditions are on sequences)
-    We may need to do things in parallel with multiple actors
-
-
-
-     */
-
 
   }
 
@@ -254,11 +214,11 @@ public class Controller : MonoBehaviour {
 
   void ActionSay(Actor actor, Item item) {
     Vector3 one = actor.transform.position;
-    one.y = 0;
+    one.z = 0;
     Vector3 two = item.InteractionPosition;
-    two.y = 0;
+    two.z = 0;
     float dist = Vector3.Distance(one, two);
-    if (dist > 1) { // Need to walk
+    if (dist > .2f) { // Need to walk
       RaycastHit2D hit = Physics2D.Raycast(overObject.InteractionPosition, cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         Path p = hit.collider.GetComponent<Path>();
@@ -276,11 +236,11 @@ public class Controller : MonoBehaviour {
   }
   void ActionOpen(Actor actor, Item item) {
     Vector3 one = actor.transform.position;
-    one.y = 0;
+    one.z = 0;
     Vector3 two = item.InteractionPosition;
-    two.y = 0;
+    two.z = 0;
     float dist = Vector3.Distance(one, two);
-    if (dist > 1) { // Need to walk
+    if (dist > .2f) { // Need to walk
       RaycastHit2D hit = Physics2D.Raycast(overObject.InteractionPosition, cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         Path p = hit.collider.GetComponent<Path>();
@@ -298,33 +258,39 @@ public class Controller : MonoBehaviour {
   }
   void ActionActivate(Actor actor, Item item) {
     Vector3 one = actor.transform.position;
-    one.y = 0;
+    one.z = 0;
     Vector3 two = item.InteractionPosition;
-    two.y = 0;
+    two.z = 0;
     float dist = Vector3.Distance(one, two);
-    if (dist > 1) { // Need to walk
+    if (dist > .2f) { // Need to walk
       RaycastHit2D hit = Physics2D.Raycast(overObject.InteractionPosition, cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         Path p = hit.collider.GetComponent<Path>();
         currentActor.WalkTo(overObject.InteractionPosition, CalculateDirection(overObject.InteractionPosition), p, new System.Action(() => {
           actor.SetDirection(item.preferredDirection);
-          if (item.Open()) actor.Say("Does not work");
+          if (item.Open())
+            actor.Say("Does not work");
+          else
+            item.PlayActions();
         }));
       }
       return;
     }
     else {
       actor.SetDirection(item.preferredDirection);
-      if (item.Open()) actor.Say("Does not work");
+      if (item.Open()) 
+        actor.Say("Does not work");
+      else
+        item.PlayActions();
     }
   }
   void ActionChangeRoom(Actor actor, Item item) {
     Vector3 one = actor.transform.position;
-    one.y = 0;
+    one.z = 0;
     Vector3 two = item.InteractionPosition;
-    two.y = 0;
+    two.z = 0;
     float dist = Vector3.Distance(one, two);
-    if (dist > 1) { // Need to walk
+    if (dist > .2f) { // Need to walk
       RaycastHit2D hit = Physics2D.Raycast(overObject.InteractionPosition, cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         Path p = hit.collider.GetComponent<Path>();
@@ -519,6 +485,7 @@ public class Controller : MonoBehaviour {
   GameSequence currentSequence;
   GameAction currentAction;
   public List<GameSequence> sequences;
+  readonly SList<GameAction> actions = new SList<GameAction>(16);
 
   void LoadSequences() {
     string path = Application.dataPath + "/Actions/";
@@ -530,7 +497,7 @@ public class Controller : MonoBehaviour {
       try {
         JSONNode j = JSON.Parse(json);
 
-        GameSequence seq = new GameSequence(j["name"].Value);
+        GameSequence seq = new GameSequence(j["id"].Value, j["name"].Value);
         // FIXME conditions
         // Actions
         JSONNode.ValueEnumerator vals = j["actions"].Values;
@@ -538,19 +505,27 @@ public class Controller : MonoBehaviour {
           GameAction a = new GameAction(val["type"].Value);
           if (a.type == ActionType.Teleport) {
             a.SetActor(val["actor"].Value);
-            a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat, val["pos"][1].AsFloat);
+            a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
             a.SetDir(val["dir"].Value);
           }
           else if (a.type == ActionType.Speak) {
             a.SetActor(val["actor"].Value);
-            a.SetOther(val["other"].Value);
             a.SetDir(val["dir"].Value);
-            a.SetText(val["msg"].Value);
+            a.SetValue(val["msg"].Value);
           }
           else if (a.type == ActionType.Expression) {
             a.SetActor(val["actor"].Value);
             a.SetDir(val["dir"].Value);
-            a.SetExpr(val["expr"].Value);
+            a.SetValue(val["expr"].Value);
+          }
+          else if (a.type == ActionType.ShowRoom) {
+            a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
+            a.SetValue(val["status"].Value);
+          }
+          else if (a.type == ActionType.Sound) {
+            a.SetActor(val["actor"].Value);
+            a.SetDir(val["dir"].Value);
+            a.SetValue(val["snd"].Value);
           }
           a.SetWait(val["wait"].AsFloat);
           seq.actions.Add(a);
@@ -562,9 +537,17 @@ public class Controller : MonoBehaviour {
       }
     }
 
+    currentSequence = null;
+    foreach(GameSequence s in sequences) {
+      if (s.id == "intro") {
+        currentSequence = s;
+        break;
+      }
+    }
   }
 
   void PickValidSequence() {
+    return; // FIXME we should check if there are sequences that can be activated
     // Check all conditions and pick a valid sequence. In case there are more pick one random
     currentSequence = sequences[0];
     currentSequence.Start();
@@ -572,10 +555,92 @@ public class Controller : MonoBehaviour {
   }
 
 
-  private Actor GetActor(GameAction a) {
+  public static void AddAction(GameAction a) {
+    c.actions.Add(a);
+  }
+
+  void PlayCurrentAction() {
+    if (currentAction.NotStarted()) {
+      // FIXME        Debug.Log(currentAction.ToString());
+
+      if (currentAction.type == ActionType.ShowRoom) {
+        foreach (Room r in rooms)
+          if (r.ID == currentAction.ID) {
+            currentRoom = r;
+            break;
+          }
+        Vector3 pos = currentAction.pos;
+        pos.z = -10;
+        cam.transform.position = pos;
+        status = Enums.GetStatus(currentAction.Value, status);
+        currentAction.Complete();
+      }
+      else if (currentAction.type == ActionType.Teleport) {
+        Actor a = GetActor(currentAction);
+        a.transform.position = currentAction.pos;
+        a.SetDirection(currentAction.dir);
+        RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
+        if (hit.collider != null) {
+          Path p = hit.collider.GetComponent<Path>();
+          a.WalkTo(currentAction.pos, currentAction.dir, p);
+        }
+        currentAction.Complete();
+      }
+      else if (currentAction.type == ActionType.Speak) {
+        Actor a = GetActor(currentAction);
+        a.Say(currentAction.Value, currentAction);
+        a.SetDirection(currentAction.dir);
+        currentAction.Play();
+      }
+      else if (currentAction.type == ActionType.Expression) {
+        Actor a = GetActor(currentAction);
+        a.SetDirection(currentAction.dir);
+        a.SetExpression(Enums.GetExp(currentAction.Value));
+        currentAction.Play();
+      }
+      else if (currentAction.type == ActionType.Sound) {
+        Actor a = GetActor(currentAction);
+        if (a != null) a.SetDirection(currentAction.dir);
+        int snd = Enums.GetSnd(currentAction.Value);
+        if (snd != -1) {
+          currentActor.PlaySound(Sounds[snd]);
+        }
+        else {
+          Debug.Log("Missing sound " + currentAction.Value);
+        }
+        currentAction.Play();
+      }
+      else {
+        // FIXME do the other actions
+      }
+
+    }
+    else if (currentAction.IsPlaying()) {
+      currentAction.CheckTime(Time.deltaTime);
+    }
+    else if (currentAction.IsCompleted()) {
+      if (currentAction.Repeatable) currentAction.Reset();
+      if (currentSequence != null) {
+        currentAction = currentSequence.GetNextAction();
+      }
+      else if (actions.Count > 0) {
+        currentAction = actions.GetFirst();
+      }
+      else
+        currentAction = null;
+
+      if (currentAction == null) {
+        status = GameStatus.NormalGamePlay;
+      }
+    }
+  }
+
+private Actor GetActor(GameAction a) {
+    if (a.actor == Chars.Current) return currentActor;
     if (a.actor == Chars.Actor1) return actor1;
     if (a.actor == Chars.Actor2) return actor2;
     if (a.actor == Chars.Actor3) return actor3;
+    if (a.actor == Chars.None) return null;
     return actors[(int)a.actor];
   }
 

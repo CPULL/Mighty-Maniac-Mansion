@@ -1,29 +1,35 @@
-﻿using System;
+﻿using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
 public class GameAction {
-  public ActionType type;
   private Running running = Running.NotStarted;
+  private float time;
 
+  public ActionType type;
+  public bool Repeatable;
+  public string ID;
   public Chars actor;
-  public Chars other;
-  public Vector3 pos;
+  public Vector2 pos;
+  public string Value;
   public Dir dir;
-  public Expression expr;
-  public string msg;
+  public float delay;
+  
 
-  public float time;
+
 
   public GameAction(string stype) {
     string t = stype.ToLowerInvariant();
     if (t == "synchro") type = ActionType.Synchro;
     if (t == "teleport") type = ActionType.Teleport;
     if (t == "speak") type = ActionType.Speak;
+    if (t == "move") type = ActionType.Move;
     if (t == "expression") type = ActionType.Expression;
-    if (t == "disappear") type = ActionType.Disappear;
-    if (t == "moveabsolute") type = ActionType.MoveAbsolute;
-    if (t == "moverelative") type = ActionType.MoveRelative;
+    if (t == "open") type = ActionType.Open;
+    if (t == "enable") type = ActionType.Enable;
+    if (t == "showroom") type = ActionType.ShowRoom;
+    if (t == "setsequence") type = ActionType.SetSequence;
+    if (t == "sound") type = ActionType.Sound;
   }
 
   internal void SetActor(string a) {
@@ -56,35 +62,35 @@ public class GameAction {
     if (n == "javid") actor = Chars.Javid;
   }
 
-  internal void SetOther(string a) {
-    if (a == null) {
-      other = Chars.None;
-      return;
-    }
-    string n = a.ToLowerInvariant();
-    if (n == "none") other = Chars.None;
-    if (n == "fred") other = Chars.Fred;
-    if (n == "edna") other = Chars.Edna;
-    if (n == "ted") other = Chars.Ted;
-    if (n == "ed") other = Chars.Ed;
-    if (n == "edwige") other = Chars.Edwige;
-    if (n == "greententacle") other = Chars.GreenTentacle;
-    if (n == "purpletentacle") other = Chars.PurpleTentacle;
-    if (n == "actor1") other = Chars.Actor1;
-    if (n == "actor2") other = Chars.Actor2;
-    if (n == "actor3") other = Chars.Actor3;
-    if (n == "kidnappedactor") other = Chars.KidnappedActor;
-    if (n == "dave") other = Chars.Dave;
-    if (n == "bernard") other = Chars.Bernard;
-    if (n == "hoagie") other = Chars.Hoagie;
-    if (n == "michael") other = Chars.Michael;
-    if (n == "razor") other = Chars.Razor;
-    if (n == "sandy") other = Chars.Sandy;
-    if (n == "syd") other = Chars.Syd;
-    if (n == "wendy") other = Chars.Wendy;
-    if (n == "jeff") other = Chars.Jeff;
-    if (n == "javid") other = Chars.Javid;
-  }
+  //internal void SetOther(string a) {
+  //  if (a == null) {
+  //    other = Chars.None;
+  //    return;
+  //  }
+  //  string n = a.ToLowerInvariant();
+  //  if (n == "none") other = Chars.None;
+  //  if (n == "fred") other = Chars.Fred;
+  //  if (n == "edna") other = Chars.Edna;
+  //  if (n == "ted") other = Chars.Ted;
+  //  if (n == "ed") other = Chars.Ed;
+  //  if (n == "edwige") other = Chars.Edwige;
+  //  if (n == "greententacle") other = Chars.GreenTentacle;
+  //  if (n == "purpletentacle") other = Chars.PurpleTentacle;
+  //  if (n == "actor1") other = Chars.Actor1;
+  //  if (n == "actor2") other = Chars.Actor2;
+  //  if (n == "actor3") other = Chars.Actor3;
+  //  if (n == "kidnappedactor") other = Chars.KidnappedActor;
+  //  if (n == "dave") other = Chars.Dave;
+  //  if (n == "bernard") other = Chars.Bernard;
+  //  if (n == "hoagie") other = Chars.Hoagie;
+  //  if (n == "michael") other = Chars.Michael;
+  //  if (n == "razor") other = Chars.Razor;
+  //  if (n == "sandy") other = Chars.Sandy;
+  //  if (n == "syd") other = Chars.Syd;
+  //  if (n == "wendy") other = Chars.Wendy;
+  //  if (n == "jeff") other = Chars.Jeff;
+  //  if (n == "javid") other = Chars.Javid;
+  //}
 
   internal void SetDir(string value) {
     string d = value.ToLowerInvariant();
@@ -94,29 +100,24 @@ public class GameAction {
     if (d == "r") dir = Dir.R;
   }
 
-  internal void SetPos(float x, float y, float z) {
-    pos = new Vector3(x, y, z);
+  internal void SetPos(float x, float y) {
+    pos = new Vector2(x, y);
   }
 
-  internal void SetText(string txt) {
-    msg = txt;
+  internal void SetValue(string txt) {
+    Value = txt;
   }
-
-  internal void SetExpr(string exp) {
-    string e = exp.ToLowerInvariant();
-    expr = Expression.Normal;
-    if (e == "happy") expr = Expression.Happy;
-    if (e == "sad") expr = Expression.Sad;
-    if (e == "open") expr = Expression.Open;
-    if (e == "bigopen") expr = Expression.BigOpen;
+  internal void SetID(string txt) {
+    ID = txt;
   }
 
   internal void SetWait(float w) {
-    time = w;
+    delay = w;
   }
 
   internal void Play() {
     running = Running.Running;
+    time = delay;
   }
 
   internal void Complete() {
@@ -138,19 +139,26 @@ public class GameAction {
   public override string ToString() {
     string res = type.ToString();
     if (type == ActionType.Teleport) res += " " + actor.ToString();
-    if (type == ActionType.Speak) res += " " + actor.ToString() + " : " + msg;
+    if (type == ActionType.Speak) res += " " + actor.ToString() + " : " + Value;
+    if (type == ActionType.Expression) res += " " + actor.ToString() + " : " + Value;
     // FIXME do the others
 
     return res;
   }
 
-  internal void AddTime(float deltaTime) {
+  internal void CheckTime(float deltaTime) {
     if (time > 0) {
       time -= deltaTime;
       if (time <= 0) {
         running = Running.Completed;
+        time = delay;
       }
     }
+  }
+
+  internal void Reset() {
+    running = Running.NotStarted;
+    time = delay;
   }
 }
 
@@ -159,21 +167,112 @@ public class Condition {
 }
 
 
-/* Param:
- *  Teleport -> Direction of actor
- *  Expression -> 0 happy, 1 sad, 2 none, 3 open, 4 bigopen
- * 
- */
 
+[CustomPropertyDrawer(typeof(GameAction))]
+public class MyActionPropertyDrawer : PropertyDrawer {
+  public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+    EditorGUI.BeginProperty(position, label, property);
 
+    int indent = EditorGUI.indentLevel;
+    float labw = EditorGUIUtility.labelWidth;
+    EditorGUI.indentLevel = 1;
+    EditorGUIUtility.labelWidth /= 4;
 
-/*
- Conditions?
+    Rect rect  = new Rect(position.x, position.y, position.width * .8f - 8, EditorGUIUtility.singleLineHeight);
+    Rect rectr  = new Rect(position.x + position.width * .8f, position.y, position.width * .1f - 4, EditorGUIUtility.singleLineHeight);
+    Rect rectErr  = new Rect(position.x + position.width * .8f + 32, position.y, position.width * .1f - 4, EditorGUIUtility.singleLineHeight);
+    Rect rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+    Rect rect2 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+    Rect rect3 = new Rect(position.x, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+    Rect rect4 = new Rect(position.x, position.y + 4 * EditorGUIUtility.singleLineHeight + 5, position.width, EditorGUIUtility.singleLineHeight);
 
-Time?
-Some action completed?
-Some object acquired?
-Particular char available?
-Going in a location?
- 
- */
+    SerializedProperty type = property.FindPropertyRelative("type");
+    type.intValue = EditorGUI.Popup(rect, "Type", type.intValue, type.enumNames);
+    SerializedProperty repeat = property.FindPropertyRelative("Repeatable");
+    repeat.boolValue = EditorGUI.Toggle(rectr, "", repeat.boolValue);
+    EditorGUIUtility.labelWidth *= 2;
+
+    SerializedProperty id = property.FindPropertyRelative("ID");
+    SerializedProperty pos = property.FindPropertyRelative("pos");
+    SerializedProperty actor = property.FindPropertyRelative("actor");
+    SerializedProperty val = property.FindPropertyRelative("Value");
+    SerializedProperty dir = property.FindPropertyRelative("dir");
+    SerializedProperty delay = property.FindPropertyRelative("delay");
+
+    switch ((ActionType)type.intValue) {
+      case ActionType.ShowRoom:
+        id.stringValue = EditorGUI.TextField(rect1, "ID", val.stringValue);
+        pos.vector2Value = EditorGUI.Vector2Field(rect2, "Pos", pos.vector2Value);
+        val.stringValue = EditorGUI.TextField(rect3, "Status", val.stringValue);
+        if (string.IsNullOrEmpty(id.stringValue) || string.IsNullOrEmpty(val.stringValue) || pos.vector2Value == Vector2.zero) {
+          GUIStyle style = new GUIStyle();
+          style.normal.textColor = Color.red;
+          EditorGUI.LabelField(rectErr, "INVALID!", style);
+        }
+        break;
+
+      case ActionType.Teleport:
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+        dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
+        pos.vector2Value = EditorGUI.Vector2Field(rect3, "Pos", pos.vector2Value);
+        if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue) || pos.vector2Value == Vector2.zero) {
+          GUIStyle style = new GUIStyle();
+          style.normal.textColor = Color.red;
+          EditorGUI.LabelField(rectErr, "INVALID!", style);
+        }
+        break;
+
+      case ActionType.Speak:
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+        dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
+        val.stringValue = EditorGUI.TextField(rect3, "Text", val.stringValue);
+        if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue)) {
+          GUIStyle style = new GUIStyle();
+          style.normal.textColor = Color.red;
+          EditorGUI.LabelField(rectErr, "INVALID!", style);
+        }
+        break;
+
+      case ActionType.Expression:
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+        dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
+        val.stringValue = EditorGUI.TextField(rect3, "Expression", val.stringValue);
+        delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
+        if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue) || delay.floatValue <= 0) {
+          GUIStyle style = new GUIStyle();
+          style.normal.textColor = Color.red;
+          EditorGUI.LabelField(rectErr, "INVALID!", style);
+        }
+        break;
+
+      case ActionType.Sound:
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+        dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
+        val.stringValue = EditorGUI.TextField(rect3, "Value", val.stringValue);
+        delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
+        if (string.IsNullOrEmpty(val.stringValue) || delay.floatValue <= 0) {
+          GUIStyle style = new GUIStyle();
+          style.normal.textColor = Color.red;
+          EditorGUI.LabelField(rectErr, "INVALID!", style);
+        }
+        break;
+    }
+
+    EditorGUI.indentLevel = indent;
+    EditorGUIUtility.labelWidth = labw;
+    EditorGUI.EndProperty();
+  }
+
+  //This will need to be adjusted based on what you are displaying
+  public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
+    SerializedProperty type = property.FindPropertyRelative("type");
+    switch ((ActionType)type.intValue) {
+      case ActionType.ShowRoom: return EditorGUIUtility.singleLineHeight * 4;
+      case ActionType.Teleport: return EditorGUIUtility.singleLineHeight * 4;
+      case ActionType.Speak: return EditorGUIUtility.singleLineHeight * 4;
+      case ActionType.Expression: return EditorGUIUtility.singleLineHeight * 5 + 5;
+      case ActionType.Sound: return EditorGUIUtility.singleLineHeight * 5 + 5;
+    }
+    return EditorGUIUtility.singleLineHeight * 1;
+  }
+}

@@ -13,9 +13,11 @@ public class Actor : MonoBehaviour {
   bool walking = false;
   Path path = null;
   Dir dir = Dir.F;
+  private AudioSource audios;
 
   private void Awake() {
     anim = GetComponent<Animator>();
+    audios = GetComponent<AudioSource>();
   }
 
   public void WalkStairsTo(Vector3 dest, Dir d, System.Action action = null) {
@@ -130,6 +132,11 @@ public class Actor : MonoBehaviour {
     if (wdir != Vector3.zero) {
       anim.Play("Walk" + dir);
     }
+  }
+
+  internal void PlaySound(AudioClip audioClip) {
+    audios.clip = audioClip;
+    audios.Play();
   }
 }
 

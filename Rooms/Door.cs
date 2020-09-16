@@ -9,6 +9,7 @@ public class Door : Item {
 
   // FIXME add key or similar
   private void Start() {
-    GetComponent<UnityEngine.SpriteRenderer>().color = new UnityEngine.Color32(0, 0, 0, 0);
+    if (type == ItemType.Walkable)
+      GetComponent<UnityEngine.SpriteRenderer>().color = new UnityEngine.Color32(0, 0, 0, 0);
   }
 }

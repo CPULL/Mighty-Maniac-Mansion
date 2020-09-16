@@ -13,16 +13,20 @@ Get music cover from BGO
 Add some sounds: door open/close, footsteps
 Add start game selection, with selection of kidnapped character and 3 players
 
+Associate Actions to Items
 
-
-FrontDoot:
+FrontDoor:
 -> Doorbell (starts sequence where Ed checks for package and then screams to you to go away)
 -> House Spare Key (visible under the doormat when the doormat is open)
 -> Bush on the very left to stop walking
--> Graves on the right afte rthe mailbox
+-> Graves on the right after the mailbox
 -> Backyard entrance on the left
 -> Grate covered in grass close to the door on the left
+-> Working door
 
+
+Replace the grate with one without bush, just open/closed
+Add a bush as normal pickable object
 
 
 * BUGS ************************************************************************************************************
@@ -89,3 +93,24 @@ Syd
 Jeff
 Sandy
 ??Javid??
+
+
+
+
+
+
+* ACTIONS ************************************************************************************************************
+
+Usinga object may run an action.
+The action may have conditions (variables, timing, performing actor, status of other actions) that may disable or fail the action (not visible or not possible to complete)
+The result is something going on (move, change status, set flags, etc) and maybe running other actions
+
+>> Need a way to see actions in Items (not loaded from json)
+
+How to define an action that will change one item with another? Like putting or picking the envelope from the mailbox?
+
+
+--- possible actions ---------------
+
+
+

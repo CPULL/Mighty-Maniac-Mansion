@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Item : MonoBehaviour {
   SpriteRenderer img;
@@ -13,6 +14,7 @@ public class Item : MonoBehaviour {
   public bool isLocked = false;
   public bool isOpen = false;
   public Sprite[] openSprites;
+  public List<GameAction> Actions;
 
   private void Awake() {
     img = GetComponent<SpriteRenderer>();
@@ -30,16 +32,24 @@ public class Item : MonoBehaviour {
   }
 
   internal bool Open() {
-    if (type != ItemType.Openable && type != ItemType.Activable) return false;
+    if (type != ItemType.Openable && type != ItemType.Activable && type != ItemType.Usable) return false;
     if (isLocked) return true;
 
     isOpen = !isOpen;
-    img.sprite = openSprites[isOpen ? 1 : 0];
+    if (openSprites != null && openSprites.Length > 0)
+      img.sprite = openSprites[isOpen ? 1 : 0];
     return false;
   }
 
   void OnDrawGizmosSelected() {
     Gizmos.color = new Color(1, 0, 1, 0.75F);
     Gizmos.DrawSphere(InteractionPosition, .1f);
+  }
+
+  internal void PlayActions() {
+    if (Actions == null || Actions.Count == 0) return;
+
+    foreach (GameAction a in Actions)
+      Controller.AddAction(a);
   }
 }

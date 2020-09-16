@@ -1,10 +1,12 @@
 {
 	"name":"Intro Sequence",
-	"conditions":["one", "two"],
+	"id":"intro",
+	"conditions":[],
 	"actions":[
-		{ "type":"Teleport", "actor":"Actor1", "pos":[8.82,-0.76,0], "dir":"F" },
-		{ "type":"Teleport", "actor":"Actor2", "pos":[13.23,-1.43,0], "dir":"L" },
-		{ "type":"Teleport", "actor":"Actor3", "pos":[11.45,-0.46,0], "dir":"F" },
+		{ "type":"ShowRoom", "id":"StartArea", "pos":[7,2], "status":"Intro" },
+		{ "type":"Teleport", "actor":"Actor1", "pos":[8.82,-0.76], "dir":"F" },
+		{ "type":"Teleport", "actor":"Actor2", "pos":[13.23,-1.43], "dir":"L" },
+		{ "type":"Teleport", "actor":"Actor3", "pos":[11.45,-0.46], "dir":"F" },
 		{ "type":"Speak", "actor":"Actor1", "msg":"OK, this will be really dangerous.", "dir":"R" },
 		{ "type":"Speak", "actor":"Actor1", "msg":"We may die.", "dir":"F" },
 		{ "type":"Expression", "actor":"Actor2", "expr":"BigOpen", "dir":"F", "wait":.01 }
