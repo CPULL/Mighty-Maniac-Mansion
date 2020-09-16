@@ -28,6 +28,9 @@ FrontDoor:
 Replace the grate with one without bush, just open/closed
 Add a bush as normal pickable object
 
+Interactable -> add "container" as type, with a list of Items (with the placement relative coordinates)
+Add Editor for Interactable, like GameAction, to make it easier to handle
+
 
 * BUGS ************************************************************************************************************
 
@@ -71,6 +74,7 @@ If we walk to an item and the item is on stairs, we cannot use the normal walkto
 ! Implemented the stairs with better perspective
 ! Removed the perspective camera. Now all is flat and orthogonal.
 ! Transition between actors that are in different rooms
+! Added options (for music right now)
 
 
 * CHARS ************************************************************************************************************

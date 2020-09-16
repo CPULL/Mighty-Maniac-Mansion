@@ -1,6 +1,6 @@
 ﻿
 
-public class Door : Item {
+public class Door : Interactable {
   public Room src;
   public Room dst;
   public UnityEngine.Vector3 camerapos;

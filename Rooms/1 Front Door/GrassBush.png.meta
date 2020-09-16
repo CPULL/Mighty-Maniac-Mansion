@@ -1,16 +1,7 @@
 fileFormatVersion: 2
-guid: 12164c9d4fc8b6846a4b26f331c63c19
+guid: bde0e800ff75fb046b13c876c1c0b28e
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 6972435825846574937
-    second: Grate_0
-  - first:
-      213: 4620683077224556140
-    second: Grate_1
-  - first:
-      213: -2446225410576072115
-    second: Grate_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,49 +99,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Grate_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 119
-        width: 308
-        height: 119
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 95fdaca217113c060800000000000000
-      internalID: 6972435825846574937
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grate_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 308
-        height: 119
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d42441223f24d0ed0800000000000000
-      internalID: -2446225410576072115
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

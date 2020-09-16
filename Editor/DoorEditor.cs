@@ -2,11 +2,11 @@
 using UnityEditor;
 
 
-[CustomEditor(typeof(Item))]
+[CustomEditor(typeof(Interactable))]
 class ItemEditor : Editor {
   public override void OnInspectorGUI() {
     base.OnInspectorGUI();
-    Item item = target as Item;
+    Interactable item = target as Interactable;
     if (item == null || item.transform.childCount == 0) return;
     if (GUILayout.Button("Set interaction point")) {
       Transform spawn = item.transform.GetChild(0);
@@ -21,7 +21,7 @@ class ItemEditor : Editor {
 class DoorEditor : Editor {
   public override void OnInspectorGUI() {
     base.OnInspectorGUI();
-    Item item = target as Item;
+    Interactable item = target as Interactable;
     if (item == null || item.transform.childCount == 0) return;
     if (GUILayout.Button("Set interaction point")) {
       Transform spawn = item.transform.GetChild(0);

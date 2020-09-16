@@ -212,7 +212,7 @@ public class Controller : MonoBehaviour {
 
 
 
-  void ActionSay(Actor actor, Item item) {
+  void ActionSay(Actor actor, Interactable item) {
     Vector3 one = actor.transform.position;
     one.z = 0;
     Vector3 two = item.InteractionPosition;
@@ -234,7 +234,7 @@ public class Controller : MonoBehaviour {
       actor.Say(item.Description);
     }
   }
-  void ActionOpen(Actor actor, Item item) {
+  void ActionOpen(Actor actor, Interactable item) {
     Vector3 one = actor.transform.position;
     one.z = 0;
     Vector3 two = item.InteractionPosition;
@@ -256,7 +256,7 @@ public class Controller : MonoBehaviour {
       if (item.Open()) actor.Say("Is locked");
     }
   }
-  void ActionActivate(Actor actor, Item item) {
+  void ActionActivate(Actor actor, Interactable item) {
     Vector3 one = actor.transform.position;
     one.z = 0;
     Vector3 two = item.InteractionPosition;
@@ -284,7 +284,7 @@ public class Controller : MonoBehaviour {
         item.PlayActions();
     }
   }
-  void ActionChangeRoom(Actor actor, Item item) {
+  void ActionChangeRoom(Actor actor, Interactable item) {
     Vector3 one = actor.transform.position;
     one.z = 0;
     Vector3 two = item.InteractionPosition;
@@ -314,7 +314,7 @@ public class Controller : MonoBehaviour {
   }
 
   private CursorTypes forcedCursor = CursorTypes.None;
-  private Item overObject = null;
+  private Interactable overObject = null;
   // FIXME private Item usedObject = null;
   private Texture2D oldCursor = null;
   void HandleCursor() {
@@ -422,7 +422,7 @@ public class Controller : MonoBehaviour {
     }
   }
 
-  internal static void SetCurrentItem(Item item) {
+  internal static void SetCurrentItem(Interactable item) {
     if (c.status != GameStatus.NormalGamePlay) return;
     if (item == null) {
       c.forcedCursor = CursorTypes.None;

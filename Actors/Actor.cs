@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Actor : MonoBehaviour {
   public Sprite[] facesF;
@@ -14,6 +15,7 @@ public class Actor : MonoBehaviour {
   Path path = null;
   Dir dir = Dir.F;
   private AudioSource audios;
+  public List<Item> inventory;
 
   private void Awake() {
     anim = GetComponent<Animator>();
