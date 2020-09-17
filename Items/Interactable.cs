@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour {
+public class Interactable : IObj {
   SpriteRenderer img;
   public ItemType type;
   public string ItemName;

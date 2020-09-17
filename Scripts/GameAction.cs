@@ -14,6 +14,7 @@ public class GameAction {
   public string Value;
   public Dir dir;
   public float delay;
+  public IObj Item;
   
 
 
@@ -198,10 +199,11 @@ public class MyActionPropertyDrawer : PropertyDrawer {
     SerializedProperty val = property.FindPropertyRelative("Value");
     SerializedProperty dir = property.FindPropertyRelative("dir");
     SerializedProperty delay = property.FindPropertyRelative("delay");
+    SerializedProperty item = property.FindPropertyRelative("Item");
 
     switch ((ActionType)type.intValue) {
       case ActionType.ShowRoom:
-        id.stringValue = EditorGUI.TextField(rect1, "ID", val.stringValue);
+        id.stringValue = EditorGUI.TextField(rect1, "ID", id.stringValue);
         pos.vector2Value = EditorGUI.Vector2Field(rect2, "Pos", pos.vector2Value);
         val.stringValue = EditorGUI.TextField(rect3, "Status", val.stringValue);
         if (string.IsNullOrEmpty(id.stringValue) || string.IsNullOrEmpty(val.stringValue) || pos.vector2Value == Vector2.zero) {
@@ -256,6 +258,20 @@ public class MyActionPropertyDrawer : PropertyDrawer {
           EditorGUI.LabelField(rectErr, "INVALID!", style);
         }
         break;
+
+      case ActionType.Enable:
+        id.stringValue = EditorGUI.TextField(rect1, "ID", id.stringValue);
+        item.objectReferenceValue = EditorGUI.ObjectField(rect2, "Item", item.objectReferenceValue, typeof(IObj), true);
+        val.stringValue = EditorGUI.TextField(rect3, "Action", val.stringValue);
+        delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
+
+        int.TryParse(val.stringValue, out int tmp);
+        if (!System.Enum.IsDefined(typeof(EnableMode), tmp) || delay.floatValue <= 0 || item.objectReferenceValue == null || (item.objectReferenceValue is Interactable && tmp != 301 && tmp != 302 && tmp != 303)) {
+          GUIStyle style = new GUIStyle();
+          style.normal.textColor = Color.red;
+          EditorGUI.LabelField(rectErr, "INVALID!", style);
+        }
+        break;
     }
 
     EditorGUI.indentLevel = indent;
@@ -272,6 +288,7 @@ public class MyActionPropertyDrawer : PropertyDrawer {
       case ActionType.Speak: return EditorGUIUtility.singleLineHeight * 4;
       case ActionType.Expression: return EditorGUIUtility.singleLineHeight * 5 + 5;
       case ActionType.Sound: return EditorGUIUtility.singleLineHeight * 5 + 5;
+      case ActionType.Enable: return EditorGUIUtility.singleLineHeight * 5 + 5;
     }
     return EditorGUIUtility.singleLineHeight * 1;
   }

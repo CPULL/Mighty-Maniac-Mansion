@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using System;
+/// <summary>
 /// Used to identify what a cliickable object does
 /// </summary>
 public enum ItemType { None, Readable, Openable, Activable, Usable, Pickable, Walkable, Stairs };
@@ -78,6 +79,7 @@ public static class Enums {
     if (v == "transition") return GameStatus.RoomTransition;
     return status;
   }
+
 }
 
 
@@ -97,3 +99,35 @@ public enum TransitionType { ScrollL, ScrollR, ScrollU, ScrollD, ZoomIn, ZoomOut
 /// Used to list all possible sounds and musics
 /// </summary>
 public enum Audios { Doorbell = 0 };
+
+/// <summary>
+/// Used to specify how to enable/disable an item from an action
+/// </summary>
+public enum EnableMode {
+  Invalid = 0,
+
+  All = 011,      //Open->Enable & Close->Disable, 
+  Enable = 010,   //Open->Enable, 
+  Disable = 001,  //Close->Disable, 
+  Rev = 022,      //Open->Disable & Close->Enable, 
+  RevDis = 020,   //Open->Disable, 
+  RevEn = 002,    //Close->Enable, 
+
+  PAll = 111,      //Picked Open->Enable & Close->Disable, 
+  PEnable = 110,   //Picked Open->Enable, 
+  PDisable = 101,  //Picked Close->Disable, 
+  PRev = 122,      //Picked Open->Disable & Close->Enable, 
+  PRevDis = 120,   //Picked Open->Disable, 
+  PRevEn = 102,    //Picked Close->Enable, 
+
+  NAll = 211,      //Not picked Open->Enable & Close->Disable, 
+  NEnable = 210,   //Not picked Open->Enable, 
+  NDisable = 201,  //Not picked Close->Disable, 
+  NRev = 222,      //Not picked Open->Disable & Close->Enable, 
+  NRevDis = 220,   //Not picked Open->Disable, 
+  NRevEn = 202,    //Not picked Close->Enable, 
+
+  IntEnable = 301,   // Interactable ->Enable, 
+  IntDisable = 302,  // Interactable ->Disable, 
+  IntSwitch = 303,  // Interactable ->Switch mode, 
+};

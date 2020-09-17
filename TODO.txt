@@ -1,5 +1,7 @@
 Mighty Maniac Mansion
 
+Add "Pick by ID" in SList, adding a "comparer" for the ID as delegate function
+
 
 * TODO ************************************************************************************************************
 
