@@ -10,7 +10,8 @@ public class Actor : MonoBehaviour {
   public Room currentRoom;
   Animator anim;
   Vector3 destination = Vector2.zero;
-  System.Action callBack = null;
+  System.Action<Actor, Item> callBack = null;
+  Item callBackItem = null;
   bool walking = false;
   Path path = null;
   Dir dir = Dir.F;
@@ -20,18 +21,6 @@ public class Actor : MonoBehaviour {
   private void Awake() {
     anim = GetComponent<Animator>();
     audios = GetComponent<AudioSource>();
-  }
-
-  public void WalkStairsTo(Vector3 dest, Dir d, System.Action action = null) {
-    callBack = action;
-    destination = dest;
-    walking = true;
-
-    Vector3 wdir = destination - transform.position;
-    if (wdir != Vector3.zero) {
-      dir = d;
-      anim.Play("Walk" + dir);
-    }
   }
 
   private void Update() {
@@ -62,7 +51,6 @@ public class Actor : MonoBehaviour {
 
     float ty = transform.position.y;
     float sh = path.maxY - path.minY;
-    float th = path.maxSize - path.minSize;
     float scaley = (ty - path.minY) / sh;
     scaley = (1 - scaley) * path.minSize + scaley * path.maxSize;
     transform.localScale = new Vector3(scaley, scaley, 1);
@@ -70,7 +58,7 @@ public class Actor : MonoBehaviour {
     if (wdir.sqrMagnitude < .1f || dist < .15f) {
       transform.position = destination;
       walking = false;
-      callBack?.Invoke();
+      callBack?.Invoke(this, callBackItem);
       callBack = null;
       return;
     }
@@ -122,8 +110,9 @@ public class Actor : MonoBehaviour {
     walking = false;
   }
 
-  internal void WalkTo(Vector2 dest, Dir d, Path p, System.Action action = null) {
+  internal void WalkTo(Vector2 dest, Dir d, Path p, System.Action<Actor, Item> action = null, Item item = null) {
     callBack = action;
+    callBackItem = item;
     destination = dest;
     destination.z = destination.y;
     path = p;

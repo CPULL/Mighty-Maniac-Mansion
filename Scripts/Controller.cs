@@ -53,8 +53,20 @@ public class Controller : MonoBehaviour {
     status = GameStatus.IntroDialogue;
     currentActor = actor1;
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+  }
 
-    options.Init();
+  private void Start() {
+    float vol = 40f * PlayerPrefs.GetFloat("MasterVolume", 1) - 40;
+    options.mixerMusic.SetFloat("MasterVolume", vol);
+
+    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("MusicVolume", 1) * .74f) * 14.425f - 80;
+    options.mixerMusic.SetFloat("MusicVolume", vol);
+
+    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("SoundsVolume", 1) * .74f) * 14.425f - 80;
+    options.mixerMusic.SetFloat("SoundsVolume", vol);
+
+    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("BackSoundsVolume", 1) * .74f) * 14.425f - 80;
+    options.mixerMusic.SetFloat("BackSoundsVolume", vol);
   }
 
   IEnumerator StartDelayed() {
@@ -149,58 +161,88 @@ public class Controller : MonoBehaviour {
     // LMB -> Walk or secondary action
     // RMB -> Default action
 
+    /* FIXME
+     * If we are over an object, do the action defined for the item with the mouse click
+     * If we are not over an object, just walk with leftMB
+     * 
+     */
+
+
     // Mouse control
-    if (Input.GetMouseButtonDown(0)) {
+    bool lmb = Input.GetMouseButtonDown(0);
+    bool rmb = Input.GetMouseButtonDown(1);
+
+    if (overItem != null) {
+      if ((overItem.whatItDoesR == WhatItDoes.Read && rmb) || (overItem.whatItDoesL == WhatItDoes.Read && lmb)) {
+        WalkAndAction(currentActor, overItem,
+          new System.Action<Actor, Item>((actor, item) => {
+            actor.SetDirection(item.preferredDirection);
+            actor.Say(item.Description);
+          }));
+      }
+
+      else if ((overItem.whatItDoesR == WhatItDoes.Use && rmb) || (overItem.whatItDoesL == WhatItDoes.Use && lmb)) {
+        WalkAndAction(currentActor, overItem,
+          new System.Action<Actor, Item>((actor, item) => {
+            actor.SetDirection(item.preferredDirection);
+            string res = item.Use();
+            if (res != null)
+              actor.Say(res);
+            else {
+              usedItem = item;
+            }
+          }));
+      }
+
+      else if ((overItem.whatItDoesR == WhatItDoes.Pick && rmb) || (overItem.whatItDoesL == WhatItDoes.Pick && lmb)) {
+        WalkAndAction(currentActor, overItem,
+          new System.Action<Actor, Item>((actor, item) => {
+            ShowName("Picking up = " + item.Name);
+            actor.inventory.Add(overItem);
+            item.transform.parent = null;
+            item.gameObject.SetActive(false);
+            item.owner = Chars.None;
+            if (actor == actor1) item.owner = Chars.Actor1;
+            else if (actor == actor2) item.owner = Chars.Actor2;
+            else if (actor == actor3) item.owner = Chars.Actor3;
+            item.PlayActions();
+            item = null;
+            forcedCursor = CursorTypes.None;
+          }));
+      }
+
+      else if ((overItem.whatItDoesR == WhatItDoes.Walk && rmb) || (overItem is Door && overItem.whatItDoesL == WhatItDoes.Walk && lmb)) {
+        WalkAndAction(currentActor, overItem,
+          new System.Action<Actor, Item>((actor, item) => {
+            if (item.Openable != Tstatus.Yes && item.Lockable == Tstatus.Yes) {
+              actor.Say("Is locked");
+              return;
+            }
+            StartCoroutine(ChangeRoom(actor, (item as Door)));
+          }));
+      }
+
+      else if (overItem.whatItDoesL == WhatItDoes.Walk && lmb) {
+        WalkAndAction(currentActor, overItem, null);
+
+      }
+
+    }
+    else if (lmb && !currentActor.IsWalking()) {
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         Path p = hit.collider.GetComponent<Path>();
-
         // FIXME We need to check if we may need to follow a series of paths (A*-ish?)
-
         currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
       }
-
     }
-    else if (currentActor.IsWalking() && Input.GetMouseButton(0) && (overInteract == null || overInteract.type != ItemType.Stairs)) {
+    else if (Input.GetMouseButton(0) && currentActor.IsWalking()) {
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         Path p = hit.collider.GetComponent<Path>();
         currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
       }
     }
-    if (Input.GetMouseButtonDown(1)) {
-      if (overInteract != null) {
-        if (overInteract.type == ItemType.Readable) {
-          ActionSay(currentActor, overInteract);
-        }
-        else if (overInteract.type == ItemType.Openable) {
-          ActionOpen(currentActor, overInteract);
-        }
-        else if (overInteract.type == ItemType.Activable) {
-          ActionActivate(currentActor, overInteract);
-        }
-        else if (overInteract.type == ItemType.Usable) {
-          ActionActivate(currentActor, overInteract);
-        }
-        else if (overInteract.type == ItemType.Walkable) { // This should be Open/Close, normal mouse to walk, and msg if it is closed
-          ActionChangeRoom(currentActor, overInteract);
-        }
-      }
-      if (overItem != null) { // FIXME we should check we are close enough
-        ShowName("Picking up = " + overItem.ItemName);
-        currentActor.inventory.Add(overItem);
-        overItem.transform.parent = null;
-        overItem.gameObject.SetActive(false);
-        overItem.owner = Chars.None;
-        if (currentActor == actor1) overItem.owner = Chars.Actor1;
-        else if (currentActor == actor2) overItem.owner = Chars.Actor2;
-        else if (currentActor == actor3) overItem.owner = Chars.Actor3;
-        overItem.PlayActions();
-        overItem = null;
-        forcedCursor = CursorTypes.None;
-      }
-    }
-
   }
 
 
@@ -228,115 +270,28 @@ public class Controller : MonoBehaviour {
 
 
 
-  void ActionSay(Actor actor, Interactable item) {
+  void WalkAndAction(Actor actor, Item item, System.Action<Actor, Item> action) {
     Vector3 one = actor.transform.position;
     one.z = 0;
-    Vector3 two = item.InteractionPosition;
+    Vector3 two = item.HotSpot;
     two.z = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > .2f) { // Need to walk
-      RaycastHit2D hit = Physics2D.Raycast(overInteract.InteractionPosition, cam.transform.forward, 10000, pathLayer);
+      RaycastHit2D hit = Physics2D.Raycast(overItem.HotSpot, cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         Path p = hit.collider.GetComponent<Path>();
-        currentActor.WalkTo(overInteract.InteractionPosition, CalculateDirection(overInteract.InteractionPosition), p, new System.Action(() => {
-          actor.SetDirection(item.preferredDirection);
-          actor.Say(item.Description);
-        }));
+        currentActor.WalkTo(overItem.HotSpot, CalculateDirection(overItem.HotSpot), p, action, item);
       }
       return;
     }
     else {
-      actor.SetDirection(item.preferredDirection);
-      actor.Say(item.Description);
-    }
-  }
-  void ActionOpen(Actor actor, Interactable item) {
-    Vector3 one = actor.transform.position;
-    one.z = 0;
-    Vector3 two = item.InteractionPosition;
-    two.z = 0;
-    float dist = Vector3.Distance(one, two);
-    if (dist > .2f) { // Need to walk
-      RaycastHit2D hit = Physics2D.Raycast(overInteract.InteractionPosition, cam.transform.forward, 10000, pathLayer);
-      if (hit.collider != null) {
-        Path p = hit.collider.GetComponent<Path>();
-        currentActor.WalkTo(overInteract.InteractionPosition, CalculateDirection(overInteract.InteractionPosition), p, new System.Action(() => {
-          actor.SetDirection(item.preferredDirection);
-          if (item.Open()) actor.Say("Is locked");
-        }));
-      }
-      return;
-    }
-    else {
-      actor.SetDirection(item.preferredDirection);
-      if (item.Open()) actor.Say("Is locked");
-    }
-  }
-  void ActionActivate(Actor actor, Interactable item) {
-    Vector3 one = actor.transform.position;
-    one.z = 0;
-    Vector3 two = item.InteractionPosition;
-    two.z = 0;
-    float dist = Vector3.Distance(one, two);
-    if (dist > .2f) { // Need to walk
-      RaycastHit2D hit = Physics2D.Raycast(overInteract.InteractionPosition, cam.transform.forward, 10000, pathLayer);
-      if (hit.collider != null) {
-        Path p = hit.collider.GetComponent<Path>();
-        currentActor.WalkTo(overInteract.InteractionPosition, CalculateDirection(overInteract.InteractionPosition), p, new System.Action(() => {
-          actor.SetDirection(item.preferredDirection);
-          if (item.Open())
-            actor.Say("Does not work");
-          else {
-            usedInteract = item;
-            item.PlayActions();
-          }
-        }));
-      }
-      return;
-    }
-    else {
-      actor.SetDirection(item.preferredDirection);
-      if (item.Open())
-        actor.Say("Does not work");
-      else {
-        usedInteract = item;
-        item.PlayActions();
-      }
-    }
-  }
-  void ActionChangeRoom(Actor actor, Interactable item) {
-    Vector3 one = actor.transform.position;
-    one.z = 0;
-    Vector3 two = item.InteractionPosition;
-    two.z = 0;
-    float dist = Vector3.Distance(one, two);
-    if (dist > .2f) { // Need to walk
-      RaycastHit2D hit = Physics2D.Raycast(overInteract.InteractionPosition, cam.transform.forward, 10000, pathLayer);
-      if (hit.collider != null) {
-        Path p = hit.collider.GetComponent<Path>();
-        currentActor.WalkTo(overInteract.InteractionPosition, CalculateDirection(overInteract.InteractionPosition), p, new System.Action(() => {
-          if (!item.isOpen && item.Open()) {
-            actor.Say("Is locked");
-            return;
-          }
-          StartCoroutine(ChangeRoom(actor, (item as Door)));
-        }));
-      }
-      return;
-    }
-    else {
-      if (!item.isOpen && item.Open()) {
-        actor.Say("Is locked");
-        return;
-      }
-      StartCoroutine(ChangeRoom(actor, (item as Door)));
+      action(currentActor, item);
     }
   }
 
   private CursorTypes forcedCursor = CursorTypes.None;
-  private Interactable overInteract = null;
-  private Interactable usedInteract = null;
   private Item overItem = null;
+  private Item usedItem = null;
   // FIXME private Item usedObject = null;
   private Texture2D oldCursor = null;
   void HandleCursor() {
@@ -440,11 +395,8 @@ public class Controller : MonoBehaviour {
       GameObject ii = Instantiate(InventoryItemTemplate, Inventory.transform);
       ii.gameObject.SetActive(true);
       InventoryItem it = ii.GetComponent<InventoryItem>();
-      if (item.Quantity > 1)
-        it.text.text = item.ItemName + " (" + item.Quantity + ")";
-      else
-        it.text.text = item.ItemName;
-      it.front.sprite = item.carrySprite;
+      it.text.text = item.Name;
+      it.front.sprite = item.iconImage;
     }
   }
 
@@ -470,59 +422,7 @@ public class Controller : MonoBehaviour {
     }
   }
 
-  internal static void SetCurrentItem(Interactable item) {
-    if (c.status != GameStatus.NormalGamePlay) return;
-    if (item == null) {
-      c.forcedCursor = CursorTypes.None;
-      c.overInteract = null;
-      if (c.TextMsg.text != "") c.HideName();
-      return;
-    }
-
-    if (item.type == ItemType.Readable) {
-      c.forcedCursor = CursorTypes.Examine;
-      c.overInteract = item;
-      c.ShowName("Examine " + item.ItemName);
-    }
-    else if (item.type == ItemType.Openable) {
-      if (item.isOpen) {
-        c.forcedCursor = CursorTypes.Close;
-        c.ShowName("Close " + item.ItemName);
-      }
-      else {
-        c.forcedCursor = CursorTypes.Open;
-        c.ShowName("Open " + item.ItemName);
-      }
-      c.overInteract = item;
-    }
-    else if (item.type == ItemType.Activable) {
-      c.forcedCursor = CursorTypes.Use;
-      c.overInteract = item;
-      c.ShowName((item.isOpen ? "Deactivate " : "Activate ") + item.ItemName);
-    }
-    else if (item.type == ItemType.Pickable) {
-      c.forcedCursor = CursorTypes.PickUp;
-      c.overInteract = item;
-      c.ShowName(item.ItemName);
-    }
-    else if (item.type == ItemType.Usable) {
-      c.forcedCursor = CursorTypes.Use;
-      c.overInteract = item;
-      c.ShowName("Use " + item.ItemName);
-    }
-    else if (item.type == ItemType.Walkable) {
-      c.forcedCursor = CursorTypes.None;
-      c.overInteract = item;
-      c.ShowName(item.ItemName);
-    }
-    else if (item.type == ItemType.Stairs) {
-      c.forcedCursor = CursorTypes.None;
-      c.overInteract = item;
-    }
-
-  }
-
-  internal static void SetOverItem(Item item) {
+  internal static void SetItem(Item item) {
     if (c.status != GameStatus.NormalGamePlay) return;
     if (item == null) {
       c.forcedCursor = CursorTypes.None;
@@ -530,16 +430,22 @@ public class Controller : MonoBehaviour {
       if (c.TextMsg.text != "") c.HideName();
       return;
     }
-    c.overItem = item;
-    c.forcedCursor = CursorTypes.PickUp;
-    c.ShowName(item.ItemName);
-  }
 
-  internal static void OverDoor(Door door) {
-    // Highlight
-    // Set currentItem
-    // Show open/close cursor
-    SetCurrentItem(door);
+    if (item.whatItDoesR == WhatItDoes.Pick) {
+      c.forcedCursor = CursorTypes.PickUp;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    else if (item.whatItDoesR == WhatItDoes.Use) {
+      c.forcedCursor = CursorTypes.Use;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    else if (item.whatItDoesR == WhatItDoes.Read) {
+      c.forcedCursor = CursorTypes.Examine;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
   }
 
   GameSequence currentSequence;
@@ -671,37 +577,9 @@ public class Controller : MonoBehaviour {
         currentAction.Play();
       }
       else if (currentAction.type == ActionType.Enable) {
-        if (!int.TryParse(currentAction.Value, out int val)) return;
-        EnableMode mode = (EnableMode)val;
-        Chars own = Chars.None;
-        if (currentAction.Item is Item item) own = item.owner;
-        switch (mode) {
-          case EnableMode.All: currentAction.Item.gameObject.SetActive(usedInteract.isOpen); break;
-          case EnableMode.Enable: if (usedInteract.isOpen) currentAction.Item.gameObject.SetActive(true); break;
-          case EnableMode.Disable: if (!usedInteract.isOpen) currentAction.Item.gameObject.SetActive(false); break;
-          case EnableMode.Rev: currentAction.Item.gameObject.SetActive(!usedInteract.isOpen); break;
-          case EnableMode.RevDis: if (usedInteract.isOpen) currentAction.Item.gameObject.SetActive(false); break;
-          case EnableMode.RevEn: if (!usedInteract.isOpen) currentAction.Item.gameObject.SetActive(true); break;
-          case EnableMode.PAll: if (own != Chars.None) currentAction.Item.gameObject.SetActive(usedInteract.isOpen); break;
-          case EnableMode.PEnable: if (own != Chars.None && usedInteract.isOpen) currentAction.Item.gameObject.SetActive(true); break;
-          case EnableMode.PDisable: if (own != Chars.None && !usedInteract.isOpen) currentAction.Item.gameObject.SetActive(false); break;
-          case EnableMode.PRev: if (own != Chars.None) currentAction.Item.gameObject.SetActive(!usedInteract.isOpen); break;
-          case EnableMode.PRevDis: if (own != Chars.None && usedInteract.isOpen) currentAction.Item.gameObject.SetActive(false); break;
-          case EnableMode.PRevEn: if (own != Chars.None && !usedInteract.isOpen) currentAction.Item.gameObject.SetActive(true); break;
-          case EnableMode.NAll: if (own == Chars.None) currentAction.Item.gameObject.SetActive(usedInteract.isOpen); break;
-          case EnableMode.NEnable: if (own == Chars.None && usedInteract.isOpen) currentAction.Item.gameObject.SetActive(true); break;
-          case EnableMode.NDisable: if (own == Chars.None && !usedInteract.isOpen) currentAction.Item.gameObject.SetActive(false); break;
-          case EnableMode.NRev: if (own == Chars.None) currentAction.Item.gameObject.SetActive(!usedInteract.isOpen); break;
-          case EnableMode.NRevDis: if (own == Chars.None && usedInteract.isOpen) currentAction.Item.gameObject.SetActive(false); break;
-          case EnableMode.NRevEn: if (own == Chars.None && !usedInteract.isOpen) currentAction.Item.gameObject.SetActive(true); break;
-
-          case EnableMode.IntEnable: currentAction.Item.gameObject.SetActive(true); break;
-          case EnableMode.IntDisable: currentAction.Item.gameObject.SetActive(true); break;
-          case EnableMode.IntSwitch: currentAction.Item.gameObject.SetActive(!currentAction.Item.gameObject.activeSelf); break;
-        }
-        currentAction.Play();
-      }
-      
+        string res = (currentAction.Item as Item).Use();
+        if (res != null) currentActor.Say(res);
+      }      
       else {
         // FIXME do the other actions
       }
@@ -758,7 +636,7 @@ private Actor GetActor(GameAction a) {
       time += Time.deltaTime;
       yield return null;
     }
-    actor.transform.position = door.correspondingDoor.InteractionPosition;
+    actor.transform.position = door.correspondingDoor.HotSpot;
     yield return null;
     while (time < .25f) {
       // Fade black
@@ -776,7 +654,7 @@ private Actor GetActor(GameAction a) {
     // Move actor to dst door pos
     currentRoom = door.dst;
     currentActor = actor;
-    actor.transform.position = door.correspondingDoor.InteractionPosition;
+    actor.transform.position = door.correspondingDoor.HotSpot;
     actor.currentRoom = currentRoom;
     yield return null;
 
@@ -829,6 +707,8 @@ private Actor GetActor(GameAction a) {
       time += Time.deltaTime;
       yield return null;
     }
+    forcedCursor = CursorTypes.None;
+    overItem = null;
   }
 
 }

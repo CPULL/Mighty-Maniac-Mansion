@@ -2,6 +2,12 @@
 using UnityEngine;
 
 [System.Serializable]
+public class ActionAndCondition {
+  [SerializeField] public GameCondition Condition;
+  [SerializeField] public GameAction Action;
+}
+
+[System.Serializable]
 public class GameAction {
   private Running running = Running.NotStarted;
   private float time;
@@ -14,7 +20,7 @@ public class GameAction {
   public string Value;
   public Dir dir;
   public float delay;
-  public IObj Item;
+  public GameItem Item;
   
 
 
@@ -163,11 +169,6 @@ public class GameAction {
   }
 }
 
-public class Condition {
-  public string description;
-}
-
-
 
 [CustomPropertyDrawer(typeof(GameAction))]
 public class MyActionPropertyDrawer : PropertyDrawer {
@@ -188,90 +189,95 @@ public class MyActionPropertyDrawer : PropertyDrawer {
     Rect rect4 = new Rect(position.x, position.y + 4 * EditorGUIUtility.singleLineHeight + 5, position.width, EditorGUIUtility.singleLineHeight);
 
     SerializedProperty type = property.FindPropertyRelative("type");
+
+    type.isExpanded = EditorGUI.Foldout(rect, type.isExpanded, "");
     type.intValue = EditorGUI.Popup(rect, "Type", type.intValue, type.enumNames);
-    SerializedProperty repeat = property.FindPropertyRelative("Repeatable");
-    repeat.boolValue = EditorGUI.Toggle(rectr, "", repeat.boolValue);
-    EditorGUIUtility.labelWidth *= 2;
+    if (type.isExpanded) {
+      SerializedProperty repeat = property.FindPropertyRelative("Repeatable");
+      repeat.boolValue = EditorGUI.Toggle(rectr, "", repeat.boolValue);
+      EditorGUIUtility.labelWidth *= 2;
 
-    SerializedProperty id = property.FindPropertyRelative("ID");
-    SerializedProperty pos = property.FindPropertyRelative("pos");
-    SerializedProperty actor = property.FindPropertyRelative("actor");
-    SerializedProperty val = property.FindPropertyRelative("Value");
-    SerializedProperty dir = property.FindPropertyRelative("dir");
-    SerializedProperty delay = property.FindPropertyRelative("delay");
-    SerializedProperty item = property.FindPropertyRelative("Item");
+      SerializedProperty id = property.FindPropertyRelative("ID");
+      SerializedProperty pos = property.FindPropertyRelative("pos");
+      SerializedProperty actor = property.FindPropertyRelative("actor");
+      SerializedProperty val = property.FindPropertyRelative("Value");
+      SerializedProperty dir = property.FindPropertyRelative("dir");
+      SerializedProperty delay = property.FindPropertyRelative("delay");
+      SerializedProperty item = property.FindPropertyRelative("Item");
 
-    switch ((ActionType)type.intValue) {
-      case ActionType.ShowRoom:
-        id.stringValue = EditorGUI.TextField(rect1, "ID", id.stringValue);
-        pos.vector2Value = EditorGUI.Vector2Field(rect2, "Pos", pos.vector2Value);
-        val.stringValue = EditorGUI.TextField(rect3, "Status", val.stringValue);
-        if (string.IsNullOrEmpty(id.stringValue) || string.IsNullOrEmpty(val.stringValue) || pos.vector2Value == Vector2.zero) {
-          GUIStyle style = new GUIStyle();
-          style.normal.textColor = Color.red;
-          EditorGUI.LabelField(rectErr, "INVALID!", style);
-        }
-        break;
+      switch ((ActionType)type.intValue) {
+        case ActionType.ShowRoom:
+          id.stringValue = EditorGUI.TextField(rect1, "ID", id.stringValue);
+          pos.vector2Value = EditorGUI.Vector2Field(rect2, "Pos", pos.vector2Value);
+          val.stringValue = EditorGUI.TextField(rect3, "Status", val.stringValue);
+          if (string.IsNullOrEmpty(id.stringValue) || string.IsNullOrEmpty(val.stringValue) || pos.vector2Value == Vector2.zero) {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
+            EditorGUI.LabelField(rectErr, "INVALID!", style);
+          }
+          break;
 
-      case ActionType.Teleport:
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-        dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
-        pos.vector2Value = EditorGUI.Vector2Field(rect3, "Pos", pos.vector2Value);
-        if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue) || pos.vector2Value == Vector2.zero) {
-          GUIStyle style = new GUIStyle();
-          style.normal.textColor = Color.red;
-          EditorGUI.LabelField(rectErr, "INVALID!", style);
-        }
-        break;
+        case ActionType.Teleport:
+          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+          dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
+          pos.vector2Value = EditorGUI.Vector2Field(rect3, "Pos", pos.vector2Value);
+          if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue) || pos.vector2Value == Vector2.zero) {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
+            EditorGUI.LabelField(rectErr, "INVALID!", style);
+          }
+          break;
 
-      case ActionType.Speak:
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-        dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
-        val.stringValue = EditorGUI.TextField(rect3, "Text", val.stringValue);
-        if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue)) {
-          GUIStyle style = new GUIStyle();
-          style.normal.textColor = Color.red;
-          EditorGUI.LabelField(rectErr, "INVALID!", style);
-        }
-        break;
+        case ActionType.Speak:
+          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+          dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
+          val.stringValue = EditorGUI.TextField(rect3, "Text", val.stringValue);
+          if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue)) {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
+            EditorGUI.LabelField(rectErr, "INVALID!", style);
+          }
+          break;
 
-      case ActionType.Expression:
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-        dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
-        val.stringValue = EditorGUI.TextField(rect3, "Expression", val.stringValue);
-        delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
-        if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue) || delay.floatValue <= 0) {
-          GUIStyle style = new GUIStyle();
-          style.normal.textColor = Color.red;
-          EditorGUI.LabelField(rectErr, "INVALID!", style);
-        }
-        break;
+        case ActionType.Expression:
+          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+          dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
+          val.stringValue = EditorGUI.TextField(rect3, "Expression", val.stringValue);
+          delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
+          if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue) || delay.floatValue <= 0) {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
+            EditorGUI.LabelField(rectErr, "INVALID!", style);
+          }
+          break;
 
-      case ActionType.Sound:
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-        dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
-        val.stringValue = EditorGUI.TextField(rect3, "Value", val.stringValue);
-        delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
-        if (string.IsNullOrEmpty(val.stringValue) || delay.floatValue <= 0) {
-          GUIStyle style = new GUIStyle();
-          style.normal.textColor = Color.red;
-          EditorGUI.LabelField(rectErr, "INVALID!", style);
-        }
-        break;
+        case ActionType.Sound:
+          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+          dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
+          val.stringValue = EditorGUI.TextField(rect3, "Value", val.stringValue);
+          delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
+          if (string.IsNullOrEmpty(val.stringValue) || delay.floatValue <= 0) {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
+            EditorGUI.LabelField(rectErr, "INVALID!", style);
+          }
+          break;
 
-      case ActionType.Enable:
-        id.stringValue = EditorGUI.TextField(rect1, "ID", id.stringValue);
-        item.objectReferenceValue = EditorGUI.ObjectField(rect2, "Item", item.objectReferenceValue, typeof(IObj), true);
-        val.stringValue = EditorGUI.TextField(rect3, "Action", val.stringValue);
-        delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
+        case ActionType.Enable:
+          id.stringValue = EditorGUI.TextField(rect1, "ID", id.stringValue);
+          item.objectReferenceValue = EditorGUI.ObjectField(rect2, "Item", item.objectReferenceValue, typeof(Item), true);
+          val.stringValue = EditorGUI.TextField(rect3, "Action", val.stringValue);
+          delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
 
-        int.TryParse(val.stringValue, out int tmp);
-        if (!System.Enum.IsDefined(typeof(EnableMode), tmp) || delay.floatValue <= 0 || item.objectReferenceValue == null || (item.objectReferenceValue is Interactable && tmp != 301 && tmp != 302 && tmp != 303)) {
-          GUIStyle style = new GUIStyle();
-          style.normal.textColor = Color.red;
-          EditorGUI.LabelField(rectErr, "INVALID!", style);
-        }
-        break;
+          int.TryParse(val.stringValue, out int tmp);
+          if (!System.Enum.IsDefined(typeof(EnableMode), tmp) || delay.floatValue <= 0 || item.objectReferenceValue == null || (item.objectReferenceValue is Item && tmp != 301 && tmp != 302 && tmp != 303)) {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
+            EditorGUI.LabelField(rectErr, "INVALID!", style);
+          }
+          break;
+      }
+
     }
 
     EditorGUI.indentLevel = indent;
@@ -282,6 +288,7 @@ public class MyActionPropertyDrawer : PropertyDrawer {
   //This will need to be adjusted based on what you are displaying
   public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
     SerializedProperty type = property.FindPropertyRelative("type");
+    if (!type.isExpanded) return EditorGUIUtility.singleLineHeight * 1;
     switch ((ActionType)type.intValue) {
       case ActionType.ShowRoom: return EditorGUIUtility.singleLineHeight * 4;
       case ActionType.Teleport: return EditorGUIUtility.singleLineHeight * 4;

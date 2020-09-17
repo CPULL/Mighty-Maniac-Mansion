@@ -7,7 +7,7 @@ public class GameSequence {
 
   public string id;
   public string name;
-  public Condition condition;
+  public GameCondition condition;
   public List<GameAction> actions;
 
   public GameSequence(string i, string n) {

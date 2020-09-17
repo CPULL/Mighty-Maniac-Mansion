@@ -2,7 +2,7 @@
 /// <summary>
 /// Used to identify what a cliickable object does
 /// </summary>
-public enum ItemType { None, Readable, Openable, Activable, Usable, Pickable, Walkable, Stairs };
+public enum ItemType { None, Readable, Usable, Pickable, Walkable, Stairs };
 
 /// <summary>
 /// Direction of an actor, to use the correct sprites

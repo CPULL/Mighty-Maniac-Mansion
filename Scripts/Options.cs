@@ -72,17 +72,6 @@ public class Options : MonoBehaviour {
     }
   }
 
-  public void Init() {
-    float val = PlayerPrefs.GetFloat("MasterVolume", 1);
-    MainVolume.SetValueWithoutNotify(val);
-    val = PlayerPrefs.GetFloat("MusicVolume", 1);
-    MusicVolume.SetValueWithoutNotify(val);
-    val = PlayerPrefs.GetFloat("SoundVolume", 1);
-    SoundVolume.SetValueWithoutNotify(val);
-    val = PlayerPrefs.GetFloat("BackSoundsVolume", 1);
-    BackSndVolume.SetValueWithoutNotify(val);
-  }
-
   private void Update() {
     if (Input.GetKeyDown(KeyCode.Escape)) {
       Activate(!optionsCanvas.enabled);
