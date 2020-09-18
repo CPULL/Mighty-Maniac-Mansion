@@ -40,6 +40,15 @@ public class Item : GameItem {
     return "Seems it does nothing";
   }
 
+  public void Open(bool val) {
+    if (Openable == Tstatus.CannotDoIt) return;
+    Openable = val ? Tstatus.CanAndDone : Tstatus.CanAndNotDone;
+  }
+
+  public void Lock(bool val) {
+    if (Lockable == Tstatus.CannotDoIt) return;
+    Lockable = val ? Tstatus.CanAndDone : Tstatus.CanAndNotDone;
+  }
 
 }
 

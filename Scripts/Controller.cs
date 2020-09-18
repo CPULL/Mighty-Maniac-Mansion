@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using SimpleJSON;
+using System;
 
 public class Controller : MonoBehaviour {
   private static Controller c;
@@ -18,6 +19,7 @@ public class Controller : MonoBehaviour {
   public PortraitClickHandler InventoryPortrait;
   public GameObject Inventory;
   public GameObject InventoryItemTemplate;
+  public AllObjects allObjects;
 
   public Actor[] actors;
   Actor actor1;
@@ -534,14 +536,13 @@ public class Controller : MonoBehaviour {
 
       if (currentAction.type == ActionType.ShowRoom) {
         foreach (Room r in rooms)
-          if (r.ID == currentAction.ID) {
+          if (r.ID == currentAction.strValue) {
             currentRoom = r;
             break;
           }
         Vector3 pos = currentAction.pos;
         pos.z = -10;
         cam.transform.position = pos;
-        status = Enums.GetStatus(currentAction.Value, status);
         currentAction.Complete();
       }
       else if (currentAction.type == ActionType.Teleport) {
@@ -557,32 +558,43 @@ public class Controller : MonoBehaviour {
       }
       else if (currentAction.type == ActionType.Speak) {
         Actor a = GetActor(currentAction);
-        a.Say(currentAction.Value, currentAction);
+        a.Say(currentAction.strValue, currentAction);
         a.SetDirection(currentAction.dir);
         currentAction.Play();
       }
       else if (currentAction.type == ActionType.Expression) {
         Actor a = GetActor(currentAction);
         a.SetDirection(currentAction.dir);
-        a.SetExpression(Enums.GetExp(currentAction.Value));
+        a.SetExpression(Enums.GetExp(currentAction.strValue));
         currentAction.Play();
       }
       else if (currentAction.type == ActionType.Sound) {
         Actor a = GetActor(currentAction);
         if (a != null) a.SetDirection(currentAction.dir);
-        int snd = Enums.GetSnd(currentAction.Value);
+        int snd = Enums.GetSnd(currentAction.strValue);
         if (snd != -1) {
           currentActor.PlaySound(Sounds[snd]);
         }
         else {
-          Debug.Log("Missing sound " + currentAction.Value);
+          Debug.Log("Missing sound " + currentAction.strValue);
         }
         currentAction.Play();
       }
       else if (currentAction.type == ActionType.Enable) {
-        string res = (currentAction.Item as Item).Use();
-        if (res != null) currentActor.Say(res);
-      }      
+        // Find the actual Item from all the known items, pick it by enum
+        Item item = FindItemByID(currentAction.item);
+        item.gameObject.SetActive(currentAction.yesNo);
+      }
+      else if (currentAction.type == ActionType.Open) {
+        // Find the actual Item from all the known items, pick it by enum
+        Item item = FindItemByID(currentAction.item);
+        item.Open(currentAction.yesNo);
+      }
+      else if (currentAction.type == ActionType.Lock) {
+        // Find the actual Item from all the known items, pick it by enum
+        Item item = FindItemByID(currentAction.item);
+        item.Lock(currentAction.yesNo);
+      }
       else {
         // FIXME do the other actions
       }
@@ -608,7 +620,14 @@ public class Controller : MonoBehaviour {
     }
   }
 
-private Actor GetActor(GameAction a) {
+  private Item FindItemByID(ItemEnum itemID) {
+    foreach (Item i in allObjects.itemsList) {
+      if (i.Item == itemID) return i;
+    }
+    return null;
+  }
+
+  private Actor GetActor(GameAction a) {
     if (a.actor == Chars.Current) return currentActor;
     if (a.actor == Chars.Actor1) return actor1;
     if (a.actor == Chars.Actor2) return actor2;

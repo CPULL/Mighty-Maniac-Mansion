@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
+[System.Serializable]
 public class GameItem : MonoBehaviour {
   public ItemEnum Item;
   public string Name;
@@ -186,13 +187,8 @@ public class GameItemEditor : Editor {
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 
-    EditorGUI.indentLevel += 1;
-    for (int i = 0; i < actions.arraySize; i++) {
-      EditorGUILayout.PropertyField(actions.GetArrayElementAtIndex(i),
-      new GUIContent("Action " + (i + 1).ToString())); // FIXME find a valid name for the action and the condition
-    }
+    EditorGUILayout.PropertyField(actions);
     EditorGUI.indentLevel -= 1;
-
 
     serializedObject.ApplyModifiedProperties();
     EditorGUIUtility.labelWidth = oldw;

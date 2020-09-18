@@ -2515,14 +2515,17 @@ MonoBehaviour:
       action: 0
     Action:
       type: 6
+      id: 0
       Repeatable: 0
-      ID: 
-      actor: 0
-      pos: {x: 0, y: 0}
-      Value: 
-      dir: 0
-      delay: 0
-      Item: {fileID: 1797193201}
+      actor: 1
+      pos: {x: -55, y: 2}
+      strValue: Somesound
+      expression: 0
+      sound: 0
+      dir: 4
+      delay: 0.5
+      item: 9
+      yesNo: 1
   sr: {fileID: 0}
 --- !u!65 &405510475
 BoxCollider:
@@ -5311,7 +5314,7 @@ Transform:
   - {fileID: 301252751}
   - {fileID: 1568196469}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &729354870
 GameObject:
@@ -6434,6 +6437,7 @@ MonoBehaviour:
   InventoryPortrait: {fileID: 211150873}
   Inventory: {fileID: 411817673}
   InventoryItemTemplate: {fileID: 1650692365}
+  allObjects: {fileID: 0}
   actors:
   - {fileID: 0}
   - {fileID: 0}
@@ -6965,7 +6969,7 @@ Transform:
   m_Children:
   - {fileID: 527239702}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1047687768
 BoxCollider2D:
@@ -8682,7 +8686,7 @@ RectTransform:
   - {fileID: 137352990}
   - {fileID: 1544750704}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9859,7 +9863,7 @@ RectTransform:
   - {fileID: 553829523}
   - {fileID: 1237002465}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12360,7 +12364,7 @@ RectTransform:
   - {fileID: 1247674485}
   - {fileID: 439849989}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13531,17 +13535,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: 9
-  Name: 
+  Name: Grate
   owner: 0
   Pickable: 0
   Usable: 0
   UsableWith: 0
-  RequiredSkill: 0
-  Openable: 0
+  RequiredSkill: 1
+  Openable: 2
   Lockable: 0
-  whatItDoesL: 3
+  whatItDoesL: 1
   whatItDoesR: 0
-  Description: 
+  Description: 'A grate that seems to go in the basement.
+
+    It will require a
+    lot of strenght to remove it.'
   yesImage: {fileID: 0}
   noImage: {fileID: 0}
   iconImage: {fileID: 0}
@@ -14930,6 +14937,54 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7605243, y: 1.6836451, z: 0.20000005}
   m_Center: {x: 0.06026089, y: 3.2187238, z: -0.00000095367426}
+--- !u!1 &1966254325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1966254327}
+  - component: {fileID: 1966254326}
+  m_Layer: 0
+  m_Name: AllObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1966254326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966254325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896132f43eeec4d4b9ea60a60bacaaec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsList:
+  - {fileID: 1797193201}
+  roomsList:
+  - {fileID: 1432214312}
+  - {fileID: 1117025435}
+--- !u!4 &1966254327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966254325}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.755154, y: 1.1067777, z: 0.0000012591481}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1967415417
 GameObject:
   m_ObjectHideFlags: 0
@@ -15337,7 +15392,7 @@ Transform:
   - {fileID: 1432214310}
   - {fileID: 1117025434}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2077986945
 GameObject:

@@ -5,6 +5,9 @@ using UnityEngine;
 public class ActionAndCondition {
   [SerializeField] public GameCondition Condition;
   [SerializeField] public GameAction Action;
+  public string Name {
+    get { return "[" + Condition.ToString() + "] " + Action.ToString(); }
+  }
 }
 
 [System.Serializable]
@@ -12,20 +15,26 @@ public class GameAction {
   private Running running = Running.NotStarted;
   private float time;
 
+
   public ActionType type;
+  public ActionEnum id;
   public bool Repeatable;
-  public string ID;
+
   public Chars actor;
   public Vector2 pos;
-  public string Value;
+  public string strValue;
+  public Expression expression;
+  public Audios sound;
   public Dir dir;
   public float delay;
-  public GameItem Item;
-  
+  public ItemEnum item;
+  public bool yesNo;
+
 
   public GameAction(string stype) {
     string t = stype.ToLowerInvariant();
-    if (t == "synchro") type = ActionType.Synchro;
+    if (t == "synchro") type = ActionType.None;
+    if (t == "none") type = ActionType.None;
     if (t == "teleport") type = ActionType.Teleport;
     if (t == "speak") type = ActionType.Speak;
     if (t == "move") type = ActionType.Move;
@@ -110,12 +119,8 @@ public class GameAction {
   }
 
   internal void SetValue(string txt) {
-    Value = txt;
+    strValue = txt;
   }
-  internal void SetID(string txt) {
-    ID = txt;
-  }
-
   internal void SetWait(float w) {
     delay = w;
   }
@@ -142,13 +147,7 @@ public class GameAction {
   }
 
   public override string ToString() {
-    string res = type.ToString();
-    if (type == ActionType.Teleport) res += " " + actor.ToString();
-    if (type == ActionType.Speak) res += " " + actor.ToString() + " : " + Value;
-    if (type == ActionType.Expression) res += " " + actor.ToString() + " : " + Value;
-    // FIXME do the others
-
-    return res;
+    return CalculateName(type, actor, item, strValue, expression, sound, pos, yesNo);
   }
 
   internal void CheckTime(float deltaTime) {
@@ -165,6 +164,24 @@ public class GameAction {
     running = Running.NotStarted;
     time = delay;
   }
+
+  internal static string CalculateName(ActionType type, Chars actor, ItemEnum item, string strValue, Expression exp, Audios sound, Vector2 pos, bool yn) {
+    switch(type) {
+      case ActionType.None: return "No action";
+      case ActionType.ShowRoom: return "Show Room " + strValue;
+      case ActionType.Teleport: return "Teleport " + actor.ToString() + " to " + pos.ToString();
+      case ActionType.Speak:
+        string msg = strValue.Substring(0, System.Math.Min(20, strValue.Length)).Replace("\n", " ").Trim();
+        if (strValue.Length > 20) msg += "...";
+        return actor.ToString() + " say \"" + msg + "\"";
+      case ActionType.Expression: return actor.ToString() + " expression " + exp;
+      case ActionType.Sound: return "Play " + sound;
+      case ActionType.Enable: return "item " + item + " will be " + (yn ? "enabled" : "disabled");
+      case ActionType.Open: return "item " + item + " will be " + (yn ? "open" : "closed");
+      case ActionType.Lock: return "item " + item + " will be " + (yn ? "locked" : "unlocked");
+    }
+    return type.ToString() + " " + actor.ToString() + " " + item.ToString() + " " + strValue;
+  }
 }
 
 
@@ -176,103 +193,151 @@ public class MyActionPropertyDrawer : PropertyDrawer {
     int indent = EditorGUI.indentLevel;
     float labw = EditorGUIUtility.labelWidth;
     EditorGUI.indentLevel = 1;
-    EditorGUIUtility.labelWidth /= 4;
 
-    Rect rect  = new Rect(position.x, position.y, position.width * .8f - 8, EditorGUIUtility.singleLineHeight);
-    Rect rectr  = new Rect(position.x + position.width * .8f, position.y, position.width * .1f - 4, EditorGUIUtility.singleLineHeight);
-    Rect rectErr  = new Rect(position.x + position.width * .8f + 32, position.y, position.width * .1f - 4, EditorGUIUtility.singleLineHeight);
-    Rect rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
-    Rect rect2 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
-    Rect rect3 = new Rect(position.x, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
-    Rect rect4 = new Rect(position.x, position.y + 4 * EditorGUIUtility.singleLineHeight + 5, position.width, EditorGUIUtility.singleLineHeight);
 
     SerializedProperty type = property.FindPropertyRelative("type");
+    SerializedProperty id = property.FindPropertyRelative("id");
+    SerializedProperty Repeatable = property.FindPropertyRelative("Repeatable");
+    SerializedProperty actor = property.FindPropertyRelative("actor");
+    SerializedProperty pos = property.FindPropertyRelative("pos");
+    SerializedProperty strValue = property.FindPropertyRelative("strValue");
+    SerializedProperty expression = property.FindPropertyRelative("expression");
+    SerializedProperty sound = property.FindPropertyRelative("sound");
+    SerializedProperty dir = property.FindPropertyRelative("dir");
+    SerializedProperty delay = property.FindPropertyRelative("delay");
+    SerializedProperty item = property.FindPropertyRelative("item");
+    SerializedProperty yesNo = property.FindPropertyRelative("yesNo");
 
-    type.isExpanded = EditorGUI.Foldout(rect, type.isExpanded, "");
-    type.intValue = EditorGUI.Popup(rect, "Type", type.intValue, type.enumNames);
+
+
+    string name = GameAction.CalculateName((ActionType)type.intValue, (Chars)actor.intValue, (ItemEnum)item.intValue, strValue.stringValue, (Expression)expression.intValue, (Audios)sound.intValue, pos.vector2Value, yesNo.boolValue);
+
+    Rect rectAct = new Rect(position.x, position.y, 90, EditorGUIUtility.singleLineHeight);
+    Rect rectType = new Rect(position.x + 90, position.y, position.width / 3 - 50, EditorGUIUtility.singleLineHeight);
+    Rect rectName = new Rect(position.x + 90 + position.width / 3, position.y, position.width * 2 / 3 - 50, EditorGUIUtility.singleLineHeight);
+    Rect rect1, rect2, rect3;
+
+    EditorGUI.LabelField(rectAct, "Action", EditorStyles.boldLabel);
+    type.intValue = EditorGUI.Popup(rectType, type.intValue, type.enumDisplayNames);
+    EditorGUI.LabelField(rectName, name);
+
+    // ID and Repeatable
+    Rect rectID  = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+    Rect rectRep  = new Rect(position.x + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+    Rect rectDel = new Rect(position.x + 100 + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2 - 100, EditorGUIUtility.singleLineHeight);
+    EditorGUIUtility.labelWidth = 40;
+    id.intValue = EditorGUI.Popup(rectID, "ID", id.intValue, id.enumDisplayNames);
+    EditorGUIUtility.labelWidth = 90;
+    Repeatable.boolValue = EditorGUI.Toggle(rectRep, "Repeatable", Repeatable.boolValue);
+    delay.floatValue = EditorGUI.FloatField(rectDel, "Delay", delay.floatValue);
+
     if (type.isExpanded) {
-      SerializedProperty repeat = property.FindPropertyRelative("Repeatable");
-      repeat.boolValue = EditorGUI.Toggle(rectr, "", repeat.boolValue);
-      EditorGUIUtility.labelWidth *= 2;
-
-      SerializedProperty id = property.FindPropertyRelative("ID");
-      SerializedProperty pos = property.FindPropertyRelative("pos");
-      SerializedProperty actor = property.FindPropertyRelative("actor");
-      SerializedProperty val = property.FindPropertyRelative("Value");
-      SerializedProperty dir = property.FindPropertyRelative("dir");
-      SerializedProperty delay = property.FindPropertyRelative("delay");
-      SerializedProperty item = property.FindPropertyRelative("Item");
-
       switch ((ActionType)type.intValue) {
         case ActionType.ShowRoom:
-          id.stringValue = EditorGUI.TextField(rect1, "ID", id.stringValue);
-          pos.vector2Value = EditorGUI.Vector2Field(rect2, "Pos", pos.vector2Value);
-          val.stringValue = EditorGUI.TextField(rect3, "Status", val.stringValue);
-          if (string.IsNullOrEmpty(id.stringValue) || string.IsNullOrEmpty(val.stringValue) || pos.vector2Value == Vector2.zero) {
-            GUIStyle style = new GUIStyle();
+          rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+          rect2 = new Rect(position.x + position.width / 2, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+          EditorGUIUtility.labelWidth = 80;
+          strValue.stringValue = EditorGUI.TextField(rect1, "RoomID", strValue.stringValue);
+          pos.vector2Value = EditorGUI.Vector2Field(rect2, "Position", pos.vector2Value);
+
+          if (string.IsNullOrEmpty(strValue.stringValue) || pos.vector2Value == Vector2.zero) {
+            GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
             style.normal.textColor = Color.red;
+            Rect rectErr = new Rect(position.x + position.width / 4, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
             EditorGUI.LabelField(rectErr, "INVALID!", style);
           }
           break;
 
         case ActionType.Teleport:
-          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-          dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
-          pos.vector2Value = EditorGUI.Vector2Field(rect3, "Pos", pos.vector2Value);
-          if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue) || pos.vector2Value == Vector2.zero) {
-            GUIStyle style = new GUIStyle();
+          rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+          rect2 = new Rect(position.x + position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+          rect3 = new Rect(position.x + 2 * position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+          EditorGUIUtility.labelWidth = 60;
+          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+          pos.vector2Value = EditorGUI.Vector2Field(rect2, "Position", pos.vector2Value);
+          dir.intValue = EditorGUI.Popup(rect3, "Dir", dir.intValue, dir.enumDisplayNames);
+
+          if (actor.intValue < 1 || pos.vector2Value == Vector2.zero) {
+            GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
             style.normal.textColor = Color.red;
+            Rect rectErr = new Rect(position.x + position.width / 4, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
             EditorGUI.LabelField(rectErr, "INVALID!", style);
           }
           break;
 
         case ActionType.Speak:
-          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-          dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
-          val.stringValue = EditorGUI.TextField(rect3, "Text", val.stringValue);
-          if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue)) {
-            GUIStyle style = new GUIStyle();
+          GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
+            wordWrap = true,
+            fixedHeight = EditorGUIUtility.singleLineHeight * 5
+          };
+          rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+          rect2 = new Rect(position.x + position.width / 2, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+          rect3 = new Rect(position.x, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width, 5 * EditorGUIUtility.singleLineHeight);
+          EditorGUIUtility.labelWidth = 60;
+          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+          dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumDisplayNames);
+          strValue.stringValue = EditorGUI.TextArea(rect3, strValue.stringValue, textAreaStyle);
+
+          if (actor.intValue < 1 || string.IsNullOrEmpty(strValue.stringValue)) {
+            GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
             style.normal.textColor = Color.red;
+            Rect rectErr = new Rect(position.x + position.width / 4, position.y + 8 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
             EditorGUI.LabelField(rectErr, "INVALID!", style);
           }
           break;
 
         case ActionType.Expression:
-          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-          dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
-          val.stringValue = EditorGUI.TextField(rect3, "Expression", val.stringValue);
-          delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
-          if (actor.intValue < 1 || string.IsNullOrEmpty(val.stringValue) || delay.floatValue <= 0) {
-            GUIStyle style = new GUIStyle();
+          rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+          rect2 = new Rect(position.x + position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+          rect3 = new Rect(position.x + 2 * position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+          EditorGUIUtility.labelWidth = 60;
+          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+          expression.intValue = EditorGUI.Popup(rect2, "Expr", expression.intValue, expression.enumDisplayNames);
+          dir.intValue = EditorGUI.Popup(rect3, "Dir", dir.intValue, dir.enumDisplayNames);
+
+          if (actor.intValue < 1 || delay.floatValue <= 0) {
+            GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
             style.normal.textColor = Color.red;
+            Rect rectErr = new Rect(position.x + position.width / 4, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
             EditorGUI.LabelField(rectErr, "INVALID!", style);
           }
           break;
 
         case ActionType.Sound:
-          actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-          dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumNames);
-          val.stringValue = EditorGUI.TextField(rect3, "Value", val.stringValue);
-          delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
-          if (string.IsNullOrEmpty(val.stringValue) || delay.floatValue <= 0) {
-            GUIStyle style = new GUIStyle();
+          rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+          rect2 = new Rect(position.x, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+          rect3 = new Rect(position.x + position.width / 2, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+          EditorGUIUtility.labelWidth = 60;
+          sound.intValue = EditorGUI.Popup(rect1, "Sound", sound.intValue, sound.enumDisplayNames);
+          actor.intValue = EditorGUI.Popup(rect2, "Actor", actor.intValue, actor.enumDisplayNames);
+          if (actor.intValue != 0) dir.intValue = EditorGUI.Popup(rect3, "Dir", dir.intValue, dir.enumDisplayNames);
+
+          if (delay.floatValue <= 0 || (actor.intValue != 0 && dir.intValue > 3)) {
+            GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
             style.normal.textColor = Color.red;
+            Rect rectErr = new Rect(position.x + position.width / 4, position.y + 4 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
             EditorGUI.LabelField(rectErr, "INVALID!", style);
           }
           break;
 
         case ActionType.Enable:
-          id.stringValue = EditorGUI.TextField(rect1, "ID", id.stringValue);
-          item.objectReferenceValue = EditorGUI.ObjectField(rect2, "Item", item.objectReferenceValue, typeof(Item), true);
-          val.stringValue = EditorGUI.TextField(rect3, "Action", val.stringValue);
-          delay.floatValue = EditorGUI.FloatField(rect4, "Delay", delay.floatValue);
+        case ActionType.Open:
+        case ActionType.Lock:
+          rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width * 3 / 4, EditorGUIUtility.singleLineHeight);
+          rect2 = new Rect(position.x + position.width * 3 / 4, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
+          item.intValue = EditorGUI.Popup(rect1, "Item", item.intValue, item.enumNames);
+          yesNo.boolValue = EditorGUI.Toggle(rect2, "Enabled", yesNo.boolValue);
 
-          int.TryParse(val.stringValue, out int tmp);
-          if (!System.Enum.IsDefined(typeof(EnableMode), tmp) || delay.floatValue <= 0 || item.objectReferenceValue == null || (item.objectReferenceValue is Item && tmp != 301 && tmp != 302 && tmp != 303)) {
+          if (item.intValue == 0) {
             GUIStyle style = new GUIStyle();
             style.normal.textColor = Color.red;
+            Rect rectErr = new Rect(position.x + position.width / 4, position.y + 4 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
             EditorGUI.LabelField(rectErr, "INVALID!", style);
           }
+          break;
+
+
+        case ActionType.SetSequence:
           break;
       }
 
@@ -290,10 +355,12 @@ public class MyActionPropertyDrawer : PropertyDrawer {
     switch ((ActionType)type.intValue) {
       case ActionType.ShowRoom: return EditorGUIUtility.singleLineHeight * 4;
       case ActionType.Teleport: return EditorGUIUtility.singleLineHeight * 4;
-      case ActionType.Speak: return EditorGUIUtility.singleLineHeight * 4;
+      case ActionType.Speak: return EditorGUIUtility.singleLineHeight * 9;
       case ActionType.Expression: return EditorGUIUtility.singleLineHeight * 5 + 5;
       case ActionType.Sound: return EditorGUIUtility.singleLineHeight * 5 + 5;
       case ActionType.Enable: return EditorGUIUtility.singleLineHeight * 5 + 5;
+      case ActionType.Open: return EditorGUIUtility.singleLineHeight * 5 + 5;
+      case ActionType.Lock: return EditorGUIUtility.singleLineHeight * 5 + 5;
     }
     return EditorGUIUtility.singleLineHeight * 1;
   }

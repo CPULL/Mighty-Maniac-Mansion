@@ -34,7 +34,7 @@ public enum GameStatus { IntroVideo, CharSelection, IntroDialogue, NormalGamePla
 /// <summary>
 /// Used to specify the type of actions
 /// </summary>
-public enum ActionType { Synchro = 0, Teleport = 1, Speak = 2, Move = 3, Expression = 4, Open = 5, Enable = 6, ShowRoom = 7, SetSequence = 8, Sound = 9 };
+public enum ActionType { None = 0, Teleport = 1, Speak = 2, Move = 3, Expression = 4, Open = 5, Enable = 6, Lock = 7, ShowRoom = 8, SetSequence = 9, Sound = 10 };
 
 /// <summary>
 /// List of all actors and generic actor references, like Actor1
