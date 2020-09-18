@@ -35,6 +35,9 @@ public class Controller : MonoBehaviour {
   public AudioClip[] Sounds;
   public Options options;
 
+  public static float walkSpeed;
+  public static float textSpeed;
+
   private void Awake() {
     c = this;
     cam = Camera.main;
@@ -67,6 +70,9 @@ public class Controller : MonoBehaviour {
 
     vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("BackSoundsVolume", 1) * .74f) * 14.425f - 80;
     options.mixerMusic.SetFloat("BackSoundsVolume", vol);
+
+    walkSpeed = PlayerPrefs.GetFloat("WalkSpeed", 1);
+    textSpeed = PlayerPrefs.GetFloat("TalkSpeed", 1);
   }
 
   IEnumerator StartDelayed() {
@@ -98,7 +104,7 @@ public class Controller : MonoBehaviour {
         switch (txtMsgMode) {
           case TextMsgMode.Appearing:
             txtMsgMode = TextMsgMode.Visible;
-            textMsgTime = 3;
+            textMsgTime = 3 * textSpeed;
             break;
           case TextMsgMode.Disappearing:
             txtMsgMode = TextMsgMode.None;
@@ -176,7 +182,7 @@ public class Controller : MonoBehaviour {
       if ((overItem.whatItDoesR == WhatItDoes.Read && rmb) || (overItem.whatItDoesL == WhatItDoes.Read && lmb)) {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
-            actor.SetDirection(item.preferredDirection);
+            actor.SetDirection(item.dir);
             actor.Say(item.Description);
           }));
       }
@@ -184,7 +190,7 @@ public class Controller : MonoBehaviour {
       else if ((overItem.whatItDoesR == WhatItDoes.Use && rmb) || (overItem.whatItDoesL == WhatItDoes.Use && lmb)) {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
-            actor.SetDirection(item.preferredDirection);
+            actor.SetDirection(item.dir);
             string res = item.Use();
             if (res != null)
               actor.Say(res);
@@ -214,7 +220,7 @@ public class Controller : MonoBehaviour {
       else if ((overItem.whatItDoesR == WhatItDoes.Walk && rmb) || (overItem is Door && overItem.whatItDoesL == WhatItDoes.Walk && lmb)) {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
-            if (item.Openable != Tstatus.Yes && item.Lockable == Tstatus.Yes) {
+            if (item.Openable != Tstatus.CanAndDone && item.Lockable == Tstatus.CanAndDone) {
               actor.Say("Is locked");
               return;
             }
@@ -285,14 +291,13 @@ public class Controller : MonoBehaviour {
       return;
     }
     else {
-      action(currentActor, item);
+      action?.Invoke(currentActor, item);
     }
   }
 
   private CursorTypes forcedCursor = CursorTypes.None;
   private Item overItem = null;
   private Item usedItem = null;
-  // FIXME private Item usedObject = null;
   private Texture2D oldCursor = null;
   void HandleCursor() {
     if (c.status != GameStatus.NormalGamePlay) return;
@@ -420,6 +425,7 @@ public class Controller : MonoBehaviour {
     if (!c.currentActor.gameObject.activeSelf) { // Different room
       c.StartCoroutine(c.FadeToRoomActor());
     }
+    if (c.Inventory.activeSelf) c.ActivateInventory(c.currentActor);
   }
 
   internal static void SetItem(Item item) {
@@ -515,9 +521,6 @@ public class Controller : MonoBehaviour {
   void PickValidSequence() {
     return; // FIXME we should check if there are sequences that can be activated
     // Check all conditions and pick a valid sequence. In case there are more pick one random
-    currentSequence = sequences[0];
-    currentSequence.Start();
-    currentAction = currentSequence.GetNextAction();
   }
 
 
@@ -666,6 +669,8 @@ private Actor GetActor(GameAction a) {
 
     // Enable gmaeplay
     status = GameStatus.NormalGamePlay;
+    forcedCursor = CursorTypes.None;
+    overItem = null;
   }
 
   private IEnumerator FadeToRoomActor() {

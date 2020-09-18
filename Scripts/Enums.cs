@@ -40,10 +40,10 @@ public enum ActionType { Synchro = 0, Teleport = 1, Speak = 2, Move = 3, Express
 /// List of all actors and generic actor references, like Actor1
 /// </summary>
 public enum Chars {
-  None = -1, Current = 0, Actor1 = 1, Actor2 = 2, Actor3= 3, KidnappedActor = 4,
-  Fred = 5, Edna = 6, Ted = 7, Ed = 8, Edwige = 9, GreenTentacle = 10, PurpleTentacle = 11,
-  Dave = 12, Bernard = 13, Hoagie = 14, Michael = 15, Razor = 16, Sandy = 17, Syd = 18, Wendy = 19, Jeff = 20, Javid = 21,
-  otheractorslikepolice=99
+  None = 0, Current = 1, Actor1 = 2, Actor2 = 3, Actor3 = 4, KidnappedActor = 5,
+  Fred = 6, Edna = 7, Ted = 8, Ed = 9, Edwige = 10, GreenTentacle = 11, PurpleTentacle = 12,
+  Dave = 13, Bernard = 14, Hoagie = 15, Michael = 16, Razor = 17, Sandy = 18, Syd = 19, Wendy = 20, Jeff = 21, Javid = 22,
+  otheractorslikepolice = 23 // FIXME this name will change
 };
 
 /// <summary>
@@ -131,3 +131,74 @@ public enum EnableMode {
   IntDisable = 302,  // Interactable ->Disable, 
   IntSwitch = 303,  // Interactable ->Switch mode, 
 };
+
+
+
+
+
+
+/// <summary>
+/// Skills the actor have, they can be used inside conditions
+/// </summary>
+public enum Skill {
+  None,
+  Strenght,
+  Courage,
+  Chef,
+  Handyman,
+  Geek,
+  Nerd,
+  Music,
+  Writing
+}
+
+/// <summary>
+/// Used to specify if an item has a property and if the property is active or not (like "IsOpen", "IsLocked", etc.)
+/// </summary>
+public enum Tstatus {
+  CannotDoIt,
+  CanAndDone,
+  CanAndNotDone
+}
+
+/// <summary>
+/// Generic user actions possible in game
+/// </summary>
+public enum WhatItDoes {
+  Use,
+  Read,
+  Pick,
+  Walk
+}
+
+
+
+
+
+/// <summary>
+/// List of all items that are in game and can be referenced by actions by the ID (the ID is this enum value)
+/// </summary>
+public enum ItemEnum {
+  Undefined,
+  Sign,
+  GenericInvisibleDoor,
+  Mailbox,
+  MailboxFlag,
+  FrontDoorKey,
+  Grass,
+  DoorBell,
+  Doormat,
+  Grate,
+
+
+
+
+}
+
+
+
+public enum ActionEnum {
+  NoAction,
+}
+
+

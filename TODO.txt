@@ -15,7 +15,7 @@ Get music cover from BGO
 Add some sounds: door open/close, footsteps
 Add start game selection, with selection of kidnapped character and 3 players
 
-Associate Actions to Items
+
 
 FrontDoor:
 -> Doorbell (starts sequence where Ed checks for package and then screams to you to go away)
@@ -37,7 +37,7 @@ Add Editor for Interactable, like GameAction, to make it easier to handle
 * BUGS ************************************************************************************************************
 
 If we walk to an item and the item is on stairs, we cannot use the normal walkto. We should do "paths" (navmesh?)
-
+Remove the "mask sprite"
 
 
 * DONE ************************************************************************************************************
@@ -77,7 +77,8 @@ If we walk to an item and the item is on stairs, we cannot use the normal walkto
 ! Removed the perspective camera. Now all is flat and orthogonal.
 ! Transition between actors that are in different rooms
 ! Added options (for music right now)
-
+! Text speed is now considered.
+! Inspector for conditions and Items
 
 * CHARS ************************************************************************************************************
 

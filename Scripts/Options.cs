@@ -46,6 +46,14 @@ public class Options : MonoBehaviour {
     BackSndVal.text = (int)(BackSndVolume.value * 100) + "%";
   }
 
+  public void ChangeMaxWalkSpeed() {
+    WalkVal.text = (int)(WalkSpeed.value * 100) + "%";
+  }
+
+  public void ChangeTextSpeed() {
+    TextVal.text = (int)(TextSpeed.value * 100) + "%";
+  }
+
 
   public void Activate(bool activate) {
     optionsCanvas.enabled = activate;
@@ -63,12 +71,23 @@ public class Options : MonoBehaviour {
       ChangeMusicVolume();
       ChangeSoundVolume();
       ChangeBackSndVolume();
+
+      val = PlayerPrefs.GetFloat("WalkSpeed", 1);
+      WalkSpeed.SetValueWithoutNotify(val);
+      ChangeMaxWalkSpeed();
+      val = PlayerPrefs.GetFloat("TextSpeed", 1);
+      TextSpeed.SetValueWithoutNotify(val);
+      ChangeTextSpeed();
     }
     else {
       PlayerPrefs.SetFloat("MasterVolume", MainVolume.value);
       PlayerPrefs.SetFloat("MusicVolume", MusicVolume.value);
       PlayerPrefs.SetFloat("SoundVolume", SoundVolume.value);
       PlayerPrefs.SetFloat("BackSoundsVolume", BackSndVolume.value);
+      PlayerPrefs.SetFloat("TextSpeed", TextSpeed.value);
+      PlayerPrefs.SetFloat("WalkSpeed", WalkSpeed.value);
+      Controller.walkSpeed = WalkSpeed.value;
+      Controller.textSpeed = 1 / TextSpeed.value;
     }
   }
 

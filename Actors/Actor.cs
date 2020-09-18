@@ -45,7 +45,7 @@ public class Actor : MonoBehaviour {
 
     Vector3 wdir = (destination - transform.position).normalized;
     float dist = Vector3.Distance(transform.position, destination);
-    float speed = Mathf.Clamp(dist, Input.GetMouseButton(0) ? 5f : 2.5f, 5f);
+    float speed = Mathf.Clamp(dist, Input.GetMouseButton(0) ? 5f : 2.5f, 5f) * Controller.walkSpeed;
     wdir.z = wdir.y;
     Vector3 np = transform.position + wdir * speed * Time.deltaTime;
 

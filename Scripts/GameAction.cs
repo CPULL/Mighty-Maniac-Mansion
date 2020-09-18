@@ -23,8 +23,6 @@ public class GameAction {
   public GameItem Item;
   
 
-
-
   public GameAction(string stype) {
     string t = stype.ToLowerInvariant();
     if (t == "synchro") type = ActionType.Synchro;

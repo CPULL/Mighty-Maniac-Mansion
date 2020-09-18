@@ -205,13 +205,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 652708773}
   m_HandleRect: {fileID: 966030908}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 0.25
+  m_MaxValue: 4
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1590990658}
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
+        m_MethodName: ChangeTextSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &33589928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,6 +1715,7 @@ Transform:
   m_Children:
   - {fileID: 405510473}
   - {fileID: 1256842729}
+  - {fileID: 429948752}
   m_Father: {fileID: 1117025434}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2434,6 +2447,7 @@ GameObject:
   - component: {fileID: 405510473}
   - component: {fileID: 405510476}
   - component: {fileID: 405510475}
+  - component: {fileID: 405510474}
   m_Layer: 0
   m_Name: GrassBush
   m_TagString: Untagged
@@ -2451,10 +2465,65 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -8.7841, y: 1.0995002, z: 0}
   m_LocalScale: {x: 0.65, y: 0.65, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 557316780}
   m_Father: {fileID: 229621230}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &405510474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405510472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: 6
+  Name: Grass
+  owner: 0
+  Pickable: 2
+  Usable: 0
+  UsableWith: 0
+  RequiredSkill: 0
+  Openable: 0
+  Lockable: 0
+  whatItDoesL: 3
+  whatItDoesR: 2
+  Description: 
+  yesImage: {fileID: 8412115012718602097, guid: bde0e800ff75fb046b13c876c1c0b28e, type: 3}
+  noImage: {fileID: 0}
+  iconImage: {fileID: 1556188505915437284, guid: bde0e800ff75fb046b13c876c1c0b28e, type: 3}
+  HotSpot: {x: -58.7841, y: 0.11800021}
+  dir: 0
+  overColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  actions:
+  - Condition:
+      actor: 1
+      skill: 1
+      item: 4
+      num: 4
+      condition: 0
+      action: 0
+    Action:
+      type: 6
+      Repeatable: 0
+      ID: 
+      actor: 0
+      pos: {x: 0, y: 0}
+      Value: 
+      dir: 0
+      delay: 0
+      Item: {fileID: 1797193201}
+  sr: {fileID: 0}
 --- !u!65 &405510475
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2881,6 +2950,73 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &429948751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 429948752}
+  - component: {fileID: 429948753}
+  m_Layer: 0
+  m_Name: Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &429948752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429948751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 229621230}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &429948753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429948751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9360b4c9349c04da3f9a156821c58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: 0
+  Name: 
+  owner: 0
+  Pickable: 0
+  Usable: 0
+  UsableWith: 0
+  RequiredSkill: 0
+  Openable: 0
+  Lockable: 0
+  whatItDoesL: 3
+  whatItDoesR: 0
+  Description: 
+  yesImage: {fileID: 0}
+  noImage: {fileID: 0}
+  iconImage: {fileID: 0}
+  HotSpot: {x: 0, y: 0}
+  dir: 0
+  overColor:
+    serializedVersion: 2
+    rgba: 4278255615
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  actions: []
 --- !u!1 &439849988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3985,33 +4121,26 @@ MonoBehaviour:
   owner: 0
   Pickable: 0
   Usable: 0
-  UsableWith: {fileID: 0}
+  UsableWith: 0
   RequiredSkill: 0
   Openable: 0
   Lockable: 0
   whatItDoesL: 3
   whatItDoesR: 0
+  Description: 
   yesImage: {fileID: 0}
   noImage: {fileID: 0}
-  maskImage: {fileID: 0}
   iconImage: {fileID: 0}
-  actions: []
-  sr: {fileID: 0}
   HotSpot: {x: -7.110138, y: -0.72292024}
-  preferredDirection: 0
-  Description: 
+  dir: 0
   overColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 3368860716
   normalColor:
     serializedVersion: 2
-    rgba: 4294967295
-  Condition:
-    actor: 0
-    item: {fileID: 0}
-    num: 0
-    condition: 0
-    actionID: 
+    rgba: 16777215
+  actions: []
+  sr: {fileID: 0}
   src: {fileID: 1432214312}
   dst: {fileID: 1117025435}
   camerapos: {x: -29, y: 2, z: -10}
@@ -4127,38 +4256,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7faf4481f2b6efb4ea5de3533a35eeb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: 0
+  Item: 2
   Name: 
   owner: 0
   Pickable: 0
   Usable: 0
-  UsableWith: {fileID: 0}
+  UsableWith: 0
   RequiredSkill: 0
   Openable: 0
   Lockable: 0
   whatItDoesL: 3
   whatItDoesR: 0
+  Description: 
   yesImage: {fileID: 0}
   noImage: {fileID: 0}
-  maskImage: {fileID: 0}
   iconImage: {fileID: 0}
-  actions: []
-  sr: {fileID: 0}
   HotSpot: {x: -24.136074, y: -0.47435588}
-  preferredDirection: 0
-  Description: 
+  dir: 0
   overColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 3368860716
   normalColor:
     serializedVersion: 2
-    rgba: 4294967295
-  Condition:
-    actor: 0
-    item: {fileID: 0}
-    num: 0
-    condition: 0
-    actionID: 
+    rgba: 16777215
+  actions: []
+  sr: {fileID: 0}
   src: {fileID: 1117025435}
   dst: {fileID: 1432214312}
   camerapos: {x: 0, y: 2, z: -10}
@@ -4397,6 +4519,88 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555365021}
   m_CullTransparentMesh: 0
+--- !u!1 &557316779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 557316780}
+  - component: {fileID: 557316781}
+  m_Layer: 0
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &557316780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557316779}
+  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: -1.51, z: 0}
+  m_LocalScale: {x: 0.07637286, y: 0.035953164, z: 0.90768576}
+  m_Children: []
+  m_Father: {fileID: 405510473}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!212 &557316781
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557316779}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -686658387
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 52583357353966b4eb4595ab1166e919, type: 3}
+  m_Color: {r: 0.9528302, g: 0.0779043, b: 0.77969795, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &608392968
 GameObject:
   m_ObjectHideFlags: 0
@@ -9219,6 +9423,7 @@ GameObject:
   - component: {fileID: 1318194158}
   - component: {fileID: 1318194160}
   - component: {fileID: 1318194161}
+  - component: {fileID: 1318194159}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -9241,6 +9446,43 @@ Transform:
   m_Father: {fileID: 1956777061}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1318194159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318194157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: 4
+  Name: Mailbox Flag
+  owner: 0
+  Pickable: 0
+  Usable: 0
+  UsableWith: 0
+  RequiredSkill: 0
+  Openable: 2
+  Lockable: 0
+  whatItDoesL: 3
+  whatItDoesR: 0
+  Description: 
+  yesImage: {fileID: -2919622560191674364, guid: eb50c8aa303ca6041ae5f71e549bf190, type: 3}
+  noImage: {fileID: 6839161862081810458, guid: eb50c8aa303ca6041ae5f71e549bf190, type: 3}
+  iconImage: {fileID: 0}
+  HotSpot: {x: -29.988401, y: -0.34560004}
+  dir: 0
+  overColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  actions: []
+  sr: {fileID: 0}
 --- !u!212 &1318194160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12920,13 +13162,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1453940199}
   m_HandleRect: {fileID: 940244956}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 0.25
+  m_MaxValue: 4
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1590990658}
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
+        m_MethodName: ChangeMaxWalkSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1773877620
 GameObject:
   m_ObjectHideFlags: 0
@@ -13177,6 +13431,7 @@ GameObject:
   - component: {fileID: 1797193198}
   - component: {fileID: 1797193200}
   - component: {fileID: 1797193199}
+  - component: {fileID: 1797193201}
   m_Layer: 0
   m_Name: Grate
   m_TagString: Untagged
@@ -13263,6 +13518,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1797193201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797193197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: 9
+  Name: 
+  owner: 0
+  Pickable: 0
+  Usable: 0
+  UsableWith: 0
+  RequiredSkill: 0
+  Openable: 0
+  Lockable: 0
+  whatItDoesL: 3
+  whatItDoesR: 0
+  Description: 
+  yesImage: {fileID: 0}
+  noImage: {fileID: 0}
+  iconImage: {fileID: 0}
+  HotSpot: {x: 0, y: 0}
+  dir: 0
+  overColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  actions: []
+  sr: {fileID: 0}
 --- !u!1 &1805491017
 GameObject:
   m_ObjectHideFlags: 0
@@ -14513,6 +14805,7 @@ GameObject:
   - component: {fileID: 1956777061}
   - component: {fileID: 1956777060}
   - component: {fileID: 1956777063}
+  - component: {fileID: 1956777062}
   m_Layer: 0
   m_Name: Mailbox
   m_TagString: Untagged
@@ -14587,6 +14880,43 @@ Transform:
   m_Father: {fileID: 1117025434}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1956777062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956777059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: 3
+  Name: Mailbox
+  owner: 0
+  Pickable: 0
+  Usable: 0
+  UsableWith: 0
+  RequiredSkill: 0
+  Openable: 2
+  Lockable: 0
+  whatItDoesL: 3
+  whatItDoesR: 0
+  Description: 
+  yesImage: {fileID: -4200121528519567819, guid: b159dabee9fbe15469546fed737de0a9, type: 3}
+  noImage: {fileID: 1584276219503357356, guid: b159dabee9fbe15469546fed737de0a9, type: 3}
+  iconImage: {fileID: 0}
+  HotSpot: {x: -28.684801, y: -0.027600005}
+  dir: 0
+  overColor:
+    serializedVersion: 2
+    rgba: 4278255615
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  actions: []
+  sr: {fileID: 0}
 --- !u!65 &1956777063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15531,20 +15861,12 @@ MonoBehaviour:
   owner: 0
   Pickable: 0
   Usable: 1
-  UsableWith: {fileID: 0}
+  UsableWith: 0
   RequiredSkill: 0
   Openable: 0
   Lockable: 0
   whatItDoesL: 3
   whatItDoesR: 1
-  yesImage: {fileID: 21300000, guid: 22d1e4395a12ba94885f53f5cc2d393c, type: 3}
-  noImage: {fileID: 0}
-  maskImage: {fileID: 21300000, guid: 22d1e4395a12ba94885f53f5cc2d393c, type: 3}
-  iconImage: {fileID: 0}
-  actions: []
-  sr: {fileID: 0}
-  HotSpot: {x: 7.5633254, y: -0.22970617}
-  preferredDirection: 2
   Description: 'This is the Maniac Mansion.
 
     Keep Out!
@@ -15552,21 +15874,22 @@ MonoBehaviour:
     Traspassers will
     be horribly mutilated.
 
-    
+
 
     Signed: Dr. Fred, Edna, Ed, and Edwige.
 
     And
     the tentacles.'
+  yesImage: {fileID: 21300000, guid: 22d1e4395a12ba94885f53f5cc2d393c, type: 3}
+  noImage: {fileID: 0}
+  iconImage: {fileID: 0}
+  HotSpot: {x: 7.5633254, y: -0.22970617}
+  dir: 0
   overColor:
     serializedVersion: 2
     rgba: 4278255615
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  Condition:
-    actor: 0
-    item: {fileID: 0}
-    num: 0
-    condition: 0
-    actionID: 
+  actions: []
+  sr: {fileID: 0}

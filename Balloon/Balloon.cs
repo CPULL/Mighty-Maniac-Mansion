@@ -19,9 +19,9 @@ public class Balloon : MonoBehaviour {
   }
 
   public static void Show(string message, Transform speaker, System.Action completeSpeaking) {
+    b.delay = 1;
     b.speakComplete = completeSpeaking;
     b.anchor = speaker;
-    b.delay = 1000;
     b.gameObject.SetActive(true);
     b.size = b.text.GetPreferredValues(message);
     b.text.text = message;
@@ -41,7 +41,8 @@ public class Balloon : MonoBehaviour {
     foreach (char c in message)
       if (char.IsWhiteSpace(c)) b.numWords++;
 
-    b.delay = .75f * b.numWords;
+    b.delay = .15f * b.numWords * Controller.textSpeed * Controller.textSpeed;
+    Debug.Log(.15f * b.numWords * Controller.textSpeed * Controller.textSpeed);
   }
 
   private void Update() {

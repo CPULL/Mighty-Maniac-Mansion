@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-
+/*
 [CustomEditor(typeof(Item))]
 class ItemEditor : Editor {
   public override void OnInspectorGUI() {
@@ -29,3 +29,4 @@ class DoorEditor : Editor {
     }
   }
 }
+*/
