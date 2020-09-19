@@ -3,7 +3,7 @@
 	"id":"intro",
 	"conditions":[],
 	"actions":[
-		{ "type":"ShowRoom", "id":"StartArea", "pos":[7,2], "status":"Intro" },
+		{ "type":"ShowRoom", "id":"StartArea", "pos":[7,2] },
 		{ "type":"Teleport", "actor":"Actor1", "pos":[8.82,-0.76], "dir":"F" },
 		{ "type":"Teleport", "actor":"Actor2", "pos":[13.23,-1.43], "dir":"L" },
 		{ "type":"Teleport", "actor":"Actor3", "pos":[11.45,-0.46], "dir":"F" },

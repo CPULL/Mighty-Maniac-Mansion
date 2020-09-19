@@ -1,18 +1,19 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItem : MonoBehaviour {
+public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
   public RawImage back;
   public Image front;
   public TextMeshProUGUI text;
   public Item item;
 
-  private void OnMouseEnter() {
+  public void OnPointerEnter(PointerEventData eventData) {
     back.color = Color.blue;
   }
 
-  private void OnMouseExit() {
+  public void OnPointerExit(PointerEventData eventData) {
     back.color = Color.gray;
   }
 

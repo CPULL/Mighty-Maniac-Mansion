@@ -22,9 +22,7 @@ public class DoorEditor : Editor {
 
   SerializedProperty itemEnum, Name;
   SerializedProperty whatItDoesL, whatItDoesR;
-  SerializedProperty Openable, Lockable;
   SerializedProperty Usable, UsableWith;
-  SerializedProperty Skill;
   SerializedProperty yesImage, noImage;
   SerializedProperty overColor, normalColor;
   SerializedProperty HotSpot, dir;
@@ -38,11 +36,8 @@ public class DoorEditor : Editor {
     Name = serializedObject.FindProperty("Name");
     whatItDoesL = serializedObject.FindProperty("whatItDoesL");
     whatItDoesR = serializedObject.FindProperty("whatItDoesR");
-    Openable = serializedObject.FindProperty("Openable");
-    Lockable = serializedObject.FindProperty("Lockable");
     Usable = serializedObject.FindProperty("Usable");
     UsableWith = serializedObject.FindProperty("UsableWith");
-    Skill = serializedObject.FindProperty("RequiredSkill");
     yesImage = serializedObject.FindProperty("yesImage");
     noImage = serializedObject.FindProperty("noImage");
     overColor = serializedObject.FindProperty("overColor");
@@ -76,15 +71,6 @@ public class DoorEditor : Editor {
     EditorGUILayout.PropertyField(whatItDoesR, new GUIContent("Click R"));
     EditorGUILayout.EndHorizontal();
 
-    // Openable Lockable Skill
-    EditorGUILayout.BeginHorizontal();
-    EditorGUILayout.PropertyField(Openable, new GUIContent("Open"));
-    EditorGUILayout.PropertyField(Lockable, new GUIContent("Lock"));
-    EditorGUIUtility.labelWidth = 60;
-    EditorGUILayout.PropertyField(Skill, new GUIContent("Req Skill"));
-    EditorGUIUtility.labelWidth = 40;
-    EditorGUILayout.EndHorizontal();
-
     // Usable UsableWith
     EditorGUILayout.BeginHorizontal();
     EditorGUILayout.PropertyField(Usable, new GUIContent("Usable"));
@@ -115,7 +101,14 @@ public class DoorEditor : Editor {
     EditorGUILayout.PropertyField(dir, new GUIContent("Dir"), GUILayout.Width(100));
     EditorGUILayout.Space(30, false);
     if (GUILayout.Button("Set", GUILayout.Width(40))) {
-      Debug.Log("Set hotspot");
+      Item door = target as Door;
+      if (door.transform.childCount == 0) {
+        Debug.LogError("Missing spawn point for " + door.name);
+        return;
+      }
+      Transform spawn = door.transform.GetChild(0);
+      Debug.Log(spawn.name + " is at " + spawn.transform.position);
+      door.HotSpot = spawn.transform.position;
     }
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();

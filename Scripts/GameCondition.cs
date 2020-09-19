@@ -15,7 +15,27 @@ public class GameCondition {
   public ActionEnum action;
 
 
-  internal string Verify() {
+  internal string Verify(Actor performer, GameItem obj) {
+    Actor a = Controller.GetActor(actor);
+    switch (condition) {
+      case Condition.None: return null;
+      case Condition.CurrentActorEqual: return (actor == performer.id) ? null : "I can't";
+      case Condition.CurrentActorNotEqual: return (actor != performer.id) ? null : "I can't";
+      case Condition.ActorIsAvailable: if (Controller.WeHaveActorPlaying(actor)) return null; else return "Actor not available";
+      case Condition.ActorHasSkill:  return a == null ? "Invalid actor for condition" : a.HasSkill(skill);
+      case Condition.HasItem: return a == null ? "Invalid actor for condition" : a.HasItem(item);
+      case Condition.DoesNotHaveItem: return a == null ? "Invalid actor for condition" : (a.HasItem(item) == null ? "Has item " + item : null);
+      case Condition.ItemIsOpen: return (obj.Usable == Tstatus.OpenableOpen) ? null : "It is closed";
+      case Condition.ItemIsClosed: return (obj.Usable == Tstatus.OpenableClosed || obj.Usable == Tstatus.OpenableLocked) ? null : "It is open";
+      case Condition.ItemIsLocked: return (obj.Usable == Tstatus.OpenableLocked) ? null : "It is unlocked";
+      case Condition.ItemIsUnlocked: return (obj.Usable == Tstatus.OpenableOpen || obj.Usable == Tstatus.OpenableClosed) ? null : "It is locked";
+      case Condition.ItemIsCollected: return (obj.owner != Chars.None) ? null : "Already picked";
+      case Condition.ItemIsNotCollected: return (obj.owner == Chars.None) ? null : "Not collected";
+      case Condition.ActionCompleted: return Controller.ActionStatus(action) == Running.Running ? null : "Cannot start";
+      case Condition.ActionNotStarted: return Controller.ActionStatus(action) == Running.NotStarted ? null : "Cannot start";
+      case Condition.ActionRunning: return Controller.ActionStatus(action) == Running.Running ? null : "Cannot start";
+    }
+
     return null; // FIXME a string telling why it cannot be executed (but only if mandatory)
   }
 
@@ -35,6 +55,8 @@ public class GameCondition {
       case Condition.ItemIsOpen: return "Item " + itemVal.ToString() + " is open";
       case Condition.ItemIsClosed: return "Item " + itemVal.ToString() + " is closed";
       case Condition.ItemIsLocked: return "Item " + itemVal.ToString() + " is locked";
+      case Condition.ItemIsCollected: return "Item " + itemVal.ToString() + " collected";
+      case Condition.ItemIsNotCollected: return "Item " + itemVal.ToString() + " not collected";
       case Condition.ItemIsUnlocked: return "Item " + itemVal.ToString() + " is unlocked";
       case Condition.ActionCompleted: return "Action " + actionVal.ToString() + " is completed";
       case Condition.ActionNotStarted: return "Action " + actionVal.ToString() + " is not started";
@@ -60,7 +82,9 @@ public enum Condition {
   ItemIsClosed,
   ActionCompleted,
   ActionNotStarted,
-  ActionRunning
+  ActionRunning,
+  ItemIsCollected,
+  ItemIsNotCollected
 }
 
 
@@ -138,6 +162,8 @@ public class MyConditionPropertyDrawer : PropertyDrawer {
       case Condition.ItemIsClosed:
       case Condition.ItemIsLocked:
       case Condition.ItemIsUnlocked:
+      case Condition.ItemIsCollected:
+      case Condition.ItemIsNotCollected:
         rect2 = new Rect(position.x + 10, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
         item.intValue = EditorGUI.Popup(rect2, "Item", item.intValue, item.enumNames);
         break;
@@ -170,6 +196,8 @@ public class MyConditionPropertyDrawer : PropertyDrawer {
       case Condition.ItemIsOpen: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ItemIsClosed: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ItemIsLocked: return EditorGUIUtility.singleLineHeight * 2.5f;
+      case Condition.ItemIsCollected: return EditorGUIUtility.singleLineHeight * 2.5f;
+      case Condition.ItemIsNotCollected: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ItemIsUnlocked: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ActionCompleted: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ActionNotStarted: return EditorGUIUtility.singleLineHeight * 2.5f;

@@ -16,38 +16,39 @@ public class Item : GameItem {
     sr.color = normalColor;
   }
 
-  public string Use() {
+  public string Use(Actor actor) {
     // Check conditions to use it
-    string res = VerifyConditions();
+    string res = VerifyConditions(actor);
     if (res != null) return res;
 
-    if (Lockable == Tstatus.CanAndDone) return "It is locked";
+    if (Usable == Tstatus.OpenableLocked) return "It is locked";
 
-    if (Usable == Tstatus.CanAndDone) {
-      return PlayActions();
+    if (Usable == Tstatus.Usable) {
+      return PlayActions(actor);
     }
-    else if (Openable == Tstatus.CanAndDone) {
-      Openable = Tstatus.CanAndNotDone;
-      sr.sprite = noImage;
-      return PlayActions();
-    }
-    else if (Openable == Tstatus.CanAndNotDone) {
-      Openable = Tstatus.CanAndDone;
+    else if (Usable == Tstatus.OpenableOpen) {
+      Usable = Tstatus.OpenableClosed;
       sr.sprite = yesImage;
-      return PlayActions();
+      return PlayActions(actor);
+    }
+    else if (Usable == Tstatus.OpenableClosed) {
+      Usable = Tstatus.OpenableOpen;
+      sr.sprite = noImage;
+      return PlayActions(actor);
     }
 
     return "Seems it does nothing";
   }
 
   public void Open(bool val) {
-    if (Openable == Tstatus.CannotDoIt) return;
-    Openable = val ? Tstatus.CanAndDone : Tstatus.CanAndNotDone;
+    if (Usable != Tstatus.OpenableOpen && Usable != Tstatus.OpenableClosed) return;
+    Usable = val ? Tstatus.OpenableOpen : Tstatus.OpenableClosed;
   }
 
   public void Lock(bool val) {
-    if (Lockable == Tstatus.CannotDoIt) return;
-    Lockable = val ? Tstatus.CanAndDone : Tstatus.CanAndNotDone;
+    // FIXME we may want to check if we have the key
+    if (Usable != Tstatus.OpenableLocked) return;
+    Usable = val ? Tstatus.OpenableLocked : Tstatus.OpenableOpen;
   }
 
 }

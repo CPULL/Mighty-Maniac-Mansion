@@ -8,12 +8,8 @@ public class GameItem : MonoBehaviour {
   public string Name;
 
   public Chars owner;
-  public Tstatus Pickable;
   public Tstatus Usable;
   public ItemEnum UsableWith;
-  public Skill RequiredSkill;
-  public Tstatus Openable;
-  public Tstatus Lockable;
 
   public WhatItDoes whatItDoesL = WhatItDoes.Walk;
   public WhatItDoes whatItDoesR = WhatItDoes.Use;
@@ -34,12 +30,12 @@ public class GameItem : MonoBehaviour {
 
 
 
-  internal string PlayActions() {
+  internal string PlayActions(Actor actor) {
     if (actions == null || actions.Count == 0) return null;
     string fail = null;
     bool atLeastOne = false;
     foreach (ActionAndCondition ac in actions) {
-      string res = ac.Condition.Verify();
+      string res = ac.Condition.Verify(actor, this);
       if (res == null) {
         Controller.AddAction(ac.Action);
         atLeastOne = true;
@@ -51,12 +47,12 @@ public class GameItem : MonoBehaviour {
   }
 
 
-  public string VerifyConditions() {
+  public string VerifyConditions(Actor actor) {
     if (actions == null || actions.Count == 0) return null;
     string fail = null;
     bool atLeastOne = false;
     foreach (ActionAndCondition ac in actions) {
-      string res = ac.Condition.Verify();
+      string res = ac.Condition.Verify(actor, this);
       if (res == null) {
         atLeastOne = true;
         break;
@@ -77,9 +73,7 @@ public class GameItemEditor : Editor {
 
   SerializedProperty itemEnum, Name;
   SerializedProperty whatItDoesL, whatItDoesR;
-  SerializedProperty Openable, Lockable;
   SerializedProperty Usable, UsableWith;
-  SerializedProperty Pickable, Skill;
   bool showDescription = false;
   SerializedProperty Description, Owner;
   SerializedProperty yesImage, noImage, iconImage;
@@ -93,12 +87,8 @@ public class GameItemEditor : Editor {
     Name = serializedObject.FindProperty("Name");
     whatItDoesL = serializedObject.FindProperty("whatItDoesL");
     whatItDoesR = serializedObject.FindProperty("whatItDoesR");
-    Openable = serializedObject.FindProperty("Openable");
-    Lockable = serializedObject.FindProperty("Lockable");
     Usable = serializedObject.FindProperty("Usable");
     UsableWith = serializedObject.FindProperty("UsableWith");
-    Pickable = serializedObject.FindProperty("Pickable");
-    Skill = serializedObject.FindProperty("RequiredSkill");
     Description = serializedObject.FindProperty("Description");
     Owner = serializedObject.FindProperty("owner");
     yesImage = serializedObject.FindProperty("yesImage");
@@ -130,24 +120,10 @@ public class GameItemEditor : Editor {
     EditorGUILayout.PropertyField(whatItDoesR, new GUIContent("Click R"));
     EditorGUILayout.EndHorizontal();
 
-    // Openable Lockable
-    EditorGUILayout.BeginHorizontal();
-    EditorGUILayout.PropertyField(Openable, new GUIContent("Open"));
-    EditorGUILayout.PropertyField(Lockable, new GUIContent("Lock"));
-    EditorGUILayout.EndHorizontal();
-
     // Usable UsableWith
     EditorGUILayout.BeginHorizontal();
     EditorGUILayout.PropertyField(Usable, new GUIContent("Usable"));
     EditorGUILayout.PropertyField(UsableWith, new GUIContent("  with"));
-    EditorGUILayout.EndHorizontal();
-
-    // Skill Pickable 
-    EditorGUILayout.BeginHorizontal();
-    EditorGUILayout.PropertyField(Pickable, new GUIContent("Pickable"));
-    EditorGUIUtility.labelWidth = 60;
-    EditorGUILayout.PropertyField(Skill, new GUIContent("Req Skill"));
-    EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 
     // Description and Owner (collapsible)
@@ -182,7 +158,14 @@ public class GameItemEditor : Editor {
     EditorGUILayout.PropertyField(dir, new GUIContent("Dir"), GUILayout.Width(100));
     EditorGUILayout.Space(30, false);
     if (GUILayout.Button("Set", GUILayout.Width(40))) {
-      Debug.Log("Set hotspot");
+      Item item = target as Item;
+      if (item.transform.childCount == 0) {
+        Debug.LogError("Missing spawn point for " + item.name);
+        return;
+      }
+      Transform spawn = item.transform.GetChild(0);
+      Debug.Log(spawn.name + " is at " + spawn.transform.position);
+      item.HotSpot = spawn.transform.position;
     }
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();

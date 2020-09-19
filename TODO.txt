@@ -1,8 +1,5 @@
 Mighty Maniac Mansion
 
-Add "Pick by ID" in SList, adding a "comparer" for the ID as delegate function
-
-
 * TODO ************************************************************************************************************
 
 Create assets for the outside part of the home
@@ -19,26 +16,16 @@ Add start game selection, with selection of kidnapped character and 3 players
 
 FrontDoor:
 -> Doorbell (starts sequence where Ed checks for package and then screams to you to go away)
--> House Spare Key (visible under the doormat when the doormat is open)
+-> Make usable the House Main Key
 -> Bush on the very left to stop walking
 -> Graves on the right after the mailbox
 -> Backyard entrance on the left
--> Grate covered in grass close to the door on the left
 -> Working door
-
-
-Replace the grate with one without bush, just open/closed
-Add a bush as normal pickable object
-
-Interactable -> add "container" as type, with a list of Items (with the placement relative coordinates)
-Add Editor for Interactable, like GameAction, to make it easier to handle
 
 
 * BUGS ************************************************************************************************************
 
 If we walk to an item and the item is on stairs, we cannot use the normal walkto. We should do "paths" (navmesh?)
-Remove the "mask sprite"
-
 
 * DONE ************************************************************************************************************
 

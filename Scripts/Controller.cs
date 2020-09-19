@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using SimpleJSON;
-using System;
 
 public class Controller : MonoBehaviour {
   private static Controller c;
@@ -23,6 +22,22 @@ public class Controller : MonoBehaviour {
 
   public Actor[] actors;
   Actor actor1;
+
+  internal static bool WeHaveActorPlaying(Chars actor) {
+    return actor == c.actor1.id || actor == c.actor2.id || actor == c.actor3.id;
+  }
+
+  internal static Actor GetActor(Chars actor) {
+    switch (actor) {
+      case Chars.Current: return c.currentActor;
+      case Chars.Actor1: return c.actor1;
+      case Chars.Actor2: return c.actor2;
+      case Chars.Actor3: return c.actor3;
+      case Chars.KidnappedActor: return c.kidnappedActor;
+    }
+    return null;
+  }
+
   Actor actor2;
   Actor actor3;
   readonly Actor kidnappedActor;
@@ -32,7 +47,6 @@ public class Controller : MonoBehaviour {
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
   Color32 selectedActor = new Color32(200, 232, 152, 255);
 
-  public Room[] rooms;
   GameStatus status = GameStatus.IntroDialogue;
   public AudioClip[] Sounds;
   public Options options;
@@ -52,15 +66,16 @@ public class Controller : MonoBehaviour {
     PickValidSequence();
 
 
-    currentRoom = rooms[0];
     StartCoroutine(StartDelayed());
     Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], center32, CursorMode.Auto);
     status = GameStatus.IntroDialogue;
-    currentActor = actor1;
-    ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
   }
 
   private void Start() {
+    currentRoom = allObjects.roomsList[0];
+    currentActor = actor1;
+    ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+
     float vol = 40f * PlayerPrefs.GetFloat("MasterVolume", 1) - 40;
     options.mixerMusic.SetFloat("MasterVolume", vol);
 
@@ -193,7 +208,7 @@ public class Controller : MonoBehaviour {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
             actor.SetDirection(item.dir);
-            string res = item.Use();
+            string res = item.Use(currentActor);
             if (res != null)
               actor.Say(res);
             else {
@@ -205,24 +220,25 @@ public class Controller : MonoBehaviour {
       else if ((overItem.whatItDoesR == WhatItDoes.Pick && rmb) || (overItem.whatItDoesL == WhatItDoes.Pick && lmb)) {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
-            ShowName("Picking up = " + item.Name);
-            actor.inventory.Add(overItem);
+            ShowName(currentActor + " got " + item.Name);
+            actor.inventory.Add(item);
             item.transform.parent = null;
             item.gameObject.SetActive(false);
             item.owner = Chars.None;
             if (actor == actor1) item.owner = Chars.Actor1;
             else if (actor == actor2) item.owner = Chars.Actor2;
             else if (actor == actor3) item.owner = Chars.Actor3;
-            item.PlayActions();
+            item.PlayActions(currentActor);
             item = null;
             forcedCursor = CursorTypes.None;
+            if (Inventory.activeSelf) ActivateInventory(currentActor);
           }));
       }
 
       else if ((overItem.whatItDoesR == WhatItDoes.Walk && rmb) || (overItem is Door && overItem.whatItDoesL == WhatItDoes.Walk && lmb)) {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
-            if (item.Openable != Tstatus.CanAndDone && item.Lockable == Tstatus.CanAndDone) {
+            if (item.Usable == Tstatus.OpenableLocked) {
               actor.Say("Is locked");
               return;
             }
@@ -404,6 +420,7 @@ public class Controller : MonoBehaviour {
       InventoryItem it = ii.GetComponent<InventoryItem>();
       it.text.text = item.Name;
       it.front.sprite = item.iconImage;
+      it.item = item;
     }
   }
 
@@ -439,7 +456,12 @@ public class Controller : MonoBehaviour {
       return;
     }
 
-    if (item.whatItDoesR == WhatItDoes.Pick) {
+    // Right
+    if (item.whatItDoesR == WhatItDoes.Walk) {
+      c.forcedCursor = CursorTypes.None;
+      c.overItem = item;
+    }
+    else if (item.whatItDoesR == WhatItDoes.Pick) {
       c.forcedCursor = CursorTypes.PickUp;
       c.overItem = item;
       c.ShowName(item.Name);
@@ -450,6 +472,26 @@ public class Controller : MonoBehaviour {
       c.ShowName(item.Name);
     }
     else if (item.whatItDoesR == WhatItDoes.Read) {
+      c.forcedCursor = CursorTypes.Examine;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    // Left
+    else if (item.whatItDoesL == WhatItDoes.Walk) {
+      c.forcedCursor = CursorTypes.None;
+      c.overItem = item;
+    }
+    else if (item.whatItDoesL == WhatItDoes.Pick) {
+      c.forcedCursor = CursorTypes.PickUp;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    else if (item.whatItDoesL == WhatItDoes.Use) {
+      c.forcedCursor = CursorTypes.Use;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    else if (item.whatItDoesL == WhatItDoes.Read) {
       c.forcedCursor = CursorTypes.Examine;
       c.overItem = item;
       c.ShowName(item.Name);
@@ -494,7 +536,7 @@ public class Controller : MonoBehaviour {
           }
           else if (a.type == ActionType.ShowRoom) {
             a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-            a.SetValue(val["status"].Value);
+            a.SetValue(val["id"].Value);
           }
           else if (a.type == ActionType.Sound) {
             a.SetActor(val["actor"].Value);
@@ -535,11 +577,7 @@ public class Controller : MonoBehaviour {
       // FIXME        Debug.Log(currentAction.ToString());
 
       if (currentAction.type == ActionType.ShowRoom) {
-        foreach (Room r in rooms)
-          if (r.ID == currentAction.strValue) {
-            currentRoom = r;
-            break;
-          }
+        currentRoom = allObjects.GetRoom(currentAction.strValue);
         Vector3 pos = currentAction.pos;
         pos.z = -10;
         cam.transform.position = pos;
@@ -571,32 +609,35 @@ public class Controller : MonoBehaviour {
       else if (currentAction.type == ActionType.Sound) {
         Actor a = GetActor(currentAction);
         if (a != null) a.SetDirection(currentAction.dir);
-        int snd = Enums.GetSnd(currentAction.strValue);
-        if (snd != -1) {
-          currentActor.PlaySound(Sounds[snd]);
-        }
-        else {
-          Debug.Log("Missing sound " + currentAction.strValue);
-        }
+        currentActor.PlaySound(Sounds[(int)currentAction.sound]);
         currentAction.Play();
       }
       else if (currentAction.type == ActionType.Enable) {
         // Find the actual Item from all the known items, pick it by enum
-        Item item = FindItemByID(currentAction.item);
+        Item item = allObjects.FindItemByID(currentAction.item);
+        if (item == null) {
+          Debug.LogError("Cannot find item!");
+          return;
+        }
         item.gameObject.SetActive(currentAction.yesNo);
+        currentAction.Complete();
       }
       else if (currentAction.type == ActionType.Open) {
         // Find the actual Item from all the known items, pick it by enum
-        Item item = FindItemByID(currentAction.item);
+        Item item = allObjects.FindItemByID(currentAction.item);
         item.Open(currentAction.yesNo);
+        currentAction.Complete();
       }
       else if (currentAction.type == ActionType.Lock) {
         // Find the actual Item from all the known items, pick it by enum
-        Item item = FindItemByID(currentAction.item);
+        Item item = allObjects.FindItemByID(currentAction.item);
         item.Lock(currentAction.yesNo);
+        currentAction.Complete();
       }
       else {
         // FIXME do the other actions
+        Debug.Log("Not implemented action: " + currentAction.ToString());
+        currentAction.Complete(); // Just to avoid to block the game for action not yet done
       }
 
     }
@@ -618,13 +659,6 @@ public class Controller : MonoBehaviour {
         status = GameStatus.NormalGamePlay;
       }
     }
-  }
-
-  private Item FindItemByID(ItemEnum itemID) {
-    foreach (Item i in allObjects.itemsList) {
-      if (i.Item == itemID) return i;
-    }
-    return null;
   }
 
   private Actor GetActor(GameAction a) {
@@ -734,6 +768,12 @@ public class Controller : MonoBehaviour {
     forcedCursor = CursorTypes.None;
     overItem = null;
   }
+
+  internal static Running ActionStatus(ActionEnum action) {
+    // Find the action, it can be in the sequences or in any action we saw in some way
+    return Running.NotStarted; // FIXME
+  }
+
 
 }
 

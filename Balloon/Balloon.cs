@@ -42,7 +42,6 @@ public class Balloon : MonoBehaviour {
       if (char.IsWhiteSpace(c)) b.numWords++;
 
     b.delay = .15f * b.numWords * Controller.textSpeed * Controller.textSpeed;
-    Debug.Log(.15f * b.numWords * Controller.textSpeed * Controller.textSpeed);
   }
 
   private void Update() {

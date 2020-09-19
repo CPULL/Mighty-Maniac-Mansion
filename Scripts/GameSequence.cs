@@ -18,7 +18,7 @@ public class GameSequence {
   }
 
   public bool IsCompleted() {
-    return running == Running.Completed;
+    return running == Running.Running;
   }
 
   internal void Start() {
@@ -27,7 +27,7 @@ public class GameSequence {
 
   internal GameAction GetNextAction() {
     if (step >= actions.Count) {
-      running = Running.Completed;
+      running = Running.Running;
       return null;
     }
     GameAction a = actions[step];

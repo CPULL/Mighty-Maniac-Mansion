@@ -100,38 +100,6 @@ public enum TransitionType { ScrollL, ScrollR, ScrollU, ScrollD, ZoomIn, ZoomOut
 /// </summary>
 public enum Audios { Doorbell = 0 };
 
-/// <summary>
-/// Used to specify how to enable/disable an item from an action
-/// </summary>
-public enum EnableMode {
-  Invalid = 0,
-
-  All = 011,      //Open->Enable & Close->Disable, 
-  Enable = 010,   //Open->Enable, 
-  Disable = 001,  //Close->Disable, 
-  Rev = 022,      //Open->Disable & Close->Enable, 
-  RevDis = 020,   //Open->Disable, 
-  RevEn = 002,    //Close->Enable, 
-
-  PAll = 111,      //Picked Open->Enable & Close->Disable, 
-  PEnable = 110,   //Picked Open->Enable, 
-  PDisable = 101,  //Picked Close->Disable, 
-  PRev = 122,      //Picked Open->Disable & Close->Enable, 
-  PRevDis = 120,   //Picked Open->Disable, 
-  PRevEn = 102,    //Picked Close->Enable, 
-
-  NAll = 211,      //Not picked Open->Enable & Close->Disable, 
-  NEnable = 210,   //Not picked Open->Enable, 
-  NDisable = 201,  //Not picked Close->Disable, 
-  NRev = 222,      //Not picked Open->Disable & Close->Enable, 
-  NRevDis = 220,   //Not picked Open->Disable, 
-  NRevEn = 202,    //Not picked Close->Enable, 
-
-  IntEnable = 301,   // Interactable ->Enable, 
-  IntDisable = 302,  // Interactable ->Disable, 
-  IntSwitch = 303,  // Interactable ->Switch mode, 
-};
-
 
 
 
@@ -156,9 +124,12 @@ public enum Skill {
 /// Used to specify if an item has a property and if the property is active or not (like "IsOpen", "IsLocked", etc.)
 /// </summary>
 public enum Tstatus {
-  CannotDoIt,
-  CanAndDone,
-  CanAndNotDone
+  NotUsable,
+  Pickable,
+  Usable,
+  OpenableOpen,
+  OpenableClosed,
+  OpenableLocked
 }
 
 /// <summary>
@@ -174,26 +145,6 @@ public enum WhatItDoes {
 
 
 
-
-/// <summary>
-/// List of all items that are in game and can be referenced by actions by the ID (the ID is this enum value)
-/// </summary>
-public enum ItemEnum {
-  Undefined,
-  Sign,
-  GenericInvisibleDoor,
-  Mailbox,
-  MailboxFlag,
-  FrontDoorKey,
-  Grass,
-  DoorBell,
-  Doormat,
-  Grate,
-
-
-
-
-}
 
 
 

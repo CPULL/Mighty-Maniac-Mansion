@@ -17,6 +17,8 @@ public class Actor : MonoBehaviour {
   Dir dir = Dir.F;
   private AudioSource audios;
   public List<Item> inventory;
+  public Chars id;
+  public List<Skill> skills;
 
   private void Awake() {
     anim = GetComponent<Animator>();
@@ -63,6 +65,34 @@ public class Actor : MonoBehaviour {
       return;
     }
     transform.position = np;
+  }
+
+  internal string HasItem(ItemEnum item) {
+    foreach (Item i in inventory)
+      if (i.Item == item) return null;
+    return "Missing " + item;
+  }
+
+  public string HasSkill(Skill skill) {
+    foreach (Skill s in skills)
+      if (s == skill) return null;
+    switch(skill) {
+      case Skill.Strenght: return "I am not strong enough!";
+      case Skill.Courage: return "It is scary!\nI will not do it!";
+      case Skill.Chef: return "I am not a chef";
+      case Skill.Handyman: return "I don't know how to do it";
+      case Skill.Geek: return "I am not a geek";
+      case Skill.Nerd: return "I am not a nerd";
+      case Skill.Music: return "I don't know how to play";
+      case Skill.Writing: return "I am not a writer";
+    }
+    return "I cannot do it";
+  }
+
+  public void AddSkill(Skill skill) {
+    foreach (Skill s in skills)
+      if (s == skill) return;
+    skills.Add(skill);
   }
 
   bool isSpeaking = false;
