@@ -1,0 +1,2014 @@
+fileFormatVersion: 2
+guid: f199bc18f5f9d644dadc445669d329a0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7888902146871769836
+    second: Dave_0
+  - first:
+      213: 8135646650573657831
+    second: Dave_1
+  - first:
+      213: -747637553039879534
+    second: Dave_2
+  - first:
+      213: -1440088328506575641
+    second: Dave_3
+  - first:
+      213: 4910842507438598899
+    second: Dave_4
+  - first:
+      213: 7363506383079820997
+    second: Dave_5
+  - first:
+      213: -8782635571135245053
+    second: Dave_6
+  - first:
+      213: 3731878887476337298
+    second: Dave_7
+  - first:
+      213: 7546045763806733465
+    second: Dave_8
+  - first:
+      213: -2959794242114279973
+    second: Dave_9
+  - first:
+      213: 5330956352606089964
+    second: Dave_10
+  - first:
+      213: -3175745282777762671
+    second: Dave_11
+  - first:
+      213: -9046547721153642166
+    second: Dave_12
+  - first:
+      213: 4474842964128040499
+    second: Dave_13
+  - first:
+      213: -2065442670624400489
+    second: Dave_14
+  - first:
+      213: 504732061343106302
+    second: Dave_15
+  - first:
+      213: -7460426139253168013
+    second: Dave_16
+  - first:
+      213: -6937367103375319229
+    second: Dave_17
+  - first:
+      213: 2992607042968343019
+    second: Dave_18
+  - first:
+      213: 4106430136202557391
+    second: Dave_19
+  - first:
+      213: -7867146419528734320
+    second: Dave_20
+  - first:
+      213: 5248252073891279038
+    second: Dave_21
+  - first:
+      213: -7479142128241946483
+    second: Dave_22
+  - first:
+      213: 8115595807947430086
+    second: Dave_23
+  - first:
+      213: 3579380359600087385
+    second: Dave_24
+  - first:
+      213: 7196515420006497057
+    second: Dave_25
+  - first:
+      213: -6081496003259615544
+    second: Dave_26
+  - first:
+      213: -5621260984230191386
+    second: Dave_27
+  - first:
+      213: 9028926393286250709
+    second: Dave_28
+  - first:
+      213: 5191425839080472334
+    second: Dave_29
+  - first:
+      213: 4349575693236251115
+    second: Dave_30
+  - first:
+      213: -4090228576586214124
+    second: Dave_31
+  - first:
+      213: 3897520715677047314
+    second: Dave_32
+  - first:
+      213: 6305682278443167625
+    second: Dave_33
+  - first:
+      213: -7313390019080279291
+    second: Dave_34
+  - first:
+      213: 6747765485996531226
+    second: Dave_35
+  - first:
+      213: 8301271887010317657
+    second: Dave_36
+  - first:
+      213: 3737286752727135133
+    second: Dave_37
+  - first:
+      213: -6359221482647622273
+    second: Dave_38
+  - first:
+      213: 8873806063167362163
+    second: Dave_39
+  - first:
+      213: 1010070456023070211
+    second: Dave_40
+  - first:
+      213: 3775120826718300322
+    second: Dave_41
+  - first:
+      213: -3973395767477190763
+    second: Dave_42
+  - first:
+      213: 6325384408593354156
+    second: Dave_43
+  - first:
+      213: -8789017560267634472
+    second: Dave_44
+  - first:
+      213: -5518103293305504867
+    second: Dave_45
+  - first:
+      213: 7343898637269568886
+    second: Dave_46
+  - first:
+      213: 8990550243722228724
+    second: Dave_47
+  - first:
+      213: 8648186765697932861
+    second: Dave_48
+  - first:
+      213: 4168226659324570698
+    second: Dave_49
+  - first:
+      213: -3896855140342960559
+    second: Dave_50
+  - first:
+      213: -5053805227437848470
+    second: Dave_51
+  - first:
+      213: -5029619571608823755
+    second: Dave_52
+  - first:
+      213: 6141925264097652475
+    second: Dave_53
+  - first:
+      213: 8442050147283572108
+    second: Dave_54
+  - first:
+      213: -6427586263114401296
+    second: Dave_55
+  - first:
+      213: -4213635897947632198
+    second: Dave_56
+  - first:
+      213: -4374184652258226299
+    second: Dave_57
+  - first:
+      213: -9149808062453588639
+    second: Dave_58
+  - first:
+      213: 8553650366293852298
+    second: Dave_59
+  - first:
+      213: 167045903217986117
+    second: Syd_0
+  - first:
+      213: -7196245522242001545
+    second: Syd_1
+  - first:
+      213: 6394014317963078312
+    second: Syd_2
+  - first:
+      213: 4002377736178504336
+    second: Syd_3
+  - first:
+      213: 2961825511115169441
+    second: Syd_4
+  - first:
+      213: 7688025664572031569
+    second: Syd_5
+  - first:
+      213: 4248487591294106311
+    second: Syd_6
+  - first:
+      213: -8289926299156467205
+    second: Syd_7
+  - first:
+      213: 5430486352535916314
+    second: Syd_8
+  - first:
+      213: -3545020095543740318
+    second: Syd_9
+  - first:
+      213: -3872115873242591782
+    second: Syd_10
+  - first:
+      213: 8072434217408114455
+    second: Syd_11
+  - first:
+      213: 5598023265879721099
+    second: Syd_12
+  - first:
+      213: -1724998441699750650
+    second: Syd_13
+  - first:
+      213: -5120532334134267053
+    second: Syd_14
+  - first:
+      213: -2806026459836094039
+    second: Syd_15
+  - first:
+      213: 8175540853016152307
+    second: Syd_16
+  - first:
+      213: 6356845473035167033
+    second: Syd_17
+  - first:
+      213: 9161912916780894327
+    second: Syd_18
+  - first:
+      213: -3402100457617240770
+    second: Syd_19
+  - first:
+      213: -5106305890914756296
+    second: Syd_20
+  - first:
+      213: 5908140978050595942
+    second: Syd_21
+  - first:
+      213: -7022264906919704342
+    second: Syd_22
+  - first:
+      213: 5852676953794989883
+    second: Syd_23
+  - first:
+      213: -2296646914466036606
+    second: Syd_24
+  - first:
+      213: 3090868311371763201
+    second: Syd_25
+  - first:
+      213: 3546742058162965706
+    second: Syd_26
+  - first:
+      213: 1190396258997867423
+    second: Syd_27
+  - first:
+      213: -7272137675720485072
+    second: Syd_28
+  - first:
+      213: -6597090105491912873
+    second: Syd_29
+  - first:
+      213: 4817357901515206799
+    second: Syd_30
+  - first:
+      213: -4769354603059592321
+    second: Syd_31
+  - first:
+      213: -8561249228370328106
+    second: Syd_32
+  - first:
+      213: -1235802186354423660
+    second: Syd_33
+  - first:
+      213: -3431308995863200697
+    second: Syd_34
+  - first:
+      213: 7162296709390480272
+    second: Syd_35
+  - first:
+      213: -2829903452652001443
+    second: Syd_36
+  - first:
+      213: 6601411498563980653
+    second: Syd_37
+  - first:
+      213: -978568678638749894
+    second: Syd_38
+  - first:
+      213: 7411642216139203542
+    second: Syd_39
+  - first:
+      213: -5122706868834359334
+    second: Syd_40
+  - first:
+      213: 8476587207132537770
+    second: Syd_41
+  - first:
+      213: 6991186978358596280
+    second: Syd_42
+  - first:
+      213: 6043280470105361493
+    second: Syd_43
+  - first:
+      213: 7376223519813653773
+    second: Syd_44
+  - first:
+      213: 51679882457434511
+    second: Syd_45
+  - first:
+      213: -8683683715822610816
+    second: Syd_46
+  - first:
+      213: 52987434705408101
+    second: Syd_47
+  - first:
+      213: -5822195201783192820
+    second: Syd_48
+  - first:
+      213: 7382290312136307613
+    second: Syd_49
+  - first:
+      213: -6937231071334597227
+    second: Syd_50
+  - first:
+      213: 4126252354812306616
+    second: Syd_51
+  - first:
+      213: -2530013821722724950
+    second: Syd_52
+  - first:
+      213: -8428033801232005283
+    second: Syd_53
+  - first:
+      213: 1234004199121966810
+    second: Syd_54
+  - first:
+      213: 4108057900521527204
+    second: Syd_55
+  - first:
+      213: 3079536374179894719
+    second: Syd_56
+  - first:
+      213: 3383913869446801009
+    second: Syd_57
+  - first:
+      213: -2974274482956193550
+    second: Syd_58
+  - first:
+      213: 8295261243433838758
+    second: Syd_59
+  - first:
+      213: -8033430984006858864
+    second: Syd_60
+  - first:
+      213: 6742369524554485525
+    second: Syd_61
+  - first:
+      213: -6450542575784852081
+    second: Syd_62
+  - first:
+      213: 5295747218778467132
+    second: Syd_63
+  - first:
+      213: -8169308135786576873
+    second: Syd_64
+  - first:
+      213: -8101742257483233321
+    second: Syd_65
+  - first:
+      213: -2633934821002155061
+    second: Syd_66
+  - first:
+      213: -834737358254124659
+    second: Syd_67
+  - first:
+      213: 6381442009440440351
+    second: Syd_68
+  - first:
+      213: -667965070092832422
+    second: Syd_69
+  - first:
+      213: -3101015775307611034
+    second: Syd_70
+  - first:
+      213: -7280361544064120373
+    second: Syd_71
+  - first:
+      213: -1086187941638299131
+    second: Syd_72
+  - first:
+      213: -6326833423732711975
+    second: Syd_73
+  - first:
+      213: -2614602963843711924
+    second: Syd_74
+  - first:
+      213: -5076617507584490524
+    second: Syd_75
+  - first:
+      213: -7197539753183583720
+    second: Syd_76
+  - first:
+      213: -2696899096323705047
+    second: Syd_77
+  - first:
+      213: -504733091619876952
+    second: Syd_78
+  - first:
+      213: 6132861648105194048
+    second: Syd_79
+  - first:
+      213: 3705949224457715242
+    second: Syd_80
+  - first:
+      213: 7090590118506659308
+    second: Syd_81
+  - first:
+      213: -721727384760803888
+    second: Syd_82
+  - first:
+      213: 7583183765996112326
+    second: Syd_83
+  - first:
+      213: -8807889330417920048
+    second: Syd_84
+  - first:
+      213: -1175228205698133375
+    second: Syd_85
+  - first:
+      213: 5845898382579706040
+    second: Syd_86
+  - first:
+      213: 2451372986806093829
+    second: Syd_87
+  - first:
+      213: -8935042528341242051
+    second: Syd_88
+  - first:
+      213: 864529708813487091
+    second: Syd_89
+  - first:
+      213: 4317251542006407466
+    second: Syd_90
+  - first:
+      213: 2232220983741183963
+    second: Syd_91
+  - first:
+      213: 3956389208258838445
+    second: Syd_92
+  - first:
+      213: 129317993976960907
+    second: Syd_93
+  - first:
+      213: -6116895018946284718
+    second: Syd_94
+  - first:
+      213: 1975634437239957440
+    second: Syd_95
+  - first:
+      213: 4165672833030058425
+    second: Syd_96
+  - first:
+      213: -2831420622005989924
+    second: Syd_97
+  - first:
+      213: 2356933116187091281
+    second: Syd_98
+  - first:
+      213: -7456066228604784626
+    second: Syd_99
+  - first:
+      213: -8163542029420541033
+    second: Syd_100
+  - first:
+      213: 520049006543270652
+    second: Syd_101
+  - first:
+      213: -669884119567906230
+    second: Syd_102
+  - first:
+      213: -6660874413444073465
+    second: Syd_103
+  - first:
+      213: 1697049198048136551
+    second: Syd_104
+  - first:
+      213: -5480358898829065979
+    second: Syd_105
+  - first:
+      213: -5747704871214443094
+    second: Syd_106
+  - first:
+      213: 6618716676871509597
+    second: Syd_107
+  - first:
+      213: 6529781916836420362
+    second: Syd_108
+  - first:
+      213: -4039827483813296599
+    second: Syd_109
+  - first:
+      213: -5334039038151263272
+    second: Syd_110
+  - first:
+      213: -2298562777867180193
+    second: Syd_111
+  - first:
+      213: -799814174268344168
+    second: Syd_112
+  - first:
+      213: -1918765218717217762
+    second: Syd_113
+  - first:
+      213: 6203223701859587026
+    second: Syd_114
+  - first:
+      213: -4907641932358831181
+    second: Syd_115
+  - first:
+      213: -8774603728328826007
+    second: Syd_116
+  - first:
+      213: 5163453291790566325
+    second: Syd_117
+  - first:
+      213: -5436247160507185854
+    second: Syd_118
+  - first:
+      213: -4936456946668628231
+    second: Syd_119
+  - first:
+      213: 950994720941979190
+    second: Syd_120
+  - first:
+      213: 7454305900881510231
+    second: Syd_121
+  - first:
+      213: 5054014384831064412
+    second: Syd_122
+  - first:
+      213: 870303313026717643
+    second: Syd_123
+  - first:
+      213: 7967438502240334288
+    second: Syd_124
+  - first:
+      213: -8030159133436779373
+    second: Syd_125
+  - first:
+      213: 4788638286934483984
+    second: Syd_126
+  - first:
+      213: 8908277682067141951
+    second: Syd_127
+  - first:
+      213: 3113711987408615178
+    second: Syd_128
+  - first:
+      213: -332403870355366764
+    second: Syd_129
+  - first:
+      213: -102887919537776700
+    second: Syd_130
+  - first:
+      213: -8440179220251760185
+    second: Syd_131
+  - first:
+      213: -4519322622557222696
+    second: Syd_132
+  - first:
+      213: -13726008237416099
+    second: Syd_133
+  - first:
+      213: -2414366281628034255
+    second: Syd_134
+  - first:
+      213: -684659226546899191
+    second: Syd_135
+  - first:
+      213: 5322864296328655609
+    second: Syd_136
+  - first:
+      213: -5130262356614773092
+    second: Syd_137
+  - first:
+      213: 618054063263767271
+    second: Syd_138
+  - first:
+      213: -8123689042275902790
+    second: Syd_139
+  - first:
+      213: -6663635236141394601
+    second: Syd_140
+  - first:
+      213: 2359677073064994266
+    second: Syd_141
+  - first:
+      213: -8602876608120491820
+    second: Syd_142
+  - first:
+      213: -1809551135356953386
+    second: Syd_143
+  - first:
+      213: -9064733236932368875
+    second: Syd_144
+  - first:
+      213: -5159810057905314512
+    second: Syd_145
+  - first:
+      213: -5004897447014752699
+    second: Syd_146
+  - first:
+      213: 2463771685437207994
+    second: Syd_147
+  - first:
+      213: 912246274059744124
+    second: Syd_148
+  - first:
+      213: -919482028894838258
+    second: Syd_149
+  - first:
+      213: 2759046194284619593
+    second: Syd_150
+  - first:
+      213: 5938844869650271916
+    second: Syd_151
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Syd_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a0e7a2d57715200800000000000000
+      internalID: 167045903217986117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775254a23dcc12c90800000000000000
+      internalID: -7196245522242001545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa63fe252a1cb850800000000000000
+      internalID: 6394014317963078312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0921ad5785d4b8730800000000000000
+      internalID: 4002377736178504336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ae95b42c948a1920800000000000000
+      internalID: 2961825511115169441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15207e8eb9a51ba60800000000000000
+      internalID: 7688025664572031569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca7dbf64f8a5fa30800000000000000
+      internalID: 4248487591294106311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf13c9ce3f344fc80800000000000000
+      internalID: -8289926299156467205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f8280d096fc5b40800000000000000
+      internalID: 5430486352535916314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2687e73610f8dcec0800000000000000
+      internalID: -3545020095543740318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add493ee02b734ac0800000000000000
+      internalID: -3872115873242591782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71fa151b62c070070800000000000000
+      internalID: 8072434217408114455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b84022f208c20bd40800000000000000
+      internalID: 5598023265879721099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d42648e039f08e0800000000000000
+      internalID: -1724998441699750650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 353760bc8f630f8b0800000000000000
+      internalID: -5120532334134267053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_15
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a96f1f3dcdfe09d0800000000000000
+      internalID: -2806026459836094039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_16
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f8c8b6071b557170800000000000000
+      internalID: 8175540853016152307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_17
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 935af48174d083850800000000000000
+      internalID: 6356845473035167033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_18
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 778c9c38147a52f70800000000000000
+      internalID: 9161912916780894327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_19
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3dc78da8af49c0d0800000000000000
+      internalID: -3402100457617240770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8399a89b8d1c229b0800000000000000
+      internalID: -5106305890914756296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66c72a7baeeedf150800000000000000
+      internalID: 5908140978050595942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae80c50d547eb8e90800000000000000
+      internalID: -7022264906919704342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_23
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3fc0104ea2e83150800000000000000
+      internalID: 5852676953794989883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_24
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28441c8accba020e0800000000000000
+      internalID: -2296646914466036606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_25
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10e43d26a58f4ea20800000000000000
+      internalID: 3090868311371763201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_26
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acccdb64c1f883130800000000000000
+      internalID: 3546742058162965706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_27
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f93958f2713258010800000000000000
+      internalID: 1190396258997867423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_28
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03712f8305d241b90800000000000000
+      internalID: -7272137675720485072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_29
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75709ee708d6274a0800000000000000
+      internalID: -6597090105491912873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f803cbbec71bad240800000000000000
+      internalID: 4817357901515206799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7342c4f149dfcdb0800000000000000
+      internalID: -4769354603059592321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_32
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5466daf25503980800000000000000
+      internalID: -8561249228370328106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_33
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49881b5857c89dee0800000000000000
+      internalID: -1235802186354423660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_34
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74cb8fae5aa8160d0800000000000000
+      internalID: -3431308995863200697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_35
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0933b23e8e6956360800000000000000
+      internalID: 7162296709390480272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_36
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d57a604adc92ab8d0800000000000000
+      internalID: -2829903452652001443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_37
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6dc51c38ccec9b50800000000000000
+      internalID: 6601411498563980653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_38
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a37f961b8fc6b62f0800000000000000
+      internalID: -978568678638749894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_39
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d32447b3517bd660800000000000000
+      internalID: 7411642216139203542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad7acaa7e3d78e8b0800000000000000
+      internalID: -5122706868834359334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_41
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa361cc6723e2a570800000000000000
+      internalID: 8476587207132537770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_42
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b29663148fa50160800000000000000
+      internalID: 6991186978358596280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_43
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55c8fa2a19b0ed350800000000000000
+      internalID: 6043280470105361493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_44
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d05df5ad53c9d5660800000000000000
+      internalID: 7376223519813653773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_45
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f89c8eb449a97b000800000000000000
+      internalID: 51679882457434511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_46
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0869c882bab5d7780800000000000000
+      internalID: -8683683715822610816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_47
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 560dc278acf3cb000800000000000000
+      internalID: 52987434705408101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_48
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c03aab0bf48633fa0800000000000000
+      internalID: -5822195201783192820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_49
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9331b30de9237660800000000000000
+      internalID: 7382290312136307613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59d7c4c78110abf90800000000000000
+      internalID: -6937231071334597227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_51
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4e436a7a4634930800000000000000
+      internalID: 4126252354812306616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_52
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa5736f65d593ecd0800000000000000
+      internalID: -2530013821722724950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_53
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d57c49259eb990b80800000000000000
+      internalID: -8428033801232005283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_54
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad65104f740102110800000000000000
+      internalID: 1234004199121966810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_55
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a7925525e0c20930800000000000000
+      internalID: 4108057900521527204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_56
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb513e72406bcba20800000000000000
+      internalID: 3079536374179894719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_57
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 176e4ea4cb316fe20800000000000000
+      internalID: 3383913869446801009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_58
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f033eabd1149b6d0800000000000000
+      internalID: -2974274482956193550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Syd_59
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a860f59620be1370800000000000000
+      internalID: 8295261243433838758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
