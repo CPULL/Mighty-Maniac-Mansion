@@ -13,7 +13,7 @@ public enum Dir { F=0, B=2, L=1, R=3, None = 99 };
 /// <summary>
 /// Used to specify which cursor to use
 /// </summary>
-public enum CursorTypes {  None=0, Examine=3, Wait=4, Open=5, Close=6, PickUp=7, Use=8 };
+public enum CursorTypes {  None=0, Examine=3, Wait=4, Open=5, Close=6, PickUp=7, Use=8, Item=9 };
 
 
 /// <summary>

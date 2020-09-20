@@ -141,6 +141,15 @@ public class Actor : MonoBehaviour {
   }
 
   internal void WalkTo(Vector2 dest, Dir d, Path p, System.Action<Actor, Item> action = null, Item item = null) {
+    destination = dest;
+    destination.z = transform.position.z;
+    Vector2 wdir = destination - transform.position;
+    float dist = Vector2.Distance(transform.position, dest);
+    if (wdir.sqrMagnitude < .1f || dist < .15f) {
+      action?.Invoke(this, item);
+      return;
+    }
+
     callBack = action;
     callBackItem = item;
     destination = dest;
@@ -148,11 +157,7 @@ public class Actor : MonoBehaviour {
     path = p;
     dir = d;
     walking = true;
-
-    Vector3 wdir = destination - transform.position;
-    if (wdir != Vector3.zero) {
-      anim.Play("Walk" + dir);
-    }
+    anim.Play("Walk" + dir);
   }
 
   internal void PlaySound(AudioClip audioClip) {

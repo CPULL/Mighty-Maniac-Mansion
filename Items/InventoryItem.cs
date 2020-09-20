@@ -11,10 +11,12 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
   public void OnPointerEnter(PointerEventData eventData) {
     back.color = Color.blue;
+    Controller.SetItem(item, true);
   }
 
   public void OnPointerExit(PointerEventData eventData) {
     back.color = Color.gray;
+    Controller.SetItem(null, true);
   }
 
 

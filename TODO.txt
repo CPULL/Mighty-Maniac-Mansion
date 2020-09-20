@@ -1,6 +1,19 @@
 Mighty Maniac Mansion
 
+
+
+
+If we are using an object, show the obejct. Try a double cursor in case we are over another item (something like: "use it with that")
+Remove the cursor item when doing actions, also just walking.
+Do not let walking if using an item. But remove the item with rmb
+Changes on cursor should not be allowed if a item is being used
+
+
+
+
 * TODO ************************************************************************************************************
+
+Change walk anims. Do not start with idle pose.
 
 Create assets for the outside part of the home
 Create some assets for the rooms

@@ -13,6 +13,7 @@ public class Controller : MonoBehaviour {
   Camera cam;
 
   public PortraitClickHandler ActorPortrait1;
+
   public PortraitClickHandler ActorPortrait2;
   public PortraitClickHandler ActorPortrait3;
   public PortraitClickHandler InventoryPortrait;
@@ -205,19 +206,34 @@ public class Controller : MonoBehaviour {
       }
 
       else if ((overItem.whatItDoesR == WhatItDoes.Use && rmb) || (overItem.whatItDoesL == WhatItDoes.Use && lmb)) {
-        WalkAndAction(currentActor, overItem,
-          new System.Action<Actor, Item>((actor, item) => {
-            actor.SetDirection(item.dir);
-            string res = item.Use(currentActor);
-            if (res != null)
-              actor.Say(res);
-            else {
-              usedItem = item;
-            }
-          }));
+        if (usedItem == null) {
+          WalkAndAction(currentActor, overItem,
+            new System.Action<Actor, Item>((actor, item) => {
+              actor.SetDirection(item.dir);
+              string res = item.Use(currentActor);
+              if (res != null)
+                actor.Say(res);
+              else {
+                lastUsedItem = item;
+              }
+            }));
+        }
+        else { // Can we use the two items together?
+
+          if (usedItem.CheckActions(currentActor, overItem)) { // Yes
+            usedItem.PlayActions(currentActor, overItem);
+          }
+          else if (overItem.CheckActions(currentActor, usedItem)) { // Yes
+            overItem.PlayActions(currentActor, usedItem);
+          }
+          else {
+            currentActor.Say("It does not work...");
+          }
+
+        }
       }
 
-      else if ((overItem.whatItDoesR == WhatItDoes.Pick && rmb) || (overItem.whatItDoesL == WhatItDoes.Pick && lmb)) {
+      else if (overItem.owner == Chars.None && ((overItem.whatItDoesR == WhatItDoes.Pick && rmb) || (overItem.whatItDoesL == WhatItDoes.Pick && lmb))) {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
             ShowName(currentActor + " got " + item.Name);
@@ -233,6 +249,22 @@ public class Controller : MonoBehaviour {
             forcedCursor = CursorTypes.None;
             if (Inventory.activeSelf) ActivateInventory(currentActor);
           }));
+        overItem = null;
+      }
+
+      else if (overItem.owner != Chars.None && lmb) {
+
+        if (usedItem == overItem) {
+          c.forcedCursor = CursorTypes.None;
+          oldCursor = null;
+          usedItem = null;
+          return;
+        }
+        usedItem = overItem;
+        overItem = null;
+        oldCursor = null;
+        c.forcedCursor = CursorTypes.Item;
+        Cursor.SetCursor(usedItem.cursorImage, c.center32, CursorMode.Auto);
       }
 
       else if ((overItem.whatItDoesR == WhatItDoes.Walk && rmb) || (overItem is Door && overItem.whatItDoesL == WhatItDoes.Walk && lmb)) {
@@ -314,11 +346,14 @@ public class Controller : MonoBehaviour {
   }
 
   private CursorTypes forcedCursor = CursorTypes.None;
-  private Item overItem = null;
-  private Item usedItem = null;
+  private Item overItem = null; // Items we are over with the mouse
+  private Item lastUsedItem = null; // Last item that was used
+  private Item usedItem = null; // Item that is being used (and visible on the cursor)
   private Texture2D oldCursor = null;
   void HandleCursor() {
     if (c.status != GameStatus.NormalGamePlay) return;
+
+    if (forcedCursor == CursorTypes.Item) return;
 
     if (forcedCursor == CursorTypes.None) {
       if (0 <= cursorTime && cursorTime <= .5f) {
@@ -447,56 +482,84 @@ public class Controller : MonoBehaviour {
     if (c.Inventory.activeSelf) c.ActivateInventory(c.currentActor);
   }
 
-  internal static void SetItem(Item item) {
+  internal static void SetItem(Item item, bool fromInventory = false) {
     if (c.status != GameStatus.NormalGamePlay) return;
+
+    if (fromInventory) {
+      if (item == null) {
+        c.overItem = null;
+        if (c.TextMsg.text != "") c.HideName();
+        return;
+      }
+      c.overItem = item;
+      if (c.usedItem == null) {
+        if (item.whatItDoesR == WhatItDoes.Use) {
+          c.forcedCursor = CursorTypes.Use;
+          c.overItem = item;
+          c.ShowName(item.Name);
+        }
+        else if (item.whatItDoesR == WhatItDoes.Read) {
+          c.forcedCursor = CursorTypes.Examine;
+          c.overItem = item;
+          c.ShowName(item.Name);
+        }
+      }
+      return;
+    }
+
     if (item == null) {
-      c.forcedCursor = CursorTypes.None;
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
       c.overItem = null;
       if (c.TextMsg.text != "") c.HideName();
+      return;
+    }
+    if (item.owner != Chars.None) {
+      c.overItem = item;
       return;
     }
 
     // Right
     if (item.whatItDoesR == WhatItDoes.Walk) {
-      c.forcedCursor = CursorTypes.None;
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
       c.overItem = item;
     }
     else if (item.whatItDoesR == WhatItDoes.Pick) {
-      c.forcedCursor = CursorTypes.PickUp;
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.PickUp;
       c.overItem = item;
       c.ShowName(item.Name);
     }
     else if (item.whatItDoesR == WhatItDoes.Use) {
-      c.forcedCursor = CursorTypes.Use;
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Use;
       c.overItem = item;
       c.ShowName(item.Name);
     }
     else if (item.whatItDoesR == WhatItDoes.Read) {
-      c.forcedCursor = CursorTypes.Examine;
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Examine;
       c.overItem = item;
       c.ShowName(item.Name);
     }
     // Left
     else if (item.whatItDoesL == WhatItDoes.Walk) {
-      c.forcedCursor = CursorTypes.None;
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
       c.overItem = item;
     }
     else if (item.whatItDoesL == WhatItDoes.Pick) {
-      c.forcedCursor = CursorTypes.PickUp;
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.PickUp;
       c.overItem = item;
       c.ShowName(item.Name);
     }
     else if (item.whatItDoesL == WhatItDoes.Use) {
-      c.forcedCursor = CursorTypes.Use;
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Use;
       c.overItem = item;
       c.ShowName(item.Name);
     }
     else if (item.whatItDoesL == WhatItDoes.Read) {
-      c.forcedCursor = CursorTypes.Examine;
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Examine;
       c.overItem = item;
       c.ShowName(item.Name);
     }
   }
+
 
   GameSequence currentSequence;
   GameAction currentAction;

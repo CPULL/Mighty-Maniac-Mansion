@@ -19,6 +19,7 @@ public class GameItem : MonoBehaviour {
   public Sprite yesImage;
   public Sprite noImage;
   public Sprite iconImage;
+  public Texture2D cursorImage;
 
   public Vector2 HotSpot;
   public Dir dir;
@@ -30,12 +31,12 @@ public class GameItem : MonoBehaviour {
 
 
 
-  internal string PlayActions(Actor actor) {
+  internal string PlayActions(Actor actor, Item item = null) {
     if (actions == null || actions.Count == 0) return null;
     string fail = null;
     bool atLeastOne = false;
     foreach (ActionAndCondition ac in actions) {
-      string res = ac.Condition.Verify(actor, this);
+      string res = ac.Condition.Verify(actor, item == null ? this : item);
       if (res == null) {
         Controller.AddAction(ac.Action);
         atLeastOne = true;
@@ -62,6 +63,14 @@ public class GameItem : MonoBehaviour {
     }
     return atLeastOne ? null : fail;
   }
+
+  internal bool CheckActions(Actor actor, Item other) {
+
+    foreach(ActionAndCondition ac in actions) {
+      if (ac.Condition.Verify(actor, other) == null) return true;
+    }
+    return false;
+  }
 }
 
 
@@ -76,7 +85,7 @@ public class GameItemEditor : Editor {
   SerializedProperty Usable, UsableWith;
   bool showDescription = false;
   SerializedProperty Description, Owner;
-  SerializedProperty yesImage, noImage, iconImage;
+  SerializedProperty yesImage, noImage, iconImage, cursorImage;
   SerializedProperty overColor, normalColor;
   SerializedProperty HotSpot, dir;
   SerializedProperty actions;
@@ -94,6 +103,7 @@ public class GameItemEditor : Editor {
     yesImage = serializedObject.FindProperty("yesImage");
     noImage = serializedObject.FindProperty("noImage");
     iconImage = serializedObject.FindProperty("iconImage");
+    cursorImage = serializedObject.FindProperty("cursorImage");
     overColor = serializedObject.FindProperty("overColor");
     normalColor = serializedObject.FindProperty("normalColor");
     HotSpot = serializedObject.FindProperty("HotSpot");
@@ -135,10 +145,11 @@ public class GameItemEditor : Editor {
 
     // Images
     EditorGUILayout.BeginHorizontal();
-    EditorGUIUtility.labelWidth = 24;
+    EditorGUIUtility.labelWidth = 20;
     EditorGUILayout.PropertyField(yesImage, new GUIContent("Yes"));
     EditorGUILayout.PropertyField(noImage, new GUIContent("No"));
     EditorGUILayout.PropertyField(iconImage, new GUIContent("Icon"));
+    EditorGUILayout.PropertyField(cursorImage, new GUIContent("Curs"));
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 

@@ -34,6 +34,7 @@ public class GameCondition {
       case Condition.ActionCompleted: return Controller.ActionStatus(action) == Running.Running ? null : "Cannot start";
       case Condition.ActionNotStarted: return Controller.ActionStatus(action) == Running.NotStarted ? null : "Cannot start";
       case Condition.ActionRunning: return Controller.ActionStatus(action) == Running.Running ? null : "Cannot start";
+      case Condition.WithItem: return item == obj.Item ? null : "Not valid item";
     }
 
     return null; // FIXME a string telling why it cannot be executed (but only if mandatory)
@@ -61,6 +62,7 @@ public class GameCondition {
       case Condition.ActionCompleted: return "Action " + actionVal.ToString() + " is completed";
       case Condition.ActionNotStarted: return "Action " + actionVal.ToString() + " is not started";
       case Condition.ActionRunning: return "Action " + actionVal.ToString() + " is running";
+      case Condition.WithItem: return "Usabe with " + itemVal.ToString();
     }
     return conditionVal.ToString() + " NOT Implemented!";
   }
@@ -84,7 +86,8 @@ public enum Condition {
   ActionNotStarted,
   ActionRunning,
   ItemIsCollected,
-  ItemIsNotCollected
+  ItemIsNotCollected,
+  WithItem
 }
 
 
@@ -164,6 +167,7 @@ public class MyConditionPropertyDrawer : PropertyDrawer {
       case Condition.ItemIsUnlocked:
       case Condition.ItemIsCollected:
       case Condition.ItemIsNotCollected:
+      case Condition.WithItem:
         rect2 = new Rect(position.x + 10, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
         item.intValue = EditorGUI.Popup(rect2, "Item", item.intValue, item.enumNames);
         break;
@@ -199,6 +203,7 @@ public class MyConditionPropertyDrawer : PropertyDrawer {
       case Condition.ItemIsCollected: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ItemIsNotCollected: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ItemIsUnlocked: return EditorGUIUtility.singleLineHeight * 2.5f;
+      case Condition.WithItem: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ActionCompleted: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ActionNotStarted: return EditorGUIUtility.singleLineHeight * 2.5f;
       case Condition.ActionRunning: return EditorGUIUtility.singleLineHeight * 2.5f;

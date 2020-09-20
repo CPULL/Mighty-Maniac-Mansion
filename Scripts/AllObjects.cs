@@ -15,10 +15,8 @@ public class AllObjects : MonoBehaviour {
   }
 
   internal Item FindItemByID(ItemEnum id) {
-    Debug.Log("Searching for: " + id);
     foreach (Item i in itemsList) {
       if (i.Item == id) {
-        Debug.Log("Found: " + i);
         return i;
       }
     }
@@ -45,7 +43,7 @@ public enum ItemEnum {
   Grate,
   BasementPassage,
   TedGrave,
-
+  FrontDoor,
 
 
 }
