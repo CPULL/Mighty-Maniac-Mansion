@@ -619,6 +619,10 @@ MonoBehaviour:
   tr: {x: 0, y: 0, z: 0}
   bl: {x: 0, y: 0, z: 0}
   br: {x: 0, y: 0, z: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
   ShowPaths: 0
 --- !u!212 &92995111
 SpriteRenderer:
@@ -1223,6 +1227,10 @@ MonoBehaviour:
   tr: {x: 0, y: 0, z: 0}
   bl: {x: 0, y: 0, z: 0}
   br: {x: 0, y: 0, z: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
   ShowPaths: 0
 --- !u!212 &185919568
 SpriteRenderer:
@@ -3514,6 +3522,10 @@ MonoBehaviour:
   tr: {x: 0, y: 0, z: 0}
   bl: {x: 0, y: 0, z: 0}
   br: {x: 0, y: 0, z: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
   ShowPaths: 0
 --- !u!212 &470062116
 SpriteRenderer:
@@ -11807,7 +11819,7 @@ GameObject:
   - component: {fileID: 1511547135}
   - component: {fileID: 1511547134}
   m_Layer: 0
-  m_Name: New Path
+  m_Name: Central
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11869,12 +11881,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minY: 0
-  maxY: 0
+  maxY: 2
   isStair: 0
-  tl: {x: -1.2319688, y: 0.24986762, z: 0}
+  tl: {x: -1.6316116, y: 0.09021724, z: 0}
   tr: {x: 5.5671964, y: -0.55079603, z: 0}
-  bl: {x: -1.0480549, y: -0.90175927, z: 0}
-  br: {x: 5.4993157, y: -1.6838038, z: 0}
+  bl: {x: -1.0488951, y: -0.8996588, z: 0}
+  br: {x: 5.5036297, y: -1.6743422, z: 0}
+  left: {fileID: 1601540054}
+  right: {fileID: 1584069389}
+  up: {fileID: 0}
+  down: {fileID: 0}
   ShowPaths: 1
 --- !u!1 &1515709751
 GameObject:
@@ -13077,7 +13093,7 @@ GameObject:
   - component: {fileID: 1584069389}
   - component: {fileID: 1584069388}
   m_Layer: 0
-  m_Name: New Path (2)
+  m_Name: Rightmost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13139,12 +13155,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minY: 0
-  maxY: 0
+  maxY: 2
   isStair: 0
-  tl: {x: 5.5624204, y: -0.55163074, z: 0}
+  tl: {x: 5.5671964, y: -0.55079603, z: 0}
   tr: {x: 8.534506, y: 0.3325839, z: 0}
   bl: {x: 5.5036297, y: -1.6743422, z: 0}
   br: {x: 8.730386, y: -1.3805542, z: 0}
+  left: {fileID: 1511547135}
+  right: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
   ShowPaths: 1
 --- !u!1 &1587344080
 GameObject:
@@ -13477,7 +13497,7 @@ GameObject:
   - component: {fileID: 1601540054}
   - component: {fileID: 1601540053}
   m_Layer: 0
-  m_Name: New Path (1)
+  m_Name: Leftmost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13539,12 +13559,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minY: 0
-  maxY: 0
+  maxY: 2
   isStair: 0
   tl: {x: -7.335485, y: 0.29219437, z: 0}
-  tr: {x: -1.2347112, y: 0.24653369, z: 0}
+  tr: {x: -1.6316116, y: 0.09021724, z: 0}
   bl: {x: -7.5284777, y: -1.8381035, z: 0}
   br: {x: -1.0488951, y: -0.8996588, z: 0}
+  left: {fileID: 0}
+  right: {fileID: 1511547135}
+  up: {fileID: 0}
+  down: {fileID: 0}
   ShowPaths: 1
 --- !u!1 &1615168876
 GameObject:
@@ -13630,6 +13654,10 @@ MonoBehaviour:
   tr: {x: 0, y: 0, z: 0}
   bl: {x: 0, y: 0, z: 0}
   br: {x: 0, y: 0, z: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
   ShowPaths: 0
 --- !u!212 &1615168880
 SpriteRenderer:
