@@ -44,9 +44,18 @@ public enum ItemEnum {
   Doormat,
   Grate,
   BasementPassage,
+  TedGrave,
 
 
 
+}
 
+/// <summary>
+/// List of all the actions that have an ID (mostly sequences)
+/// </summary>
+public enum ActionEnum {
+  NoAction,
+  Intro,
+  Doorbell,
 }
 

@@ -148,8 +148,3 @@ public enum WhatItDoes {
 
 
 
-public enum ActionEnum {
-  NoAction,
-}
-
-

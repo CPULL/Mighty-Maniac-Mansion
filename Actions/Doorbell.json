@@ -4,7 +4,7 @@
 	"conditions":[],
 	"actions":[
 		{ "type":"Teleport", "actor":"Ed", "pos":[999,999], "dir":"L", "Par":"ShowRoom", "wait":.01 },
-		{ "type":"Speak", "actor":"Ed", "msg":"The doorbell.\nMaybe i sthe package I was waiting for.", "dir":"F" },
+		{ "type":"Speak", "actor":"Ed", "msg":"The doorbell.\nMaybe it is the package\nI was waiting for.", "dir":"F" },
 		{ "type":"Expression", "actor":"Ed", "expr":"Happy", "dir":"F", "wait":.5 },
 		{ "type":"Walk", "actor":"Ed", "pos":[99,99], "dir":"F", "wait":.5 },
 		{ "type":"Open", "item":"EdDoorInt", "wait":.5 },
@@ -12,9 +12,10 @@
 		{ "type":"ShowRoom", "room":"FrontDoor", "wait":.5 },
 		{ "type":"Open", "item":"HomeDoorExt" },
 		{ "type":"Teleport", "actor":"Ed", "pos":[-49.34,2.395], "dir":"F" },
-		{ "type":"Speak", "actor":"Ed", "msg":"You are not the delivery guy.\nCannot you read the sign?\n\nGoAway!", "dir":"F" },
+		{ "type":"Speak", "actor":"Ed", "msg":"You are not the delivery guy.\nCannot you read the sign?\n\nGo away!", "dir":"F" },
 		{ "type":"Expression", "actor":"Ed", "expr":"Sad", "dir":"F", "wait":.5 },
+		{ "type":"Remove", "actor":"Ed" },
 		{ "type":"Close", "item":"HomeDoorExt" },
-		{ "type":"Remove", "actor":"Ed" }
+		{ "type":"Lock", "item":"HomeDoorExt" }
 	]
 }

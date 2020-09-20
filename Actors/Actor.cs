@@ -52,9 +52,9 @@ public class Actor : MonoBehaviour {
     Vector3 np = transform.position + wdir * speed * Time.deltaTime;
 
     float ty = transform.position.y;
-    float sh = path.maxY - path.minY;
-    float scaley = (ty - path.minY) / sh;
-    scaley = (1 - scaley) * path.minSize + scaley * path.maxSize;
+    if (ty < path.minY) ty = path.minY;
+    if (ty > path.maxY) ty = path.maxY;
+    float scaley = -0.044f * ty + 0.4f;
     transform.localScale = new Vector3(scaley, scaley, 1);
 
     if (wdir.sqrMagnitude < .1f || dist < .15f) {

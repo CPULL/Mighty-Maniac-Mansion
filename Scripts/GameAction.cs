@@ -17,7 +17,6 @@ public class GameAction {
 
 
   public ActionType type;
-  public ActionEnum id;
   public bool Repeatable;
 
   public Chars actor;
@@ -28,6 +27,7 @@ public class GameAction {
   public Dir dir;
   public float delay;
   public ItemEnum item;
+  public ActionEnum action;
   public bool yesNo;
 
 
@@ -75,36 +75,6 @@ public class GameAction {
     if (n == "jeff") actor = Chars.Jeff;
     if (n == "javid") actor = Chars.Javid;
   }
-
-  //internal void SetOther(string a) {
-  //  if (a == null) {
-  //    other = Chars.None;
-  //    return;
-  //  }
-  //  string n = a.ToLowerInvariant();
-  //  if (n == "none") other = Chars.None;
-  //  if (n == "fred") other = Chars.Fred;
-  //  if (n == "edna") other = Chars.Edna;
-  //  if (n == "ted") other = Chars.Ted;
-  //  if (n == "ed") other = Chars.Ed;
-  //  if (n == "edwige") other = Chars.Edwige;
-  //  if (n == "greententacle") other = Chars.GreenTentacle;
-  //  if (n == "purpletentacle") other = Chars.PurpleTentacle;
-  //  if (n == "actor1") other = Chars.Actor1;
-  //  if (n == "actor2") other = Chars.Actor2;
-  //  if (n == "actor3") other = Chars.Actor3;
-  //  if (n == "kidnappedactor") other = Chars.KidnappedActor;
-  //  if (n == "dave") other = Chars.Dave;
-  //  if (n == "bernard") other = Chars.Bernard;
-  //  if (n == "hoagie") other = Chars.Hoagie;
-  //  if (n == "michael") other = Chars.Michael;
-  //  if (n == "razor") other = Chars.Razor;
-  //  if (n == "sandy") other = Chars.Sandy;
-  //  if (n == "syd") other = Chars.Syd;
-  //  if (n == "wendy") other = Chars.Wendy;
-  //  if (n == "jeff") other = Chars.Jeff;
-  //  if (n == "javid") other = Chars.Javid;
-  //}
 
   internal void SetDir(string value) {
     string d = value.ToLowerInvariant();
@@ -196,7 +166,6 @@ public class MyActionPropertyDrawer : PropertyDrawer {
 
 
     SerializedProperty type = property.FindPropertyRelative("type");
-    SerializedProperty id = property.FindPropertyRelative("id");
     SerializedProperty Repeatable = property.FindPropertyRelative("Repeatable");
     SerializedProperty actor = property.FindPropertyRelative("actor");
     SerializedProperty pos = property.FindPropertyRelative("pos");
@@ -206,6 +175,7 @@ public class MyActionPropertyDrawer : PropertyDrawer {
     SerializedProperty dir = property.FindPropertyRelative("dir");
     SerializedProperty delay = property.FindPropertyRelative("delay");
     SerializedProperty item = property.FindPropertyRelative("item");
+    SerializedProperty action = property.FindPropertyRelative("action");
     SerializedProperty yesNo = property.FindPropertyRelative("yesNo");
 
 
@@ -222,11 +192,8 @@ public class MyActionPropertyDrawer : PropertyDrawer {
     EditorGUI.LabelField(rectName, name);
 
     // ID and Repeatable
-    Rect rectID = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
     Rect rectRep = new Rect(position.x + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
     Rect rectDel = new Rect(position.x + 100 + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2 - 100, EditorGUIUtility.singleLineHeight);
-    EditorGUIUtility.labelWidth = 40;
-    id.intValue = EditorGUI.Popup(rectID, "ID", id.intValue, id.enumDisplayNames);
     EditorGUIUtility.labelWidth = 90;
     Repeatable.boolValue = EditorGUI.Toggle(rectRep, "Repeatable", Repeatable.boolValue);
     delay.floatValue = EditorGUI.FloatField(rectDel, "Delay", delay.floatValue);
@@ -337,6 +304,8 @@ public class MyActionPropertyDrawer : PropertyDrawer {
 
 
       case ActionType.SetSequence:
+        rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+        action.intValue = EditorGUI.Popup(rect1, "ID", action.intValue, action.enumDisplayNames);
         break;
     }
 
