@@ -3,7 +3,8 @@ Mighty Maniac Mansion
 
 
 
-
+Change y speed and x speed. x >>> y to simulate depth
+Pathfinding...
 
 
 * TODO ************************************************************************************************************
