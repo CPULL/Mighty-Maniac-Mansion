@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Path : MonoBehaviour {
+public class OldPath : MonoBehaviour {
   public float minY;
   public float maxY;
   public bool isStair;
@@ -11,27 +10,29 @@ public class Path : MonoBehaviour {
   public Vector2 tr = new Vector2(1, 1);
   public Vector2 bl = new Vector2(0, 0);
   public Vector2 br = new Vector2(1, 0);
-  public Path left;
-  public Path right;
-  public Path up;
-  public Path down;
+  public OldPath left;
+  public OldPath right;
+  public OldPath up;
+  public OldPath down;
   public float g;
   public float h;
-  public Path prev;
+  public OldPath prev;
 
   Mesh mesh;
-  public MainPath parent;
+  public OldMainPath parent;
   public bool ShowPaths = false;
 
   void Start() {
-    GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
+    SpriteRenderer sr = GetComponent<SpriteRenderer>();
+    if (sr != null) sr.color = new Color32(0, 0, 0, 0);
+    ShowPaths = false;
   }
 
   internal bool FixParent() {
-    if (parent == null) parent = transform.parent.GetComponent<MainPath>();
+    if (parent == null) parent = transform.parent.GetComponent<OldMainPath>();
 
     if (parent == null) {
-      Debug.LogError("Missing main parent!");
+      Debug.LogError("Missing main parent! " + gameObject.name);
       return true;
     }
 
@@ -52,20 +53,16 @@ public class Path : MonoBehaviour {
     Gizmos.DrawIcon(pos + tr, "SelectorTR.png", false);
   }
 
-  internal void CalculateH(Path other) {
-    h = Vector2.Distance(Center(), other.Center());
-  }
-
-  internal Vector2 Center() {
-    return new Vector2((tl.x + tr.x + bl.x + br.x) / 4, (tl.y + tr.y + bl.y + br.y) / 4);
-  }
-
   void OnDrawGizmosSelected() {
     if (!ShowPaths) return;
 
-    Vector2 pos = transform.position;
+    Vector3 posbl = new Vector3(transform.position.x + bl.x, transform.position.y + bl.y, 1);
+    Vector3 posbr = new Vector3(transform.position.x + br.x, transform.position.y + br.y, 1);
+    Vector3 postl = new Vector3(transform.position.x + tl.x, transform.position.y + tl.y, 1);
+    Vector3 postr = new Vector3(transform.position.x + tr.x, transform.position.y + tr.y, 1);
+
     mesh = new Mesh {
-      vertices = new Vector3[] { pos + bl, pos + br, pos + tl, pos + tr },
+      vertices = new Vector3[] { posbl, posbr, postl, postr },
       triangles = new int[] { 0, 2, 1, 2, 3, 1 },
       normals = new Vector3[4] { -Vector3.forward, -Vector3.forward, -Vector3.forward, -Vector3.forward },
       uv = new Vector2[4] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) }
@@ -76,6 +73,15 @@ public class Path : MonoBehaviour {
     Gizmos.color = IsConvex() ? Color.yellow : Color.red;
     Gizmos.DrawMesh(mesh);
   }
+
+  internal void CalculateH(OldPath other) {
+    h = Vector2.Distance(Center(), other.Center());
+  }
+
+  internal Vector2 Center() {
+    return new Vector2((tl.x + tr.x + bl.x + br.x) / 4, (tl.y + tr.y + bl.y + br.y) / 4);
+  }
+
 
   public bool IsConvex() {
     bool got_negative = false;
@@ -104,8 +110,7 @@ public class Path : MonoBehaviour {
     return true; // If we got this far, the polygon is convex.
   }
 
-  private static float CrossProductLength(float Ax, float Ay,
-    float Bx, float By, float Cx, float Cy) {
+  private static float CrossProductLength(float Ax, float Ay, float Bx, float By, float Cx, float Cy) {
     // Get the vectors' coordinates.
     float BAx = Ax - Bx;
     float BAy = Ay - By;
@@ -133,7 +138,7 @@ public class Path : MonoBehaviour {
     // Find the siblings. They need to have both edges snapped
     foreach (Transform sib in parent.transform) {
       if (sib == transform) continue;
-      Path p = sib.GetComponent<Path>();
+      OldPath p = sib.GetComponent<OldPath>();
 
       if (tl == p.tr && bl == p.br) left = p;
       if (tr == p.tl && br == p.bl) right = p;
@@ -145,10 +150,10 @@ public class Path : MonoBehaviour {
 #endif
 }
 
-[CustomEditor(typeof(Path))]
+[CustomEditor(typeof(OldPath))]
 public class PathEditor : Editor {
   void OnSceneGUI() {
-    Path t = target as Path;
+    OldPath t = target as OldPath;
     if (!t.ShowPaths) return;
 
     Handles.color = Color.red;
@@ -156,61 +161,72 @@ public class PathEditor : Editor {
     Vector3 snap = Vector3.one * 0.5f;
     if (t.FixParent()) return;
 
+    Vector2 tp = t.transform.position;
     EditorGUI.BeginChangeCheck();
-    Vector2 np = Handles.FreeMoveHandle(t.tl, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    Vector2 np = Handles.FreeMoveHandle(tp + t.tl, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
     if (EditorGUI.EndChangeCheck()) {
       Undo.RecordObject(t, "TL");
-      t.tl = np;
+      t.tl = np - tp;
       // Try to snap
       foreach (Transform sib in t.parent.transform) {
         if (sib == t.transform) continue;
-        Path p = sib.GetComponent<Path>();
-        Vector2 edge = p.tr;
-        if (np != edge && Vector2.Distance(np, edge) < .05f) {
-          t.tl = edge;
+        OldPath p = sib.GetComponent<OldPath>();
+        Vector2 edge = p.tr + tp;
+        if (np != edge && Vector2.Distance(np, edge) < .05f) t.tl = edge - tp;
+        else {
+          edge = p.bl + tp;
+          if (np != edge && Vector2.Distance(np, edge) < .05f) t.tl = edge - tp;
         }
       }
     }
     EditorGUI.BeginChangeCheck();
-    np = Handles.FreeMoveHandle(t.tr, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    np = Handles.FreeMoveHandle(tp + t.tr, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
     if (EditorGUI.EndChangeCheck()) {
       Undo.RecordObject(t, "TR");
-      t.tr = np;
+      t.tr = np - tp;
       // Try to snap
       foreach (Transform sib in t.parent.transform) {
         if (sib == t.transform) continue;
-        Path p = sib.GetComponent<Path>();
-        Vector2 edge = p.tl;
-        if (np != edge && Vector2.Distance(np, edge) < .05f) {
-          t.tr = edge;
+        OldPath p = sib.GetComponent<OldPath>();
+        Vector2 edge = p.tl + tp;
+        if (np != edge && Vector2.Distance(np, edge) < .05f) t.tr = edge - tp;
+        else {
+          edge = p.br + tp;
+          if (np != edge && Vector2.Distance(np, edge) < .05f) t.tr = edge - tp;
         }
       }
     }
     EditorGUI.BeginChangeCheck();
-    np = Handles.FreeMoveHandle(t.bl, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    np = Handles.FreeMoveHandle(tp + t.bl, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
     if (EditorGUI.EndChangeCheck()) {
       Undo.RecordObject(t, "BL");
-      t.bl = np;
+      t.bl = np - tp;
       // Try to snap
       foreach (Transform sib in t.parent.transform) {
         if (sib == t.transform) continue;
-        Vector2 edge = sib.GetComponent<Path>().br;
-        if (np != edge && Vector2.Distance(np, edge) < .05f) {
-          t.bl = edge;
+        OldPath p = sib.GetComponent<OldPath>();
+        Vector2 edge = p.br + tp;
+        if (np != edge && Vector2.Distance(np, edge) < .05f) t.bl = edge - tp;
+        else {
+          edge = p.tl + tp;
+          if (np != edge && Vector2.Distance(np, edge) < .05f) t.bl = edge - tp;
         }
       }
     }
     EditorGUI.BeginChangeCheck();
-    np = Handles.FreeMoveHandle(t.br, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    np = Handles.FreeMoveHandle(tp + t.br, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
     if (EditorGUI.EndChangeCheck()) {
       Undo.RecordObject(t, "BR");
-      t.br = np;
+      t.br = np - tp;
       // Try to snap
       foreach (Transform sib in t.parent.transform) {
         if (sib == t.transform) continue;
-        Vector2 edge = sib.GetComponent<Path>().bl;
-        if (np != edge && Vector2.Distance(np, edge) < .05f) {
-          t.br = edge;
+        OldPath p = sib.GetComponent<OldPath>();
+        Vector2 edge = p.bl + tp;
+        if (np != edge && Vector2.Distance(np, edge) < .05f) t.br = edge - tp;
+        else {
+          edge = p.tr + tp;
+          if (np != edge && Vector2.Distance(np, edge) < .05f) t.br = edge - tp;
         }
       }
     }
@@ -220,13 +236,13 @@ public class PathEditor : Editor {
     DrawDefaultInspector();
 
     if (GUILayout.Button("Set")) {
-      Path t = target as Path;
+      OldPath t = target as OldPath;
       if (t.FixParent()) return;
 
       // Find the siblings. They need to have both edges snapped
-      t.parent.paths = new List<Path>();
+      t.parent.paths = new List<OldPath>();
       foreach (Transform sib in t.parent.transform) {
-        Path p = sib.GetComponent<Path>();
+        OldPath p = sib.GetComponent<OldPath>();
         if (p != null) t.parent.paths.Add(p);
       }
 

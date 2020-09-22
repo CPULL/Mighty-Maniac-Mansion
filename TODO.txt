@@ -2,9 +2,9 @@ Mighty Maniac Mansion
 
 
 
+Fix the problem of the paths not being good when the root is moved
 
 Change y speed and x speed. x >>> y to simulate depth
-Pathfinding...
 
 
 * TODO ************************************************************************************************************
@@ -95,6 +95,6 @@ Sandy
 Jeff
 Sandy
 ??Javid??
-
+Ollie
 
 

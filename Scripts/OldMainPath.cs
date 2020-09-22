@@ -2,25 +2,25 @@
 using UnityEditor;
 using UnityEngine;
 
-public class MainPath : MonoBehaviour {
+public class OldMainPath : MonoBehaviour {
   public bool ShowPaths = false;
-  public List<Path> paths;
+  public List<OldPath> paths;
   public Vector2 start, end;
   internal List<Vector2> gizmoLines = null;
 
   public List<Vector2> PathFind(Vector2 start, Vector2 end) {
-    Path pstart = FindPathFromPoint(start);
-    Path pend = FindPathFromPoint(end);
+    OldPath pstart = FindPathFromPoint(start);
+    OldPath pend = FindPathFromPoint(end);
     if (pstart==null || pend==null) {
       Debug.LogWarning("Path not inside nodes!");
       return null;
     }
 
     List<Vector2> res = new List<Vector2>();
-    List<Path> openSet = new List<Path> { pstart };
+    List<OldPath> openSet = new List<OldPath> { pstart };
     pstart.prev = null;
     pend.prev = null;
-    foreach(Path n in paths) {
+    foreach(OldPath n in paths) {
       n.g = float.PositiveInfinity;
       n.h = float.PositiveInfinity;
       n.prev = null;
@@ -30,7 +30,7 @@ public class MainPath : MonoBehaviour {
 
     bool found = false;
     while (openSet.Count > 0) {
-      Path q = GetMinPath(openSet);
+      OldPath q = GetMinPath(openSet);
       if (q == pend) {
         found = true;
         break;
@@ -89,9 +89,9 @@ public class MainPath : MonoBehaviour {
     // Minimize the paths
 
     res.Add(end);
-    Path p1 = pend;
-    Path p2 = pend.prev;
-    while (true) {
+    OldPath p1 = pend;
+    OldPath p2 = pend.prev;
+    while (p1 != null && p2 != null) {
       Vector2 c1 = p1 == pend ? end : (p1 == pstart ? start : p1.Center());
       Vector2 c2 = p2 == pend ? end : (p2 == pstart ? start : p2.Center());
 
@@ -118,11 +118,12 @@ public class MainPath : MonoBehaviour {
     }
 
     // We need to check if the "line" from prev to current will pass on the merged edge. If not we need to add a point on the edge
+    res.Reverse();
     return res;
   }
 
 
-  Vector2 GetEdge(Path p1, Path p2, bool first) {
+  Vector2 GetEdge(OldPath p1, OldPath p2, bool first) {
     if (p1.left == p2) {
       if (first) return p1.tl;
       return p1.bl;
@@ -142,10 +143,10 @@ public class MainPath : MonoBehaviour {
     return p1.tl;
   }
 
-  Path GetMinPath(List<Path> list) {
+  OldPath GetMinPath(List<OldPath> list) {
     float min = float.MaxValue;
-    Path res = null;
-    foreach(Path p in list)
+    OldPath res = null;
+    foreach(OldPath p in list)
       if (p.g + p.h < min) {
         res = p;
         min = p.g + p.h;
@@ -187,70 +188,24 @@ public class MainPath : MonoBehaviour {
   }
 
 
-  private Path FindPathFromPoint(Vector2 point) {
-    foreach (Path p in paths)
-      if (IsInsideTri(p.tl, p.tr, p.br, point) || IsInsideTri(p.br, p.bl, p.tl, point)) return p;
+  private OldPath FindPathFromPoint(Vector2 point) {
     return null;
   }
-
-
-
-  float Area(Vector2 v1, Vector2 v2, Vector2 v3) {
-    return Mathf.Abs((v1.x * (v2.y - v3.y) + v2.x * (v3.y - v1.y) + v3.x * (v1.y - v2.y)) / 2.0f);
-  }
-
-  /* A function to check whether point P(x, y) lies inside the triangle formed by vertices V1, V2, and V3 */
-  bool IsInsideTri(Vector2 v1, Vector2 v2, Vector2 v3, Vector2 p) {
-    float A = Area(v1, v2, v3); /* Calculate area of triangle ABC */
-    float A1 = Area(p, v2, v3); /* Calculate area of triangle PBC */
-    float A2 = Area(v1, p, v3); /* Calculate area of triangle PAC */
-    float A3 = Area(v1, v2, p); /* Calculate area of triangle PAB */
-
-    /* Check if sum of A1, A2 and A3 is same as A */
-    return Mathf.Abs(A - (A1 + A2 + A3)) < .1f;
-  }
-
-#if UNITY_EDITOR
-  void OnDrawGizmos() {
-    Vector2 pos = transform.position;
-    Path p = FindPathFromPoint(start);
-    if (p == null)
-      Gizmos.DrawIcon(pos + start, "PointOut.png", false);
-    else
-      Gizmos.DrawIcon(pos + start, "PointInStart.png", false);
-    p = FindPathFromPoint(end);
-    if (p == null)
-      Gizmos.DrawIcon(pos + end, "PointOut.png", false);
-    else
-      Gizmos.DrawIcon(pos + end, "PointInEnd.png", false);
-
-
-    if (gizmoLines == null || gizmoLines.Count < 2) return;
-    ShowPaths = false;
-
-    Gizmos.color = Color.red;
-    for (int i = 0; i < gizmoLines.Count - 1; i++) {
-      Vector3 a = gizmoLines[i];
-      Vector3 b = gizmoLines[i+1];
-      Gizmos.DrawLine(a, b);
-    }
-  }
-#endif
 
 }
 
 
-[CustomEditor(typeof(MainPath))]
+[CustomEditor(typeof(OldMainPath))]
 public class MainPathEditor : Editor {
 
   public override void OnInspectorGUI() {
     DrawDefaultInspector();
 
-    MainPath mp = target as MainPath;
+    OldMainPath mp = target as OldMainPath;
     if (GUILayout.Button("Set paths")) {
-      mp.paths = new List<Path>();
+      mp.paths = new List<OldPath>();
       foreach (Transform sib in mp.transform) {
-        Path p = sib.GetComponent<Path>();
+        OldPath p = sib.GetComponent<OldPath>();
         if (p != null) {
           mp.paths.Add(p);
           p.Set();
@@ -259,6 +214,10 @@ public class MainPathEditor : Editor {
     }
     if (GUILayout.Button("Check A*")) {
       mp.gizmoLines = mp.PathFind(mp.start, mp.end);
+      if (mp.gizmoLines == null) {
+        Debug.LogWarning("No path available");
+        return;
+      }
       string dbg = "";
       foreach (Vector2 v in mp.gizmoLines)
         dbg += v.ToString() + " ";
@@ -270,22 +229,23 @@ public class MainPathEditor : Editor {
     }
   }
   void OnSceneGUI() {
-    MainPath mp = target as MainPath;
+    OldMainPath mp = target as OldMainPath;
     Handles.color = Color.cyan;
     float size = HandleUtility.GetHandleSize(mp.start) * 0.25f;
     Vector3 snap = Vector3.one * 0.5f;
 
+    Vector2 tp = mp.transform.position;
     EditorGUI.BeginChangeCheck();
-    Vector2 np = Handles.FreeMoveHandle(mp.start, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    Vector2 np = Handles.FreeMoveHandle(tp + mp.start, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
     if (EditorGUI.EndChangeCheck()) {
       Undo.RecordObject(mp, "ppp");
-      mp.start = np;
+      mp.start = np - tp;
     }
     EditorGUI.BeginChangeCheck();
-    np = Handles.FreeMoveHandle(mp.end, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    np = Handles.FreeMoveHandle(tp + mp.end, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
     if (EditorGUI.EndChangeCheck()) {
       Undo.RecordObject(mp, "ppp");
-      mp.end = np;
+      mp.end = np - tp;
     }
   }
 }

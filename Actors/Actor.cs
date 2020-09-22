@@ -13,12 +13,13 @@ public class Actor : MonoBehaviour {
   System.Action<Actor, Item> callBack = null;
   Item callBackItem = null;
   bool walking = false;
-  Path path = null;
+  PathNode path = null;
   Dir dir = Dir.F;
   private AudioSource audios;
   public List<Item> inventory;
   public Chars id;
   public List<Skill> skills;
+  List<Vector2> parcour;
 
   private void Awake() {
     anim = GetComponent<Animator>();
@@ -58,11 +59,15 @@ public class Actor : MonoBehaviour {
     transform.localScale = new Vector3(scaley, scaley, 1);
 
     if (wdir.sqrMagnitude < .1f || dist < .15f) {
-      transform.position = destination;
-      walking = false;
-      callBack?.Invoke(this, callBackItem);
-      callBack = null;
-      return;
+      if (parcour == null || parcour.Count == 0) {
+        transform.position = destination;
+        walking = false;
+        callBack?.Invoke(this, callBackItem);
+        callBack = null;
+        return;
+      }
+      destination = parcour[0];
+      parcour.RemoveAt(0);
     }
     transform.position = np;
   }
@@ -140,7 +145,7 @@ public class Actor : MonoBehaviour {
     walking = false;
   }
 
-  internal void WalkTo(Vector2 dest, Dir d, Path p, System.Action<Actor, Item> action = null, Item item = null) {
+  internal void WalkTo(Vector2 dest, Dir d, PathNode p, System.Action<Actor, Item> action = null, Item item = null) {
     destination = dest;
     destination.z = transform.position.z;
     Vector2 wdir = destination - transform.position;
@@ -150,10 +155,19 @@ public class Actor : MonoBehaviour {
       return;
     }
 
+    // Calculate the path
+    parcour = p.parent.PathFind(transform.position, dest);
+    if (parcour == null) {
+      destination = dest;
+    }
+    else {
+      destination = parcour[1];
+      parcour.RemoveRange(0, 2);
+    }
+    destination.z = destination.y;
+
     callBack = action;
     callBackItem = item;
-    destination = dest;
-    destination.z = destination.y;
     path = p;
     dir = d;
     walking = true;

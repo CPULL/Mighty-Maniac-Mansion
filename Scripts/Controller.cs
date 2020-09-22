@@ -34,14 +34,14 @@ public class Controller : MonoBehaviour {
       case Chars.Actor1: return c.actor1;
       case Chars.Actor2: return c.actor2;
       case Chars.Actor3: return c.actor3;
-      case Chars.KidnappedActor: return c.kidnappedActor;
+      //FIXME  Chars.KidnappedActor: return c.kidnappedActor;
     }
     return null;
   }
 
   Actor actor2;
   Actor actor3;
-  readonly Actor kidnappedActor;
+  // FIXME readonly Actor kidnappedActor;
 
   Actor currentActor = null;
   Room currentRoom;
@@ -59,7 +59,7 @@ public class Controller : MonoBehaviour {
     c = this;
     cam = Camera.main;
 
-    actor1 = actors[(int)Chars.Dave];
+    actor1 = actors[(int)Chars.Dave]; // FIXME
     actor2 = actors[(int)Chars.Bernard];
     actor3 = actors[(int)Chars.Wendy];
 
@@ -287,17 +287,19 @@ public class Controller : MonoBehaviour {
     else if (lmb && !currentActor.IsWalking()) {
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
-        Path p = hit.collider.GetComponent<Path>();
+        PathNode p = hit.collider.GetComponent<PathNode>();
         // FIXME We need to check if we may need to follow a series of paths (A*-ish?)
         currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
       }
     }
     else if (Input.GetMouseButton(0) && currentActor.IsWalking()) {
+      /*
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         Path p = hit.collider.GetComponent<Path>();
         currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
       }
+      */
     }
   }
 
@@ -335,7 +337,7 @@ public class Controller : MonoBehaviour {
     if (dist > .2f) { // Need to walk
       RaycastHit2D hit = Physics2D.Raycast(overItem.HotSpot, cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
-        Path p = hit.collider.GetComponent<Path>();
+        PathNode p = hit.collider.GetComponent<PathNode>();
         currentActor.WalkTo(overItem.HotSpot, CalculateDirection(overItem.HotSpot), p, action, item);
       }
       return;
@@ -652,7 +654,7 @@ public class Controller : MonoBehaviour {
         a.SetDirection(currentAction.dir);
         RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
         if (hit.collider != null) {
-          Path p = hit.collider.GetComponent<Path>();
+          PathNode p = hit.collider.GetComponent<PathNode>();
           a.WalkTo(currentAction.pos, currentAction.dir, p);
         }
         currentAction.Complete();
