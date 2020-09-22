@@ -104,6 +104,14 @@ public class MainPath : MonoBehaviour {
       p2 = p2.prev;
 
       if (p2 == pstart) {
+        c1 = p1 == pend ? end : (p1 == pstart ? start : p1.Center());
+        c2 = p2 == pend ? end : (p2 == pstart ? start : p2.Center());
+
+        // Check if the line cross the edge or not
+        intersection = FindIntersection(c1, c2, GetEdge(p1, p2, true), GetEdge(p1, p2, false));
+        if (intersection.x != float.NaN)
+          res.Add(intersection);
+
         res.Add(start);
         break;
       }
@@ -243,7 +251,10 @@ public class MainPathEditor : Editor {
       mp.paths = new List<Path>();
       foreach (Transform sib in mp.transform) {
         Path p = sib.GetComponent<Path>();
-        if (p != null) mp.paths.Add(p);
+        if (p != null) {
+          mp.paths.Add(p);
+          p.Set();
+        }
       }
     }
     if (GUILayout.Button("Check A*")) {

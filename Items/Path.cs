@@ -115,6 +115,33 @@ public class Path : MonoBehaviour {
     // Calculate the Z coordinate of the cross product.
     return (BAx * BCy - BAy * BCx);
   }
+
+  internal void Set() {
+    PolygonCollider2D poly = GetComponent<PolygonCollider2D>();
+    if (poly == null) {
+      Debug.LogError("Missing Polyugon Collider!!!!");
+      return;
+    }
+
+    poly.points = new Vector2[] { tl, tr, br, bl };
+
+    left = null;
+    right = null;
+    up = null;
+    down = null;
+
+    // Find the siblings. They need to have both edges snapped
+    foreach (Transform sib in parent.transform) {
+      if (sib == transform) continue;
+      Path p = sib.GetComponent<Path>();
+
+      if (tl == p.tr && bl == p.br) left = p;
+      if (tr == p.tl && br == p.bl) right = p;
+
+      if (tr == p.br && tl == p.bl) up = p;
+      if (br == p.tr && bl == p.tl) down = p;
+    }
+  }
 #endif
 }
 
@@ -192,7 +219,7 @@ public class PathEditor : Editor {
   public override void OnInspectorGUI() {
     DrawDefaultInspector();
 
-    if (GUILayout.Button("Set parent")) {
+    if (GUILayout.Button("Set")) {
       Path t = target as Path;
       if (t.FixParent()) return;
 
@@ -202,47 +229,8 @@ public class PathEditor : Editor {
         Path p = sib.GetComponent<Path>();
         if (p != null) t.parent.paths.Add(p);
       }
-    }
 
-    if (GUILayout.Button("Set collider")) {
-      Path t = target as Path;
-      if (t.FixParent()) return;
-      PolygonCollider2D poly = t.GetComponent<PolygonCollider2D>();
-      if (poly == null) {
-        Debug.LogError("Missing Polyugon Collider!!!!");
-        return;
-      }
-
-      poly.points = new Vector2[] { t.tl, t.tr, t.br, t.bl };
-    }
-
-    if (GUILayout.Button("Set siblings")) {
-      Path t = target as Path;
-      t.left = null;
-      t.right = null;
-      t.up = null;
-      t.down = null;
-
-      // Find the siblings. They need to have both edges snapped
-      foreach (Transform sib in t.parent.transform) {
-        if (sib == t.transform) continue;
-        Path p = sib.GetComponent<Path>();
-        
-        if (t.tl == p.tr && 
-            t.bl == p.br) 
-          t.left = p;
-        if (t.tr == p.tl && 
-            t.br == p.bl) 
-          t.right = p;
-
-        if (t.tr == p.br && 
-            t.tl == p.bl) 
-          t.up = p;
-        if (t.br == p.tr && 
-            t.bl == p.tl) 
-          t.down = p;
-      }
-
+      t.Set();
     }
   }
 }
