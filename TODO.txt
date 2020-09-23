@@ -1,8 +1,7 @@
 Mighty Maniac Mansion
 
 
-
-Fix the problem of the paths not being good when the root is moved
+Use only absolute position for the path positions
 
 Change y speed and x speed. x >>> y to simulate depth
 

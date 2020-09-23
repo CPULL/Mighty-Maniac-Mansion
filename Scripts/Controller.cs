@@ -167,14 +167,14 @@ public class Controller : MonoBehaviour {
       p.x = currentRoom.maxR;
       cam.transform.position = p;
     }
-    else if (cpos.x < .3f * Screen.width) {
+    else if (cpos.x < .4f * Screen.width) {
       if (cam.transform.position.x > currentRoom.minL) {
-        cam.transform.position -= cam.transform.right * Time.deltaTime * (.3f * Screen.width - cpos.x) / 10;
+        cam.transform.position -= cam.transform.right * Time.deltaTime * (.4f * Screen.width - cpos.x) / 10;
       }
     }
-    else if (cpos.x > .7f * Screen.width) {
+    else if (cpos.x > .6f * Screen.width) {
       if (cam.transform.position.x < currentRoom.maxR) {
-        cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .7f * Screen.width) / 10;
+        cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .6f * Screen.width) / 10;
       }
     }
 

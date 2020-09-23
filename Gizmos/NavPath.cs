@@ -5,20 +5,17 @@ using UnityEngine;
 public class NavPath : MonoBehaviour {
   // List of PathNodes
   public List<PathNode> nodes;
-
   public bool ShowSubNodes;
-
   public bool DoAStar;
 
-  public Vector2 start;
-  public Vector2 end;
+  public Vector2 start = Vector2.zero;
+  public Vector2 end = Vector2.zero;
   public List<Vector2> gizmoLines;
 
 #if UNITY_EDITOR
   void OnDrawGizmos() {
     if (!DoAStar) return;
 
-    Vector2 pos = transform.position;
     PathNode p = FindPathNodeFromPoint(start);
     if (p == null)
       Gizmos.DrawIcon(start, "PointOut.png", false);
@@ -36,8 +33,8 @@ public class NavPath : MonoBehaviour {
 
     Gizmos.color = Color.red;
     for (int i = 0; i < gizmoLines.Count - 1; i++) {
-      Vector3 a = pos + gizmoLines[i];
-      Vector3 b = pos + gizmoLines[i + 1];
+      Vector3 a = gizmoLines[i];
+      Vector3 b = gizmoLines[i + 1];
       Gizmos.DrawLine(a, b);
       if (i > 0) Gizmos.DrawIcon(a, "PointPath.png", false);
     }
@@ -45,10 +42,8 @@ public class NavPath : MonoBehaviour {
 #endif
 
   private PathNode FindPathNodeFromPoint(Vector2 point) {
-    Vector2 pos = transform.position;
-
     foreach (PathNode p in nodes)
-      if (IsInsideTri(p.tl, p.tr, p.br, point + pos) || IsInsideTri(p.br, p.bl, p.tl, point + pos)) return p;
+      if (IsInsideTri(p.tl, p.tr, p.br, point) || IsInsideTri(p.br, p.bl, p.tl, point)) return p;
     return null;
   }
 
@@ -181,8 +176,9 @@ public class NavPath : MonoBehaviour {
 
         // Check if the line cross the edge or not
         intersection = FindIntersection(c1, c2, GetEdge(p1, p2, true), GetEdge(p1, p2, false));
-        if (intersection.x != float.NaN)
+        if (intersection.x != float.NaN) {
           res.Add(intersection);
+        }
 
         res.Add(start);
         break;
@@ -266,31 +262,41 @@ public class NavPathEditor : Editor {
   NavPath t = null;
   float size;
   Vector3 snap;
-  Vector2 tp;
 
   void OnEnable() {
     t = target as NavPath;
-    size = HandleUtility.GetHandleSize(t.transform.position) * 0.01f;
+    size = HandleUtility.GetHandleSize(t.transform.position) * 0.02f;
     snap = Vector3.one * 0.75f;
-    tp = t.transform.position;
   }
 
 
   public override void OnInspectorGUI() {
 
     // Nodes as list
-    //    EditorGUILayout.lis
     serializedObject.Update();
     EditorGUILayout.PropertyField(serializedObject.FindProperty("nodes"));
 
+
+    GUILayout.BeginHorizontal();
     // Button to fix nodes
     if (GUILayout.Button("Fix all nodes")) {
+      if (t.nodes == null) t.nodes = new List<PathNode>();
       t.nodes.Clear();
       foreach(Transform tr in t.transform) {
         PathNode n = tr.GetComponent<PathNode>();
         if (n != null) t.nodes.Add(n);
       }
     }
+    if (GUILayout.Button("Translate all nodes")) {
+      Vector2 pos = t.transform.parent.position;
+      foreach(PathNode n in t.nodes) {
+        n.tl += pos;
+        n.tr += pos;
+        n.bl += pos;
+        n.br += pos;
+      }
+    }
+    GUILayout.EndHorizontal();
 
     // Toggle to show/hide nodes
     bool newval = GUILayout.Toggle(t.ShowSubNodes, "Show paths");
@@ -314,6 +320,9 @@ public class NavPathEditor : Editor {
     }
     if (GUILayout.Button("Clean A*")) {
       t.DoAStar = false;
+      t.start = t.transform.parent.transform.position + Vector3.right;
+      t.end = t.transform.parent.transform.position + Vector3.left;
+      t.gizmoLines.Clear();
     }
     GUILayout.EndHorizontal();
 
@@ -324,8 +333,8 @@ public class NavPathEditor : Editor {
 
     if (!t.DoAStar) return;
     EditorGUI.BeginChangeCheck();
-    Vector2 nps = Handles.FreeMoveHandle(tp + t.start, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
-    Vector2 npe = Handles.FreeMoveHandle(tp + t.end, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    Vector2 nps = Handles.FreeMoveHandle(t.start, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    Vector2 npe = Handles.FreeMoveHandle(t.end, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
     if (EditorGUI.EndChangeCheck()) {
       Undo.RecordObject(t, "AStar");
       t.start = nps;

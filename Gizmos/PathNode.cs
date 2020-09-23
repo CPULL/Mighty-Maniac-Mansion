@@ -9,6 +9,7 @@ public class PathNode : MonoBehaviour {
   public PathNode left, right, top, down;
   public Vector2 tl, tr, br, bl;
   private PolygonCollider2D pcoll;
+  private Vector2 roomabs = Vector2.up;
   public NavPath parent;
   public bool showMeshLocal;
   private Color yellowish = new Color32(200, 220, 10, 200);
@@ -18,10 +19,10 @@ public class PathNode : MonoBehaviour {
 
   void OnDrawGizmos() {
     if (!showMeshLocal) return;
+    if (roomabs == Vector2.up) roomabs = parent.transform.parent.position;
 
-    Vector2 pos = transform.position;
     Mesh mesh = new Mesh {
-      vertices = new Vector3[] { pos + bl, pos + br, pos + tl, pos + tr },
+      vertices = new Vector3[] { bl, br, tl, tr },
       triangles = new int[] { 0, 2, 1, 2, 3, 1 },
       normals = new Vector3[4] { -Vector3.forward, -Vector3.forward, -Vector3.forward, -Vector3.forward },
       uv = new Vector2[4] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) }
@@ -77,7 +78,7 @@ public class PathNode : MonoBehaviour {
       br = tmp;
     }
     if (pcoll == null) pcoll = GetComponent<PolygonCollider2D>();
-    pcoll.points = new Vector2[] { tl, tr, br, bl };
+    pcoll.points = new Vector2[] { tl - roomabs, tr - roomabs, br - roomabs, bl - roomabs };
   }
 }
 
@@ -86,14 +87,12 @@ public class PathNodeEditor : Editor {
   PathNode t = null;
   float size = 1;
   Vector3 snap = Vector3.one * 0.5f;
-  Vector2 tp;
 
 
   void OnEnable() {
     t = target as PathNode;
     size = HandleUtility.GetHandleSize(Vector2.zero) * 0.25f;
     snap = Vector3.one * 0.5f;
-    tp = t.transform.position;
   }
 
   public override void OnInspectorGUI() {
@@ -133,7 +132,7 @@ public class PathNodeEditor : Editor {
     size = HandleUtility.GetHandleSize(Vector2.zero) * 0.25f;
     snap = Vector3.one * 0.5f;
 
-    if (t.left == null && Handles.Button(tp + (t.tl + t.bl) / 2, Quaternion.identity, size * .5f, size * .5f, Handles.CircleHandleCap)) {
+    if (t.left == null && Handles.Button((t.tl + t.bl) / 2, Quaternion.identity, size * .5f, size * .5f, Handles.CircleHandleCap)) {
       t.left = Instantiate(t.gameObject, t.transform.parent).GetComponent<PathNode>();
       t.left.Init(t.name + "L");
       t.left.tr = t.tl;
@@ -144,7 +143,7 @@ public class PathNodeEditor : Editor {
       if (!t.parent.nodes.Contains(t.left)) t.parent.nodes.Add(t.left);
     }
 
-    if (t.right == null && Handles.Button(tp + (t.tr + t.br) / 2, Quaternion.identity, size * .5f, size * .5f, Handles.CircleHandleCap)) {
+    if (t.right == null && Handles.Button((t.tr + t.br) / 2, Quaternion.identity, size * .5f, size * .5f, Handles.CircleHandleCap)) {
       t.right = Instantiate(t.gameObject, t.transform.parent).GetComponent<PathNode>();
       t.right.Init(t.name + "R");
       t.right.tl = t.tr;
@@ -155,7 +154,7 @@ public class PathNodeEditor : Editor {
       if (!t.parent.nodes.Contains(t.right)) t.parent.nodes.Add(t.right);
     }
 
-    if (t.top == null && Handles.Button(tp + (t.tr + t.tl) / 2, Quaternion.identity, size * .5f, size * .5f, Handles.CircleHandleCap)) {
+    if (t.top == null && Handles.Button((t.tr + t.tl) / 2, Quaternion.identity, size * .5f, size * .5f, Handles.CircleHandleCap)) {
       t.top = Instantiate(t.gameObject, t.transform.parent).GetComponent<PathNode>();
       t.top.Init(t.name + "T");
       t.top.bl = t.tl;
@@ -166,7 +165,7 @@ public class PathNodeEditor : Editor {
       if (!t.parent.nodes.Contains(t.top)) t.parent.nodes.Add(t.top);
     }
 
-    if (t.down == null && Handles.Button(tp + (t.br + t.bl) / 2, Quaternion.identity, size * .5f, size * .5f, Handles.CircleHandleCap)) {
+    if (t.down == null && Handles.Button((t.br + t.bl) / 2, Quaternion.identity, size * .5f, size * .5f, Handles.CircleHandleCap)) {
       t.down = Instantiate(t.gameObject, t.transform.parent).GetComponent<PathNode>();
       t.down.Init(t.name + "D");
       t.down.tl = t.bl;
@@ -179,17 +178,17 @@ public class PathNodeEditor : Editor {
 
 
     EditorGUI.BeginChangeCheck();
-    Vector2 wptl = Handles.FreeMoveHandle(tp + t.tl, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
-    Vector2 wptr = Handles.FreeMoveHandle(tp + t.tr, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
-    Vector2 wpbr = Handles.FreeMoveHandle(tp + t.br, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
-    Vector2 wpbl = Handles.FreeMoveHandle(tp + t.bl, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    Vector2 wptl = Handles.FreeMoveHandle(t.tl, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    Vector2 wptr = Handles.FreeMoveHandle(t.tr, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    Vector2 wpbr = Handles.FreeMoveHandle(t.br, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
+    Vector2 wpbl = Handles.FreeMoveHandle(t.bl, Quaternion.identity, size, snap, Handles.RectangleHandleCap);
 
     if (EditorGUI.EndChangeCheck()) {
       Undo.RecordObject(t, "Bounds");
-      t.tl = wptl - tp;
-      t.tr = wptr - tp;
-      t.br = wpbr - tp;
-      t.bl = wpbl - tp;
+      t.tl = wptl;
+      t.tr = wptr;
+      t.br = wpbr;
+      t.bl = wpbl;
 
       // Move siblings
       if (t.left != null) {
@@ -212,6 +211,26 @@ public class PathNodeEditor : Editor {
         t.down.tl = t.bl;
         t.down.tr = t.br;
       }
+
+      // At angles
+      if (t.left != null && t.left.top != null) { // TL
+        if (t.left.top != null) t.left.top.UpdateEdges(Vector2.zero, Vector2.zero, t.tl, Vector2.zero);
+        if (t.top.left != null) t.top.left.UpdateEdges(Vector2.zero, Vector2.zero, t.tl, Vector2.zero);
+      }
+      if (t.left != null && t.left.down != null) { // BL
+        if (t.left.down != null) t.left.down.UpdateEdges(Vector2.zero, t.bl, Vector2.zero, Vector2.zero);
+        if (t.down.left != null) t.down.left.UpdateEdges(Vector2.zero, t.bl, Vector2.zero, Vector2.zero);
+      }
+
+      if (t.right != null && t.right.top != null) { // TR
+        if (t.right.top != null) t.right.top.UpdateEdges(Vector2.zero, Vector2.zero, Vector2.zero, t.tr);
+        if (t.top.right != null) t.top.right.UpdateEdges(Vector2.zero, Vector2.zero, Vector2.zero, t.tr);
+      }
+      if (t.right != null && t.right.down != null) { // BR
+        if (t.right.down != null) t.right.down.UpdateEdges(t.br, Vector2.zero, Vector2.zero, Vector2.zero);
+        if (t.down.right != null) t.down.right.UpdateEdges(t.br, Vector2.zero, Vector2.zero, Vector2.zero);
+      }
+
       t.UpdatePoly();
     }
 
