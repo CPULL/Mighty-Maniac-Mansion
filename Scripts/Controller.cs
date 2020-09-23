@@ -68,7 +68,7 @@ public class Controller : MonoBehaviour {
 
 
     StartCoroutine(StartDelayed());
-    Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], center32, CursorMode.Auto);
+    Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
     status = GameStatus.IntroDialogue;
   }
 
@@ -91,6 +91,10 @@ public class Controller : MonoBehaviour {
 
     walkSpeed = PlayerPrefs.GetFloat("WalkSpeed", 1);
     textSpeed = PlayerPrefs.GetFloat("TalkSpeed", 1);
+
+    foreach(Room r in allObjects.roomsList) {
+      r.gameObject.SetActive(r == currentRoom);
+    }
   }
 
   IEnumerator StartDelayed() {
@@ -228,6 +232,7 @@ public class Controller : MonoBehaviour {
           }
           else {
             currentActor.Say("It does not work...");
+            Debug.Log(usedItem?.name + "  " + overItem?.name);
           }
 
         }
@@ -264,7 +269,7 @@ public class Controller : MonoBehaviour {
         overItem = null;
         oldCursor = null;
         c.forcedCursor = CursorTypes.Item;
-        Cursor.SetCursor(usedItem.cursorImage, c.center32, CursorMode.Auto);
+        Cursor.SetCursor(usedItem.cursorImage,new Vector2(usedItem.cursorImage.width / 2, usedItem.cursorImage.height / 2), CursorMode.Auto);
       }
 
       else if ((overItem.whatItDoesR == WhatItDoes.Walk && rmb) || (overItem is Door && overItem.whatItDoesL == WhatItDoes.Walk && lmb)) {
@@ -288,21 +293,25 @@ public class Controller : MonoBehaviour {
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
-        // FIXME We need to check if we may need to follow a series of paths (A*-ish?)
         currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
+        walkDelay = 0;
       }
     }
     else if (Input.GetMouseButton(0) && currentActor.IsWalking()) {
-      /*
-      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
-      if (hit.collider != null) {
-        Path p = hit.collider.GetComponent<Path>();
-        currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
+      if (walkDelay > .1f) {
+        RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
+        if (hit.collider != null) {
+          PathNode p = hit.collider.GetComponent<PathNode>();
+          currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
+          walkDelay = 0;
+        }
+      } else {
+        walkDelay += Time.deltaTime;
       }
-      */
     }
   }
 
+  float walkDelay = 0;
 
 
   Dir CalculateDirection(Vector3 point) {
@@ -360,32 +369,32 @@ public class Controller : MonoBehaviour {
     if (forcedCursor == CursorTypes.None) {
       if (0 <= cursorTime && cursorTime <= .5f) {
         if (oldCursor != Cursors[0]) {
-          Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
+          Cursor.SetCursor(Cursors[0], new Vector2(Cursors[0].width / 2, Cursors[0].height / 2), CursorMode.Auto);
           oldCursor = Cursors[0];
         }
       }
       else if (.5f < cursorTime && cursorTime <= .75f) {
         if (oldCursor != Cursors[1]) {
-          Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
+          Cursor.SetCursor(Cursors[1], new Vector2(Cursors[1].width / 2, Cursors[1].height / 2), CursorMode.Auto);
           oldCursor = Cursors[1];
         }
       }
       else if (.75f < cursorTime && cursorTime <= .9f) {
         if (oldCursor != Cursors[2]) {
-          Cursor.SetCursor(Cursors[2], center32, CursorMode.Auto);
+          Cursor.SetCursor(Cursors[2], new Vector2(Cursors[2].width / 2, Cursors[2].height / 2), CursorMode.Auto);
           oldCursor = Cursors[2];
         }
       }
       else if (.9f < cursorTime && cursorTime <= 1.05f) {
         if (oldCursor != Cursors[1]) {
-          Cursor.SetCursor(Cursors[1], center32, CursorMode.Auto);
+          Cursor.SetCursor(Cursors[1], new Vector2(Cursors[1].width / 2, Cursors[1].height / 2), CursorMode.Auto);
           oldCursor = Cursors[1];
         }
       }
       else {
         cursorTime = 0;
         if (oldCursor != Cursors[0]) {
-          Cursor.SetCursor(Cursors[0], center32, CursorMode.Auto);
+          Cursor.SetCursor(Cursors[0], new Vector2(Cursors[0].width / 2, Cursors[0].height / 2), CursorMode.Auto);
           oldCursor = Cursors[0];
         }
       }
@@ -394,7 +403,7 @@ public class Controller : MonoBehaviour {
 
 
     if (oldCursor != Cursors[(int)forcedCursor]) {
-      Cursor.SetCursor(Cursors[(int)forcedCursor], center32, CursorMode.Auto);
+      Cursor.SetCursor(Cursors[(int)forcedCursor], new Vector2(Cursors[(int)forcedCursor].width / 2, Cursors[(int)forcedCursor].height / 2), CursorMode.Auto);
       oldCursor = Cursors[(int)forcedCursor];
     }
   }

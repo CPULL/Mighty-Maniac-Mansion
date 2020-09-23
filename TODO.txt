@@ -1,8 +1,7 @@
 Mighty Maniac Mansion
 
 
-Use only absolute position for the path positions
-
+Check why the keyopen action is marked as already completed.
 Change y speed and x speed. x >>> y to simulate depth
 
 
