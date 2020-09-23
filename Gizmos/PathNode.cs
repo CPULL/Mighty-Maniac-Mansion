@@ -213,23 +213,17 @@ public class PathNodeEditor : Editor {
       }
 
       // At angles
-      if (t.left != null && t.left.top != null) { // TL
-        if (t.left.top != null) t.left.top.UpdateEdges(Vector2.zero, Vector2.zero, t.tl, Vector2.zero);
-        if (t.top.left != null) t.top.left.UpdateEdges(Vector2.zero, Vector2.zero, t.tl, Vector2.zero);
-      }
-      if (t.left != null && t.left.down != null) { // BL
-        if (t.left.down != null) t.left.down.UpdateEdges(Vector2.zero, t.bl, Vector2.zero, Vector2.zero);
-        if (t.down.left != null) t.down.left.UpdateEdges(Vector2.zero, t.bl, Vector2.zero, Vector2.zero);
-      }
+      if (t.left != null && t.left.top != null) t.left.top.UpdateEdges(Vector2.zero, Vector2.zero, t.tl, Vector2.zero);
+      if (t.top != null && t.top.left != null) t.top.left.UpdateEdges(Vector2.zero, Vector2.zero, t.tl, Vector2.zero);
 
-      if (t.right != null && t.right.top != null) { // TR
-        if (t.right.top != null) t.right.top.UpdateEdges(Vector2.zero, Vector2.zero, Vector2.zero, t.tr);
-        if (t.top.right != null) t.top.right.UpdateEdges(Vector2.zero, Vector2.zero, Vector2.zero, t.tr);
-      }
-      if (t.right != null && t.right.down != null) { // BR
-        if (t.right.down != null) t.right.down.UpdateEdges(t.br, Vector2.zero, Vector2.zero, Vector2.zero);
-        if (t.down.right != null) t.down.right.UpdateEdges(t.br, Vector2.zero, Vector2.zero, Vector2.zero);
-      }
+      if (t.left != null && t.left.down != null) t.left.down.UpdateEdges(Vector2.zero, t.bl, Vector2.zero, Vector2.zero);
+      if (t.down != null && t.down.left != null) t.down.left.UpdateEdges(Vector2.zero, t.bl, Vector2.zero, Vector2.zero);
+
+      if (t.right != null && t.right.top != null) t.right.top.UpdateEdges(Vector2.zero, Vector2.zero, Vector2.zero, t.tr);
+      if (t.top != null && t.top.right != null) t.top.right.UpdateEdges(Vector2.zero, Vector2.zero, Vector2.zero, t.tr);
+
+      if (t.right != null && t.right.down != null) t.right.down.UpdateEdges(t.br, Vector2.zero, Vector2.zero, Vector2.zero);
+      if (t.down != null && t.down.right != null) t.down.right.UpdateEdges(t.br, Vector2.zero, Vector2.zero, Vector2.zero);
 
       t.UpdatePoly();
     }
