@@ -3,6 +3,12 @@ Mighty Maniac Mansion
 The "give" is not working correctly. If the item is not marked as "pickable" it will not work
 Change the way we go over the actors and we select them. Have them to be a specific simple "Item" to use the same code.
 
+
+portrait -> LR click select actor
+actor -> left click select, right click give if object used
+
+Highlight actor if mouse is over
+
 Implement "Give" (right click over a NPC when an object is held)
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 

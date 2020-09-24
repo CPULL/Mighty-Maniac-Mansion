@@ -3,7 +3,7 @@
 	"id":"intro",
 	"conditions":[],
 	"actions":[
-		{ "type":"ShowRoom", "id":"StartArea", "pos":[7,2] },
+		{ "type":"ShowRoom", "id":"MainHall", "pos":[-59,20], "idORIG":"StartArea", "posORIG":[7,2] },
 		{ "type":"Teleport", "actor":"Actor1", "pos":[8.82,-0.76], "dir":"F" },
 		{ "type":"Teleport", "actor":"Actor2", "pos":[13.23,-1.43], "dir":"L" },
 		{ "type":"Teleport", "actor":"Actor3", "pos":[11.45,-0.46], "dir":"F" },
@@ -11,5 +11,6 @@
 		{ "type":"Speak", "actor":"Actor1", "msg":"We may die.", "dir":"F" },
 		{ "type":"Expression", "actor":"Actor2", "expr":"BigOpen", "dir":"F", "wait":.01 }
 		//, { "type":"Speak", "actor":"Actor1", "msg":"Watch my back!", "dir":"B" }
+		{ "type":"Speak", "actor":"Javid", "msg":"This is a long sentence.\nIt is long just to have the balloon to stay\nfor quite some time.\nAlso if the text will go really fast.\nWatch my back!", "dir":"F" }
 	]
 }

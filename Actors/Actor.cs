@@ -90,11 +90,11 @@ public class Actor : MonoBehaviour {
   }
 
   void OnMouseEnter() {
-    Controller.SendActorEventData(this, false);
+    Controller.OverActor(this);
   }
 
-  void OnMouseDown() {
-    Controller.SendActorEventData(this, true);
+  void OnMouseExit() {
+    Controller.OverActor(null);
   }
 
   public void Stop() {

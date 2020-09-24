@@ -73,7 +73,6 @@ public class Controller : MonoBehaviour {
   }
 
 
-
   Actor currentActor = null;
   Room currentRoom;
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
@@ -466,27 +465,15 @@ public class Controller : MonoBehaviour {
   }
 
 
-  internal static void SendEventData(IPointerClickHandler handler) {
+  internal static void HandleToolbarClicks(IPointerClickHandler handler) {
     if (c.status != GameStatus.NormalGamePlay) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
-      c.forcedCursor = CursorTypes.None;
-      c.oldCursor = null;
-      c.usedItem = null;
-      c.Inventory.SetActive(false);
-      SendActorEventData(c.actor1, true);
+      SelectActor(c.actor1);
     } else if (h == c.ActorPortrait2) {
-      c.forcedCursor = CursorTypes.None;
-      c.oldCursor = null;
-      c.usedItem = null;
-      c.Inventory.SetActive(false);
-      SendActorEventData(c.actor2, true);
+      SelectActor(c.actor2);
     } else if (h == c.ActorPortrait3) {
-      c.forcedCursor = CursorTypes.None;
-      c.oldCursor = null;
-      c.usedItem = null;
-      c.Inventory.SetActive(false);
-      SendActorEventData(c.actor3, true);
+      SelectActor(c.actor3);
     } else if (h == c.InventoryPortrait) {
       if (c.Inventory.activeSelf) { // Show/Hide inventory of current actor
         c.Inventory.SetActive(false);
@@ -514,36 +501,46 @@ public class Controller : MonoBehaviour {
     }
   }
 
-  internal static void SendActorEventData(Actor actor, bool click) {
-    if (c.status != GameStatus.NormalGamePlay || !click) return;
+  internal static void SelectActor(Actor actor) {
+    if (c.status != GameStatus.NormalGamePlay) return;
 
-    // Do we have something in our hands?
-    if (c.usedItem == null) { // No, just select the actor 
-      // FIXME only the actor1, actor2, and actor3 should be selectable. But we keep it like this for debug
-      c.currentActor = actor;
-      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-      if (actor == c.actor1) {
-        c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-      }
-      else if (actor == c.actor2) {
-        c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-      }
-      if (actor == c.actor3) {
-        c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-      }
-      c.ShowName("Selected: " + c.currentActor.name);
-      if (!c.currentActor.gameObject.activeSelf) { // Different room
-        c.StartCoroutine(c.FadeToRoomActor());
-      }
-      if (c.Inventory.activeSelf) c.ActivateInventory(c.currentActor);
+    c.forcedCursor = CursorTypes.None;
+    c.oldCursor = null;
+    c.usedItem = null;
+
+    c.currentActor = actor;
+    c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    if (actor == c.actor1) {
+      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
     }
-    else { // Give the object to the destination actor
-      c.receiverActor = actor;
-      c.usedItem.Give(c.currentActor, actor);
+    else if (actor == c.actor2) {
+      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
     }
+    if (actor == c.actor3) {
+      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    }
+    c.ShowName("Selected: " + c.currentActor.name);
+    if (!c.currentActor.gameObject.activeSelf) { // Different room
+      c.StartCoroutine(c.FadeToRoomActor());
+    }
+    if (c.Inventory.activeSelf) c.ActivateInventory(c.currentActor);
   }
+
+  Actor overActor = null;
+  internal static void OverActor(Actor actor) {
+
+
+    if (c.overActor != actor && c.overActor != null) {
+      // Remove previous highlight
+    }
+    c.overActor = actor;
+    if (actor == null) return;
+
+    // FIXME change the sprite, make it outlined
+  }
+
 
   internal static void SetItem(Item item, bool fromInventory = false) {
     if (c.status != GameStatus.NormalGamePlay) return;
@@ -707,6 +704,9 @@ public class Controller : MonoBehaviour {
         Vector3 pos = currentAction.pos;
         pos.z = -10;
         cam.transform.position = pos;
+        foreach (Room r in allObjects.roomsList)
+          r.gameObject.SetActive(false);
+        currentRoom.gameObject.SetActive(true);
         currentAction.Complete();
       }
       else if (currentAction.type == ActionType.Teleport) {
