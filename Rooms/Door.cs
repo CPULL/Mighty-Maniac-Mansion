@@ -7,6 +7,7 @@ public class Door : Item {
   public Vector3 camerapos;
   public Door correspondingDoor;
   public TransitionType transition;
+  public Dir arrivalDirection;
 
   private void Start() {
     sr.color = normalColor;
@@ -23,9 +24,9 @@ public class DoorEditor : Editor {
   SerializedProperty itemEnum, Name;
   SerializedProperty whatItDoesL, whatItDoesR;
   SerializedProperty Usable, UsableWith;
-  SerializedProperty yesImage, noImage;
+  SerializedProperty openImage, closeImage, lockImage;
   SerializedProperty overColor, normalColor;
-  SerializedProperty HotSpot, dir;
+  SerializedProperty HotSpot, dir, arrivaldir;
   SerializedProperty src, dst, correspondingDoor;
   SerializedProperty camerapos, transition;
   SerializedProperty actions;
@@ -38,12 +39,14 @@ public class DoorEditor : Editor {
     whatItDoesR = serializedObject.FindProperty("whatItDoesR");
     Usable = serializedObject.FindProperty("Usable");
     UsableWith = serializedObject.FindProperty("UsableWith");
-    yesImage = serializedObject.FindProperty("yesImage");
-    noImage = serializedObject.FindProperty("noImage");
+    openImage = serializedObject.FindProperty("openImage");
+    closeImage = serializedObject.FindProperty("closeImage");
+    lockImage = serializedObject.FindProperty("lockImage");
     overColor = serializedObject.FindProperty("overColor");
     normalColor = serializedObject.FindProperty("normalColor");
     HotSpot = serializedObject.FindProperty("HotSpot");
     dir = serializedObject.FindProperty("dir");
+    arrivaldir = serializedObject.FindProperty("arrivalDirection");
     src = serializedObject.FindProperty("src");
     dst = serializedObject.FindProperty("dst");
     camerapos = serializedObject.FindProperty("camerapos");
@@ -79,9 +82,10 @@ public class DoorEditor : Editor {
 
     // Images
     EditorGUILayout.BeginHorizontal();
-    EditorGUIUtility.labelWidth = 24;
-    EditorGUILayout.PropertyField(yesImage, new GUIContent("Yes"));
-    EditorGUILayout.PropertyField(noImage, new GUIContent("No"));
+    EditorGUIUtility.labelWidth = 35;
+    EditorGUILayout.PropertyField(openImage, new GUIContent("Open"));
+    EditorGUILayout.PropertyField(closeImage, new GUIContent("Close"));
+    EditorGUILayout.PropertyField(lockImage, new GUIContent("Lock"));
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 
@@ -98,7 +102,9 @@ public class DoorEditor : Editor {
     EditorGUIUtility.labelWidth = 50;
     EditorGUILayout.PropertyField(HotSpot, new GUIContent("HotSpot"));
     EditorGUIUtility.labelWidth = 20;
-    EditorGUILayout.PropertyField(dir, new GUIContent("Dir"), GUILayout.Width(100));
+    EditorGUILayout.PropertyField(dir, new GUIContent("Dir"), GUILayout.Width(70));
+    EditorGUIUtility.labelWidth = 40;
+    EditorGUILayout.PropertyField(arrivaldir, new GUIContent("ToDir"), GUILayout.Width(70));
     EditorGUILayout.Space(30, false);
     if (GUILayout.Button("Set", GUILayout.Width(40))) {
       Item door = target as Door;

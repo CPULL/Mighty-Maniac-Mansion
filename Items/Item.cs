@@ -21,36 +21,164 @@ public class Item : GameItem {
     string res = VerifyConditions(actor);
     if (res != null) return res;
 
-    if (Usable == Tstatus.OpenableLocked) return "It is locked";
+    if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
 
     if (Usable == Tstatus.Usable) {
-      return PlayActions(actor);
+      return PlayActions(actor, WhatItDoes.Use);
     }
     else if (Usable == Tstatus.OpenableOpen) {
-      Usable = Tstatus.OpenableClosed;
-      sr.sprite = yesImage;
-      return PlayActions(actor);
+      SetAsClosedUnlocked();
+      return PlayActions(actor, WhatItDoes.Use);
+    }
+    else if (Usable == Tstatus.OpenableOpenAutolock) {
+      SetAsClosedUnlockedAuto();
+      return PlayActions(actor, WhatItDoes.Use);
     }
     else if (Usable == Tstatus.OpenableClosed) {
-      Usable = Tstatus.OpenableOpen;
-      sr.sprite = noImage;
-      return PlayActions(actor);
+      SetAsOpen();
+      return PlayActions(actor, WhatItDoes.Use);
+    }
+    else if (Usable == Tstatus.OpenableClosedAutolock) {
+      SetAsOpenAuto();
+      return PlayActions(actor, WhatItDoes.Use);
     }
 
     return "Seems it does nothing";
   }
 
-  public void Open(bool val) {
-    if (Usable != Tstatus.OpenableOpen && Usable != Tstatus.OpenableClosed) return;
-    Usable = val ? Tstatus.OpenableOpen : Tstatus.OpenableClosed;
+  public string Open(ChangeWay val) {
+    switch (val) {
+      case ChangeWay.Ignore: return null;
+
+      case ChangeWay.EnOpenLock: // Open
+        if (Usable == Tstatus.OpenableClosed) SetAsOpen();
+        else if (Usable == Tstatus.OpenableClosedAutolock) SetAsOpen();
+        else if (Usable == Tstatus.OpenableOpen) return null;
+        else if (Usable == Tstatus.OpenableOpenAutolock) return null;
+        else if (Usable == Tstatus.OpenableLocked) return "It is locked.";
+        else if (Usable == Tstatus.OpenableLockedAutolock) return "It is locked.";
+        else return "Cannot open it";
+        return null;
+
+      case ChangeWay.DisCloseUnlock: // Close
+        if (Usable == Tstatus.OpenableClosed) return null;
+        else if (Usable == Tstatus.OpenableClosedAutolock) return null;
+        else if (Usable == Tstatus.OpenableOpen) SetAsClosedUnlocked();
+        else if (Usable == Tstatus.OpenableOpenAutolock) SetAsClosedUnlockedAuto();
+        else if (Usable == Tstatus.OpenableLocked) return null;
+        else if (Usable == Tstatus.OpenableLockedAutolock) return null;
+        else return "Does not work";
+        return this.Name + " locked";
+
+      case ChangeWay.SwapSwitch:
+        if (Usable == Tstatus.OpenableClosed) SetAsOpen();
+        else if (Usable == Tstatus.OpenableClosedAutolock) SetAsOpenAuto();
+        else if (Usable == Tstatus.OpenableOpen) SetAsClosedUnlocked();
+        else if (Usable == Tstatus.OpenableOpenAutolock) SetAsClosedUnlockedAuto();
+        else if (Usable == Tstatus.OpenableLocked) return "It is locked.";
+        else if (Usable == Tstatus.OpenableLockedAutolock) return "It is locked.";
+        else return "Does not work";
+        return null;
+
+      default:
+        Debug.LogError("Not handled Open case! " + val.ToString());
+        return "Not handled Open case! " + val.ToString();
+    }
   }
 
-  public void Lock(bool val) {
-    // FIXME we may want to check if we have the key
-    if (Usable != Tstatus.OpenableLocked) return;
-    Usable = val ? Tstatus.OpenableLocked : Tstatus.OpenableOpen;
+  public string Lock(ChangeWay val) {
+    switch(val) {
+      case ChangeWay.Ignore: return null;
+
+      case ChangeWay.EnOpenLock: // Lock
+        if (Usable == Tstatus.OpenableClosed) SetAsLocked();
+        else if (Usable == Tstatus.OpenableClosedAutolock) SetAsLockedAuto();
+        else if (Usable == Tstatus.OpenableOpen) SetAsLocked();
+        else if (Usable == Tstatus.OpenableOpenAutolock) SetAsLockedAuto();
+        else if (Usable == Tstatus.OpenableLocked) return "Already locked";
+        else if (Usable == Tstatus.OpenableLockedAutolock) return "Already locked";
+        else return "Does not work";
+        return this.Name + " locked.";
+
+      case ChangeWay.DisCloseUnlock: // Unlock
+        if (Usable == Tstatus.OpenableClosed) return "Already unlocked";
+        else if (Usable == Tstatus.OpenableClosedAutolock) return "Already unlocked";
+        else if (Usable == Tstatus.OpenableOpen) return "Already unlocked";
+        else if (Usable == Tstatus.OpenableOpenAutolock) return "Already unlocked";
+        else if (Usable == Tstatus.OpenableLocked) SetAsClosedUnlocked();
+        else if (Usable == Tstatus.OpenableLockedAutolock) SetAsClosedUnlockedAuto();
+        else return "Does not work";
+        return this.Name + " unlocked!";
+
+      case ChangeWay.SwapSwitch:
+        if (Usable == Tstatus.OpenableClosed) { SetAsLocked(); return Name + " locked."; }
+        else if (Usable == Tstatus.OpenableClosedAutolock) { SetAsLockedAuto(); return Name + " locked."; }
+        else if (Usable == Tstatus.OpenableOpen) { SetAsLocked(); return Name + " locked."; }
+        else if (Usable == Tstatus.OpenableOpenAutolock) { SetAsLockedAuto(); return Name + " locked."; }
+        else if (Usable == Tstatus.OpenableLocked) { SetAsClosedUnlocked(); return Name + " unlocked!"; }
+        else if (Usable == Tstatus.OpenableLockedAutolock) { SetAsClosedUnlockedAuto(); return Name + " unlocked!"; }
+        else return "Does not work";
+
+      default:
+        Debug.LogError("Not handled Lock case! " + val.ToString());
+        return "Not handled Lock case! " + val.ToString();
+    }
   }
 
+  private void SetAsOpen() {
+    Usable = Tstatus.OpenableOpen;
+    sr.sprite = openImage;
+    Door door = this as Door;
+    if (door != null) {
+      door.correspondingDoor.Usable = Tstatus.OpenableOpen;
+      door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
+    }
+  }
+  private void SetAsOpenAuto() {
+    Usable = Tstatus.OpenableOpenAutolock;
+    sr.sprite = openImage;
+    Door door = this as Door;
+    if (door != null) {
+      door.correspondingDoor.Usable = Tstatus.OpenableOpenAutolock;
+      door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
+    }
+  }
+  private void SetAsClosedUnlocked() {
+    Usable = Tstatus.OpenableClosed;
+    sr.sprite = closeImage;
+    Door door = this as Door;
+    if (door != null) {
+      door.correspondingDoor.Usable = Tstatus.OpenableClosed;
+      door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+    }
+  }
+  private void SetAsClosedUnlockedAuto() {
+    Usable = Tstatus.OpenableClosedAutolock;
+    sr.sprite = closeImage;
+    Door door = this as Door;
+    if (door != null) {
+      door.correspondingDoor.Usable = Tstatus.OpenableClosedAutolock;
+      door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+    }
+  }
+  private void SetAsLocked() {
+    Usable = Tstatus.OpenableLocked;
+    sr.sprite = lockImage == null ? closeImage : lockImage;
+    Door door = this as Door;
+    if (door != null) {
+      door.correspondingDoor.Usable = Tstatus.OpenableLocked;
+      door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage == null ? door.correspondingDoor.closeImage : door.correspondingDoor.lockImage;
+    }
+  }
+  private void SetAsLockedAuto() {
+    Usable = Tstatus.OpenableLockedAutolock;
+    sr.sprite = lockImage == null ? closeImage : lockImage;
+    Door door = this as Door;
+    if (door != null) {
+      door.correspondingDoor.Usable = Tstatus.OpenableLockedAutolock;
+      door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage == null ? door.correspondingDoor.closeImage : door.correspondingDoor.lockImage;
+    }
+  }
 }
 
 

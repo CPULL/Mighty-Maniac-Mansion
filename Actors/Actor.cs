@@ -62,6 +62,7 @@ public class Actor : MonoBehaviour {
   GameAction fromAction = null;
 
   public void Say(string message, GameAction action = null) {
+    if (message == null) return;
     isSpeaking = true;
     faceNum = 0;
     speakt = 0;
@@ -122,7 +123,7 @@ public class Actor : MonoBehaviour {
   }
 
 
-  internal void WalkTo(Vector2 dest, Dir dold, PathNode p, System.Action<Actor, Item> action = null, Item item = null) {
+  internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) {
     destination = dest;
     destination.z = transform.position.z;
     Vector2 wdir = destination - transform.position;

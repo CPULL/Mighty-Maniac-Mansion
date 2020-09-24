@@ -129,7 +129,10 @@ public enum Tstatus {
   Usable,
   OpenableOpen,
   OpenableClosed,
-  OpenableLocked
+  OpenableLocked,
+  OpenableLockedAutolock,
+  OpenableOpenAutolock,
+  OpenableClosedAutolock
 }
 
 /// <summary>
@@ -143,8 +146,11 @@ public enum WhatItDoes {
 }
 
 
-
-
-
+public enum ChangeWay {
+  Ignore = 0,
+  EnOpenLock = 1,
+  DisCloseUnlock = 2,
+  SwapSwitch = 3
+}
 
 

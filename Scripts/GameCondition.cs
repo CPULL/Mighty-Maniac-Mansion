@@ -14,7 +14,6 @@ public class GameCondition {
   public Condition condition;
   public ActionEnum action;
 
-
   internal string Verify(Actor performer, GameItem obj) {
     Actor a = Controller.GetActor(actor);
     switch (condition) {
@@ -37,7 +36,7 @@ public class GameCondition {
       case Condition.WithItem: return item == obj.Item ? null : "Not valid item";
     }
 
-    return null; // FIXME a string telling why it cannot be executed (but only if mandatory)
+    return null;
   }
 
   public override string ToString() {
@@ -49,8 +48,8 @@ public class GameCondition {
       case Condition.None: return "No conditions";
       case Condition.CurrentActorEqual: return "Actor is " + actorVal.ToString();
       case Condition.CurrentActorNotEqual: return "Actor is NOT " + actorVal.ToString();
-      case Condition.ActorIsAvailable: return "Actor  " + actorVal.ToString() + " is available";
-      case Condition.ActorHasSkill: return "Actor  " + actorVal.ToString() + " has " + skillVal.ToString();
+      case Condition.ActorIsAvailable: return " Actor  " + actorVal.ToString() + " is available";
+      case Condition.ActorHasSkill: return " Actor  " + actorVal.ToString() + " has " + skillVal.ToString();
       case Condition.HasItem: return "Actor  " + actorVal.ToString() + " has " + numVal + " " + itemVal.ToString();
       case Condition.DoesNotHaveItem: return "Actor  " + actorVal.ToString() + " has NOT item " + itemVal.ToString();
       case Condition.ItemIsOpen: return "Item " + itemVal.ToString() + " is open";

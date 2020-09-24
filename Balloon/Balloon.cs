@@ -22,9 +22,15 @@ public class Balloon : MonoBehaviour {
     b.delay = 1;
     b.speakComplete = completeSpeaking;
     b.anchor = speaker;
-    b.gameObject.SetActive(true);
     b.size = b.text.GetPreferredValues(message);
+
+    b.numWords = 1;
+    foreach (char c in message)
+      if (char.IsWhiteSpace(c)) b.numWords++;
+
+    b.delay = .15f * b.numWords * Controller.textSpeed * Controller.textSpeed;
     b.text.text = message;
+    b.gameObject.SetActive(true);
 
     Vector3 location = b.anchor.position + b.transform.up * b.size.y * .15f - b.transform.right * b.size.x * 0.05f;
     b.transform.position = location;
@@ -37,11 +43,6 @@ public class Balloon : MonoBehaviour {
 
     b.tip.transform.localPosition = new Vector3(-b.size.x / 4, -b.size.y / 2 + 0.235f, 0);
 
-    b.numWords = 1;
-    foreach (char c in message)
-      if (char.IsWhiteSpace(c)) b.numWords++;
-
-    b.delay = .15f * b.numWords * Controller.textSpeed * Controller.textSpeed;
   }
 
   private void Update() {

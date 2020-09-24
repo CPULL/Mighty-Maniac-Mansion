@@ -225,10 +225,27 @@ public class Controller : MonoBehaviour {
         else { // Can we use the two items together?
 
           if (usedItem.CheckActions(currentActor, overItem)) { // Yes
-            usedItem.PlayActions(currentActor, overItem);
+            string res = usedItem.PlayActions(currentActor, WhatItDoes.Use, overItem);
+            if (res != null)
+              currentActor.Say(res);
+            else {
+              c.forcedCursor = CursorTypes.None;
+              oldCursor = null;
+              usedItem = null;
+              return;
+            }
           }
           else if (overItem.CheckActions(currentActor, usedItem)) { // Yes
-            overItem.PlayActions(currentActor, usedItem);
+            string res = overItem.PlayActions(currentActor, WhatItDoes.Use, usedItem);
+            if (res != null)
+              currentActor.Say(res);
+            else {
+              c.forcedCursor = CursorTypes.None;
+              oldCursor = null;
+              usedItem = null;
+              return;
+            }
+
           }
           else {
             currentActor.Say("It does not work...");
@@ -249,7 +266,7 @@ public class Controller : MonoBehaviour {
             if (actor == actor1) item.owner = Chars.Actor1;
             else if (actor == actor2) item.owner = Chars.Actor2;
             else if (actor == actor3) item.owner = Chars.Actor3;
-            item.PlayActions(currentActor);
+            item.PlayActions(currentActor, WhatItDoes.Pick);
             item = null;
             forcedCursor = CursorTypes.None;
             if (Inventory.activeSelf) ActivateInventory(currentActor);
@@ -279,6 +296,9 @@ public class Controller : MonoBehaviour {
               actor.Say("Is locked");
               return;
             }
+            else if (item.Usable == Tstatus.OpenableClosed) {
+              return;
+            }
             StartCoroutine(ChangeRoom(actor, (item as Door)));
           }));
       }
@@ -293,7 +313,7 @@ public class Controller : MonoBehaviour {
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
-        currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
+        currentActor.WalkTo(hit.point, p);
         walkDelay = 0;
       }
     }
@@ -302,7 +322,7 @@ public class Controller : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
         if (hit.collider != null) {
           PathNode p = hit.collider.GetComponent<PathNode>();
-          currentActor.WalkTo(hit.point, CalculateDirection(hit.point), p);
+          currentActor.WalkTo(hit.point, p);
           walkDelay = 0;
         }
       } else {
@@ -312,27 +332,6 @@ public class Controller : MonoBehaviour {
   }
 
   float walkDelay = 0;
-
-
-  Dir CalculateDirection(Vector3 point) {
-    Vector3 ap = cam.WorldToScreenPoint(currentActor.transform.position);
-    Vector3 mp = cam.WorldToScreenPoint(point);
-
-    float dx = ap.x - mp.x;
-    float dy = ap.y - mp.y;
-
-    // Vert or Horiz?
-    if (Mathf.Abs(dx) * 1.2f < Mathf.Abs(dy)) {
-      // Vert
-      if (dy < 0) return Dir.B;
-      return Dir.F;
-    }
-    else {
-      // Horiz
-      if (dx < 0) return Dir.R;
-      return Dir.L;
-    }
-  }
 
 
 
@@ -347,7 +346,7 @@ public class Controller : MonoBehaviour {
       RaycastHit2D hit = Physics2D.Raycast(overItem.HotSpot, cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
-        currentActor.WalkTo(overItem.HotSpot, CalculateDirection(overItem.HotSpot), p, action, item);
+        currentActor.WalkTo(overItem.HotSpot, p, action, item);
       }
       return;
     }
@@ -664,7 +663,7 @@ public class Controller : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
         if (hit.collider != null) {
           PathNode p = hit.collider.GetComponent<PathNode>();
-          a.WalkTo(currentAction.pos, currentAction.dir, p);
+          a.WalkTo(currentAction.pos, p);
         }
         currentAction.Complete();
       }
@@ -693,19 +692,19 @@ public class Controller : MonoBehaviour {
           Debug.LogError("Cannot find item!");
           return;
         }
-        item.gameObject.SetActive(currentAction.yesNo);
+        item.gameObject.SetActive(currentAction.change == ChangeWay.EnOpenLock);
         currentAction.Complete();
       }
       else if (currentAction.type == ActionType.Open) {
         // Find the actual Item from all the known items, pick it by enum
         Item item = allObjects.FindItemByID(currentAction.item);
-        item.Open(currentAction.yesNo);
+        currentActor.Say(item.Open(currentAction.change));
         currentAction.Complete();
       }
       else if (currentAction.type == ActionType.Lock) {
         // Find the actual Item from all the known items, pick it by enum
         Item item = allObjects.FindItemByID(currentAction.item);
-        item.Lock(currentAction.yesNo);
+        currentActor.Say(item.Lock(currentAction.change));
         currentAction.Complete();
       }
       else {
@@ -786,6 +785,7 @@ public class Controller : MonoBehaviour {
     currentActor = actor;
     actor.transform.position = door.correspondingDoor.HotSpot;
     actor.currentRoom = currentRoom;
+    actor.SetDirection(door.correspondingDoor.arrivalDirection);
     yield return null;
 
     // Disable actors not in current room

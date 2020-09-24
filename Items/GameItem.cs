@@ -16,8 +16,9 @@ public class GameItem : MonoBehaviour {
 
   [TextArea(3, 10)] public string Description;
 
-  public Sprite yesImage;
-  public Sprite noImage;
+  public Sprite openImage;
+  public Sprite closeImage;
+  public Sprite lockImage;
   public Sprite iconImage;
   public Texture2D cursorImage;
 
@@ -31,12 +32,13 @@ public class GameItem : MonoBehaviour {
 
 
 
-  internal string PlayActions(Actor actor, Item item = null) {
+  internal string PlayActions(Actor actor, WhatItDoes what, Item item = null) {
     if (actions == null || actions.Count == 0) return null;
     string fail = null;
     bool atLeastOne = false;
     foreach (ActionAndCondition ac in actions) {
-      string res = ac.Condition.Verify(actor, item == null ? this : item);
+      if (ac.Action.when != what) continue;
+      string res = ac.Condition.Verify(actor, item ?? this);
       if (res == null) {
         Controller.AddAction(ac.Action);
         atLeastOne = true;
@@ -85,7 +87,7 @@ public class GameItemEditor : Editor {
   SerializedProperty Usable, UsableWith;
   bool showDescription = false;
   SerializedProperty Description, Owner;
-  SerializedProperty yesImage, noImage, iconImage, cursorImage;
+  SerializedProperty openImage, closeImage, lockImage, iconImage, cursorImage;
   SerializedProperty overColor, normalColor;
   SerializedProperty HotSpot, dir;
   SerializedProperty actions;
@@ -100,8 +102,9 @@ public class GameItemEditor : Editor {
     UsableWith = serializedObject.FindProperty("UsableWith");
     Description = serializedObject.FindProperty("Description");
     Owner = serializedObject.FindProperty("owner");
-    yesImage = serializedObject.FindProperty("yesImage");
-    noImage = serializedObject.FindProperty("noImage");
+    openImage = serializedObject.FindProperty("openImage");
+    closeImage = serializedObject.FindProperty("closeImage");
+    lockImage = serializedObject.FindProperty("lockImage");
     iconImage = serializedObject.FindProperty("iconImage");
     cursorImage = serializedObject.FindProperty("cursorImage");
     overColor = serializedObject.FindProperty("overColor");
@@ -145,9 +148,11 @@ public class GameItemEditor : Editor {
 
     // Images
     EditorGUILayout.BeginHorizontal();
+    EditorGUIUtility.labelWidth = 15;
+    EditorGUILayout.PropertyField(openImage, new GUIContent("O"));
+    EditorGUILayout.PropertyField(closeImage, new GUIContent("C"));
+    EditorGUILayout.PropertyField(lockImage, new GUIContent("L"));
     EditorGUIUtility.labelWidth = 20;
-    EditorGUILayout.PropertyField(yesImage, new GUIContent("Yes"));
-    EditorGUILayout.PropertyField(noImage, new GUIContent("No"));
     EditorGUILayout.PropertyField(iconImage, new GUIContent("Icon"));
     EditorGUILayout.PropertyField(cursorImage, new GUIContent("Curs"));
     EditorGUIUtility.labelWidth = 40;

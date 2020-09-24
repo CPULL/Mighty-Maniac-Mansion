@@ -1,18 +1,17 @@
 Mighty Maniac Mansion
 
 
-Check why the keyopen action is marked as already completed.
+Add some specific messages when an action is performed (like "easy peasy" if the grate can be removed)
+Do some check for the grate that is already open. It should not be possible to close it. Check status in condition? Change action?
+
+Have the doors to get a better "priority", so actors can get behind
 Change y speed and x speed. x >>> y to simulate depth
+Make again working the scaling of actors while changing y coordinate
 
 
 * TODO ************************************************************************************************************
 
-Change walk anims. Do not start with idle pose.
 
-Create assets for the outside part of the home
-Create some assets for the rooms
-Have inventory that can be open/closed by clicking on it. (Grapich icons + text for the items)
-Add options: music volume, text speed, text size, highlight objects (never, on over, when entering)
 Complete intro, adding variations for each character. -> May need extension to the Actions
 Implement Conditions on actions (JSON serialization, class storage and actual checking of conditions)
 Get music cover from BGO
@@ -30,7 +29,7 @@ FrontDoor:
 
 * BUGS ************************************************************************************************************
 
-If we walk to an item and the item is on stairs, we cannot use the normal walkto. We should do "paths" (navmesh?)
+
 
 * DONE ************************************************************************************************************
 
@@ -72,6 +71,16 @@ If we walk to an item and the item is on stairs, we cannot use the normal walkto
 ! Text speed is now considered.
 ! Inspector for conditions and Items
 ! Improved paths inspector
+! Have inventory that can be open/closed by clicking on it. (Grapich icons + text for the items)
+! Add options: music volume, text speed, text size, highlight objects (never, on over, when entering)
+! Added navmeashes (custom navmeshes, why not? Complete of Unity editor)
+! When opening doors, or unlocking, be sure the corresponding door has the same effect
+! Doors can be now set as "autolock". When closing them they will eb automatically locked
+! Doors have now a second direction, used when teleporting out
+! changed "yesno" sprites to "Open" "closed" and "locked"
+! changed "enable" for enable/open/lock actions to be an enum "yes/no/switch/nothing
+
+
 
 * CHARS ************************************************************************************************************
 

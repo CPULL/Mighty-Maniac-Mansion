@@ -18,6 +18,7 @@ public class GameAction {
 
   public ActionType type;
   public bool Repeatable;
+  public WhatItDoes when = WhatItDoes.Use;
 
   public Chars actor;
   public Vector2 pos;
@@ -28,7 +29,7 @@ public class GameAction {
   public float delay;
   public ItemEnum item;
   public ActionEnum action;
-  public bool yesNo;
+  public ChangeWay change = ChangeWay.Ignore;
 
 
   public GameAction(string stype) {
@@ -117,7 +118,7 @@ public class GameAction {
   }
 
   public override string ToString() {
-    return CalculateName(type, actor, item, strValue, expression, sound, pos, yesNo);
+    return CalculateName(type, actor, item, strValue, expression, sound, pos, change, when);
   }
 
   internal void CheckTime(float deltaTime) {
@@ -135,20 +136,29 @@ public class GameAction {
     time = delay;
   }
 
-  internal static string CalculateName(ActionType type, Chars actor, ItemEnum item, string strValue, Expression exp, Audios sound, Vector2 pos, bool yn) {
-    switch(type) {
+  internal static string CalculateName(ActionType type, Chars actor, ItemEnum item, string strValue, Expression exp, Audios sound, Vector2 pos, ChangeWay change, WhatItDoes when) {
+    string changename = "IGNORED";
+    if (change == ChangeWay.SwapSwitch) changename = "Swapped";
+    if (change == ChangeWay.EnOpenLock && type == ActionType.Enable) changename = "enabled";
+    if (change == ChangeWay.DisCloseUnlock && type == ActionType.Enable) changename = "disabled";
+    if (change == ChangeWay.EnOpenLock && type == ActionType.Open) changename = "open";
+    if (change == ChangeWay.DisCloseUnlock && type == ActionType.Open) changename = "close";
+    if (change == ChangeWay.EnOpenLock && type == ActionType.Lock) changename = "locked";
+    if (change == ChangeWay.DisCloseUnlock && type == ActionType.Lock) changename = "unlocked";
+
+    switch (type) {
       case ActionType.None: return "No action";
       case ActionType.ShowRoom: return "Show Room " + strValue;
       case ActionType.Teleport: return "Teleport " + actor.ToString() + " to " + pos.ToString();
       case ActionType.Speak:
         string msg = strValue.Substring(0, System.Math.Min(20, strValue.Length)).Replace("\n", " ").Trim();
         if (strValue.Length > 20) msg += "...";
-        return actor.ToString() + " say \"" + msg + "\"";
+        return "[" + when.ToString() + "] " + actor.ToString() + " say \"" + msg + "\"";
       case ActionType.Expression: return actor.ToString() + " expression " + exp;
-      case ActionType.Sound: return "Play " + sound;
-      case ActionType.Enable: return "item " + item + " will be " + (yn ? "enabled" : "disabled");
-      case ActionType.Open: return "item " + item + " will be " + (yn ? "open" : "closed");
-      case ActionType.Lock: return "item " + item + " will be " + (yn ? "locked" : "unlocked");
+      case ActionType.Sound: return "[" + when.ToString() + "] " + "Play " + sound;
+      case ActionType.Enable: return "[" + when.ToString() + "] " + "item " + item + " will be " + changename;
+      case ActionType.Open: return "[" + when.ToString() + "] " + "item " + item + " will be " + changename;
+      case ActionType.Lock: return "[" + when.ToString() + "] " + "item " + item + " will be " + changename;
     }
     return type.ToString() + " " + actor.ToString() + " " + item.ToString() + " " + strValue;
   }
@@ -176,11 +186,12 @@ public class MyActionPropertyDrawer : PropertyDrawer {
     SerializedProperty delay = property.FindPropertyRelative("delay");
     SerializedProperty item = property.FindPropertyRelative("item");
     SerializedProperty action = property.FindPropertyRelative("action");
-    SerializedProperty yesNo = property.FindPropertyRelative("yesNo");
+    SerializedProperty change = property.FindPropertyRelative("change");
+    SerializedProperty when = property.FindPropertyRelative("when");
 
 
 
-    string name = GameAction.CalculateName((ActionType)type.intValue, (Chars)actor.intValue, (ItemEnum)item.intValue, strValue.stringValue, (Expression)expression.intValue, (Audios)sound.intValue, pos.vector2Value, yesNo.boolValue);
+    string name = GameAction.CalculateName((ActionType)type.intValue, (Chars)actor.intValue, (ItemEnum)item.intValue, strValue.stringValue, (Expression)expression.intValue, (Audios)sound.intValue, pos.vector2Value, (ChangeWay)change.intValue, (WhatItDoes)when.intValue);
 
     Rect rectAct = new Rect(position.x, position.y, 90, EditorGUIUtility.singleLineHeight);
     Rect rectType = new Rect(position.x + 90, position.y, position.width / 3 - 50, EditorGUIUtility.singleLineHeight);
@@ -192,9 +203,11 @@ public class MyActionPropertyDrawer : PropertyDrawer {
     EditorGUI.LabelField(rectName, name);
 
     // ID and Repeatable
+    Rect rectWhen = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
     Rect rectRep = new Rect(position.x + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
     Rect rectDel = new Rect(position.x + 100 + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2 - 100, EditorGUIUtility.singleLineHeight);
     EditorGUIUtility.labelWidth = 90;
+    when.intValue = EditorGUI.Popup(rectWhen, "When", when.intValue, when.enumDisplayNames);
     Repeatable.boolValue = EditorGUI.Toggle(rectRep, "Repeatable", Repeatable.boolValue);
     delay.floatValue = EditorGUI.FloatField(rectDel, "Delay", delay.floatValue);
 
@@ -292,7 +305,7 @@ public class MyActionPropertyDrawer : PropertyDrawer {
         rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width * 3 / 4, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + position.width * 3 / 4, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
         item.intValue = EditorGUI.Popup(rect1, "Item", item.intValue, item.enumNames);
-        yesNo.boolValue = EditorGUI.Toggle(rect2, "Enabled", yesNo.boolValue);
+        change.intValue = EditorGUI.Popup(rect2, "Change", change.intValue, change.enumDisplayNames);
 
         if (item.intValue == 0) {
           GUIStyle style = new GUIStyle();
