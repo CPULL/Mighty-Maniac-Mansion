@@ -40,18 +40,18 @@ public class GameCondition {
   }
 
   public override string ToString() {
-    return CalculateName(condition, actor, skill, item, num, action);
+    return CalculateName(condition, actor.ToString(), skill, item, num, action);
   }
 
-  internal static string CalculateName(Condition conditionVal, Chars actorVal, Skill skillVal, ItemEnum itemVal, int numVal, ActionEnum actionVal) {
+  internal static string CalculateName(Condition conditionVal, string actorVal, Skill skillVal, ItemEnum itemVal, int numVal, ActionEnum actionVal) {
     switch(conditionVal) {
       case Condition.None: return "No conditions";
-      case Condition.CurrentActorEqual: return "Actor is " + actorVal.ToString();
-      case Condition.CurrentActorNotEqual: return "Actor is NOT " + actorVal.ToString();
-      case Condition.ActorIsAvailable: return " Actor  " + actorVal.ToString() + " is available";
-      case Condition.ActorHasSkill: return " Actor  " + actorVal.ToString() + " has " + skillVal.ToString();
-      case Condition.HasItem: return "Actor  " + actorVal.ToString() + " has " + numVal + " " + itemVal.ToString();
-      case Condition.DoesNotHaveItem: return "Actor  " + actorVal.ToString() + " has NOT item " + itemVal.ToString();
+      case Condition.CurrentActorEqual: return "Actor is " + actorVal;
+      case Condition.CurrentActorNotEqual: return "Actor is NOT " + actorVal;
+      case Condition.ActorIsAvailable: return " Actor  " + actorVal + " is available";
+      case Condition.ActorHasSkill: return " Actor  " + actorVal + " has " + skillVal.ToString();
+      case Condition.HasItem: return "Actor  " + actorVal + " has " + numVal + " " + itemVal.ToString();
+      case Condition.DoesNotHaveItem: return "Actor  " + actorVal + " has NOT item " + itemVal.ToString();
       case Condition.ItemIsOpen: return "Item " + itemVal.ToString() + " is open";
       case Condition.ItemIsClosed: return "Item " + itemVal.ToString() + " is closed";
       case Condition.ItemIsLocked: return "Item " + itemVal.ToString() + " is locked";
@@ -109,7 +109,7 @@ public class MyConditionPropertyDrawer : PropertyDrawer {
     SerializedProperty action = property.FindPropertyRelative("action");
 
 
-    Chars actorVal = (Chars)actor.intValue;
+    string actorVal = actor.enumDisplayNames[actor.intValue];
     ItemEnum itemVal = (ItemEnum)item.intValue;
     Skill skillVal = (Skill)skill.intValue;
     int numVal = num.intValue;

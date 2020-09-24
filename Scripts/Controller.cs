@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using SimpleJSON;
+using System;
 
 public class Controller : MonoBehaviour {
   private static Controller c;
@@ -21,27 +22,57 @@ public class Controller : MonoBehaviour {
   public GameObject InventoryItemTemplate;
   public AllObjects allObjects;
 
-  public Actor[] actors;
+  public Actor[] allEnemies;
+  public Actor[] allActors;
   Actor actor1;
+  Actor actor2;
+  Actor actor3;
+  Actor kidnappedActor;
+  Actor receiverActor;
+
+  public static Actor GetActor(Chars actor) {
+    switch(actor) {
+      case Chars.None: return null;
+      case Chars.Current: return c.currentActor;
+      case Chars.Actor1: return c.actor1;
+      case Chars.Actor2: return c.actor2;
+      case Chars.Actor3: return c.actor3;
+      case Chars.KidnappedActor: return c.kidnappedActor;
+      case Chars.Receiver: return c.receiverActor;
+      case Chars.Fred: return c.allEnemies[0];
+      case Chars.Edna: return c.allEnemies[1];
+      case Chars.Ted: return c.allEnemies[2];
+      case Chars.Ed: return c.allEnemies[3];
+      case Chars.Edwige: return c.allEnemies[4];
+      case Chars.GreenTentacle: return c.allEnemies[5];
+      case Chars.PurpleTentacle: return c.allEnemies[6];
+      case Chars.Dave: return c.allActors[0];
+      case Chars.Bernard: return c.allActors[1];
+      case Chars.Hoagie: return c.allActors[2];
+      case Chars.Michael: return c.allActors[3];
+      case Chars.Razor: return c.allActors[4];
+      case Chars.Sandy: return c.allActors[5];
+      case Chars.Syd: return c.allActors[6];
+      case Chars.Wendy: return c.allActors[7];
+      case Chars.Jeff: return c.allActors[8];
+      case Chars.Javid: return c.allActors[9];
+      case Chars.Ollie: return c.allActors[10];
+    }
+    Debug.LogError("Invalid actor requested! " + actor);
+    return null;
+  }
+
+  public static bool IsEnemy(Actor actor) {
+    foreach (Actor a in c.allEnemies)
+      if (a == actor) return true;
+    return false;
+  }
 
   internal static bool WeHaveActorPlaying(Chars actor) {
     return actor == c.actor1.id || actor == c.actor2.id || actor == c.actor3.id;
   }
 
-  internal static Actor GetActor(Chars actor) {
-    switch (actor) {
-      case Chars.Current: return c.currentActor;
-      case Chars.Actor1: return c.actor1;
-      case Chars.Actor2: return c.actor2;
-      case Chars.Actor3: return c.actor3;
-      //FIXME  Chars.KidnappedActor: return c.kidnappedActor;
-    }
-    return null;
-  }
 
-  Actor actor2;
-  Actor actor3;
-  // FIXME readonly Actor kidnappedActor;
 
   Actor currentActor = null;
   Room currentRoom;
@@ -59,13 +90,12 @@ public class Controller : MonoBehaviour {
     c = this;
     cam = Camera.main;
 
-    actor1 = actors[(int)Chars.Dave]; // FIXME
-    actor2 = actors[(int)Chars.Bernard];
-    actor3 = actors[(int)Chars.Wendy];
+    actor1 = allActors[0]; // FIXME
+    actor2 = allActors[1];
+    actor3 = allActors[7];
 
     LoadSequences();
     PickValidSequence();
-
 
     StartCoroutine(StartDelayed());
     Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
@@ -276,8 +306,7 @@ public class Controller : MonoBehaviour {
         overItem = null;
       }
 
-      else if (overItem.owner != Chars.None && lmb) {
-
+      else if (overItem.owner != Chars.None && lmb) { // Get item from inventory
         if (usedItem == overItem) {
           c.forcedCursor = CursorTypes.None;
           oldCursor = null;
@@ -333,10 +362,12 @@ public class Controller : MonoBehaviour {
     }
   }
 
+  internal static void UpdateInventory() {
+    if (c.Inventory.activeSelf)
+      c.ActivateInventory(c.currentActor);
+  }
+
   float walkDelay = 0;
-
-
-
 
   void WalkAndAction(Actor actor, Item item, System.Action<Actor, Item> action) {
     Vector3 one = actor.transform.position;
@@ -439,10 +470,22 @@ public class Controller : MonoBehaviour {
     if (c.status != GameStatus.NormalGamePlay) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
+      c.forcedCursor = CursorTypes.None;
+      c.oldCursor = null;
+      c.usedItem = null;
+      c.Inventory.SetActive(false);
       SendActorEventData(c.actor1, true);
     } else if (h == c.ActorPortrait2) {
+      c.forcedCursor = CursorTypes.None;
+      c.oldCursor = null;
+      c.usedItem = null;
+      c.Inventory.SetActive(false);
       SendActorEventData(c.actor2, true);
     } else if (h == c.ActorPortrait3) {
+      c.forcedCursor = CursorTypes.None;
+      c.oldCursor = null;
+      c.usedItem = null;
+      c.Inventory.SetActive(false);
       SendActorEventData(c.actor3, true);
     } else if (h == c.InventoryPortrait) {
       if (c.Inventory.activeSelf) { // Show/Hide inventory of current actor
@@ -473,25 +516,33 @@ public class Controller : MonoBehaviour {
 
   internal static void SendActorEventData(Actor actor, bool click) {
     if (c.status != GameStatus.NormalGamePlay || !click) return;
-    c.currentActor = actor;
 
-    c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    if (actor == c.actor1) {
-      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    // Do we have something in our hands?
+    if (c.usedItem == null) { // No, just select the actor 
+      // FIXME only the actor1, actor2, and actor3 should be selectable. But we keep it like this for debug
+      c.currentActor = actor;
+      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+      if (actor == c.actor1) {
+        c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+      }
+      else if (actor == c.actor2) {
+        c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+      }
+      if (actor == c.actor3) {
+        c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+      }
+      c.ShowName("Selected: " + c.currentActor.name);
+      if (!c.currentActor.gameObject.activeSelf) { // Different room
+        c.StartCoroutine(c.FadeToRoomActor());
+      }
+      if (c.Inventory.activeSelf) c.ActivateInventory(c.currentActor);
     }
-    else if (actor == c.actor2) {
-      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    else { // Give the object to the destination actor
+      c.receiverActor = actor;
+      c.usedItem.Give(c.currentActor, actor);
     }
-    if (actor == c.actor3) {
-      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-    }
-    c.ShowName("Selected: " + c.currentActor.name);
-    if (!c.currentActor.gameObject.activeSelf) { // Different room
-      c.StartCoroutine(c.FadeToRoomActor());
-    }
-    if (c.Inventory.activeSelf) c.ActivateInventory(c.currentActor);
   }
 
   internal static void SetItem(Item item, bool fromInventory = false) {
@@ -659,7 +710,7 @@ public class Controller : MonoBehaviour {
         currentAction.Complete();
       }
       else if (currentAction.type == ActionType.Teleport) {
-        Actor a = GetActor(currentAction);
+        Actor a = GetActor(currentAction.actor);
         a.transform.position = currentAction.pos;
         a.SetDirection(currentAction.dir);
         RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
@@ -670,19 +721,23 @@ public class Controller : MonoBehaviour {
         currentAction.Complete();
       }
       else if (currentAction.type == ActionType.Speak) {
-        Actor a = GetActor(currentAction);
-        a.Say(currentAction.strValue, currentAction);
-        a.SetDirection(currentAction.dir);
-        currentAction.Play();
+        Actor a = GetActor(currentAction.actor);
+        if (a != null) {
+          a.Say(currentAction.strValue, currentAction);
+          a.SetDirection(currentAction.dir);
+          currentAction.Play();
+        }
+        else
+          currentAction.Complete();
       }
       else if (currentAction.type == ActionType.Expression) {
-        Actor a = GetActor(currentAction);
+        Actor a = GetActor(currentAction.actor);
         a.SetDirection(currentAction.dir);
         a.SetExpression(Enums.GetExp(currentAction.strValue));
         currentAction.Play();
       }
       else if (currentAction.type == ActionType.Sound) {
-        Actor a = GetActor(currentAction);
+        Actor a = GetActor(currentAction.actor);
         if (a != null) a.SetDirection(currentAction.dir);
         currentActor.PlaySound(Sounds[(int)currentAction.sound]);
         currentAction.Play();
@@ -736,15 +791,6 @@ public class Controller : MonoBehaviour {
     }
   }
 
-  private Actor GetActor(GameAction a) {
-    if (a.actor == Chars.Current) return currentActor;
-    if (a.actor == Chars.Actor1) return actor1;
-    if (a.actor == Chars.Actor2) return actor2;
-    if (a.actor == Chars.Actor3) return actor3;
-    if (a.actor == Chars.None) return null;
-    return actors[(int)a.actor];
-  }
-
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
     // Disable gameplay
@@ -791,7 +837,11 @@ public class Controller : MonoBehaviour {
     yield return null;
 
     // Disable actors not in current room
-    foreach (Actor a in actors) {
+    foreach (Actor a in allActors) {
+      if (a == null) continue;
+      a.gameObject.SetActive(a.currentRoom == currentRoom);
+    }
+    foreach (Actor a in allEnemies) {
       if (a == null) continue;
       a.gameObject.SetActive(a.currentRoom == currentRoom);
     }
@@ -830,10 +880,15 @@ public class Controller : MonoBehaviour {
     yield return null;
 
     // Disable actors not in current room
-    foreach (Actor a in actors) {
+    foreach (Actor a in allActors) {
       if (a == null) continue;
       a.gameObject.SetActive(a.currentRoom == currentRoom);
     }
+    foreach (Actor a in allEnemies) {
+      if (a == null) continue;
+      a.gameObject.SetActive(a.currentRoom == currentRoom);
+    }
+
 
     while (time < .25f) {
       // Fade black

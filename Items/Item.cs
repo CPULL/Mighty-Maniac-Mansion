@@ -179,6 +179,26 @@ public class Item : GameItem {
       door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage == null ? door.correspondingDoor.closeImage : door.correspondingDoor.lockImage;
     }
   }
+
+  internal void Give(Actor giver, Actor receiver) {
+    // Check give conditions
+    string res = VerifyConditions(receiver);
+    if (res != null) {
+      receiver.Say(res);
+      return;
+    }
+    res = PlayActions(receiver, WhatItDoes.Pick);
+    if (res != null) {
+      if (Controller.IsEnemy(receiver)) {
+        receiver.Say("No thanks");
+        return;
+      }
+    }
+
+    giver.inventory.Remove(this);
+    receiver.inventory.Add(this);
+    Controller.UpdateInventory();
+  }
 }
 
 

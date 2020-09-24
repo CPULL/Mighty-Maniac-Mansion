@@ -46,7 +46,9 @@ public class GameItem : MonoBehaviour {
       else if (fail == null)
         fail = res;
     }
-    return atLeastOne ? null : fail;
+    if (atLeastOne) return null;
+    if (fail != null) return fail;
+    return "No valid actions";
   }
 
 

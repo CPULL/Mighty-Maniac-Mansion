@@ -118,7 +118,7 @@ public class GameAction {
   }
 
   public override string ToString() {
-    return CalculateName(type, actor, item, strValue, expression, sound, pos, change, when);
+    return CalculateName(type, actor.ToString(), item, strValue, expression, sound, pos, change, when);
   }
 
   internal void CheckTime(float deltaTime) {
@@ -136,7 +136,7 @@ public class GameAction {
     time = delay;
   }
 
-  internal static string CalculateName(ActionType type, Chars actor, ItemEnum item, string strValue, Expression exp, Audios sound, Vector2 pos, ChangeWay change, WhatItDoes when) {
+  internal static string CalculateName(ActionType type, string actor, ItemEnum item, string strValue, Expression exp, Audios sound, Vector2 pos, ChangeWay change, WhatItDoes when) {
     string changename = "IGNORED";
     if (change == ChangeWay.SwapSwitch) changename = "Swapped";
     if (change == ChangeWay.EnOpenLock && type == ActionType.Enable) changename = "enabled";
@@ -149,18 +149,18 @@ public class GameAction {
     switch (type) {
       case ActionType.None: return "No action";
       case ActionType.ShowRoom: return "Show Room " + strValue;
-      case ActionType.Teleport: return "Teleport " + actor.ToString() + " to " + pos.ToString();
+      case ActionType.Teleport: return "Teleport " + actor + " to " + pos.ToString();
       case ActionType.Speak:
         string msg = strValue.Substring(0, System.Math.Min(20, strValue.Length)).Replace("\n", " ").Trim();
         if (strValue.Length > 20) msg += "...";
-        return "[" + when.ToString() + "] " + actor.ToString() + " say \"" + msg + "\"";
-      case ActionType.Expression: return actor.ToString() + " expression " + exp;
+        return "[" + when.ToString() + "] " + actor + " say \"" + msg + "\"";
+      case ActionType.Expression: return actor + " expression " + exp;
       case ActionType.Sound: return "[" + when.ToString() + "] " + "Play " + sound;
       case ActionType.Enable: return "[" + when.ToString() + "] " + "item " + item + " will be " + changename;
       case ActionType.Open: return "[" + when.ToString() + "] " + "item " + item + " will be " + changename;
       case ActionType.Lock: return "[" + when.ToString() + "] " + "item " + item + " will be " + changename;
     }
-    return type.ToString() + " " + actor.ToString() + " " + item.ToString() + " " + strValue;
+    return type.ToString() + " " + actor + " " + item.ToString() + " " + strValue;
   }
 }
 
@@ -191,7 +191,7 @@ public class MyActionPropertyDrawer : PropertyDrawer {
 
 
 
-    string name = GameAction.CalculateName((ActionType)type.intValue, (Chars)actor.intValue, (ItemEnum)item.intValue, strValue.stringValue, (Expression)expression.intValue, (Audios)sound.intValue, pos.vector2Value, (ChangeWay)change.intValue, (WhatItDoes)when.intValue);
+    string name = GameAction.CalculateName((ActionType)type.intValue, actor.enumDisplayNames[actor.intValue], (ItemEnum)item.intValue, strValue.stringValue, (Expression)expression.intValue, (Audios)sound.intValue, pos.vector2Value, (ChangeWay)change.intValue, (WhatItDoes)when.intValue);
 
     Rect rectAct = new Rect(position.x, position.y, 90, EditorGUIUtility.singleLineHeight);
     Rect rectType = new Rect(position.x + 90, position.y, position.width / 3 - 50, EditorGUIUtility.singleLineHeight);

@@ -40,10 +40,10 @@ public enum ActionType { None = 0, Teleport = 1, Speak = 2, Move = 3, Expression
 /// List of all actors and generic actor references, like Actor1
 /// </summary>
 public enum Chars {
-  None = 0, Current = 1, Actor1 = 2, Actor2 = 3, Actor3 = 4, KidnappedActor = 5,
-  Fred = 6, Edna = 7, Ted = 8, Ed = 9, Edwige = 10, GreenTentacle = 11, PurpleTentacle = 12,
-  Dave = 13, Bernard = 14, Hoagie = 15, Michael = 16, Razor = 17, Sandy = 18, Syd = 19, Wendy = 20, Jeff = 21, Javid = 22,
-  otheractorslikepolice = 23 // FIXME this name will change
+  None = 0, Current = 1, Actor1 = 2, Actor2 = 3, Actor3 = 4, KidnappedActor = 5, Receiver = 6,
+  Fred = 10, Edna = 11, Ted = 12, Ed = 13, Edwige = 14, GreenTentacle = 15, PurpleTentacle = 16,
+  Dave = 20, Bernard = 21, Hoagie = 22, Michael = 23, Razor = 24, Sandy = 25, Syd = 26, Wendy = 27, Jeff = 28, Javid = 29, Ollie = 30,
+  otheractorslikepolice = 40 // FIXME this name will change
 };
 
 /// <summary>

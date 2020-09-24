@@ -2801,7 +2801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301252750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32.47, y: -0.596, z: 0}
+  m_LocalPosition: {x: -38.93, y: 0.06, z: 0}
   m_LocalScale: {x: 0.38, y: 0.38, z: 1}
   m_Children:
   - {fileID: 1235580343}
@@ -2849,7 +2849,7 @@ MonoBehaviour:
   Face: {fileID: 119290669}
   currentRoom: {fileID: 1117025435}
   inventory: []
-  id: 9
+  id: 13
   skills: 01000000
 --- !u!95 &301252753
 Animator:
@@ -3481,6 +3481,50 @@ MonoBehaviour:
       sound: 0
       dir: 4
       delay: 0.5
+      item: 9
+      action: 0
+      change: 1
+  - Condition:
+      actor: 23
+      skill: 1
+      item: 4
+      num: 4
+      condition: 1
+      action: 0
+    Action:
+      type: 2
+      Repeatable: 1
+      when: 2
+      actor: 23
+      pos: {x: -55, y: 2}
+      strValue: 'Thanks!
+
+        I may roll a joint...'
+      expression: 0
+      sound: 0
+      dir: 4
+      delay: 2
+      item: 9
+      action: 0
+      change: 1
+  - Condition:
+      actor: 23
+      skill: 1
+      item: 4
+      num: 4
+      condition: 2
+      action: 0
+    Action:
+      type: 2
+      Repeatable: 1
+      when: 2
+      actor: 6
+      pos: {x: -55, y: 2}
+      strValue: Winners don't do drugs!
+      expression: 0
+      sound: 0
+      dir: 4
+      delay: 2
       item: 9
       action: 0
       change: 1
@@ -9343,13 +9387,7 @@ MonoBehaviour:
   Inventory: {fileID: 411817673}
   InventoryItemTemplate: {fileID: 1650692365}
   allObjects: {fileID: 1966254326}
-  actors:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  allEnemies:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -9357,14 +9395,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  allActors:
   - {fileID: 1532743334}
   - {fileID: 1379030970}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1770484595}
   - {fileID: 1347792468}
+  - {fileID: 0}
+  - {fileID: 1785264454}
   - {fileID: 0}
   Sounds:
   - {fileID: 8300000, guid: 3714f7b8290317d44ada3a1ce06280b5, type: 3}
@@ -13810,7 +13851,7 @@ MonoBehaviour:
   Face: {fileID: 1218445518}
   currentRoom: {fileID: 1432214312}
   inventory: []
-  id: 20
+  id: 27
   skills: 01000000
 --- !u!95 &1347792469
 Animator:
@@ -14186,7 +14227,7 @@ MonoBehaviour:
   Face: {fileID: 471896663}
   currentRoom: {fileID: 1432214312}
   inventory: []
-  id: 14
+  id: 21
   skills: 050000000600000004000000
 --- !u!82 &1379030971
 AudioSource:
@@ -16198,7 +16239,7 @@ MonoBehaviour:
   Face: {fileID: 1773877622}
   currentRoom: {fileID: 1432214312}
   inventory: []
-  id: 13
+  id: 20
   skills: 0200000003000000
 --- !u!95 &1532743335
 Animator:
@@ -18823,7 +18864,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770484591}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -52.884, y: -0.565, z: 0}
+  m_LocalPosition: {x: -55.979, y: -1.253, z: 0}
   m_LocalScale: {x: 0.38, y: 0.38, z: 1}
   m_Children:
   - {fileID: 1347533380}
@@ -18991,9 +19032,9 @@ MonoBehaviour:
   - {fileID: -978568678638749894, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
   - {fileID: 7411642216139203542, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
   Face: {fileID: 606547604}
-  currentRoom: {fileID: 0}
+  currentRoom: {fileID: 1117025435}
   inventory: []
-  id: 19
+  id: 26
   skills: 0100000007000000
 --- !u!95 &1770484596
 Animator:
@@ -19124,7 +19165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785264450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -51.27, y: 17.274, z: 0}
+  m_LocalPosition: {x: -52.41, y: 16.77, z: 0}
   m_LocalScale: {x: 0.38, y: 0.38, z: 1}
   m_Children:
   - {fileID: 890794759}
@@ -19294,7 +19335,7 @@ MonoBehaviour:
   Face: {fileID: 1124099423}
   currentRoom: {fileID: 1158860359}
   inventory: []
-  id: 22
+  id: 29
   skills: 0500000004000000
 --- !u!95 &1785264455
 Animator:
