@@ -1,8 +1,7 @@
 Mighty Maniac Mansion
 
-
-Add some specific messages when an action is performed (like "easy peasy" if the grate can be removed)
-Do some check for the grate that is already open. It should not be possible to close it. Check status in condition? Change action?
+Implement "Give" (right click over a NPC when an object is held)
+Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 
 Have the doors to get a better "priority", so actors can get behind
 Change y speed and x speed. x >>> y to simulate depth
@@ -28,8 +27,6 @@ FrontDoor:
 
 
 * BUGS ************************************************************************************************************
-
-
 
 * DONE ************************************************************************************************************
 
@@ -79,7 +76,9 @@ FrontDoor:
 ! Doors have now a second direction, used when teleporting out
 ! changed "yesno" sprites to "Open" "closed" and "locked"
 ! changed "enable" for enable/open/lock actions to be an enum "yes/no/switch/nothing
-
+! Add some specific messages when an action is performed (like "easy peasy" if the grate can be removed)
+! If something is used from inventory, close the inventory
+! Basic Javid character
 
 
 * CHARS ************************************************************************************************************

@@ -232,6 +232,7 @@ public class Controller : MonoBehaviour {
               c.forcedCursor = CursorTypes.None;
               oldCursor = null;
               usedItem = null;
+              Inventory.SetActive(false);
               return;
             }
           }
@@ -243,6 +244,7 @@ public class Controller : MonoBehaviour {
               c.forcedCursor = CursorTypes.None;
               oldCursor = null;
               usedItem = null;
+              Inventory.SetActive(false);
               return;
             }
 
@@ -292,11 +294,11 @@ public class Controller : MonoBehaviour {
       else if ((overItem.whatItDoesR == WhatItDoes.Walk && rmb) || (overItem is Door && overItem.whatItDoesL == WhatItDoes.Walk && lmb)) {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
-            if (item.Usable == Tstatus.OpenableLocked) {
+            if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
               actor.Say("Is locked");
               return;
             }
-            else if (item.Usable == Tstatus.OpenableClosed) {
+            else if (item.Usable == Tstatus.OpenableClosed || item.Usable == Tstatus.OpenableClosedAutolock) {
               return;
             }
             StartCoroutine(ChangeRoom(actor, (item as Door)));

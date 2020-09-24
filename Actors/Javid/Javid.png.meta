@@ -638,6 +638,186 @@ TextureImporter:
   - first:
       213: 5938844869650271916
     second: Syd_151
+  - first:
+      213: 6941550232955295477
+    second: Javid_0
+  - first:
+      213: 1274848952976178094
+    second: Javid_1
+  - first:
+      213: 2749084340263504950
+    second: Javid_2
+  - first:
+      213: -3491318857222847287
+    second: Javid_3
+  - first:
+      213: -7549349000411392226
+    second: Javid_4
+  - first:
+      213: -2595218945722778286
+    second: Javid_5
+  - first:
+      213: -8178430573803275535
+    second: Javid_6
+  - first:
+      213: -4926943084064584539
+    second: Javid_7
+  - first:
+      213: 1562713148824751326
+    second: Javid_8
+  - first:
+      213: 3486873691361241431
+    second: Javid_9
+  - first:
+      213: -258567511601847746
+    second: Javid_10
+  - first:
+      213: -1561562607463664628
+    second: Javid_11
+  - first:
+      213: 7954337336393827024
+    second: Javid_12
+  - first:
+      213: -5596983294433986812
+    second: Javid_13
+  - first:
+      213: 8663801946229740529
+    second: Javid_14
+  - first:
+      213: 1926025216307345086
+    second: Javid_15
+  - first:
+      213: -7551318531899718241
+    second: Javid_16
+  - first:
+      213: -2684303893760072166
+    second: Javid_17
+  - first:
+      213: -1123519803632761631
+    second: Javid_18
+  - first:
+      213: 3460496925375150314
+    second: Javid_19
+  - first:
+      213: 4534733849922827717
+    second: Javid_20
+  - first:
+      213: -9157569683526837272
+    second: Javid_21
+  - first:
+      213: 7307006635197054028
+    second: Javid_22
+  - first:
+      213: -8624711668106822739
+    second: Javid_23
+  - first:
+      213: -5443246591995891130
+    second: Javid_24
+  - first:
+      213: 6433985819076854158
+    second: Javid_25
+  - first:
+      213: -3084336168081882324
+    second: Javid_26
+  - first:
+      213: 2255704974845562545
+    second: Javid_27
+  - first:
+      213: 3350585766773153438
+    second: Javid_28
+  - first:
+      213: 9024491484727557955
+    second: Javid_29
+  - first:
+      213: 1816781980217401557
+    second: Javid_30
+  - first:
+      213: -4271852922048346962
+    second: Javid_31
+  - first:
+      213: 447148487048704951
+    second: Javid_32
+  - first:
+      213: -3307770617653070306
+    second: Javid_33
+  - first:
+      213: 8456722890964455705
+    second: Javid_34
+  - first:
+      213: -1420156892731430807
+    second: Javid_35
+  - first:
+      213: 7977756899187910378
+    second: Javid_36
+  - first:
+      213: -8058209043761014937
+    second: Javid_37
+  - first:
+      213: 5555161952589622486
+    second: Javid_38
+  - first:
+      213: 4098065578235541092
+    second: Javid_39
+  - first:
+      213: -3287838807612233006
+    second: Javid_40
+  - first:
+      213: 1280661882607630813
+    second: Javid_41
+  - first:
+      213: 4586239664137608849
+    second: Javid_42
+  - first:
+      213: -3385812323568177866
+    second: Javid_43
+  - first:
+      213: -7591092156582743878
+    second: Javid_44
+  - first:
+      213: 7923416924525495114
+    second: Javid_45
+  - first:
+      213: 1566514662682827245
+    second: Javid_46
+  - first:
+      213: -2936906279008500307
+    second: Javid_47
+  - first:
+      213: -4488436037172040846
+    second: Javid_48
+  - first:
+      213: -4909369245507094560
+    second: Javid_49
+  - first:
+      213: 6580799701068174214
+    second: Javid_50
+  - first:
+      213: -8969318802708656086
+    second: Javid_51
+  - first:
+      213: -2055479129488388082
+    second: Javid_52
+  - first:
+      213: 8764164295451425846
+    second: Javid_53
+  - first:
+      213: -5982446899908304628
+    second: Javid_54
+  - first:
+      213: -6783908401041860596
+    second: Javid_55
+  - first:
+      213: 5864883208076874102
+    second: Javid_56
+  - first:
+      213: -2129923542145453322
+    second: Javid_57
+  - first:
+      213: -2595162593106780524
+    second: Javid_58
+  - first:
+      213: 2745279359773106350
+    second: Javid_59
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -737,7 +917,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Syd_0
+      name: Javid_0
       rect:
         serializedVersion: 2
         x: 0
@@ -751,14 +931,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54a0e7a2d57715200800000000000000
-      internalID: 167045903217986117
+      spriteID: 5f694d1b827555060800000000000000
+      internalID: 6941550232955295477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_1
+      name: Javid_1
       rect:
         serializedVersion: 2
         x: 256
@@ -772,14 +952,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 775254a23dcc12c90800000000000000
-      internalID: -7196245522242001545
+      spriteID: eab7c684e5c21b110800000000000000
+      internalID: 1274848952976178094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_2
+      name: Javid_2
       rect:
         serializedVersion: 2
         x: 512
@@ -793,14 +973,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aa63fe252a1cb850800000000000000
-      internalID: 6394014317963078312
+      spriteID: 63ccef664a5b62620800000000000000
+      internalID: 2749084340263504950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_3
+      name: Javid_3
       rect:
         serializedVersion: 2
         x: 768
@@ -814,14 +994,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0921ad5785d4b8730800000000000000
-      internalID: 4002377736178504336
+      spriteID: 9c40c954ff75c8fc0800000000000000
+      internalID: -3491318857222847287
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_4
+      name: Javid_4
       rect:
         serializedVersion: 2
         x: 1024
@@ -835,14 +1015,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ae95b42c948a1920800000000000000
-      internalID: 2961825511115169441
+      spriteID: e17570115135b3790800000000000000
+      internalID: -7549349000411392226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_5
+      name: Javid_5
       rect:
         serializedVersion: 2
         x: 1280
@@ -856,14 +1036,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15207e8eb9a51ba60800000000000000
-      internalID: 7688025664572031569
+      spriteID: 25d74d17e1eebfbd0800000000000000
+      internalID: -2595218945722778286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_6
+      name: Javid_6
       rect:
         serializedVersion: 2
         x: 1536
@@ -877,14 +1057,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ca7dbf64f8a5fa30800000000000000
-      internalID: 4248487591294106311
+      spriteID: 1faf24c69b0608e80800000000000000
+      internalID: -8178430573803275535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_7
+      name: Javid_7
       rect:
         serializedVersion: 2
         x: 1792
@@ -898,14 +1078,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf13c9ce3f344fc80800000000000000
-      internalID: -8289926299156467205
+      spriteID: 5ac43cd7e5bff9bb0800000000000000
+      internalID: -4926943084064584539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_8
+      name: Javid_8
       rect:
         serializedVersion: 2
         x: 2048
@@ -919,14 +1099,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1f8280d096fc5b40800000000000000
-      internalID: 5430486352535916314
+      spriteID: edc0889445fdfa510800000000000000
+      internalID: 1562713148824751326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_9
+      name: Javid_9
       rect:
         serializedVersion: 2
         x: 2304
@@ -940,14 +1120,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2687e73610f8dcec0800000000000000
-      internalID: -3545020095543740318
+      spriteID: 759ed36e52dd36030800000000000000
+      internalID: 3486873691361241431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_10
+      name: Javid_10
       rect:
         serializedVersion: 2
         x: 0
@@ -961,14 +1141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: add493ee02b734ac0800000000000000
-      internalID: -3872115873242591782
+      spriteID: e32e388d732696cf0800000000000000
+      internalID: -258567511601847746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_11
+      name: Javid_11
       rect:
         serializedVersion: 2
         x: 256
@@ -982,14 +1162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71fa151b62c070070800000000000000
-      internalID: 8072434217408114455
+      spriteID: c04789ff417345ae0800000000000000
+      internalID: -1561562607463664628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_12
+      name: Javid_12
       rect:
         serializedVersion: 2
         x: 512
@@ -1003,14 +1183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b84022f208c20bd40800000000000000
-      internalID: 5598023265879721099
+      spriteID: 0d2816fd9ab736e60800000000000000
+      internalID: 7954337336393827024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_13
+      name: Javid_13
       rect:
         serializedVersion: 2
         x: 768
@@ -1024,14 +1204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60d42648e039f08e0800000000000000
-      internalID: -1724998441699750650
+      spriteID: 407777909558352b0800000000000000
+      internalID: -5596983294433986812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_14
+      name: Javid_14
       rect:
         serializedVersion: 2
         x: 1024
@@ -1045,14 +1225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 353760bc8f630f8b0800000000000000
-      internalID: -5120532334134267053
+      spriteID: 1f39c51a7f10c3870800000000000000
+      internalID: 8663801946229740529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_15
+      name: Javid_15
       rect:
         serializedVersion: 2
         x: 1280
@@ -1066,14 +1246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a96f1f3dcdfe09d0800000000000000
-      internalID: -2806026459836094039
+      spriteID: eb6b17ecabd9aba10800000000000000
+      internalID: 1926025216307345086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_16
+      name: Javid_16
       rect:
         serializedVersion: 2
         x: 1536
@@ -1087,14 +1267,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f8c8b6071b557170800000000000000
-      internalID: 8175540853016152307
+      spriteID: f950b48cdc3543790800000000000000
+      internalID: -7551318531899718241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_17
+      name: Javid_17
       rect:
         serializedVersion: 2
         x: 1792
@@ -1108,14 +1288,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 935af48174d083850800000000000000
-      internalID: 6356845473035167033
+      spriteID: a16ab37a4df6fbad0800000000000000
+      internalID: -2684303893760072166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_18
+      name: Javid_18
       rect:
         serializedVersion: 2
         x: 2048
@@ -1129,14 +1309,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 778c9c38147a52f70800000000000000
-      internalID: 9161912916780894327
+      spriteID: 1e44a56f0b47860f0800000000000000
+      internalID: -1123519803632761631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_19
+      name: Javid_19
       rect:
         serializedVersion: 2
         x: 2304
@@ -1150,14 +1330,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3dc78da8af49c0d0800000000000000
-      internalID: -3402100457617240770
+      spriteID: ae8315f7e97260030800000000000000
+      internalID: 3460496925375150314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_20
+      name: Javid_20
       rect:
         serializedVersion: 2
         x: 0
@@ -1171,14 +1351,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8399a89b8d1c229b0800000000000000
-      internalID: -5106305890914756296
+      spriteID: 5c5f693196c9eee30800000000000000
+      internalID: 4534733849922827717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_21
+      name: Javid_21
       rect:
         serializedVersion: 2
         x: 256
@@ -1192,14 +1372,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66c72a7baeeedf150800000000000000
-      internalID: 5908140978050595942
+      spriteID: 8eb1f7744e6c9e080800000000000000
+      internalID: -9157569683526837272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_22
+      name: Javid_22
       rect:
         serializedVersion: 2
         x: 512
@@ -1213,14 +1393,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae80c50d547eb8e90800000000000000
-      internalID: -7022264906919704342
+      spriteID: c4cb75e02d3b76560800000000000000
+      internalID: 7307006635197054028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_23
+      name: Javid_23
       rect:
         serializedVersion: 2
         x: 768
@@ -1234,14 +1414,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3fc0104ea2e83150800000000000000
-      internalID: 5852676953794989883
+      spriteID: dab735cfe6ede4880800000000000000
+      internalID: -8624711668106822739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_24
+      name: Javid_24
       rect:
         serializedVersion: 2
         x: 1024
@@ -1255,14 +1435,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28441c8accba020e0800000000000000
-      internalID: -2296646914466036606
+      spriteID: 642ba3b6014b574b0800000000000000
+      internalID: -5443246591995891130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_25
+      name: Javid_25
       rect:
         serializedVersion: 2
         x: 1280
@@ -1276,14 +1456,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10e43d26a58f4ea20800000000000000
-      internalID: 3090868311371763201
+      spriteID: e810af3830c1a4950800000000000000
+      internalID: 6433985819076854158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_26
+      name: Javid_26
       rect:
         serializedVersion: 2
         x: 1536
@@ -1297,14 +1477,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acccdb64c1f883130800000000000000
-      internalID: 3546742058162965706
+      spriteID: c23079db89c3235d0800000000000000
+      internalID: -3084336168081882324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_27
+      name: Javid_27
       rect:
         serializedVersion: 2
         x: 1792
@@ -1318,14 +1498,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f93958f2713258010800000000000000
-      internalID: 1190396258997867423
+      spriteID: 1be40cf29bfdd4f10800000000000000
+      internalID: 2255704974845562545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_28
+      name: Javid_28
       rect:
         serializedVersion: 2
         x: 2048
@@ -1339,14 +1519,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03712f8305d241b90800000000000000
-      internalID: -7272137675720485072
+      spriteID: e9e5ef1b00caf7e20800000000000000
+      internalID: 3350585766773153438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_29
+      name: Javid_29
       rect:
         serializedVersion: 2
         x: 2304
@@ -1360,14 +1540,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75709ee708d6274a0800000000000000
-      internalID: -6597090105491912873
+      spriteID: 34f39b9013f6d3d70800000000000000
+      internalID: 9024491484727557955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_30
+      name: Javid_30
       rect:
         serializedVersion: 2
         x: 0
@@ -1381,14 +1561,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f803cbbec71bad240800000000000000
-      internalID: 4817357901515206799
+      spriteID: 5d06035d591863910800000000000000
+      internalID: 1816781980217401557
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_31
+      name: Javid_31
       rect:
         serializedVersion: 2
         x: 256
@@ -1402,14 +1582,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7342c4f149dfcdb0800000000000000
-      internalID: -4769354603059592321
+      spriteID: ea40890966457b4c0800000000000000
+      internalID: -4271852922048346962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_32
+      name: Javid_32
       rect:
         serializedVersion: 2
         x: 512
@@ -1423,14 +1603,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d5466daf25503980800000000000000
-      internalID: -8561249228370328106
+      spriteID: 7b3346c0e27943600800000000000000
+      internalID: 447148487048704951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_33
+      name: Javid_33
       rect:
         serializedVersion: 2
         x: 768
@@ -1444,14 +1624,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49881b5857c89dee0800000000000000
-      internalID: -1235802186354423660
+      spriteID: e16705806207812d0800000000000000
+      internalID: -3307770617653070306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_34
+      name: Javid_34
       rect:
         serializedVersion: 2
         x: 1024
@@ -1465,14 +1645,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74cb8fae5aa8160d0800000000000000
-      internalID: -3431308995863200697
+      spriteID: 911d9d7e9a05c5570800000000000000
+      internalID: 8456722890964455705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_35
+      name: Javid_35
       rect:
         serializedVersion: 2
         x: 1280
@@ -1486,14 +1666,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0933b23e8e6956360800000000000000
-      internalID: 7162296709390480272
+      spriteID: 968ab6394d69a4ce0800000000000000
+      internalID: -1420156892731430807
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_36
+      name: Javid_36
       rect:
         serializedVersion: 2
         x: 1536
@@ -1507,14 +1687,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d57a604adc92ab8d0800000000000000
-      internalID: -2829903452652001443
+      spriteID: ae66480c1afa6be60800000000000000
+      internalID: 7977756899187910378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_37
+      name: Javid_37
       rect:
         serializedVersion: 2
         x: 1792
@@ -1528,14 +1708,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6dc51c38ccec9b50800000000000000
-      internalID: 6601411498563980653
+      spriteID: 767d8c4a19d7b2090800000000000000
+      internalID: -8058209043761014937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_38
+      name: Javid_38
       rect:
         serializedVersion: 2
         x: 2048
@@ -1549,14 +1729,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a37f961b8fc6b62f0800000000000000
-      internalID: -978568678638749894
+      spriteID: 6dcaed50d56e71d40800000000000000
+      internalID: 5555161952589622486
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_39
+      name: Javid_39
       rect:
         serializedVersion: 2
         x: 2304
@@ -1570,14 +1750,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d32447b3517bd660800000000000000
-      internalID: 7411642216139203542
+      spriteID: 4663cf05ee04fd830800000000000000
+      internalID: 4098065578235541092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_40
+      name: Javid_40
       rect:
         serializedVersion: 2
         x: 0
@@ -1591,14 +1771,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad7acaa7e3d78e8b0800000000000000
-      internalID: -5122706868834359334
+      spriteID: 2da678136004f52d0800000000000000
+      internalID: -3287838807612233006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_41
+      name: Javid_41
       rect:
         serializedVersion: 2
         x: 256
@@ -1612,14 +1792,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa361cc6723e2a570800000000000000
-      internalID: 8476587207132537770
+      spriteID: dd9f53e6233d5c110800000000000000
+      internalID: 1280661882607630813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_42
+      name: Javid_42
       rect:
         serializedVersion: 2
         x: 512
@@ -1633,14 +1813,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b29663148fa50160800000000000000
-      internalID: 6991186978358596280
+      spriteID: 19e9ab3fca895af30800000000000000
+      internalID: 4586239664137608849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_43
+      name: Javid_43
       rect:
         serializedVersion: 2
         x: 768
@@ -1654,14 +1834,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55c8fa2a19b0ed350800000000000000
-      internalID: 6043280470105361493
+      spriteID: 63d249961ad2301d0800000000000000
+      internalID: -3385812323568177866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_44
+      name: Javid_44
       rect:
         serializedVersion: 2
         x: 1024
@@ -1675,14 +1855,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d05df5ad53c9d5660800000000000000
-      internalID: 7376223519813653773
+      spriteID: ab0b1a527e507a690800000000000000
+      internalID: -7591092156582743878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_45
+      name: Javid_45
       rect:
         serializedVersion: 2
         x: 1280
@@ -1696,14 +1876,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f89c8eb449a97b000800000000000000
-      internalID: 51679882457434511
+      spriteID: a4309a976b1a5fd60800000000000000
+      internalID: 7923416924525495114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_46
+      name: Javid_46
       rect:
         serializedVersion: 2
         x: 1536
@@ -1717,14 +1897,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0869c882bab5d7780800000000000000
-      internalID: -8683683715822610816
+      spriteID: de996a439c06db510800000000000000
+      internalID: 1566514662682827245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_47
+      name: Javid_47
       rect:
         serializedVersion: 2
         x: 1792
@@ -1738,14 +1918,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 560dc278acf3cb000800000000000000
-      internalID: 52987434705408101
+      spriteID: da58515bc430e37d0800000000000000
+      internalID: -2936906279008500307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_48
+      name: Javid_48
       rect:
         serializedVersion: 2
         x: 2048
@@ -1759,14 +1939,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c03aab0bf48633fa0800000000000000
-      internalID: -5822195201783192820
+      spriteID: 27b6c47743fd5b1c0800000000000000
+      internalID: -4488436037172040846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_49
+      name: Javid_49
       rect:
         serializedVersion: 2
         x: 2304
@@ -1780,14 +1960,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9331b30de9237660800000000000000
-      internalID: 7382290312136307613
+      spriteID: 0e77252aeaa6edbb0800000000000000
+      internalID: -4909369245507094560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_50
+      name: Javid_50
       rect:
         serializedVersion: 2
         x: 0
@@ -1801,14 +1981,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59d7c4c78110abf90800000000000000
-      internalID: -6937231071334597227
+      spriteID: 6835a282672b35b50800000000000000
+      internalID: 6580799701068174214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_51
+      name: Javid_51
       rect:
         serializedVersion: 2
         x: 256
@@ -1822,14 +2002,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b4e436a7a4634930800000000000000
-      internalID: 4126252354812306616
+      spriteID: a2091570214968380800000000000000
+      internalID: -8969318802708656086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_52
+      name: Javid_52
       rect:
         serializedVersion: 2
         x: 512
@@ -1843,14 +2023,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa5736f65d593ecd0800000000000000
-      internalID: -2530013821722724950
+      spriteID: e009d934f987973e0800000000000000
+      internalID: -2055479129488388082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_53
+      name: Javid_53
       rect:
         serializedVersion: 2
         x: 768
@@ -1864,14 +2044,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d57c49259eb990b80800000000000000
-      internalID: -8428033801232005283
+      spriteID: 63c3b8ffdf090a970800000000000000
+      internalID: 8764164295451425846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_54
+      name: Javid_54
       rect:
         serializedVersion: 2
         x: 1024
@@ -1885,14 +2065,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad65104f740102110800000000000000
-      internalID: 1234004199121966810
+      spriteID: c01245bad341afca0800000000000000
+      internalID: -5982446899908304628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_55
+      name: Javid_55
       rect:
         serializedVersion: 2
         x: 1280
@@ -1906,14 +2086,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a7925525e0c20930800000000000000
-      internalID: 4108057900521527204
+      spriteID: c089c1f7047bad1a0800000000000000
+      internalID: -6783908401041860596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_56
+      name: Javid_56
       rect:
         serializedVersion: 2
         x: 1536
@@ -1927,14 +2107,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb513e72406bcba20800000000000000
-      internalID: 3079536374179894719
+      spriteID: 671539a4430446150800000000000000
+      internalID: 5864883208076874102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_57
+      name: Javid_57
       rect:
         serializedVersion: 2
         x: 1792
@@ -1948,14 +2128,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 176e4ea4cb316fe20800000000000000
-      internalID: 3383913869446801009
+      spriteID: 6f2bdafb2ddf072e0800000000000000
+      internalID: -2129923542145453322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_58
+      name: Javid_58
       rect:
         serializedVersion: 2
         x: 2048
@@ -1969,14 +2149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f033eabd1149b6d0800000000000000
-      internalID: -2974274482956193550
+      spriteID: 49e1d7f0f512cfbd0800000000000000
+      internalID: -2595162593106780524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Syd_59
+      name: Javid_59
       rect:
         serializedVersion: 2
         x: 2304
@@ -1990,8 +2170,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a860f59620be1370800000000000000
-      internalID: 8295261243433838758
+      spriteID: ea0ec785801391620800000000000000
+      internalID: 2745279359773106350
       vertices: []
       indices: 
       edges: []
