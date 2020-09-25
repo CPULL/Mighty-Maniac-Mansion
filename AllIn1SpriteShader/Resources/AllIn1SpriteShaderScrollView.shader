@@ -951,7 +951,7 @@
 
 					#if HOLOGRAM_ON
 					half totalHologram = _HologramStripesAmount + _HologramUnmodAmount;
-					half hologramYCoord = ((uvRect.y + ((_Time.x % 1) * _HologramStripesSpeed)) % totalHologram) / totalHologram;
+					half hologramYCoord = ((uvRect.y + (((_Time.x + _RandomSeed) % 1) * _HologramStripesSpeed)) % totalHologram) / totalHologram;
 					half alpha = RemapFloat(saturate(hologramYCoord - (_HologramUnmodAmount/totalHologram)), 0.0, 1.0, _HologramMinAlpha, saturate(_HologramMaxAlpha));
 					col.a *= lerp(alpha, 1, max(sign((_HologramUnmodAmount/totalHologram) - hologramYCoord), 0.0));
 					col.rgb *= max(1, _HologramMaxAlpha * max(sign(hologramYCoord - (_HologramUnmodAmount/totalHologram)), 0.0));

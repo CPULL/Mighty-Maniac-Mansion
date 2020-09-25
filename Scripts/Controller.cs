@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using SimpleJSON;
-using System;
 
 public class Controller : MonoBehaviour {
   private static Controller c;

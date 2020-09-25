@@ -7,6 +7,10 @@ public class Actor : MonoBehaviour {
   public Sprite[] facesL;
   public Sprite[] facesR;
   public SpriteRenderer Face;
+  public SpriteRenderer Arms;
+  public SpriteRenderer Legs;
+  public Material Normal;
+  public Material Outline;
   public Room currentRoom;
   Animator anim;
   Vector3 destination = Vector2.zero;
@@ -91,10 +95,16 @@ public class Actor : MonoBehaviour {
 
   void OnMouseEnter() {
     Controller.OverActor(this);
+    Face.material = Outline;
+    Arms.material = Outline;
+    Legs.material = Outline;
   }
 
   void OnMouseExit() {
     Controller.OverActor(null);
+    Face.material = Normal;
+    Arms.material = Normal;
+    Legs.material = Normal;
   }
 
   public void Stop() {

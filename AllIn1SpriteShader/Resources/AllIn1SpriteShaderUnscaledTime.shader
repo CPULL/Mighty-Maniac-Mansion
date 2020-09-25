@@ -1,4 +1,4 @@
-﻿Shader "AllIn1SpriteShader/AllIn1SpriteShader"
+﻿Shader "AllIn1SpriteShader/AllIn1SpriteShaderUnscaledTime"
 {
     Properties
     {
@@ -323,6 +323,8 @@
 				#endif
             };
 
+			float globalUnscaledTime;
+
             sampler2D _MainTex;
             half4 _MainTex_ST, _MainTex_TexelSize, _Color;
 			half _Alpha, _RandomSeed;
@@ -637,15 +639,15 @@
 				
 				#if DOODLE_ON
 				half2 uvCopy = uvRect;
-				_HandDrawnSpeed = (floor(_Time * 20 * _HandDrawnSpeed) / _HandDrawnSpeed) * _HandDrawnSpeed;
+				_HandDrawnSpeed = (floor(globalUnscaledTime * 20 * _HandDrawnSpeed) / _HandDrawnSpeed) * _HandDrawnSpeed;
 				uvCopy.x = sin((uvCopy.x * _HandDrawnAmount + _HandDrawnSpeed) * 4);
 				uvCopy.y = cos((uvCopy.y * _HandDrawnAmount + _HandDrawnSpeed) * 4);
 				i.uv = lerp(i.uv, i.uv + uvCopy, 0.0005 * _HandDrawnAmount);
 				#endif
 
 				#if SHAKEUV_ON
-				half xShake = sin((_Time + _RandomSeed) * _ShakeUvSpeed * 500 * _ShakeUvX);
-				half yShake = sin((_Time + _RandomSeed) * _ShakeUvSpeed * 500 * _ShakeUvY);
+				half xShake = sin((globalUnscaledTime + _RandomSeed) * _ShakeUvSpeed * 500 * _ShakeUvX);
+				half yShake = sin((globalUnscaledTime + _RandomSeed) * _ShakeUvSpeed * 500 * _ShakeUvY);
 				i.uv += half2(xShake * 0.01, yShake * 0.01);
 				#endif
 
@@ -657,8 +659,8 @@
 				#endif
 
 				#if TEXTURESCROLL_ON
-				i.uv.x += (_Time.y * _TextureScrollXSpeed) % 1;
-				i.uv.y += (_Time.y * _TextureScrollYSpeed) % 1;
+				i.uv.x += ((globalUnscaledTime * 20) * _TextureScrollXSpeed) % 1;
+				i.uv.y += ((globalUnscaledTime * 20) * _TextureScrollYSpeed) % 1;
 				#endif
 
 				#if RECTSIZE_ON
@@ -670,8 +672,8 @@
 				#endif
 
 				#if DISTORT_ON
-				i.uvDistTex.x += ((_Time + _RandomSeed) * _DistortTexXSpeed) % 1;
-				i.uvDistTex.y += ((_Time + _RandomSeed) * _DistortTexYSpeed) % 1;
+				i.uvDistTex.x += ((globalUnscaledTime + _RandomSeed) * _DistortTexXSpeed) % 1;
+				i.uvDistTex.y += ((globalUnscaledTime + _RandomSeed) * _DistortTexYSpeed) % 1;
 				#if ATLAS_ON
 				i.uvDistTex = half2((i.uvDistTex.x - _MinXUV) / (_MaxXUV - _MinXUV), (i.uvDistTex.y - _MinYUV) / (_MaxYUV - _MinYUV));
 				#endif
@@ -686,7 +688,7 @@
 				uvWave = half2(_WaveX, _WaveY) - uvRect;
 				#endif
 				uvWave.x *= _ScreenParams.x / _ScreenParams.y;
-				half angWave = (sqrt(dot(uvWave, uvWave)) * _WaveAmount) - ((_Time.y *  _WaveSpeed) % 360);
+				half angWave = (sqrt(dot(uvWave, uvWave)) * _WaveAmount) - (((globalUnscaledTime * 20) *  _WaveSpeed) % 360);
 				i.uv = i.uv + normalize(uvWave) * sin(angWave) * (_WaveStrength / 1000);
 				#endif
 
@@ -694,12 +696,12 @@
 				float xWave = ((0.5 * _MainTex_ST.x) - uvRect.x);
 				float yWave = ((0.5 * _MainTex_ST.y) - uvRect.y) * (_ScreenParams.x / _ScreenParams.y);
 				float ripple = -sqrt(xWave*xWave + yWave* yWave);
-				i.uv += sin((ripple + _Time.y * (_RoundWaveSpeed/10.0)) / 0.015) * (_RoundWaveStrength/10.0);
+				i.uv += sin((ripple + (globalUnscaledTime * 20) * (_RoundWaveSpeed/10.0)) / 0.015) * (_RoundWaveStrength/10.0);
 				#endif
 
 				#if WIND_ON
 				#if !MANUALWIND_ON
-				i.uv.x = fmod(abs(lerp(i.uv.x, i.uv.x + (_GrassWind * 0.01 * sin(_Time * _GrassSpeed * 10)), uvRect.y)), 1);
+				i.uv.x = fmod(abs(lerp(i.uv.x, i.uv.x + (_GrassWind * 0.01 * sin(globalUnscaledTime * _GrassSpeed * 10)), uvRect.y)), 1);
 				#else
 				i.uv.x = fmod(abs(lerp(i.uv.x, i.uv.x + (_GrassWind * 0.01 * _GrassManualAnim), uvRect.y)), 1);
 				#endif
@@ -844,8 +846,8 @@
 					#endif
 
 					#if OUTDIST_ON
-					i.uvOutDistTex.x += ((_Time + _RandomSeed) * _OutlineDistortTexXSpeed) % 1;
-					i.uvOutDistTex.y += ((_Time + _RandomSeed) * _OutlineDistortTexYSpeed) % 1;
+					i.uvOutDistTex.x += ((globalUnscaledTime + _RandomSeed) * _OutlineDistortTexXSpeed) % 1;
+					i.uvOutDistTex.y += ((globalUnscaledTime + _RandomSeed) * _OutlineDistortTexYSpeed) % 1;
 					#if ATLAS_ON
 					i.uvOutDistTex = half2((i.uvOutDistTex.x - _MinXUV) / (_MaxXUV - _MinXUV), (i.uvOutDistTex.y - _MinYUV) / (_MaxYUV - _MinYUV));
 					#endif
@@ -871,8 +873,8 @@
 					result = step(0.05, saturate(result));
 
 					#if OUTTEX_ON
-					i.uvOutTex.x += (_Time * _OutlineTexXSpeed) % 1;
-					i.uvOutTex.y += (_Time * _OutlineTexYSpeed) % 1;
+					i.uvOutTex.x += (globalUnscaledTime * _OutlineTexXSpeed) % 1;
+					i.uvOutTex.y += (globalUnscaledTime * _OutlineTexYSpeed) % 1;
 					#if ATLAS_ON
 					i.uvOutTex = half2((i.uvOutTex.x - _MinXUV) / (_MaxXUV - _MinXUV), (i.uvOutTex.y - _MinYUV) / (_MaxYUV - _MinYUV));
 					#endif
@@ -965,14 +967,14 @@
 
 				#if HOLOGRAM_ON
 				half totalHologram = _HologramStripesAmount + _HologramUnmodAmount;
-				half hologramYCoord = ((uvRect.y + (((_Time.x + _RandomSeed) % 1) * _HologramStripesSpeed)) % totalHologram) / totalHologram;
+				half hologramYCoord = ((uvRect.y + (((globalUnscaledTime + _RandomSeed) % 1) * _HologramStripesSpeed)) % totalHologram) / totalHologram;
 				half alpha = RemapFloat(saturate(hologramYCoord - (_HologramUnmodAmount/totalHologram)), 0.0, 1.0, _HologramMinAlpha, saturate(_HologramMaxAlpha));
 				col.a *= lerp(alpha, 1, max(sign((_HologramUnmodAmount/totalHologram) - hologramYCoord), 0.0));
 				col.rgb *= max(1, _HologramMaxAlpha * max(sign(hologramYCoord - (_HologramUnmodAmount/totalHologram)), 0.0));
 				#endif
 
 				#if FLICKER_ON
-				col.a *= saturate(col.a * step(frac(0.05 + (_Time.w + _RandomSeed) * _FlickerFreq), 1 - _FlickerPercent) + _FlickerAlpha);
+				col.a *= saturate(col.a * step(frac(0.05 + ((globalUnscaledTime * 60) + _RandomSeed) * _FlickerFreq), 1 - _FlickerPercent) + _FlickerAlpha);
 				#endif
 
 				col *= _Color;
