@@ -12,7 +12,7 @@ public class ActionAndCondition {
 
 [System.Serializable]
 public class GameAction {
-  private Running running = Running.NotStarted;
+  public Running running = Running.NotStarted;
   private float time;
 
 

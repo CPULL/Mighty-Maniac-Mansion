@@ -6,138 +6,22 @@ using UnityEngine.EventSystems;
 using SimpleJSON;
 
 public class Controller : MonoBehaviour {
-  private static Controller c;
-  public Texture2D[] Cursors;
-  float cursorTime = 0;
-  Vector2 center32 = new Vector2(32, 32);
   Camera cam;
-
-  public PortraitClickHandler ActorPortrait1;
-
-  public PortraitClickHandler ActorPortrait2;
-  public PortraitClickHandler ActorPortrait3;
-  public PortraitClickHandler InventoryPortrait;
-  public GameObject Inventory;
-  public GameObject InventoryItemTemplate;
   public AllObjects allObjects;
-
-  public Actor[] allEnemies;
-  public Actor[] allActors;
-  Actor actor1;
-  Actor actor2;
-  Actor actor3;
-  Actor kidnappedActor;
-  Actor receiverActor;
-
-  public static Actor GetActor(Chars actor) {
-    switch(actor) {
-      case Chars.None: return null;
-      case Chars.Current: return c.currentActor;
-      case Chars.Actor1: return c.actor1;
-      case Chars.Actor2: return c.actor2;
-      case Chars.Actor3: return c.actor3;
-      case Chars.KidnappedActor: return c.kidnappedActor;
-      case Chars.Receiver: return c.receiverActor;
-      case Chars.Fred: return c.allEnemies[0];
-      case Chars.Edna: return c.allEnemies[1];
-      case Chars.Ted: return c.allEnemies[2];
-      case Chars.Ed: return c.allEnemies[3];
-      case Chars.Edwige: return c.allEnemies[4];
-      case Chars.GreenTentacle: return c.allEnemies[5];
-      case Chars.PurpleTentacle: return c.allEnemies[6];
-      case Chars.Dave: return c.allActors[0];
-      case Chars.Bernard: return c.allActors[1];
-      case Chars.Hoagie: return c.allActors[2];
-      case Chars.Michael: return c.allActors[3];
-      case Chars.Razor: return c.allActors[4];
-      case Chars.Sandy: return c.allActors[5];
-      case Chars.Syd: return c.allActors[6];
-      case Chars.Wendy: return c.allActors[7];
-      case Chars.Jeff: return c.allActors[8];
-      case Chars.Javid: return c.allActors[9];
-      case Chars.Ollie: return c.allActors[10];
-    }
-    Debug.LogError("Invalid actor requested! " + actor);
-    return null;
-  }
-
-  public static bool IsEnemy(Actor actor) {
-    foreach (Actor a in c.allEnemies)
-      if (a == actor) return true;
-    return false;
-  }
-
-  internal static bool WeHaveActorPlaying(Chars actor) {
-    return actor == c.actor1.id || actor == c.actor2.id || actor == c.actor3.id;
-  }
-
-
-  Actor currentActor = null;
-  Room currentRoom;
-  Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
-  Color32 selectedActor = new Color32(200, 232, 152, 255);
-
-  GameStatus status = GameStatus.IntroDialogue;
   public AudioClip[] Sounds;
-  public Options options;
-
-  public static float walkSpeed;
-  public static float textSpeed;
-
-  private void Awake() {
-    c = this;
-    cam = Camera.main;
-
-    actor1 = allActors[0]; // FIXME
-    actor2 = allActors[1];
-    actor3 = allActors[7];
-
-    LoadSequences();
-    PickValidSequence();
-
-    StartCoroutine(StartDelayed());
-    Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
-    status = GameStatus.IntroDialogue;
-  }
-
-  private void Start() {
-    currentRoom = allObjects.roomsList[0];
-    currentActor = actor1;
-    ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-
-    float vol = 40f * PlayerPrefs.GetFloat("MasterVolume", 1) - 40;
-    options.mixerMusic.SetFloat("MasterVolume", vol);
-
-    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("MusicVolume", 1) * .74f) * 14.425f - 80;
-    options.mixerMusic.SetFloat("MusicVolume", vol);
-
-    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("SoundsVolume", 1) * .74f) * 14.425f - 80;
-    options.mixerMusic.SetFloat("SoundsVolume", vol);
-
-    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("BackSoundsVolume", 1) * .74f) * 14.425f - 80;
-    options.mixerMusic.SetFloat("BackSoundsVolume", vol);
-
-    walkSpeed = PlayerPrefs.GetFloat("WalkSpeed", 1);
-    textSpeed = PlayerPrefs.GetFloat("TalkSpeed", 1);
-
-    foreach(Room r in allObjects.roomsList) {
-      r.gameObject.SetActive(r == currentRoom);
-    }
-  }
-
-  IEnumerator StartDelayed() {
-    yield return new WaitForSeconds(.5f);
-    ShowName(currentRoom.RoomName);
-  }
-
   public LayerMask pathLayer;
   public UnityEngine.UI.Image BlackFade;
+  GameStatus status = GameStatus.IntroDialogue;
+  private static Controller c;
 
+
+
+  #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
   void Update() {
     cursorTime += Time.deltaTime;
     HandleCursor();
 
-    // Handling of text messages
+    #region Handling of text messages
     if (textMsgTime > 0) {
       textMsgTime -= Time.deltaTime;
       switch (txtMsgMode) {
@@ -169,8 +53,9 @@ public class Controller : MonoBehaviour {
         }
       }
     }
+    #endregion
 
-    // Sequences of actions
+    #region Sequences and actions
     if (currentSequence != null) { // Do we have a sequence?
       if (currentAction == null) { // Do we have the action?
         currentAction = currentSequence.GetNextAction();
@@ -186,8 +71,9 @@ public class Controller : MonoBehaviour {
       PlayCurrentAction();
       return;
     }
+    #endregion
 
-    // Handle camera
+    #region Handle camera
     Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
     if (cam.transform.position.x < currentRoom.minL) {
       Vector3 p = cam.transform.position;
@@ -209,7 +95,7 @@ public class Controller : MonoBehaviour {
         cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .6f * Screen.width) / 10;
       }
     }
-
+    #endregion
 
 
     if (c.status != GameStatus.NormalGamePlay) return;
@@ -224,11 +110,23 @@ public class Controller : MonoBehaviour {
      */
 
 
-    // Mouse control
+    #region Mouse control
     bool lmb = Input.GetMouseButtonDown(0);
     bool rmb = Input.GetMouseButtonDown(1);
 
-    if (overItem != null) {
+    if (overActor != null) {
+      if (rmb && usedItem != null) {
+        if (currentActor == overActor) return;
+        receiverActor = overActor;
+        usedItem.Give(currentActor, receiverActor);
+        return;
+      }
+      if (lmb) {
+        // FIXME check that is a playable actor
+        SelectActor(overActor);
+      }
+    }
+    else if (overItem != null) {
       if ((overItem.whatItDoesR == WhatItDoes.Read && rmb) || (overItem.whatItDoesL == WhatItDoes.Read && lmb)) {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
@@ -245,9 +143,6 @@ public class Controller : MonoBehaviour {
               string res = item.Use(currentActor);
               if (res != null)
                 actor.Say(res);
-              else {
-                lastUsedItem = item;
-              }
             }));
         }
         else { // Can we use the two items together?
@@ -315,7 +210,7 @@ public class Controller : MonoBehaviour {
         overItem = null;
         oldCursor = null;
         c.forcedCursor = CursorTypes.Item;
-        Cursor.SetCursor(usedItem.cursorImage,new Vector2(usedItem.cursorImage.width / 2, usedItem.cursorImage.height / 2), CursorMode.Auto);
+        Cursor.SetCursor(usedItem.cursorImage, new Vector2(usedItem.cursorImage.width / 2, usedItem.cursorImage.height / 2), CursorMode.Auto);
       }
 
       else if ((overItem.whatItDoesR == WhatItDoes.Walk && rmb) || (overItem is Door && overItem.whatItDoesL == WhatItDoes.Walk && lmb)) {
@@ -354,43 +249,19 @@ public class Controller : MonoBehaviour {
           currentActor.WalkTo(hit.point, p);
           walkDelay = 0;
         }
-      } else {
+      }
+      else {
         walkDelay += Time.deltaTime;
       }
     }
-  }
-
-  internal static void UpdateInventory() {
-    if (c.Inventory.activeSelf)
-      c.ActivateInventory(c.currentActor);
-  }
-
-  float walkDelay = 0;
-
-  void WalkAndAction(Actor actor, Item item, System.Action<Actor, Item> action) {
-    Vector3 one = actor.transform.position;
-    one.z = 0;
-    Vector3 two = item.HotSpot;
-    two.z = 0;
-    float dist = Vector3.Distance(one, two);
-    if (dist > .2f) { // Need to walk
-      RaycastHit2D hit = Physics2D.Raycast(overItem.HotSpot, cam.transform.forward, 10000, pathLayer);
-      if (hit.collider != null) {
-        PathNode p = hit.collider.GetComponent<PathNode>();
-        currentActor.WalkTo(overItem.HotSpot, p, action, item);
-      }
-      return;
-    }
-    else {
-      action?.Invoke(currentActor, item);
-    }
+    #endregion
   }
 
   private CursorTypes forcedCursor = CursorTypes.None;
-  private Item overItem = null; // Items we are over with the mouse
-  private Item lastUsedItem = null; // Last item that was used
-  private Item usedItem = null; // Item that is being used (and visible on the cursor)
   private Texture2D oldCursor = null;
+  public Texture2D[] Cursors;
+  float cursorTime = 0;
+
   void HandleCursor() {
     if (c.status != GameStatus.NormalGamePlay) return;
 
@@ -438,42 +309,19 @@ public class Controller : MonoBehaviour {
     }
   }
 
-
-
-  public TextMeshProUGUI TextMsg;
-  public RectTransform TextMsgRT;
-  public RectTransform TextBackRT;
-  TextMsgMode txtMsgMode = TextMsgMode.None;
-  float textMsgTime = 0;
-  float textSizeX = 0;
-
-  void ShowName(string name) {
-    if (TextMsg.text == name) return;
-    textSizeX = TextMsg.GetPreferredValues(name).x;
-    TextMsgRT.sizeDelta = new Vector2(0, 50);
-    TextBackRT.sizeDelta = TextMsgRT.sizeDelta;
-    TextMsg.text = name;
-    textMsgTime = .25f;
-    txtMsgMode = TextMsgMode.Appearing;
-  }
-
-  void HideName() {
-    if (txtMsgMode == TextMsgMode.Disappearing || txtMsgMode == TextMsgMode.None) return;
-    textMsgTime = .25f;
-    txtMsgMode = TextMsgMode.Disappearing;
-  }
-
-
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
     if (c.status != GameStatus.NormalGamePlay) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
       SelectActor(c.actor1);
-    } else if (h == c.ActorPortrait2) {
+    }
+    else if (h == c.ActorPortrait2) {
       SelectActor(c.actor2);
-    } else if (h == c.ActorPortrait3) {
+    }
+    else if (h == c.ActorPortrait3) {
       SelectActor(c.actor3);
-    } else if (h == c.InventoryPortrait) {
+    }
+    else if (h == c.InventoryPortrait) {
       if (c.Inventory.activeSelf) { // Show/Hide inventory of current actor
         c.Inventory.SetActive(false);
         c.InventoryPortrait.GetComponent<UnityEngine.UI.RawImage>().color = new Color32(0x6D, 0x7D, 0x7C, 0xff);
@@ -484,152 +332,59 @@ public class Controller : MonoBehaviour {
     }
   }
 
-  private void ActivateInventory(Actor actor) {
-    Inventory.SetActive(true);
-    InventoryPortrait.GetComponent<UnityEngine.UI.RawImage>().color = new Color32(0x7D, 0x8D, 0xfC, 0xff);
-    foreach (Transform t in Inventory.transform)
-      GameObject.Destroy(t.gameObject);
 
-    foreach(Item item in  actor.inventory) {
-      GameObject ii = Instantiate(InventoryItemTemplate, Inventory.transform);
-      ii.gameObject.SetActive(true);
-      InventoryItem it = ii.GetComponent<InventoryItem>();
-      it.text.text = item.Name;
-      it.front.sprite = item.iconImage;
-      it.item = item;
+  #endregion
+
+
+
+  #region *********************** Initialization
+  private void Awake() {
+    c = this;
+    cam = Camera.main;
+
+    actor1 = allActors[0]; // FIXME
+    actor2 = allActors[1];
+    actor3 = allActors[7];
+
+    LoadSequences();
+    PickValidSequence();
+
+    StartCoroutine(StartDelayed());
+    Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
+    status = GameStatus.IntroDialogue;
+  }
+
+  private void Start() {
+    currentRoom = allObjects.roomsList[0];
+    currentActor = actor1;
+    ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+
+    options.GetOptions();
+
+    foreach (Room r in allObjects.roomsList) {
+      r.gameObject.SetActive(r == currentRoom);
     }
   }
 
-  internal static void SelectActor(Actor actor) {
-    if (c.status != GameStatus.NormalGamePlay) return;
-
-    c.forcedCursor = CursorTypes.None;
-    c.oldCursor = null;
-    c.usedItem = null;
-
-    c.currentActor = actor;
-    c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    if (actor == c.actor1) {
-      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-    }
-    else if (actor == c.actor2) {
-      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-    }
-    if (actor == c.actor3) {
-      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
-    }
-    c.ShowName("Selected: " + c.currentActor.name);
-    if (!c.currentActor.gameObject.activeSelf) { // Different room
-      c.StartCoroutine(c.FadeToRoomActor());
-    }
-    if (c.Inventory.activeSelf) c.ActivateInventory(c.currentActor);
+  IEnumerator StartDelayed() {
+    yield return new WaitForSeconds(.5f);
+    ShowName(currentRoom.RoomName);
   }
-
-  Actor overActor = null;
-  internal static void OverActor(Actor actor) {
+  #endregion
 
 
-    if (c.overActor != actor && c.overActor != null) {
-      // Remove previous highlight
-    }
-    c.overActor = actor;
-    if (actor == null) return;
-
-    // FIXME change the sprite, make it outlined
-  }
-
-
-  internal static void SetItem(Item item, bool fromInventory = false) {
-    if (c.status != GameStatus.NormalGamePlay) return;
-
-    if (fromInventory) {
-      if (item == null) {
-        c.overItem = null;
-        if (c.TextMsg.text != "") c.HideName();
-        return;
-      }
-      c.overItem = item;
-      if (c.usedItem == null) {
-        if (item.whatItDoesR == WhatItDoes.Use) {
-          c.forcedCursor = CursorTypes.Use;
-          c.overItem = item;
-          c.ShowName(item.Name);
-        }
-        else if (item.whatItDoesR == WhatItDoes.Read) {
-          c.forcedCursor = CursorTypes.Examine;
-          c.overItem = item;
-          c.ShowName(item.Name);
-        }
-      }
-      return;
-    }
-
-    if (item == null) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
-      c.overItem = null;
-      if (c.TextMsg.text != "") c.HideName();
-      return;
-    }
-    if (item.owner != Chars.None) {
-      c.overItem = item;
-      return;
-    }
-
-    // Right
-    if (item.whatItDoesR == WhatItDoes.Walk) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
-      c.overItem = item;
-    }
-    else if (item.whatItDoesR == WhatItDoes.Pick) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.PickUp;
-      c.overItem = item;
-      c.ShowName(item.Name);
-    }
-    else if (item.whatItDoesR == WhatItDoes.Use) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Use;
-      c.overItem = item;
-      c.ShowName(item.Name);
-    }
-    else if (item.whatItDoesR == WhatItDoes.Read) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Examine;
-      c.overItem = item;
-      c.ShowName(item.Name);
-    }
-    // Left
-    else if (item.whatItDoesL == WhatItDoes.Walk) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
-      c.overItem = item;
-    }
-    else if (item.whatItDoesL == WhatItDoes.Pick) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.PickUp;
-      c.overItem = item;
-      c.ShowName(item.Name);
-    }
-    else if (item.whatItDoesL == WhatItDoes.Use) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Use;
-      c.overItem = item;
-      c.ShowName(item.Name);
-    }
-    else if (item.whatItDoesL == WhatItDoes.Read) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Examine;
-      c.overItem = item;
-      c.ShowName(item.Name);
-    }
-  }
-
-
+  #region *********************** Sequences and Actions *********************** Sequences and Actions *********************** Sequences and Actions ***********************
   GameSequence currentSequence;
   GameAction currentAction;
   public List<GameSequence> sequences;
   readonly SList<GameAction> actions = new SList<GameAction>(16);
+  HashSet<GameAction> allKnownActions = new HashSet<GameAction>();
 
   void LoadSequences() {
     string path = Application.dataPath + "/Actions/";
 
-    foreach(string file in System.IO.Directory.GetFiles(path, "*.json")) {
-//FIXME Debug.Log(file);
+    foreach (string file in System.IO.Directory.GetFiles(path, "*.json")) {
+      //FIXME Debug.Log(file);
       string json = System.IO.File.ReadAllText(file);
 
       try {
@@ -676,7 +431,7 @@ public class Controller : MonoBehaviour {
     }
 
     currentSequence = null;
-    foreach(GameSequence s in sequences) {
+    foreach (GameSequence s in sequences) {
       if (s.id == "intro") {
         currentSequence = s;
         break;
@@ -692,6 +447,7 @@ public class Controller : MonoBehaviour {
 
   public static void AddAction(GameAction a) {
     c.actions.Add(a);
+    c.allKnownActions.Add(a);
   }
 
   void PlayCurrentAction() {
@@ -790,6 +546,260 @@ public class Controller : MonoBehaviour {
     }
   }
 
+  internal static Running ActionStatus(ActionEnum action) {
+    foreach(GameAction a in c.allKnownActions) {
+      if (a.action == action) return a.running;
+    }
+    return Running.NotStarted;
+  }
+
+
+  #endregion
+
+
+  #region *********************** Inventory and Items *********************** Inventory and Items *********************** Inventory and Items ***********************
+  public GameObject Inventory;
+  public GameObject InventoryItemTemplate;
+  private Item overItem = null; // Items we are over with the mouse
+  private Item usedItem = null; // Item that is being used (and visible on the cursor)
+
+  internal static void UpdateInventory() {
+    if (c.Inventory.activeSelf)
+      c.ActivateInventory(c.currentActor);
+  }
+
+  private void ActivateInventory(Actor actor) {
+    Inventory.SetActive(true);
+    InventoryPortrait.GetComponent<UnityEngine.UI.RawImage>().color = new Color32(0x7D, 0x8D, 0xfC, 0xff);
+    foreach (Transform t in Inventory.transform)
+      GameObject.Destroy(t.gameObject);
+
+    foreach (Item item in actor.inventory) {
+      GameObject ii = Instantiate(InventoryItemTemplate, Inventory.transform);
+      ii.gameObject.SetActive(true);
+      InventoryItem it = ii.GetComponent<InventoryItem>();
+      it.text.text = item.Name;
+      it.front.sprite = item.iconImage;
+      it.item = item;
+    }
+  }
+
+  internal static void SetItem(Item item, bool fromInventory = false) {
+    if (c.status != GameStatus.NormalGamePlay) return;
+
+    if (fromInventory) {
+      if (item == null) {
+        c.overItem = null;
+        if (c.TextMsg.text != "") c.HideName();
+        return;
+      }
+      c.overItem = item;
+      if (c.usedItem == null) {
+        if (item.whatItDoesR == WhatItDoes.Use) {
+          c.forcedCursor = CursorTypes.Use;
+          c.overItem = item;
+          c.ShowName(item.Name);
+        }
+        else if (item.whatItDoesR == WhatItDoes.Read) {
+          c.forcedCursor = CursorTypes.Examine;
+          c.overItem = item;
+          c.ShowName(item.Name);
+        }
+      }
+      return;
+    }
+
+    if (item == null) {
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
+      c.overItem = null;
+      if (c.TextMsg.text != "") c.HideName();
+      return;
+    }
+    if (item.owner != Chars.None) {
+      c.overItem = item;
+      return;
+    }
+
+    // Right
+    if (item.whatItDoesR == WhatItDoes.Walk) {
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
+      c.overItem = item;
+    }
+    else if (item.whatItDoesR == WhatItDoes.Pick) {
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.PickUp;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    else if (item.whatItDoesR == WhatItDoes.Use) {
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Use;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    else if (item.whatItDoesR == WhatItDoes.Read) {
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Examine;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    // Left
+    else if (item.whatItDoesL == WhatItDoes.Walk) {
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
+      c.overItem = item;
+    }
+    else if (item.whatItDoesL == WhatItDoes.Pick) {
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.PickUp;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    else if (item.whatItDoesL == WhatItDoes.Use) {
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Use;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+    else if (item.whatItDoesL == WhatItDoes.Read) {
+      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Examine;
+      c.overItem = item;
+      c.ShowName(item.Name);
+    }
+  }
+
+  #endregion
+
+
+  #region *********************** Actors *********************** Actors *********************** Actors *********************** Actors *********************** Actors ***********************
+  public PortraitClickHandler ActorPortrait1;
+  public PortraitClickHandler ActorPortrait2;
+  public PortraitClickHandler ActorPortrait3;
+  public PortraitClickHandler InventoryPortrait;
+  Actor actor1;
+  Actor actor2;
+  Actor actor3;
+  Actor kidnappedActor;
+  Actor receiverActor; // FIXME we should set this in some way, probably from actions
+  Actor currentActor = null;
+  Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
+  Color32 selectedActor = new Color32(200, 232, 152, 255);
+  public Actor[] allEnemies;
+  public Actor[] allActors;
+
+  /// <summary>
+  /// Gets the actual Actor from the Chars enum
+  /// </summary>
+  public static Actor GetActor(Chars actor) {
+    switch (actor) {
+      case Chars.None: return null;
+      case Chars.Current: return c.currentActor;
+      case Chars.Actor1: return c.actor1;
+      case Chars.Actor2: return c.actor2;
+      case Chars.Actor3: return c.actor3;
+      case Chars.KidnappedActor: return c.kidnappedActor;
+      case Chars.Receiver: return c.receiverActor;
+      case Chars.Fred: return c.allEnemies[0];
+      case Chars.Edna: return c.allEnemies[1];
+      case Chars.Ted: return c.allEnemies[2];
+      case Chars.Ed: return c.allEnemies[3];
+      case Chars.Edwige: return c.allEnemies[4];
+      case Chars.GreenTentacle: return c.allEnemies[5];
+      case Chars.PurpleTentacle: return c.allEnemies[6];
+      case Chars.Dave: return c.allActors[0];
+      case Chars.Bernard: return c.allActors[1];
+      case Chars.Hoagie: return c.allActors[2];
+      case Chars.Michael: return c.allActors[3];
+      case Chars.Razor: return c.allActors[4];
+      case Chars.Sandy: return c.allActors[5];
+      case Chars.Syd: return c.allActors[6];
+      case Chars.Wendy: return c.allActors[7];
+      case Chars.Jeff: return c.allActors[8];
+      case Chars.Javid: return c.allActors[9];
+      case Chars.Ollie: return c.allActors[10];
+    }
+    Debug.LogError("Invalid actor requested! " + actor);
+    return null;
+  }
+
+  /// <summary>
+  /// Checks if the passed actor is an enemy (Fred, Edna, Ed, etc.)
+  /// </summary>
+  public static bool IsEnemy(Actor actor) {
+    foreach (Actor a in c.allEnemies)
+      if (a == actor) return true;
+    return false;
+  }
+
+  /// <summary>
+  /// Checks if the actor is one of the actors of the playing trio
+  /// </summary>
+  internal static bool WeHaveActorPlaying(Chars actor) {
+    return actor == c.actor1.id || actor == c.actor2.id || actor == c.actor3.id;
+  }
+  float walkDelay = 0;
+
+  /// <summary>
+  /// Moves the actor to the destination and execute the action callback when the destination is reached
+  /// </summary>
+  void WalkAndAction(Actor actor, Item item, System.Action<Actor, Item> action) {
+    Vector3 one = actor.transform.position;
+    one.z = 0;
+    Vector3 two = item.HotSpot;
+    two.z = 0;
+    float dist = Vector3.Distance(one, two);
+    if (dist > .2f) { // Need to walk
+      RaycastHit2D hit = Physics2D.Raycast(overItem.HotSpot, cam.transform.forward, 10000, pathLayer);
+      if (hit.collider != null) {
+        PathNode p = hit.collider.GetComponent<PathNode>();
+        currentActor.WalkTo(overItem.HotSpot, p, action, item);
+      }
+      return;
+    }
+    else {
+      action?.Invoke(currentActor, item);
+    }
+  }
+
+  internal static void SelectActor(Actor actor) {
+    if (c.status != GameStatus.NormalGamePlay) return;
+
+    c.forcedCursor = CursorTypes.None;
+    c.oldCursor = null;
+    c.usedItem = null;
+
+    c.currentActor = actor;
+    c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
+    if (actor == c.actor1) {
+      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    }
+    else if (actor == c.actor2) {
+      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    }
+    if (actor == c.actor3) {
+      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    }
+    c.ShowName("Selected: " + c.currentActor.name);
+    if (!c.currentActor.gameObject.activeSelf) { // Different room
+      c.StartCoroutine(c.FadeToRoomActor());
+    }
+    if (c.Inventory.activeSelf) c.ActivateInventory(c.currentActor);
+  }
+
+  Actor overActor = null;
+  internal static void OverActor(Actor actor) {
+
+
+    if (c.overActor != actor && c.overActor != null) {
+      // Remove previous highlight
+    }
+    c.overActor = actor;
+    if (actor == null) return;
+
+    // FIXME change the sprite, make it outlined
+  }
+
+
+  #endregion
+
+  #region *********************** Rooms and Transitions *********************** Rooms and Transitions *********************** Rooms and Transitions ***********************
+  Room currentRoom;
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
     // Disable gameplay
@@ -899,10 +909,51 @@ public class Controller : MonoBehaviour {
     overItem = null;
   }
 
-  internal static Running ActionStatus(ActionEnum action) {
-    // Find the action, it can be in the sequences or in any action we saw in some way
-    return Running.NotStarted; // FIXME
+  #endregion
+
+  #region *********************** UI and Options *********************** UI and Options *********************** UI and Options *********************** UI and Options ***********************
+  public static float walkSpeed;
+  public static float textSpeed;
+  public Options options;
+
+  public TextMeshProUGUI TextMsg;
+  public RectTransform TextMsgRT;
+  public RectTransform TextBackRT;
+  TextMsgMode txtMsgMode = TextMsgMode.None;
+  float textMsgTime = 0;
+  float textSizeX = 0;
+
+  void ShowName(string name) {
+    if (TextMsg.text == name) return;
+    textSizeX = TextMsg.GetPreferredValues(name).x;
+    TextMsgRT.sizeDelta = new Vector2(0, 50);
+    TextBackRT.sizeDelta = TextMsgRT.sizeDelta;
+    TextMsg.text = name;
+    textMsgTime = .25f;
+    txtMsgMode = TextMsgMode.Appearing;
   }
+
+  void HideName() {
+    if (txtMsgMode == TextMsgMode.Disappearing || txtMsgMode == TextMsgMode.None) return;
+    textMsgTime = .25f;
+    txtMsgMode = TextMsgMode.Disappearing;
+  }
+
+  #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

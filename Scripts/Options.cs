@@ -96,4 +96,21 @@ public class Options : MonoBehaviour {
       Activate(!optionsCanvas.enabled);
     }
   }
+
+  internal void GetOptions() {
+    float vol = 40f * PlayerPrefs.GetFloat("MasterVolume", 1) - 40;
+    mixerMusic.SetFloat("MasterVolume", vol);
+
+    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("MusicVolume", 1) * .74f) * 14.425f - 80;
+    mixerMusic.SetFloat("MusicVolume", vol);
+
+    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("SoundsVolume", 1) * .74f) * 14.425f - 80;
+    mixerMusic.SetFloat("SoundsVolume", vol);
+
+    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("BackSoundsVolume", 1) * .74f) * 14.425f - 80;
+    mixerMusic.SetFloat("BackSoundsVolume", vol);
+
+    Controller.walkSpeed = PlayerPrefs.GetFloat("WalkSpeed", 1);
+    Controller.textSpeed = PlayerPrefs.GetFloat("TalkSpeed", 1);
+  }
 }

@@ -28,8 +28,6 @@ public class Balloon : MonoBehaviour {
     foreach (char c in message)
       if (char.IsWhiteSpace(c)) b.numWords++;
 
-    Debug.Log(b.numWords);
-    Debug.Log(Controller.textSpeed * Controller.textSpeed);
     b.delay = .25f * b.numWords * Controller.textSpeed * Controller.textSpeed;
     b.text.text = message;
     b.gameObject.SetActive(true);

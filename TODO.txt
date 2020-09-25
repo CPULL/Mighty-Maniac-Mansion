@@ -16,6 +16,8 @@ Have the doors to get a better "priority", so actors can get behind
 Change y speed and x speed. x >>> y to simulate depth
 Make again working the scaling of actors while changing y coordinate
 
+Rename Sequence to CutScene
+When getting actions from items, add them to allknown actions
 
 * TODO ************************************************************************************************************
 
@@ -37,7 +39,7 @@ FrontDoor:
 
 * BUGS ************************************************************************************************************
 
-The z-order of actors is not good. They go behind objects, so they cannot be selected
+The z-order of actors is not good. They go behind objects, so they cannot be selected (may be fixed when altering the Y position of the actors while walking)
 
 * DONE ************************************************************************************************************
 
@@ -91,7 +93,7 @@ The z-order of actors is not good. They go behind objects, so they cannot be sel
 ! If something is used from inventory, close the inventory
 ! Basic Javid character
 ! Added "receiver" on characters and actions and improved the actors selection
-
+! Added regions in the Controller to ease the finding of the functions
 
 * CHARS ************************************************************************************************************
 
