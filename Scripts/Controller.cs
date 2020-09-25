@@ -103,12 +103,6 @@ public class Controller : MonoBehaviour {
     // LMB -> Walk or secondary action
     // RMB -> Default action
 
-    /* FIXME
-     * If we are over an object, do the action defined for the item with the mouse click
-     * If we are not over an object, just walk with leftMB
-     * 
-     */
-
 
     #region Mouse control
     bool lmb = Input.GetMouseButtonDown(0);
@@ -131,7 +125,12 @@ public class Controller : MonoBehaviour {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
             actor.SetDirection(item.dir);
-            actor.Say(item.Description);
+            if (item.HasActions(When.Use)) {
+              if (item.PlayActions(currentActor, null, When.Use) == null)
+                actor.Say(item.Description); // By default read what is written in the description of the object
+            }
+            else
+              actor.Say(item.Description);
           }));
       }
 
@@ -148,7 +147,7 @@ public class Controller : MonoBehaviour {
         else { // Can we use the two items together?
 
           if (usedItem.CheckActions(currentActor, overItem)) { // Yes
-            string res = usedItem.PlayActions(currentActor, WhatItDoes.Use, overItem);
+            string res = usedItem.PlayActions(currentActor, null, When.Use, overItem);
             if (res != null)
               currentActor.Say(res);
             else {
@@ -160,7 +159,7 @@ public class Controller : MonoBehaviour {
             }
           }
           else if (overItem.CheckActions(currentActor, usedItem)) { // Yes
-            string res = overItem.PlayActions(currentActor, WhatItDoes.Use, usedItem);
+            string res = overItem.PlayActions(currentActor, null, When.Use, usedItem);
             if (res != null)
               currentActor.Say(res);
             else {
@@ -191,7 +190,7 @@ public class Controller : MonoBehaviour {
             if (actor == actor1) item.owner = Chars.Actor1;
             else if (actor == actor2) item.owner = Chars.Actor2;
             else if (actor == actor3) item.owner = Chars.Actor3;
-            item.PlayActions(currentActor, WhatItDoes.Pick);
+            item.PlayActions(currentActor, null, When.Pick);
             item = null;
             forcedCursor = CursorTypes.None;
             if (Inventory.activeSelf) ActivateInventory(currentActor);
@@ -400,6 +399,7 @@ public class Controller : MonoBehaviour {
             a.SetActor(val["actor"].Value);
             a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
             a.SetDir(val["dir"].Value);
+            a.SetValue(val["room"].Value);
           }
           else if (a.type == ActionType.Speak) {
             a.SetActor(val["actor"].Value);
@@ -413,7 +413,7 @@ public class Controller : MonoBehaviour {
           }
           else if (a.type == ActionType.ShowRoom) {
             a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-            a.SetValue(val["id"].Value);
+            a.SetValue(val["room"].Value);
           }
           else if (a.type == ActionType.Sound) {
             a.SetActor(val["actor"].Value);
@@ -453,78 +453,7 @@ public class Controller : MonoBehaviour {
   void PlayCurrentAction() {
     if (currentAction.NotStarted()) {
       // FIXME        Debug.Log(currentAction.ToString());
-
-      if (currentAction.type == ActionType.ShowRoom) {
-        currentRoom = allObjects.GetRoom(currentAction.strValue);
-        Vector3 pos = currentAction.pos;
-        pos.z = -10;
-        cam.transform.position = pos;
-        foreach (Room r in allObjects.roomsList)
-          r.gameObject.SetActive(false);
-        currentRoom.gameObject.SetActive(true);
-        currentAction.Complete();
-      }
-      else if (currentAction.type == ActionType.Teleport) {
-        Actor a = GetActor(currentAction.actor);
-        a.transform.position = currentAction.pos;
-        a.SetDirection(currentAction.dir);
-        RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
-        if (hit.collider != null) {
-          PathNode p = hit.collider.GetComponent<PathNode>();
-          a.WalkTo(currentAction.pos, p);
-        }
-        currentAction.Complete();
-      }
-      else if (currentAction.type == ActionType.Speak) {
-        Actor a = GetActor(currentAction.actor);
-        if (a != null) {
-          a.Say(currentAction.strValue, currentAction);
-          a.SetDirection(currentAction.dir);
-          currentAction.Play();
-        }
-        else
-          currentAction.Complete();
-      }
-      else if (currentAction.type == ActionType.Expression) {
-        Actor a = GetActor(currentAction.actor);
-        a.SetDirection(currentAction.dir);
-        a.SetExpression(Enums.GetExp(currentAction.strValue));
-        currentAction.Play();
-      }
-      else if (currentAction.type == ActionType.Sound) {
-        Actor a = GetActor(currentAction.actor);
-        if (a != null) a.SetDirection(currentAction.dir);
-        currentActor.PlaySound(Sounds[(int)currentAction.sound]);
-        currentAction.Play();
-      }
-      else if (currentAction.type == ActionType.Enable) {
-        // Find the actual Item from all the known items, pick it by enum
-        Item item = allObjects.FindItemByID(currentAction.item);
-        if (item == null) {
-          Debug.LogError("Cannot find item!");
-          return;
-        }
-        item.gameObject.SetActive(currentAction.change == ChangeWay.EnOpenLock);
-        currentAction.Complete();
-      }
-      else if (currentAction.type == ActionType.Open) {
-        // Find the actual Item from all the known items, pick it by enum
-        Item item = allObjects.FindItemByID(currentAction.item);
-        currentActor.Say(item.Open(currentAction.change));
-        currentAction.Complete();
-      }
-      else if (currentAction.type == ActionType.Lock) {
-        // Find the actual Item from all the known items, pick it by enum
-        Item item = allObjects.FindItemByID(currentAction.item);
-        currentActor.Say(item.Lock(currentAction.change));
-        currentAction.Complete();
-      }
-      else {
-        // FIXME do the other actions
-        Debug.Log("Not implemented action: " + currentAction.ToString());
-        currentAction.Complete(); // Just to avoid to block the game for action not yet done
-      }
-
+      RunCurrentAction();
     }
     else if (currentAction.IsPlaying()) {
       currentAction.CheckTime(Time.deltaTime);
@@ -553,6 +482,122 @@ public class Controller : MonoBehaviour {
     return Running.NotStarted;
   }
 
+  void RunCurrentAction() {
+    switch (currentAction.type) {
+      case ActionType.Teleport: {
+        Actor a = GetActor(currentAction.actor);
+        Room aroom = allObjects.GetRoom(currentAction.strValue);
+        if (aroom != null) a.currentRoom = aroom;
+        a.transform.position = currentAction.pos;
+        a.SetDirection(currentAction.dir);
+        RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
+        if (hit.collider != null) {
+          PathNode p = hit.collider.GetComponent<PathNode>();
+          a.WalkTo(currentAction.pos, p);
+        }
+        currentAction.Complete();
+      }
+      break;
+
+      case ActionType.Speak: {
+        Actor a = GetActor(currentAction.actor);
+        if (a != null) {
+          a.Say(currentAction.strValue, currentAction);
+          a.SetDirection(currentAction.dir);
+          currentAction.Play();
+        }
+        else
+          currentAction.Complete();
+      }
+      break;
+
+      case ActionType.Move: {
+        Actor a = GetActor(currentAction.actor);
+        RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
+        if (hit.collider != null) {
+          PathNode p = hit.collider.GetComponent<PathNode>();
+          GameAction copy = currentAction;
+          a.WalkTo(currentAction.pos, p,
+          new System.Action<Actor, Item>((actor, item) => { copy.Complete(); }));
+        }
+      }
+      break;
+
+      case ActionType.Expression: {
+        Actor a = GetActor(currentAction.actor);
+        a.SetDirection(currentAction.dir);
+        a.SetExpression(Enums.GetExp(currentAction.strValue));
+        currentAction.Play();
+      }
+      break;
+
+      case ActionType.Open: {
+        // Find the actual Item from all the known items, pick it by enum
+        Item item = allObjects.FindItemByID(currentAction.item);
+        currentActor.Say(item.Open(currentAction.change));
+        currentAction.Complete();
+      }
+      break;
+
+      case ActionType.Enable: {
+        // Find the actual Item from all the known items, pick it by enum
+        Item item = allObjects.FindItemByID(currentAction.item);
+        if (item == null) {
+          Debug.LogError("Cannot find item!");
+          return;
+        }
+        item.gameObject.SetActive(currentAction.change == ChangeWay.EnOpenLock);
+        currentAction.Complete();
+      }
+      break;
+
+      case ActionType.Lock: {
+        // Find the actual Item from all the known items, pick it by enum
+        Item item = allObjects.FindItemByID(currentAction.item);
+        currentActor.Say(item.Lock(currentAction.change));
+        currentAction.Complete();
+      }
+      break;
+
+      case ActionType.ShowRoom: {
+        currentRoom = allObjects.GetRoom(currentAction.strValue);
+        Vector3 pos = currentAction.pos;
+        pos.z = -10;
+        cam.transform.position = pos;
+        foreach (Room r in allObjects.roomsList)
+          r.gameObject.SetActive(false);
+        currentRoom.gameObject.SetActive(true);
+        currentAction.Complete();
+      }
+      break;
+
+      case ActionType.SetSequence: {
+
+      }
+      break;
+
+      case ActionType.Sound: {
+        Actor a = GetActor(currentAction.actor);
+        if (a != null) a.SetDirection(currentAction.dir);
+        currentActor.PlaySound(Sounds[(int)currentAction.sound]);
+        currentAction.Play();
+      }
+      break;
+
+      case ActionType.Receive: {
+
+      }
+      break;
+
+      default: {
+        // FIXME do the other actions
+        Debug.Log("Not implemented action: " + currentAction.ToString());
+        currentAction.Complete(); // Just to avoid to block the game for action not yet done
+      }
+      break;
+    }
+
+  }
 
   #endregion
 

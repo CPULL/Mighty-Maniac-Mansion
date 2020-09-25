@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(GameCondition))]
-public class MyConditionPropertyDrawer : PropertyDrawer {
+public class GameConditionPropertyDrawer : PropertyDrawer {
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
     EditorGUI.BeginProperty(position, label, property);
 
@@ -17,6 +17,7 @@ public class MyConditionPropertyDrawer : PropertyDrawer {
     SerializedProperty skill = property.FindPropertyRelative("skill");
     SerializedProperty num = property.FindPropertyRelative("num");
     SerializedProperty action = property.FindPropertyRelative("action");
+    SerializedProperty when = property.FindPropertyRelative("when");
 
 
     string actorVal = actor.enumDisplayNames[actor.intValue];
@@ -28,14 +29,19 @@ public class MyConditionPropertyDrawer : PropertyDrawer {
 
     string name = GameCondition.CalculateName(conditionVal, actorVal, skillVal, itemVal, numVal, actionVal);
 
-    Rect rectCond = new Rect(position.x, position.y, 90, EditorGUIUtility.singleLineHeight);
-    Rect rectType = new Rect(position.x + 90, position.y, position.width / 3 - 50, EditorGUIUtility.singleLineHeight);
-    Rect rectName = new Rect(position.x + 90 + position.width / 3, position.y, position.width * 2 / 3 - 50, EditorGUIUtility.singleLineHeight);
+    float partw = (position.width - 75)/ 3;
+    Rect rectCond = new Rect(position.x, position.y, partw, EditorGUIUtility.singleLineHeight);
+    Rect rectType = new Rect(position.x + 75 + 0 * partw, position.y, partw, EditorGUIUtility.singleLineHeight);
+    Rect rectWhen = new Rect(position.x + 75 + 1 * partw, position.y, partw, EditorGUIUtility.singleLineHeight);
+    Rect rectName = new Rect(position.x + 75 + 2 * partw, position.y, partw, EditorGUIUtility.singleLineHeight);
     Rect rect1, rect2, rect3;
 
     EditorGUI.LabelField(rectCond, "Condition", EditorStyles.boldLabel);
-    type.intValue = EditorGUI.Popup(rectType, type.intValue, type.enumNames);
-    EditorGUI.LabelField(rectName, name);
+    type.intValue = EditorGUI.Popup(rectType, type.intValue, type.enumDisplayNames);
+    if (type.intValue != 0) {
+      when.intValue = EditorGUI.Popup(rectWhen, when.intValue, when.enumDisplayNames);
+      EditorGUI.LabelField(rectName, name);
+    }
 
     switch ((Condition)type.intValue) {
       case Condition.None: break;
@@ -97,26 +103,29 @@ public class MyConditionPropertyDrawer : PropertyDrawer {
 
   //This will need to be adjusted based on what you are displaying
   public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
+    float h = base.GetPropertyHeight(property, label);
+    float l = EditorGUIUtility.singleLineHeight;
+
     SerializedProperty type = property.FindPropertyRelative("condition");
     switch ((Condition)type.intValue) {
-      case Condition.None: return EditorGUIUtility.singleLineHeight * 1.5f;
-      case Condition.ActorIsAvailable: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.CurrentActorEqual: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.CurrentActorNotEqual: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.ActorHasSkill: return EditorGUIUtility.singleLineHeight * 3.5f;
-      case Condition.HasItem: return EditorGUIUtility.singleLineHeight * 3.5f;
-      case Condition.DoesNotHaveItem: return EditorGUIUtility.singleLineHeight * 3.5f;
-      case Condition.ItemIsOpen: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.ItemIsClosed: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.ItemIsLocked: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.ItemIsCollected: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.ItemIsNotCollected: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.ItemIsUnlocked: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.WithItem: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.ActionCompleted: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.ActionNotStarted: return EditorGUIUtility.singleLineHeight * 2.5f;
-      case Condition.ActionRunning: return EditorGUIUtility.singleLineHeight * 2.5f;
+      case Condition.None: return h + l;
+      case Condition.ActorIsAvailable: return h + l;
+      case Condition.CurrentActorEqual: return h + l;
+      case Condition.CurrentActorNotEqual: return h + l;
+      case Condition.ActorHasSkill: return h + l;
+      case Condition.HasItem: return h + l;
+      case Condition.DoesNotHaveItem: return h + l;
+      case Condition.ItemIsOpen: return h + l;
+      case Condition.ItemIsClosed: return h + l;
+      case Condition.ItemIsLocked: return h + l;
+      case Condition.ItemIsCollected: return h + l;
+      case Condition.ItemIsNotCollected: return h + l;
+      case Condition.ItemIsUnlocked: return h + l;
+      case Condition.WithItem: return h + l;
+      case Condition.ActionCompleted: return h + l;
+      case Condition.ActionNotStarted: return h + l;
+      case Condition.ActionRunning: return h + l;
     }
-    return EditorGUIUtility.singleLineHeight * 1;
+    return h + l * 5;
   }
 }

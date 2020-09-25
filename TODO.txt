@@ -1,8 +1,24 @@
 Mighty Maniac Mansion
 
-The "give" is not working correctly. If the item is not marked as "pickable" it will not work
-Change the way we go over the actors and we select them. Have them to be a specific simple "Item" to use the same code.
 
+
+
+We may need a global condition to check if something can be "used" or "picked"
+Then the list of actions with or without condition
+The actions may return a good or bad result (depending on the condition?)
+
+
+
+
+
+
+
+
+
+
+
+
+The "give" is not working correctly. If the item is not marked as "pickable" it will not work
 
 portrait -> LR click select actor
 actor -> left click select, right click give if object used

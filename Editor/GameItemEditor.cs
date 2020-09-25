@@ -13,6 +13,7 @@ public class GameItemEditor : Editor {
   SerializedProperty overColor, normalColor;
   SerializedProperty HotSpot, dir;
   SerializedProperty actions;
+  SerializedProperty condition;
 
 
   void OnEnable() {
@@ -34,6 +35,7 @@ public class GameItemEditor : Editor {
     HotSpot = serializedObject.FindProperty("HotSpot");
     dir = serializedObject.FindProperty("dir");
     actions = serializedObject.FindProperty("actions");
+    condition = serializedObject.FindProperty("condition");
   }
 
   public override void OnInspectorGUI() {
@@ -108,11 +110,79 @@ public class GameItemEditor : Editor {
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 
-    EditorGUILayout.PropertyField(actions);
-    EditorGUI.indentLevel -= 1;
+    EditorGUILayout.PropertyField(condition);
+
+    // Actions detailed
+    actions.isExpanded = EditorGUILayout.Foldout(actions.isExpanded, "Actions");
+    if (actions.isExpanded) {
+      EditorGUI.indentLevel++;
+      SerializedProperty arraySizeProp = actions.FindPropertyRelative("Array.size");
+      EditorGUILayout.PropertyField(arraySizeProp);
+
+      for (int i = 0; i < arraySizeProp.intValue; i++) {
+        SerializedProperty actionLine = actions.GetArrayElementAtIndex(i);
+        SerializedProperty cond = actionLine.FindPropertyRelative("Condition");
+        SerializedProperty act = actionLine.FindPropertyRelative("Action");
+        string name = GetTargetObjectName(cond) + " -> " + GetTargetObjectName(act);
+        EditorGUILayout.PropertyField(actionLine, new GUIContent(i.ToString() + ") " + name), true);
+      }
+      EditorGUI.indentLevel--;
+    }
+
 
     serializedObject.ApplyModifiedProperties();
     EditorGUIUtility.labelWidth = oldw;
+  }
+
+  private string GetTargetObjectName(SerializedProperty act) {
+    string path = act.propertyPath.Replace(".Array.data[", "[");
+    object obj = act.serializedObject.targetObject;
+    string[] elements = path.Split('.');
+    foreach (string element in elements) {
+      if (element.Contains("[")) {
+        string elementName = element.Substring(0, element.IndexOf("["));
+        int index = System.Convert.ToInt32(element.Substring(element.IndexOf("[")).Replace("[", "").Replace("]", ""));
+        obj = GetValue_Imp(obj, elementName, index);
+      }
+      else {
+        obj = GetValue_Imp(obj, element);
+      }
+    }
+    if (obj == null) return "NULL";
+    return obj.ToString();
+  }
+
+  private static object GetValue_Imp(object source, string name) {
+    if (source == null)
+      return null;
+    var type = source.GetType();
+
+    while (type != null) {
+      var f = type.GetField(name, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+      if (f != null)
+        return f.GetValue(source);
+
+      var p = type.GetProperty(name, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.IgnoreCase);
+      if (p != null)
+        return p.GetValue(source, null);
+
+      type = type.BaseType;
+    }
+    return null;
+  }
+
+  private static object GetValue_Imp(object source, string name, int index) {
+    var enumerable = GetValue_Imp(source, name) as System.Collections.IEnumerable;
+    if (enumerable == null) return null;
+    var enm = enumerable.GetEnumerator();
+    //while (index-- >= 0)
+    //    enm.MoveNext();
+    //return enm.Current;
+
+    for (int i = 0; i <= index; i++) {
+      if (!enm.MoveNext()) return null;
+    }
+    return enm.Current;
   }
 }
 

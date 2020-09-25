@@ -25,14 +25,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     SerializedProperty change = property.FindPropertyRelative("change");
     SerializedProperty when = property.FindPropertyRelative("when");
 
-
-
     string name = GameAction.CalculateName((ActionType)type.intValue, actor.enumDisplayNames[actor.intValue], (ItemEnum)item.intValue, strValue.stringValue, (Expression)expression.intValue, (Audios)sound.intValue, pos.vector2Value, (ChangeWay)change.intValue, (WhatItDoes)when.intValue);
 
     Rect rectAct = new Rect(position.x, position.y, 90, EditorGUIUtility.singleLineHeight);
     Rect rectType = new Rect(position.x + 90, position.y, position.width / 3 - 50, EditorGUIUtility.singleLineHeight);
     Rect rectName = new Rect(position.x + 90 + position.width / 3, position.y, position.width * 2 / 3 - 50, EditorGUIUtility.singleLineHeight);
-    Rect rect1, rect2, rect3;
+    Rect rect1, rect2, rect3, rect4;
 
     EditorGUI.LabelField(rectAct, "Action", EditorStyles.boldLabel);
     type.intValue = EditorGUI.Popup(rectType, type.intValue, type.enumDisplayNames);
@@ -48,7 +46,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     delay.floatValue = EditorGUI.FloatField(rectDel, "Delay", delay.floatValue);
 
     switch ((ActionType)type.intValue) {
-      case ActionType.ShowRoom:
+      case ActionType.ShowRoom: {
         rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + position.width / 2, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         EditorGUIUtility.labelWidth = 80;
@@ -61,16 +59,19 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect rectErr = new Rect(position.x + position.width / 4, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
           EditorGUI.LabelField(rectErr, "INVALID!", style);
         }
-        break;
+      }
+      break;
 
-      case ActionType.Teleport:
-        rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
-        rect2 = new Rect(position.x + position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
-        rect3 = new Rect(position.x + 2 * position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+      case ActionType.Teleport: {
+        rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
+        rect2 = new Rect(position.x + position.width / 4, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
+        rect3 = new Rect(position.x + 2 * position.width / 4, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
+        rect4 = new Rect(position.x + 3 * position.width / 4, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
         EditorGUIUtility.labelWidth = 60;
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
-        pos.vector2Value = EditorGUI.Vector2Field(rect2, "Position", pos.vector2Value);
-        dir.intValue = EditorGUI.Popup(rect3, "Dir", dir.intValue, dir.enumDisplayNames);
+        strValue.stringValue = EditorGUI.TextField(rect1, "RoomID", strValue.stringValue);
+        actor.intValue = EditorGUI.Popup(rect2, "Actor", actor.intValue, actor.enumDisplayNames);
+        pos.vector2Value = EditorGUI.Vector2Field(rect3, "Position", pos.vector2Value);
+        dir.intValue = EditorGUI.Popup(rect4, "Dir", dir.intValue, dir.enumDisplayNames);
 
         if (actor.intValue < 1 || pos.vector2Value == Vector2.zero) {
           GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
@@ -78,9 +79,10 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect rectErr = new Rect(position.x + position.width / 4, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
           EditorGUI.LabelField(rectErr, "INVALID!", style);
         }
-        break;
+      }
+      break;
 
-      case ActionType.Speak:
+      case ActionType.Speak: {
         GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
           wordWrap = true,
           fixedHeight = EditorGUIUtility.singleLineHeight * 5
@@ -99,9 +101,10 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect rectErr = new Rect(position.x + position.width / 4, position.y + 8 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
           EditorGUI.LabelField(rectErr, "INVALID!", style);
         }
-        break;
+      }
+      break;
 
-      case ActionType.Expression:
+      case ActionType.Expression: {
         rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
         rect3 = new Rect(position.x + 2 * position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
@@ -116,9 +119,10 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect rectErr = new Rect(position.x + position.width / 4, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
           EditorGUI.LabelField(rectErr, "INVALID!", style);
         }
-        break;
+      }
+      break;
 
-      case ActionType.Sound:
+      case ActionType.Sound: {
         rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect3 = new Rect(position.x + position.width / 2, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
@@ -133,11 +137,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect rectErr = new Rect(position.x + position.width / 4, position.y + 4 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
           EditorGUI.LabelField(rectErr, "INVALID!", style);
         }
-        break;
+      }
+      break;
 
       case ActionType.Enable:
       case ActionType.Open:
-      case ActionType.Lock:
+      case ActionType.Lock: {
         rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width * 3 / 4, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + position.width * 3 / 4, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
         item.intValue = EditorGUI.Popup(rect1, "Item", item.intValue, item.enumNames);
@@ -149,13 +154,37 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect rectErr = new Rect(position.x + position.width / 4, position.y + 4 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
           EditorGUI.LabelField(rectErr, "INVALID!", style);
         }
-        break;
+      }
+      break;
 
-
-      case ActionType.SetSequence:
+      case ActionType.SetSequence: {
         rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
         action.intValue = EditorGUI.Popup(rect1, "ID", action.intValue, action.enumDisplayNames);
-        break;
+      }
+      break;
+
+      case ActionType.Move: {
+        rect1 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+        rect2 = new Rect(position.x + position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+        rect3 = new Rect(position.x + 2 * position.width / 3, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
+        EditorGUIUtility.labelWidth = 60;
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        pos.vector2Value = EditorGUI.Vector2Field(rect2, "Position", pos.vector2Value);
+        dir.intValue = EditorGUI.Popup(rect3, "Dir", dir.intValue, dir.enumDisplayNames);
+
+        if (actor.intValue < 1 || pos.vector2Value == Vector2.zero) {
+          GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
+          style.normal.textColor = Color.red;
+          Rect rectErr = new Rect(position.x + position.width / 4, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+          EditorGUI.LabelField(rectErr, "INVALID!", style);
+        }
+      }
+      break;
+
+      case ActionType.Receive: {
+
+      }
+      break;
     }
 
     EditorGUI.indentLevel = indent;

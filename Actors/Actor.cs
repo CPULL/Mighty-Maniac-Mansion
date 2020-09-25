@@ -82,6 +82,10 @@ public class Actor : MonoBehaviour {
 
   internal void SetDirection(Dir d) {
     if (d == Dir.None) return;
+    if (d != Dir.L && d != Dir.R && d != Dir.F && d != Dir.B) {
+      Debug.LogError("Found the culprit");
+      return;
+    }
     dir = d;
   }
 
@@ -167,6 +171,8 @@ public class Actor : MonoBehaviour {
     audios.Play();
   }
 
+  public bool debuganim = false;
+
   private void Update() {
     if (isSpeaking) {
       speakt += Time.deltaTime;
@@ -183,6 +189,8 @@ public class Actor : MonoBehaviour {
       case Dir.R: Face.sprite = facesR[faceNum]; break;
     }
     if (!walking) {
+      if (dir == Dir.None) dir = Dir.F;
+      if (debuganim) Debug.Log("Idle" + dir);
       anim.Play("Idle" + dir);
       return;
     }

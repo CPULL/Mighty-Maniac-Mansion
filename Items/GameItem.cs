@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
@@ -27,45 +26,38 @@ public class GameItem : MonoBehaviour {
   public Color32 overColor = new Color32(255, 255, 0, 255);
   public Color32 normalColor = new Color32(255, 255, 255, 255);
 
-
+  public JustCondition condition;
   public List<ActionAndCondition> actions;
 
-
-
-  internal string PlayActions(Actor actor, WhatItDoes what, Item item = null) {
+  internal string PlayActions(Actor actor, Actor secondary, When when, Item item = null) {
     if (actions == null || actions.Count == 0) return null;
-    string fail = null;
     bool atLeastOne = false;
     foreach (ActionAndCondition ac in actions) {
-      if (ac.Action.when != what) continue;
-      string res = ac.Condition.Verify(actor, item ?? this);
-      if (res == null) {
+      if (ac.Condition.IsValid(actor, secondary, item ?? this, when)) {
+        // Here we may check if the action will be refused, just to stop whatever was going on
         Controller.AddAction(ac.Action);
         atLeastOne = true;
       }
-      else if (fail == null)
-        fail = res;
     }
     if (atLeastOne) return null;
-    if (fail != null) return fail;
-    return "No valid actions";
+    return "It does not work";
   }
 
 
-  public string VerifyConditions(Actor actor) {
-    if (actions == null || actions.Count == 0) return null;
-    string fail = null;
+  public bool VerifyConditions(Actor performer, Actor secondary, When when) {
+    // Check if the global condition is satisfied, if not return the defined message
+    if (!condition.Condition.IsValid(performer, secondary, this, when))
+      return true;
+
+    if (actions == null || actions.Count == 0) return false;
     bool atLeastOne = false;
     foreach (ActionAndCondition ac in actions) {
-      string res = ac.Condition.Verify(actor, this);
-      if (res == null) {
+      if (ac.Condition.IsValid(performer, secondary, this, when)) { 
         atLeastOne = true;
         break;
       }
-      else if (fail == null)
-        fail = res;
     }
-    return atLeastOne ? null : fail;
+    return atLeastOne;
   }
 
   internal bool CheckActions(Actor actor, Item other) {

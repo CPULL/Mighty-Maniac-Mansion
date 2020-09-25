@@ -7,7 +7,7 @@ public enum ItemType { None, Readable, Usable, Pickable, Walkable, Stairs };
 /// <summary>
 /// Direction of an actor, to use the correct sprites
 /// </summary>
-public enum Dir { F=0, B=2, L=1, R=3, None = 99 };
+public enum Dir { F=0, B=2, L=1, R=3, None = 4 };
 
 
 /// <summary>
@@ -34,15 +34,28 @@ public enum GameStatus { IntroVideo, CharSelection, IntroDialogue, NormalGamePla
 /// <summary>
 /// Used to specify the type of actions
 /// </summary>
-public enum ActionType { None = 0, Teleport = 1, Speak = 2, Move = 3, Expression = 4, Open = 5, Enable = 6, Lock = 7, ShowRoom = 8, SetSequence = 9, Sound = 10 };
+public enum ActionType { None = 0, 
+  Teleport = 1, // Teleport an actor somewhere 
+  Speak = 2, // Have an actor to say something
+  Move = 3, // Have an actor to walk to a destination
+  Expression = 4, // Set an expression to an actor
+  Open = 5, // Open or close a door
+  Enable = 6, // Enable or disable an item
+  Lock = 7, // Lock or unlock a door
+  ShowRoom = 8, // Jumps to a specific room enabling it
+  SetSequence = 9, // Starts a Cutscene (FIXME not done)
+  Sound = 10, // Play a sound
+  Receive = 11 // Have an actor to receive an item from another actor and say something (FIXME not done)
+};
 
 /// <summary>
 /// List of all actors and generic actor references, like Actor1
 /// </summary>
 public enum Chars {
-  None = 0, Current = 1, Actor1 = 2, Actor2 = 3, Actor3 = 4, KidnappedActor = 5, Receiver = 6,
-  Fred = 10, Edna = 11, Ted = 12, Ed = 13, Edwige = 14, GreenTentacle = 15, PurpleTentacle = 16,
+  None = 0, Current = 1, Actor1 = 2, Actor2 = 3, Actor3 = 4, KidnappedActor = 5, Receiver = 6, Unused07 = 7, Unused08 = 8, Unused09 = 9,
+  Fred = 10, Edna = 11, Ted = 12, Ed = 13, Edwige = 14, GreenTentacle = 15, PurpleTentacle = 16, Unused1 = 18, Unused18 = 18, Unused19 = 19,
   Dave = 20, Bernard = 21, Hoagie = 22, Michael = 23, Razor = 24, Sandy = 25, Syd = 26, Wendy = 27, Jeff = 28, Javid = 29, Ollie = 30,
+  Unused31 = 31, Unused32 = 32, Unused33 = 33, Unused34 = 34, Unused35 = 35, Unused36 = 36, Unused37 = 37, Unused38 = 38, Unused39 = 39, 
   otheractorslikepolice = 40 // FIXME this name will change
 };
 
@@ -145,6 +158,16 @@ public enum WhatItDoes {
   Walk
 }
 
+/// <summary>
+/// Used to check when a coondition of an action should be considered
+/// </summary>
+public enum When {
+  Pick,
+  Use,
+  Give,
+  Cutscene,
+  Always
+}
 
 public enum ChangeWay {
   Ignore = 0,
@@ -152,5 +175,3 @@ public enum ChangeWay {
   DisCloseUnlock = 2,
   SwapSwitch = 3
 }
-
-

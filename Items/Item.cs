@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Item : GameItem {
   [HideInInspector] public SpriteRenderer sr;
@@ -18,29 +19,28 @@ public class Item : GameItem {
 
   public string Use(Actor actor) {
     // Check conditions to use it
-    string res = VerifyConditions(actor);
-    if (res != null) return res;
+    if (!VerifyConditions(actor, null, When.Use)) return condition.Result;
 
     if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
 
     if (Usable == Tstatus.Usable) {
-      return PlayActions(actor, WhatItDoes.Use);
+      return PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableOpen) {
       SetAsClosedUnlocked();
-      return PlayActions(actor, WhatItDoes.Use);
+      return PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableOpenAutolock) {
       SetAsClosedUnlockedAuto();
-      return PlayActions(actor, WhatItDoes.Use);
+      return PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableClosed) {
       SetAsOpen();
-      return PlayActions(actor, WhatItDoes.Use);
+      return PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableClosedAutolock) {
       SetAsOpenAuto();
-      return PlayActions(actor, WhatItDoes.Use);
+      return PlayActions(actor, null, When.Use);
     }
 
     return "Seems it does nothing";
@@ -125,6 +125,13 @@ public class Item : GameItem {
     }
   }
 
+  internal bool HasActions(When when) {
+    foreach(ActionAndCondition ac in actions) {
+      if (ac.Condition.condition != Condition.None && ac.Condition.when == when) return true;
+    }
+    return false;
+  }
+
   private void SetAsOpen() {
     Usable = Tstatus.OpenableOpen;
     sr.sprite = openImage;
@@ -182,12 +189,11 @@ public class Item : GameItem {
 
   internal void Give(Actor giver, Actor receiver) {
     // Check give conditions
-    string res = VerifyConditions(receiver);
-    if (res != null) {
-      receiver.Say(res);
+    if (!VerifyConditions(giver, receiver, When.Give)) {
+      receiver.Say(condition.Result);
       return;
     }
-    res = PlayActions(receiver, WhatItDoes.Pick);
+    string res = PlayActions(giver, receiver, When.Give, this);
     if (res != null) {
       if (Controller.IsEnemy(receiver)) {
         receiver.Say("No thanks");
