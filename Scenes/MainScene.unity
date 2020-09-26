@@ -2240,7 +2240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230801169}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0.121, y: -2.48, z: 0}
+  m_LocalPosition: {x: 0.95, y: -2.32, z: 0}
   m_LocalScale: {x: 0.049642358, y: 0.029661361, z: 0.7488408}
   m_Children: []
   m_Father: {fileID: 498876724}
@@ -5207,7 +5207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498876723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.646919, y: 0.16397095, z: 0}
+  m_LocalPosition: {x: -16.7, y: -0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 230801170}
@@ -5229,7 +5229,7 @@ MonoBehaviour:
   Item: 0
   Name: Front door
   owner: 0
-  Usable: 6
+  Usable: 4
   UsableWith: 0
   whatItDoesL: 3
   whatItDoesR: 0
@@ -5239,7 +5239,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -65.52592, y: 17.683971}
+  HotSpot: {x: -65.75, y: 17.52}
   dir: 1
   overColor:
     serializedVersion: 2
@@ -5310,7 +5310,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.8125, y: 6.875}
+  m_Size: {x: 2.5, y: 5.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5333,8 +5333,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.8125, y: 6.875}
-    newSize: {x: 2.8125, y: 6.875}
+    oldSize: {x: 2.5, y: 5.75}
+    newSize: {x: 2.5, y: 5.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

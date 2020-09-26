@@ -4,7 +4,6 @@ Mighty Maniac Mansion
 Anim for hamster, cursor for hamster, icon for hamster
 Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
-Have the doors to get a better "priority", so actors can get behind (or redraw front door to not overlap actors)
 Change y speed and x speed. x >>> y to simulate depth
 Make again working the scaling of actors while changing y coordinate
 

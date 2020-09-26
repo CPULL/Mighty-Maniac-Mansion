@@ -112,8 +112,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 180
-        height: 440
+        width: 160
+        height: 368
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +131,10 @@ TextureImporter:
       name: Main Door Internal_1
       rect:
         serializedVersion: 2
-        x: 180
+        x: 160
         y: 0
-        width: 180
-        height: 440
+        width: 160
+        height: 368
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
