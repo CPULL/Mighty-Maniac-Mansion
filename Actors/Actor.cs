@@ -13,7 +13,7 @@ public class Actor : MonoBehaviour {
   public Material Outline;
   public Room currentRoom;
   Animator anim;
-  Vector3 destination = Vector2.zero;
+  Parcour3 destination = new Parcour3(Vector3.zero, null);
   System.Action<Actor, Item> callBack = null;
   Item callBackItem = null;
   bool walking = false;
@@ -22,12 +22,16 @@ public class Actor : MonoBehaviour {
   private AudioSource audios;
   public List<Item> inventory;
   public Chars id;
+  public float mainScale = 1f;
   public List<Skill> skills;
-  List<Vector2> parcour;
+  List<Parcour> parcour;
 
   private void Awake() {
     anim = GetComponent<Animator>();
     audios = GetComponent<AudioSource>();
+
+    if (currentRoom != null)
+      SetScaleAndPosition(new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY - currentRoom.minY), 0));
   }
 
   internal bool HasItem(ItemEnum item) {
@@ -83,7 +87,7 @@ public class Actor : MonoBehaviour {
   internal void SetDirection(Dir d) {
     if (d == Dir.None) return;
     if (d != Dir.L && d != Dir.R && d != Dir.F && d != Dir.B) {
-      Debug.LogError("Found the culprit");
+      Debug.LogError("Found the culprit: " + d);
       return;
     }
     dir = d;
@@ -138,9 +142,10 @@ public class Actor : MonoBehaviour {
 
 
   internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) {
-    destination = dest;
-    destination.z = transform.position.z;
-    Vector2 wdir = destination - transform.position;
+    destination.pos = dest;
+    destination.node = p;
+    destination.pos.z = transform.position.z;
+    Vector2 wdir = destination.pos - transform.position;
     float dist = Vector2.Distance(transform.position, dest);
     if (wdir.sqrMagnitude < .1f || dist < .15f) {
       action?.Invoke(this, item);
@@ -150,18 +155,19 @@ public class Actor : MonoBehaviour {
     // Calculate the path
     parcour = p.parent.PathFind(transform.position, dest);
     if (parcour == null) {
-      destination = dest;
+      destination.pos = dest;
     }
     else {
-      destination = parcour[1];
+      destination.pos = parcour[1].pos;
+      destination.node = parcour[1].node;
       parcour.RemoveRange(0, 2);
     }
-    destination.z = destination.y;
+    destination.pos.z = (destination.pos.y - currentRoom.CameraGround) / 10f;
 
     callBack = action;
     callBackItem = item;
     path = p;
-    dir = CalculateDirection(destination);
+    dir = CalculateDirection(destination.pos);
     anim.Play("Walk" + dir);
     walking = true;
   }
@@ -196,30 +202,33 @@ public class Actor : MonoBehaviour {
     }
 
     anim.speed = Controller.walkSpeed * .8f;
-    Vector2 walkDir = (destination - transform.position);
+    Vector2 walkDir = (destination.pos - transform.position);
     Vector3 wdir = walkDir.normalized;
     wdir.y *= .65f;
-    wdir.z = wdir.y; // Change this. Keep the Z value from 0 and 1 depending on the max and min Y values
+    wdir.z = (wdir.y - currentRoom.CameraGround) / 10f;
     Vector3 np = transform.position + wdir * 4f * Controller.walkSpeed * Time.deltaTime;
 
     float ty = transform.position.y;
-    if (ty < currentRoom.maxY) ty = currentRoom.maxY;
-    if (ty > currentRoom.minY) ty = currentRoom.minY;
-    float perc = (ty - currentRoom.maxY) / (currentRoom.minY - currentRoom.maxY);
-    float scaley = currentRoom.minS * perc + currentRoom.maxS * (1 - perc);
-    transform.localScale = new Vector3(scaley, scaley, 1);
+    if (ty < currentRoom.minY) ty = currentRoom.minY;
+    if (ty > currentRoom.maxY) ty = currentRoom.maxY;
+    if (!destination.node.isStair) {
+      float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
+      scaley *= mainScale;
+      transform.localScale = new Vector3(scaley, scaley, 1);
+    }
 
     if (walkDir.sqrMagnitude < .05f) {
       if (parcour == null || parcour.Count == 0) {
-        transform.position = destination;
+        transform.position = destination.pos;
         walking = false;
         callBack?.Invoke(this, callBackItem);
         callBack = null;
         return;
       }
-      destination = parcour[0];
+      destination.pos = parcour[0].pos;
+      destination.node = parcour[0].node;
       parcour.RemoveAt(0);
-      dir = CalculateDirection(destination);
+      dir = CalculateDirection(destination.pos);
       anim.Play("Walk" + dir);
     }
     transform.position = np;
@@ -227,13 +236,14 @@ public class Actor : MonoBehaviour {
 
   public void SetScaleAndPosition(Vector3 pos) {
     float ty = pos.y;
-    if (ty < currentRoom.maxY) ty = currentRoom.maxY;
-    if (ty > currentRoom.minY) ty = currentRoom.minY;
-    float perc = (ty - currentRoom.maxY) / (currentRoom.minY - currentRoom.maxY);
-    float scaley = currentRoom.minS * perc + currentRoom.maxS * (1 - perc);
-    transform.localScale = new Vector3(scaley, scaley, 1);
+    if (ty < currentRoom.minY) ty = currentRoom.minY;
+    if (ty > currentRoom.maxY) ty = currentRoom.maxY;
+    if (destination.node == null || !destination.node.isStair) {
+      float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
+      scaley *= mainScale;
+      transform.localScale = new Vector3(scaley, scaley, 1);
+    }
     pos.y = ty;
     transform.position = pos;
   }
 }
-

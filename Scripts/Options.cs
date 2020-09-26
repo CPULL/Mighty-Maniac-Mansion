@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Diagnostics;
 using UnityEngine.UI;
 
 public class Options : MonoBehaviour {
@@ -55,10 +56,12 @@ public class Options : MonoBehaviour {
   }
 
 
+  CursorTypes prevCursor = CursorTypes.None;
   public void Activate(bool activate) {
     optionsCanvas.enabled = activate;
-
+    
     if (activate) {
+      prevCursor = Controller.GetCursor();
       float val = PlayerPrefs.GetFloat("MasterVolume", 1);
       MainVolume.SetValueWithoutNotify(val);
       val = PlayerPrefs.GetFloat("MusicVolume", 1);
@@ -80,6 +83,7 @@ public class Options : MonoBehaviour {
       ChangeTextSpeed();
     }
     else {
+      Controller.SetCursor(prevCursor);
       PlayerPrefs.SetFloat("MasterVolume", MainVolume.value);
       PlayerPrefs.SetFloat("MusicVolume", MusicVolume.value);
       PlayerPrefs.SetFloat("SoundVolume", SoundVolume.value);
@@ -112,5 +116,9 @@ public class Options : MonoBehaviour {
 
     Controller.walkSpeed = PlayerPrefs.GetFloat("WalkSpeed", 1);
     Controller.textSpeed = PlayerPrefs.GetFloat("TalkSpeed", 1);
+  }
+
+  internal bool IsActive() {
+    return optionsCanvas.enabled;
   }
 }

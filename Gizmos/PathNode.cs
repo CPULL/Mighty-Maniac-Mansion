@@ -1,9 +1,6 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PathNode : MonoBehaviour {
-  public float minY;
-  public float maxY;
   public bool isStair;
 
   public PathNode left, right, top, down;

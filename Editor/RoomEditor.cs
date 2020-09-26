@@ -5,8 +5,7 @@ using UnityEngine;
 public class RoomEditor : Editor {
   SerializedProperty ID, Name;
   SerializedProperty minL, maxR;
-  SerializedProperty minY, minS;
-  SerializedProperty maxY, maxS;
+  SerializedProperty minY, maxY, scalePerc;
   SerializedProperty CameraGround;
 
 
@@ -17,8 +16,7 @@ public class RoomEditor : Editor {
     maxR = serializedObject.FindProperty("maxR");
     minY = serializedObject.FindProperty("minY");
     maxY = serializedObject.FindProperty("maxY");
-    minS = serializedObject.FindProperty("minS");
-    maxS = serializedObject.FindProperty("maxS");
+    scalePerc = serializedObject.FindProperty("scalePerc");
     CameraGround = serializedObject.FindProperty("CameraGround");
   }
 
@@ -42,19 +40,11 @@ public class RoomEditor : Editor {
     EditorGUILayout.EndHorizontal();
 
     EditorGUILayout.BeginHorizontal();
-    EditorGUIUtility.labelWidth = 100;
-    EditorGUILayout.LabelField("Min");
-    EditorGUIUtility.labelWidth = 20;
-    EditorGUILayout.PropertyField(minY, new GUIContent("Y"));
-    EditorGUILayout.PropertyField(minS, new GUIContent("S"));
-    EditorGUILayout.EndHorizontal();
-
-    EditorGUILayout.BeginHorizontal();
-    EditorGUIUtility.labelWidth = 100;
-    EditorGUILayout.LabelField("Max");
-    EditorGUIUtility.labelWidth = 20;
-    EditorGUILayout.PropertyField(maxY, new GUIContent("Y"));
-    EditorGUILayout.PropertyField(maxS, new GUIContent("S"));
+    EditorGUIUtility.labelWidth = 40;
+    EditorGUILayout.PropertyField(minY, new GUIContent("Min Y"));
+    EditorGUILayout.PropertyField(maxY, new GUIContent("Max Y"));
+    EditorGUIUtility.labelWidth = 90;
+    EditorGUILayout.PropertyField(scalePerc, new GUIContent("Scale Perc"));
     EditorGUILayout.EndHorizontal();
 
     EditorGUIUtility.labelWidth = 100;

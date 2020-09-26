@@ -14,11 +14,12 @@ public class Controller : MonoBehaviour {
   GameStatus status = GameStatus.IntroDialogue;
   private static Controller c;
   public Transform PickedItems;
-
+  public Material SceneSelectionPoint;
 
 
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
   void Update() {
+    if (options.IsActive()) return;
     cursorTime += Time.deltaTime;
     HandleCursor();
 
@@ -303,15 +304,25 @@ public class Controller : MonoBehaviour {
       return;
     }
 
-
     if (oldCursor != Cursors[(int)forcedCursor]) {
       Cursor.SetCursor(Cursors[(int)forcedCursor], new Vector2(Cursors[(int)forcedCursor].width / 2, Cursors[(int)forcedCursor].height / 2), CursorMode.Auto);
       oldCursor = Cursors[(int)forcedCursor];
     }
   }
 
+  internal static CursorTypes GetCursor() {
+    Cursor.SetCursor(c.Cursors[0], new Vector2(c.Cursors[0].width / 2, c.Cursors[0].height / 2), CursorMode.Auto);
+    return c.forcedCursor;
+  }
+
+
+  internal static void SetCursor(CursorTypes cur) {
+    c.forcedCursor = cur;
+  }
+
+
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
-    if (c.status != GameStatus.NormalGamePlay) return;
+    if (c.status != GameStatus.NormalGamePlay || c.options.IsActive()) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
       SelectActor(c.actor1);
@@ -353,9 +364,11 @@ public class Controller : MonoBehaviour {
     StartCoroutine(StartDelayed());
     Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
     status = GameStatus.IntroDialogue;
+    forcedCursor = CursorTypes.Wait;
   }
 
   private void Start() {
+    SceneSelectionPoint.color = new Color32(0, 0, 0, 0);
     currentRoom = allObjects.roomsList[0];
     currentActor = actor1;
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
@@ -893,15 +906,7 @@ public class Controller : MonoBehaviour {
 
   Actor overActor = null;
   internal static void OverActor(Actor actor) {
-
-
-    if (c.overActor != actor && c.overActor != null) {
-      // Remove previous highlight
-    }
     c.overActor = actor;
-    if (actor == null) return;
-
-    // FIXME change the sprite, make it outlined
   }
 
 

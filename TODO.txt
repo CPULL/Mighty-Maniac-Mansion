@@ -4,11 +4,10 @@ Mighty Maniac Mansion
 Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 
-
 * TODO ************************************************************************************************************
 
 
-Complete intro, adding variations for each character.
+Complete intro Cutscene, adding variations for each character.
 Implement Conditions on actions (JSON serialization, class storage and actual checking of conditions)
 Add some sounds: door open/close, footsteps
 Add start game selection, with selection of kidnapped character and 3 players
@@ -16,9 +15,9 @@ Add start game selection, with selection of kidnapped character and 3 players
 
 FrontDoor:
 -> Doorbell (starts sequence where Ed checks for package and then screams to you to go away)
--> Make usable the House Main Key
 -> Backyard entrance on the left
--> Working door
+
+Hide all the "points" when the game starts
 
 
 * BUGS ************************************************************************************************************
@@ -83,6 +82,7 @@ The z-order of actors is not good. They go behind objects, so they cannot be sel
 ! Anim for hamster, cursor for hamster, icon for hamster
 ! Change y speed and x speed. x >>> y to simulate depth
 ! Make again working the scaling of actors while changing y coordinate
+! Stop interactions in case the options are open
 
 
 * CHARS ************************************************************************************************************

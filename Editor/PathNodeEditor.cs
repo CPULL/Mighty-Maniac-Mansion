@@ -15,13 +15,12 @@ public class PathNodeEditor : Editor {
   }
 
   public override void OnInspectorGUI() {
-    EditorGUIUtility.labelWidth = 45;
+    EditorGUIUtility.labelWidth = 70;
     EditorGUILayout.BeginHorizontal();
-    t.minY = EditorGUILayout.FloatField("Min Y", t.minY);
-    t.maxY = EditorGUILayout.FloatField("Max Y", t.maxY);
     t.isStair = EditorGUILayout.Toggle("Stairs", t.isStair);
+    EditorGUIUtility.labelWidth = 90;
+    t.showMeshLocal = EditorGUILayout.Toggle("Show mesh", t.showMeshLocal);
     EditorGUILayout.EndHorizontal();
-
 
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.BeginHorizontal();
@@ -41,9 +40,6 @@ public class PathNodeEditor : Editor {
     t.down = (PathNode)EditorGUILayout.ObjectField("Down", t.down, typeof(PathNode), true);
     t.br = EditorGUILayout.Vector2Field("BR", t.br);
     EditorGUILayout.EndHorizontal();
-
-    EditorGUIUtility.labelWidth = 80;
-    t.showMeshLocal = EditorGUILayout.Toggle("Show mesh", t.showMeshLocal);
   }
 
   void OnSceneGUI() {

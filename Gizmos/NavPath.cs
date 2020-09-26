@@ -10,7 +10,7 @@ public class NavPath : MonoBehaviour {
 
   public Vector2 start = Vector2.zero;
   public Vector2 end = Vector2.zero;
-  public List<Vector2> gizmoLines;
+  public List<Parcour> gizmoLines;
 
 #if UNITY_EDITOR
   void OnDrawGizmos() {
@@ -33,8 +33,8 @@ public class NavPath : MonoBehaviour {
 
     Gizmos.color = Color.red;
     for (int i = 0; i < gizmoLines.Count - 1; i++) {
-      Vector3 a = gizmoLines[i];
-      Vector3 b = gizmoLines[i + 1];
+      Vector3 a = gizmoLines[i].pos;
+      Vector3 b = gizmoLines[i + 1].pos;
       Gizmos.DrawLine(a, b);
       if (i > 0) Gizmos.DrawIcon(a, "PointPath.png", false);
     }
@@ -67,7 +67,7 @@ public class NavPath : MonoBehaviour {
   }
 
 
-  public List<Vector2> PathFind(Vector2 start, Vector2 end) {
+  public List<Parcour> PathFind(Vector2 start, Vector2 end) {
     PathNode pstart = FindPathNodeFromPoint(start);
     PathNode pend = FindPathNodeFromPoint(end);
     if (pstart == null || pend == null) {
@@ -75,7 +75,7 @@ public class NavPath : MonoBehaviour {
       return null;
     }
 
-    List<Vector2> res = new List<Vector2>();
+    List<Parcour> res = new List<Parcour>();
     List<PathNode> openSet = new List<PathNode> { pstart };
     pstart.prev = null;
     pend.prev = null;
@@ -143,15 +143,15 @@ public class NavPath : MonoBehaviour {
 
     if (!found) return null;
     if (pend.prev == null) { // All in the same node
-      res.Add(start);
-      res.Add(end);
+      res.Add(new Parcour(start, pstart));
+      res.Add(new Parcour(end, pend));
       return res;
     }
 
     // reconstruct the path and Create the result of vector2s
     // Minimize the paths
 
-    res.Add(end);
+    res.Add(new Parcour(end, pend));
     PathNode p1 = pend;
     PathNode p2 = pend.prev;
     while (p1 != null && p2 != null) {
@@ -161,13 +161,13 @@ public class NavPath : MonoBehaviour {
       // Check if the line cross the edge or not
       Vector2 intersection = FindIntersection(c1, c2, GetEdge(p1, p2, true), GetEdge(p1, p2, false));
       if (intersection.x != float.NaN)
-        res.Add(intersection);
+        res.Add(new Parcour(intersection, p2));
 
       p1 = p2;
       p2 = p2.prev;
 
       if (p1 == pstart) {
-        res.Add(start);
+        res.Add(new Parcour(start, pstart));
         break;
       }
       if (p2 == pstart) {
@@ -177,10 +177,10 @@ public class NavPath : MonoBehaviour {
         // Check if the line cross the edge or not
         intersection = FindIntersection(c1, c2, GetEdge(p1, p2, true), GetEdge(p1, p2, false));
         if (intersection.x != float.NaN) {
-          res.Add(intersection);
+          res.Add(new Parcour(intersection, p2));
         }
 
-        res.Add(start);
+        res.Add(new Parcour(start, pstart));
         break;
       }
     }
@@ -256,4 +256,22 @@ public class NavPath : MonoBehaviour {
 
 }
 
+public class Parcour {
+  public Vector2 pos;
+  public PathNode node;
 
+  public Parcour(Vector2 p, PathNode n) {
+    pos = p;
+    node = n;
+  }
+}
+
+public class Parcour3 {
+  public Vector3 pos;
+  public PathNode node;
+
+  public Parcour3(Vector2 p, PathNode n) {
+    pos = p;
+    node = n;
+  }
+}
