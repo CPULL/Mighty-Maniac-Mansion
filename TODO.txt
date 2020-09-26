@@ -1,11 +1,8 @@
 Mighty Maniac Mansion
 
 
-Anim for hamster, cursor for hamster, icon for hamster
 Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
-Change y speed and x speed. x >>> y to simulate depth
-Make again working the scaling of actors while changing y coordinate
 
 
 * TODO ************************************************************************************************************
@@ -82,7 +79,10 @@ The z-order of actors is not good. They go behind objects, so they cannot be sel
 ! Added "receiver" on characters and actions and improved the actors selection
 ! Added regions in the Controller to ease the finding of the functions
 ! When getting actions from items, add them to allknown actions
-! Renamed Sequence to CutScene
+! Rename Sequence to CutScene
+! Anim for hamster, cursor for hamster, icon for hamster
+! Change y speed and x speed. x >>> y to simulate depth
+! Make again working the scaling of actors while changing y coordinate
 
 
 * CHARS ************************************************************************************************************

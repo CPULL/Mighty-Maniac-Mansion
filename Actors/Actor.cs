@@ -198,16 +198,18 @@ public class Actor : MonoBehaviour {
     anim.speed = Controller.walkSpeed * .8f;
     Vector2 walkDir = (destination - transform.position);
     Vector3 wdir = walkDir.normalized;
-    wdir.z = wdir.y;
+    wdir.y *= .65f;
+    wdir.z = wdir.y; // Change this. Keep the Z value from 0 and 1 depending on the max and min Y values
     Vector3 np = transform.position + wdir * 4f * Controller.walkSpeed * Time.deltaTime;
 
     float ty = transform.position.y;
-    if (ty < path.minY) ty = path.minY;
-    if (ty > path.maxY) ty = path.maxY;
-    float scaley = -0.044f * ty + 0.4f;
+    if (ty < currentRoom.maxY) ty = currentRoom.maxY;
+    if (ty > currentRoom.minY) ty = currentRoom.minY;
+    float perc = (ty - currentRoom.maxY) / (currentRoom.minY - currentRoom.maxY);
+    float scaley = currentRoom.minS * perc + currentRoom.maxS * (1 - perc);
     transform.localScale = new Vector3(scaley, scaley, 1);
 
-    if (walkDir.sqrMagnitude < .1f) {
+    if (walkDir.sqrMagnitude < .05f) {
       if (parcour == null || parcour.Count == 0) {
         transform.position = destination;
         walking = false;
@@ -223,5 +225,15 @@ public class Actor : MonoBehaviour {
     transform.position = np;
   }
 
+  public void SetScaleAndPosition(Vector3 pos) {
+    float ty = pos.y;
+    if (ty < currentRoom.maxY) ty = currentRoom.maxY;
+    if (ty > currentRoom.minY) ty = currentRoom.minY;
+    float perc = (ty - currentRoom.maxY) / (currentRoom.minY - currentRoom.maxY);
+    float scaley = currentRoom.minS * perc + currentRoom.maxS * (1 - perc);
+    transform.localScale = new Vector3(scaley, scaley, 1);
+    pos.y = ty;
+    transform.position = pos;
+  }
 }
 

@@ -496,11 +496,7 @@ public class Controller : MonoBehaviour {
         if (aroom != null) a.currentRoom = aroom;
         a.transform.position = currentAction.action.pos;
         a.SetDirection(currentAction.action.dir);
-        RaycastHit2D hit = Physics2D.Raycast(currentAction.action.pos, cam.transform.forward, 10000, pathLayer);
-        if (hit.collider != null) {
-          PathNode p = hit.collider.GetComponent<PathNode>();
-          a.WalkTo(currentAction.action.pos, p);
-        }
+        a.SetScaleAndPosition(currentAction.action.pos);
         currentAction.Complete();
       }
       break;
