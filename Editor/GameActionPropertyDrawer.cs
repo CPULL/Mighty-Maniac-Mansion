@@ -153,7 +153,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       }
       break;
 
-      case ActionType.SetSequence: {
+      case ActionType.Cutscene: {
         rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
         action.intValue = EditorGUI.Popup(rect1, "ID", action.intValue, action.enumDisplayNames);
       }

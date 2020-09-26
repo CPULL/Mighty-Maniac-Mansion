@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 [System.Serializable]
-public class GameSequence {
+public class Cutscene {
   private Running running = Running.NotStarted;
   private int step = 0;
 
@@ -10,7 +10,7 @@ public class GameSequence {
   public GameCondition condition;
   public List<GameAction> actions;
 
-  public GameSequence(string i, string n) {
+  public Cutscene(string i, string n) {
     id = i.ToLowerInvariant();
     name = n;
     condition = null;

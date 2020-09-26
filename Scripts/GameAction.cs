@@ -31,7 +31,7 @@ public class GameAction {
     if (t == "open") type = ActionType.Open;
     if (t == "enable") type = ActionType.Enable;
     if (t == "showroom") type = ActionType.ShowRoom;
-    if (t == "setsequence") type = ActionType.SetSequence;
+    if (t == "setsequence") type = ActionType.Cutscene;
     if (t == "sound") type = ActionType.Sound;
   }
 
@@ -148,7 +148,7 @@ public class GameAction {
       case ActionType.Open: return "item " + item + " will be " + changename;
       case ActionType.Lock: return "item " + item + " will be " + changename;
       case ActionType.Move: return actor + " moves";
-      case ActionType.SetSequence: return "Cutscene: " + strValue;
+      case ActionType.Cutscene: return "Cutscene: " + strValue;
       case ActionType.ReceiveY: return "Accept item: " + msg;
       case ActionType.ReceiveN: return "Refuse item: " + msg;
     }

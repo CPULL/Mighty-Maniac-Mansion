@@ -7,17 +7,14 @@ Enable the "prolonged usage" to simulate the push of the gargoyle head. It shoul
 Change y speed and x speed. x >>> y to simulate depth
 Make again working the scaling of actors while changing y coordinate
 
-Rename Sequence to CutScene
 
 * TODO ************************************************************************************************************
 
 
-Complete intro, adding variations for each character. -> May need extension to the Actions
+Complete intro, adding variations for each character.
 Implement Conditions on actions (JSON serialization, class storage and actual checking of conditions)
-Get music cover from BGO
 Add some sounds: door open/close, footsteps
 Add start game selection, with selection of kidnapped character and 3 players
-
 
 
 FrontDoor:
@@ -85,6 +82,8 @@ The z-order of actors is not good. They go behind objects, so they cannot be sel
 ! Added "receiver" on characters and actions and improved the actors selection
 ! Added regions in the Controller to ease the finding of the functions
 ! When getting actions from items, add them to allknown actions
+! Renamed Sequence to CutScene
+
 
 * CHARS ************************************************************************************************************
 

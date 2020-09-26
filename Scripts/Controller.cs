@@ -57,11 +57,11 @@ public class Controller : MonoBehaviour {
     #endregion
 
     #region Sequences and actions
-    if (currentSequence != null) { // Do we have a sequence?
+    if (currentCutscene != null) { // Do we have a sequence?
       if (currentAction == null) { // Do we have the action?
-        currentAction = currentSequence.GetNextAction();
+        currentAction = currentCutscene.GetNextAction();
         if (currentAction == null) {
-          currentSequence = null;
+          currentCutscene = null;
           if (actionsToPlay.Count > 0) currentAction = actionsToPlay.GetFirst();
         }
       }
@@ -374,10 +374,10 @@ public class Controller : MonoBehaviour {
   #endregion
 
 
-  #region *********************** Sequences and Actions *********************** Sequences and Actions *********************** Sequences and Actions ***********************
-  GameSequence currentSequence;
+  #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
+  Cutscene currentCutscene;
   ContextualizedAction currentAction;
-  public List<GameSequence> sequences;
+  public List<Cutscene> cutscenes;
   readonly SList<ContextualizedAction> actionsToPlay = new SList<ContextualizedAction>(16);
   readonly HashSet<GameAction> allKnownActions = new HashSet<GameAction>();
 
@@ -391,7 +391,7 @@ public class Controller : MonoBehaviour {
       try {
         JSONNode j = JSON.Parse(json);
 
-        GameSequence seq = new GameSequence(j["id"].Value, j["name"].Value);
+        Cutscene seq = new Cutscene(j["id"].Value, j["name"].Value);
         // FIXME conditions
         // Actions
         JSONNode.ValueEnumerator vals = j["actions"].Values;
@@ -425,17 +425,17 @@ public class Controller : MonoBehaviour {
           a.SetWait(val["wait"].AsFloat);
           seq.actions.Add(a);
         }
-        sequences.Add(seq);
+        cutscenes.Add(seq);
 
       } catch (System.Exception e) {
         Debug.Log("ERROR (" + file + "): " + e.Message);
       }
     }
 
-    currentSequence = null;
-    foreach (GameSequence s in sequences) {
+    currentCutscene = null;
+    foreach (Cutscene s in cutscenes) {
       if (s.id == "intro") {
-        currentSequence = s;
+        currentCutscene = s;
         break;
       }
     }
@@ -466,8 +466,8 @@ public class Controller : MonoBehaviour {
     }
     else if (currentAction.IsCompleted()) {
       if (currentAction.action.Repeatable) currentAction.action.Reset();
-      if (currentSequence != null) {
-        currentAction = currentSequence.GetNextAction();
+      if (currentCutscene != null) {
+        currentAction = currentCutscene.GetNextAction();
       }
       else if (actionsToPlay.Count > 0) {
         currentAction = actionsToPlay.GetFirst();
@@ -576,7 +576,7 @@ public class Controller : MonoBehaviour {
       }
       break;
 
-      case ActionType.SetSequence: {
+      case ActionType.Cutscene: {
 
       }
       break;
