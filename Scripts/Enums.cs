@@ -45,7 +45,8 @@ public enum ActionType { None = 0,
   ShowRoom = 8, // Jumps to a specific room enabling it
   SetSequence = 9, // Starts a Cutscene (FIXME not done)
   Sound = 10, // Play a sound
-  Receive = 11 // Have an actor to receive an item from another actor and say something (FIXME not done)
+  ReceiveY = 11, // Have an actor to receive an item from another actor and say something (item is accepted)
+  ReceiveN = 12 // Have an actor to deny the receival of an item from another actor and say something (item is not accepted)
 };
 
 /// <summary>

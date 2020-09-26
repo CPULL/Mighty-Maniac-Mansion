@@ -30,10 +30,10 @@ public class Actor : MonoBehaviour {
     audios = GetComponent<AudioSource>();
   }
 
-  internal string HasItem(ItemEnum item) {
+  internal bool HasItem(ItemEnum item) {
     foreach (Item i in inventory)
-      if (i.Item == item) return null;
-    return "Missing " + item;
+      if (i.Item == item) return true;
+    return false;
   }
 
   public string HasSkill(Skill skill) {

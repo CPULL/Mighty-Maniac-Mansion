@@ -1,39 +1,14 @@
 Mighty Maniac Mansion
 
 
-
-
-We may need a global condition to check if something can be "used" or "picked"
-Then the list of actions with or without condition
-The actions may return a good or bad result (depending on the condition?)
-
-
-
-
-
-
-
-
-
-
-
-
-The "give" is not working correctly. If the item is not marked as "pickable" it will not work
-
-portrait -> LR click select actor
-actor -> left click select, right click give if object used
-
-Highlight actor if mouse is over
-
-Implement "Give" (right click over a NPC when an object is held)
+Anim for hamster, cursor for hamster, icon for hamster
+Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
-
-Have the doors to get a better "priority", so actors can get behind
+Have the doors to get a better "priority", so actors can get behind (or redraw front door to not overlap actors)
 Change y speed and x speed. x >>> y to simulate depth
 Make again working the scaling of actors while changing y coordinate
 
 Rename Sequence to CutScene
-When getting actions from items, add them to allknown actions
 
 * TODO ************************************************************************************************************
 
@@ -110,6 +85,7 @@ The z-order of actors is not good. They go behind objects, so they cannot be sel
 ! Basic Javid character
 ! Added "receiver" on characters and actions and improved the actors selection
 ! Added regions in the Controller to ease the finding of the functions
+! When getting actions from items, add them to allknown actions
 
 * CHARS ************************************************************************************************************
 

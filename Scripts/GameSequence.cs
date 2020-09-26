@@ -25,13 +25,13 @@ public class GameSequence {
     running = Running.Running;
   }
 
-  internal GameAction GetNextAction() {
+  internal ContextualizedAction GetNextAction() {
     if (step >= actions.Count) {
       running = Running.Running;
       return null;
     }
     GameAction a = actions[step];
     step++;
-    return a;
+    return new ContextualizedAction { action = a, performer = null, secondary = null, item = null };
   }
 }

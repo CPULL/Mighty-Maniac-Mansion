@@ -13,6 +13,7 @@ public class Controller : MonoBehaviour {
   public UnityEngine.UI.Image BlackFade;
   GameStatus status = GameStatus.IntroDialogue;
   private static Controller c;
+  public Transform PickedItems;
 
 
 
@@ -61,11 +62,11 @@ public class Controller : MonoBehaviour {
         currentAction = currentSequence.GetNextAction();
         if (currentAction == null) {
           currentSequence = null;
-          if (actions.Count > 0) currentAction = actions.GetFirst();
+          if (actionsToPlay.Count > 0) currentAction = actionsToPlay.GetFirst();
         }
       }
     }
-    else if (actions.Count > 0) currentAction = actions.GetFirst();
+    else if (actionsToPlay.Count > 0) currentAction = actionsToPlay.GetFirst();
 
     if (currentAction != null) {
       PlayCurrentAction();
@@ -113,6 +114,10 @@ public class Controller : MonoBehaviour {
         if (currentActor == overActor) return;
         receiverActor = overActor;
         usedItem.Give(currentActor, receiverActor);
+        Inventory.SetActive(false);
+        usedItem = null;
+        oldCursor = null;
+        forcedCursor = CursorTypes.None;
         return;
       }
       if (lmb) {
@@ -126,7 +131,7 @@ public class Controller : MonoBehaviour {
           new System.Action<Actor, Item>((actor, item) => {
             actor.SetDirection(item.dir);
             if (item.HasActions(When.Use)) {
-              if (item.PlayActions(currentActor, null, When.Use) == null)
+              if (item.PlayActions(currentActor, null, When.Use))
                 actor.Say(item.Description); // By default read what is written in the description of the object
             }
             else
@@ -145,11 +150,9 @@ public class Controller : MonoBehaviour {
             }));
         }
         else { // Can we use the two items together?
-
-          if (usedItem.CheckActions(currentActor, overItem)) { // Yes
-            string res = usedItem.PlayActions(currentActor, null, When.Use, overItem);
-            if (res != null)
-              currentActor.Say(res);
+          if (usedItem.CheckCombinedActions(currentActor, overItem)) { // Yes
+            if (!usedItem.PlayActions(currentActor, null, When.Use, overItem))
+              currentActor.Say("It does not work");
             else {
               c.forcedCursor = CursorTypes.None;
               oldCursor = null;
@@ -158,10 +161,9 @@ public class Controller : MonoBehaviour {
               return;
             }
           }
-          else if (overItem.CheckActions(currentActor, usedItem)) { // Yes
-            string res = overItem.PlayActions(currentActor, null, When.Use, usedItem);
-            if (res != null)
-              currentActor.Say(res);
+          else if (overItem.CheckCombinedActions(currentActor, usedItem)) { // Yes
+            if (!overItem.PlayActions(currentActor, null, When.Use, usedItem))
+              currentActor.Say("It does not work");
             else {
               c.forcedCursor = CursorTypes.None;
               oldCursor = null;
@@ -184,7 +186,7 @@ public class Controller : MonoBehaviour {
           new System.Action<Actor, Item>((actor, item) => {
             ShowName(currentActor + " got " + item.Name);
             actor.inventory.Add(item);
-            item.transform.parent = null;
+            item.transform.parent = PickedItems;
             item.gameObject.SetActive(false);
             item.owner = Chars.None;
             if (actor == actor1) item.owner = Chars.Actor1;
@@ -374,10 +376,10 @@ public class Controller : MonoBehaviour {
 
   #region *********************** Sequences and Actions *********************** Sequences and Actions *********************** Sequences and Actions ***********************
   GameSequence currentSequence;
-  GameAction currentAction;
+  ContextualizedAction currentAction;
   public List<GameSequence> sequences;
-  readonly SList<GameAction> actions = new SList<GameAction>(16);
-  HashSet<GameAction> allKnownActions = new HashSet<GameAction>();
+  readonly SList<ContextualizedAction> actionsToPlay = new SList<ContextualizedAction>(16);
+  readonly HashSet<GameAction> allKnownActions = new HashSet<GameAction>();
 
   void LoadSequences() {
     string path = Application.dataPath + "/Actions/";
@@ -445,8 +447,12 @@ public class Controller : MonoBehaviour {
   }
 
 
-  public static void AddAction(GameAction a) {
-    c.actions.Add(a);
+  public static void AddAction(GameAction a, Actor perf, Actor sec, Item item) {
+    c.actionsToPlay.Add(new ContextualizedAction { action = a, performer = perf, secondary = sec, item = item });
+    c.allKnownActions.Add(a);
+  }
+
+  public static void KnowAction(GameAction a) {
     c.allKnownActions.Add(a);
   }
 
@@ -456,15 +462,15 @@ public class Controller : MonoBehaviour {
       RunCurrentAction();
     }
     else if (currentAction.IsPlaying()) {
-      currentAction.CheckTime(Time.deltaTime);
+      currentAction.action.CheckTime(Time.deltaTime);
     }
     else if (currentAction.IsCompleted()) {
-      if (currentAction.Repeatable) currentAction.Reset();
+      if (currentAction.action.Repeatable) currentAction.action.Reset();
       if (currentSequence != null) {
         currentAction = currentSequence.GetNextAction();
       }
-      else if (actions.Count > 0) {
-        currentAction = actions.GetFirst();
+      else if (actionsToPlay.Count > 0) {
+        currentAction = actionsToPlay.GetFirst();
       }
       else
         currentAction = null;
@@ -483,27 +489,27 @@ public class Controller : MonoBehaviour {
   }
 
   void RunCurrentAction() {
-    switch (currentAction.type) {
+    switch (currentAction.action.type) {
       case ActionType.Teleport: {
-        Actor a = GetActor(currentAction.actor);
-        Room aroom = allObjects.GetRoom(currentAction.strValue);
+        Actor a = GetActor(currentAction.action.actor);
+        Room aroom = allObjects.GetRoom(currentAction.action.strValue);
         if (aroom != null) a.currentRoom = aroom;
-        a.transform.position = currentAction.pos;
-        a.SetDirection(currentAction.dir);
-        RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
+        a.transform.position = currentAction.action.pos;
+        a.SetDirection(currentAction.action.dir);
+        RaycastHit2D hit = Physics2D.Raycast(currentAction.action.pos, cam.transform.forward, 10000, pathLayer);
         if (hit.collider != null) {
           PathNode p = hit.collider.GetComponent<PathNode>();
-          a.WalkTo(currentAction.pos, p);
+          a.WalkTo(currentAction.action.pos, p);
         }
         currentAction.Complete();
       }
       break;
 
       case ActionType.Speak: {
-        Actor a = GetActor(currentAction.actor);
+        Actor a = GetActor(currentAction.action.actor);
         if (a != null) {
-          a.Say(currentAction.strValue, currentAction);
-          a.SetDirection(currentAction.dir);
+          a.Say(currentAction.action.strValue, currentAction.action);
+          a.SetDirection(currentAction.action.dir);
           currentAction.Play();
         }
         else
@@ -512,56 +518,55 @@ public class Controller : MonoBehaviour {
       break;
 
       case ActionType.Move: {
-        Actor a = GetActor(currentAction.actor);
-        RaycastHit2D hit = Physics2D.Raycast(currentAction.pos, cam.transform.forward, 10000, pathLayer);
+        RaycastHit2D hit = Physics2D.Raycast(currentAction.action.pos, cam.transform.forward, 10000, pathLayer);
         if (hit.collider != null) {
           PathNode p = hit.collider.GetComponent<PathNode>();
-          GameAction copy = currentAction;
-          a.WalkTo(currentAction.pos, p,
+          GameAction copy = currentAction.action;
+          currentAction.performer.WalkTo(currentAction.action.pos, p,
           new System.Action<Actor, Item>((actor, item) => { copy.Complete(); }));
         }
       }
       break;
 
       case ActionType.Expression: {
-        Actor a = GetActor(currentAction.actor);
-        a.SetDirection(currentAction.dir);
-        a.SetExpression(Enums.GetExp(currentAction.strValue));
+        Actor a = GetActor(currentAction.action.actor);
+        a.SetDirection(currentAction.action.dir);
+        a.SetExpression(Enums.GetExp(currentAction.action.strValue));
         currentAction.Play();
       }
       break;
 
       case ActionType.Open: {
         // Find the actual Item from all the known items, pick it by enum
-        Item item = allObjects.FindItemByID(currentAction.item);
-        currentActor.Say(item.Open(currentAction.change));
+        Item item = allObjects.FindItemByID(currentAction.action.item);
+        currentActor.Say(item.Open(currentAction.action.change));
         currentAction.Complete();
       }
       break;
 
       case ActionType.Enable: {
         // Find the actual Item from all the known items, pick it by enum
-        Item item = allObjects.FindItemByID(currentAction.item);
+        Item item = allObjects.FindItemByID(currentAction.action.item);
         if (item == null) {
           Debug.LogError("Cannot find item!");
           return;
         }
-        item.gameObject.SetActive(currentAction.change == ChangeWay.EnOpenLock);
+        item.gameObject.SetActive(currentAction.action.change == ChangeWay.EnOpenLock);
         currentAction.Complete();
       }
       break;
 
       case ActionType.Lock: {
         // Find the actual Item from all the known items, pick it by enum
-        Item item = allObjects.FindItemByID(currentAction.item);
-        currentActor.Say(item.Lock(currentAction.change));
+        Item item = allObjects.FindItemByID(currentAction.action.item);
+        currentActor.Say(item.Lock(currentAction.action.change));
         currentAction.Complete();
       }
       break;
 
       case ActionType.ShowRoom: {
-        currentRoom = allObjects.GetRoom(currentAction.strValue);
-        Vector3 pos = currentAction.pos;
+        currentRoom = allObjects.GetRoom(currentAction.action.strValue);
+        Vector3 pos = currentAction.action.pos;
         pos.z = -10;
         cam.transform.position = pos;
         foreach (Room r in allObjects.roomsList)
@@ -577,15 +582,36 @@ public class Controller : MonoBehaviour {
       break;
 
       case ActionType.Sound: {
-        Actor a = GetActor(currentAction.actor);
-        if (a != null) a.SetDirection(currentAction.dir);
-        currentActor.PlaySound(Sounds[(int)currentAction.sound]);
+        Actor a = GetActor(currentAction.action.actor);
+        if (a != null) a.SetDirection(currentAction.action.dir);
+        currentActor.PlaySound(Sounds[(int)currentAction.action.sound]);
         currentAction.Play();
       }
       break;
 
-      case ActionType.Receive: {
+      case ActionType.ReceiveY: {
+        currentAction.performer.inventory.Remove(currentAction.item);
+        currentAction.secondary.inventory.Add(currentAction.item);
+        currentAction.item.owner = GetCharFromActor(currentAction.secondary);
+        UpdateInventory();
+        if (currentAction.secondary != null) {
+          currentAction.secondary.Say(currentAction.action.strValue, currentAction.action);
+          currentAction.secondary.SetDirection(currentAction.action.dir);
+          currentAction.Play();
+        }
+        else
+          currentAction.Complete();
+      }
+      break;
 
+      case ActionType.ReceiveN: {
+        if (currentAction.secondary != null) {
+          currentAction.secondary.Say(currentAction.action.strValue, currentAction.action);
+          currentAction.secondary.SetDirection(currentAction.action.dir);
+          currentAction.Play();
+        }
+        else
+          currentAction.Complete();
       }
       break;
 
@@ -600,7 +626,6 @@ public class Controller : MonoBehaviour {
   }
 
   #endregion
-
 
   #region *********************** Inventory and Items *********************** Inventory and Items *********************** Inventory and Items ***********************
   public GameObject Inventory;
@@ -707,8 +732,20 @@ public class Controller : MonoBehaviour {
     }
   }
 
-  #endregion
+  internal static bool IsItemCollected(ItemEnum itemID) {
+    foreach(Item item in c.actor1.inventory) {
+      if (item.Item == itemID) return true;
+    }
+    foreach(Item item in c.actor2.inventory) {
+      if (item.Item == itemID) return true;
+    }
+    foreach(Item item in c.actor3.inventory) {
+      if (item.Item == itemID) return true;
+    }
+    return false;
+  }
 
+  #endregion
 
   #region *********************** Actors *********************** Actors *********************** Actors *********************** Actors *********************** Actors ***********************
   public PortraitClickHandler ActorPortrait1;
@@ -759,6 +796,37 @@ public class Controller : MonoBehaviour {
     }
     Debug.LogError("Invalid actor requested! " + actor);
     return null;
+  }
+
+
+  public static Chars GetCharFromActor(Actor actor) {
+    if (actor == null) return Chars.None;
+    else if (actor == c.actor1) return Chars.Actor1;
+    else if (actor == c.actor2) return Chars.Actor2;
+    else if (actor == c.actor3) return Chars.Actor3;
+    else if (actor == c.kidnappedActor) return Chars.KidnappedActor;
+    else if (actor == c.receiverActor) return Chars.Receiver;
+    else if (actor == c.allEnemies[0]) return Chars.Fred;
+    else if (actor == c.allEnemies[1]) return Chars.Edna;
+    else if (actor == c.allEnemies[2]) return Chars.Ted;
+    else if (actor == c.allEnemies[3]) return Chars.Ed;
+    else if (actor == c.allEnemies[4]) return Chars.Edwige;
+    else if (actor == c.allEnemies[5]) return Chars.GreenTentacle;
+    else if (actor == c.allEnemies[6]) return Chars.PurpleTentacle;
+    else if (actor == c.allActors[0]) return Chars.Dave;
+    else if (actor == c.allActors[1]) return Chars.Bernard;
+    else if (actor == c.allActors[2]) return Chars.Hoagie;
+    else if (actor == c.allActors[3]) return Chars.Michael;
+    else if (actor == c.allActors[4]) return Chars.Razor;
+    else if (actor == c.allActors[5]) return Chars.Sandy;
+    else if (actor == c.allActors[6]) return Chars.Syd;
+    else if (actor == c.allActors[7]) return Chars.Wendy;
+    else if (actor == c.allActors[8]) return Chars.Jeff;
+    else if (actor == c.allActors[9]) return Chars.Javid;
+    else if (actor == c.allActors[10]) return Chars.Ollie;
+    else if (actor == c.currentActor) return Chars.Current;
+    Debug.LogError("Invalid actor requested! " + actor);
+    return Chars.None;
   }
 
   /// <summary>

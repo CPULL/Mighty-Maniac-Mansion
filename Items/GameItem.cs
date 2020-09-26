@@ -29,41 +29,26 @@ public class GameItem : MonoBehaviour {
   public JustCondition condition;
   public List<ActionAndCondition> actions;
 
-  internal string PlayActions(Actor actor, Actor secondary, When when, Item item = null) {
-    if (actions == null || actions.Count == 0) return null;
-    bool atLeastOne = false;
-    foreach (ActionAndCondition ac in actions) {
-      if (ac.Condition.IsValid(actor, secondary, item ?? this, when)) {
-        // Here we may check if the action will be refused, just to stop whatever was going on
-        Controller.AddAction(ac.Action);
-        atLeastOne = true;
-      }
-    }
-    if (atLeastOne) return null;
-    return "It does not work";
-  }
-
-
-  public bool VerifyConditions(Actor performer, Actor secondary, When when) {
-    // Check if the global condition is satisfied, if not return the defined message
-    if (!condition.Condition.IsValid(performer, secondary, this, when))
-      return true;
-
+  internal bool PlayActions(Actor actor, Actor secondary, When when, Item item = null) {
     if (actions == null || actions.Count == 0) return false;
     bool atLeastOne = false;
     foreach (ActionAndCondition ac in actions) {
-      if (ac.Condition.IsValid(performer, secondary, this, when)) { 
+      Controller.KnowAction(ac.Action);
+      if (ac.Condition.IsValid(actor, secondary, item ?? this, when)) {
+        Controller.AddAction(ac.Action, actor, secondary, item);
         atLeastOne = true;
-        break;
       }
     }
     return atLeastOne;
   }
 
-  internal bool CheckActions(Actor actor, Item other) {
+  public bool VerifyMainCondition(Actor performer, Actor secondary, When when) {
+    return condition.Condition.IsValid(performer, secondary, this, when);
+  }
 
+  internal bool CheckCombinedActions(Actor actor, Item other) {
     foreach(ActionAndCondition ac in actions) {
-      if (ac.Condition.Verify(actor, other) == null) return true;
+      return ac.Condition.VerifyCombinedItems(actor, other, When.Use);
     }
     return false;
   }

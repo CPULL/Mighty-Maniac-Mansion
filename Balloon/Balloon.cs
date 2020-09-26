@@ -32,7 +32,7 @@ public class Balloon : MonoBehaviour {
     b.text.text = message;
     b.gameObject.SetActive(true);
 
-    Vector3 location = b.anchor.position + b.transform.up * b.size.y * .15f - b.transform.right * b.size.x * 0.05f + 2 * speaker.localScale.y * Vector3.up;
+    Vector3 location = b.anchor.position + b.transform.up * b.size.y * .15f - b.transform.right * b.size.x * 0.05f + 1.2f * speaker.localScale.y * Vector3.up;
     b.transform.position = location;
     b.transform.rotation = b.anchor.rotation;
 
@@ -54,7 +54,7 @@ public class Balloon : MonoBehaviour {
       return;
     }
 
-    Vector3 location = b.anchor.position + transform.up * b.size.y * .15f + transform.right * b.size.x * 0.05f + 2.2f * b.anchor.localScale.y * Vector3.up;
+    Vector3 location = b.anchor.position + transform.up * b.size.y * .15f + transform.right * b.size.x * 0.05f + 1.2f * b.anchor.localScale.y * Vector3.up;
     b.transform.position = location;
     b.transform.rotation = b.anchor.rotation;
     b.tip.transform.localPosition = new Vector3(-b.size.x / 4, -b.size.y / 2 + 0.235f, 0);

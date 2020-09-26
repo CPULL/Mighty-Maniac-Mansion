@@ -2115,11 +2115,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -2589,11 +2589,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -3515,28 +3515,27 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 6
       num: 0
-      condition: 0
       action: 0
       when: 4
     Result: 
   actions:
   - Condition:
+      condition: 19
       actor: 1
       skill: 1
       item: 4
       num: 4
-      condition: 0
       action: 0
       when: 0
     Action:
       running: 0
       type: 6
       Repeatable: 0
-      when: 2
       actor: 1
       pos: {x: -55, y: 2}
       strValue: Somesound
@@ -3548,18 +3547,17 @@ MonoBehaviour:
       action: 0
       change: 1
   - Condition:
+      condition: 17
       actor: 29
       skill: 1
       item: 4
       num: 4
-      condition: 1
       action: 0
       when: 2
     Action:
       running: 0
-      type: 2
+      type: 11
       Repeatable: 1
-      when: 2
       actor: 29
       pos: {x: -55, y: 2}
       strValue: 'Thanks!
@@ -3573,18 +3571,17 @@ MonoBehaviour:
       action: 0
       change: 1
   - Condition:
+      condition: 18
       actor: 29
       skill: 1
       item: 4
       num: 4
-      condition: 2
       action: 0
       when: 2
     Action:
       running: 0
-      type: 2
+      type: 12
       Repeatable: 1
-      when: 2
       actor: 6
       pos: {x: -55, y: 2}
       strValue: Winners don't do drugs!
@@ -4573,28 +4570,27 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
   actions:
   - Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Action:
       running: 0
       type: 10
       Repeatable: 1
-      when: 0
       actor: 0
       pos: {x: 0, y: 0}
       strValue: 
@@ -4606,18 +4602,17 @@ MonoBehaviour:
       action: 0
       change: 0
   - Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Action:
       running: 0
       type: 9
       Repeatable: 1
-      when: 0
       actor: 0
       pos: {x: 0, y: 0}
       strValue: 
@@ -5254,11 +5249,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -5722,11 +5717,11 @@ MonoBehaviour:
     rgba: 16777215
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -5973,11 +5968,11 @@ MonoBehaviour:
     rgba: 16777215
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -7583,11 +7578,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -7982,11 +7977,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -9586,6 +9581,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   BlackFade: {fileID: 1237002466}
+  PickedItems: {fileID: 1004051445}
   Cursors:
   - {fileID: 2800000, guid: 06f839f73dc1f374986c70328bcbd60a, type: 3}
   - {fileID: 2800000, guid: 93130964161e87a4ba9c4f33f7dab02d, type: 3}
@@ -10040,6 +10036,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001106719}
   m_CullTransparentMesh: 0
+--- !u!1 &1004051444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1004051445}
+  m_Layer: 0
+  m_Name: PickedItems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1004051445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004051444}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -74.3376, y: 30.838917, z: -16.91045}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1017353097
 GameObject:
   m_ObjectHideFlags: 0
@@ -10984,11 +11010,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -13327,28 +13353,27 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
   actions:
   - Condition:
+      condition: 19
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
-      when: 0
+      when: 1
     Action:
       running: 0
       type: 7
       Repeatable: 1
-      when: 0
       actor: 0
       pos: {x: 0, y: 0}
       strValue: 
@@ -13898,11 +13923,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -14290,7 +14315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1347792467
 Transform:
   m_ObjectHideFlags: 0
@@ -14652,7 +14677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1379030968
 Animator:
   serializedVersion: 3
@@ -15868,28 +15893,27 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
   actions:
   - Condition:
+      condition: 15
       actor: 0
       skill: 0
       item: 5
       num: 0
-      condition: 15
       action: 0
-      when: 0
+      when: 1
     Action:
       running: 0
       type: 6
       Repeatable: 0
-      when: 0
       actor: 0
       pos: {x: 0, y: 0}
       strValue: 
@@ -16140,11 +16164,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -18463,11 +18487,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -19756,7 +19780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1785264451
 Transform:
   m_ObjectHideFlags: 0
@@ -20356,28 +20380,27 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
   actions:
   - Condition:
+      condition: 4
       actor: 1
       skill: 1
       item: 0
       num: 0
-      condition: 4
       action: 0
       when: 0
     Action:
       running: 0
       type: 6
       Repeatable: 0
-      when: 0
       actor: 0
       pos: {x: 0, y: 0}
       strValue: 
@@ -20389,18 +20412,17 @@ MonoBehaviour:
       action: 0
       change: 2
   - Condition:
+      condition: 4
       actor: 1
       skill: 1
       item: 0
       num: 0
-      condition: 4
       action: 0
       when: 0
     Action:
       running: 0
       type: 6
       Repeatable: 0
-      when: 0
       actor: 0
       pos: {x: 0, y: 0}
       strValue: 
@@ -20412,18 +20434,17 @@ MonoBehaviour:
       action: 0
       change: 1
   - Condition:
+      condition: 1
       actor: 19
       skill: 1
       item: 0
       num: 0
-      condition: 1
       action: 0
       when: 0
     Action:
       running: 0
       type: 2
       Repeatable: 0
-      when: 0
       actor: 1
       pos: {x: 0, y: 0}
       strValue: Easy peasy.
@@ -20435,18 +20456,17 @@ MonoBehaviour:
       action: 0
       change: 1
   - Condition:
+      condition: 1
       actor: 9
       skill: 1
       item: 0
       num: 0
-      condition: 1
       action: 0
       when: 0
     Action:
       running: 0
       type: 2
       Repeatable: 0
-      when: 0
       actor: 1
       pos: {x: 0, y: 0}
       strValue: I should not have done that!!!!
@@ -21326,11 +21346,11 @@ MonoBehaviour:
     rgba: 16777215
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -22315,11 +22335,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 
@@ -23685,7 +23705,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1934202997
   m_SortingLayer: -1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 22d1e4395a12ba94885f53f5cc2d393c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -23778,11 +23798,11 @@ MonoBehaviour:
     rgba: 4294967295
   condition:
     Condition:
+      condition: 0
       actor: 0
       skill: 0
       item: 0
       num: 0
-      condition: 0
       action: 0
       when: 0
     Result: 

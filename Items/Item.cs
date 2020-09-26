@@ -19,31 +19,32 @@ public class Item : GameItem {
 
   public string Use(Actor actor) {
     // Check conditions to use it
-    if (!VerifyConditions(actor, null, When.Use)) return condition.Result;
+    if (!VerifyMainCondition(actor, null, When.Use)) return condition.Result;
 
     if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
 
     if (Usable == Tstatus.Usable) {
-      return PlayActions(actor, null, When.Use);
+      if (!PlayActions(actor, null, When.Use)) return "It does not work";
     }
     else if (Usable == Tstatus.OpenableOpen) {
       SetAsClosedUnlocked();
-      return PlayActions(actor, null, When.Use);
+      PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableOpenAutolock) {
-      SetAsClosedUnlockedAuto();
-      return PlayActions(actor, null, When.Use);
+      SetAsLockedAuto();
+      PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableClosed) {
       SetAsOpen();
-      return PlayActions(actor, null, When.Use);
+      PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableClosedAutolock) {
       SetAsOpenAuto();
-      return PlayActions(actor, null, When.Use);
+      PlayActions(actor, null, When.Use);
     }
-
-    return "Seems it does nothing";
+    else
+      return "Seems it does nothing";
+    return null;
   }
 
   public string Open(ChangeWay val) {
@@ -189,21 +190,11 @@ public class Item : GameItem {
 
   internal void Give(Actor giver, Actor receiver) {
     // Check give conditions
-    if (!VerifyConditions(giver, receiver, When.Give)) {
+    if (!VerifyMainCondition(giver, receiver, When.Give)) {
       receiver.Say(condition.Result);
       return;
     }
-    string res = PlayActions(giver, receiver, When.Give, this);
-    if (res != null) {
-      if (Controller.IsEnemy(receiver)) {
-        receiver.Say("No thanks");
-        return;
-      }
-    }
-
-    giver.inventory.Remove(this);
-    receiver.inventory.Add(this);
-    Controller.UpdateInventory();
+    PlayActions(giver, receiver, When.Give, this);
   }
 }
 

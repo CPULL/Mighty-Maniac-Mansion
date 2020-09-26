@@ -9,8 +9,6 @@ public class GameAction {
 
   public ActionType type;
   public bool Repeatable;
-  public WhatItDoes when = WhatItDoes.Use;
-
   public Chars actor;
   public Vector2 pos;
   public string strValue;
@@ -108,7 +106,7 @@ public class GameAction {
   }
 
   public override string ToString() {
-    return CalculateName(type, actor.ToString(), item, strValue, expression, sound, pos, change, when);
+    return CalculateName(type, actor.ToString(), item.ToString(), strValue, expression, sound, pos, change);
   }
 
   internal void CheckTime(float deltaTime) {
@@ -126,7 +124,7 @@ public class GameAction {
     time = delay;
   }
 
-  public static string CalculateName(ActionType type, string actor, ItemEnum item, string strValue, Expression exp, Audios sound, Vector2 pos, ChangeWay change, WhatItDoes when) {
+  public static string CalculateName(ActionType type, string actor, string item, string strValue, Expression exp, Audios sound, Vector2 pos, ChangeWay change) {
     string changename = "IGNORED";
     if (change == ChangeWay.SwapSwitch) changename = "Swapped";
     if (change == ChangeWay.EnOpenLock && type == ActionType.Enable) changename = "enabled";
@@ -136,19 +134,23 @@ public class GameAction {
     if (change == ChangeWay.EnOpenLock && type == ActionType.Lock) changename = "locked";
     if (change == ChangeWay.DisCloseUnlock && type == ActionType.Lock) changename = "unlocked";
 
+    string msg = strValue.Substring(0, System.Math.Min(20, strValue.Length)).Replace("\n", " ").Trim();
+    if (strValue.Length > 20) msg += "...";
     switch (type) {
       case ActionType.None: return "No action";
       case ActionType.ShowRoom: return "Show Room " + strValue;
       case ActionType.Teleport: return "Teleport " + actor + " to " + pos.ToString();
       case ActionType.Speak:
-        string msg = strValue.Substring(0, System.Math.Min(20, strValue.Length)).Replace("\n", " ").Trim();
-        if (strValue.Length > 20) msg += "...";
-        return "[" + when.ToString() + "] " + actor + " say \"" + msg + "\"";
+        return actor + " say \"" + msg + "\"";
       case ActionType.Expression: return actor + " expression " + exp;
-      case ActionType.Sound: return "[" + when.ToString() + "] " + "Play " + sound;
-      case ActionType.Enable: return "[" + when.ToString() + "] " + "item " + item + " will be " + changename;
-      case ActionType.Open: return "[" + when.ToString() + "] " + "item " + item + " will be " + changename;
-      case ActionType.Lock: return "[" + when.ToString() + "] " + "item " + item + " will be " + changename;
+      case ActionType.Sound: return "Play " + sound;
+      case ActionType.Enable: return "item " + item + " will be " + changename;
+      case ActionType.Open: return "item " + item + " will be " + changename;
+      case ActionType.Lock: return "item " + item + " will be " + changename;
+      case ActionType.Move: return actor + " moves";
+      case ActionType.SetSequence: return "Cutscene: " + strValue;
+      case ActionType.ReceiveY: return "Accept item: " + msg;
+      case ActionType.ReceiveN: return "Refuse item: " + msg;
     }
     return type.ToString() + " " + actor + " " + item.ToString() + " " + strValue;
   }

@@ -3,7 +3,7 @@
 	"id":"intro",
 	"conditions":[],
 	"actions":[
-		{ "type":"ShowRoom", "room":"EdRoom", "pos":[-49,40], "idaa":"StartArea", "posaa":[7,2] },
+		{ "type":"ShowRoom", "roomdbg":"EdRoom", "posdbg":[-49,40], "room":"StartArea", "pos":[7,2] },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor1", "pos":[8.82,-0.76], "dir":"F" },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor2", "pos":[13.23,-1.43], "dir":"L" },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor3", "pos":[11.45,-0.46], "dir":"F" },

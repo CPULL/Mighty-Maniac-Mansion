@@ -26,8 +26,9 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
     int numVal = num.intValue;
     Condition conditionVal = (Condition)type.intValue;
     ActionEnum actionVal = (ActionEnum)action.intValue;
+    When whenVal = (When)when.intValue;
 
-    string name = GameCondition.CalculateName(conditionVal, actorVal, skillVal, itemVal, numVal, actionVal);
+    string name = GameCondition.CalculateName(conditionVal, actorVal, skillVal, itemVal, numVal, actionVal, whenVal);
 
     float partw = (position.width - 75)/ 3;
     Rect rectCond = new Rect(position.x, position.y, partw, EditorGUIUtility.singleLineHeight);
@@ -49,6 +50,8 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.CurrentActorEqual:
       case Condition.CurrentActorNotEqual:
       case Condition.ActorIsAvailable:
+      case Condition.RecipientIs:
+      case Condition.RecipientIsNot:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
         actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
         break;
@@ -94,6 +97,9 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
         action.intValue = EditorGUI.Popup(rect1, "Action", action.intValue, action.enumNames);
         break;
 
+      case Condition.WhenIs:
+        break;
+
     }
 
     EditorGUI.indentLevel = indent;
@@ -112,6 +118,8 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.ActorIsAvailable: return h + l;
       case Condition.CurrentActorEqual: return h + l;
       case Condition.CurrentActorNotEqual: return h + l;
+      case Condition.RecipientIs: return h + l;
+      case Condition.RecipientIsNot: return h + l;
       case Condition.ActorHasSkill: return h + l;
       case Condition.HasItem: return h + l;
       case Condition.DoesNotHaveItem: return h + l;
@@ -125,6 +133,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.ActionCompleted: return h + l;
       case Condition.ActionNotStarted: return h + l;
       case Condition.ActionRunning: return h + l;
+      case Condition.WhenIs: return h + l;
     }
     return h + l * 5;
   }
