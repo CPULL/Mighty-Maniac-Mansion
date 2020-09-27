@@ -17,6 +17,14 @@ public class Controller : MonoBehaviour {
   public Material SceneSelectionPoint;
 
 
+
+  public TextMeshProUGUI DbgMsg;
+  public static void Dbg(string txt) {
+    c.DbgMsg.text = txt;
+  }
+
+
+
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
   void Update() {
     if (options.IsActive()) return;
@@ -123,10 +131,14 @@ public class Controller : MonoBehaviour {
       }
       if (lmb) {
         // FIXME check that is a playable actor
-        SelectActor(overActor);
+        if (overActor != currentActor) {
+          SelectActor(overActor);
+          return;
+        }
       }
     }
-    else if (overItem != null) {
+    
+    if (overItem != null) {
       if ((overItem.whatItDoesR == WhatItDoes.Read && rmb) || (overItem.whatItDoesL == WhatItDoes.Read && lmb)) {
         WalkAndAction(currentActor, overItem,
           new System.Action<Actor, Item>((actor, item) => {
@@ -383,6 +395,10 @@ public class Controller : MonoBehaviour {
   IEnumerator StartDelayed() {
     yield return new WaitForSeconds(.5f);
     ShowName(currentRoom.RoomName);
+  }
+
+  void OnApplicationQuit() {
+    SceneSelectionPoint.color = new Color32(255, 255, 255, 255);
   }
   #endregion
 

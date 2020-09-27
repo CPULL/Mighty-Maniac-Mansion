@@ -1,11 +1,12 @@
 Mighty Maniac Mansion
 
 
-Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
-Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 
 * TODO ************************************************************************************************************
 
+
+Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
+Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 
 Complete intro Cutscene, adding variations for each character.
 Implement Conditions on actions (JSON serialization, class storage and actual checking of conditions)
@@ -17,12 +18,34 @@ FrontDoor:
 -> Doorbell (starts sequence where Ed checks for package and then screams to you to go away)
 -> Backyard entrance on the left
 
-Hide all the "points" when the game starts
 
 
 * BUGS ************************************************************************************************************
 
-The z-order of actors is not good. They go behind objects, so they cannot be selected (may be fixed when altering the Y position of the actors while walking)
+
+* CHARS ************************************************************************************************************
+
+Dr. Fred
+Nurse Edna
+Cousin Ted
+!Ed
+Edwige
+Green Tentacle
+Purple Tentacle
+!Dave
+!Bernard
+Hoagie
+Michael
+Razor
+Sandy
+!Syd
+!Wendy
+Jeff
+Sandy
+?Javid
+Ollie
+
+
 
 * DONE ************************************************************************************************************
 
@@ -83,28 +106,9 @@ The z-order of actors is not good. They go behind objects, so they cannot be sel
 ! Change y speed and x speed. x >>> y to simulate depth
 ! Make again working the scaling of actors while changing y coordinate
 ! Stop interactions in case the options are open
+! Hide all the "points" when the game starts
+! Do not reselect the current actor. Go to the walk place instead.
+! The z-order of actors is not good. They go behind objects, so they cannot be selected (may be fixed when altering the Y position of the actors while walking)
 
-
-* CHARS ************************************************************************************************************
-
-Dr. Fred
-Nurse Edna
-Cousin Ted
-!Ed
-Edwige
-Green Tentacle
-Purple Tentacle
-!Dave
-!Bernard
-Hoagie
-Michael
-Razor
-Sandy
-!Syd
-!Wendy
-Jeff
-Sandy
-??Javid??
-Ollie
 
 

@@ -13,11 +13,10 @@ public class Actor : MonoBehaviour {
   public Material Outline;
   public Room currentRoom;
   Animator anim;
-  Parcour3 destination = new Parcour3(Vector3.zero, null);
+  readonly Parcour3 destination = new Parcour3(Vector3.zero, null);
   System.Action<Actor, Item> callBack = null;
   Item callBackItem = null;
   bool walking = false;
-  PathNode path = null;
   Dir dir = Dir.F;
   private AudioSource audios;
   public List<Item> inventory;
@@ -166,7 +165,6 @@ public class Actor : MonoBehaviour {
 
     callBack = action;
     callBackItem = item;
-    path = p;
     dir = CalculateDirection(destination.pos);
     anim.Play("Walk" + dir);
     walking = true;
@@ -176,8 +174,6 @@ public class Actor : MonoBehaviour {
     audios.clip = audioClip;
     audios.Play();
   }
-
-  public bool debuganim = false;
 
   private void Update() {
     if (isSpeaking) {
@@ -196,7 +192,6 @@ public class Actor : MonoBehaviour {
     }
     if (!walking) {
       if (dir == Dir.None) dir = Dir.F;
-      if (debuganim) Debug.Log("Idle" + dir);
       anim.Play("Idle" + dir);
       return;
     }
@@ -205,16 +200,21 @@ public class Actor : MonoBehaviour {
     Vector2 walkDir = (destination.pos - transform.position);
     Vector3 wdir = walkDir.normalized;
     wdir.y *= .65f;
-    wdir.z = (wdir.y - currentRoom.CameraGround) / 10f;
     Vector3 np = transform.position + wdir * 4f * Controller.walkSpeed * Time.deltaTime;
+    np.z = 0;
 
     float ty = transform.position.y;
     if (ty < currentRoom.minY) ty = currentRoom.minY;
     if (ty > currentRoom.maxY) ty = currentRoom.maxY;
+    float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
     if (!destination.node.isStair) {
-      float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
       scaley *= mainScale;
       transform.localScale = new Vector3(scaley, scaley, 1);
+
+      int zpos = (int)(scaley * 10000);
+      Face.sortingOrder = zpos;
+      Arms.sortingOrder = zpos;
+      Legs.sortingOrder = zpos;
     }
 
     if (walkDir.sqrMagnitude < .05f) {
