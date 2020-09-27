@@ -115,7 +115,7 @@ public class Balloon : MonoBehaviour {
   Vector3 prevAnchorPos = Vector3.negativeInfinity;
 
   Camera cam;
-  float offramp = 10; // How fast the baloon should go in the visible zone
+  readonly float offramp = 10; // How fast the baloon should go in the visible zone
 }
 
 

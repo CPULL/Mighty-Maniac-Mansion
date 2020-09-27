@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using SimpleJSON;
+using UnityEngine.UI;
 
 public class Controller : MonoBehaviour {
   Camera cam;
@@ -11,7 +12,7 @@ public class Controller : MonoBehaviour {
   public AudioClip[] Sounds;
   public LayerMask pathLayer;
   public UnityEngine.UI.Image BlackFade;
-  GameStatus status = GameStatus.IntroDialogue;
+  GameStatus status = GameStatus.Cutscene;
   private static Controller c;
   public Transform PickedItems;
   public Material SceneSelectionPoint;
@@ -23,28 +24,18 @@ public class Controller : MonoBehaviour {
     c.DbgMsg.text = txt;
   }
 
-  string[] bbb = new string[] {
-    "Small",
-    "Two lines.\nSecond line",
-    "A sentence that can be longer than usual, only a single line",
-    "One, two, three, four.\nOne, two, three, four.\nOne, two, three, four.\nOne, two, three, four.",
-    "Nel mezzo del cammin di nostra vita,\nmi ritrovai in una selva oscura,\nsi' che la dritta via era smarrita.\n\nDebug lines for baloons alignments,\nover actor heads.\nWhen they are in different positions."
-  };
-  int bbn = -1;
-
 
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
   void Update() {
     if (options.IsActive()) return;
+
+    if (status == GameStatus.IntroVideo) {
+      PlayIntro(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space));
+      return;
+    }
+
     cursorTime += Time.deltaTime;
     HandleCursor();
-
-
-    if (Input.GetKeyDown(KeyCode.Space)) {
-      bbn++;
-      if (bbn == bbb.Length) bbn = 0;
-      currentActor.Say(bbb[bbn]);
-    }
 
 
 
@@ -395,10 +386,18 @@ public class Controller : MonoBehaviour {
     actor3 = allActors[7];
 
     LoadSequences();
-    PickValidSequence();
 
     StartCoroutine(StartDelayed());
-    status = GameStatus.IntroDialogue;
+    foreach (Room r in allObjects.roomsList) {
+      r.gameObject.SetActive(false);
+    }
+    foreach (Actor a in allEnemies)
+      if (a != null) a.gameObject.SetActive(false);
+    foreach (Actor a in allActors)
+      if (a != null) a.gameObject.SetActive(false);
+    ActorsButtons.SetActive(false);
+
+    status = GameStatus.IntroVideo;
   }
 
   private void Start() {
@@ -408,11 +407,25 @@ public class Controller : MonoBehaviour {
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
 
     options.GetOptions();
+    status = GameStatus.IntroVideo;
+  }
 
+  void StartGame() {
     foreach (Room r in allObjects.roomsList) {
       r.gameObject.SetActive(r == currentRoom);
     }
-
+    status = GameStatus.NormalGamePlay;
+    foreach (Actor a in allActors) {
+      if (a == null) continue;
+      a.gameObject.SetActive(a.currentRoom == currentRoom);
+    }
+    foreach (Actor a in allEnemies) {
+      if (a == null) continue;
+      a.gameObject.SetActive(a.currentRoom == currentRoom);
+    }
+    SkyBackground.enabled = true;
+    IntroCanvas.enabled = false;
+    ActorsButtons.SetActive(true);
     StartIntroCutscene();
   }
 
@@ -963,7 +976,7 @@ public class Controller : MonoBehaviour {
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
     // Disable gameplay
-    status = GameStatus.RoomTransition;
+    status = GameStatus.Cutscene;
     yield return null;
 
     // Enable dst
@@ -1023,7 +1036,7 @@ public class Controller : MonoBehaviour {
 
   private IEnumerator FadeToRoomActor() {
     // Disable gameplay
-    status = GameStatus.RoomTransition;
+    status = GameStatus.Cutscene;
     yield return null;
 
     Room prev = currentRoom;
@@ -1083,6 +1096,9 @@ public class Controller : MonoBehaviour {
   float textMsgTime = 0;
   float textSizeX = 0;
 
+  public GameObject ActorsButtons;
+  public Canvas SkyBackground;
+
   void ShowName(string name) {
     if (TextMsg.text == name) return;
     textSizeX = TextMsg.GetPreferredValues(name).x;
@@ -1103,12 +1119,177 @@ public class Controller : MonoBehaviour {
 
 
 
+  #region *********************** Intro and Char selection *********************** Intro and Char selection *********************** Intro and Char selection ***********************
+
+  public Canvas IntroCanvas;
+  public Image IntroBlackFade;
+  public TextMeshProUGUI IntroTitle;
+  public RectTransform IntroTitleRT;
+  public AudioSource introEffects;
+  public AudioSource meteorSound;
+  public AudioClip Crickets;
+  public AudioClip MeteorSwing;
+  public AudioClip Lights;
+  public AudioClip IntroMusic;
+  public AudioClip ExplosionSound;
+  public RectTransform MeteorRT;
+  public RectTransform PanelRT;
+  public GameObject Explosion;
+  public GameObject MansionLights;
+  public GameObject PurpleGlow;
+  public Material PurpleGlowMat;
+
+  enum IntroStep {
+    Init, Wait1,
+    FirstText, FadeIn, HideText, 
+    Meteor, Explosion, MansionLights, MusicStart,
+  };
+  IntroStep istep = IntroStep.Init;
+
+  float introTime = 0;
+  void PlayIntro(bool exit) {
+    // Do the animation, but stop in case the mouse is clicked or esc is pressed
+    if (exit) {
+      StartGame();
+    }
+
+    introTime += Time.deltaTime;
+
+    float size = 0;
+    switch (istep) {
+      case IntroStep.Init: {
+        IntroBlackFade.color = new Color32(0, 0, 0, 255);
+        MeteorRT.anchoredPosition = new Vector2(1200, 1024);
+        IntroTitleRT.sizeDelta = new Vector2(0, 120);
+        PanelRT.anchoredPosition = new Vector2(-1920, 240);
+        MansionLights.SetActive(false);
+        Explosion.SetActive(false);
+        PurpleGlow.SetActive(false);
+        introEffects.clip = Crickets;
+        introEffects.volume = .75f;
+        introEffects.Play();
+        istep = IntroStep.Wait1;
+      }
+      break;
+
+      case IntroStep.Wait1: {
+        if (introTime > .5f) {
+          introTime = 0;
+          istep = IntroStep.FirstText;
+        }
+      }
+      break;
+
+      case IntroStep.FirstText: {
+        IntroTitle.text = "A few years ago...";
+        size = introTime * 3;
+        if (size > 1) size = 1;
+        IntroTitleRT.sizeDelta = new Vector2(size * 1600, 120);
+        if (introTime > 1.5f) {
+          introTime = 0;
+          istep = IntroStep.FadeIn;
+        }
+      }
+      break;
 
 
+      case IntroStep.FadeIn: {
+        IntroBlackFade.color = new Color32(0, 0, 0, (byte)(255 - introTime * 255));
+        if (introTime > .5f) {
+          introTime = 0;
+          istep = IntroStep.HideText;
+        }
+      }
+      break;
+
+      case IntroStep.HideText: {
+        size = (1 - introTime) * 3;
+        if (size > 1) size = 1;
+        if (size < 0) size = 0;
+        IntroTitleRT.sizeDelta = new Vector2(size * 1600, 120);
+        if (introTime > 1.5f) {
+          introTime = 0;
+          IntroTitleRT.sizeDelta = Vector2.zero;
+          istep = IntroStep.Meteor;
+          introEffects.volume = .5f;
+          meteorSound.clip = MeteorSwing;
+          meteorSound.Play();
+        }
+      }
+      break;
 
 
+      case IntroStep.Meteor: {
+        size = introTime * 1.33333f;
+        MeteorRT.anchoredPosition = new Vector2(
+          -200f * size + 1196 * (1 - size),
+          74f * size + 1124 * (1 - size));
+        PanelRT.anchoredPosition = new Vector2(-1000 * size - 1920 * (1 - size), 240);
+        if (introTime > .75f) {
+          introTime = 0;
+          istep = IntroStep.Explosion;
+          Explosion.SetActive(true);
+          MeteorRT.anchoredPosition = new Vector2(1200, 1200);
+          meteorSound.clip = ExplosionSound;
+          meteorSound.Play();
+        }
+      }
+      break;
 
 
+      case IntroStep.Explosion: {
+        size = introTime;
+        PanelRT.anchoredPosition = new Vector2(-16 * size - 1000 * (1 - size), 240);
+        if (introTime > 1f) {
+          introTime = 0;
+          PurpleGlow.SetActive(true);
+          istep = IntroStep.MansionLights;
+        }
+      }
+      break;
+
+
+      case IntroStep.MansionLights: {
+        // Fade the critters out
+        size = .5f - introTime;
+        if (size < 0) size = 0;
+        introEffects.volume = size;
+        if (size == 0) {
+          introTime = 0;
+          istep = IntroStep.MusicStart;
+          MansionLights.SetActive(true);
+          introEffects.clip = IntroMusic;
+          introEffects.volume = 1;
+          introEffects.Play();
+        }
+      }
+      break;
+
+      // Start the music
+      case IntroStep.MusicStart: {
+        if (introTime > 1)
+          PurpleGlowMat.SetFloat("_ColorChangeLuminosity", 2 - introTime);
+        else
+          PurpleGlowMat.SetFloat("_ColorChangeLuminosity", introTime);
+        if (introTime >= 2) introTime = 0;
+
+      }
+      break;
+
+    }
+
+
+    // Camera pan to villa
+    // Villa lights
+    // Game title and music
+    // Fade everything except title
+    // Pan title
+
+
+  }
+
+
+  #endregion
 
 
 

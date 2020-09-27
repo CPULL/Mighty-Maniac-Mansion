@@ -29,7 +29,7 @@ public enum Axis { X, Y, Z };
 /// <summary>
 /// Global status of the game
 /// </summary>
-public enum GameStatus { IntroVideo, CharSelection, IntroDialogue, NormalGamePlay, RoomTransition };
+public enum GameStatus { IntroVideo, CharSelection, Cutscene, NormalGamePlay };
 
 /// <summary>
 /// Used to specify the type of actions
@@ -87,10 +87,8 @@ public static class Enums {
     string v = val.ToLowerInvariant();
     if (v == "video") return GameStatus.IntroVideo;
     if (v == "charsel") return GameStatus.CharSelection; 
-    if (v == "intro") return GameStatus.IntroDialogue;
-    if (v == "normal") return GameStatus.NormalGamePlay;
+    if (v == "cutscene") return GameStatus.Cutscene;
     if (v == "play") return GameStatus.NormalGamePlay;
-    if (v == "transition") return GameStatus.RoomTransition;
     return status;
   }
 

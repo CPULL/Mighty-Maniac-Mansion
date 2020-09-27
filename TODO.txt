@@ -5,7 +5,6 @@ Mighty Maniac Mansion
 * TODO ************************************************************************************************************
 
 
-Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 
 Complete intro Cutscene, adding variations for each character.
@@ -110,5 +109,6 @@ Ollie
 ! Do not reselect the current actor. Go to the walk place instead.
 ! The z-order of actors is not good. They go behind objects, so they cannot be selected (may be fixed when altering the Y position of the actors while walking)
 ! Better handling of wait cursor
-
+! Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
+! First game intro
 
