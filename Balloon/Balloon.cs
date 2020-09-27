@@ -7,15 +7,19 @@ public class Balloon : MonoBehaviour {
   public SpriteRenderer body;
   public SpriteRenderer tip;
   public BoxCollider2D boxc;
+  private RectTransform txtrt;
   Transform anchor;
   Vector2 size = Vector2.zero;
   int numWords = 0;
   float delay = 0;
   System.Action speakComplete = null;
+  SpriteRenderer srAnchor;
 
   private void Awake() {
     b = this;
     gameObject.SetActive(false);
+    cam = Camera.main;
+    txtrt = text.GetComponent<RectTransform>();
   }
 
   public static void Show(string message, Transform speaker, System.Action completeSpeaking) {
@@ -29,20 +33,21 @@ public class Balloon : MonoBehaviour {
       if (char.IsWhiteSpace(c)) b.numWords++;
 
     b.delay = .25f * b.numWords * Controller.textSpeed * Controller.textSpeed;
+
+    b.delay += 100;
+
     b.text.text = message;
     b.gameObject.SetActive(true);
 
-    Vector3 location = b.anchor.position + b.transform.up * b.size.y * .15f - b.transform.right * b.size.x * 0.05f + 1.2f * speaker.localScale.y * Vector3.up;
-    b.transform.position = location;
-    b.transform.rotation = b.anchor.rotation;
+    b.srAnchor = speaker.GetChild(0).GetComponent<SpriteRenderer>();
+    b.boxc.size = b.size;
+    b.boxc.offset = new Vector2(-1.5f, .5f * b.size.y + 1.625f + .2f);
 
     b.size.x += .5f;
     b.size.y += .5f;
     b.body.size = b.size;
-    b.boxc.size = b.size;
-
-    b.tip.transform.localPosition = new Vector3(-b.size.x / 4, -b.size.y / 2 + 0.235f, 0);
-
+    b.txtrt.sizeDelta = new Vector2(b.size.x - .5f, b.size.y);
+    b.SetPosition();
   }
 
   private void Update() {
@@ -54,15 +59,63 @@ public class Balloon : MonoBehaviour {
       return;
     }
 
-    Vector3 location = b.anchor.position + transform.up * b.size.y * .15f + transform.right * b.size.x * 0.05f + 1.2f * b.anchor.localScale.y * Vector3.up;
+    KeepItVisible();
+
+    if (prevAnchorPos == b.anchor.position) return;
+    prevAnchorPos = b.anchor.position;
+    SetPosition();
+  }
+
+  void SetPosition() {
+    // Get the top-left bounding box of the speaker
+    Bounds spbnd = srAnchor.bounds;
+    Vector3 location = new Vector3(spbnd.min.x, spbnd.max.y, 0) + Vector3.right * .25f - Vector3.up * .2f;
+
+    tip.transform.localPosition = new Vector3(transform.position.x - location.x - 1, 1.86f, 0);
     b.transform.position = location;
-    b.transform.rotation = b.anchor.rotation;
-    b.tip.transform.localPosition = new Vector3(-b.size.x / 4, -b.size.y / 2 + 0.235f, 0);
+  }
+
+  void KeepItVisible() {
+    Bounds bounds = body.bounds;
+    bounds.Encapsulate(tip.bounds);
+
+    Vector2 tl = new Vector2(bounds.min.x, bounds.min.y);
+    Vector2 br = new Vector2(bounds.max.x, bounds.max.y);
+    Vector2 tlc = cam.WorldToScreenPoint(tl);
+    Vector2 brc = cam.WorldToScreenPoint(br);
+
+    Vector3 pos = transform.position;
+
+    if (tlc.x < 0) {
+      pos.x += offramp * Time.deltaTime;
+      transform.position = pos;
+    }
+    else if (brc.x > Screen.width) {
+      pos.x -= offramp * Time.deltaTime;
+      transform.position = pos;
+    }
+    tip.flipX = (srAnchor.bounds.center.x < tip.bounds.center.x);
+
+    if (tlc.y < 0) {
+      pos.y += offramp * Time.deltaTime;
+      transform.position = pos;
+    }
+    else if (brc.y > Screen.height) {
+      pos.y -= offramp * Time.deltaTime;
+      transform.position = pos;
+    }
+    else Controller.Dbg(brc.y + " ,  " + tlc.y);
+
   }
 
   private void OnMouseDown() {
     b.delay = Time.deltaTime;
   }
+
+  Vector3 prevAnchorPos = Vector3.negativeInfinity;
+
+  Camera cam;
+  float offramp = 10; // How fast the baloon should go in the visible zone
 }
 
 

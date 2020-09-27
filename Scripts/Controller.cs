@@ -23,6 +23,14 @@ public class Controller : MonoBehaviour {
     c.DbgMsg.text = txt;
   }
 
+  string[] bbb = new string[] {
+    "Small",
+    "Two lines.\nSecond line",
+    "A sentence that can be longer than usual, only a single line",
+    "One, two, three, four.\nOne, two, three, four.\nOne, two, three, four.\nOne, two, three, four.",
+    "Nel mezzo del cammin di nostra vita,\nmi ritrovai in una selva oscura,\nsi' che la dritta via era smarrita.\n\nDebug lines for baloons alignments,\nover actor heads.\nWhen they are in different positions."
+  };
+  int bbn = -1;
 
 
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
@@ -30,6 +38,15 @@ public class Controller : MonoBehaviour {
     if (options.IsActive()) return;
     cursorTime += Time.deltaTime;
     HandleCursor();
+
+
+    if (Input.GetKeyDown(KeyCode.Space)) {
+      bbn++;
+      if (bbn == bbb.Length) bbn = 0;
+      currentActor.Say(bbb[bbn]);
+    }
+
+
 
     #region Handling of text messages
     if (textMsgTime > 0) {
