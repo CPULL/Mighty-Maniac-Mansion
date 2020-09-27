@@ -9,7 +9,7 @@ Position better the balloon. If it goes offscreen, move it in a different place 
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 
 Complete intro Cutscene, adding variations for each character.
-Implement Conditions on actions (JSON serialization, class storage and actual checking of conditions)
+Implement Conditions on actions
 Add some sounds: door open/close, footsteps
 Add start game selection, with selection of kidnapped character and 3 players
 
@@ -109,6 +109,6 @@ Ollie
 ! Hide all the "points" when the game starts
 ! Do not reselect the current actor. Go to the walk place instead.
 ! The z-order of actors is not good. They go behind objects, so they cannot be selected (may be fixed when altering the Y position of the actors while walking)
-
+! Better handling of wait cursor
 
 

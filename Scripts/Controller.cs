@@ -71,6 +71,7 @@ public class Controller : MonoBehaviour {
         currentAction = currentCutscene.GetNextAction();
         if (currentAction == null) {
           currentCutscene = null;
+          forcedCursor = CursorTypes.None;
           if (actionsToPlay.Count > 0) currentAction = actionsToPlay.GetFirst();
         }
       }
@@ -277,7 +278,13 @@ public class Controller : MonoBehaviour {
   float cursorTime = 0;
 
   void HandleCursor() {
-    if (c.status != GameStatus.NormalGamePlay) return;
+    if (c.status != GameStatus.NormalGamePlay) {
+      if (oldCursor != Cursors[(int)CursorTypes.Wait]) {
+        Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
+        oldCursor = Cursors[(int)CursorTypes.Wait];
+      }
+      return;
+    }
 
     if (forcedCursor == CursorTypes.Item) return;
 
@@ -374,9 +381,7 @@ public class Controller : MonoBehaviour {
     PickValidSequence();
 
     StartCoroutine(StartDelayed());
-    Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
     status = GameStatus.IntroDialogue;
-    forcedCursor = CursorTypes.Wait;
   }
 
   private void Start() {
@@ -390,6 +395,8 @@ public class Controller : MonoBehaviour {
     foreach (Room r in allObjects.roomsList) {
       r.gameObject.SetActive(r == currentRoom);
     }
+
+    StartIntroCutscene();
   }
 
   IEnumerator StartDelayed() {
@@ -462,14 +469,20 @@ public class Controller : MonoBehaviour {
     }
 
     currentCutscene = null;
+  }
+
+  void StartIntroCutscene() {
     foreach (Cutscene s in cutscenes) {
       if (s.id == "intro") {
         currentCutscene = s;
+        forcedCursor = CursorTypes.Wait;
+        oldCursor = null;
         break;
       }
     }
   }
 
+  // FIXME Do we need it? Probably all sequences will be started by actions. So no.
   void PickValidSequence() {
     return; // FIXME we should check if there are sequences that can be activated
     // Check all conditions and pick a valid sequence. In case there are more pick one random
