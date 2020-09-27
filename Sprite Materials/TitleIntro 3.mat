@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PurpleGlow
+  m_Name: TitleIntro 3
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: CHANGECOLOR_ON ETC1_EXTERNAL_ALPHA
+  m_ShaderKeywords: BLURISHD_ON ETC1_EXTERNAL_ALPHA OFFSETUV_ON _BLURHD_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -63,15 +63,15 @@ Material:
     - _Alpha: 1
     - _AlphaCutoffValue: 0.25
     - _BillboardY: 0
-    - _BlurHD: 0
-    - _BlurIntensity: 10
+    - _BlurHD: 1
+    - _BlurIntensity: 0
     - _ChromAberrAlpha: 0.4
     - _ChromAberrAmount: 1
     - _ClipUvDown: 0
     - _ClipUvLeft: 0
     - _ClipUvRight: 0
     - _ClipUvUp: 0
-    - _ColorChangeLuminosity: 0.418382
+    - _ColorChangeLuminosity: 0.9752182
     - _ColorChangeTolerance: 0.25
     - _ColorRampLuminosity: 0
     - _ColorRampOutline: 0
@@ -88,22 +88,22 @@ Material:
     - _FishEyeUvAmount: 0.35
     - _FlickerAlpha: 0
     - _FlickerFreq: 0.2
-    - _FlickerPercent: 0.05
+    - _FlickerPercent: 0
     - _GhostColorBoost: 1
     - _GhostTransparency: 0
-    - _GlitchAmount: 3
-    - _GlitchSize: 1
+    - _GlitchAmount: 0
+    - _GlitchSize: 5
     - _Glow: 0
     - _GlowTexUsed: 0
     - _GradBlend: 1
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
-    - _GrassSpeed: 2
+    - _GrassSpeed: 25.7
     - _GrassWind: 20
     - _GreyscaleLuminosity: 0
     - _GreyscaleOutline: 0
-    - _HandDrawnAmount: 10
-    - _HandDrawnSpeed: 5
+    - _HandDrawnAmount: 20
+    - _HandDrawnSpeed: 1
     - _HitEffectBlend: 1
     - _HitEffectGlow: 5
     - _HologramMaxAlpha: 1
@@ -126,8 +126,8 @@ Material:
     - _MyDstMode: 10
     - _MySrcMode: 5
     - _NegativeAmount: 1
-    - _OffsetUvX: 0
-    - _OffsetUvY: 0
+    - _OffsetUvX: 0.0070631504
+    - _OffsetUvY: 0.0070631504
     - _OnlyInnerOutline: 0
     - _OnlyOutline: 0
     - _Outline8Directions: 0
@@ -145,9 +145,9 @@ Material:
     - _OutlineTexYSpeed: 0
     - _OutlineWidth: 0.004
     - _PinchUvAmount: 0.35
-    - _PixelateSize: 32
+    - _PixelateSize: 515.2411
     - _PosterizeGamma: 0.75
-    - _PosterizeNumColors: 8
+    - _PosterizeNumColors: 17.4
     - _PosterizeOutline: 0
     - _RandomSeed: 0
     - _RectSize: 1

@@ -30,7 +30,11 @@ public class Controller : MonoBehaviour {
     if (options.IsActive()) return;
 
     if (status == GameStatus.IntroVideo) {
-      PlayIntro(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space));
+      if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
+        StartGame();
+        return;
+      }
+      intro.PlayIntro(Time.deltaTime);
       return;
     }
 
@@ -377,6 +381,9 @@ public class Controller : MonoBehaviour {
 
 
   #region *********************** Initialization
+  public Canvas IntroCanvas;
+  Intro intro;
+
   private void Awake() {
     c = this;
     cam = Camera.main;
@@ -397,6 +404,7 @@ public class Controller : MonoBehaviour {
       if (a != null) a.gameObject.SetActive(false);
     ActorsButtons.SetActive(false);
 
+    intro = GetComponent<Intro>();
     status = GameStatus.IntroVideo;
   }
 
@@ -1117,179 +1125,6 @@ public class Controller : MonoBehaviour {
 
   #endregion
 
-
-
-  #region *********************** Intro and Char selection *********************** Intro and Char selection *********************** Intro and Char selection ***********************
-
-  public Canvas IntroCanvas;
-  public Image IntroBlackFade;
-  public TextMeshProUGUI IntroTitle;
-  public RectTransform IntroTitleRT;
-  public AudioSource introEffects;
-  public AudioSource meteorSound;
-  public AudioClip Crickets;
-  public AudioClip MeteorSwing;
-  public AudioClip Lights;
-  public AudioClip IntroMusic;
-  public AudioClip ExplosionSound;
-  public RectTransform MeteorRT;
-  public RectTransform PanelRT;
-  public GameObject Explosion;
-  public GameObject MansionLights;
-  public GameObject PurpleGlow;
-  public Material PurpleGlowMat;
-
-  enum IntroStep {
-    Init, Wait1,
-    FirstText, FadeIn, HideText, 
-    Meteor, Explosion, MansionLights, MusicStart,
-  };
-  IntroStep istep = IntroStep.Init;
-
-  float introTime = 0;
-  void PlayIntro(bool exit) {
-    // Do the animation, but stop in case the mouse is clicked or esc is pressed
-    if (exit) {
-      StartGame();
-    }
-
-    introTime += Time.deltaTime;
-
-    float size = 0;
-    switch (istep) {
-      case IntroStep.Init: {
-        IntroBlackFade.color = new Color32(0, 0, 0, 255);
-        MeteorRT.anchoredPosition = new Vector2(1200, 1024);
-        IntroTitleRT.sizeDelta = new Vector2(0, 120);
-        PanelRT.anchoredPosition = new Vector2(-1920, 240);
-        MansionLights.SetActive(false);
-        Explosion.SetActive(false);
-        PurpleGlow.SetActive(false);
-        introEffects.clip = Crickets;
-        introEffects.volume = .75f;
-        introEffects.Play();
-        istep = IntroStep.Wait1;
-      }
-      break;
-
-      case IntroStep.Wait1: {
-        if (introTime > .5f) {
-          introTime = 0;
-          istep = IntroStep.FirstText;
-        }
-      }
-      break;
-
-      case IntroStep.FirstText: {
-        IntroTitle.text = "A few years ago...";
-        size = introTime * 3;
-        if (size > 1) size = 1;
-        IntroTitleRT.sizeDelta = new Vector2(size * 1600, 120);
-        if (introTime > 1.5f) {
-          introTime = 0;
-          istep = IntroStep.FadeIn;
-        }
-      }
-      break;
-
-
-      case IntroStep.FadeIn: {
-        IntroBlackFade.color = new Color32(0, 0, 0, (byte)(255 - introTime * 255));
-        if (introTime > .5f) {
-          introTime = 0;
-          istep = IntroStep.HideText;
-        }
-      }
-      break;
-
-      case IntroStep.HideText: {
-        size = (1 - introTime) * 3;
-        if (size > 1) size = 1;
-        if (size < 0) size = 0;
-        IntroTitleRT.sizeDelta = new Vector2(size * 1600, 120);
-        if (introTime > 1.5f) {
-          introTime = 0;
-          IntroTitleRT.sizeDelta = Vector2.zero;
-          istep = IntroStep.Meteor;
-          introEffects.volume = .5f;
-          meteorSound.clip = MeteorSwing;
-          meteorSound.Play();
-        }
-      }
-      break;
-
-
-      case IntroStep.Meteor: {
-        size = introTime * 1.33333f;
-        MeteorRT.anchoredPosition = new Vector2(
-          -200f * size + 1196 * (1 - size),
-          74f * size + 1124 * (1 - size));
-        PanelRT.anchoredPosition = new Vector2(-1000 * size - 1920 * (1 - size), 240);
-        if (introTime > .75f) {
-          introTime = 0;
-          istep = IntroStep.Explosion;
-          Explosion.SetActive(true);
-          MeteorRT.anchoredPosition = new Vector2(1200, 1200);
-          meteorSound.clip = ExplosionSound;
-          meteorSound.Play();
-        }
-      }
-      break;
-
-
-      case IntroStep.Explosion: {
-        size = introTime;
-        PanelRT.anchoredPosition = new Vector2(-16 * size - 1000 * (1 - size), 240);
-        if (introTime > 1f) {
-          introTime = 0;
-          PurpleGlow.SetActive(true);
-          istep = IntroStep.MansionLights;
-        }
-      }
-      break;
-
-
-      case IntroStep.MansionLights: {
-        // Fade the critters out
-        size = .5f - introTime;
-        if (size < 0) size = 0;
-        introEffects.volume = size;
-        if (size == 0) {
-          introTime = 0;
-          istep = IntroStep.MusicStart;
-          MansionLights.SetActive(true);
-          introEffects.clip = IntroMusic;
-          introEffects.volume = 1;
-          introEffects.Play();
-        }
-      }
-      break;
-
-      // Start the music
-      case IntroStep.MusicStart: {
-        if (introTime > 1)
-          PurpleGlowMat.SetFloat("_ColorChangeLuminosity", 2 - introTime);
-        else
-          PurpleGlowMat.SetFloat("_ColorChangeLuminosity", introTime);
-        if (introTime >= 2) introTime = 0;
-
-      }
-      break;
-
-    }
-
-
-    // Camera pan to villa
-    // Villa lights
-    // Game title and music
-    // Fade everything except title
-    // Pan title
-
-
-  }
-
-
-  #endregion
 
 
 
