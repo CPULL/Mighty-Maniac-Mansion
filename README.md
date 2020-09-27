@@ -4,3 +4,6 @@
  
  Some of the quests (possible actions) are similar to the original, but the full "quests" are not the same.
  Some of the characters look similar to the original ones. But they are more modern (like 2020 young guys, so no "Cassete tape" or landline phones.)
+
+
+![MMM Logo](https://github.com/CPULL/Mighty-Maniac-Mansion/blob/master/Graphics/Extras/Logo.png)
