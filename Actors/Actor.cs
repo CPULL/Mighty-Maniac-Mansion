@@ -24,6 +24,7 @@ public class Actor : MonoBehaviour {
   public float mainScale = 1f;
   public List<Skill> skills;
   List<Parcour> parcour;
+  [TextArea(3, 12)] public string Description;
 
   private void Awake() {
     anim = GetComponent<Animator>();

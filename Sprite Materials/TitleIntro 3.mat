@@ -126,8 +126,8 @@ Material:
     - _MyDstMode: 10
     - _MySrcMode: 5
     - _NegativeAmount: 1
-    - _OffsetUvX: -0.75
-    - _OffsetUvY: -0.75
+    - _OffsetUvX: 0.0057983994
+    - _OffsetUvY: 0.0057983994
     - _OnlyInnerOutline: 0
     - _OnlyOutline: 0
     - _Outline8Directions: 0

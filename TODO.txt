@@ -1,7 +1,9 @@
 Mighty Maniac Mansion
 
 Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
-Add start game selection, with selection of kidnapped character and 3 players
+
+Add button to start/quit the game
+
 
 * TODO ************************************************************************************************************
 
@@ -112,4 +114,6 @@ Ollie
 ! Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
 ! First game intro
 ! Completed game intro
+! Add start game selection, with selection of kidnapped character and 3 players
+! When overing a person show the portrait and a description, inluding the skills
 

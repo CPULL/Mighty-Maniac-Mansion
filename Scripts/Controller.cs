@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using SimpleJSON;
-using UnityEngine.UI;
 
 public class Controller : MonoBehaviour {
   Camera cam;
@@ -12,7 +11,6 @@ public class Controller : MonoBehaviour {
   public AudioClip[] Sounds;
   public LayerMask pathLayer;
   public UnityEngine.UI.Image BlackFade;
-  GameStatus status = GameStatus.Cutscene;
   private static Controller c;
   public Transform PickedItems;
   public Material SceneSelectionPoint;
@@ -29,10 +27,10 @@ public class Controller : MonoBehaviour {
   void Update() {
     if (options.IsActive()) return;
 
-    if (status == GameStatus.IntroVideo) {
+    if (GameData.status == GameStatus.IntroVideo) {
       if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
-        intro.Init();
-        StartGame();
+//FIXME        intro.Init();
+//        StartGame();
         return;
       }
       if (intro.PlayIntro(Time.deltaTime)) {
@@ -133,7 +131,7 @@ public class Controller : MonoBehaviour {
     #endregion
 
 
-    if (c.status != GameStatus.NormalGamePlay) return;
+    if (GameData.status != GameStatus.NormalGamePlay) return;
 
     // LMB -> Walk or secondary action
     // RMB -> Default action
@@ -301,7 +299,7 @@ public class Controller : MonoBehaviour {
   float cursorTime = 0;
 
   void HandleCursor() {
-    if (c.status != GameStatus.NormalGamePlay) {
+    if (GameData.status != GameStatus.NormalGamePlay) {
       if (oldCursor != Cursors[(int)CursorTypes.Wait]) {
         Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
         oldCursor = Cursors[(int)CursorTypes.Wait];
@@ -364,7 +362,7 @@ public class Controller : MonoBehaviour {
 
 
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
-    if (c.status != GameStatus.NormalGamePlay || c.options.IsActive()) return;
+    if (GameData.status != GameStatus.NormalGamePlay || c.options.IsActive()) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
       SelectActor(c.actor1);
@@ -416,7 +414,7 @@ public class Controller : MonoBehaviour {
     ActorsButtons.SetActive(false);
 
     intro = GetComponent<Intro>();
-    status = GameStatus.IntroVideo;
+    GameData.status = GameStatus.IntroVideo;
   }
 
   private void Start() {
@@ -426,14 +424,14 @@ public class Controller : MonoBehaviour {
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
 
     options.GetOptions();
-    status = GameStatus.IntroVideo;
+    GameData.status = GameStatus.IntroVideo;
   }
 
   void StartGame() {
     foreach (Room r in allObjects.roomsList) {
       r.gameObject.SetActive(r == currentRoom);
     }
-    status = GameStatus.NormalGamePlay;
+    GameData.status = GameStatus.NormalGamePlay;
     foreach (Actor a in allActors) {
       if (a == null) continue;
       a.gameObject.SetActive(a.currentRoom == currentRoom);
@@ -560,7 +558,7 @@ public class Controller : MonoBehaviour {
         currentAction = null;
 
       if (currentAction == null) {
-        status = GameStatus.NormalGamePlay;
+        GameData.status = GameStatus.NormalGamePlay;
       }
     }
   }
@@ -735,7 +733,7 @@ public class Controller : MonoBehaviour {
   }
 
   internal static void SetItem(Item item, bool fromInventory = false) {
-    if (c.status != GameStatus.NormalGamePlay) return;
+    if (GameData.status != GameStatus.NormalGamePlay) return;
 
     if (fromInventory) {
       if (item == null) {
@@ -864,15 +862,16 @@ public class Controller : MonoBehaviour {
       case Chars.PurpleTentacle: return c.allEnemies[6];
       case Chars.Dave: return c.allActors[0];
       case Chars.Bernard: return c.allActors[1];
-      case Chars.Hoagie: return c.allActors[2];
-      case Chars.Michael: return c.allActors[3];
-      case Chars.Razor: return c.allActors[4];
-      case Chars.Sandy: return c.allActors[5];
-      case Chars.Syd: return c.allActors[6];
-      case Chars.Wendy: return c.allActors[7];
-      case Chars.Jeff: return c.allActors[8];
-      case Chars.Javid: return c.allActors[9];
+      case Chars.Wendy: return c.allActors[2];
+      case Chars.Syd: return c.allActors[3];
+      case Chars.Hoagie: return c.allActors[4];
+      case Chars.Razor: return c.allActors[5];
+      case Chars.Michael: return c.allActors[6];
+      case Chars.Jeff: return c.allActors[7];
+      case Chars.Javid: return c.allActors[8];
+      case Chars.Laverne: return c.allActors[9];
       case Chars.Ollie: return c.allActors[10];
+      case Chars.Sandy: return c.allActors[11];
     }
     Debug.LogError("Invalid actor requested! " + actor);
     return null;
@@ -895,15 +894,16 @@ public class Controller : MonoBehaviour {
     else if (actor == c.allEnemies[6]) return Chars.PurpleTentacle;
     else if (actor == c.allActors[0]) return Chars.Dave;
     else if (actor == c.allActors[1]) return Chars.Bernard;
-    else if (actor == c.allActors[2]) return Chars.Hoagie;
-    else if (actor == c.allActors[3]) return Chars.Michael;
-    else if (actor == c.allActors[4]) return Chars.Razor;
-    else if (actor == c.allActors[5]) return Chars.Sandy;
-    else if (actor == c.allActors[6]) return Chars.Syd;
-    else if (actor == c.allActors[7]) return Chars.Wendy;
-    else if (actor == c.allActors[8]) return Chars.Jeff;
-    else if (actor == c.allActors[9]) return Chars.Javid;
+    else if (actor == c.allActors[2]) return Chars.Wendy;
+    else if (actor == c.allActors[3]) return Chars.Syd;
+    else if (actor == c.allActors[4]) return Chars.Hoagie;
+    else if (actor == c.allActors[5]) return Chars.Razor;
+    else if (actor == c.allActors[6]) return Chars.Michael;
+    else if (actor == c.allActors[7]) return Chars.Jeff;
+    else if (actor == c.allActors[8]) return Chars.Javid;
+    else if (actor == c.allActors[9]) return Chars.Laverne;
     else if (actor == c.allActors[10]) return Chars.Ollie;
+    else if (actor == c.allActors[11]) return Chars.Sandy;
     else if (actor == c.currentActor) return Chars.Current;
     Debug.LogError("Invalid actor requested! " + actor);
     return Chars.None;
@@ -949,7 +949,7 @@ public class Controller : MonoBehaviour {
   }
 
   internal static void SelectActor(Actor actor) {
-    if (c.status != GameStatus.NormalGamePlay) return;
+    if (GameData.status != GameStatus.NormalGamePlay) return;
 
     c.forcedCursor = CursorTypes.None;
     c.oldCursor = null;
@@ -988,7 +988,7 @@ public class Controller : MonoBehaviour {
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
     // Disable gameplay
-    status = GameStatus.Cutscene;
+    GameData.status = GameStatus.Cutscene;
     yield return null;
 
     // Enable dst
@@ -1041,14 +1041,14 @@ public class Controller : MonoBehaviour {
     }
 
     // Enable gmaeplay
-    status = GameStatus.NormalGamePlay;
+    GameData.status = GameStatus.NormalGamePlay;
     forcedCursor = CursorTypes.None;
     overItem = null;
   }
 
   private IEnumerator FadeToRoomActor() {
     // Disable gameplay
-    status = GameStatus.Cutscene;
+    GameData.status = GameStatus.Cutscene;
     yield return null;
 
     Room prev = currentRoom;
@@ -1070,7 +1070,7 @@ public class Controller : MonoBehaviour {
     prev.gameObject.SetActive(false);
     currentRoom.gameObject.SetActive(true);
     cam.transform.position = dstp;
-    status = GameStatus.NormalGamePlay; // Enable gmaeplay, this will make the camera to adjust
+    GameData.status = GameStatus.NormalGamePlay; // Enable gmaeplay, this will make the camera to adjust
     yield return null;
 
     // Disable actors not in current room
