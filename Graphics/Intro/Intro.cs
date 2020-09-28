@@ -50,7 +50,6 @@ public class Intro : MonoBehaviour {
   int note = 0;
   readonly float[] flashing = new float[6];
 
-
   public void Init() {
     glowing = false;
     IntroBlackFade.color = new Color32(0, 0, 0, 255);
@@ -88,9 +87,12 @@ public class Intro : MonoBehaviour {
 
 
   private void Update() {
-    if (GameData.status != GameStatus.IntroVideo) return;
+    if (GD.status != GameStatus.IntroVideo) return;
     if (Options.IsActive()) return;
-    if (!IntroCanvas.enabled) Init();
+    if (!IntroCanvas.enabled) {
+      IntroCanvas.enabled = true;
+      Init();
+    }
 
     if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
       Stop();
@@ -104,7 +106,7 @@ public class Intro : MonoBehaviour {
     Controller.StopMusic();
     introEffects.Stop();
     meteorSound.Stop();
-    GameData.status = GameStatus.CharSelection;
+    GD.status = GameStatus.CharSelection;
     IntroCanvas.enabled = false;
   }
 
@@ -185,6 +187,7 @@ public class Intro : MonoBehaviour {
         if (step < 0) step = 0;
         IntroTitleRT.sizeDelta = new Vector2(step * 1600, 120);
         if (introTime > 1.5f) {
+          IntroTitle.text = "";
           introTime = 0;
           IntroTitleRT.sizeDelta = Vector2.zero;
           istep = IntroStep.Meteor;
@@ -354,7 +357,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 2.5f) {
           introTime = 0;
           istep = IntroStep.Credits6;
-          IntroCredits.text = "Remake credits:\n Code - <b>CPU</b>";
+          IntroCredits.text = "Remake credits:\n    Code - <b>CPU</b>";
         }
       }
       break;
@@ -363,7 +366,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 5f) {
           introTime = 0;
           istep = IntroStep.Credits7;
-          IntroCredits.text = "Remake credits:\n Graphics - <b>CPU</b>";
+          IntroCredits.text = "Remake credits:\n    Graphics - <b>CPU</b>";
         }
       }
       break;
@@ -372,7 +375,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 5f) {
           introTime = 0;
           istep = IntroStep.Credits8;
-          IntroCredits.text = "Remake credits:\n Intro Music - <b>BG Ollie</b>";
+          IntroCredits.text = "Remake credits:\n    Intro Music - <b>BG Ollie</b>";
           LogoOllie.enabled = true;
         }
       }
@@ -382,7 +385,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 5f) {
           introTime = 0;
           istep = IntroStep.Credits9;
-          IntroCredits.text = "Remake credits:\n Sound effects - <b>CPU</b>";
+          IntroCredits.text = "Remake credits:\n    Sound effects - <b>CPU</b>";
           LogoOllie.enabled = false;
         }
       }
@@ -392,7 +395,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 5f) {
           introTime = 0;
           istep = IntroStep.Credits10;
-          IntroCredits.text = "Remake credits:\n Testing - <i>nobody yet</i>";
+          IntroCredits.text = "Remake credits:\n    Testing - <i>nobody yet</i>";
         }
       }
       break;
@@ -420,6 +423,10 @@ public class Intro : MonoBehaviour {
       }
       break;
     }
+
+    if (Input.GetKeyDown(KeyCode.Keypad1)) Debug.Log("    new Note(1, " + musicLightTime + "f),");
+    if (Input.GetKeyDown(KeyCode.Keypad2)) Debug.Log("    new Note(2, " + musicLightTime + "f),");
+    if (Input.GetKeyDown(KeyCode.Keypad3)) Debug.Log("    new Note(3, " + musicLightTime + "f),");
 
     if (musicLightTime > 54f) {
       Stop();
@@ -482,7 +489,52 @@ public class Intro : MonoBehaviour {
     new Note(1, 26.28421f),
     new Note(2, 26.71968f),
     new Note(0, 27.26314f),
-    new Note(2, 28.85518f)
+    new Note(2, 28.85518f),
+
+    // FIXME Do again the console to track more beats.
+
+    new Note(0, 28.96631f),
+    new Note(1, 29.42267f),
+    new Note(2, 29.77584f),
+    new Note(3, 31.40689f),
+    new Note(4, 31.79164f),
+    new Note(5, 32.19175f),
+    new Note(0, 33.89577f),
+    new Note(3, 33.89577f),
+    new Note(1, 36.69443f),
+    new Note(4, 36.69443f),
+    new Note(2, 37.88681f),
+    new Note(5, 37.88681f),
+    new Note(0, 38.07973f),
+    new Note(4, 39.13494f),
+    new Note(2, 40.35872f),
+    new Note(3, 41.64012f),
+    new Note(1, 42.86241f),
+    new Note(5, 44.18384f),
+
+    new Note(0, 45.41505f),
+    new Note(1, 45.41505f),
+    new Note(2, 45.41505f),
+    new Note(3, 46.55048f),
+    new Note(4, 46.55048f),
+    new Note(5, 46.55048f),
+    new Note(0, 47.92637f),
+    new Note(1, 47.92637f),
+    new Note(2, 47.92637f),
+    new Note(3, 49.15835f),
+    new Note(4, 49.15835f),
+    new Note(5, 49.15835f),
+
+    new Note(0, 50.42236f),
+    new Note(1, 50.42236f),
+    new Note(2, 50.42236f),
+    new Note(3, 50.42236f),
+    new Note(4, 50.42236f),
+    new Note(5, 50.42236f)
+
+
+
+
   };
 
 }

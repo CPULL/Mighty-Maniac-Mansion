@@ -24,6 +24,9 @@ public class Options : MonoBehaviour {
 
   public static Options opts;
 
+
+  public TextMeshProUGUI DBG;
+
   private void Awake() {
     opts = this;
   }
@@ -115,6 +118,13 @@ public class Options : MonoBehaviour {
   private void Update() {
     if (Input.GetKeyDown(KeyCode.Escape)) {
       Activate(!optionsCanvas.enabled);
+    }
+    if (Input.GetKeyDown(KeyCode.F11)) {
+      if (Screen.fullScreen) {
+        Screen.SetResolution(1920, 1080, false);
+      }
+      else
+        Screen.fullScreen = true;
     }
   }
 

@@ -34,7 +34,7 @@ public class GameItem : MonoBehaviour {
     bool atLeastOne = false;
     foreach (ActionAndCondition ac in actions) {
       Controller.KnowAction(ac.Action);
-      if (ac.Condition.IsValid(actor, secondary, item ?? this, when)) {
+      if (ac.Condition.IsValid(actor, secondary, item, when)) {
         Controller.AddAction(ac.Action, actor, secondary, item);
         atLeastOne = true;
       }

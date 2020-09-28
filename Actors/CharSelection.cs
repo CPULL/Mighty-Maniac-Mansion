@@ -23,7 +23,7 @@ public class CharSelection : MonoBehaviour
   public Button ButtonStart;
 
   private void Update() {
-    if (GameData.status != GameStatus.CharSelection) return;
+    if (GD.status != GameStatus.CharSelection) return;
     if (!charSelectionCanvas.enabled) SelectCharacters();
     if (Options.IsActive()) return;
   }
@@ -32,6 +32,7 @@ public class CharSelection : MonoBehaviour
   public void SelectCharacters() {
     charSelectionCanvas.enabled = true;
     ButtonStart.interactable = false;
+    ActorDescription.text = "";
     foreach (Image img in Selections) {
       img.color = new Color32(0, 0, 0, 0);
     }
@@ -177,13 +178,12 @@ public class CharSelection : MonoBehaviour
   }
 
   public void StartGame() {
-    // FIXME set the actors globally
-    GameData.actor1 = (Chars)(a1 + 20);
-    GameData.actor2 = (Chars)(a2 + 20);
-    GameData.actor3 = (Chars)(a3 + 20);
-    GameData.kidnapped = (Chars)(ak + 20);
+    GD.actor1 = (Chars)(a1 + 20);
+    GD.actor2 = (Chars)(a2 + 20);
+    GD.actor3 = (Chars)(a3 + 20);
+    GD.kidnapped = (Chars)(ak + 20);
     charSelectionCanvas.enabled = false;
-    GameData.status = GameStatus.StartGame;
+    GD.status = GameStatus.StartGame;
   }
 
   public void OptionsButton() {

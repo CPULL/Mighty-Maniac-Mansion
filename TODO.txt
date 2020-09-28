@@ -1,8 +1,5 @@
 Mighty Maniac Mansion
 
-Finish the window lights on the last part of the music
-
-
 Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 
 Options: Change font
@@ -28,9 +25,6 @@ FrontDoor:
 
 
 * BUGS ************************************************************************************************************
-
-Build version does not run
-
 
 * CHARS ************************************************************************************************************
 

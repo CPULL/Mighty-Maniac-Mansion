@@ -26,11 +26,11 @@ public class Controller : MonoBehaviour {
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
   void Update() {
     if (Options.IsActive()) return;
-    if (GameData.status == GameStatus.StartGame) {
+    if (GD.status == GameStatus.StartGame) {
       StartGame();
       return;
     }
-    if (GameData.status != GameStatus.NormalGamePlay && GameData.status != GameStatus.Cutscene) return;
+    if (GD.status != GameStatus.NormalGamePlay && GD.status != GameStatus.Cutscene) return;
 
 
     cursorTime += Time.deltaTime;
@@ -116,7 +116,7 @@ public class Controller : MonoBehaviour {
     #endregion
 
 
-    if (GameData.status != GameStatus.NormalGamePlay) return;
+    if (GD.status != GameStatus.NormalGamePlay) return;
 
     // LMB -> Walk or secondary action
     // RMB -> Default action
@@ -284,7 +284,7 @@ public class Controller : MonoBehaviour {
   float cursorTime = 0;
 
   void HandleCursor() {
-    if (GameData.status != GameStatus.NormalGamePlay) {
+    if (GD.status != GameStatus.NormalGamePlay) {
       if (oldCursor != Cursors[(int)CursorTypes.Wait]) {
         Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
         oldCursor = Cursors[(int)CursorTypes.Wait];
@@ -347,7 +347,7 @@ public class Controller : MonoBehaviour {
 
 
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
-    if (GameData.status != GameStatus.NormalGamePlay || Options.IsActive()) return;
+    if (GD.status != GameStatus.NormalGamePlay || Options.IsActive()) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
       SelectActor(c.actor1);
@@ -391,8 +391,6 @@ public class Controller : MonoBehaviour {
     foreach (Actor a in allActors)
       if (a != null) a.gameObject.SetActive(false);
     ActorsButtons.SetActive(false);
-
-    GameData.status = GameStatus.IntroVideo;
   }
 
   private void Start() {
@@ -402,14 +400,14 @@ public class Controller : MonoBehaviour {
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
 
     Options.GetOptions();
-    GameData.status = GameStatus.IntroVideo;
+    GD.status = GameStatus.IntroVideo;
   }
 
   void StartGame() {
     foreach (Room r in allObjects.roomsList) {
       r.gameObject.SetActive(r == currentRoom);
     }
-    GameData.status = GameStatus.NormalGamePlay;
+    GD.status = GameStatus.NormalGamePlay;
     foreach (Actor a in allActors) {
       if (a == null) continue;
       a.gameObject.SetActive(a.currentRoom == currentRoom);
@@ -420,12 +418,13 @@ public class Controller : MonoBehaviour {
     }
     SkyBackground.enabled = true;
 
-    actor1 = GetActor(GameData.actor1);
-    actor2 = GetActor(GameData.actor2);
-    actor3 = GetActor(GameData.actor3);
-    kidnappedActor = GetActor(GameData.kidnapped);
+    actor1 = GetActor(GD.actor1);
+    actor2 = GetActor(GD.actor2);
+    actor3 = GetActor(GD.actor3);
+    kidnappedActor = GetActor(GD.kidnapped);
+    currentActor = actor1;
 
-    // We need to update the portraits...
+    // FIXME We need to update the portraits...
 
 
     ActorsButtons.SetActive(true);
@@ -453,52 +452,57 @@ public class Controller : MonoBehaviour {
   void LoadSequences() {
     string path = Application.dataPath + "/Actions/";
 
-    foreach (string file in System.IO.Directory.GetFiles(path, "*.json")) {
-      //FIXME Debug.Log(file);
-      string json = System.IO.File.ReadAllText(file);
+    try {
+      foreach (string file in System.IO.Directory.GetFiles(path, "*.json")) {
+        //FIXME Debug.Log(file);
+        string json = System.IO.File.ReadAllText(file);
 
-      try {
-        JSONNode j = JSON.Parse(json);
+        try {
+          JSONNode j = JSON.Parse(json);
 
-        Cutscene seq = new Cutscene(j["id"].Value, j["name"].Value);
-        // FIXME conditions
-        // Actions
-        JSONNode.ValueEnumerator vals = j["actions"].Values;
-        foreach (JSONNode val in vals) {
-          GameAction a = new GameAction(val["type"].Value);
-          if (a.type == ActionType.Teleport) {
-            a.SetActor(val["actor"].Value);
-            a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-            a.SetDir(val["dir"].Value);
-            a.SetValue(val["room"].Value);
+          Cutscene seq = new Cutscene(j["id"].Value, j["name"].Value);
+          // FIXME conditions
+          // Actions
+          JSONNode.ValueEnumerator vals = j["actions"].Values;
+          foreach (JSONNode val in vals) {
+            GameAction a = new GameAction(val["type"].Value);
+            if (a.type == ActionType.Teleport) {
+              a.SetActor(val["actor"].Value);
+              a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
+              a.SetDir(val["dir"].Value);
+              a.SetValue(val["room"].Value);
+            }
+            else if (a.type == ActionType.Speak) {
+              a.SetActor(val["actor"].Value);
+              a.SetDir(val["dir"].Value);
+              a.SetValue(val["msg"].Value);
+            }
+            else if (a.type == ActionType.Expression) {
+              a.SetActor(val["actor"].Value);
+              a.SetDir(val["dir"].Value);
+              a.SetValue(val["expr"].Value);
+            }
+            else if (a.type == ActionType.ShowRoom) {
+              a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
+              a.SetValue(val["room"].Value);
+            }
+            else if (a.type == ActionType.Sound) {
+              a.SetActor(val["actor"].Value);
+              a.SetDir(val["dir"].Value);
+              a.SetValue(val["snd"].Value);
+            }
+            a.SetWait(val["wait"].AsFloat);
+            seq.actions.Add(a);
           }
-          else if (a.type == ActionType.Speak) {
-            a.SetActor(val["actor"].Value);
-            a.SetDir(val["dir"].Value);
-            a.SetValue(val["msg"].Value);
-          }
-          else if (a.type == ActionType.Expression) {
-            a.SetActor(val["actor"].Value);
-            a.SetDir(val["dir"].Value);
-            a.SetValue(val["expr"].Value);
-          }
-          else if (a.type == ActionType.ShowRoom) {
-            a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-            a.SetValue(val["room"].Value);
-          }
-          else if (a.type == ActionType.Sound) {
-            a.SetActor(val["actor"].Value);
-            a.SetDir(val["dir"].Value);
-            a.SetValue(val["snd"].Value);
-          }
-          a.SetWait(val["wait"].AsFloat);
-          seq.actions.Add(a);
+          cutscenes.Add(seq);
+
+        } catch (System.Exception e) {
+          Debug.Log("ERROR (" + file + "): " + e.Message);
         }
-        cutscenes.Add(seq);
-
-      } catch (System.Exception e) {
-        Debug.Log("ERROR (" + file + "): " + e.Message);
       }
+    } catch (System.Exception e) {
+      Debug.Log("Main ERROR reading " + path + ": " + e.Message);
+      // FIXME here we need a better message
     }
 
     currentCutscene = null;
@@ -510,7 +514,7 @@ public class Controller : MonoBehaviour {
         currentCutscene = s;
         forcedCursor = CursorTypes.Wait;
         oldCursor = null;
-        GameData.status = GameStatus.NormalGamePlay;
+        GD.status = GameStatus.NormalGamePlay;
         break;
       }
     }
@@ -545,7 +549,7 @@ public class Controller : MonoBehaviour {
         currentAction = null;
 
       if (currentAction == null) {
-        GameData.status = GameStatus.NormalGamePlay;
+        GD.status = GameStatus.NormalGamePlay;
       }
     }
   }
@@ -720,7 +724,7 @@ public class Controller : MonoBehaviour {
   }
 
   internal static void SetItem(Item item, bool fromInventory = false) {
-    if (GameData.status != GameStatus.NormalGamePlay) return;
+    if (GD.status != GameStatus.NormalGamePlay) return;
 
     if (fromInventory) {
       if (item == null) {
@@ -936,7 +940,7 @@ public class Controller : MonoBehaviour {
   }
 
   internal static void SelectActor(Actor actor) {
-    if (GameData.status != GameStatus.NormalGamePlay) return;
+    if (GD.status != GameStatus.NormalGamePlay) return;
 
     c.forcedCursor = CursorTypes.None;
     c.oldCursor = null;
@@ -975,7 +979,7 @@ public class Controller : MonoBehaviour {
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
     // Disable gameplay
-    GameData.status = GameStatus.Cutscene;
+    GD.status = GameStatus.Cutscene;
     yield return null;
 
     // Enable dst
@@ -1028,14 +1032,14 @@ public class Controller : MonoBehaviour {
     }
 
     // Enable gmaeplay
-    GameData.status = GameStatus.NormalGamePlay;
+    GD.status = GameStatus.NormalGamePlay;
     forcedCursor = CursorTypes.None;
     overItem = null;
   }
 
   private IEnumerator FadeToRoomActor() {
     // Disable gameplay
-    GameData.status = GameStatus.Cutscene;
+    GD.status = GameStatus.Cutscene;
     yield return null;
 
     Room prev = currentRoom;
@@ -1057,7 +1061,7 @@ public class Controller : MonoBehaviour {
     prev.gameObject.SetActive(false);
     currentRoom.gameObject.SetActive(true);
     cam.transform.position = dstp;
-    GameData.status = GameStatus.NormalGamePlay; // Enable gmaeplay, this will make the camera to adjust
+    GD.status = GameStatus.NormalGamePlay; // Enable gmaeplay, this will make the camera to adjust
     yield return null;
 
     // Disable actors not in current room
