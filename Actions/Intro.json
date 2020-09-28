@@ -7,6 +7,11 @@
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor1", "pos":[8.82,-0.76], "dir":"F" },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor2", "pos":[13.23,-1.43], "dir":"L" },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor3", "pos":[11.45,-0.46], "dir":"F" },
+		
+		{ "type":"Expression", "actor":"Actor1", "expr":"Normal", "dir":"F", "wait":.01 },
+		{ "type":"Expression", "actor":"Actor2", "expr":"Normal", "dir":"F", "wait":.01 },
+		{ "type":"Expression", "actor":"Actor3", "expr":"Normal", "dir":"F", "wait":.75 },
+		
 		{ "type":"Speak", "actor":"Actor1", "msg":"OK, this will be really dangerous.", "dir":"R" },
 		{ "type":"Speak", "actor":"Actor1", "msg":"We may die.", "dir":"F" },
 		{ "type":"Expression", "actor":"Actor2", "expr":"BigOpen", "dir":"F", "wait":.01 }

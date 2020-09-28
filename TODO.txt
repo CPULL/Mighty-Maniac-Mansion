@@ -1,6 +1,7 @@
 Mighty Maniac Mansion
 
-
+Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
+Add start game selection, with selection of kidnapped character and 3 players
 
 * TODO ************************************************************************************************************
 
@@ -10,7 +11,6 @@ Enable the "prolonged usage" to simulate the push of the gargoyle head. It shoul
 Complete intro Cutscene, adding variations for each character.
 Implement Conditions on actions
 Add some sounds: door open/close, footsteps
-Add start game selection, with selection of kidnapped character and 3 players
 
 
 FrontDoor:
@@ -111,4 +111,5 @@ Ollie
 ! Better handling of wait cursor
 ! Position better the balloon. If it goes offscreen, move it in a different place (upside-down?)
 ! First game intro
+! Completed game intro
 

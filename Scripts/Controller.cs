@@ -31,10 +31,22 @@ public class Controller : MonoBehaviour {
 
     if (status == GameStatus.IntroVideo) {
       if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
+        intro.Init();
         StartGame();
         return;
       }
-      intro.PlayIntro(Time.deltaTime);
+      if (intro.PlayIntro(Time.deltaTime)) {
+        intro.Init();
+        StartGame();
+        return;
+      }
+
+      if (Input.GetKeyDown(KeyCode.Keypad4)) Debug.Log("new Note(0, " + intro.musicLightTime + "f),");
+      if (Input.GetKeyDown(KeyCode.Keypad5)) Debug.Log("new Note(1, " + intro.musicLightTime + "f),");
+      if (Input.GetKeyDown(KeyCode.Keypad6)) Debug.Log("new Note(2, " + intro.musicLightTime + "f),");
+      if (Input.GetKeyDown(KeyCode.Keypad1)) Debug.Log("new Note(3, " + intro.musicLightTime + "f),");
+      if (Input.GetKeyDown(KeyCode.Keypad2)) Debug.Log("new Note(4, " + intro.musicLightTime + "f),");
+      if (Input.GetKeyDown(KeyCode.Keypad3)) Debug.Log("new Note(5, " + intro.musicLightTime + "f),");
       return;
     }
 
@@ -201,7 +213,6 @@ public class Controller : MonoBehaviour {
           }
           else {
             currentActor.Say("It does not work...");
-            Debug.Log(usedItem?.name + "  " + overItem?.name);
           }
 
         }
@@ -520,13 +531,6 @@ public class Controller : MonoBehaviour {
     }
   }
 
-  // FIXME Do we need it? Probably all sequences will be started by actions. So no.
-  void PickValidSequence() {
-    return; // FIXME we should check if there are sequences that can be activated
-    // Check all conditions and pick a valid sequence. In case there are more pick one random
-  }
-
-
   public static void AddAction(GameAction a, Actor perf, Actor sec, Item item) {
     c.actionsToPlay.Add(new ContextualizedAction { action = a, performer = perf, secondary = sec, item = item });
     c.allKnownActions.Add(a);
@@ -831,7 +835,7 @@ public class Controller : MonoBehaviour {
   Actor actor1;
   Actor actor2;
   Actor actor3;
-  Actor kidnappedActor;
+  readonly Actor kidnappedActor;
   Actor receiverActor; // FIXME we should set this in some way, probably from actions
   Actor currentActor = null;
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
