@@ -14,7 +14,7 @@ public class Controller : MonoBehaviour {
   private static Controller c;
   public Transform PickedItems;
   public Material SceneSelectionPoint;
-
+  public AudioSource MusicPlayer;
 
 
   public TextMeshProUGUI DbgMsg;
@@ -25,28 +25,13 @@ public class Controller : MonoBehaviour {
 
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
   void Update() {
-    if (options.IsActive()) return;
-
-    if (GameData.status == GameStatus.IntroVideo) {
-      if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
-//FIXME        intro.Init();
-//        StartGame();
-        return;
-      }
-      if (intro.PlayIntro(Time.deltaTime)) {
-        intro.Init();
-        StartGame();
-        return;
-      }
-
-      if (Input.GetKeyDown(KeyCode.Keypad4)) Debug.Log("new Note(0, " + intro.musicLightTime + "f),");
-      if (Input.GetKeyDown(KeyCode.Keypad5)) Debug.Log("new Note(1, " + intro.musicLightTime + "f),");
-      if (Input.GetKeyDown(KeyCode.Keypad6)) Debug.Log("new Note(2, " + intro.musicLightTime + "f),");
-      if (Input.GetKeyDown(KeyCode.Keypad1)) Debug.Log("new Note(3, " + intro.musicLightTime + "f),");
-      if (Input.GetKeyDown(KeyCode.Keypad2)) Debug.Log("new Note(4, " + intro.musicLightTime + "f),");
-      if (Input.GetKeyDown(KeyCode.Keypad3)) Debug.Log("new Note(5, " + intro.musicLightTime + "f),");
+    if (Options.IsActive()) return;
+    if (GameData.status == GameStatus.StartGame) {
+      StartGame();
       return;
     }
+    if (GameData.status != GameStatus.NormalGamePlay && GameData.status != GameStatus.Cutscene) return;
+
 
     cursorTime += Time.deltaTime;
     HandleCursor();
@@ -362,7 +347,7 @@ public class Controller : MonoBehaviour {
 
 
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
-    if (GameData.status != GameStatus.NormalGamePlay || c.options.IsActive()) return;
+    if (GameData.status != GameStatus.NormalGamePlay || Options.IsActive()) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == c.ActorPortrait1) {
       SelectActor(c.actor1);
@@ -390,16 +375,10 @@ public class Controller : MonoBehaviour {
 
 
   #region *********************** Initialization
-  public Canvas IntroCanvas;
-  Intro intro;
 
   private void Awake() {
     c = this;
     cam = Camera.main;
-
-    actor1 = allActors[0]; // FIXME
-    actor2 = allActors[1];
-    actor3 = allActors[7];
 
     LoadSequences();
 
@@ -413,7 +392,6 @@ public class Controller : MonoBehaviour {
       if (a != null) a.gameObject.SetActive(false);
     ActorsButtons.SetActive(false);
 
-    intro = GetComponent<Intro>();
     GameData.status = GameStatus.IntroVideo;
   }
 
@@ -423,7 +401,7 @@ public class Controller : MonoBehaviour {
     currentActor = actor1;
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
 
-    options.GetOptions();
+    Options.GetOptions();
     GameData.status = GameStatus.IntroVideo;
   }
 
@@ -441,7 +419,15 @@ public class Controller : MonoBehaviour {
       a.gameObject.SetActive(a.currentRoom == currentRoom);
     }
     SkyBackground.enabled = true;
-    IntroCanvas.enabled = false;
+
+    actor1 = GetActor(GameData.actor1);
+    actor2 = GetActor(GameData.actor2);
+    actor3 = GetActor(GameData.actor3);
+    kidnappedActor = GetActor(GameData.kidnapped);
+
+    // We need to update the portraits...
+
+
     ActorsButtons.SetActive(true);
     StartIntroCutscene();
   }
@@ -524,6 +510,7 @@ public class Controller : MonoBehaviour {
         currentCutscene = s;
         forcedCursor = CursorTypes.Wait;
         oldCursor = null;
+        GameData.status = GameStatus.NormalGamePlay;
         break;
       }
     }
@@ -833,7 +820,7 @@ public class Controller : MonoBehaviour {
   Actor actor1;
   Actor actor2;
   Actor actor3;
-  readonly Actor kidnappedActor;
+  Actor kidnappedActor;
   Actor receiverActor; // FIXME we should set this in some way, probably from actions
   Actor currentActor = null;
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
@@ -1132,7 +1119,22 @@ public class Controller : MonoBehaviour {
 
 
 
+  public static void PlayMusic(AudioClip clip) {
+    c.MusicPlayer.Stop();
+    c.MusicPlayer.clip = clip;
+    c.MusicPlayer.Play();
+  }
 
+  public static void StopMusic() {
+    c.MusicPlayer.Stop();
+  }
+
+  public static void PauseMusic() {
+    if (c.MusicPlayer.isPlaying)
+      c.MusicPlayer.Pause();
+    else
+      c.MusicPlayer.UnPause();
+  }
 
 
 

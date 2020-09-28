@@ -1,9 +1,15 @@
 Mighty Maniac Mansion
 
+Finish the window lights on the last part of the music
+
+
 Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 
-Add button to start/quit the game
-
+Options: Change font
+Options: quit
+Options: restart (same party)
+Options: restart (new party)
+Options: Main title
 
 * TODO ************************************************************************************************************
 
@@ -22,6 +28,8 @@ FrontDoor:
 
 
 * BUGS ************************************************************************************************************
+
+Build version does not run
 
 
 * CHARS ************************************************************************************************************

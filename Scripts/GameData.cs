@@ -2,7 +2,7 @@
 
 public class GameData : MonoBehaviour {
   public static GameData gs;
-  public static GameStatus status = GameStatus.Cutscene;
+  public static GameStatus status = GameStatus.NotYetLoaded;
   public static Chars actor1;
   public static Chars actor2;
   public static Chars actor3;

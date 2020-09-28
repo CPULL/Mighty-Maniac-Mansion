@@ -2,8 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Intro : MonoBehaviour
-{
+public class Intro : MonoBehaviour {
   public Canvas IntroCanvas;
   public Image IntroBlackFade;
   public TextMeshProUGUI IntroTitle;
@@ -88,7 +87,28 @@ public class Intro : MonoBehaviour
   }
 
 
-  public bool PlayIntro(float deltaTime) {
+  private void Update() {
+    if (GameData.status != GameStatus.IntroVideo) return;
+    if (Options.IsActive()) return;
+    if (!IntroCanvas.enabled) Init();
+
+    if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
+      Stop();
+      return;
+    }
+    PlayIntro(Time.deltaTime);
+  }
+
+
+  void Stop() {
+    Controller.StopMusic();
+    introEffects.Stop();
+    meteorSound.Stop();
+    GameData.status = GameStatus.CharSelection;
+    IntroCanvas.enabled = false;
+  }
+
+  public void PlayIntro(float deltaTime) {
     introTime += deltaTime;
     glowingTime += deltaTime;
 
@@ -127,7 +147,7 @@ public class Intro : MonoBehaviour
       break;
 
       case IntroStep.Wait1: {
-        if (introTime > .5f) {
+        if (introTime > 1.5f) { // FIXME
           introTime = 0;
           istep = IntroStep.FirstText;
         }
@@ -225,8 +245,8 @@ public class Intro : MonoBehaviour
         if (introTime > 2f) {
           introTime = 0;
           istep = IntroStep.MusicStart;
-          introEffects.clip = IntroMusic;
-          introEffects.Play();
+          introEffects.Stop();
+          Controller.PlayMusic(IntroMusic);
         }
       }
       break;
@@ -401,7 +421,9 @@ public class Intro : MonoBehaviour
       break;
     }
 
-    return musicLightTime > 54f;
+    if (musicLightTime > 54f) {
+      Stop();
+    }
   }
 
   readonly Note[] notes = new Note[] {

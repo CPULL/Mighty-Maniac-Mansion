@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 946d88292e866b44495f4aca19b8da49
+guid: 9cc92c8e3da77cb46917ee36cd0ce3af
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Pet Me 2Y
+  - CaslonAntique
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

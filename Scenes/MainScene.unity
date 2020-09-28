@@ -4598,7 +4598,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350582419}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -4654,6 +4654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4cce044a0d4ff478d49f5d4825409b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charSelectionCanvas: {fileID: 350582422}
   Text: {fileID: 1680378069}
   Selections:
   - {fileID: 66772668}
@@ -10630,7 +10631,7 @@ AudioSource:
   m_GameObject: {fileID: 683622448}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5707941341885872616, guid: d86a7674e9872d7479e4ca172bd215a2, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -11417,7 +11418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &718837449
 Transform:
   m_ObjectHideFlags: 0
@@ -12669,7 +12670,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820921419}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 519420031}
@@ -14534,6 +14535,7 @@ MonoBehaviour:
   BlackFade: {fileID: 1237002466}
   PickedItems: {fileID: 1004051445}
   SceneSelectionPoint: {fileID: 2100000, guid: 523da93e515b38b498ae1fb2838778c0, type: 2}
+  MusicPlayer: {fileID: 989063440}
   DbgMsg: {fileID: 642846252}
   Cursors:
   - {fileID: 2800000, guid: 06f839f73dc1f374986c70328bcbd60a, type: 3}
@@ -14545,7 +14547,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: c8524e36b802bc94d846c1fec61bcdeb, type: 3}
   - {fileID: 2800000, guid: 062d294b4aaa017429098ce3fb3cc584, type: 3}
   - {fileID: 2800000, guid: 3506ed8c30d500d42a7f71b8844f9bb1, type: 3}
-  IntroCanvas: {fileID: 820921422}
   cutscenes: []
   Inventory: {fileID: 411817673}
   InventoryItemTemplate: {fileID: 1650692365}
@@ -14603,10 +14604,10 @@ AudioSource:
   m_GameObject: {fileID: 989063437}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4185488022367844979, guid: d86a7674e9872d7479e4ca172bd215a2, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.35
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -16780,7 +16781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1117025434
 Transform:
   m_ObjectHideFlags: 0
@@ -17910,7 +17911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1158860357
 Transform:
   m_ObjectHideFlags: 0
@@ -18526,7 +18527,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1173837687}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 350582424}
+        m_TargetAssemblyTypeName: CharSelection, Assembly-CSharp
+        m_MethodName: OptionsButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1173837687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19591,7 +19604,7 @@ AudioSource:
   m_GameObject: {fileID: 1222217522}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5707941341885872616, guid: d86a7674e9872d7479e4ca172bd215a2, type: 2}
   m_audioClip: {fileID: 8300000, guid: 3610804d7551b6347bfd583aa6c59a2a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -20240,8 +20253,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1590990658}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
-        m_MethodName: Activate
-        m_Mode: 6
+        m_MethodName: QuitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -21717,7 +21730,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1334463218}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 350582424}
+        m_TargetAssemblyTypeName: CharSelection, Assembly-CSharp
+        m_MethodName: MainTitle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1334463218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30484,8 +30509,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 59380036f4cc1184dbc2cd935cfbecaa, type: 2}
-  m_sharedMaterial: {fileID: -3345903216819836735, guid: 59380036f4cc1184dbc2cd935cfbecaa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 010492721ad0e984d826f51c3dca1954, type: 2}
+  m_sharedMaterial: {fileID: 123928574593729766, guid: 010492721ad0e984d826f51c3dca1954, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -33061,7 +33086,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1919958873}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 350582424}
+        m_TargetAssemblyTypeName: CharSelection, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1919958873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34953,7 +34990,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2037223599}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 350582424}
+        m_TargetAssemblyTypeName: CharSelection, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2037223599
 MonoBehaviour:
   m_ObjectHideFlags: 0

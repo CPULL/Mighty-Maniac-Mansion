@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c2858661e44d8b345a9355b5acc4e0d3
+guid: 66764a98913470344ad2e8716928b09f
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Pet Me 2X
+  - Onesize
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

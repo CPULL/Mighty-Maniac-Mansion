@@ -1,7 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Diagnostics;
 using UnityEngine.UI;
 
 public class Options : MonoBehaviour {
@@ -22,6 +21,17 @@ public class Options : MonoBehaviour {
   public TMP_Dropdown Highlights;
 
   public AudioMixer mixerMusic;
+
+  public static Options opts;
+
+  private void Awake() {
+    opts = this;
+  }
+
+  public static bool IsActive() {
+    if (opts == null) return false;
+    return opts.optionsCanvas.enabled;
+  }
 
   public void ChangeMainVolume() {
     float vol = 40f * MainVolume.value - 40;
@@ -57,9 +67,16 @@ public class Options : MonoBehaviour {
 
 
   CursorTypes prevCursor = CursorTypes.None;
-  public void Activate(bool activate) {
+
+  public static void Activate(bool activate) {
+    if (opts == null) return;
+    opts.ActualActivation(activate);
+  }
+
+  private void ActualActivation(bool activate) {
     optionsCanvas.enabled = activate;
-    
+
+    Controller.PauseMusic();
     if (activate) {
       prevCursor = Controller.GetCursor();
       float val = PlayerPrefs.GetFloat("MasterVolume", 1);
@@ -101,24 +118,28 @@ public class Options : MonoBehaviour {
     }
   }
 
-  internal void GetOptions() {
+  internal static void GetOptions() {
+    if (opts == null) return;
+
     float vol = 40f * PlayerPrefs.GetFloat("MasterVolume", 1) - 40;
-    mixerMusic.SetFloat("MasterVolume", vol);
+    opts.mixerMusic.SetFloat("MasterVolume", vol);
 
     vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("MusicVolume", 1) * .74f) * 14.425f - 80;
-    mixerMusic.SetFloat("MusicVolume", vol);
+    opts.mixerMusic.SetFloat("MusicVolume", vol);
 
     vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("SoundsVolume", 1) * .74f) * 14.425f - 80;
-    mixerMusic.SetFloat("SoundsVolume", vol);
+    opts.mixerMusic.SetFloat("SoundsVolume", vol);
 
     vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("BackSoundsVolume", 1) * .74f) * 14.425f - 80;
-    mixerMusic.SetFloat("BackSoundsVolume", vol);
+    opts.mixerMusic.SetFloat("BackSoundsVolume", vol);
 
     Controller.walkSpeed = PlayerPrefs.GetFloat("WalkSpeed", 1);
     Controller.textSpeed = PlayerPrefs.GetFloat("TalkSpeed", 1);
   }
 
-  internal bool IsActive() {
-    return optionsCanvas.enabled;
+  public void QuitGame() {
+    // FIXME confirm.
+    Application.Quit(0);
   }
+
 }

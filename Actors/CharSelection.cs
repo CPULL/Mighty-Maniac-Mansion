@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class CharSelection : MonoBehaviour
 {
+  public Canvas charSelectionCanvas;
   public TextMeshProUGUI Text;
   public Image[] Selections;
   public Image ActorPortraitH;
@@ -21,8 +22,24 @@ public class CharSelection : MonoBehaviour
 
   public Button ButtonStart;
 
-  private void Awake() {
+  private void Update() {
+    if (GameData.status != GameStatus.CharSelection) return;
+    if (!charSelectionCanvas.enabled) SelectCharacters();
+    if (Options.IsActive()) return;
+  }
+
+
+  public void SelectCharacters() {
+    charSelectionCanvas.enabled = true;
     ButtonStart.interactable = false;
+    foreach (Image img in Selections) {
+      img.color = new Color32(0, 0, 0, 0);
+    }
+    a1 = -1;
+    a2 = -1;
+    a3 = -1;
+    ak = -1;
+    UpdateTitle();
   }
 
   void UpdateTitle() {
@@ -159,4 +176,26 @@ public class CharSelection : MonoBehaviour
     }
   }
 
+  public void StartGame() {
+    // FIXME set the actors globally
+    GameData.actor1 = (Chars)(a1 + 20);
+    GameData.actor2 = (Chars)(a2 + 20);
+    GameData.actor3 = (Chars)(a3 + 20);
+    GameData.kidnapped = (Chars)(ak + 20);
+    charSelectionCanvas.enabled = false;
+    GameData.status = GameStatus.StartGame;
+  }
+
+  public void OptionsButton() {
+    Options.Activate(true);
+  }
+
+  public void MainTitle() {
+    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+  }
+
+  public void QuitGame() {
+    // FIXME confirm.
+    Application.Quit(0);
+  }
 }

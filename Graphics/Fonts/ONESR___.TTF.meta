@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 97dbf82683926be429d111030515484b
+guid: e8bc48b5321ec5c469e54b81d540ee04
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Pet Me 64
+  - Onesize Reverse
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
