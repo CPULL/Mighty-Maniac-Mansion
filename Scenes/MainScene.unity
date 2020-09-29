@@ -3251,6 +3251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574f39da2c7d8ac4db91c324d641b70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 0}
 --- !u!1 &211913646
 GameObject:
   m_ObjectHideFlags: 0
@@ -16423,6 +16424,37 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Portraits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: d3f1e7fc751cf844388f4e6078bdcd01, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: d37dc5602a5086044a94492a9b48cb86, type: 3}
+  - {fileID: 21300000, guid: 2fcf119b6fa500e4ba2aff6ab9bf4ec6, type: 3}
+  - {fileID: 21300000, guid: e34a4e326253b8b40a346bba477a4fbe, type: 3}
+  - {fileID: 21300000, guid: 5ac739bef5239e44b855a09d1f113033, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: a1bc7f32f63816c469d52ac7f941e980, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   options: {fileID: 1590990658}
   TextMsg: {fileID: 1516758395}
   TextMsgRT: {fileID: 1516758394}
@@ -24998,7 +25030,7 @@ MonoBehaviour:
   Legs: {fileID: 1192351239}
   Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
-  currentRoom: {fileID: 1432214312}
+  currentRoom: {fileID: 0}
   inventory: []
   id: 27
   mainScale: 0.985
@@ -25384,7 +25416,7 @@ MonoBehaviour:
   Legs: {fileID: 68083807}
   Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
-  currentRoom: {fileID: 1432214312}
+  currentRoom: {fileID: 0}
   inventory: []
   id: 21
   mainScale: 0.995
@@ -26426,6 +26458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574f39da2c7d8ac4db91c324d641b70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 1314746540}
 --- !u!114 &1443085113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27876,7 +27909,7 @@ MonoBehaviour:
   Legs: {fileID: 1794288173}
   Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
-  currentRoom: {fileID: 1432214312}
+  currentRoom: {fileID: 0}
   inventory: []
   id: 20
   mainScale: 1
@@ -31086,6 +31119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574f39da2c7d8ac4db91c324d641b70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 1236401871}
 --- !u!114 &1687621015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32990,7 +33024,7 @@ MonoBehaviour:
   Legs: {fileID: 1347533381}
   Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
-  currentRoom: {fileID: 1117025435}
+  currentRoom: {fileID: 0}
   inventory: []
   id: 26
   mainScale: 1.05
@@ -33369,29 +33403,29 @@ MonoBehaviour:
   - {fileID: -3491318857222847287, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
   - {fileID: -7549349000411392226, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
   facesB:
-  - {fileID: 4817357901515206799, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: -4769354603059592321, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: -8561249228370328106, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: -1235802186354423660, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: -3431308995863200697, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
+  - {fileID: 1816781980217401557, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: -4271852922048346962, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: 447148487048704951, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: -3307770617653070306, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: 8456722890964455705, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
   facesL:
-  - {fileID: 7688025664572031569, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: 4248487591294106311, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: -8289926299156467205, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: 5430486352535916314, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: -3545020095543740318, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
+  - {fileID: -2595218945722778286, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: -8178430573803275535, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: -4926943084064584539, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: 1562713148824751326, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: 3486873691361241431, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
   facesR:
-  - {fileID: 7162296709390480272, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: -2829903452652001443, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: 6601411498563980653, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: -978568678638749894, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-  - {fileID: 7411642216139203542, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
+  - {fileID: -1420156892731430807, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: 7977756899187910378, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: -8058209043761014937, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: 5555161952589622486, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+  - {fileID: 4098065578235541092, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
   Face: {fileID: 1124099423}
   Arms: {fileID: 1199933527}
   Legs: {fileID: 890794760}
   Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
-  currentRoom: {fileID: 1158860359}
+  currentRoom: {fileID: 0}
   inventory: []
   id: 29
   mainScale: 1.04
@@ -37921,6 +37955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574f39da2c7d8ac4db91c324d641b70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 616772447}
 --- !u!1 &1982310262
 GameObject:
   m_ObjectHideFlags: 0

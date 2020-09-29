@@ -100,8 +100,6 @@ public class Balloon : MonoBehaviour {
       pos.y -= offramp * Time.deltaTime;
       transform.position = pos;
     }
-    else Controller.Dbg(brc.y + " ,  " + tlc.y);
-
   }
 
   private void OnMouseDown() {

@@ -418,13 +418,13 @@ public class Controller : MonoBehaviour {
     SkyBackground.enabled = true;
 
     actor1 = GetActor(GD.actor1);
+    ActorPortrait1.portrait.sprite = GetActorPortrait(GD.actor1);
     actor2 = GetActor(GD.actor2);
+    ActorPortrait2.portrait.sprite = GetActorPortrait(GD.actor2);
     actor3 = GetActor(GD.actor3);
+    ActorPortrait3.portrait.sprite = GetActorPortrait(GD.actor3);
     kidnappedActor = GetActor(GD.kidnapped);
     currentActor = actor1;
-
-    // FIXME We need to update the portraits...
-
 
     ActorsButtons.SetActive(true);
     StartIntroCutscene();
@@ -530,7 +530,6 @@ public class Controller : MonoBehaviour {
 
   void PlayCurrentAction() {
     if (currentAction.NotStarted()) {
-      // FIXME        Debug.Log(currentAction.ToString());
       RunCurrentAction();
     }
     else if (currentAction.IsPlaying()) {
@@ -565,7 +564,10 @@ public class Controller : MonoBehaviour {
       case ActionType.Teleport: {
         Actor a = GetActor(currentAction.action.actor);
         Room aroom = allObjects.GetRoom(currentAction.action.strValue);
-        if (aroom != null) a.currentRoom = aroom;
+        if (aroom != null) {
+          a.currentRoom = aroom;
+          a.gameObject.SetActive(aroom == currentRoom);
+        }
         a.transform.position = currentAction.action.pos;
         a.SetDirection(currentAction.action.dir);
         a.SetScaleAndPosition(currentAction.action.pos);
@@ -824,12 +826,13 @@ public class Controller : MonoBehaviour {
   Actor actor2;
   Actor actor3;
   Actor kidnappedActor;
-  Actor receiverActor; // FIXME we should set this in some way, probably from actions
+  Actor receiverActor;
   Actor currentActor = null;
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
   Color32 selectedActor = new Color32(200, 232, 152, 255);
   public Actor[] allEnemies;
   public Actor[] allActors;
+  public Sprite[] Portraits;
 
   /// <summary>
   /// Gets the actual Actor from the Chars enum
@@ -867,6 +870,12 @@ public class Controller : MonoBehaviour {
     return null;
   }
 
+  public Sprite GetActorPortrait(Chars actor) {
+    int idx = (int)actor;
+    if (idx < 10) return null;
+
+    return Portraits[idx - 10];
+  }
 
   public static Chars GetCharFromActor(Actor actor) {
     if (actor == null) return Chars.None;
