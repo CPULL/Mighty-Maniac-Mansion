@@ -29,7 +29,7 @@ public enum Axis { X, Y, Z };
 /// <summary>
 /// Global status of the game
 /// </summary>
-public enum GameStatus { NotYetLoaded, IntroVideo, CharSelection, Cutscene, NormalGamePlay, StartGame };
+public enum GameStatus { NotYetLoaded, IntroVideo, CharSelection, Cutscene, NormalGamePlay, StartGame, Confirming };
 
 /// <summary>
 /// Used to specify the type of actions

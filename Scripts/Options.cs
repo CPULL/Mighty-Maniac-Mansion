@@ -154,8 +154,7 @@ public class Options : MonoBehaviour {
   }
 
   public void QuitGame() {
-    // FIXME confirm.
-    Application.Quit(0);
+    Confirm.Show();
   }
 
 

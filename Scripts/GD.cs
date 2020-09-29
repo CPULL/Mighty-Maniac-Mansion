@@ -29,12 +29,10 @@ public class GD : MonoBehaviour {
 
 
   // Static instances
-
   public static CharSelection charSel;
   public static Intro intro;
   public static Controller c;
   public static Balloon b;
   public static Options opts;
-
-
+  public static Confirm confirm;
 }

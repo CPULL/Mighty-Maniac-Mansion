@@ -1,7 +1,14 @@
 {
 	"name":"Intro Sequence",
 	"id":"intro",
-	"conditions":[],
+	"conditions":{
+		"condition":["CurrentActorEqual", "CurrentActorNotEqual", "ActorIsAvailable", "ActorHasSkill", "HasItem", "DoesNotHaveItem", "ItemIsOpen", "ItemIsLocked", "ItemIsUnlocked", "ItemIsClosed", "ActionCompleted", "ActionNotStarted", "ActionRunning", "ItemIsCollected", "ItemIsNotCollected", "WithItem", "RecipientIs", "RecipientIsNot", "WhenIs"],
+		"actor":"id",
+		"skill":"id",
+		"item":"id",
+		"num":0,
+		"action":"id"
+	},
 	"actions":[
 		{ "type":"ShowRoom", "roomdbg":"EdRoom", "posdbg":[-49,40], "room":"StartArea", "pos":[7,2] },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor1", "pos":[8.82,-0.76], "dir":"F" },

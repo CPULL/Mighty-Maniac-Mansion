@@ -32,8 +32,6 @@ public class Balloon : MonoBehaviour {
 
     GD.b.delay = .25f * GD.b.numWords * Controller.textSpeed * Controller.textSpeed;
 
-    GD.b.delay += 100;
-
     GD.b.text.text = message;
     GD.b.gameObject.SetActive(true);
 
