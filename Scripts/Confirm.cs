@@ -22,15 +22,11 @@ public class Confirm : MonoBehaviour {
   public void Yes() {
     if (mode==0) // Quit game
       Application.Quit();
-
-    // FIXME this is problematic. We may need to reload the scene
-
-
-    if (mode == 1) // Restart same chars
+    else if (mode == 1) // Restart same chars
       GD.Restart(GD.RestartFrom.Game);
-    if (mode == 2) // Restart new chars
+    else if (mode == 2) // Restart new chars
       GD.Restart(GD.RestartFrom.CharSel);
-    if (mode == 3) // Restart from intro
+    else if (mode == 3) // Restart from intro
       GD.Restart(GD.RestartFrom.Intro);
   }
 

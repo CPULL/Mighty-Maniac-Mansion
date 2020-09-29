@@ -153,7 +153,7 @@ public class Intro : MonoBehaviour {
       break;
 
       case IntroStep.Wait1: {
-        if (introTime > 1.5f) { // FIXME
+        if (introTime > 1f) {
           introTime = 0;
           istep = IntroStep.FirstText;
         }
@@ -494,8 +494,6 @@ public class Intro : MonoBehaviour {
     new Note(2, 26.71968f),
     new Note(0, 27.26314f),
     new Note(2, 28.85518f),
-
-    // FIXME Do again the console to track more beats.
 
     new Note(0, 28.96631f),
     new Note(1, 29.42267f),
