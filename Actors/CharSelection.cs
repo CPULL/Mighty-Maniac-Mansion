@@ -23,6 +23,13 @@ public class CharSelection : MonoBehaviour {
 
   private void Awake() {
     GD.charSel = this;
+
+    if (charSelectionCanvas == null) {
+      Debug.Log("Looks like a reloading...");
+      charSelectionCanvas = GetComponent<Canvas>();
+    }
+
+
   }
 
   private void Update() {
@@ -198,6 +205,6 @@ public class CharSelection : MonoBehaviour {
   }
 
   public void QuitGame() {
-    Confirm.Show();
+    Confirm.Show("Are you sure you want to quit?", 0);
   }
 }

@@ -2,9 +2,6 @@
 
 Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 
-Options: restart (same party)
-Options: restart (new party)
-Options: Main title
 
 * TODO ************************************************************************************************************
 
@@ -118,4 +115,5 @@ Ollie
 ! When overing a person show the portrait and a description, inluding the skills
 ! Options: Change font
 ! Options: quit confirmation
+! Options: restart (same party), restart (new party), intro title
 

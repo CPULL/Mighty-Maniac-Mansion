@@ -27,6 +27,10 @@ public class Options : MonoBehaviour {
   public Material[] FontMaterials;
   public string[] FontNames;
 
+  public Button RestartIntro;
+  public Button RestartNewChars;
+  public Button RestartSameChars;
+
   private void Awake() {
     GD.opts = this;
   }
@@ -109,6 +113,10 @@ public class Options : MonoBehaviour {
       val = PlayerPrefs.GetFloat("TextSpeed", 1);
       TextSpeed.SetValueWithoutNotify(val);
       ChangeTextSpeed();
+
+      RestartIntro.interactable = GD.status == GameStatus.IntroVideo || GD.status == GameStatus.CharSelection || GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
+      RestartNewChars.interactable = GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
+      RestartSameChars.interactable = GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
     }
     else {
       Controller.SetCursor(prevCursor);
@@ -154,7 +162,19 @@ public class Options : MonoBehaviour {
   }
 
   public void QuitGame() {
-    Confirm.Show();
+    Confirm.Show("Are you sure you want to quit?", 0);
+  }
+
+  public void RestartGameNew() {
+    Confirm.Show("Are you sure you want restart?\n<size=72>You will select new characters</size>", 2);
+  }
+
+  public void RestartGameSame() {
+    Confirm.Show("Are you sure you want restart?\n<size=72>You will use the same party</size>", 1);
+  }
+
+  public void RestartFromIntro() {
+    Confirm.Show("Are you sure you want restart?\n<size=72>From the intro sequence</size>", 3);
   }
 
 

@@ -399,7 +399,7 @@ public class Controller : MonoBehaviour {
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = selectedActor;
 
     Options.GetOptions();
-    GD.status = GameStatus.IntroVideo;
+    GD.ReadyToStart();
   }
 
   void StartGame() {
