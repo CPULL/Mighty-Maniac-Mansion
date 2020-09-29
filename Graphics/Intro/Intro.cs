@@ -50,6 +50,10 @@ public class Intro : MonoBehaviour {
   int note = 0;
   readonly float[] flashing = new float[6];
 
+  private void Awake() {
+    GD.intro = this;
+  }
+
   public void Init() {
     glowing = false;
     IntroBlackFade.color = new Color32(0, 0, 0, 255);

@@ -1,8 +1,7 @@
-Mighty Maniac Mansion
+=== Mighty Maniac Mansion ===
 
 Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 
-Options: Change font
 Options: quit
 Options: restart (same party)
 Options: restart (new party)
@@ -14,7 +13,7 @@ Options: Main title
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 
 Complete intro Cutscene, adding variations for each character.
-Implement Conditions on actions
+Implement Conditions on actions that are read from Json
 Add some sounds: door open/close, footsteps
 
 
@@ -118,4 +117,5 @@ Ollie
 ! Completed game intro
 ! Add start game selection, with selection of kidnapped character and 3 players
 ! When overing a person show the portrait and a description, inluding the skills
+! Options: Change font
 

@@ -26,4 +26,15 @@ public class GD : MonoBehaviour {
     sw.Flush();
     sw.Close();
   }
+
+
+  // Static instances
+
+  public static CharSelection charSel;
+  public static Intro intro;
+  public static Controller c;
+  public static Balloon b;
+  public static Options opts;
+
+
 }

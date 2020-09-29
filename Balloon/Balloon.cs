@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 
 public class Balloon : MonoBehaviour {
-  private static Balloon b;
-
   public TMPro.TextMeshPro text;
   public SpriteRenderer body;
   public SpriteRenderer tip;
@@ -16,53 +14,53 @@ public class Balloon : MonoBehaviour {
   SpriteRenderer srAnchor;
 
   private void Awake() {
-    b = this;
+    GD.b = this;
     gameObject.SetActive(false);
     cam = Camera.main;
     txtrt = text.GetComponent<RectTransform>();
   }
 
   public static void Show(string message, Transform speaker, System.Action completeSpeaking) {
-    b.delay = 1;
-    b.speakComplete = completeSpeaking;
-    b.anchor = speaker;
-    b.size = b.text.GetPreferredValues(message);
+    GD.b.delay = 1;
+    GD.b.speakComplete = completeSpeaking;
+    GD.b.anchor = speaker;
+    GD.b.size = GD.b.text.GetPreferredValues(message);
 
-    b.numWords = 1;
+    GD.b.numWords = 1;
     foreach (char c in message)
-      if (char.IsWhiteSpace(c)) b.numWords++;
+      if (char.IsWhiteSpace(c)) GD.b.numWords++;
 
-    b.delay = .25f * b.numWords * Controller.textSpeed * Controller.textSpeed;
+    GD.b.delay = .25f * GD.b.numWords * Controller.textSpeed * Controller.textSpeed;
 
-    b.delay += 100;
+    GD.b.delay += 100;
 
-    b.text.text = message;
-    b.gameObject.SetActive(true);
+    GD.b.text.text = message;
+    GD.b.gameObject.SetActive(true);
 
-    b.srAnchor = speaker.GetChild(0).GetComponent<SpriteRenderer>();
-    b.boxc.size = b.size;
-    b.boxc.offset = new Vector2(-1.5f, .5f * b.size.y + 1.625f + .2f);
+    GD.b.srAnchor = speaker.GetChild(0).GetComponent<SpriteRenderer>();
+    GD.b.boxc.size = GD.b.size;
+    GD.b.boxc.offset = new Vector2(-1.5f, .5f * GD.b.size.y + 1.625f + .2f);
 
-    b.size.x += .5f;
-    b.size.y += .5f;
-    b.body.size = b.size;
-    b.txtrt.sizeDelta = new Vector2(b.size.x - .5f, b.size.y);
-    b.SetPosition();
+    GD.b.size.x += .5f;
+    GD.b.size.y += .5f;
+    GD.b.body.size = GD.b.size;
+    GD.b.txtrt.sizeDelta = new Vector2(GD.b.size.x - .5f, GD.b.size.y);
+    GD.b.SetPosition();
   }
 
   private void Update() {
-    if (b.delay <= 0) return;
-    b.delay -= Time.deltaTime;
-    if (b.delay <= 0) {
+    if (GD.b.delay <= 0) return;
+    GD.b.delay -= Time.deltaTime;
+    if (GD.b.delay <= 0) {
       gameObject.SetActive(false);
-      b.speakComplete?.Invoke();
+      GD.b.speakComplete?.Invoke();
       return;
     }
 
     KeepItVisible();
 
-    if (prevAnchorPos == b.anchor.position) return;
-    prevAnchorPos = b.anchor.position;
+    if (prevAnchorPos == GD.b.anchor.position) return;
+    prevAnchorPos = GD.b.anchor.position;
     SetPosition();
   }
 
@@ -72,7 +70,7 @@ public class Balloon : MonoBehaviour {
     Vector3 location = new Vector3(spbnd.min.x, spbnd.max.y, 0) + Vector3.right * .25f - Vector3.up * .2f;
 
     tip.transform.localPosition = new Vector3(transform.position.x - location.x - 1, 1.86f, 0);
-    b.transform.position = location;
+    GD.b.transform.position = location;
   }
 
   void KeepItVisible() {
@@ -109,7 +107,7 @@ public class Balloon : MonoBehaviour {
   }
 
   private void OnMouseDown() {
-    b.delay = Time.deltaTime;
+    GD.b.delay = Time.deltaTime;
   }
 
   Vector3 prevAnchorPos = Vector3.negativeInfinity;

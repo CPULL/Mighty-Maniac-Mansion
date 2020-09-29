@@ -2,8 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharSelection : MonoBehaviour
-{
+public class CharSelection : MonoBehaviour {
   public Canvas charSelectionCanvas;
   public TextMeshProUGUI Text;
   public Image[] Selections;
@@ -21,6 +20,10 @@ public class CharSelection : MonoBehaviour
   Color Transparent = new Color32(0, 0, 0, 0);
 
   public Button ButtonStart;
+
+  private void Awake() {
+    GD.charSel = this;
+  }
 
   private void Update() {
     if (GD.status != GameStatus.CharSelection) return;
@@ -118,7 +121,7 @@ public class CharSelection : MonoBehaviour
         Selections[pos].color = new Color32(0, 220, 50, 255);
       }
     }
-    
+
     else if (num == 3) {
       if (a1 == -1) {
         a1 = pos;
@@ -137,7 +140,7 @@ public class CharSelection : MonoBehaviour
         Selections[pos].color = new Color32(220, 50, 0, 255);
       }
     }
-    
+
     else if (num == 4) {
       Selections[ak].color = new Color32(0, 0, 0, 0);
       ak = pos;

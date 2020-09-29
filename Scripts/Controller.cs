@@ -11,7 +11,6 @@ public class Controller : MonoBehaviour {
   public AudioClip[] Sounds;
   public LayerMask pathLayer;
   public UnityEngine.UI.Image BlackFade;
-  private static Controller c;
   public Transform PickedItems;
   public Material SceneSelectionPoint;
   public AudioSource MusicPlayer;
@@ -19,7 +18,7 @@ public class Controller : MonoBehaviour {
 
   public TextMeshProUGUI DbgMsg;
   public static void Dbg(string txt) {
-    c.DbgMsg.text = txt;
+    GD.c.DbgMsg.text = txt;
   }
 
 
@@ -175,7 +174,7 @@ public class Controller : MonoBehaviour {
             if (!usedItem.PlayActions(currentActor, null, When.Use, overItem))
               currentActor.Say("It does not work");
             else {
-              c.forcedCursor = CursorTypes.None;
+              forcedCursor = CursorTypes.None;
               oldCursor = null;
               usedItem = null;
               Inventory.SetActive(false);
@@ -186,7 +185,7 @@ public class Controller : MonoBehaviour {
             if (!overItem.PlayActions(currentActor, null, When.Use, usedItem))
               currentActor.Say("It does not work");
             else {
-              c.forcedCursor = CursorTypes.None;
+              forcedCursor = CursorTypes.None;
               oldCursor = null;
               usedItem = null;
               Inventory.SetActive(false);
@@ -222,7 +221,7 @@ public class Controller : MonoBehaviour {
 
       else if (overItem.owner != Chars.None && lmb) { // Get item from inventory
         if (usedItem == overItem) {
-          c.forcedCursor = CursorTypes.None;
+          forcedCursor = CursorTypes.None;
           oldCursor = null;
           usedItem = null;
           return;
@@ -230,7 +229,7 @@ public class Controller : MonoBehaviour {
         usedItem = overItem;
         overItem = null;
         oldCursor = null;
-        c.forcedCursor = CursorTypes.Item;
+        forcedCursor = CursorTypes.Item;
         Cursor.SetCursor(usedItem.cursorImage, new Vector2(usedItem.cursorImage.width / 2, usedItem.cursorImage.height / 2), CursorMode.Auto);
       }
 
@@ -336,36 +335,36 @@ public class Controller : MonoBehaviour {
   }
 
   internal static CursorTypes GetCursor() {
-    Cursor.SetCursor(c.Cursors[0], new Vector2(c.Cursors[0].width / 2, c.Cursors[0].height / 2), CursorMode.Auto);
-    return c.forcedCursor;
+    Cursor.SetCursor(GD.c.Cursors[0], new Vector2(GD.c.Cursors[0].width / 2, GD.c.Cursors[0].height / 2), CursorMode.Auto);
+    return GD.c.forcedCursor;
   }
 
 
   internal static void SetCursor(CursorTypes cur) {
-    c.forcedCursor = cur;
+    GD.c.forcedCursor = cur;
   }
 
 
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
     if (GD.status != GameStatus.NormalGamePlay || Options.IsActive()) return;
     PortraitClickHandler h = (PortraitClickHandler)handler;
-    if (h == c.ActorPortrait1) {
-      SelectActor(c.actor1);
+    if (h == GD.c.ActorPortrait1) {
+      SelectActor(GD.c.actor1);
     }
-    else if (h == c.ActorPortrait2) {
-      SelectActor(c.actor2);
+    else if (h == GD.c.ActorPortrait2) {
+      SelectActor(GD.c.actor2);
     }
-    else if (h == c.ActorPortrait3) {
-      SelectActor(c.actor3);
+    else if (h == GD.c.ActorPortrait3) {
+      SelectActor(GD.c.actor3);
     }
-    else if (h == c.InventoryPortrait) {
-      if (c.Inventory.activeSelf) { // Show/Hide inventory of current actor
-        c.Inventory.SetActive(false);
-        c.InventoryPortrait.GetComponent<UnityEngine.UI.RawImage>().color = new Color32(0x6D, 0x7D, 0x7C, 0xff);
+    else if (h == GD.c.InventoryPortrait) {
+      if (GD.c.Inventory.activeSelf) { // Show/Hide inventory of current actor
+        GD.c.Inventory.SetActive(false);
+        GD.c.InventoryPortrait.GetComponent<UnityEngine.UI.RawImage>().color = new Color32(0x6D, 0x7D, 0x7C, 0xff);
         return;
       }
       else
-        c.ActivateInventory(c.currentActor);
+        GD.c.ActivateInventory(GD.c.currentActor);
     }
   }
 
@@ -377,7 +376,7 @@ public class Controller : MonoBehaviour {
   #region *********************** Initialization
 
   private void Awake() {
-    c = this;
+    GD.c = this;
     cam = Camera.main;
 
     LoadSequences();
@@ -397,7 +396,7 @@ public class Controller : MonoBehaviour {
     SceneSelectionPoint.color = new Color32(0, 0, 0, 0);
     currentRoom = allObjects.roomsList[0];
     currentActor = actor1;
-    ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = selectedActor;
 
     Options.GetOptions();
     GD.status = GameStatus.IntroVideo;
@@ -521,12 +520,12 @@ public class Controller : MonoBehaviour {
   }
 
   public static void AddAction(GameAction a, Actor perf, Actor sec, Item item) {
-    c.actionsToPlay.Add(new ContextualizedAction { action = a, performer = perf, secondary = sec, item = item });
-    c.allKnownActions.Add(a);
+    GD.c.actionsToPlay.Add(new ContextualizedAction { action = a, performer = perf, secondary = sec, item = item });
+    GD.c.allKnownActions.Add(a);
   }
 
   public static void KnowAction(GameAction a) {
-    c.allKnownActions.Add(a);
+    GD.c.allKnownActions.Add(a);
   }
 
   void PlayCurrentAction() {
@@ -555,7 +554,7 @@ public class Controller : MonoBehaviour {
   }
 
   internal static Running ActionStatus(ActionEnum action) {
-    foreach(GameAction a in c.allKnownActions) {
+    foreach(GameAction a in GD.c.allKnownActions) {
       if (a.action == action) return a.running;
     }
     return Running.NotStarted;
@@ -703,8 +702,8 @@ public class Controller : MonoBehaviour {
   private Item usedItem = null; // Item that is being used (and visible on the cursor)
 
   internal static void UpdateInventory() {
-    if (c.Inventory.activeSelf)
-      c.ActivateInventory(c.currentActor);
+    if (GD.c.Inventory.activeSelf)
+      GD.c.ActivateInventory(GD.c.currentActor);
   }
 
   private void ActivateInventory(Actor actor) {
@@ -728,87 +727,87 @@ public class Controller : MonoBehaviour {
 
     if (fromInventory) {
       if (item == null) {
-        c.overItem = null;
-        if (c.TextMsg.text != "") c.HideName();
+        GD.c.overItem = null;
+        if (GD.c.TextMsg.text != "") GD.c.HideName();
         return;
       }
-      c.overItem = item;
-      if (c.usedItem == null) {
+      GD.c.overItem = item;
+      if (GD.c.usedItem == null) {
         if (item.whatItDoesR == WhatItDoes.Use) {
-          c.forcedCursor = CursorTypes.Use;
-          c.overItem = item;
-          c.ShowName(item.Name);
+          GD.c.forcedCursor = CursorTypes.Use;
+          GD.c.overItem = item;
+          GD.c.ShowName(item.Name);
         }
         else if (item.whatItDoesR == WhatItDoes.Read) {
-          c.forcedCursor = CursorTypes.Examine;
-          c.overItem = item;
-          c.ShowName(item.Name);
+          GD.c.forcedCursor = CursorTypes.Examine;
+          GD.c.overItem = item;
+          GD.c.ShowName(item.Name);
         }
       }
       return;
     }
 
     if (item == null) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
-      c.overItem = null;
-      if (c.TextMsg.text != "") c.HideName();
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.None;
+      GD.c.overItem = null;
+      if (GD.c.TextMsg.text != "") GD.c.HideName();
       return;
     }
     if (item.owner != Chars.None) {
-      c.overItem = item;
+      GD.c.overItem = item;
       return;
     }
 
     // Right
     if (item.whatItDoesR == WhatItDoes.Walk) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
-      c.overItem = item;
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.None;
+      GD.c.overItem = item;
     }
     else if (item.whatItDoesR == WhatItDoes.Pick) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.PickUp;
-      c.overItem = item;
-      c.ShowName(item.Name);
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.PickUp;
+      GD.c.overItem = item;
+      GD.c.ShowName(item.Name);
     }
     else if (item.whatItDoesR == WhatItDoes.Use) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Use;
-      c.overItem = item;
-      c.ShowName(item.Name);
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.Use;
+      GD.c.overItem = item;
+      GD.c.ShowName(item.Name);
     }
     else if (item.whatItDoesR == WhatItDoes.Read) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Examine;
-      c.overItem = item;
-      c.ShowName(item.Name);
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.Examine;
+      GD.c.overItem = item;
+      GD.c.ShowName(item.Name);
     }
     // Left
     else if (item.whatItDoesL == WhatItDoes.Walk) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.None;
-      c.overItem = item;
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.None;
+      GD.c.overItem = item;
     }
     else if (item.whatItDoesL == WhatItDoes.Pick) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.PickUp;
-      c.overItem = item;
-      c.ShowName(item.Name);
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.PickUp;
+      GD.c.overItem = item;
+      GD.c.ShowName(item.Name);
     }
     else if (item.whatItDoesL == WhatItDoes.Use) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Use;
-      c.overItem = item;
-      c.ShowName(item.Name);
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.Use;
+      GD.c.overItem = item;
+      GD.c.ShowName(item.Name);
     }
     else if (item.whatItDoesL == WhatItDoes.Read) {
-      if (c.forcedCursor != CursorTypes.Item) c.forcedCursor = CursorTypes.Examine;
-      c.overItem = item;
-      c.ShowName(item.Name);
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.Examine;
+      GD.c.overItem = item;
+      GD.c.ShowName(item.Name);
     }
   }
 
   internal static bool IsItemCollected(ItemEnum itemID) {
-    foreach(Item item in c.actor1.inventory) {
+    foreach(Item item in GD.c.actor1.inventory) {
       if (item.Item == itemID) return true;
     }
-    foreach(Item item in c.actor2.inventory) {
+    foreach(Item item in GD.c.actor2.inventory) {
       if (item.Item == itemID) return true;
     }
-    foreach(Item item in c.actor3.inventory) {
+    foreach(Item item in GD.c.actor3.inventory) {
       if (item.Item == itemID) return true;
     }
     return false;
@@ -838,31 +837,31 @@ public class Controller : MonoBehaviour {
   public static Actor GetActor(Chars actor) {
     switch (actor) {
       case Chars.None: return null;
-      case Chars.Current: return c.currentActor;
-      case Chars.Actor1: return c.actor1;
-      case Chars.Actor2: return c.actor2;
-      case Chars.Actor3: return c.actor3;
-      case Chars.KidnappedActor: return c.kidnappedActor;
-      case Chars.Receiver: return c.receiverActor;
-      case Chars.Fred: return c.allEnemies[0];
-      case Chars.Edna: return c.allEnemies[1];
-      case Chars.Ted: return c.allEnemies[2];
-      case Chars.Ed: return c.allEnemies[3];
-      case Chars.Edwige: return c.allEnemies[4];
-      case Chars.GreenTentacle: return c.allEnemies[5];
-      case Chars.PurpleTentacle: return c.allEnemies[6];
-      case Chars.Dave: return c.allActors[0];
-      case Chars.Bernard: return c.allActors[1];
-      case Chars.Wendy: return c.allActors[2];
-      case Chars.Syd: return c.allActors[3];
-      case Chars.Hoagie: return c.allActors[4];
-      case Chars.Razor: return c.allActors[5];
-      case Chars.Michael: return c.allActors[6];
-      case Chars.Jeff: return c.allActors[7];
-      case Chars.Javid: return c.allActors[8];
-      case Chars.Laverne: return c.allActors[9];
-      case Chars.Ollie: return c.allActors[10];
-      case Chars.Sandy: return c.allActors[11];
+      case Chars.Current: return GD.c.currentActor;
+      case Chars.Actor1: return GD.c.actor1;
+      case Chars.Actor2: return GD.c.actor2;
+      case Chars.Actor3: return GD.c.actor3;
+      case Chars.KidnappedActor: return GD.c.kidnappedActor;
+      case Chars.Receiver: return GD.c.receiverActor;
+      case Chars.Fred: return GD.c.allEnemies[0];
+      case Chars.Edna: return GD.c.allEnemies[1];
+      case Chars.Ted: return GD.c.allEnemies[2];
+      case Chars.Ed: return GD.c.allEnemies[3];
+      case Chars.Edwige: return GD.c.allEnemies[4];
+      case Chars.GreenTentacle: return GD.c.allEnemies[5];
+      case Chars.PurpleTentacle: return GD.c.allEnemies[6];
+      case Chars.Dave: return GD.c.allActors[0];
+      case Chars.Bernard: return GD.c.allActors[1];
+      case Chars.Wendy: return GD.c.allActors[2];
+      case Chars.Syd: return GD.c.allActors[3];
+      case Chars.Hoagie: return GD.c.allActors[4];
+      case Chars.Razor: return GD.c.allActors[5];
+      case Chars.Michael: return GD.c.allActors[6];
+      case Chars.Jeff: return GD.c.allActors[7];
+      case Chars.Javid: return GD.c.allActors[8];
+      case Chars.Laverne: return GD.c.allActors[9];
+      case Chars.Ollie: return GD.c.allActors[10];
+      case Chars.Sandy: return GD.c.allActors[11];
     }
     Debug.LogError("Invalid actor requested! " + actor);
     return null;
@@ -871,31 +870,31 @@ public class Controller : MonoBehaviour {
 
   public static Chars GetCharFromActor(Actor actor) {
     if (actor == null) return Chars.None;
-    else if (actor == c.actor1) return Chars.Actor1;
-    else if (actor == c.actor2) return Chars.Actor2;
-    else if (actor == c.actor3) return Chars.Actor3;
-    else if (actor == c.kidnappedActor) return Chars.KidnappedActor;
-    else if (actor == c.receiverActor) return Chars.Receiver;
-    else if (actor == c.allEnemies[0]) return Chars.Fred;
-    else if (actor == c.allEnemies[1]) return Chars.Edna;
-    else if (actor == c.allEnemies[2]) return Chars.Ted;
-    else if (actor == c.allEnemies[3]) return Chars.Ed;
-    else if (actor == c.allEnemies[4]) return Chars.Edwige;
-    else if (actor == c.allEnemies[5]) return Chars.GreenTentacle;
-    else if (actor == c.allEnemies[6]) return Chars.PurpleTentacle;
-    else if (actor == c.allActors[0]) return Chars.Dave;
-    else if (actor == c.allActors[1]) return Chars.Bernard;
-    else if (actor == c.allActors[2]) return Chars.Wendy;
-    else if (actor == c.allActors[3]) return Chars.Syd;
-    else if (actor == c.allActors[4]) return Chars.Hoagie;
-    else if (actor == c.allActors[5]) return Chars.Razor;
-    else if (actor == c.allActors[6]) return Chars.Michael;
-    else if (actor == c.allActors[7]) return Chars.Jeff;
-    else if (actor == c.allActors[8]) return Chars.Javid;
-    else if (actor == c.allActors[9]) return Chars.Laverne;
-    else if (actor == c.allActors[10]) return Chars.Ollie;
-    else if (actor == c.allActors[11]) return Chars.Sandy;
-    else if (actor == c.currentActor) return Chars.Current;
+    else if (actor == GD.c.actor1) return Chars.Actor1;
+    else if (actor == GD.c.actor2) return Chars.Actor2;
+    else if (actor == GD.c.actor3) return Chars.Actor3;
+    else if (actor == GD.c.kidnappedActor) return Chars.KidnappedActor;
+    else if (actor == GD.c.receiverActor) return Chars.Receiver;
+    else if (actor == GD.c.allEnemies[0]) return Chars.Fred;
+    else if (actor == GD.c.allEnemies[1]) return Chars.Edna;
+    else if (actor == GD.c.allEnemies[2]) return Chars.Ted;
+    else if (actor == GD.c.allEnemies[3]) return Chars.Ed;
+    else if (actor == GD.c.allEnemies[4]) return Chars.Edwige;
+    else if (actor == GD.c.allEnemies[5]) return Chars.GreenTentacle;
+    else if (actor == GD.c.allEnemies[6]) return Chars.PurpleTentacle;
+    else if (actor == GD.c.allActors[0]) return Chars.Dave;
+    else if (actor == GD.c.allActors[1]) return Chars.Bernard;
+    else if (actor == GD.c.allActors[2]) return Chars.Wendy;
+    else if (actor == GD.c.allActors[3]) return Chars.Syd;
+    else if (actor == GD.c.allActors[4]) return Chars.Hoagie;
+    else if (actor == GD.c.allActors[5]) return Chars.Razor;
+    else if (actor == GD.c.allActors[6]) return Chars.Michael;
+    else if (actor == GD.c.allActors[7]) return Chars.Jeff;
+    else if (actor == GD.c.allActors[8]) return Chars.Javid;
+    else if (actor == GD.c.allActors[9]) return Chars.Laverne;
+    else if (actor == GD.c.allActors[10]) return Chars.Ollie;
+    else if (actor == GD.c.allActors[11]) return Chars.Sandy;
+    else if (actor == GD.c.currentActor) return Chars.Current;
     Debug.LogError("Invalid actor requested! " + actor);
     return Chars.None;
   }
@@ -904,7 +903,7 @@ public class Controller : MonoBehaviour {
   /// Checks if the passed actor is an enemy (Fred, Edna, Ed, etc.)
   /// </summary>
   public static bool IsEnemy(Actor actor) {
-    foreach (Actor a in c.allEnemies)
+    foreach (Actor a in GD.c.allEnemies)
       if (a == actor) return true;
     return false;
   }
@@ -913,7 +912,7 @@ public class Controller : MonoBehaviour {
   /// Checks if the actor is one of the actors of the playing trio
   /// </summary>
   internal static bool WeHaveActorPlaying(Chars actor) {
-    return actor == c.actor1.id || actor == c.actor2.id || actor == c.actor3.id;
+    return actor == GD.c.actor1.id || actor == GD.c.actor2.id || actor == GD.c.actor3.id;
   }
   float walkDelay = 0;
 
@@ -942,33 +941,33 @@ public class Controller : MonoBehaviour {
   internal static void SelectActor(Actor actor) {
     if (GD.status != GameStatus.NormalGamePlay) return;
 
-    c.forcedCursor = CursorTypes.None;
-    c.oldCursor = null;
-    c.usedItem = null;
+    GD.c.forcedCursor = CursorTypes.None;
+    GD.c.oldCursor = null;
+    GD.c.usedItem = null;
 
-    c.currentActor = actor;
-    c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.unselectedActor;
-    if (actor == c.actor1) {
-      c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    GD.c.currentActor = actor;
+    GD.c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.unselectedActor;
+    GD.c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.unselectedActor;
+    GD.c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.unselectedActor;
+    if (actor == GD.c.actor1) {
+      GD.c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.selectedActor;
     }
-    else if (actor == c.actor2) {
-      c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    else if (actor == GD.c.actor2) {
+      GD.c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.selectedActor;
     }
-    if (actor == c.actor3) {
-      c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = c.selectedActor;
+    if (actor == GD.c.actor3) {
+      GD.c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.selectedActor;
     }
-    c.ShowName("Selected: " + c.currentActor.name);
-    if (!c.currentActor.gameObject.activeSelf) { // Different room
-      c.StartCoroutine(c.FadeToRoomActor());
+    GD.c.ShowName("Selected: " + GD.c.currentActor.name);
+    if (!GD.c.currentActor.gameObject.activeSelf) { // Different room
+      GD.c.StartCoroutine(GD.c.FadeToRoomActor());
     }
-    if (c.Inventory.activeSelf) c.ActivateInventory(c.currentActor);
+    if (GD.c.Inventory.activeSelf) GD.c.ActivateInventory(GD.c.currentActor);
   }
 
   Actor overActor = null;
   internal static void OverActor(Actor actor) {
-    c.overActor = actor;
+    GD.c.overActor = actor;
   }
 
 
@@ -1124,20 +1123,20 @@ public class Controller : MonoBehaviour {
 
 
   public static void PlayMusic(AudioClip clip) {
-    c.MusicPlayer.Stop();
-    c.MusicPlayer.clip = clip;
-    c.MusicPlayer.Play();
+    GD.c.MusicPlayer.Stop();
+    GD.c.MusicPlayer.clip = clip;
+    GD.c.MusicPlayer.Play();
   }
 
   public static void StopMusic() {
-    c.MusicPlayer.Stop();
+    GD.c.MusicPlayer.Stop();
   }
 
   public static void PauseMusic() {
-    if (c.MusicPlayer.isPlaying)
-      c.MusicPlayer.Pause();
+    if (GD.c.MusicPlayer.isPlaying)
+      GD.c.MusicPlayer.Pause();
     else
-      c.MusicPlayer.UnPause();
+      GD.c.MusicPlayer.UnPause();
   }
 
 

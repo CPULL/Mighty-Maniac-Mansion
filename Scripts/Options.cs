@@ -11,8 +11,6 @@ public class Options : MonoBehaviour {
   public TextMeshProUGUI MusicVal;
   public Slider SoundVolume;
   public TextMeshProUGUI SoundVal;
-  public Slider BackSndVolume;
-  public TextMeshProUGUI BackSndVal;
 
   public Slider TextSpeed;
   public TextMeshProUGUI TextVal;
@@ -22,18 +20,20 @@ public class Options : MonoBehaviour {
 
   public AudioMixer mixerMusic;
 
-  public static Options opts;
-
-
-  public TextMeshProUGUI DBG;
+  public TextMeshProUGUI TextFontLabel;
+  public Toggle TextFontTG;
+  public GameObject FontsContainer;
+  public TMP_FontAsset[] FontAssets;
+  public Material[] FontMaterials;
+  public string[] FontNames;
 
   private void Awake() {
-    opts = this;
+    GD.opts = this;
   }
 
   public static bool IsActive() {
-    if (opts == null) return false;
-    return opts.optionsCanvas.enabled;
+    if (GD.opts == null) return false;
+    return GD.opts.optionsCanvas.enabled;
   }
 
   public void ChangeMainVolume() {
@@ -54,12 +54,6 @@ public class Options : MonoBehaviour {
     SoundVal.text = (int)(SoundVolume.value * 100) + "%";
   }
 
-  public void ChangeBackSndVolume() {
-    float vol = 10 * Mathf.Log(1 + BackSndVolume.value * .74f) * 14.425f - 80;
-    mixerMusic.SetFloat("BackSoundsVolume", vol);
-    BackSndVal.text = (int)(BackSndVolume.value * 100) + "%";
-  }
-
   public void ChangeMaxWalkSpeed() {
     WalkVal.text = (int)(WalkSpeed.value * 100) + "%";
   }
@@ -69,11 +63,28 @@ public class Options : MonoBehaviour {
   }
 
 
+  public void ChangeFontTG() {
+    FontsContainer.SetActive(TextFontTG.isOn);
+  }
+
+
+  public void SelectFont(int num) {
+    FontsContainer.SetActive(false);
+    TextFontTG.SetIsOnWithoutNotify(false);
+
+    TextFontLabel.font = FontAssets[num];
+    TextFontLabel.fontSharedMaterial = FontMaterials[num];
+    TextFontLabel.text = FontNames[num];
+
+    UpdateFonts(num);
+    PlayerPrefs.SetInt("Font", num);
+  }
+
   CursorTypes prevCursor = CursorTypes.None;
 
   public static void Activate(bool activate) {
-    if (opts == null) return;
-    opts.ActualActivation(activate);
+    if (GD.opts == null) return;
+    GD.opts.ActualActivation(activate);
   }
 
   private void ActualActivation(bool activate) {
@@ -88,12 +99,9 @@ public class Options : MonoBehaviour {
       MusicVolume.SetValueWithoutNotify(val);
       val = PlayerPrefs.GetFloat("SoundVolume", 1);
       SoundVolume.SetValueWithoutNotify(val);
-      val = PlayerPrefs.GetFloat("BackSoundsVolume", 1);
-      BackSndVolume.SetValueWithoutNotify(val);
       ChangeMainVolume();
       ChangeMusicVolume();
       ChangeSoundVolume();
-      ChangeBackSndVolume();
 
       val = PlayerPrefs.GetFloat("WalkSpeed", 1);
       WalkSpeed.SetValueWithoutNotify(val);
@@ -107,7 +115,6 @@ public class Options : MonoBehaviour {
       PlayerPrefs.SetFloat("MasterVolume", MainVolume.value);
       PlayerPrefs.SetFloat("MusicVolume", MusicVolume.value);
       PlayerPrefs.SetFloat("SoundVolume", SoundVolume.value);
-      PlayerPrefs.SetFloat("BackSoundsVolume", BackSndVolume.value);
       PlayerPrefs.SetFloat("TextSpeed", TextSpeed.value);
       PlayerPrefs.SetFloat("WalkSpeed", WalkSpeed.value);
       Controller.walkSpeed = WalkSpeed.value;
@@ -129,22 +136,21 @@ public class Options : MonoBehaviour {
   }
 
   internal static void GetOptions() {
-    if (opts == null) return;
+    if (GD.opts == null) return;
 
     float vol = 40f * PlayerPrefs.GetFloat("MasterVolume", 1) - 40;
-    opts.mixerMusic.SetFloat("MasterVolume", vol);
+    GD.opts.mixerMusic.SetFloat("MasterVolume", vol);
 
     vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("MusicVolume", 1) * .74f) * 14.425f - 80;
-    opts.mixerMusic.SetFloat("MusicVolume", vol);
+    GD.opts.mixerMusic.SetFloat("MusicVolume", vol);
 
     vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("SoundsVolume", 1) * .74f) * 14.425f - 80;
-    opts.mixerMusic.SetFloat("SoundsVolume", vol);
-
-    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("BackSoundsVolume", 1) * .74f) * 14.425f - 80;
-    opts.mixerMusic.SetFloat("BackSoundsVolume", vol);
+    GD.opts.mixerMusic.SetFloat("SoundsVolume", vol);
 
     Controller.walkSpeed = PlayerPrefs.GetFloat("WalkSpeed", 1);
     Controller.textSpeed = PlayerPrefs.GetFloat("TalkSpeed", 1);
+
+    GD.opts.UpdateFonts(PlayerPrefs.GetInt("Font", 3));
   }
 
   public void QuitGame() {
@@ -152,4 +158,14 @@ public class Options : MonoBehaviour {
     Application.Quit(0);
   }
 
+
+  private void UpdateFonts(int num) {
+    GD.charSel.ActorDescription.font = FontAssets[num];
+    GD.charSel.ActorDescription.fontSharedMaterial = FontMaterials[num];
+
+    GD.b.text.font = FontAssets[num];
+    GD.b.text.fontSharedMaterial = FontMaterials[num];
+
+
+  }
 }
