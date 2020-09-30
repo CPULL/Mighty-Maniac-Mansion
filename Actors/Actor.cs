@@ -69,13 +69,14 @@ public class Actor : MonoBehaviour {
   float speakt = 0;
   GameAction fromAction = null;
 
-  public void Say(string message, GameAction action = null) {
-    if (message == null) return;
+  public bool Say(string message, GameAction action = null) {
+    if (message == null) return true;
     isSpeaking = true;
     faceNum = 0;
     speakt = 0;
     fromAction = action;
     Balloon.Show(message, transform, CompleteSpeaking);
+    return false;
   }
 
   public void CompleteSpeaking() {
@@ -235,11 +236,18 @@ public class Actor : MonoBehaviour {
     transform.position = np;
   }
 
-  public void SetScaleAndPosition(Vector3 pos) {
+  public void SetScaleAndPosition(Vector3 pos, PathNode p = null) {
     float ty = pos.y;
     if (ty < currentRoom.minY) ty = currentRoom.minY;
     if (ty > currentRoom.maxY) ty = currentRoom.maxY;
-    if (destination.node == null || !destination.node.isStair) {
+    if (p == null) {
+      if (destination.node == null || !destination.node.isStair) {
+        float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
+        scaley *= mainScale;
+        transform.localScale = new Vector3(scaley, scaley, 1);
+      }
+    }
+    else if (!p.isStair) {
       float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
       scaley *= mainScale;
       transform.localScale = new Vector3(scaley, scaley, 1);

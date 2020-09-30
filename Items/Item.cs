@@ -87,6 +87,28 @@ public class Item : GameItem {
     }
   }
 
+  public void ForceOpen(ChangeWay val) {
+    switch (val) {
+      case ChangeWay.EnOpenLock: // Open
+        if (Usable == Tstatus.OpenableClosed) SetAsOpen();
+        else if (Usable == Tstatus.OpenableClosedAutolock) SetAsOpen();
+        else if (Usable == Tstatus.OpenableOpen) SetAsOpen();
+        else if (Usable == Tstatus.OpenableOpenAutolock) SetAsOpenAuto();
+        else if (Usable == Tstatus.OpenableLocked) SetAsOpen();
+        else if (Usable == Tstatus.OpenableLockedAutolock) SetAsOpenAuto();
+        return;
+
+      case ChangeWay.DisCloseUnlock: // Close
+        if (Usable == Tstatus.OpenableClosed) SetAsClosedUnlocked();
+        else if (Usable == Tstatus.OpenableClosedAutolock) SetAsClosedUnlockedAuto();
+        else if (Usable == Tstatus.OpenableOpen) SetAsClosedUnlocked();
+        else if (Usable == Tstatus.OpenableOpenAutolock) SetAsClosedUnlockedAuto();
+        else if (Usable == Tstatus.OpenableLocked) SetAsClosedUnlocked();
+        else if (Usable == Tstatus.OpenableLockedAutolock) SetAsClosedUnlockedAuto();
+        return;
+    }
+  }
+
   public string Lock(ChangeWay val) {
     switch(val) {
       case ChangeWay.Ignore: return null;
@@ -126,6 +148,28 @@ public class Item : GameItem {
     }
   }
 
+  public void ForceLock(ChangeWay val) {
+    switch (val) {
+      case ChangeWay.EnOpenLock: // Lock
+        if (Usable == Tstatus.OpenableClosed) SetAsLocked();
+        else if (Usable == Tstatus.OpenableClosedAutolock) SetAsLockedAuto();
+        else if (Usable == Tstatus.OpenableOpen) SetAsLocked();
+        else if (Usable == Tstatus.OpenableOpenAutolock) SetAsLockedAuto();
+        else if (Usable == Tstatus.OpenableLocked) SetAsLocked();
+        else if (Usable == Tstatus.OpenableLockedAutolock) SetAsLockedAuto();
+        break;
+
+      case ChangeWay.DisCloseUnlock: // Unlock
+        if (Usable == Tstatus.OpenableClosed) SetAsClosedUnlocked();
+        else if (Usable == Tstatus.OpenableClosedAutolock) SetAsClosedUnlockedAuto();
+        else if (Usable == Tstatus.OpenableOpen) SetAsOpen();
+        else if (Usable == Tstatus.OpenableOpenAutolock) SetAsOpenAuto();
+        else if (Usable == Tstatus.OpenableLocked) SetAsClosedUnlocked();
+        else if (Usable == Tstatus.OpenableLockedAutolock) SetAsClosedUnlockedAuto();
+        break;
+    }
+  }
+
   internal bool HasActions(When when) {
     foreach(ActionAndCondition ac in actions) {
       if (ac.Condition.condition != Condition.None && ac.Condition.when == when) return true;
@@ -138,7 +182,10 @@ public class Item : GameItem {
     sr.sprite = openImage;
     Door door = this as Door;
     if (door != null) {
-      door.correspondingDoor.Usable = Tstatus.OpenableOpen;
+      if (door.correspondingDoor.Usable == Tstatus.OpenableClosedAutolock || door.correspondingDoor.Usable == Tstatus.OpenableLockedAutolock || door.correspondingDoor.Usable == Tstatus.OpenableOpenAutolock)
+        door.correspondingDoor.Usable = Tstatus.OpenableOpenAutolock;
+      else
+        door.correspondingDoor.Usable = Tstatus.OpenableOpen;
       door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
     }
   }

@@ -1,9 +1,11 @@
 === Mighty Maniac Mansion ===
 
 Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
+Change "Walk" to "Read" to non-doors
 
-When grabbing an action (ContextAction) we may need to fill performer and the other local values.
-Probably from the action itself
+Door is still not graphically open from actions
+If the balloon is just over the head of the guy, move it on the other side to avoid overlap
+Add tip to the top option
 
 * TODO ************************************************************************************************************
 
@@ -118,4 +120,5 @@ Ollie
 ! Options: Change font
 ! Options: quit confirmation
 ! Options: restart (same party), restart (new party), intro title
+! Fixed a problem when grabbing an action from a cutscene and transforming it to ContextAction. The actor was not converted.
 

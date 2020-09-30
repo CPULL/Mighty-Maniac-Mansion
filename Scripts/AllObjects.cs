@@ -2,7 +2,10 @@
 using UnityEngine;
 
 public class AllObjects : MonoBehaviour {
-  public List<GameItem> itemsList;
+
+  // We need to get the items from the scene
+
+  public List<Item> itemsList;
   public List<Room> roomsList;
 
   internal Room GetRoom(string id) {
@@ -22,6 +25,26 @@ public class AllObjects : MonoBehaviour {
     }
     Debug.LogError("Cannot find Item with id: \"" + id + "\"");
     return null;
+  }
+
+  internal Item FindItemByID(string sid) {
+    string val = sid.Trim().ToLowerInvariant();
+    ItemEnum id = ItemEnum.Undefined;
+    if (val == "sign") id = ItemEnum.Sign;
+    if (val == "genericinvisibledoor") id = ItemEnum.GenericInvisibleDoor;
+    if (val == "mailbox") id = ItemEnum.Mailbox;
+    if (val == "mailboxflag") id = ItemEnum.MailboxFlag;
+    if (val == "frontdoorkey") id = ItemEnum.FrontDoorKey;
+    if (val == "grass") id = ItemEnum.Grass;
+    if (val == "doorbell") id = ItemEnum.DoorBell;
+    if (val == "doormat") id = ItemEnum.Doormat;
+    if (val == "grate") id = ItemEnum.Grate;
+    if (val == "basementpassage") id = ItemEnum.BasementPassage;
+    if (val == "tedgrave") id = ItemEnum.TedGrave;
+    if (val == "frontdoor") id = ItemEnum.FrontDoor;
+
+    if (id == ItemEnum.Undefined) return null;
+    return FindItemByID(id);
   }
 
 }

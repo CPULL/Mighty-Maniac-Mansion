@@ -32,6 +32,10 @@ public class Cutscene {
     }
     GameAction a = actions[step];
     step++;
-    return new ContextualizedAction { action = a, performer = Controller.GetActor(a.actor), secondary = null, item = null };
+    return new ContextualizedAction { action = a, performer = Controller.GetActor(a.actor), secondary = null, item = Controller.GetItem(a.strValue) };
+  }
+
+  internal void Reset() {
+    step = 0;
   }
 }

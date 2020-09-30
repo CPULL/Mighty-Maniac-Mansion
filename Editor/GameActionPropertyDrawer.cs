@@ -3,6 +3,11 @@ using UnityEngine;
 
 [CustomPropertyDrawer(typeof(GameAction))]
 public class GameActionPropertyDrawer : PropertyDrawer {
+  GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
+    wordWrap = true,
+    fixedHeight = EditorGUIUtility.singleLineHeight * 5
+  };
+
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
     EditorGUI.BeginProperty(position, label, property);
 
@@ -79,10 +84,6 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       break;
 
       case ActionType.Speak: {
-        GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
-          wordWrap = true,
-          fixedHeight = EditorGUIUtility.singleLineHeight * 5
-        };
         rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + position.width / 2, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect3 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, 5 * EditorGUIUtility.singleLineHeight);
@@ -154,8 +155,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       break;
 
       case ActionType.Cutscene: {
-        rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
-        action.intValue = EditorGUI.Popup(rect1, "ID", action.intValue, action.enumDisplayNames);
+        rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width, 5 * EditorGUIUtility.singleLineHeight);
+        EditorGUIUtility.labelWidth = 60;
+        strValue.stringValue = EditorGUI.TextArea(rect1, strValue.stringValue, textAreaStyle);
       }
       break;
 

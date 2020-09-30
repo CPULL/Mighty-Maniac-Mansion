@@ -381,7 +381,6 @@ public class Controller : MonoBehaviour {
 
     LoadSequences();
 
-    StartCoroutine(StartDelayed());
     foreach (Room r in allObjects.roomsList) {
       r.gameObject.SetActive(false);
     }
@@ -428,11 +427,6 @@ public class Controller : MonoBehaviour {
 
     ActorsButtons.SetActive(true);
     StartIntroCutscene();
-  }
-
-  IEnumerator StartDelayed() {
-    yield return new WaitForSeconds(.5f);
-    ShowName("Javidx9 secret quarters..."/*currentRoom.RoomName*/);
   }
 
   void OnApplicationQuit() {
@@ -494,9 +488,30 @@ public class Controller : MonoBehaviour {
             else if (a.type == ActionType.Sound) {
               a.SetActor(val["actor"].Value);
               a.SetDir(val["dir"].Value);
-              a.SetValue(val["snd"].Value);
+              a.SetSound(val["snd"].Value);
             }
+
+            else if (a.type == ActionType.Open) {
+              a.SetActor(val["actor"].Value);
+              a.SetValue(val["item"].Value);
+              a.SetMode(val["mode"].AsBool);
+            }
+            else if (a.type == ActionType.Lock) {
+              a.SetActor(val["actor"].Value);
+              a.SetValue(val["item"].Value);
+              a.SetMode(val["mode"].AsBool);
+            }
+            else if (a.type == ActionType.Enable) {
+              a.SetValue(val["item"].Value);
+              a.SetMode(val["mode"].AsBool);
+            }
+
+            else Debug.LogError("Not handled action type: " + a.type);
             a.SetWait(val["wait"].AsFloat);
+
+            if (!val["norepeat"])
+              a.Repeatable = true;
+
             seq.actions.Add(a);
           }
           cutscenes.Add(seq);
@@ -514,15 +529,21 @@ public class Controller : MonoBehaviour {
   }
 
   void StartIntroCutscene() {
+    currentCutscene = GetCutscene("intro");
+    forcedCursor = CursorTypes.Wait;
+    oldCursor = null;
+    GD.status = GameStatus.NormalGamePlay;
+  }
+
+  Cutscene GetCutscene(string id) {
+    string val = id.ToLowerInvariant();
     foreach (Cutscene s in cutscenes) {
-      if (s.id == "intro") {
-        currentCutscene = s;
-        forcedCursor = CursorTypes.Wait;
-        oldCursor = null;
-        GD.status = GameStatus.NormalGamePlay;
-        break;
+      if (s.id.ToLowerInvariant() == val) {
+        return s;
       }
     }
+    Debug.LogError("Cutscene not found: \"" + id + "\"");
+    return null;
   }
 
   public static void AddAction(GameAction a, Actor perf, Actor sec, Item item) {
@@ -576,7 +597,13 @@ public class Controller : MonoBehaviour {
         }
         a.transform.position = currentAction.action.pos;
         a.SetDirection(currentAction.action.dir);
-        a.SetScaleAndPosition(currentAction.action.pos);
+        RaycastHit2D hit = Physics2D.Raycast(currentAction.action.pos, cam.transform.forward, 10000, pathLayer);
+        if (hit.collider != null) {
+          PathNode p = hit.collider.GetComponent<PathNode>();
+          a.SetScaleAndPosition(currentAction.action.pos, p);
+        }
+        else
+          a.SetScaleAndPosition(currentAction.action.pos);
         currentAction.Complete();
       }
       break;
@@ -618,17 +645,24 @@ public class Controller : MonoBehaviour {
 
       case ActionType.Open: {
         // Find the actual Item from all the known items, pick it by enum
-        Item item = allObjects.FindItemByID(currentAction.action.item);
-        currentActor.Say(item.Open(currentAction.action.change));
+        Actor a = GetActor(currentAction.action.actor);
+        Item item = currentAction.item;
+        if (item == null) {
+          Debug.LogError("Item not defined for Open");
+          currentAction.Complete();
+          return;
+        }
+        item.ForceOpen(currentAction.action.change);
         currentAction.Complete();
       }
       break;
 
       case ActionType.Enable: {
         // Find the actual Item from all the known items, pick it by enum
-        Item item = allObjects.FindItemByID(currentAction.action.item);
+        Item item = currentAction.item;
         if (item == null) {
-          Debug.LogError("Cannot find item!");
+          Debug.LogError("Item not defined for Enable");
+          currentAction.Complete();
           return;
         }
         item.gameObject.SetActive(currentAction.action.change == ChangeWay.EnOpenLock);
@@ -638,8 +672,14 @@ public class Controller : MonoBehaviour {
 
       case ActionType.Lock: {
         // Find the actual Item from all the known items, pick it by enum
-        Item item = allObjects.FindItemByID(currentAction.action.item);
-        currentActor.Say(item.Lock(currentAction.action.change));
+        Actor a = GetActor(currentAction.action.actor);
+        Item item = currentAction.item;
+        if (item == null) {
+          Debug.LogError("Item not defined for Lock");
+          currentAction.Complete();
+          return;
+        }
+        item.ForceLock(currentAction.action.change);
         currentAction.Complete();
       }
       break;
@@ -657,7 +697,14 @@ public class Controller : MonoBehaviour {
       break;
 
       case ActionType.Cutscene: {
-
+        currentCutscene = GetCutscene(currentAction.action.strValue);
+        if (currentCutscene != null) {
+          currentCutscene.Reset();
+          forcedCursor = CursorTypes.Wait;
+          oldCursor = null;
+          GD.status = GameStatus.NormalGamePlay;
+        }
+        currentAction.Complete();
       }
       break;
 
@@ -825,6 +872,10 @@ public class Controller : MonoBehaviour {
     return false;
   }
 
+  internal static Item GetItem(string item) {
+    if (item == null) return null;
+    return GD.c.allObjects.FindItemByID(item);
+  }
   #endregion
 
   #region *********************** Actors *********************** Actors *********************** Actors *********************** Actors *********************** Actors ***********************
@@ -1053,6 +1104,7 @@ public class Controller : MonoBehaviour {
     GD.status = GameStatus.NormalGamePlay;
     forcedCursor = CursorTypes.None;
     overItem = null;
+    ShowName(currentRoom.name);
   }
 
   private IEnumerator FadeToRoomActor() {

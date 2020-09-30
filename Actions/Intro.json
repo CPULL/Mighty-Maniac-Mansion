@@ -1,6 +1,6 @@
 {
 	"name":"Intro Sequence",
-	"id":"introORIG",
+	"id":"intro",
 	"conditions":{
 		"condition":["CurrentActorEqual", "CurrentActorNotEqual", "ActorIsAvailable", "ActorHasSkill", "HasItem", "DoesNotHaveItem", "ItemIsOpen", "ItemIsLocked", "ItemIsUnlocked", "ItemIsClosed", "ActionCompleted", "ActionNotStarted", "ActionRunning", "ItemIsCollected", "ItemIsNotCollected", "WithItem", "RecipientIs", "RecipientIsNot", "WhenIs"],
 		"actor":"id",
@@ -10,7 +10,7 @@
 		"action":"id"
 	},
 	"actions":[
-		{ "type":"ShowRoom", "roomdbg":"EdRoom", "posdbg":[-49,40], "room":"StartArea", "pos":[7,2] },
+		{ "type":"ShowRoom", "room":"StartArea", "pos":[7,2] },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor1", "pos":[8.82,-0.76], "dir":"F" },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor2", "pos":[13.23,-1.43], "dir":"L" },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor3", "pos":[11.45,-0.46], "dir":"F" },

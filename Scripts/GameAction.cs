@@ -28,9 +28,10 @@ public class GameAction {
     if (t == "move") type = ActionType.Move;
     if (t == "expression") type = ActionType.Expression;
     if (t == "open") type = ActionType.Open;
+    if (t == "lock") type = ActionType.Lock;
     if (t == "enable") type = ActionType.Enable;
     if (t == "showroom") type = ActionType.ShowRoom;
-    if (t == "setsequence") type = ActionType.Cutscene;
+    if (t == "cutscene") type = ActionType.Cutscene;
     if (t == "sound") type = ActionType.Sound;
   }
 
@@ -72,6 +73,11 @@ public class GameAction {
     if (d == "r") dir = Dir.R;
   }
 
+  internal void SetSound(string value) {
+    string d = value.ToLowerInvariant();
+    if (d == "doorbell") sound = Audios.Doorbell;
+  }
+
   internal void SetPos(float x, float y) {
     pos = new Vector2(x, y);
   }
@@ -83,6 +89,11 @@ public class GameAction {
     delay = w;
   }
 
+  internal void SetMode(bool m) {
+    change = m ? ChangeWay.EnOpenLock : ChangeWay.DisCloseUnlock;
+  }
+
+  
   internal void Play() {
     running = Running.Running;
     time = delay;
