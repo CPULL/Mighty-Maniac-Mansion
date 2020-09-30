@@ -2,6 +2,8 @@
 
 Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 
+When grabbing an action (ContextAction) we may need to fill performer and the other local values.
+Probably from the action itself
 
 * TODO ************************************************************************************************************
 
@@ -40,7 +42,7 @@ Sandy
 !Wendy
 Jeff
 Sandy
-?Javid
+!Javid
 Ollie
 
 

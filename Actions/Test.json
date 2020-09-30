@@ -1,0 +1,65 @@
+{
+	"name":"Intro Sequence",
+	"id":"intro",
+	"conditions":{
+		"condition":["CurrentActorEqual", "CurrentActorNotEqual", "ActorIsAvailable", "ActorHasSkill", "HasItem", "DoesNotHaveItem", "ItemIsOpen", "ItemIsLocked", "ItemIsUnlocked", "ItemIsClosed", "ActionCompleted", "ActionNotStarted", "ActionRunning", "ItemIsCollected", "ItemIsNotCollected", "WithItem", "RecipientIs", "RecipientIsNot", "WhenIs"],
+		"actor":"id",
+		"skill":"id",
+		"item":"id",
+		"num":0,
+		"action":"id"
+	},
+	"actions":[
+		{ "type":"ShowRoom", "room":"EdRoom", "pos":[-49,40] },
+		{ "type":"Teleport", "room":"EdRoom", "actor":"Actor1", "pos":[-52.5,38], "dir":"F" },
+		{ "type":"Teleport", "room":"EdRoom", "actor":"Actor2", "pos":[-47,37], "dir":"F" },
+		{ "type":"Teleport", "room":"EdRoom", "actor":"Actor3", "pos":[-46,38.5], "dir":"R" },
+		
+		{ "type":"Expression", "actor":"Actor1", "expr":"Normal", "dir":"F", "wait":.01 },
+		{ "type":"Expression", "actor":"Actor2", "expr":"Normal", "dir":"F", "wait":.01 },
+		{ "type":"Expression", "actor":"Actor3", "expr":"Normal", "dir":"R", "wait":.75 },
+		
+		{ "type":"Move", "actor":"Actor2", "pos":[-51,38], "dir":"L" },
+		{ "type":"Speak", "actor":"Actor2", "msg":"Hey Javid.", "dir":"L" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"Hello!", "dir":"R" },
+		
+		{ "type":"Expression", "actor":"Actor3", "expr":"Normal", "dir":"F", "wait":.25 },
+		{ "type":"Expression", "actor":"Actor3", "expr":"Normal", "dir":"L", "wait":.25 },
+
+		{ "type":"Speak", "actor":"Actor2", "msg":"I cannot compile PGE!", "dir":"L" },
+		{ "type":"Expression", "actor":"Actor1", "expr":"Sad", "dir":"R", "wait":.01 },
+		{ "type":"Speak", "actor":"Actor2", "msg":"Please help!", "dir":"L" },
+		{ "type":"Expression", "actor":"Actor2", "expr":"Sad", "dir":"L", "wait":.01 },
+		{ "type":"Expression", "actor":"Actor3", "expr":"BigOpen", "dir":"R", "wait":.05 },
+
+		{ "type":"Speak", "actor":"Actor1", "msg":"Have you included unicode?", "dir":"R" },
+		{ "type":"Speak", "actor":"Actor2", "msg":"Yes", "dir":"L" },
+		
+		{ "type":"Speak", "actor":"Actor1", "msg":"Do you have\n<i>#include \"olcPixelGameEngine.h\"</i>?", "dir":"R" },
+		{ "type":"Speak", "actor":"Actor2", "msg":"Yes!", "dir":"L" },
+
+		{ "type":"Speak", "actor":"Actor1", "msg":"Have you add\n<i><i>#define OLC_PGE_APPLICATION</i>?", "dir":"R" },
+		{ "type":"Speak", "actor":"Actor2", "msg":"No!", "dir":"F" },
+
+		{ "type":"Expression", "actor":"Actor1", "expr":"Happy", "dir":"F", "wait":.5 },
+		{ "type":"Expression", "actor":"Actor2", "expr":"BigOpen", "dir":"F", "wait":.5 },
+		{ "type":"Expression", "actor":"Actor3", "expr":"Happy", "dir":"F", "wait":2.5 },
+
+
+		
+		{ "type":"Speak", "actor":"Actor1", "msg":"Saty tuned for the\nupdates on this game\nmade by CPU.", "dir":"F" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"I hope you have\nenjoyed this video, ...", "dir":"F" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"if you did, give me\na big thumbs up, ...", "dir":"F" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"have a think about subscribing, ...", "dir":"F" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"come to have a chat\non the Discord server, ...", "dir":"F" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"all the source code for\nthis video will be\non the GitHub.", "dir":"F" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"See you next time", "dir":"F" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"Take care", "dir":"F" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"Bye bye", "dir":"F" },
+		
+		{ "type":"Move", "actor":"Actor1", "pos":[-47.25,39.3], "dir":"B" },
+		{ "type":"Teleport", "room":"StartArea", "actor":"Actor1", "pos":[1,2], "dir":"F" },
+		{ "type":"Expression", "actor":"Actor2", "expr":"Happy", "dir":"F", "wait":.1 },
+		{ "type":"Expression", "actor":"Actor3", "expr":"Normal", "dir":"F", "wait":2.5 }
+	]
+}

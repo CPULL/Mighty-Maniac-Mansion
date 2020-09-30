@@ -432,7 +432,7 @@ public class Controller : MonoBehaviour {
 
   IEnumerator StartDelayed() {
     yield return new WaitForSeconds(.5f);
-    ShowName(currentRoom.RoomName);
+    ShowName("Javidx9 secret quarters..."/*currentRoom.RoomName*/);
   }
 
   void OnApplicationQuit() {
@@ -466,6 +466,12 @@ public class Controller : MonoBehaviour {
           foreach (JSONNode val in vals) {
             GameAction a = new GameAction(val["type"].Value);
             if (a.type == ActionType.Teleport) {
+              a.SetActor(val["actor"].Value);
+              a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
+              a.SetDir(val["dir"].Value);
+              a.SetValue(val["room"].Value);
+            }
+            else if (a.type == ActionType.Move) {
               a.SetActor(val["actor"].Value);
               a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
               a.SetDir(val["dir"].Value);
@@ -592,8 +598,12 @@ public class Controller : MonoBehaviour {
         if (hit.collider != null) {
           PathNode p = hit.collider.GetComponent<PathNode>();
           GameAction copy = currentAction.action;
+          currentAction.Play();
           currentAction.performer.WalkTo(currentAction.action.pos, p,
-          new System.Action<Actor, Item>((actor, item) => { copy.Complete(); }));
+          new System.Action<Actor, Item>((actor, item) => {
+            actor.SetDirection(copy.dir);
+            copy.Complete(); 
+          }));
         }
       }
       break;
