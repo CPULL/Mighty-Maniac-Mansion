@@ -3363,6 +3363,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 0}
   transition: 0
   arrivalDirection: 0
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!212 &211913650
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4450,6 +4455,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 0}
   transition: 0
   arrivalDirection: 3
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!212 &292836799
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8633,6 +8643,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 1106384809}
   transition: 0
   arrivalDirection: 3
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!212 &498876726
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8876,6 +8891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb4e1f6660837a449d3d545161666cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioGroupEffect: {fileID: -5707941341885872616, guid: d86a7674e9872d7479e4ca172bd215a2, type: 2}
+  AudioGroupMusic: {fileID: -4185488022367844979, guid: d86a7674e9872d7479e4ca172bd215a2, type: 2}
   restartFrom: 0
 --- !u!4 &514626085
 Transform:
@@ -9205,6 +9222,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 527044918}
   transition: 0
   arrivalDirection: 3
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!1 &525182994
 GameObject:
   m_ObjectHideFlags: 0
@@ -9456,6 +9478,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 524794486}
   transition: 0
   arrivalDirection: 1
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!1 &527239701
 GameObject:
   m_ObjectHideFlags: 0
@@ -12318,6 +12345,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 0}
   transition: 4
   arrivalDirection: 0
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!65 &702021342
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12946,6 +12978,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 0}
   transition: 0
   arrivalDirection: 0
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!212 &736877156
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19226,6 +19263,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 498876725}
   transition: 4
   arrivalDirection: 0
+  OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
+  CloseSound: {fileID: 8300000, guid: d0e0c413d8a7cf94b967a2f0a221e6e5, type: 3}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!1 &1117025433
 GameObject:
   m_ObjectHideFlags: 0
@@ -27883,6 +27925,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 0}
   transition: 0
   arrivalDirection: 0
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!212 &1502791932
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36586,6 +36633,11 @@ MonoBehaviour:
   correspondingDoor: {fileID: 0}
   transition: 0
   arrivalDirection: 0
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!65 &1908189519
 BoxCollider:
   m_ObjectHideFlags: 0

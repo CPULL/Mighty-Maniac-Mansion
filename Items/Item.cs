@@ -187,6 +187,11 @@ public class Item : GameItem {
       else
         door.correspondingDoor.Usable = Tstatus.OpenableOpen;
       door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
+      if (door.OpenSound != null && door.Audio != null) {
+        door.Audio.clip = door.OpenSound;
+        door.Audio.Play();
+        Debug.Log("Open");
+      }
     }
   }
   private void SetAsOpenAuto() {
@@ -196,6 +201,11 @@ public class Item : GameItem {
     if (door != null) {
       door.correspondingDoor.Usable = Tstatus.OpenableOpenAutolock;
       door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
+      if (door.OpenSound != null && door.Audio != null) {
+        door.Audio.clip = door.OpenSound;
+        door.Audio.Play();
+        Debug.Log("Open autolock");
+      }
     }
   }
   private void SetAsClosedUnlocked() {
@@ -205,6 +215,11 @@ public class Item : GameItem {
     if (door != null) {
       door.correspondingDoor.Usable = Tstatus.OpenableClosed;
       door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+      if (door.CloseSound != null && door.Audio != null) {
+        door.Audio.clip = door.CloseSound;
+        door.Audio.Play();
+        Debug.Log("Close");
+      }
     }
   }
   private void SetAsClosedUnlockedAuto() {
@@ -214,6 +229,11 @@ public class Item : GameItem {
     if (door != null) {
       door.correspondingDoor.Usable = Tstatus.OpenableClosedAutolock;
       door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+      if (door.CloseSound != null && door.Audio != null) {
+        door.Audio.clip = door.CloseSound;
+        door.Audio.Play();
+        Debug.Log("Close");
+      }
     }
   }
   private void SetAsLocked() {
@@ -223,6 +243,11 @@ public class Item : GameItem {
     if (door != null) {
       door.correspondingDoor.Usable = Tstatus.OpenableLocked;
       door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage == null ? door.correspondingDoor.closeImage : door.correspondingDoor.lockImage;
+      if (door.LockSound != null && door.Audio != null) {
+        door.Audio.clip = door.LockSound;
+        door.Audio.Play();
+        Debug.Log("Locked");
+      }
     }
   }
   private void SetAsLockedAuto() {
@@ -232,6 +257,11 @@ public class Item : GameItem {
     if (door != null) {
       door.correspondingDoor.Usable = Tstatus.OpenableLockedAutolock;
       door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage == null ? door.correspondingDoor.closeImage : door.correspondingDoor.lockImage;
+      if (door.LockSound != null && door.Audio != null) {
+        door.Audio.clip = door.LockSound;
+        door.Audio.Play();
+        Debug.Log("Locked auto");
+      }
     }
   }
 

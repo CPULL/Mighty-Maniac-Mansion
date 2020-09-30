@@ -13,6 +13,7 @@ public class DoorEditor : Editor {
   SerializedProperty src, dst, correspondingDoor;
   SerializedProperty camerapos, transition;
   SerializedProperty actions;
+  SerializedProperty openSound, closeSound, lockSound, unlockSound;
 
 
   void OnEnable() {
@@ -36,7 +37,12 @@ public class DoorEditor : Editor {
     correspondingDoor = serializedObject.FindProperty("correspondingDoor");
     transition = serializedObject.FindProperty("transition");
     actions = serializedObject.FindProperty("actions");
+    openSound = serializedObject.FindProperty("OpenSound");
+    closeSound= serializedObject.FindProperty("CloseSound");
+    lockSound= serializedObject.FindProperty("LockSound");
+    unlockSound = serializedObject.FindProperty("UnlockSound");
   }
+
 
   public override void OnInspectorGUI() {
     serializedObject.Update();
@@ -115,9 +121,17 @@ public class DoorEditor : Editor {
     EditorGUILayout.PropertyField(correspondingDoor, new GUIContent("Door"));
     EditorGUILayout.PropertyField(camerapos, new GUIContent("Cam"));
     EditorGUILayout.PropertyField(transition, new GUIContent("Trans"));
-    EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 
+    EditorGUILayout.BeginHorizontal();
+    EditorGUIUtility.labelWidth = 60;
+    EditorGUILayout.PropertyField(openSound, new GUIContent("Open Snd"));
+    EditorGUILayout.PropertyField(closeSound, new GUIContent("Close Snd"));
+    EditorGUILayout.EndHorizontal();
+    EditorGUILayout.BeginHorizontal();
+    EditorGUILayout.PropertyField(lockSound, new GUIContent("Lock Snd"));
+    EditorGUILayout.PropertyField(unlockSound, new GUIContent("Unlock Snd"));
+    EditorGUILayout.EndHorizontal();
 
     EditorGUILayout.PropertyField(actions);
 

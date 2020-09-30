@@ -23,7 +23,7 @@ public class AllObjects : MonoBehaviour {
         return i;
       }
     }
-    Debug.LogError("Cannot find Item with id: \"" + id + "\"");
+    Debug.LogWarning("Cannot find Item with id: \"" + id + "\"");
     return null;
   }
 
