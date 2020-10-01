@@ -3,7 +3,6 @@
 Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 Change "Walk" to "Read" to non-doors
 
-Door is still not graphically open from actions
 If the balloon is just over the head of the guy, move it on the other side to avoid overlap
 Add tip to the top option
 
