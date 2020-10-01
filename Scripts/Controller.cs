@@ -168,8 +168,10 @@ public class Controller : MonoBehaviour {
               if (item.PlayActions(currentActor, null, When.Use))
                 actor.Say(item.Description); // By default read what is written in the description of the object
             }
-            else
-              actor.Say(item.Description);
+            else {
+              string msg = item.Description.Replace("%open", item.GetOpenStatus());
+              actor.Say(msg);
+            }
           }));
       }
 

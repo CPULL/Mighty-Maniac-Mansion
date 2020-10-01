@@ -35,6 +35,72 @@ public class Options : MonoBehaviour {
     GD.opts = this;
   }
 
+  private string GetStringValue(float val) {
+    if (val == 0) return "<i>disabled</i>";
+    if (val == 1) return "25%";
+    if (val == 2) return "50%";
+    if (val == 3) return "75%";
+    if (val == 4) return "80%";
+    if (val == 5) return "90%";
+    if (val == 6) return "100%";
+    if (val == 7) return "110%";
+    if (val == 8) return "125%";
+    if (val == 9) return "150%";
+    if (val == 10) return "200%";
+    if (val == 11) return "300%";
+    if (val == 12) return "400%";
+    return val + " ???";
+  }
+
+  private static float GetFloatValue(float val) {
+    if (val == 0) return 0;
+    if (val == 1) return .25f;
+    if (val == 2) return .50f;
+    if (val == 3) return .75f;
+    if (val == 4) return .80f;
+    if (val == 5) return .90f;
+    if (val == 6) return 1;
+    if (val == 7) return 1.10f;
+    if (val == 8) return 1.25f;
+    if (val == 9) return 1.50f;
+    if (val == 10) return 2.00f;
+    if (val == 11) return 3.00f;
+    if (val == 12) return 4.00f;
+    return val;
+  }
+
+  private string GetStringValueD(float val) {
+    if (val <= 1) return "25%";
+    if (val == 2) return "50%";
+    if (val == 3) return "75%";
+    if (val == 4) return "80%";
+    if (val == 5) return "90%";
+    if (val == 6) return "100%";
+    if (val == 7) return "110%";
+    if (val == 8) return "125%";
+    if (val == 9) return "150%";
+    if (val == 10) return "200%";
+    if (val == 11) return "300%";
+    if (val == 12) return "400%";
+    return val + " ???";
+  }
+
+  private static float GetFloatValueD(float val) {
+    if (val <= 1) return .25f;
+    if (val == 2) return .50f;
+    if (val == 3) return .75f;
+    if (val == 4) return .80f;
+    if (val == 5) return .90f;
+    if (val == 6) return 1;
+    if (val == 7) return 1.10f;
+    if (val == 8) return 1.25f;
+    if (val == 9) return 1.50f;
+    if (val == 10) return 2.00f;
+    if (val == 11) return 3.00f;
+    if (val == 12) return 4.00f;
+    return val;
+  }
+
   public static bool IsActive() {
     if (GD.opts == null) return false;
     return GD.opts.optionsCanvas.enabled;
@@ -59,11 +125,11 @@ public class Options : MonoBehaviour {
   }
 
   public void ChangeMaxWalkSpeed() {
-    WalkVal.text = (int)(WalkSpeed.value * 100) + "%";
+    WalkVal.text = GetStringValueD(WalkSpeed.value);
   }
 
   public void ChangeTextSpeed() {
-    TextVal.text = (int)(TextSpeed.value * 100) + "%";
+    TextVal.text = GetStringValueD(TextSpeed.value);
   }
 
 
@@ -107,12 +173,14 @@ public class Options : MonoBehaviour {
       ChangeMusicVolume();
       ChangeSoundVolume();
 
-      val = PlayerPrefs.GetFloat("WalkSpeed", 1);
+      val = PlayerPrefs.GetFloat("WalkSpeed", 6);
       WalkSpeed.SetValueWithoutNotify(val);
       ChangeMaxWalkSpeed();
-      val = PlayerPrefs.GetFloat("TextSpeed", 1);
+      val = PlayerPrefs.GetFloat("TextSpeed", 6);
       TextSpeed.SetValueWithoutNotify(val);
       ChangeTextSpeed();
+
+      UpdateFonts(PlayerPrefs.GetInt("Font", 3));
 
       RestartIntro.interactable = GD.status == GameStatus.IntroVideo || GD.status == GameStatus.CharSelection || GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
       RestartNewChars.interactable = GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
@@ -125,8 +193,8 @@ public class Options : MonoBehaviour {
       PlayerPrefs.SetFloat("SoundVolume", SoundVolume.value);
       PlayerPrefs.SetFloat("TextSpeed", TextSpeed.value);
       PlayerPrefs.SetFloat("WalkSpeed", WalkSpeed.value);
-      Controller.walkSpeed = WalkSpeed.value;
-      Controller.textSpeed = 1 / TextSpeed.value;
+      Controller.walkSpeed = GetFloatValueD(WalkSpeed.value);
+      Controller.textSpeed = GetFloatValueD(TextSpeed.value);
     }
   }
 
@@ -155,8 +223,8 @@ public class Options : MonoBehaviour {
     vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("SoundsVolume", 1) * .74f) * 14.425f - 80;
     GD.opts.mixerMusic.SetFloat("SoundsVolume", vol);
 
-    Controller.walkSpeed = PlayerPrefs.GetFloat("WalkSpeed", 1);
-    Controller.textSpeed = PlayerPrefs.GetFloat("TalkSpeed", 1);
+    Controller.walkSpeed = GetFloatValueD(PlayerPrefs.GetFloat("WalkSpeed", 6));
+    Controller.textSpeed = GetFloatValueD(PlayerPrefs.GetFloat("TalkSpeed", 6));
 
     GD.opts.UpdateFonts(PlayerPrefs.GetInt("Font", 3));
   }
@@ -184,7 +252,5 @@ public class Options : MonoBehaviour {
 
     GD.b.text.font = FontAssets[num];
     GD.b.text.fontSharedMaterial = FontMaterials[num];
-
-
   }
 }

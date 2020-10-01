@@ -412,10 +412,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 652708773}
   m_HandleRect: {fileID: 966030908}
   m_Direction: 0
-  m_MinValue: 0.25
-  m_MaxValue: 4
-  m_WholeNumbers: 0
-  m_Value: 1
+  m_MinValue: 1
+  m_MaxValue: 12
+  m_WholeNumbers: 1
+  m_Value: 6
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2821,7 +2821,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 87.090576, y: 40}
+  m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &191510398
 MonoBehaviour:
@@ -3066,7 +3066,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 87.090576, y: 40}
+  m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &196886009
 MonoBehaviour:
@@ -4271,7 +4271,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 87.090576, y: 40}
+  m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &267851092
 MonoBehaviour:
@@ -7731,9 +7731,9 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
-  whatItDoesL: 3
+  whatItDoesL: 1
   whatItDoesR: 0
-  Description: 
+  Description: A common doorbell.
   openImage: {fileID: 0}
   closeImage: {fileID: 0}
   lockImage: {fileID: 0}
@@ -18292,7 +18292,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 87.090576, y: 40}
+  m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1072714358
 MonoBehaviour:
@@ -27702,9 +27702,11 @@ MonoBehaviour:
   owner: 0
   Usable: 4
   UsableWith: 0
-  whatItDoesL: 3
+  whatItDoesL: 1
   whatItDoesR: 0
-  Description: 
+  Description: 'A doormat.
+
+    Quite dirty.'
   openImage: {fileID: -7650157801803932660, guid: 34a053043cb59724ca00ae7b14789892, type: 3}
   closeImage: {fileID: -4981949844542559484, guid: 34a053043cb59724ca00ae7b14789892, type: 3}
   lockImage: {fileID: 0}
@@ -30244,7 +30246,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
@@ -30256,7 +30258,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590990653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1797027066}
@@ -33527,10 +33529,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1453940199}
   m_HandleRect: {fileID: 940244956}
   m_Direction: 0
-  m_MinValue: 0.25
-  m_MaxValue: 4
-  m_WholeNumbers: 0
-  m_Value: 1
+  m_MinValue: 1
+  m_MaxValue: 12
+  m_WholeNumbers: 1
+  m_Value: 6
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -35387,7 +35389,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 87.090576, y: 40}
+  m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1818706150
 MonoBehaviour:
@@ -38403,9 +38405,11 @@ MonoBehaviour:
   owner: 0
   Usable: 4
   UsableWith: 0
-  whatItDoesL: 3
+  whatItDoesL: 1
   whatItDoesR: 0
-  Description: 
+  Description: 'A normal mailbox.
+
+    %open'
   openImage: {fileID: 1584276219503357356, guid: b159dabee9fbe15469546fed737de0a9, type: 3}
   closeImage: {fileID: -4200121528519567819, guid: b159dabee9fbe15469546fed737de0a9, type: 3}
   lockImage: {fileID: 0}

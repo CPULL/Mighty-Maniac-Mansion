@@ -177,6 +177,18 @@ public class Item : GameItem {
     return false;
   }
 
+  internal string GetOpenStatus() {
+    switch (Usable) {
+      case Tstatus.OpenableOpen: return "Is open";
+      case Tstatus.OpenableClosed: return "Is closed";
+      case Tstatus.OpenableLocked: return "Is locked";
+      case Tstatus.OpenableLockedAutolock: return "Is locked";
+      case Tstatus.OpenableOpenAutolock: return "Is open";
+      case Tstatus.OpenableClosedAutolock: return "Is closed";
+    }
+    return "";
+  }
+
   private void SetAsOpen() {
     bool sound = Usable != Tstatus.OpenableOpen && Usable != Tstatus.OpenableOpenAutolock;
     Usable = Tstatus.OpenableOpen;

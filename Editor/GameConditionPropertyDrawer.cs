@@ -6,11 +6,6 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
     EditorGUI.BeginProperty(position, label, property);
 
-    int indent = EditorGUI.indentLevel;
-    float labw = EditorGUIUtility.labelWidth;
-    EditorGUI.indentLevel = 1;
-    EditorGUIUtility.labelWidth = 50;
-
     SerializedProperty type = property.FindPropertyRelative("condition");
     SerializedProperty actor = property.FindPropertyRelative("actor");
     SerializedProperty item = property.FindPropertyRelative("item");
@@ -30,7 +25,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
 
     string name = GameCondition.CalculateName(conditionVal, actorVal, skillVal, itemVal, numVal, actionVal, whenVal);
 
-    float partw = (position.width - 75)/ 3;
+    float partw = (position.width - 75) / 3;
     Rect rectCond = new Rect(position.x, position.y, partw, EditorGUIUtility.singleLineHeight);
     Rect rectType = new Rect(position.x + 75 + 0 * partw, position.y, partw, EditorGUIUtility.singleLineHeight);
     Rect rectWhen = new Rect(position.x + 75 + 1 * partw, position.y, partw, EditorGUIUtility.singleLineHeight);
@@ -102,8 +97,6 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
 
     }
 
-    EditorGUI.indentLevel = indent;
-    EditorGUIUtility.labelWidth = labw;
     EditorGUI.EndProperty();
   }
 
@@ -135,6 +128,6 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.ActionRunning: return h + l;
       case Condition.WhenIs: return h + l;
     }
-    return h + l * 5;
+    return (h + l) * 2;
   }
 }

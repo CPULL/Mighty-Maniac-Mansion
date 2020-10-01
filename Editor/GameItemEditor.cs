@@ -175,9 +175,6 @@ public class GameItemEditor : Editor {
     var enumerable = GetValue_Imp(source, name) as System.Collections.IEnumerable;
     if (enumerable == null) return null;
     var enm = enumerable.GetEnumerator();
-    //while (index-- >= 0)
-    //    enm.MoveNext();
-    //return enm.Current;
 
     for (int i = 0; i <= index; i++) {
       if (!enm.MoveNext()) return null;
