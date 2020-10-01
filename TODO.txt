@@ -1,6 +1,5 @@
 === Mighty Maniac Mansion ===
 
-Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 
 Add "terrain type" in paths, to change the sounds of walking
 Improved sliders for walk and text. We have to do the same for volume (but it will be harder)
@@ -122,4 +121,5 @@ Ollie
 ! Fixed a problem when grabbing an action from a cutscene and transforming it to ContextAction. The actor was not converted.
 ! Improved the balloon positions
 ! Change "Walk" to "Read" to non-doors
+! Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 

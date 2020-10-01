@@ -46,7 +46,9 @@ public enum ActionType { None = 0,
   Cutscene = 9, // Starts a Cutscene (FIXME not done)
   Sound = 10, // Play a sound
   ReceiveY = 11, // Have an actor to receive an item from another actor and say something (item is accepted)
-  ReceiveN = 12 // Have an actor to deny the receival of an item from another actor and say something (item is not accepted)
+  ReceiveN = 12, // Have an actor to deny the receival of an item from another actor and say something (item is not accepted)
+  FadeIn = 13,
+  FadeOut = 14,
 };
 
 /// <summary>

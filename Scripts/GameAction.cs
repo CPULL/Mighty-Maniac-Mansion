@@ -33,6 +33,8 @@ public class GameAction {
     if (t == "showroom") type = ActionType.ShowRoom;
     if (t == "cutscene") type = ActionType.Cutscene;
     if (t == "sound") type = ActionType.Sound;
+    if (t == "fadein") type = ActionType.FadeIn;
+    if (t == "fadeout") type = ActionType.FadeOut;
   }
 
   internal void SetActor(string a) {

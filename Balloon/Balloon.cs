@@ -50,10 +50,10 @@ public class Balloon : MonoBehaviour {
     if (maxlen < 8) GD.b.size.x += 1;
     GD.b.boxc.size = GD.b.size;
 
-    GD.b.size.x += .5f;
-    GD.b.size.y += .5f;
+    GD.b.size.x += 1.5f;
+    GD.b.size.y += 1f;
     GD.b.body.size = GD.b.size;
-    GD.b.txtrt.sizeDelta = new Vector2(GD.b.size.x - .5f, GD.b.size.y);
+    GD.b.txtrt.sizeDelta = new Vector2(GD.b.size.x - 1.5f, GD.b.size.y - .5f);
     GD.b.SetPosition();
   }
 

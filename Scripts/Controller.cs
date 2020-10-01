@@ -44,13 +44,6 @@ public class Controller : MonoBehaviour {
     HandleCursor();
 
 
-    if (Input.GetKeyDown(KeyCode.Space)) {
-      currentActor.Say(msgs[mmm++]);
-      if (mmm >= msgs.Length) mmm = 0;
-    }
-
-
-
     #region Handling of text messages
     if (textMsgTime > 0) {
       textMsgTime -= Time.deltaTime;
@@ -522,6 +515,9 @@ public class Controller : MonoBehaviour {
               a.SetMode(val["mode"].AsBool);
             }
 
+            else if (a.type == ActionType.FadeIn || a.type == ActionType.FadeOut) {
+            }
+
             else Debug.LogError("Not handled action type: " + a.type);
             a.SetWait(val["wait"].AsFloat);
 
@@ -757,6 +753,17 @@ public class Controller : MonoBehaviour {
           currentAction.Complete();
       }
       break;
+
+
+      case ActionType.FadeIn:
+        Fader.FadeIn();
+        currentAction.Play();
+        break;
+
+      case ActionType.FadeOut:
+        Fader.FadeOut();
+        currentAction.Play();
+        break;
 
       default: {
         // FIXME do the other actions
