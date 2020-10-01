@@ -12,6 +12,9 @@ public class Balloon : MonoBehaviour {
   float delay = 0;
   System.Action speakComplete = null;
   SpriteRenderer srAnchor;
+  Vector3 prevAnchorPos = Vector3.negativeInfinity;
+  Camera cam;
+  readonly float offramp = 10; // How fast the baloon should go in the visible zone
 
   private void Awake() {
     GD.b = this;
@@ -27,8 +30,16 @@ public class Balloon : MonoBehaviour {
     GD.b.size = GD.b.text.GetPreferredValues(message);
 
     GD.b.numWords = 1;
-    foreach (char c in message)
+    int maxlen = 0;
+    int len = 0;
+    foreach (char c in message) {
       if (char.IsWhiteSpace(c)) GD.b.numWords++;
+      len++;
+      if (c == '\n') {
+        if (maxlen < len) maxlen = len;
+        len = 0;
+      }
+    }
 
     GD.b.delay = 1 + .25f * GD.b.numWords * Controller.textSpeed * Controller.textSpeed;
 
@@ -36,6 +47,7 @@ public class Balloon : MonoBehaviour {
     GD.b.gameObject.SetActive(true);
 
     GD.b.srAnchor = speaker.GetChild(0).GetComponent<SpriteRenderer>();
+    if (maxlen < 8) GD.b.size.x += 1;
     GD.b.boxc.size = GD.b.size;
     GD.b.boxc.offset = new Vector2(-1.5f, .5f * GD.b.size.y + 1.625f + .2f);
 
@@ -64,12 +76,43 @@ public class Balloon : MonoBehaviour {
 
   void SetPosition() {
     // Get the top-left bounding box of the speaker
-    Bounds spbnd = srAnchor.bounds;
-    Vector3 location = new Vector3(spbnd.min.x, spbnd.max.y, 0) + Vector3.right * .25f - Vector3.up * .2f;
+    Bounds speakerBounds = srAnchor.bounds;
+    Vector2 tlc = cam.WorldToScreenPoint(new Vector2(speakerBounds.min.x, speakerBounds.min.y));
+    bool right = tlc.x > Screen.width * .5;
+    bool bottom = tlc.y < Screen.height * .25;
 
-    tip.transform.localPosition = new Vector3(transform.position.x - location.x - 1, 1.86f, 0);
-    GD.b.transform.position = location;
+    Controller.Dbg(size.ToString());
+
+    if (right && bottom) {
+      Vector3 location = new Vector3(speakerBounds.center.x, speakerBounds.max.y, 0) + Vector3.left * (size.x * .2f + .75f) + Vector3.up * size.y * .25f;
+      tip.transform.localPosition = new Vector3(size.x * .5f - .9f, size.y * -.5f + 0.24f, 0);
+      GD.b.transform.position = location;
+      tip.flipX = false;
+      tip.flipY = false;
+    }
+    else if (!right && bottom) {
+      Vector3 location = new Vector3(speakerBounds.center.x, speakerBounds.max.y, 0) + Vector3.right * (size.x * .2f + .75f) + Vector3.up * size.y * .25f;
+      tip.transform.localPosition = new Vector3(-size.x * .5f + .9f, size.y * -.5f + 0.24f, 0);
+      GD.b.transform.position = location;
+      tip.flipX = true;
+      tip.flipY = false;
+    }
+    else if (right && !bottom) {
+      Vector3 location = new Vector3(speakerBounds.center.x, speakerBounds.max.y, 0) + Vector3.left * (size.x * .2f + .75f) + Vector3.up * (size.y * .2f - 2);
+      tip.transform.localPosition = new Vector3(size.x * .5f - .9f, -size.y * -.5f - 0.24f, 0);
+      GD.b.transform.position = location;
+      tip.flipX = false;
+      tip.flipY = true;
+    }
+    else if (!right && !bottom) {
+      Vector3 location = new Vector3(speakerBounds.center.x, speakerBounds.max.y, 0) + Vector3.right * (size.x * .2f + .75f) + Vector3.up * (size.y * .2f - 2);
+      tip.transform.localPosition = new Vector3(-size.x * .5f + .9f, -size.y * -.5f - 0.24f, 0);
+      GD.b.transform.position = location;
+      tip.flipX = true;
+      tip.flipY = true;
+    }
   }
+
 
   void KeepItVisible() {
     Bounds bounds = body.bounds;
@@ -90,7 +133,6 @@ public class Balloon : MonoBehaviour {
       pos.x -= offramp * Time.deltaTime;
       transform.position = pos;
     }
-    tip.flipX = (srAnchor.bounds.center.x < tip.bounds.center.x);
 
     if (tlc.y < 0) {
       pos.y += offramp * Time.deltaTime;
@@ -106,10 +148,6 @@ public class Balloon : MonoBehaviour {
     GD.b.delay = Time.deltaTime;
   }
 
-  Vector3 prevAnchorPos = Vector3.negativeInfinity;
-
-  Camera cam;
-  readonly float offramp = 10; // How fast the baloon should go in the visible zone
 }
 
 

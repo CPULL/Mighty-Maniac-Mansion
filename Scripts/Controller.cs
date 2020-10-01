@@ -22,6 +22,14 @@ public class Controller : MonoBehaviour {
   }
 
 
+  string[] msgs = new string[] {
+    "A single line",
+    "Couple of\nlines",
+    "a big message just to have a big balloon.\n\n -- It is locked -- \n\nWith a last line for debugging.",
+    "tall\ntall\ntall\ntall\ntall\n..."
+  };
+  int mmm = 0;
+
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
   void Update() {
     if (Options.IsActive()) return;
@@ -34,6 +42,12 @@ public class Controller : MonoBehaviour {
 
     cursorTime += Time.deltaTime;
     HandleCursor();
+
+
+    if (Input.GetKeyDown(KeyCode.Space)) {
+      currentActor.Say(msgs[mmm++]);
+      if (mmm >= msgs.Length) mmm = 0;
+    }
 
 
 

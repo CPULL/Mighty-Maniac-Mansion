@@ -21,7 +21,7 @@ public class Item : GameItem {
     // Check conditions to use it
     if (!VerifyMainCondition(actor, null, When.Use)) return condition.Result;
 
-    if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
+    if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "a big message just to have a big balloon.\n\n -- It is locked -- \n\nWith a last line for debugging.";
 
     if (Usable == Tstatus.Usable) {
       if (!PlayActions(actor, null, When.Use)) return "It does not work";
