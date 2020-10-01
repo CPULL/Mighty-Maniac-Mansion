@@ -9,7 +9,7 @@ public class Balloon : MonoBehaviour {
   Transform anchor;
   Vector2 size = Vector2.zero;
   int numWords = 0;
-  float delay = 0;
+  public float delay = 0;
   System.Action speakComplete = null;
   SpriteRenderer srAnchor;
   Vector3 prevAnchorPos = Vector3.negativeInfinity;
@@ -49,7 +49,6 @@ public class Balloon : MonoBehaviour {
     GD.b.srAnchor = speaker.GetChild(0).GetComponent<SpriteRenderer>();
     if (maxlen < 8) GD.b.size.x += 1;
     GD.b.boxc.size = GD.b.size;
-    GD.b.boxc.offset = new Vector2(-1.5f, .5f * GD.b.size.y + 1.625f + .2f);
 
     GD.b.size.x += .5f;
     GD.b.size.y += .5f;
@@ -142,10 +141,6 @@ public class Balloon : MonoBehaviour {
       pos.y -= offramp * Time.deltaTime;
       transform.position = pos;
     }
-  }
-
-  private void OnMouseDown() {
-    GD.b.delay = Time.deltaTime;
   }
 
 }

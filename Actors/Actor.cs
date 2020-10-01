@@ -195,9 +195,14 @@ public class Actor : MonoBehaviour {
     if (!walking) {
       if (dir == Dir.None) dir = Dir.F;
       anim.Play("Idle" + dir);
+      if (audios.isPlaying) audios.Stop();
       return;
     }
 
+    if (!audios.isPlaying) {
+      audios.clip = GD.c.Sounds[1]; // FIXME understand where are we walking. Probably from the Path
+      audios.Play();
+    }
     anim.speed = Controller.walkSpeed * .8f;
     Vector2 walkDir = (destination.pos - transform.position);
     Vector3 wdir = walkDir.normalized;

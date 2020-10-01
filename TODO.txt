@@ -3,8 +3,9 @@
 Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 Change "Walk" to "Read" to non-doors
 
-If the balloon is just over the head of the guy, move it on the other side to avoid overlap
-Add tip to the top option
+Add steps sound when walking
+Change sliders in options to have a simmetrical "less than 100%" and "more than 100%" sections. With a snap when close to 100%
+
 
 * TODO ************************************************************************************************************
 
@@ -120,4 +121,5 @@ Ollie
 ! Options: quit confirmation
 ! Options: restart (same party), restart (new party), intro title
 ! Fixed a problem when grabbing an action from a cutscene and transforming it to ContextAction. The actor was not converted.
+! Improved the balloon positions
 
