@@ -176,3 +176,9 @@ public enum ChangeWay {
   DisCloseUnlock = 2,
   SwapSwitch = 3
 }
+
+public enum FloorType {
+  None,
+  Grass1=1, Grass2=2,
+  Concrete=3, Wood=4, Marble=5, Carpet=6
+}

@@ -24,7 +24,7 @@ public class Item : GameItem {
     if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "a big message just to have a big balloon.\n\n -- It is locked -- \n\nWith a last line for debugging.";
 
     if (Usable == Tstatus.Usable) {
-      if (!PlayActions(actor, null, When.Use)) return "It does not work";
+      if (!PlayActions(actor, null, When.Use, this)) return "It does not work";
     }
     else if (Usable == Tstatus.OpenableOpen) {
       SetAsClosedUnlocked();
@@ -203,7 +203,6 @@ public class Item : GameItem {
       if (sound && door.OpenSound != null && door.Audio != null) {
         door.Audio.clip = door.OpenSound;
         door.Audio.Play();
-        Debug.Log("Open");
       }
     }
   }
@@ -218,7 +217,6 @@ public class Item : GameItem {
       if (sound && door.OpenSound != null && door.Audio != null) {
         door.Audio.clip = door.OpenSound;
         door.Audio.Play();
-        Debug.Log("Open autolock");
       }
     }
   }
@@ -234,12 +232,10 @@ public class Item : GameItem {
       if (soundC && door.CloseSound != null && door.Audio != null) {
         door.Audio.clip = door.CloseSound;
         door.Audio.Play();
-        Debug.Log("Close");
       }
       else if (soundUl && door.UnlockSound != null && door.Audio != null) {
         door.Audio.clip = door.UnlockSound;
         door.Audio.Play();
-        Debug.Log("Unlock");
       }
     }
   }
@@ -255,12 +251,10 @@ public class Item : GameItem {
       if (soundC && door.CloseSound != null && door.Audio != null) {
         door.Audio.clip = door.CloseSound;
         door.Audio.Play();
-        Debug.Log("Close");
       }
       else if (soundUl && door.UnlockSound != null && door.Audio != null) {
         door.Audio.clip = door.UnlockSound;
         door.Audio.Play();
-        Debug.Log("Unlock");
       }
     }
   }
@@ -275,13 +269,11 @@ public class Item : GameItem {
       if (soundC && door.CloseSound != null && door.Audio != null) {
         door.Audio.clip = door.CloseSound;
         door.Audio.Play();
-        Debug.Log("Close");
       }
       else door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage == null ? door.correspondingDoor.closeImage : door.correspondingDoor.lockImage;
       if (sound && door.LockSound != null && door.Audio != null) {
         door.Audio.clip = door.LockSound;
         door.Audio.Play();
-        Debug.Log("Locked");
       }
     }
   }
@@ -297,12 +289,10 @@ public class Item : GameItem {
       if (soundC && door.CloseSound != null && door.Audio != null) {
         door.Audio.clip = door.CloseSound;
         door.Audio.Play();
-        Debug.Log("Close");
       }
       else if (sound && door.LockSound != null && door.Audio != null) {
         door.Audio.clip = door.LockSound;
         door.Audio.Play();
-        Debug.Log("Locked auto");
       }
     }
   }

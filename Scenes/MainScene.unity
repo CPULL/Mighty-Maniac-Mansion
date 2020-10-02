@@ -1256,6 +1256,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 4
 --- !u!60 &71163758
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1343,6 +1344,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 4
 --- !u!60 &72737280
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2037,10 +2039,11 @@ MonoBehaviour:
   br: {x: -46.80151, y: 0.23427439}
   bl: {x: -50.324608, y: 0.2775029}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 651377087}
   g: 3.5725827
   h: 2.3239007
+  floorType: 3
 --- !u!60 &117065579
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2430,6 +2433,7 @@ MonoBehaviour:
   prev: {fileID: 1385697415}
   g: 30.231117
   h: 3.4859724
+  floorType: 4
 --- !u!60 &140882516
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2780,6 +2784,148 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166760689}
   m_CullTransparentMesh: 0
+--- !u!1 &175876450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 175876453}
+  - component: {fileID: 175876452}
+  - component: {fileID: 175876451}
+  m_Layer: 0
+  m_Name: SoundEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &175876451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175876450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656263b5e406b024dad0a35a6206b67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 3714f7b8290317d44ada3a1ce06280b5, type: 3}
+--- !u!82 &175876452
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175876450}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -5707941341885872616, guid: d86a7674e9872d7479e4ca172bd215a2, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &175876453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175876450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &187641910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3650,6 +3796,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 0
+  floorType: 6
 --- !u!1 &229621229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3805,10 +3952,11 @@ MonoBehaviour:
   br: {x: -69.628296, y: -1.8329751}
   bl: {x: -73.093506, y: -1.8644664}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!60 &239323580
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5532,6 +5680,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 0
+  floorType: 6
 --- !u!60 &328017765
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5871,10 +6020,11 @@ MonoBehaviour:
   br: {x: -50.324608, y: 0.2775029}
   bl: {x: -53.611423, y: 0.21603107}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 408951256}
   g: 3.41012
   h: 3.41012
+  floorType: 3
 --- !u!60 &351482663
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6812,10 +6962,11 @@ MonoBehaviour:
   br: {x: -49.958256, y: 1.8175938}
   bl: {x: -51.93429, y: 1.753164}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 2.1959956
+  floorType: 0
 --- !u!60 &408951257
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7078,10 +7229,11 @@ MonoBehaviour:
   br: {x: -45.965168, y: -1.8321271}
   bl: {x: -48.77809, y: -1.5461612}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!60 &418516843
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7984,28 +8136,6 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
-      type: 10
-      Repeatable: 1
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: 
-      expression: 0
-      sound: 0
-      dir: 2
-      delay: 1
-      item: 0
-      action: 0
-      change: 0
-  - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      num: 0
-      action: 0
-      when: 0
-    Action:
-      running: 0
       type: 9
       Repeatable: 1
       actor: 0
@@ -8114,6 +8244,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 4
 --- !u!60 &465841226
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8542,6 +8673,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 11.349839
+  floorType: 4
 --- !u!1 &487689974
 GameObject:
   m_ObjectHideFlags: 0
@@ -9107,6 +9239,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb4e1f6660837a449d3d545161666cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StepSounds:
+  - {fileID: 0}
+  - {fileID: 8300000, guid: d1f6efd23f1335d4aa362b976c94295b, type: 3}
+  - {fileID: 8300000, guid: 7d69da0f905e4ca42b9bb677e75e6826, type: 3}
+  - {fileID: 8300000, guid: e3272d5761c4aaf40b4a2498e2917ce2, type: 3}
+  - {fileID: 8300000, guid: 5f47fee1548aaae478b970ec970029a9, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 8c1bbef159775504aa722727f5ec7955, type: 3}
   restartFrom: 0
 --- !u!4 &514626085
 Transform:
@@ -11623,10 +11763,11 @@ MonoBehaviour:
   br: {x: -48.190613, y: 1.8498619}
   bl: {x: -49.958256, y: 1.8175938}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 408951256}
   g: 1.248682
   h: 1.248682
+  floorType: 0
 --- !u!60 &651377088
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11992,10 +12133,11 @@ MonoBehaviour:
   br: {x: -48.272278, y: 2.197073}
   bl: {x: -49.921604, y: 2.219998}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 651377087}
   g: 1.248682
   h: 0
+  floorType: 3
 --- !u!1 &667371526
 GameObject:
   m_ObjectHideFlags: 0
@@ -12411,10 +12553,11 @@ MonoBehaviour:
   br: {x: -39.730785, y: -1.6820836}
   bl: {x: -45.965168, y: -1.8321271}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!60 &692612044
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14158,6 +14301,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 0
+  floorType: 6
 --- !u!60 &772980592
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14241,10 +14385,11 @@ MonoBehaviour:
   br: {x: -48.77809, y: -1.5461612}
   bl: {x: -52.11546, y: -1.593822}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!60 &782331638
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14502,6 +14647,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 0
+  floorType: 6
 --- !u!60 &807804527
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14883,10 +15029,11 @@ MonoBehaviour:
   br: {x: -56.649525, y: -1.6440268}
   bl: {x: -67.612175, y: -1.7070096}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!60 &838222992
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -15780,6 +15927,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 0
 --- !u!60 &920906687
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -16051,6 +16199,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 0
+  floorType: 1
 --- !u!60 &926807403
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -16271,6 +16420,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 0
+  floorType: 6
 --- !u!60 &941268146
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -17434,12 +17584,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allObjects: {fileID: 1966254326}
-  Sounds:
-  - {fileID: 8300000, guid: 3714f7b8290317d44ada3a1ce06280b5, type: 3}
-  - {fileID: 8300000, guid: d1f6efd23f1335d4aa362b976c94295b, type: 3}
-  - {fileID: 8300000, guid: d1f6efd23f1335d4aa362b976c94295b, type: 3}
-  - {fileID: 8300000, guid: d1f6efd23f1335d4aa362b976c94295b, type: 3}
-  - {fileID: 8300000, guid: d1f6efd23f1335d4aa362b976c94295b, type: 3}
   pathLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -18568,6 +18712,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 0
 --- !u!60 &1064671176
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -20823,6 +20968,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 4
 --- !u!60 &1145287373
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -21067,6 +21213,7 @@ MonoBehaviour:
   prev: {fileID: 485679110}
   g: 10.511743
   h: 10.511743
+  floorType: 4
 --- !u!60 &1153819201
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -22992,6 +23139,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 4
 --- !u!60 &1206721587
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -25494,10 +25642,11 @@ MonoBehaviour:
   br: {x: -67.35606, y: 0.6844126}
   bl: {x: -69.118965, y: 0.68441296}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!1 &1299292970
 GameObject:
   m_ObjectHideFlags: 0
@@ -26365,6 +26514,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 0
 --- !u!60 &1342212847
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -27032,6 +27182,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 0
+  floorType: 0
 --- !u!60 &1372057459
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -27384,6 +27535,7 @@ MonoBehaviour:
   prev: {fileID: 2099079231}
   g: 26.745144
   h: 7.59853
+  floorType: 4
 --- !u!60 &1385697416
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -27592,6 +27744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9971c9f64f33874a8fc34bad8244864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1395314327}
   blocks:
   - {fileID: 31279963}
   - {fileID: 1188035083}
@@ -27639,7 +27792,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395314323}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -27879,10 +28032,11 @@ MonoBehaviour:
   br: {x: -22.045013, y: -1.8836086}
   bl: {x: -39.730785, y: -1.6820836}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!60 &1402525807
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -28458,6 +28612,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 0
+  floorType: 6
 --- !u!60 &1446430736
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -28790,6 +28945,7 @@ MonoBehaviour:
   prev: {fileID: 140882515}
   g: 30.231117
   h: 0
+  floorType: 4
 --- !u!60 &1478098783
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -32141,10 +32297,11 @@ MonoBehaviour:
   br: {x: -54.727913, y: -1.7699919}
   bl: {x: -56.649525, y: -1.6440268}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!60 &1633079210
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -32484,6 +32641,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 4
 --- !u!60 &1665029937
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -34247,6 +34405,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 4
 --- !u!60 &1743800347
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -34573,7 +34732,7 @@ MonoBehaviour:
   - {fileID: 239323579}
   - {fileID: 1291430246}
   - {fileID: 662817860}
-  ShowSubNodes: 1
+  ShowSubNodes: 0
   DoAStar: 0
   start: {x: -51.217037, y: 2.1030798}
   end: {x: -48.941757, y: 2.522378}
@@ -35668,6 +35827,7 @@ MonoBehaviour:
   prev: {fileID: 1385697415}
   g: 39.665276
   h: 12.920134
+  floorType: 4
 --- !u!60 &1794099807
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -37190,10 +37350,11 @@ MonoBehaviour:
   br: {x: -67.612175, y: -1.7070096}
   bl: {x: -69.628296, y: -1.8329751}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!60 &1847299536
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -38585,6 +38746,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 0
+  floorType: 6
 --- !u!60 &1922048005
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -40685,10 +40847,11 @@ MonoBehaviour:
   br: {x: -52.11546, y: -1.593822}
   bl: {x: -54.727913, y: -1.7699919}
   parent: {fileID: 1756797380}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
+  floorType: 2
 --- !u!60 &2027029631
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -41444,6 +41607,7 @@ MonoBehaviour:
   prev: {fileID: 1153819200}
   g: 19.146614
   h: 8.634872
+  floorType: 4
 --- !u!60 &2099079232
 PolygonCollider2D:
   m_ObjectHideFlags: 0

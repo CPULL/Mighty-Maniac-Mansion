@@ -8,7 +8,6 @@ using SimpleJSON;
 public class Controller : MonoBehaviour {
   Camera cam;
   public AllObjects allObjects;
-  public AudioClip[] Sounds;
   public LayerMask pathLayer;
   public UnityEngine.UI.Image BlackFade;
   public Transform PickedItems;
@@ -498,6 +497,7 @@ public class Controller : MonoBehaviour {
               a.SetActor(val["actor"].Value);
               a.SetDir(val["dir"].Value);
               a.SetSound(val["snd"].Value);
+              Debug.Log(a.sound);
             }
 
             else if (a.type == ActionType.Open) {
@@ -723,7 +723,8 @@ public class Controller : MonoBehaviour {
       case ActionType.Sound: {
         Actor a = GetActor(currentAction.action.actor);
         if (a != null) a.SetDirection(currentAction.action.dir);
-        currentActor.PlaySound(Sounds[(int)currentAction.action.sound]);
+
+        Sounds.Play(currentAction.action.sound, currentActor.transform.position);
         currentAction.Play();
       }
       break;

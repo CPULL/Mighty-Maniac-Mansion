@@ -3,11 +3,11 @@
 	"id":"doorbell",
 	"conditions":[],
 	"actions":[
+		{ "type":"Sound", "actor":"Ed", "dir":"R", "snd":"doorbell", "wait":.25 },
 		{ "type":"FadeIn", "wait":.5 },
 		{ "type":"ShowRoom", "room":"EdRoom", "pos":[-49,40] },
 		{ "type":"Teleport", "room":"EdRoom", "actor":"Ed", "pos":[-52.5,38], "dir":"F" },
 		{ "type":"FadeOut", "wait":.5 },
-		{ "type":"Sound", "actor":"Ed", "dir":"R", "snd":"doorbell", "wait":2 },
 		{ "type":"Speak", "actor":"Ed", "msg":"The doorbell.\nMaybe it is the package\nI was waiting for.", "dir":"F" },
 		{ "type":"Expression", "actor":"Ed", "expr":"Happy", "dir":"F", "wait":0.5 },
 		{ "type":"Move", "actor":"Ed", "pos":[-47.25,39.3], "dir":"B" },

@@ -13,6 +13,7 @@ public class PathNode : MonoBehaviour {
   public PathNode prev;
   public float g;
   public float h;
+  public FloorType floorType;
 
   void OnDrawGizmos() {
     if (!showMeshLocal) return;

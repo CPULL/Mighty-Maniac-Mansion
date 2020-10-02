@@ -20,6 +20,7 @@ public class PathNodeEditor : Editor {
     t.isStair = EditorGUILayout.Toggle("Stairs", t.isStair);
     EditorGUIUtility.labelWidth = 90;
     t.showMeshLocal = EditorGUILayout.Toggle("Show mesh", t.showMeshLocal);
+    t.floorType = (FloorType)EditorGUILayout.EnumPopup("Floor Type", t.floorType);
     EditorGUILayout.EndHorizontal();
 
     EditorGUIUtility.labelWidth = 40;

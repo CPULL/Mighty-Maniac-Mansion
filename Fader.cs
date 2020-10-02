@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Fader : MonoBehaviour {
   static Fader f;
+  public Canvas canvas;
   public RawImage[] blocks;
   Color32 Transparent;
   Color32 Semi;
@@ -22,6 +23,7 @@ public class Fader : MonoBehaviour {
     f.StartCoroutine(f.FadeInCR());
   }
   IEnumerator FadeInCR() {
+    canvas.enabled = true;
     for (int i = 0; i <= blocks.Length; i++) {
       int a = i;
       int b = i - 1;
@@ -44,6 +46,6 @@ public class Fader : MonoBehaviour {
       if (b >= 0) blocks[b].color = f.Transparent;
       yield return null;
     }
-
+    canvas.enabled = false;
   }
 }
