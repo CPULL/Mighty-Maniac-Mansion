@@ -1,12 +1,11 @@
 === Mighty Maniac Mansion ===
 
 
-Add "terrain type" in paths, to change the sounds of walking
-Improved sliders for walk and text. We have to do the same for volume (but it will be harder)
-(0)Disabled, (1)25, (2)50, (3)75, (4)80, (5)90, (6)100, (7)110, (8)125, (9)150, (10)200, (11)300, (12)400
-
 * TODO ************************************************************************************************************
 
+Do kitchen
+Oven with hamster
+Draw maps
 
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 
@@ -22,6 +21,7 @@ FrontDoor:
 
 
 * BUGS ************************************************************************************************************
+Fix wendy's pants. They are not filled (check bernard, dave, syd, ed)
 
 * CHARS ************************************************************************************************************
 
@@ -122,4 +122,9 @@ Ollie
 ! Improved the balloon positions
 ! Change "Walk" to "Read" to non-doors
 ! Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
+! Add "terrain type" in paths, to change the sounds of walking
+! Improved sliders for walk and text. We have to do the same for volume
+
+
+
 

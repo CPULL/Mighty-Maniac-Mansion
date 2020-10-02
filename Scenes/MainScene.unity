@@ -2816,6 +2816,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - {fileID: 8300000, guid: 3714f7b8290317d44ada3a1ce06280b5, type: 3}
+  StepSounds:
+  - {fileID: 0}
+  - {fileID: 8300000, guid: d1f6efd23f1335d4aa362b976c94295b, type: 3}
+  - {fileID: 8300000, guid: 7d69da0f905e4ca42b9bb677e75e6826, type: 3}
+  - {fileID: 8300000, guid: e3272d5761c4aaf40b4a2498e2917ce2, type: 3}
+  - {fileID: 8300000, guid: 5f47fee1548aaae478b970ec970029a9, type: 3}
+  - {fileID: 8300000, guid: 5f47fee1548aaae478b970ec970029a9, type: 3}
+  - {fileID: 8300000, guid: 8c1bbef159775504aa722727f5ec7955, type: 3}
+  - {fileID: 0}
 --- !u!82 &175876452
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9239,14 +9248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb4e1f6660837a449d3d545161666cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepSounds:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: d1f6efd23f1335d4aa362b976c94295b, type: 3}
-  - {fileID: 8300000, guid: 7d69da0f905e4ca42b9bb677e75e6826, type: 3}
-  - {fileID: 8300000, guid: e3272d5761c4aaf40b4a2498e2917ce2, type: 3}
-  - {fileID: 8300000, guid: 5f47fee1548aaae478b970ec970029a9, type: 3}
-  - {fileID: 0}
-  - {fileID: 8300000, guid: 8c1bbef159775504aa722727f5ec7955, type: 3}
   restartFrom: 0
 --- !u!4 &514626085
 Transform:
@@ -22774,7 +22775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192351237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1347792467}
@@ -23281,7 +23282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218445516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1347792467}

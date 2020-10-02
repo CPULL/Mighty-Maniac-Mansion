@@ -2,6 +2,7 @@
 
 public class Sounds : MonoBehaviour {
   public AudioClip[] sounds;
+  public AudioClip[] StepSounds;
   AudioSource source;
 
   private void Awake() {
@@ -35,4 +36,19 @@ public class Sounds : MonoBehaviour {
     GD.s.source.Stop();
   }
 
+  public static AudioClip GetStepSound(FloorType floor) {
+    int num = (int)floor;
+    if (num < 0 || num >= GD.s.StepSounds.Length) return null;
+    return GD.s.StepSounds[num];
+  }
+
+
 }
+
+/// <summary>
+/// Used to list all possible sounds and musics
+/// </summary>
+public enum Audios { Doorbell = 0 };
+
+
+

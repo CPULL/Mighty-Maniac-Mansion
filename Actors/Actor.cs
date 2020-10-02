@@ -26,6 +26,7 @@ public class Actor : MonoBehaviour {
   List<Parcour> parcour;
   [TextArea(3, 12)] public string Description;
   FloorType floor = FloorType.None;
+  FloorType prevFloor = FloorType.None;
 
   private void Awake() {
     anim = GetComponent<Animator>();
@@ -158,13 +159,22 @@ public class Actor : MonoBehaviour {
     parcour = p.parent.PathFind(transform.position, dest);
     if (parcour == null) {
       destination.pos = dest;
+      prevFloor = FloorType.None;
       floor = p.floorType;
+      audios.clip = Sounds.GetStepSound(floor);
+      audios.Play();
     }
     else {
       destination.pos = parcour[1].pos;
       destination.node = parcour[1].node;
       floor = parcour[1].node.floorType;
       parcour.RemoveRange(0, 2);
+
+      if (floor != prevFloor || !audios.isPlaying) {
+        prevFloor = floor;
+        audios.clip = Sounds.GetStepSound(floor);
+        audios.Play();
+      }
     }
     destination.pos.z = (destination.pos.y - currentRoom.CameraGround) / 10f;
 
@@ -203,7 +213,6 @@ public class Actor : MonoBehaviour {
     }
 
     if (!audios.isPlaying) {
-      audios.clip = GD.GetStepSound(floor); // FIXME understand where are we walking. Probably from the Path
       audios.Play();
     }
     anim.speed = Controller.walkSpeed * .8f;
@@ -233,11 +242,17 @@ public class Actor : MonoBehaviour {
         walking = false;
         callBack?.Invoke(this, callBackItem);
         callBack = null;
+        audios.Stop();
+        prevFloor = FloorType.None;
         return;
       }
       destination.pos = parcour[0].pos;
       destination.node = parcour[0].node;
       floor = parcour[0].node.floorType;
+      if (floor != prevFloor) {
+        audios.clip = Sounds.GetStepSound(floor);
+        audios.Play();
+      }
       parcour.RemoveAt(0);
       dir = CalculateDirection(destination.pos);
       anim.Play("Walk" + dir);

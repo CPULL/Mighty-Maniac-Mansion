@@ -107,21 +107,33 @@ public class Options : MonoBehaviour {
   }
 
   public void ChangeMainVolume() {
-    float vol = 40f * MainVolume.value - 40;
+    float val = MainVolume.value;
+    if (Mathf.Abs(val - 1) < .05f) {
+      MainVolume.SetValueWithoutNotify(1);
+      val = 1;
+    }
+
+    float vol = 40f * val - 40;
     mixerMusic.SetFloat("MasterVolume", vol);
-    MainVal.text = (int)(MainVolume.value * 100) + "%";
+    MainVal.text = (int)(val * 100) + "%";
   }
 
   public void ChangeMusicVolume() {
     float vol = 10 * Mathf.Log(1 + MusicVolume.value * .74f) * 14.425f - 80;
     mixerMusic.SetFloat("MusicVolume", vol);
-    MusicVal.text = (int)(MusicVolume.value * 100) + "%";
+    if (MusicVolume.value < .01f)
+      MusicVal.text = "<i>disabled</i>";
+    else
+      MusicVal.text = (int)(MusicVolume.value * 100) + "%";
   }
 
   public void ChangeSoundVolume() {
     float vol = 10 * Mathf.Log(1 + SoundVolume.value * .74f) * 14.425f - 80;
     mixerMusic.SetFloat("SoundsVolume", vol);
-    SoundVal.text = (int)(SoundVolume.value * 100) + "%";
+    if (SoundVolume.value < .01f)
+      SoundVal.text = "<i>disabled</i>";
+    else
+      SoundVal.text = (int)(SoundVolume.value * 100) + "%";
   }
 
   public void ChangeMaxWalkSpeed() {

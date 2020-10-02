@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class GD : MonoBehaviour {
   public static GD gs;
@@ -9,7 +8,6 @@ public class GD : MonoBehaviour {
   public static Chars actor2;
   public static Chars actor3;
   public static Chars kidnapped;
-  public AudioClip[] StepSounds;
 
   void Awake() {
     if (gs != null) {
@@ -47,12 +45,6 @@ public class GD : MonoBehaviour {
   public static void Restart(GD.RestartFrom from) {
     gs.restartFrom = from;
     UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-  }
-
-  public static AudioClip GetStepSound(FloorType floor) {
-    int num = (int)floor;
-    if (num < 0 || num >= gs.StepSounds.Length) return null;
-    return gs.StepSounds[num];
   }
 
   public static void ReadyToStart() {

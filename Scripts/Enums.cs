@@ -109,12 +109,6 @@ public enum Running { NotStarted, Running, Completed };
 public enum TransitionType { ScrollL, ScrollR, ScrollU, ScrollD, ZoomIn, ZoomOut };
 
 
-/// <summary>
-/// Used to list all possible sounds and musics
-/// </summary>
-public enum Audios { Doorbell = 0 };
-
-
 
 
 
