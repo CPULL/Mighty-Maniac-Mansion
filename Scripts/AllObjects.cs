@@ -67,7 +67,9 @@ public enum ItemEnum {
   BasementPassage,
   TedGrave,
   FrontDoor,
-
+  Flashlight,
+  Cheese,
+  Batteries
 
 }
 

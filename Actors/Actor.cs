@@ -230,8 +230,8 @@ public class Actor : MonoBehaviour {
       scaley *= currentRoom.scalePerc;
       transform.localScale = new Vector3(scaley, scaley, 1);
       int zpos = (int)(scaley * 10000);
-      Face.sortingOrder = zpos+2;
-      Arms.sortingOrder = zpos+1;
+      Face.sortingOrder = zpos + 1;
+      Arms.sortingOrder = zpos + 2;
       Legs.sortingOrder = zpos;
     }
 
@@ -269,8 +269,8 @@ public class Actor : MonoBehaviour {
         scaley *= currentRoom.scalePerc;
         transform.localScale = new Vector3(scaley, scaley, 1);
         int zpos = (int)(scaley * 10000);
-        Face.sortingOrder = zpos + 2;
-        Arms.sortingOrder = zpos + 1;
+        Face.sortingOrder = zpos + 1;
+        Arms.sortingOrder = zpos + 2;
         Legs.sortingOrder = zpos;
       }
     }
@@ -279,8 +279,8 @@ public class Actor : MonoBehaviour {
       scaley *= currentRoom.scalePerc;
       transform.localScale = new Vector3(scaley, scaley, 1);
       int zpos = (int)(scaley * 10000);
-      Face.sortingOrder = zpos + 2;
-      Arms.sortingOrder = zpos + 1;
+      Face.sortingOrder = zpos + 1;
+      Arms.sortingOrder = zpos + 2;
       Legs.sortingOrder = zpos;
     }
     pos.y = ty;

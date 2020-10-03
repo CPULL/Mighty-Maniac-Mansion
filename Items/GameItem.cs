@@ -35,9 +35,10 @@ public class GameItem : MonoBehaviour {
     foreach (ActionAndCondition ac in actions) {
       Controller.KnowAction(ac.Action);
       if (ac.Condition.IsValid(actor, secondary, item, when)) {
-        if (item == null)
-          item = GD.c.allObjects.FindItemByID(ac.Action.item);
-        Controller.AddAction(ac.Action, actor, secondary, item);
+        Item theItem = item;
+        if (theItem == null)
+          theItem = GD.c.allObjects.FindItemByID(ac.Action.item);
+        Controller.AddAction(ac.Action, actor, secondary, theItem);
         atLeastOne = true;
       }
     }

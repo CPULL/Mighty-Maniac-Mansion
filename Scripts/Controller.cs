@@ -489,7 +489,6 @@ public class Controller : MonoBehaviour {
               a.SetActor(val["actor"].Value);
               a.SetDir(val["dir"].Value);
               a.SetSound(val["snd"].Value);
-              Debug.Log(a.sound);
             }
 
             else if (a.type == ActionType.Open) {
@@ -669,7 +668,10 @@ public class Controller : MonoBehaviour {
           currentAction.Complete();
           return;
         }
-        item.gameObject.SetActive(currentAction.action.change == ChangeWay.EnOpenLock);
+        if (currentAction.action.change == ChangeWay.SwapSwitch)
+          item.gameObject.SetActive(!item.gameObject.activeSelf);
+        else
+          item.gameObject.SetActive(currentAction.action.change == ChangeWay.EnOpenLock);
         currentAction.Complete();
       }
       break;
