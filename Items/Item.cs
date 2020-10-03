@@ -205,6 +205,13 @@ public class Item : GameItem {
         door.Audio.Play();
       }
     }
+    else {
+      Container c = this as Container;
+      if (c != null) {
+        foreach (Item item in c.items)
+          item.gameObject.SetActive(true);
+      }
+    }
   }
   private void SetAsOpenAuto() {
     bool sound = Usable != Tstatus.OpenableOpen && Usable != Tstatus.OpenableOpenAutolock;
@@ -217,6 +224,13 @@ public class Item : GameItem {
       if (sound && door.OpenSound != null && door.Audio != null) {
         door.Audio.clip = door.OpenSound;
         door.Audio.Play();
+      }
+    }
+    else {
+      Container c = this as Container;
+      if (c != null) {
+        foreach (Item item in c.items)
+          item.gameObject.SetActive(true);
       }
     }
   }
@@ -238,6 +252,13 @@ public class Item : GameItem {
         door.Audio.Play();
       }
     }
+    else {
+      Container c = this as Container;
+      if (c != null) {
+        foreach (Item item in c.items)
+          item.gameObject.SetActive(false);
+      }
+    }
   }
   private void SetAsClosedUnlockedAuto() {
     bool soundC = Usable == Tstatus.OpenableOpen || Usable == Tstatus.OpenableOpenAutolock;
@@ -255,6 +276,13 @@ public class Item : GameItem {
       else if (soundUl && door.UnlockSound != null && door.Audio != null) {
         door.Audio.clip = door.UnlockSound;
         door.Audio.Play();
+      }
+    }
+    else {
+      Container c = this as Container;
+      if (c != null) {
+        foreach (Item item in c.items)
+          item.gameObject.SetActive(false);
       }
     }
   }
@@ -276,6 +304,13 @@ public class Item : GameItem {
         door.Audio.Play();
       }
     }
+    else {
+      Container c = this as Container;
+      if (c != null) {
+        foreach (Item item in c.items)
+          item.gameObject.SetActive(false);
+      }
+    }
   }
   private void SetAsLockedAuto() {
     bool soundC = Usable == Tstatus.OpenableOpen || Usable == Tstatus.OpenableOpenAutolock;
@@ -293,6 +328,13 @@ public class Item : GameItem {
       else if (sound && door.LockSound != null && door.Audio != null) {
         door.Audio.clip = door.LockSound;
         door.Audio.Play();
+      }
+    }
+    else {
+      Container c = this as Container;
+      if (c != null) {
+        foreach (Item item in c.items)
+          item.gameObject.SetActive(false);
       }
     }
   }

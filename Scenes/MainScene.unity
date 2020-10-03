@@ -42384,8 +42384,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1973022116}
   - component: {fileID: 1973022118}
-  - component: {fileID: 1973022117}
   - component: {fileID: 1973022119}
+  - component: {fileID: 1973022117}
   m_Layer: 0
   m_Name: Refrigerator
   m_TagString: Untagged
@@ -42417,17 +42417,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1973022115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 637f299ffccc9954ca57a113a8a56e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Item: 0
-  Name: 
+  Name: Refrigerator
   owner: 0
   Usable: 4
   UsableWith: 0
   whatItDoesL: 1
   whatItDoesR: 0
-  Description: A not so good looking refrigerator.
+  Description: 
   openImage: {fileID: 2394075485129424509, guid: ed3f64b1e66ccc7498ab00e6caed45ae, type: 3}
   closeImage: {fileID: -2252083909272842676, guid: ed3f64b1e66ccc7498ab00e6caed45ae, type: 3}
   lockImage: {fileID: 0}
@@ -42437,7 +42437,7 @@ MonoBehaviour:
   dir: 2
   overColor:
     serializedVersion: 2
-    rgba: 4289724415
+    rgba: 4286708474
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -42451,52 +42451,16 @@ MonoBehaviour:
       action: 0
       when: 4
     Result: 
-  actions:
-  - Condition:
-      condition: 15
-      actor: 0
-      skill: 0
-      item: 14
-      num: 0
-      action: 0
-      when: 1
-    Action:
-      running: 0
-      type: 6
-      Repeatable: 1
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: 
-      expression: 0
-      sound: 0
-      dir: 0
-      delay: 0
-      item: 14
-      action: 0
-      change: 3
-  - Condition:
-      condition: 15
-      actor: 0
-      skill: 0
-      item: 15
-      num: 0
-      action: 0
-      when: 1
-    Action:
-      running: 0
-      type: 6
-      Repeatable: 1
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: 
-      expression: 0
-      sound: 0
-      dir: 0
-      delay: 0
-      item: 15
-      action: 0
-      change: 3
+  actions: []
   sr: {fileID: 0}
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
+  items:
+  - {fileID: 1211572500}
+  - {fileID: 758301048}
 --- !u!212 &1973022118
 SpriteRenderer:
   m_ObjectHideFlags: 0
