@@ -21,7 +21,6 @@ FrontDoor:
 
 
 * BUGS ************************************************************************************************************
-Fix wendy's pants. They are not filled (check bernard, dave, syd, ed)
 
 * CHARS ************************************************************************************************************
 
@@ -124,6 +123,7 @@ Ollie
 ! Add fade in/out as possible action (maybe automatic when stating a Cutscene?)
 ! Add "terrain type" in paths, to change the sounds of walking
 ! Improved sliders for walk and text. We have to do the same for volume
+! Fix wendy's pants. They are not filled (check bernard, dave, syd, ed)
 
 
 

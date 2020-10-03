@@ -1104,6 +1104,11 @@ public class Controller : MonoBehaviour {
     actor.transform.position = door.correspondingDoor.HotSpot;
     actor.currentRoom = currentRoom;
     actor.SetDirection(door.correspondingDoor.arrivalDirection);
+    RaycastHit2D hit = Physics2D.Raycast(door.correspondingDoor.HotSpot, cam.transform.forward, 10000, pathLayer);
+    if (hit.collider != null) {
+      PathNode p = hit.collider.GetComponent<PathNode>();
+      currentActor.SetScaleAndPosition(door.correspondingDoor.HotSpot, p);
+    }
     yield return null;
 
     // Disable actors not in current room

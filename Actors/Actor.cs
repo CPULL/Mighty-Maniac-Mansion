@@ -227,12 +227,11 @@ public class Actor : MonoBehaviour {
     if (ty > currentRoom.maxY) ty = currentRoom.maxY;
     float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
     if (!destination.node.isStair) {
-      scaley *= mainScale;
+      scaley *= currentRoom.scalePerc;
       transform.localScale = new Vector3(scaley, scaley, 1);
-
       int zpos = (int)(scaley * 10000);
-      Face.sortingOrder = zpos;
-      Arms.sortingOrder = zpos;
+      Face.sortingOrder = zpos+2;
+      Arms.sortingOrder = zpos+1;
       Legs.sortingOrder = zpos;
     }
 
@@ -267,14 +266,22 @@ public class Actor : MonoBehaviour {
     if (p == null) {
       if (destination.node == null || !destination.node.isStair) {
         float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
-        scaley *= mainScale;
+        scaley *= currentRoom.scalePerc;
         transform.localScale = new Vector3(scaley, scaley, 1);
+        int zpos = (int)(scaley * 10000);
+        Face.sortingOrder = zpos + 2;
+        Arms.sortingOrder = zpos + 1;
+        Legs.sortingOrder = zpos;
       }
     }
     else if (!p.isStair) {
       float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
-      scaley *= mainScale;
+      scaley *= currentRoom.scalePerc;
       transform.localScale = new Vector3(scaley, scaley, 1);
+      int zpos = (int)(scaley * 10000);
+      Face.sortingOrder = zpos + 2;
+      Arms.sortingOrder = zpos + 1;
+      Legs.sortingOrder = zpos;
     }
     pos.y = ty;
     transform.position = pos;
