@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Item : GameItem {
   [HideInInspector] public SpriteRenderer sr;
@@ -54,8 +53,6 @@ public class Item : GameItem {
     if (!other.VerifyMainCondition(actor, null, this, When.Use)) return other.condition.BadResult;
 
     // Case of two items
-
-
     string res = null;
     foreach (ActionAndCondition ac in actions) {
       if (ac.Condition.VerifyCombinedItems(actor, this, other, When.Use)) {
@@ -241,7 +238,8 @@ public class Item : GameItem {
       Container c = this as Container;
       if (c != null) {
         foreach (Item item in c.items)
-          item.gameObject.SetActive(true);
+          if (item.owner == Chars.None)
+            item.gameObject.SetActive(true);
       }
     }
   }
@@ -262,7 +260,8 @@ public class Item : GameItem {
       Container c = this as Container;
       if (c != null) {
         foreach (Item item in c.items)
-          item.gameObject.SetActive(true);
+          if (item.owner == Chars.None)
+            item.gameObject.SetActive(true);
       }
     }
   }
@@ -288,7 +287,8 @@ public class Item : GameItem {
       Container c = this as Container;
       if (c != null) {
         foreach (Item item in c.items)
-          item.gameObject.SetActive(false);
+          if (item.owner == Chars.None)
+            item.gameObject.SetActive(false);
       }
     }
   }
@@ -314,7 +314,8 @@ public class Item : GameItem {
       Container c = this as Container;
       if (c != null) {
         foreach (Item item in c.items)
-          item.gameObject.SetActive(false);
+          if (item.owner == Chars.None)
+            item.gameObject.SetActive(false);
       }
     }
   }
@@ -340,7 +341,8 @@ public class Item : GameItem {
       Container c = this as Container;
       if (c != null) {
         foreach (Item item in c.items)
-          item.gameObject.SetActive(false);
+          if (item.owner == Chars.None)
+            item.gameObject.SetActive(false);
       }
     }
   }
@@ -366,7 +368,8 @@ public class Item : GameItem {
       Container c = this as Container;
       if (c != null) {
         foreach (Item item in c.items)
-          item.gameObject.SetActive(false);
+          if (item.owner == Chars.None)
+            item.gameObject.SetActive(false);
       }
     }
   }

@@ -306,7 +306,10 @@ public class Controller : MonoBehaviour {
           walkDelay = 0;
         }
       }
-      else { /* rmb - do nothing */
+      else { /* rmb - do nothing but unselect used items */
+        forcedCursor = CursorTypes.None;
+        oldCursor = null;
+        usedItem = null;
       }
     }
 

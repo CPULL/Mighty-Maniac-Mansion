@@ -10,13 +10,6 @@ public class ActionAndCondition {
 }
 
 [System.Serializable]
-public class JustCondition {
-  [SerializeField] public string ConditionResult;
-  [SerializeField] public GameCondition Condition;
-}
-
-
-[System.Serializable]
 public class ContextualizedAction {
   [SerializeField] public GameAction action;
   [SerializeField] public Actor performer;
