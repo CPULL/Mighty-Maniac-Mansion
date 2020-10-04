@@ -26,35 +26,35 @@ public class GameItem : MonoBehaviour {
   public Color32 overColor = new Color32(255, 255, 0, 255);
   public Color32 normalColor = new Color32(255, 255, 255, 255);
 
-  public JustCondition condition;
+  public GameCondition condition;
   public List<ActionAndCondition> actions;
 
-  internal bool PlayActions(Actor actor, Actor secondary, When when, Item item = null) {
-    if (actions == null || actions.Count == 0) return false;
-    bool atLeastOne = false;
+  internal string PlayActions(Actor actor, Actor secondary, When when, Item item = null) {
+    if (actions == null || actions.Count == 0) return null;
+
+    string badResult = null;
+    string goodResult = null;
+
     foreach (ActionAndCondition ac in actions) {
       Controller.KnowAction(ac.Action);
-      if (ac.Condition.IsValid(actor, secondary, item, when)) {
+      if (ac.Condition.IsValid(actor, secondary, item, this, when)) {
         Item theItem = item;
-        if (theItem == null)
+        if (theItem == null && ac.Action.item != ItemEnum.Undefined)
           theItem = GD.c.allObjects.FindItemByID(ac.Action.item);
         Controller.AddAction(ac.Action, actor, secondary, theItem);
-        atLeastOne = true;
+        if (ac.Action.GoodResult != null) goodResult = ac.Action.GoodResult;
+      }
+      else {
+        if (badResult == null) badResult = ac.Condition.BadResult;
       }
     }
-    return atLeastOne;
+    return goodResult != null ? goodResult : badResult;
   }
 
-  public bool VerifyMainCondition(Actor performer, Actor secondary, When when) {
-    return condition.Condition.IsValid(performer, secondary, this, when);
+  public bool VerifyMainCondition(Actor performer, Actor secondary, GameItem otherItem, When when) {
+    return condition.IsValid(performer, secondary, this, otherItem, when);
   }
 
-  internal bool CheckCombinedActions(Actor actor, Item other) {
-    foreach(ActionAndCondition ac in actions) {
-      return ac.Condition.VerifyCombinedItems(actor, this, other, When.Use);
-    }
-    return false;
-  }
 }
 
 

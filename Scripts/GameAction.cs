@@ -18,6 +18,7 @@ public class GameAction {
   public ItemEnum item;
   public ActionEnum action;
   public ChangeWay change = ChangeWay.Ignore;
+  public string GoodResult;
 
   public GameAction(string stype) {
     string t = stype.ToLowerInvariant();

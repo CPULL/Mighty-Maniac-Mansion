@@ -165,8 +165,11 @@ public class Controller : MonoBehaviour {
         }
         else { /* rmb - read */
           if (overInventoryItem.HasActions(When.Use)) {
-            if (overInventoryItem.PlayActions(currentActor, null, When.Use))
+            string res = overInventoryItem.PlayActions(currentActor, null, When.Use);
+            if (string.IsNullOrEmpty(res))
               currentActor.Say(overInventoryItem.Description); // By default read what is written in the description of the object
+            else
+              currentActor.Say(res);
           }
           else {
             string msg = overInventoryItem.Description.Replace("%open", overInventoryItem.GetOpenStatus());
@@ -184,7 +187,7 @@ public class Controller : MonoBehaviour {
         }
         else { /* rmb - use immediately */
           string res = overInventoryItem.Use(currentActor);
-          if (res != null) currentActor.Say(res);
+          if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
         }
 
       }
@@ -196,34 +199,15 @@ public class Controller : MonoBehaviour {
           forcedCursor = CursorTypes.Item;
           Cursor.SetCursor(usedItem.cursorImage, new Vector2(usedItem.cursorImage.width / 2, usedItem.cursorImage.height / 2), CursorMode.Auto);
         }
-        else { /* rmb - Use together FIXME */
+        else { /* rmb - Use together */
           // Can we use the two items together?
-          if (usedItem.CheckCombinedActions(currentActor, overInventoryItem)) { // Yes
-            if (!usedItem.PlayActions(currentActor, null, When.Use, overInventoryItem))
-              currentActor.Say("It does not work");
-            else {
-              forcedCursor = CursorTypes.None;
-              oldCursor = null;
-              usedItem = null;
-              Inventory.SetActive(false);
-              return;
-            }
-          }
-          else if (overInventoryItem.CheckCombinedActions(currentActor, usedItem)) { // Yes
-            if (!overInventoryItem.PlayActions(currentActor, null, When.Use, usedItem))
-              currentActor.Say("It does not work");
-            else {
-              forcedCursor = CursorTypes.None;
-              oldCursor = null;
-              usedItem = null;
-              Inventory.SetActive(false);
-              return;
-            }
-
-          }
-          else {
-            currentActor.Say("It does not work...");
-          }
+          string res = usedItem.UseTogether(currentActor, overInventoryItem);
+          if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
+          forcedCursor = CursorTypes.None;
+          oldCursor = null;
+          usedItem = null;
+          Inventory.SetActive(false);
+          return;
         }
       }
 
@@ -237,8 +221,11 @@ public class Controller : MonoBehaviour {
             new System.Action<Actor, Item>((actor, item) => {
               actor.SetDirection(item.dir);
               if (item.HasActions(When.Use)) {
-                if (item.PlayActions(currentActor, null, When.Use))
+                string res = item.PlayActions(currentActor, null, When.Use);
+                if (string.IsNullOrEmpty(res))
                   actor.Say(item.Description); // By default read what is written in the description of the object
+                else
+                  actor.Say(res);
               }
               else {
                 string msg = item.Description.Replace("%open", item.GetOpenStatus());
@@ -271,7 +258,7 @@ public class Controller : MonoBehaviour {
             new System.Action<Actor, Item>((actor, item) => {
               actor.SetDirection(item.dir);
               string res = item.Use(currentActor);
-              if (res != null) actor.Say(res);
+              if (!string.IsNullOrEmpty(res)) actor.Say(res);
             }));
         }
 
@@ -299,32 +286,13 @@ public class Controller : MonoBehaviour {
         }
         else { /* rmb - Use together */
           // Can we use the two items together?
-          if (usedItem.CheckCombinedActions(currentActor, overItem)) { // Yes
-            if (!usedItem.PlayActions(currentActor, null, When.Use, overItem))
-              currentActor.Say("It does not work");
-            else {
-              forcedCursor = CursorTypes.None;
-              oldCursor = null;
-              usedItem = null;
-              Inventory.SetActive(false);
-              return;
-            }
-          }
-          else if (overItem.CheckCombinedActions(currentActor, usedItem)) { // Yes
-            if (!overItem.PlayActions(currentActor, null, When.Use, usedItem))
-              currentActor.Say("It does not work");
-            else {
-              forcedCursor = CursorTypes.None;
-              oldCursor = null;
-              usedItem = null;
-              Inventory.SetActive(false);
-              return;
-            }
-
-          }
-          else {
-            currentActor.Say("It does not work...");
-          }
+          string res = usedItem.UseTogether(currentActor, overItem);
+          if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
+          forcedCursor = CursorTypes.None;
+          oldCursor = null;
+          usedItem = null;
+          Inventory.SetActive(false);
+          return;
         }
       }
 

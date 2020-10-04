@@ -11,19 +11,20 @@ public class GameCondition {
   public int num;
   public ActionEnum action;
   public When when = When.Always;
+  public string BadResult;
 
   internal bool VerifyCombinedItems(Actor performer, GameItem obj1, GameItem obj2, When when) {
-    if (condition == Condition.None) return true;
+    if (condition == Condition.None || obj1 == null || obj2 == null) return true;
     if (condition != Condition.ItemCouple) return false;
     if (when != this.when && this.when != When.Always) return false;
 
-    if (actor != Chars.None && actor != performer.id) return false;
-    if (skill != Skill.None && performer.HasSkill(skill) != null) return false;
+    if (actor != Chars.None && performer != null && actor != performer.id) return false;
+    if (skill != Skill.None && performer != null && performer.HasSkill(skill) != null) return false;
 
     return (obj1.Item == item && obj2.Item == otherItem) || (obj2.Item == item && obj1.Item == otherItem);
   }
 
-  internal bool IsValid(Actor performer, Actor secondary, GameItem obj, When when) {
+  internal bool IsValid(Actor performer, Actor secondary, GameItem obj1, GameItem obj2, When when) {
     if (condition == Condition.None) return true;
     if (when != this.when && this.when != When.Always) return false;
 
@@ -36,20 +37,20 @@ public class GameCondition {
       case Condition.ActorHasSkill: return a != null && a.HasSkill(skill) == null;
       case Condition.HasItem: return a != null && a.HasItem(item);
       case Condition.DoesNotHaveItem: return a == null || !a.HasItem(item);
-      case Condition.ItemIsOpen: return obj.Usable == Tstatus.OpenableOpen || obj.Usable == Tstatus.OpenableOpenAutolock;
-      case Condition.ItemIsClosed: return obj.Usable == Tstatus.OpenableClosed || obj.Usable == Tstatus.OpenableClosedAutolock || obj.Usable == Tstatus.OpenableLocked || obj.Usable == Tstatus.OpenableLockedAutolock;
-      case Condition.ItemIsLocked: return obj.Usable == Tstatus.OpenableLocked || obj.Usable == Tstatus.OpenableLockedAutolock;
-      case Condition.ItemIsUnlocked: return obj.Usable == Tstatus.OpenableOpen || obj.Usable == Tstatus.OpenableOpenAutolock || obj.Usable == Tstatus.OpenableClosed || obj.Usable == Tstatus.OpenableClosedAutolock;
+      case Condition.ItemIsOpen: return obj1.Usable == Tstatus.OpenableOpen || obj1.Usable == Tstatus.OpenableOpenAutolock;
+      case Condition.ItemIsClosed: return obj1.Usable == Tstatus.OpenableClosed || obj1.Usable == Tstatus.OpenableClosedAutolock || obj1.Usable == Tstatus.OpenableLocked || obj1.Usable == Tstatus.OpenableLockedAutolock;
+      case Condition.ItemIsLocked: return obj1.Usable == Tstatus.OpenableLocked || obj1.Usable == Tstatus.OpenableLockedAutolock;
+      case Condition.ItemIsUnlocked: return obj1.Usable == Tstatus.OpenableOpen || obj1.Usable == Tstatus.OpenableOpenAutolock || obj1.Usable == Tstatus.OpenableClosed || obj1.Usable == Tstatus.OpenableClosedAutolock;
       case Condition.ItemIsCollected: return Controller.IsItemCollected(item);
       case Condition.ItemIsNotCollected: return !Controller.IsItemCollected(item);
       case Condition.ActionCompleted: return Controller.ActionStatus(action) == Running.Completed;
       case Condition.ActionNotStarted: return Controller.ActionStatus(action) == Running.NotStarted;
       case Condition.ActionRunning: return Controller.ActionStatus(action) == Running.Running;
-      case Condition.WithItem: return item == obj.Item;
+      case Condition.WithItem: return item == obj1.Item;
       case Condition.RecipientIs: return actor == secondary.id;
       case Condition.RecipientIsNot: return actor != secondary.id;
       case Condition.WhenIs: return when == this.when;
-      case Condition.ItemCouple: return when == this.when;
+      case Condition.ItemCouple: return VerifyCombinedItems(performer, obj1, obj2, when);
     }
     return false;
   }

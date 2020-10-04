@@ -803,16 +803,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 4
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 428433903}
@@ -4068,16 +4067,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1158860359}
@@ -5251,16 +5249,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 0}
@@ -7484,16 +7481,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 6
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 4
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions:
   - Condition:
       condition: 19
@@ -7504,6 +7500,7 @@ MonoBehaviour:
       num: 4
       action: 0
       when: 0
+      BadResult: 
     Action:
       running: 0
       type: 6
@@ -7518,15 +7515,17 @@ MonoBehaviour:
       item: 9
       action: 0
       change: 1
+      GoodResult: 
   - Condition:
       condition: 17
-      actor: 29
+      actor: 28
       skill: 1
       item: 4
       otherItem: 0
       num: 4
       action: 0
       when: 2
+      BadResult: 
     Action:
       running: 0
       type: 11
@@ -7543,15 +7542,17 @@ MonoBehaviour:
       item: 9
       action: 0
       change: 1
+      GoodResult: 
   - Condition:
       condition: 18
-      actor: 29
+      actor: 28
       skill: 1
       item: 4
       otherItem: 0
       num: 4
       action: 0
       when: 2
+      BadResult: 
     Action:
       running: 0
       type: 12
@@ -7566,6 +7567,7 @@ MonoBehaviour:
       item: 9
       action: 0
       change: 1
+      GoodResult: 
   sr: {fileID: 0}
 --- !u!65 &405510475
 BoxCollider:
@@ -8252,12 +8254,10 @@ Transform:
   m_Children:
   - {fileID: 196292426}
   - {fileID: 49037617}
-  - {fileID: 2065761450}
   - {fileID: 1973022116}
-  - {fileID: 1211572502}
-  - {fileID: 758301050}
-  - {fileID: 596676646}
   - {fileID: 1597450628}
+  - {fileID: 1855686019}
+  - {fileID: 596676646}
   m_Father: {fileID: 2059794975}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9069,16 +9069,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions:
   - Condition:
       condition: 0
@@ -9089,6 +9088,7 @@ MonoBehaviour:
       num: 0
       action: 0
       when: 0
+      BadResult: 
     Action:
       running: 0
       type: 9
@@ -9103,6 +9103,7 @@ MonoBehaviour:
       item: 0
       action: 2
       change: 0
+      GoodResult: 
   sr: {fileID: 0}
 --- !u!212 &456024917
 SpriteRenderer:
@@ -10011,16 +10012,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1158860359}
@@ -10661,16 +10661,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 436207615
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1432214312}
@@ -10918,16 +10917,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 436207615
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1117025435}
@@ -11793,7 +11791,7 @@ Transform:
   - {fileID: 161848527}
   - {fileID: 727737012}
   m_Father: {fileID: 428433901}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &596676647
 MonoBehaviour:
@@ -14034,16 +14032,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1117025435}
@@ -14757,16 +14754,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1158860359}
@@ -15267,17 +15263,41 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 15
+    otherItem: 13
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
+  actions:
+  - Condition:
+      condition: 20
       actor: 0
       skill: 0
-      item: 0
-      otherItem: 0
+      item: 13
+      otherItem: 15
       num: 0
       action: 0
-      when: 4
-    Result: 
-  actions: []
+      when: 0
+      BadResult: They do not fit
+    Action:
+      running: 0
+      type: 2
+      Repeatable: 1
+      actor: 1
+      pos: {x: 0, y: 0}
+      strValue: These battetries have no power.
+      expression: 0
+      sound: 0
+      dir: 4
+      delay: 1
+      item: 0
+      action: 0
+      change: 0
+      GoodResult: 
   sr: {fileID: 0}
 --- !u!212 &758301049
 SpriteRenderer:
@@ -15342,8 +15362,8 @@ Transform:
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children:
   - {fileID: 143211770}
-  m_Father: {fileID: 428433901}
-  m_RootOrder: 5
+  m_Father: {fileID: 1855686019}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &758301051
 BoxCollider2D:
@@ -21661,16 +21681,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 20
+    actor: 0
+    skill: 0
+    item: 5
+    otherItem: 12
+    num: 0
+    action: 0
+    when: 4
+    BadResult: Wrong key
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1117025435}
@@ -24227,16 +24246,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 4
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!61 &1182378099
@@ -25116,16 +25134,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 4
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!212 &1211572501
@@ -25191,8 +25208,8 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1044370356}
-  m_Father: {fileID: 428433901}
-  m_RootOrder: 4
+  m_Father: {fileID: 1855686019}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1211572503
 BoxCollider2D:
@@ -26470,16 +26487,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions:
   - Condition:
       condition: 20
@@ -26490,6 +26506,7 @@ MonoBehaviour:
       num: 0
       action: 0
       when: 1
+      BadResult: Not the right key
     Action:
       running: 0
       type: 7
@@ -26504,6 +26521,7 @@ MonoBehaviour:
       item: 12
       action: 0
       change: 2
+      GoodResult: It opens
   sr: {fileID: 0}
 --- !u!61 &1256842731
 BoxCollider2D:
@@ -27901,16 +27919,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!212 &1318194160
@@ -30444,16 +30461,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 4
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!1 &1432214309
@@ -31214,16 +31230,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions:
   - Condition:
       condition: 15
@@ -31234,6 +31249,7 @@ MonoBehaviour:
       num: 0
       action: 0
       when: 1
+      BadResult: 
     Action:
       running: 0
       type: 6
@@ -31248,6 +31264,7 @@ MonoBehaviour:
       item: 5
       action: 0
       change: 1
+      GoodResult: 
   sr: {fileID: 0}
 --- !u!212 &1486595614
 SpriteRenderer:
@@ -31487,16 +31504,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 436207615
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1158860359}
@@ -34219,7 +34235,7 @@ Transform:
   m_Children:
   - {fileID: 478893484}
   m_Father: {fileID: 428433901}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &1597450629
 PolygonCollider2D:
@@ -34284,16 +34300,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 4
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 428433903}
@@ -35588,16 +35603,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!61 &1684838715
@@ -38931,16 +38945,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions:
   - Condition:
       condition: 4
@@ -38951,6 +38964,7 @@ MonoBehaviour:
       num: 0
       action: 0
       when: 0
+      BadResult: 
     Action:
       running: 0
       type: 6
@@ -38965,6 +38979,7 @@ MonoBehaviour:
       item: 9
       action: 0
       change: 2
+      GoodResult: 
   - Condition:
       condition: 4
       actor: 1
@@ -38974,6 +38989,7 @@ MonoBehaviour:
       num: 0
       action: 0
       when: 0
+      BadResult: 
     Action:
       running: 0
       type: 6
@@ -38988,6 +39004,7 @@ MonoBehaviour:
       item: 10
       action: 0
       change: 1
+      GoodResult: 
   - Condition:
       condition: 1
       actor: 19
@@ -38997,6 +39014,7 @@ MonoBehaviour:
       num: 0
       action: 0
       when: 0
+      BadResult: 
     Action:
       running: 0
       type: 2
@@ -39011,6 +39029,7 @@ MonoBehaviour:
       item: 10
       action: 0
       change: 1
+      GoodResult: 
   - Condition:
       condition: 1
       actor: 9
@@ -39020,6 +39039,7 @@ MonoBehaviour:
       num: 0
       action: 0
       when: 0
+      BadResult: 
     Action:
       running: 0
       type: 2
@@ -39034,6 +39054,7 @@ MonoBehaviour:
       item: 10
       action: 0
       change: 1
+      GoodResult: 
   sr: {fileID: 0}
 --- !u!1 &1805491017
 GameObject:
@@ -40349,6 +40370,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1855686018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1855686019}
+  m_Layer: 0
+  m_Name: Items
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1855686019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855686018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2065761450}
+  - {fileID: 1211572502}
+  - {fileID: 758301050}
+  m_Father: {fileID: 428433901}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865630623
 GameObject:
   m_ObjectHideFlags: 0
@@ -40927,16 +40981,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 436207615
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1117025435}
@@ -42653,16 +42706,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!65 &1956777063
@@ -43204,7 +43256,7 @@ Transform:
   m_Children:
   - {fileID: 1855286274}
   m_Father: {fileID: 428433901}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1973022117
 MonoBehaviour:
@@ -43240,16 +43292,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 4
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
   OpenSound: {fileID: 0}
@@ -44257,8 +44308,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1504815819}
-  m_Father: {fileID: 428433901}
-  m_RootOrder: 2
+  m_Father: {fileID: 1855686019}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2065761451
 BoxCollider2D:
@@ -44320,16 +44371,15 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 4
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!212 &2065761453
@@ -45855,15 +45905,14 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   condition:
-    Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-    Result: 
+    condition: 0
+    actor: 0
+    skill: 0
+    item: 0
+    otherItem: 0
+    num: 0
+    action: 0
+    when: 4
+    BadResult: 
   actions: []
   sr: {fileID: 0}

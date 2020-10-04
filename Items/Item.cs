@@ -19,32 +19,64 @@ public class Item : GameItem {
 
   public string Use(Actor actor) {
     // Check conditions to use it
-    if (!VerifyMainCondition(actor, null, When.Use)) return condition.Result;
+    if (!VerifyMainCondition(actor, null, null, When.Use)) return condition.BadResult; // Give the bad result of the condition, if any
 
     if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
 
     if (Usable == Tstatus.Usable) {
-      if (!PlayActions(actor, null, When.Use, this)) return "It does not work";
+      string res = PlayActions(actor, null, When.Use, this);
+      if (string.IsNullOrEmpty(res)) return "It does not work";
+      return res;
     }
     else if (Usable == Tstatus.OpenableOpen) {
       SetAsClosedUnlocked();
-      PlayActions(actor, null, When.Use);
+      return PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableOpenAutolock) {
       SetAsLockedAuto();
-      PlayActions(actor, null, When.Use);
+      return PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableClosed) {
       SetAsOpen();
-      PlayActions(actor, null, When.Use);
+      return PlayActions(actor, null, When.Use);
     }
     else if (Usable == Tstatus.OpenableClosedAutolock) {
       SetAsOpenAuto();
-      PlayActions(actor, null, When.Use);
+      return PlayActions(actor, null, When.Use);
     }
-    else
-      return "Seems it does nothing";
-    return null;
+
+    return "Seems it does nothing";
+  }
+
+  public string UseTogether(Actor actor, Item other) {
+    // Can we use the two items together?
+    if (!VerifyMainCondition(actor, null, other, When.Use)) return condition.BadResult;
+    if (!other.VerifyMainCondition(actor, null, this, When.Use)) return other.condition.BadResult;
+
+    // Case of two items
+
+
+    string res = null;
+    foreach (ActionAndCondition ac in actions) {
+      if (ac.Condition.VerifyCombinedItems(actor, this, other, When.Use)) {
+        return PlayActions(actor, null, When.Use, other);
+      }
+      if (res == null) res = ac.Condition.BadResult;
+    }
+    if (res != null) return res;
+    foreach (ActionAndCondition ac in other.actions) {
+      if (ac.Condition.VerifyCombinedItems(actor, other, this, When.Use)) {
+        return other.PlayActions(actor, null, When.Use, this);
+      }
+      if (res == null) res = ac.Condition.BadResult;
+    }
+    if (res != null) return res;
+    return "It does not work...";
+
+    // FIXME Case of an item and a container
+    // FIXME Case of an item and a door
+
+
   }
 
   public string Open(ChangeWay val) {
@@ -341,8 +373,8 @@ public class Item : GameItem {
 
   internal void Give(Actor giver, Actor receiver) {
     // Check give conditions
-    if (!VerifyMainCondition(giver, receiver, When.Give)) {
-      receiver.Say(condition.Result);
+    if (!VerifyMainCondition(giver, receiver, null, When.Give)) {
+      receiver.Say(condition.BadResult);
       return;
     }
     PlayActions(giver, receiver, When.Give, this);

@@ -110,6 +110,7 @@ public class GameItemEditor : Editor {
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 
+    EditorGUIUtility.labelWidth = 120;
     EditorGUILayout.PropertyField(condition);
 
     // Actions detailed
@@ -172,7 +173,7 @@ public class GameItemEditor : Editor {
   }
 
   private static object GetValue_Imp(object source, string name, int index) {
-    var enumerable = GetValue_Imp(source, name) as System.Collections.IEnumerable;
+    System.Collections.IEnumerable enumerable = GetValue_Imp(source, name) as System.Collections.IEnumerable;
     if (enumerable == null) return null;
     var enm = enumerable.GetEnumerator();
 

@@ -11,8 +11,8 @@ public class ActionAndCondition {
 
 [System.Serializable]
 public class JustCondition {
+  [SerializeField] public string ConditionResult;
   [SerializeField] public GameCondition Condition;
-  [SerializeField] public string testResult;
 }
 
 

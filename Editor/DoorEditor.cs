@@ -12,7 +12,7 @@ public class DoorEditor : Editor {
   SerializedProperty HotSpot, dir, arrivaldir;
   SerializedProperty src, dst, correspondingDoor;
   SerializedProperty camerapos, transition;
-  SerializedProperty actions;
+  SerializedProperty actions, condition;
   SerializedProperty openSound, closeSound, lockSound, unlockSound;
 
 
@@ -37,6 +37,7 @@ public class DoorEditor : Editor {
     correspondingDoor = serializedObject.FindProperty("correspondingDoor");
     transition = serializedObject.FindProperty("transition");
     actions = serializedObject.FindProperty("actions");
+    condition = serializedObject.FindProperty("condition");
     openSound = serializedObject.FindProperty("OpenSound");
     closeSound= serializedObject.FindProperty("CloseSound");
     lockSound= serializedObject.FindProperty("LockSound");
@@ -133,6 +134,7 @@ public class DoorEditor : Editor {
     EditorGUILayout.PropertyField(unlockSound, new GUIContent("Unlock Snd"));
     EditorGUILayout.EndHorizontal();
 
+    EditorGUILayout.PropertyField(condition);
     EditorGUILayout.PropertyField(actions);
 
     serializedObject.ApplyModifiedProperties();
