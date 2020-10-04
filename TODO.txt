@@ -1,6 +1,6 @@
 === Mighty Maniac Mansion ===
 
-
+Complete Sandy, including description
 
 * TODO ************************************************************************************************************
 
@@ -14,14 +14,8 @@ Add some sounds: door open/close, footsteps
 
 FrontDoor -> Backyard entrance on the left
 
+Define skills and actions that will allow
 
-
-Sandy Pantz
-
-Sandy is Dave's girlfriend and your goal is to save her. She is a stereotypical stupid blonde cheerleader.
-For most of the game, you will only see her in cut-scenes with Dr.Fred or Purple Tentacle, usually being terrified and screaming for help.
-
-Sandy Pantz is a cheerleader and the girlfriend of Dave Miller. She was kidnapped by Dr. Fred and is somewhere in the Mansion. The rescue of Sandy from the mansion is the main plot of Maniac Mansion.
 
 * BUGS ************************************************************************************************************
 
