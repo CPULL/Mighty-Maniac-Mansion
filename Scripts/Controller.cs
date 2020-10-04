@@ -286,18 +286,20 @@ public class Controller : MonoBehaviour {
           WalkAndAction(currentActor, overItem, null);
         }
         else { /* rmb - Use together */
-          // Can we use the two items together?
-          string res = usedItem.UseTogether(currentActor, overItem);
-          if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
-          UpdateInventory();
-          forcedCursor = CursorTypes.None;
-          oldCursor = null;
-          usedItem = null;
-          Inventory.SetActive(false);
-          return;
+          WalkAndAction(currentActor, overItem,
+            new System.Action<Actor, Item>((actor, item) => {
+              // Can we use the two items together?
+              string res = usedItem.UseTogether(currentActor, overItem);
+              if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
+              UpdateInventory();
+              forcedCursor = CursorTypes.None;
+              oldCursor = null;
+              usedItem = null;
+              Inventory.SetActive(false);
+              return;
+            }));
         }
       }
-
     }
     else {
       if (lmb && !currentActor.IsWalking()) { /* lmb - walk */
