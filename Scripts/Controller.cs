@@ -203,6 +203,7 @@ public class Controller : MonoBehaviour {
           // Can we use the two items together?
           string res = usedItem.UseTogether(currentActor, overInventoryItem);
           if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
+          UpdateInventory();
           forcedCursor = CursorTypes.None;
           oldCursor = null;
           usedItem = null;
@@ -288,6 +289,7 @@ public class Controller : MonoBehaviour {
           // Can we use the two items together?
           string res = usedItem.UseTogether(currentActor, overItem);
           if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
+          UpdateInventory();
           forcedCursor = CursorTypes.None;
           oldCursor = null;
           usedItem = null;

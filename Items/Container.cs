@@ -13,6 +13,10 @@ public class Container : Item {
     sr.color = normalColor;
     Audio = GetComponent<AudioSource>();
   }
+
+  internal bool HasItem(Item item) {
+    return items.Contains(item);
+  }
 }
 
 

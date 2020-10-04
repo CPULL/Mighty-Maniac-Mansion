@@ -68,9 +68,28 @@ public class Item : GameItem {
       if (res == null) res = ac.Condition.BadResult;
     }
     if (res != null) return res;
+
+    // Case of an item and a container
+    Container c = other as Container;
+    if (c != null) {
+      if (c.Usable != Tstatus.OpenableOpen && c.Usable != Tstatus.OpenableOpenAutolock) return "It is closed";
+
+      if (c.HasItem(this)) {
+        // Put item back
+        actor.inventory.Remove(this);
+        transform.parent = c.transform;
+        gameObject.SetActive(true);
+        owner = Chars.None;
+        return null;
+      }
+      else
+        return "it does not fit";
+    }
+
+
+
     return "It does not work...";
 
-    // FIXME Case of an item and a container
     // FIXME Case of an item and a door
 
 
