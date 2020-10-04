@@ -115,10 +115,6 @@ public class Controller : MonoBehaviour {
 
     if (GD.status != GameStatus.NormalGamePlay) return;
 
-    // LMB -> Walk or secondary action
-    // RMB -> Default action
-
-
     #region Mouse control
     bool lmb = Input.GetMouseButtonDown(0);
     bool rmb = Input.GetMouseButtonDown(1);
@@ -135,41 +131,174 @@ public class Controller : MonoBehaviour {
         return;
       }
       if (lmb) {
-        // FIXME check that is a playable actor
+        // FIXME remove from the final build
         if (overActor != currentActor) {
           SelectActor(overActor);
           return;
         }
       }
     }
-    
-    if (overItem != null) {
-      if ((overItem.whatItDoesR == WhatItDoes.Read && rmb) || (overItem.whatItDoesL == WhatItDoes.Read && lmb)) {
-        WalkAndAction(currentActor, overItem,
-          new System.Action<Actor, Item>((actor, item) => {
-            actor.SetDirection(item.dir);
-            if (item.HasActions(When.Use)) {
-              if (item.PlayActions(currentActor, null, When.Use))
-                actor.Say(item.Description); // By default read what is written in the description of the object
-            }
+
+
+    if (Input.GetMouseButton(0) && currentActor.IsWalking()) {
+      if (walkDelay > .25f) {
+        RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
+        if (hit.collider != null) {
+          PathNode p = hit.collider.GetComponent<PathNode>();
+          currentActor.WalkTo(hit.point, p);
+          walkDelay = 0;
+        }
+      }
+      else {
+        walkDelay += Time.deltaTime;
+      }
+    }
+
+    if (!lmb && !rmb) return;
+
+    if (overInventoryItem != null) {
+      if (usedItem == overInventoryItem) {
+        if (lmb) { /* lmb - remove used */
+          forcedCursor = CursorTypes.None;
+          oldCursor = null;
+          usedItem = null;
+        }
+        else { /* rmb - read */
+          if (overInventoryItem.HasActions(When.Use)) {
+            if (overInventoryItem.PlayActions(currentActor, null, When.Use))
+              currentActor.Say(overInventoryItem.Description); // By default read what is written in the description of the object
+          }
+          else {
+            string msg = overInventoryItem.Description.Replace("%open", overInventoryItem.GetOpenStatus());
+            currentActor.Say(msg);
+          }
+        }
+      }
+      else if (usedItem == null) {
+        if (lmb) { /* lmb - set as used */
+          usedItem = overInventoryItem;
+          overInventoryItem = null;
+          oldCursor = null;
+          forcedCursor = CursorTypes.Item;
+          Cursor.SetCursor(usedItem.cursorImage, new Vector2(usedItem.cursorImage.width / 2, usedItem.cursorImage.height / 2), CursorMode.Auto);
+        }
+        else { /* rmb - use immediately */
+          string res = overInventoryItem.Use(currentActor);
+          if (res != null) currentActor.Say(res);
+        }
+
+      }
+      else {
+        if (lmb) { /* lmb - Swap */
+          usedItem = overInventoryItem;
+          overInventoryItem = null;
+          oldCursor = null;
+          forcedCursor = CursorTypes.Item;
+          Cursor.SetCursor(usedItem.cursorImage, new Vector2(usedItem.cursorImage.width / 2, usedItem.cursorImage.height / 2), CursorMode.Auto);
+        }
+        else { /* rmb - Use together FIXME */
+          // Can we use the two items together?
+          if (usedItem.CheckCombinedActions(currentActor, overInventoryItem)) { // Yes
+            if (!usedItem.PlayActions(currentActor, null, When.Use, overInventoryItem))
+              currentActor.Say("It does not work");
             else {
-              string msg = item.Description.Replace("%open", item.GetOpenStatus());
-              actor.Say(msg);
+              forcedCursor = CursorTypes.None;
+              oldCursor = null;
+              usedItem = null;
+              Inventory.SetActive(false);
+              return;
             }
-          }));
+          }
+          else if (overInventoryItem.CheckCombinedActions(currentActor, usedItem)) { // Yes
+            if (!overInventoryItem.PlayActions(currentActor, null, When.Use, usedItem))
+              currentActor.Say("It does not work");
+            else {
+              forcedCursor = CursorTypes.None;
+              oldCursor = null;
+              usedItem = null;
+              Inventory.SetActive(false);
+              return;
+            }
+
+          }
+          else {
+            currentActor.Say("It does not work...");
+          }
+        }
       }
 
-      else if ((overItem.whatItDoesR == WhatItDoes.Use && rmb) || (overItem.whatItDoesL == WhatItDoes.Use && lmb)) {
-        if (usedItem == null) {
+    }
+    else if (overItem != null) {
+      if (usedItem == overItem) { // Not possible
+      }
+      else if (usedItem == null) {
+        if ((lmb && overItem.whatItDoesL == WhatItDoes.Read) || (rmb && overItem.whatItDoesR == WhatItDoes.Read)) { /* read */
+          WalkAndAction(currentActor, overItem,
+            new System.Action<Actor, Item>((actor, item) => {
+              actor.SetDirection(item.dir);
+              if (item.HasActions(When.Use)) {
+                if (item.PlayActions(currentActor, null, When.Use))
+                  actor.Say(item.Description); // By default read what is written in the description of the object
+              }
+              else {
+                string msg = item.Description.Replace("%open", item.GetOpenStatus());
+                actor.Say(msg);
+              }
+            }));
+        }
+
+        else if ((lmb && overItem.whatItDoesL == WhatItDoes.Pick) || (rmb && overItem.whatItDoesR == WhatItDoes.Pick)) { /* pick */
+          WalkAndAction(currentActor, overItem,
+            new System.Action<Actor, Item>((actor, item) => {
+              ShowName(currentActor + " got " + item.Name);
+              actor.inventory.Add(item);
+              item.transform.parent = PickedItems;
+              item.gameObject.SetActive(false);
+              item.owner = Chars.None;
+              if (actor == actor1) item.owner = Chars.Actor1;
+              else if (actor == actor2) item.owner = Chars.Actor2;
+              else if (actor == actor3) item.owner = Chars.Actor3;
+              item.PlayActions(currentActor, null, When.Pick);
+              item = null;
+              forcedCursor = CursorTypes.None;
+              if (Inventory.activeSelf) ActivateInventory(currentActor);
+            }));
+          overItem = null;
+        }
+
+        else if ((lmb && overItem.whatItDoesL == WhatItDoes.Use) || (rmb && overItem.whatItDoesR == WhatItDoes.Use)) { /* use */
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
               actor.SetDirection(item.dir);
               string res = item.Use(currentActor);
-              if (res != null)
-                actor.Say(res);
+              if (res != null) actor.Say(res);
             }));
         }
-        else { // Can we use the two items together?
+
+        else if ((lmb && overItem.whatItDoesL == WhatItDoes.Walk) || (rmb && overItem.whatItDoesR == WhatItDoes.Walk)) { /* walk */
+          Door d = overItem as Door;
+          if (d == null)
+            WalkAndAction(currentActor, overItem, null);
+          else
+            WalkAndAction(currentActor, overItem,
+              new System.Action<Actor, Item>((actor, item) => {
+                if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
+                  actor.Say("Is locked");
+                  return;
+                }
+                else if (item.Usable == Tstatus.OpenableClosed || item.Usable == Tstatus.OpenableClosedAutolock) {
+                  return;
+                }
+                StartCoroutine(ChangeRoom(actor, (item as Door)));
+              }));
+        }
+      }
+      else {
+        if (lmb) { /* lmb Walk */
+          WalkAndAction(currentActor, overItem, null);
+        }
+        else { /* rmb - Use together */
+          // Can we use the two items together?
           if (usedItem.CheckCombinedActions(currentActor, overItem)) { // Yes
             if (!usedItem.PlayActions(currentActor, null, When.Use, overItem))
               currentActor.Say("It does not work");
@@ -196,73 +325,12 @@ public class Controller : MonoBehaviour {
           else {
             currentActor.Say("It does not work...");
           }
-
         }
       }
 
-      else if (overItem.owner == Chars.None && ((overItem.whatItDoesR == WhatItDoes.Pick && rmb) || (overItem.whatItDoesL == WhatItDoes.Pick && lmb))) {
-        WalkAndAction(currentActor, overItem,
-          new System.Action<Actor, Item>((actor, item) => {
-            ShowName(currentActor + " got " + item.Name);
-            actor.inventory.Add(item);
-            item.transform.parent = PickedItems;
-            item.gameObject.SetActive(false);
-            item.owner = Chars.None;
-            if (actor == actor1) item.owner = Chars.Actor1;
-            else if (actor == actor2) item.owner = Chars.Actor2;
-            else if (actor == actor3) item.owner = Chars.Actor3;
-            item.PlayActions(currentActor, null, When.Pick);
-            item = null;
-            forcedCursor = CursorTypes.None;
-            if (Inventory.activeSelf) ActivateInventory(currentActor);
-          }));
-        overItem = null;
-      }
-
-      else if (overItem.owner != Chars.None && lmb) { // Get item from inventory
-        if (usedItem == overItem) {
-          forcedCursor = CursorTypes.None;
-          oldCursor = null;
-          usedItem = null;
-          return;
-        }
-        usedItem = overItem;
-        overItem = null;
-        oldCursor = null;
-        forcedCursor = CursorTypes.Item;
-        Cursor.SetCursor(usedItem.cursorImage, new Vector2(usedItem.cursorImage.width / 2, usedItem.cursorImage.height / 2), CursorMode.Auto);
-      }
-
-      else if ((overItem.whatItDoesR == WhatItDoes.Walk && rmb) || (overItem is Door && overItem.whatItDoesL == WhatItDoes.Walk && lmb)) {
-        WalkAndAction(currentActor, overItem,
-          new System.Action<Actor, Item>((actor, item) => {
-            if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
-              actor.Say("Is locked");
-              return;
-            }
-            else if (item.Usable == Tstatus.OpenableClosed || item.Usable == Tstatus.OpenableClosedAutolock) {
-              return;
-            }
-            StartCoroutine(ChangeRoom(actor, (item as Door)));
-          }));
-      }
-
-      else if (overItem.whatItDoesL == WhatItDoes.Walk && lmb) {
-        WalkAndAction(currentActor, overItem, null);
-
-      }
-
     }
-    else if (lmb && !currentActor.IsWalking()) {
-      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
-      if (hit.collider != null) {
-        PathNode p = hit.collider.GetComponent<PathNode>();
-        currentActor.WalkTo(hit.point, p);
-        walkDelay = 0;
-      }
-    }
-    else if (Input.GetMouseButton(0) && currentActor.IsWalking()) {
-      if (walkDelay > .1f) {
+    else {
+      if (lmb && !currentActor.IsWalking()) { /* lmb - walk */
         RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
         if (hit.collider != null) {
           PathNode p = hit.collider.GetComponent<PathNode>();
@@ -270,10 +338,11 @@ public class Controller : MonoBehaviour {
           walkDelay = 0;
         }
       }
-      else {
-        walkDelay += Time.deltaTime;
+      else { /* rmb - do nothing */
       }
     }
+
+
     #endregion
   }
 
@@ -775,6 +844,7 @@ public class Controller : MonoBehaviour {
   public GameObject Inventory;
   public GameObject InventoryItemTemplate;
   private Item overItem = null; // Items we are over with the mouse
+  private Item overInventoryItem = null; // Items we are over with the mouse in the inventory
   private Item usedItem = null; // Item that is being used (and visible on the cursor)
 
   internal static void UpdateInventory() {
@@ -804,21 +874,15 @@ public class Controller : MonoBehaviour {
     if (fromInventory) {
       if (item == null) {
         GD.c.overItem = null;
+        GD.c.overInventoryItem = null;
         if (GD.c.TextMsg.text != "") GD.c.HideName();
         return;
       }
-      GD.c.overItem = item;
+      GD.c.overInventoryItem = item;
       if (GD.c.usedItem == null) {
-        if (item.whatItDoesR == WhatItDoes.Use) {
-          GD.c.forcedCursor = CursorTypes.Use;
-          GD.c.overItem = item;
-          GD.c.ShowName(item.Name);
-        }
-        else if (item.whatItDoesR == WhatItDoes.Read) {
-          GD.c.forcedCursor = CursorTypes.Examine;
-          GD.c.overItem = item;
-          GD.c.ShowName(item.Name);
-        }
+        GD.c.forcedCursor = CursorTypes.PickUp;
+        GD.c.overInventoryItem = item;
+        GD.c.ShowName(item.Name);
       }
       return;
     }

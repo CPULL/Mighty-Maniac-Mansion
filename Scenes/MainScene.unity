@@ -808,6 +808,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 4
@@ -4072,6 +4073,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -5254,6 +5256,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -7486,6 +7489,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 6
+      otherItem: 0
       num: 0
       action: 0
       when: 4
@@ -7496,6 +7500,7 @@ MonoBehaviour:
       actor: 1
       skill: 1
       item: 4
+      otherItem: 0
       num: 4
       action: 0
       when: 0
@@ -7518,6 +7523,7 @@ MonoBehaviour:
       actor: 29
       skill: 1
       item: 4
+      otherItem: 0
       num: 4
       action: 0
       when: 2
@@ -7542,6 +7548,7 @@ MonoBehaviour:
       actor: 29
       skill: 1
       item: 4
+      otherItem: 0
       num: 4
       action: 0
       when: 2
@@ -9067,6 +9074,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -9077,6 +9085,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -10007,6 +10016,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -10656,6 +10666,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -10912,6 +10923,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -14027,6 +14039,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -14749,6 +14762,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -15258,6 +15272,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 4
@@ -21651,6 +21666,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -24216,6 +24232,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 4
@@ -25104,6 +25121,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 4
@@ -26457,16 +26475,18 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
     Result: 
   actions:
   - Condition:
-      condition: 19
+      condition: 20
       actor: 0
       skill: 0
-      item: 0
+      item: 5
+      otherItem: 12
       num: 0
       action: 0
       when: 1
@@ -27886,6 +27906,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -30428,6 +30449,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 4
@@ -31197,6 +31219,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -31207,6 +31230,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 5
+      otherItem: 0
       num: 0
       action: 0
       when: 1
@@ -31468,6 +31492,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -34264,6 +34289,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 4
@@ -35567,6 +35593,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -38909,6 +38936,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -38919,6 +38947,7 @@ MonoBehaviour:
       actor: 1
       skill: 1
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -38941,6 +38970,7 @@ MonoBehaviour:
       actor: 1
       skill: 1
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -38963,6 +38993,7 @@ MonoBehaviour:
       actor: 19
       skill: 1
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -38985,6 +39016,7 @@ MonoBehaviour:
       actor: 9
       skill: 1
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -40900,6 +40932,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -42625,6 +42658,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0
@@ -43211,6 +43245,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 4
@@ -44290,6 +44325,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 4
@@ -45824,6 +45860,7 @@ MonoBehaviour:
       actor: 0
       skill: 0
       item: 0
+      otherItem: 0
       num: 0
       action: 0
       when: 0

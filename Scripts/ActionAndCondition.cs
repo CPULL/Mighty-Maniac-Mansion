@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class ActionAndCondition {
@@ -13,7 +12,7 @@ public class ActionAndCondition {
 [System.Serializable]
 public class JustCondition {
   [SerializeField] public GameCondition Condition;
-  [SerializeField] public string Result;
+  [SerializeField] public string testResult;
 }
 
 

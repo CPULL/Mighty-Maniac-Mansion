@@ -9,28 +9,30 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
     SerializedProperty type = property.FindPropertyRelative("condition");
     SerializedProperty actor = property.FindPropertyRelative("actor");
     SerializedProperty item = property.FindPropertyRelative("item");
+    SerializedProperty otherItem = property.FindPropertyRelative("otherItem");
     SerializedProperty skill = property.FindPropertyRelative("skill");
     SerializedProperty num = property.FindPropertyRelative("num");
     SerializedProperty action = property.FindPropertyRelative("action");
     SerializedProperty when = property.FindPropertyRelative("when");
 
 
-    string actorVal = actor.enumDisplayNames[actor.intValue];
+    Chars actorVal = (Chars)actor.intValue;
     ItemEnum itemVal = (ItemEnum)item.intValue;
+    ItemEnum otherItemVal = (ItemEnum)otherItem.intValue;
     Skill skillVal = (Skill)skill.intValue;
     int numVal = num.intValue;
     Condition conditionVal = (Condition)type.intValue;
     ActionEnum actionVal = (ActionEnum)action.intValue;
     When whenVal = (When)when.intValue;
 
-    string name = GameCondition.CalculateName(conditionVal, actorVal, skillVal, itemVal, numVal, actionVal, whenVal);
+    string name = GameCondition.CalculateName(conditionVal, actorVal, skillVal, itemVal, otherItemVal, numVal, actionVal, whenVal);
 
     float partw = (position.width - 75) / 3;
     Rect rectCond = new Rect(position.x, position.y, partw, EditorGUIUtility.singleLineHeight);
     Rect rectType = new Rect(position.x + 75 + 0 * partw, position.y, partw, EditorGUIUtility.singleLineHeight);
     Rect rectWhen = new Rect(position.x + 75 + 1 * partw, position.y, partw, EditorGUIUtility.singleLineHeight);
     Rect rectName = new Rect(position.x + 75 + 2 * partw, position.y, partw, EditorGUIUtility.singleLineHeight);
-    Rect rect1, rect2, rect3;
+    Rect rect1, rect2, rect3, rect4;
 
     EditorGUI.LabelField(rectCond, "Condition", EditorStyles.boldLabel);
     type.intValue = EditorGUI.Popup(rectType, type.intValue, type.enumDisplayNames);
@@ -48,30 +50,30 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.RecipientIs:
       case Condition.RecipientIsNot:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
         break;
 
       case Condition.HasItem:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 10 + position.width / 3, position.y + EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
         rect3 = new Rect(position.x + 10 + 2 * position.width / 3, position.y + EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
         num.intValue = EditorGUI.IntField(rect2, "Num", item.intValue);
-        item.intValue = EditorGUI.Popup(rect3, "Item", item.intValue, item.enumNames);
+        item.intValue = EditorGUI.Popup(rect3, "Item", item.intValue, item.enumDisplayNames);
         break;
 
       case Condition.DoesNotHaveItem:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 10 + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-        item.intValue = EditorGUI.Popup(rect2, "Item", item.intValue, item.enumNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        item.intValue = EditorGUI.Popup(rect2, "Item", item.intValue, item.enumDisplayNames);
         break;
 
       case Condition.ActorHasSkill:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 10 + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumNames);
-        skill.intValue = EditorGUI.Popup(rect2, "Skill", skill.intValue, skill.enumNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        skill.intValue = EditorGUI.Popup(rect2, "Skill", skill.intValue, skill.enumDisplayNames);
         break;
 
       case Condition.ItemIsOpen:
@@ -82,17 +84,28 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.ItemIsNotCollected:
       case Condition.WithItem:
         rect2 = new Rect(position.x + 10, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
-        item.intValue = EditorGUI.Popup(rect2, "Item", item.intValue, item.enumNames);
+        item.intValue = EditorGUI.Popup(rect2, "Item", item.intValue, item.enumDisplayNames);
         break;
 
       case Condition.ActionCompleted:
       case Condition.ActionNotStarted:
       case Condition.ActionRunning:
         rect1 = new Rect(position.x + 10, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
-        action.intValue = EditorGUI.Popup(rect1, "Action", action.intValue, action.enumNames);
+        action.intValue = EditorGUI.Popup(rect1, "Action", action.intValue, action.enumDisplayNames);
         break;
 
       case Condition.WhenIs:
+        break;
+
+      case Condition.ItemCouple:
+        rect1 = new Rect(position.x + 10,                         position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+        rect2 = new Rect(position.x + 10 + position.width / 2,    position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+        rect3 = new Rect(position.x + 10,                         position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+        rect4 = new Rect(position.x + 10 + position.width / 2,    position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+        item.intValue = EditorGUI.Popup(rect1, "Item", item.intValue, item.enumDisplayNames);
+        otherItem.intValue = EditorGUI.Popup(rect2, "Item", otherItem.intValue, otherItem.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect3, "Actor", actor.intValue, actor.enumDisplayNames);
+        skill.intValue = EditorGUI.Popup(rect4, "Skill", skill.intValue, skill.enumDisplayNames);
         break;
 
     }
@@ -127,6 +140,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.ActionNotStarted: return h + l;
       case Condition.ActionRunning: return h + l;
       case Condition.WhenIs: return h + l;
+      case Condition.ItemCouple: return h + 2 * l;
     }
     return (h + l) * 2;
   }

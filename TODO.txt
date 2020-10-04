@@ -1,11 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
-Remove "autolock" as status. Add it as boolean
-Add some success message when things are used together (key in a door, batteries in flashlight)
-We have problems in the inventory.
-Let's say - we lclick over an item - The actor should say something and the item shoul dbe "used"
-rclick should try to use the item immediately (with the used item if any)
+Add some success message when things are used together (key in a door, batteries in flashlight) or a failing message. Have them in the definition of the action.
 
 
 * TODO ************************************************************************************************************
@@ -139,6 +135,7 @@ Ollie
 ! Fix wendy's pants. They are not filled (check bernard, dave, syd, ed)
 ! Doorbell (starts sequence where Ed checks for package and then screams to you to go away)
 ! Add subItem specific for Container. Works like a door (but without moving), and has a list of items inside that can appear/disappar when open/closed
+! Interactions with items and inventory is completely rewritten
 
 
 

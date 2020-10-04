@@ -51,7 +51,7 @@ public class GameItem : MonoBehaviour {
 
   internal bool CheckCombinedActions(Actor actor, Item other) {
     foreach(ActionAndCondition ac in actions) {
-      return ac.Condition.VerifyCombinedItems(actor, other, When.Use);
+      return ac.Condition.VerifyCombinedItems(actor, this, other, When.Use);
     }
     return false;
   }
