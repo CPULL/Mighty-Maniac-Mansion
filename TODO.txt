@@ -1,9 +1,11 @@
 === Mighty Maniac Mansion ===
 
-Add subItem specific for Container. Works like a door (but without moving), and has a list of items inside that can appear/disappar when open/closed. Use it for the refrigerator
 
 Remove "autolock" as status. Add it as boolean
 Add some success message when things are used together (key in a door, batteries in flashlight)
+We have problems in the inventory.
+Let's say - we lclick over an item - The actor should say something and the item shoul dbe "used"
+rclick should try to use the item immediately (with the used item if any)
 
 
 * TODO ************************************************************************************************************
@@ -21,6 +23,13 @@ Add some sounds: door open/close, footsteps
 FrontDoor -> Backyard entrance on the left
 
 
+
+Sandy Pantz
+
+Sandy is Dave's girlfriend and your goal is to save her. She is a stereotypical stupid blonde cheerleader.
+For most of the game, you will only see her in cut-scenes with Dr.Fred or Purple Tentacle, usually being terrified and screaming for help.
+
+Sandy Pantz is a cheerleader and the girlfriend of Dave Miller. She was kidnapped by Dr. Fred and is somewhere in the Mansion. The rescue of Sandy from the mansion is the main plot of Maniac Mansion.
 
 * BUGS ************************************************************************************************************
 
@@ -129,6 +138,7 @@ Ollie
 ! Improved sliders for walk and text. We have to do the same for volume
 ! Fix wendy's pants. They are not filled (check bernard, dave, syd, ed)
 ! Doorbell (starts sequence where Ed checks for package and then screams to you to go away)
+! Add subItem specific for Container. Works like a door (but without moving), and has a list of items inside that can appear/disappar when open/closed
 
 
 

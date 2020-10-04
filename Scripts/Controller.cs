@@ -378,7 +378,6 @@ public class Controller : MonoBehaviour {
   private void Awake() {
     GD.c = this;
     cam = Camera.main;
-
     LoadSequences();
 
     foreach (Room r in allObjects.roomsList) {
