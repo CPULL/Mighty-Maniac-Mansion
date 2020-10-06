@@ -1005,7 +1005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51435826}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -0.048, y: -0.161, z: 0.56}
+  m_LocalPosition: {x: -0.048, y: -0.324, z: 0.273}
   m_LocalScale: {x: 0.049642358, y: 0.029661363, z: 0.7488408}
   m_Children: []
   m_Father: {fileID: 557147439}
@@ -7031,7 +7031,7 @@ Transform:
   - {fileID: 904830888}
   - {fileID: 2124792943}
   m_Father: {fileID: 450900028}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &355947062
 MonoBehaviour:
@@ -9184,6 +9184,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1932838044}
+  - {fileID: 557147439}
   - {fileID: 355947061}
   m_Father: {fileID: 2059794975}
   m_RootOrder: 4
@@ -11795,12 +11796,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557147438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.03, y: -3.42, z: 0}
+  m_LocalPosition: {x: -2.9099998, y: -3.224, z: -1}
   m_LocalScale: {x: 5.669742, y: 1.7649637, z: 1}
   m_Children:
   - {fileID: 51435827}
-  m_Father: {fileID: 1932838044}
-  m_RootOrder: 8
+  m_Father: {fileID: 450900028}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &557147440
 BoxCollider2D:
@@ -11853,7 +11854,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -53.302147, y: 26.295841}
+  HotSpot: {x: -53.182148, y: 26.204151}
   dir: 0
   overColor:
     serializedVersion: 2
@@ -11921,9 +11922,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1934202997
-  m_SortingLayer: -1
-  m_SortingOrder: 0
+  m_SortingLayerID: 1985881147
+  m_SortingLayer: -2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7c289e6c2511aaf4b8d5987e220207e8, type: 3}
   m_Color: {r: 0.17254902, g: 0.7372549, b: 0.8, a: 0.09803922}
   m_FlipX: 0
@@ -43869,7 +43870,6 @@ Transform:
   - {fileID: 1952424649}
   - {fileID: 1721479107}
   - {fileID: 1070308201}
-  - {fileID: 557147439}
   m_Father: {fileID: 450900028}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

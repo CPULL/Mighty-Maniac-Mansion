@@ -2,6 +2,9 @@
 
 Complete Sandy, including description
 
+We need a way sto jumpstart to a room with a char. Maybe a set of buttons in the start area with a specific Cutscene to do it
+
+
 * TODO ************************************************************************************************************
 
 Oven with hamster
@@ -130,6 +133,6 @@ Ollie
 ! Added some success message when things are used together (key in a door, batteries in flashlight) or a failing message. Have them in the definition of the action.
 ! Bug: If we re-open the refrigerator the items will appear again --> COntainers show only objects that are not already picked
 ! Items can now be put back in the refrigerator
-
+! First upstairs sprites (room not yet interactable)
 
 
