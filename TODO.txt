@@ -1,6 +1,6 @@
 === Mighty Maniac Mansion ===
 
-Complete Sandy, including description
+Complete Sandy and Ollie descriptions
 
 We need a way sto jumpstart to a room with a char. Maybe a set of buttons in the start area with a specific Cutscene to do it
 
@@ -22,6 +22,8 @@ Define skills and actions that will allow
 
 * BUGS ************************************************************************************************************
 
+"it does not work" if using the doorbell.
+The cutscene for the doorbell looks broken
 
 * CHARS ************************************************************************************************************
 

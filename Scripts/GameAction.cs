@@ -45,6 +45,12 @@ public class GameAction {
     }
     string n = a.ToLowerInvariant();
     if (n == "none") actor = Chars.None;
+    if (n == "current") actor = Chars.Current;
+    if (n == "actor1") actor = Chars.Actor1;
+    if (n == "actor2") actor = Chars.Actor2;
+    if (n == "actor3") actor = Chars.Actor3;
+    if (n == "receiver") actor = Chars.Receiver;
+
     if (n == "fred") actor = Chars.Fred;
     if (n == "edna") actor = Chars.Edna;
     if (n == "ted") actor = Chars.Ted;
@@ -52,20 +58,21 @@ public class GameAction {
     if (n == "edwige") actor = Chars.Edwige;
     if (n == "greententacle") actor = Chars.GreenTentacle;
     if (n == "purpletentacle") actor = Chars.PurpleTentacle;
-    if (n == "actor1") actor = Chars.Actor1;
-    if (n == "actor2") actor = Chars.Actor2;
-    if (n == "actor3") actor = Chars.Actor3;
-    if (n == "kidnappedactor") actor = Chars.KidnappedActor;
+    if (n == "bluetentacle") actor = Chars.BlueTentacle;
+    if (n == "purplemeteor") actor = Chars.PurpleMeteor;
+
     if (n == "dave") actor = Chars.Dave;
     if (n == "bernard") actor = Chars.Bernard;
-    if (n == "hoagie") actor = Chars.Hoagie;
-    if (n == "michael") actor = Chars.Michael;
-    if (n == "razor") actor = Chars.Razor;
-    if (n == "sandy") actor = Chars.Sandy;
-    if (n == "syd") actor = Chars.Syd;
     if (n == "wendy") actor = Chars.Wendy;
+    if (n == "syd") actor = Chars.Syd;
+    if (n == "hoagie") actor = Chars.Hoagie;
+    if (n == "razor") actor = Chars.Razor;
+    if (n == "michael") actor = Chars.Michael;
     if (n == "jeff") actor = Chars.Jeff;
     if (n == "javid") actor = Chars.Javid;
+    if (n == "laverne") actor = Chars.Laverne;
+    if (n == "ollie") actor = Chars.Ollie;
+    if (n == "sandy") actor = Chars.Sandy;
   }
 
   internal void SetDir(string value) {
