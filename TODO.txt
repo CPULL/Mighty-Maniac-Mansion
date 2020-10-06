@@ -1,8 +1,7 @@
 === Mighty Maniac Mansion ===
 
 Complete Sandy and Ollie descriptions
-
-We need a way sto jumpstart to a room with a char. Maybe a set of buttons in the start area with a specific Cutscene to do it
+We need a way to jumpstart to a room with a char. Maybe a set of buttons in the start area with a specific Cutscene to do it
 
 
 * TODO ************************************************************************************************************
@@ -22,8 +21,7 @@ Define skills and actions that will allow
 
 * BUGS ************************************************************************************************************
 
-"it does not work" if using the doorbell.
-The cutscene for the doorbell looks broken
+The scaling of actors after teleporting is not good.
 
 * CHARS ************************************************************************************************************
 
@@ -45,9 +43,9 @@ Sandy
 !Syd
 !Wendy
 Jeff
-Sandy
+!Sandy
 !Javid
-Ollie
+!Ollie
 
 
 
@@ -136,5 +134,6 @@ Ollie
 ! Bug: If we re-open the refrigerator the items will appear again --> COntainers show only objects that are not already picked
 ! Items can now be put back in the refrigerator
 ! First upstairs sprites (room not yet interactable)
+! Fixed "it does not work" if using the doorbell.
 
 

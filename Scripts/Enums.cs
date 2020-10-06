@@ -93,6 +93,30 @@ public static class Enums {
     return status;
   }
 
+  public static bool GoodByDefault(this ActionType type) {
+    switch (type) {
+      case ActionType.None: return false;
+      case ActionType.Teleport: return true;
+      case ActionType.Speak: return true;
+      case ActionType.Move: return false;
+      case ActionType.Expression: return true;
+      case ActionType.Open: return false;
+      case ActionType.Enable: return false;
+      case ActionType.Lock: return false;
+      case ActionType.ShowRoom: return true;
+      case ActionType.Cutscene: return true;
+      case ActionType.Sound: return true;
+      case ActionType.ReceiveY: return false;
+      case ActionType.ReceiveN: return false;
+      case ActionType.FadeIn: return true;
+      case ActionType.FadeOut: return true;
+    }
+    return false;
+  }
+
+
+
+
 }
 
 

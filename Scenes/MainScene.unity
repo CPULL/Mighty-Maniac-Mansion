@@ -4595,7 +4595,7 @@ MonoBehaviour:
   currentRoom: {fileID: 0}
   inventory: []
   id: 30
-  mainScale: 1.35
+  mainScale: 1.05
   skills: 0100000006000000
   Description: <b>Ollie</b> todo...
 --- !u!95 &211990116
@@ -6196,7 +6196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301252750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.05, y: 2.06, z: 0}
+  m_LocalPosition: {x: -49.05, y: 76.09, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 1235580343}
@@ -15343,10 +15343,10 @@ MonoBehaviour:
   RoomName: Ed Room
   minL: -50.9
   maxR: -49.2
-  minY: 36.1
-  maxY: 79
+  minY: 76.1
+  maxY: 79.3
   scalePerc: 1
-  CameraGround: 40
+  CameraGround: 80
 --- !u!1 &721397398
 GameObject:
   m_ObjectHideFlags: 0

@@ -165,7 +165,7 @@ public class Controller : MonoBehaviour {
         }
         else { /* rmb - read */
           if (overInventoryItem.HasActions(When.Use)) {
-            string res = overInventoryItem.PlayActions(currentActor, null, When.Use);
+            string res = overInventoryItem.PlayActions(currentActor, null, When.Use, null, out bool goodByDefault);
             if (string.IsNullOrEmpty(res))
               currentActor.Say(overInventoryItem.Description); // By default read what is written in the description of the object
             else
@@ -222,7 +222,7 @@ public class Controller : MonoBehaviour {
             new System.Action<Actor, Item>((actor, item) => {
               actor.SetDirection(item.dir);
               if (item.HasActions(When.Use)) {
-                string res = item.PlayActions(currentActor, null, When.Use);
+                string res = item.PlayActions(currentActor, null, When.Use, null, out bool goodByDefault);
                 if (string.IsNullOrEmpty(res))
                   actor.Say(item.Description); // By default read what is written in the description of the object
                 else
@@ -246,7 +246,7 @@ public class Controller : MonoBehaviour {
               if (actor == actor1) item.owner = Chars.Actor1;
               else if (actor == actor2) item.owner = Chars.Actor2;
               else if (actor == actor3) item.owner = Chars.Actor3;
-              item.PlayActions(currentActor, null, When.Pick);
+              item.PlayActions(currentActor, null, When.Pick, null, out bool goodByDefault);
               item = null;
               forcedCursor = CursorTypes.None;
               if (Inventory.activeSelf) ActivateInventory(currentActor);

@@ -159,9 +159,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       break;
 
       case ActionType.Cutscene: {
-        rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width, 5 * EditorGUIUtility.singleLineHeight);
-        EditorGUIUtility.labelWidth = 60;
-        strValue.stringValue = EditorGUI.TextArea(rect1, strValue.stringValue, textAreaStyle);
+        rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+        EditorGUIUtility.labelWidth = 100;
+        strValue.stringValue = EditorGUI.TextField(rect1, "Cutscene", strValue.stringValue);
       }
       break;
 
@@ -233,6 +233,11 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.Enable: return EditorGUIUtility.singleLineHeight * 4 + 5;
       case ActionType.Open: return EditorGUIUtility.singleLineHeight * 4 + 5;
       case ActionType.Lock: return EditorGUIUtility.singleLineHeight * 4 + 5;
+      case ActionType.None: return EditorGUIUtility.singleLineHeight * 1;
+      case ActionType.Move: return EditorGUIUtility.singleLineHeight * 3;
+      case ActionType.Cutscene: return EditorGUIUtility.singleLineHeight * 3;
+      case ActionType.FadeIn: return EditorGUIUtility.singleLineHeight * 2;
+      case ActionType.FadeOut: return EditorGUIUtility.singleLineHeight * 2;
     }
     return EditorGUIUtility.singleLineHeight * 5;
   }

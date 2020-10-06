@@ -17,31 +17,34 @@ public class Item : GameItem {
   }
 
   public string Use(Actor actor) {
+    bool goodByDefault = false;
+
     // Check conditions to use it
     if (!VerifyMainCondition(actor, null, null, When.Use)) return condition.BadResult; // Give the bad result of the condition, if any
 
     if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
 
     if (Usable == Tstatus.Usable) {
-      string res = PlayActions(actor, null, When.Use, this);
-      if (string.IsNullOrEmpty(res)) return "It does not work";
+      string res = PlayActions(actor, null, When.Use, this, out goodByDefault);
+      if (string.IsNullOrEmpty(res) && !goodByDefault) 
+        return "It does not work";
       return res;
     }
     else if (Usable == Tstatus.OpenableOpen) {
       SetAsClosedUnlocked();
-      return PlayActions(actor, null, When.Use);
+      return PlayActions(actor, null, When.Use, null, out goodByDefault);
     }
     else if (Usable == Tstatus.OpenableOpenAutolock) {
       SetAsLockedAuto();
-      return PlayActions(actor, null, When.Use);
+      return PlayActions(actor, null, When.Use, null, out goodByDefault);
     }
     else if (Usable == Tstatus.OpenableClosed) {
       SetAsOpen();
-      return PlayActions(actor, null, When.Use);
+      return PlayActions(actor, null, When.Use, null, out goodByDefault);
     }
     else if (Usable == Tstatus.OpenableClosedAutolock) {
       SetAsOpenAuto();
-      return PlayActions(actor, null, When.Use);
+      return PlayActions(actor, null, When.Use, null, out goodByDefault);
     }
 
     return "Seems it does nothing";
@@ -56,14 +59,14 @@ public class Item : GameItem {
     string res = null;
     foreach (ActionAndCondition ac in actions) {
       if (ac.Condition.VerifyCombinedItems(actor, this, other, When.Use)) {
-        return PlayActions(actor, null, When.Use, other);
+        return PlayActions(actor, null, When.Use, other, out bool goodByDefault);
       }
       if (res == null) res = ac.Condition.BadResult;
     }
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
       if (ac.Condition.VerifyCombinedItems(actor, other, this, When.Use)) {
-        return other.PlayActions(actor, null, When.Use, this);
+        return other.PlayActions(actor, null, When.Use, this, out bool goodByDefault);
       }
       if (res == null) res = ac.Condition.BadResult;
     }
@@ -399,7 +402,7 @@ public class Item : GameItem {
       receiver.Say(condition.BadResult);
       return;
     }
-    PlayActions(giver, receiver, When.Give, this);
+    PlayActions(giver, receiver, When.Give, this, out bool goodByDefault);
   }
 }
 

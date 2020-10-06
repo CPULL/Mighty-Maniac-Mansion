@@ -29,7 +29,8 @@ public class GameItem : MonoBehaviour {
   public GameCondition condition;
   public List<ActionAndCondition> actions;
 
-  internal string PlayActions(Actor actor, Actor secondary, When when, Item item = null) {
+  internal string PlayActions(Actor actor, Actor secondary, When when, Item item, out bool silentGood) {
+    silentGood = false;
     if (actions == null || actions.Count == 0) return null;
 
     string badResult = null;
@@ -42,13 +43,16 @@ public class GameItem : MonoBehaviour {
         if (theItem == null && ac.Action.item != ItemEnum.Undefined)
           theItem = GD.c.allObjects.FindItemByID(ac.Action.item);
         Controller.AddAction(ac.Action, actor, secondary, theItem);
-        if (ac.Action.GoodResult != null) goodResult = ac.Action.GoodResult;
+        if (string.IsNullOrEmpty(ac.Action.GoodResult)) 
+          silentGood |= ac.Action.type.GoodByDefault();
+        else
+          goodResult = ac.Action.GoodResult;
       }
       else {
         if (badResult == null) badResult = ac.Condition.BadResult;
       }
     }
-    return goodResult != null ? goodResult : badResult;
+    return goodResult ?? badResult;
   }
 
   public bool VerifyMainCondition(Actor performer, Actor secondary, GameItem otherItem, When when) {
