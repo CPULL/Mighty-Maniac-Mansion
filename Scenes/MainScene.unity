@@ -4700,7 +4700,7 @@ MonoBehaviour:
   br: {x: -42.08559, y: 76.13547}
   bl: {x: -44.49259, y: 76.26434}
   parent: {fileID: 1134120969}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 0
@@ -6196,7 +6196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301252750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.05, y: 76.09, z: 0}
+  m_LocalPosition: {x: -52.5, y: 78.2, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 1235580343}
@@ -6672,7 +6672,7 @@ MonoBehaviour:
   br: {x: -45.201614, y: 77.92926}
   bl: {x: -47.698853, y: 77.81327}
   parent: {fileID: 1134120969}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 0
@@ -15345,7 +15345,7 @@ MonoBehaviour:
   maxR: -49.2
   minY: 76.1
   maxY: 79.3
-  scalePerc: 1
+  scalePerc: 1.15
   CameraGround: 80
 --- !u!1 &721397398
 GameObject:
@@ -16797,7 +16797,7 @@ MonoBehaviour:
   br: {x: -42.240284, y: 78.00659}
   bl: {x: -45.201614, y: 77.92926}
   parent: {fileID: 1134120969}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 0
@@ -17143,7 +17143,7 @@ MonoBehaviour:
   br: {x: -44.49259, y: 76.26434}
   bl: {x: -47.51837, y: 76.23857}
   parent: {fileID: 1134120969}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 0
@@ -19262,7 +19262,7 @@ MonoBehaviour:
   br: {x: -47.698853, y: 77.81327}
   bl: {x: -50.56994, y: 77.82616}
   parent: {fileID: 1134120969}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 0
@@ -24283,8 +24283,8 @@ MonoBehaviour:
   - {fileID: 1922048004}
   - {fileID: 807804526}
   - {fileID: 214386245}
-  ShowSubNodes: 1
-  DoAStar: 1
+  ShowSubNodes: 0
+  DoAStar: 0
   start: {x: -46.393707, y: 78.51947}
   end: {x: -54.76136, y: 78.63792}
 --- !u!1 &1140492194
@@ -31210,7 +31210,7 @@ MonoBehaviour:
   br: {x: -45.97561, y: 79.142685}
   bl: {x: -48.202133, y: 79.10402}
   parent: {fileID: 1134120969}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 0
@@ -32728,7 +32728,7 @@ MonoBehaviour:
   br: {x: -50.56994, y: 77.82616}
   bl: {x: -57.743874, y: 77.87863}
   parent: {fileID: 1134120969}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 0
@@ -44006,7 +44006,7 @@ MonoBehaviour:
   br: {x: -47.51837, y: 76.23857}
   bl: {x: -51.08559, y: 76.199905}
   parent: {fileID: 1134120969}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 0
