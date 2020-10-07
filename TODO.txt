@@ -21,8 +21,6 @@ Define skills and actions that will allow
 
 * BUGS ************************************************************************************************************
 
-The scaling of actors after teleporting is not good.
-
 * CHARS ************************************************************************************************************
 
 Dr. Fred
@@ -135,5 +133,7 @@ Jeff
 ! Items can now be put back in the refrigerator
 ! First upstairs sprites (room not yet interactable)
 ! Fixed "it does not work" if using the doorbell.
+! Fixed the scaling of actors after teleporting
+
 
 

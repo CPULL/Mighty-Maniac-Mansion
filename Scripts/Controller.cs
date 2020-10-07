@@ -648,8 +648,9 @@ public class Controller : MonoBehaviour {
           PathNode p = hit.collider.GetComponent<PathNode>();
           a.SetScaleAndPosition(currentAction.action.pos, p);
         }
-        else
+        else {
           a.SetScaleAndPosition(currentAction.action.pos);
+        }
         currentAction.Complete();
       }
       break;

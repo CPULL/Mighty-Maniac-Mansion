@@ -283,6 +283,28 @@ public class Actor : MonoBehaviour {
       Arms.sortingOrder = zpos + 2;
       Legs.sortingOrder = zpos;
     }
+    else {
+      Debug.Log("Teleported on stairs");
+
+      // Find the path going down recursively until we will find a non-stairs node.
+      PathNode node = p;
+      while (node != null && node.isStair)
+        node = node.down;
+      if (node == null) {
+        Debug.LogError("Cannot find a sub-non-stairs node!");
+      }
+      else {
+        // Then get the top position and do the scaling with this Y coordinate
+        float subty = (node.tl.y + node.tr.y) * .5f;
+        float scaley = -.05f * (subty - currentRoom.minY - 1.9f) + .39f;
+        scaley *= currentRoom.scalePerc;
+        transform.localScale = new Vector3(scaley, scaley, 1);
+        int zpos = (int)(scaley * 10000);
+        Face.sortingOrder = zpos + 1;
+        Arms.sortingOrder = zpos + 2;
+        Legs.sortingOrder = zpos;
+      }
+    }
     pos.y = ty;
     transform.position = pos;
   }
