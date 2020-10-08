@@ -17,9 +17,9 @@ Add some sounds: door open/close, footsteps
 Define skills and actions that will allow
 FrontDoor -> Backyard entrance on the left
 
-
-
 * BUGS ************************************************************************************************************
+
+Switching actors seems to be not working
 
 * CHARS ************************************************************************************************************
 
