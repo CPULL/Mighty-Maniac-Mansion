@@ -13,10 +13,9 @@ Enable the "prolonged usage" to simulate the push of the gargoyle head. It shoul
 Complete intro Cutscene, adding variations for each character.
 Implement Conditions on actions that are read from Json
 Add some sounds: door open/close, footsteps
-
+Define skills and actions that will allow
 FrontDoor -> Backyard entrance on the left
 
-Define skills and actions that will allow
 
 
 * BUGS ************************************************************************************************************

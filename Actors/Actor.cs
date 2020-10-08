@@ -290,6 +290,13 @@ public class Actor : MonoBehaviour {
       PathNode node = p;
       while (node != null && node.isStair)
         node = node.down;
+
+      if (node == null) { // Check going up
+        node = p;
+        while (node != null && node.isStair)
+          node = node.top;
+      }
+
       if (node == null) {
         Debug.LogError("Cannot find a sub-non-stairs node!");
       }
