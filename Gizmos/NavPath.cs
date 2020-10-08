@@ -71,7 +71,7 @@ public class NavPath : MonoBehaviour {
     PathNode pstart = FindPathNodeFromPoint(start);
     PathNode pend = FindPathNodeFromPoint(end);
     if (pstart == null || pend == null) {
-      Debug.LogWarning("Path not inside nodes!");
+      Debug.LogError("Path not inside nodes! " + start + " -> " + end);
       return null;
     }
 
