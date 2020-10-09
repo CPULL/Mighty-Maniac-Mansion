@@ -162,7 +162,7 @@ public class CharSelection : MonoBehaviour {
       return;
     }
 
-    Actor a = Controller.GetActor((Chars)(20 + num));
+    Actor a = Controller.GetActor(num==12 ? Chars.GreenTentacle : (Chars)(20 + num));
     ActorPortraitH.color = Color.white;
     ActorPortraitA.color = Color.white;
     ActorPortraitL.color = Color.white;
@@ -181,7 +181,10 @@ public class CharSelection : MonoBehaviour {
   }
 
   public void StartGame() {
-    GD.actor1 = (Chars)(a1 + 20);
+    if (a1 == 12)
+      GD.actor1 = Chars.GreenTentacle;
+    else
+      GD.actor1 = (Chars)(a1 + 20);
     GD.actor2 = (Chars)(a2 + 20);
     GD.actor3 = (Chars)(a3 + 20);
     GD.kidnapped = (Chars)(ak + 20);

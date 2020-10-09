@@ -19,6 +19,8 @@ FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
 
+Use a better way to find the index of the actor from the charselection. Remove the exceptions for green tentacle
+
 * CHARS ************************************************************************************************************
 
 Dr. Fred
