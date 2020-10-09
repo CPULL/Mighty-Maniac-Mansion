@@ -22,6 +22,7 @@ public class CharSelection : MonoBehaviour {
   public Button ButtonStart;
   public GameObject[] Hidden;
   int mmm = 0;
+  int over = -1;
 
   private void Awake() {
     GD.charSel = this;
@@ -73,25 +74,25 @@ public class CharSelection : MonoBehaviour {
 
   public void Select(int pos) {
     if (a1 == pos) {
-      Selections[pos].color = new Color32(0, 0, 0, 0);
+      Selections[over].color = new Color32(0, 0, 0, 0);
       a1 = -1;
       UpdateTitle();
       return;
     }
     if (a2 == pos) {
-      Selections[pos].color = new Color32(0, 0, 0, 0);
+      Selections[over].color = new Color32(0, 0, 0, 0);
       a2 = -1;
       UpdateTitle();
       return;
     }
     if (a3 == pos) {
-      Selections[pos].color = new Color32(0, 0, 0, 0);
+      Selections[over].color = new Color32(0, 0, 0, 0);
       a3 = -1;
       UpdateTitle();
       return;
     }
     if (ak == pos) {
-      Selections[pos].color = new Color32(0, 0, 0, 0);
+      Selections[over].color = new Color32(0, 0, 0, 0);
       ak = -1;
       UpdateTitle();
       return;
@@ -106,58 +107,58 @@ public class CharSelection : MonoBehaviour {
 
     if (num == 0) {
       a1 = pos;
-      Selections[pos].color = new Color32(0, 220, 50, 255);
+      Selections[over].color = new Color32(0, 220, 50, 255);
     }
 
     else if (num == 1) {
       if (a1 == -1) {
         a1 = pos;
-        Selections[pos].color = new Color32(0, 220, 50, 255);
+        Selections[over].color = new Color32(0, 220, 50, 255);
       }
       else if (a2 == -1) {
         a2 = pos;
-        Selections[pos].color = new Color32(0, 220, 50, 255);
+        Selections[over].color = new Color32(0, 220, 50, 255);
       }
     }
 
     else if (num == 2) {
       if (a1 == -1) {
         a1 = pos;
-        Selections[pos].color = new Color32(0, 220, 50, 255);
+        Selections[over].color = new Color32(0, 220, 50, 255);
       }
       else if (a2 == -1) {
         a2 = pos;
-        Selections[pos].color = new Color32(0, 220, 50, 255);
+        Selections[over].color = new Color32(0, 220, 50, 255);
       }
       else if (a3 == -1) {
         a3 = pos;
-        Selections[pos].color = new Color32(0, 220, 50, 255);
+        Selections[over].color = new Color32(0, 220, 50, 255);
       }
     }
 
     else if (num == 3) {
       if (a1 == -1) {
         a1 = pos;
-        Selections[pos].color = new Color32(0, 220, 50, 255);
+        Selections[over].color = new Color32(0, 220, 50, 255);
       }
       else if (a2 == -1) {
         a2 = pos;
-        Selections[pos].color = new Color32(0, 220, 50, 255);
+        Selections[over].color = new Color32(0, 220, 50, 255);
       }
       else if (a3 == -1) {
         a3 = pos;
-        Selections[pos].color = new Color32(0, 220, 50, 255);
+        Selections[over].color = new Color32(0, 220, 50, 255);
       }
       else if (ak == -1) {
         ak = pos;
-        Selections[pos].color = new Color32(220, 50, 0, 255);
+        Selections[over].color = new Color32(220, 50, 0, 255);
       }
     }
 
-    else if (num == 4) {
+    else if (num == 4) { // FIXME this will not work, the pos of the kidnapped is not the same as the id
       Selections[ak].color = new Color32(0, 0, 0, 0);
       ak = pos;
-      Selections[pos].color = new Color32(220, 50, 0, 255);
+      Selections[over].color = new Color32(220, 50, 0, 255);
     }
 
     UpdateTitle();
@@ -172,8 +173,10 @@ public class CharSelection : MonoBehaviour {
       ActorPortraitA.color = Transparent;
       ActorPortraitL.color = Transparent;
       ActorDescription.text = "";
+      over = -1;
       return;
     }
+    over = num;
     Actor a = Controller.GetActorForSelection(num);
     ActorPortraitH.color = Color.white;
     ActorPortraitA.color = Color.white;

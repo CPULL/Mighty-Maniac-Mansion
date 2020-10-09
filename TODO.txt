@@ -2,7 +2,6 @@
 
 Complete Sandy and Ollie descriptions
 
-Implement the zoom mode to transition between rooms
 
 
 * TODO ************************************************************************************************************
@@ -136,5 +135,6 @@ Jeff
 ! We need a way to jumpstart to a room with a char. Maybe a set of buttons in the start area with a specific Cutscene to do it
 ! Fixed the problem of switching actors
 ! Use a better way to find the index of the actor from the charselection. Remove the exceptions for green tentacle
+! Implement the zoom mode to transition between rooms
 
 

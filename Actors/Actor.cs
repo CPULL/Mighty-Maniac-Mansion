@@ -284,8 +284,6 @@ public class Actor : MonoBehaviour {
       Legs.sortingOrder = zpos;
     }
     else {
-      Debug.Log("Teleported on stairs");
-
       // Find the path going down recursively until we will find a non-stairs node.
       PathNode node = p;
       while (node != null && node.isStair)

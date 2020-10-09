@@ -1102,7 +1102,7 @@ MonoBehaviour:
   dst: {fileID: 1158860359}
   camerapos: {x: -60, y: 20, z: -10}
   correspondingDoor: {fileID: 736877155}
-  transition: 5
+  transition: 0
   arrivalDirection: 3
   OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -3948,7 +3948,7 @@ MonoBehaviour:
   dst: {fileID: 1158860359}
   camerapos: {x: -60, y: 20, z: -10}
   correspondingDoor: {fileID: 736877155}
-  transition: 5
+  transition: 1
   arrivalDirection: 3
   OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -5785,7 +5785,7 @@ Transform:
   - {fileID: 1576624830}
   - {fileID: 1920150015}
   m_Father: {fileID: 721397399}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &211990113
 AudioSource:
@@ -7669,7 +7669,7 @@ Transform:
   - {fileID: 119290668}
   - {fileID: 1579272505}
   m_Father: {fileID: 721397399}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &301252752
 MonoBehaviour:
@@ -13389,8 +13389,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -1.0725403, y: -2.6287155}
-      - {x: -1.0725403, y: 2.495947}
-      - {x: 1.2075882, y: 2.4181232}
+      - {x: -0.9947052, y: 0.49531174}
+      - {x: 1.2298203, y: 0.7175846}
       - {x: 1.2508316, y: -1.885067}
 --- !u!1 &503294376
 GameObject:
@@ -14549,7 +14549,7 @@ MonoBehaviour:
   dst: {fileID: 1432214312}
   camerapos: {x: 0, y: 2, z: -10}
   correspondingDoor: {fileID: 524794486}
-  transition: 0
+  transition: 1
   arrivalDirection: 1
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
@@ -15109,7 +15109,7 @@ MonoBehaviour:
   dst: {fileID: 1158860359}
   camerapos: {x: -50.5, y: 20, z: -10}
   correspondingDoor: {fileID: 1502791931}
-  transition: 0
+  transition: 3
   arrivalDirection: 2
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
@@ -15440,7 +15440,7 @@ MonoBehaviour:
   dst: {fileID: 2064089266}
   camerapos: {x: -5, y: 30, z: -10}
   correspondingDoor: {fileID: 1230678585}
-  transition: 0
+  transition: 4
   arrivalDirection: 0
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
@@ -19618,14 +19618,14 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1379030969}
   - {fileID: 1532743333}
-  - {fileID: 1770484592}
+  - {fileID: 1379030969}
   - {fileID: 1347792467}
-  - {fileID: 301252751}
+  - {fileID: 1770484592}
   - {fileID: 1785264451}
-  - {fileID: 1744431307}
   - {fileID: 211990112}
+  - {fileID: 1744431307}
+  - {fileID: 301252751}
   - {fileID: 1730974550}
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -20126,7 +20126,7 @@ MonoBehaviour:
   dst: {fileID: 428433903}
   camerapos: {x: -108, y: 20, z: -10}
   correspondingDoor: {fileID: 49037618}
-  transition: 1
+  transition: 4
   arrivalDirection: 0
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -21635,7 +21635,7 @@ MonoBehaviour:
   dst: {fileID: 428433903}
   camerapos: {x: -60, y: 20, z: -10}
   correspondingDoor: {fileID: 1597450630}
-  transition: 5
+  transition: 0
   arrivalDirection: 3
   OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -28424,8 +28424,8 @@ MonoBehaviour:
   right: {fileID: 0}
   top: {fileID: 0}
   down: {fileID: 1743800346}
-  tl: {x: -66.74628, y: 22.730198}
-  tr: {x: -65.49808, y: 22.627504}
+  tl: {x: -66.83523, y: 19.773705}
+  tr: {x: -65.453606, y: 19.793272}
   br: {x: -65.415634, y: 17.856058}
   bl: {x: -66.9758, y: 17.47361}
   parent: {fileID: 1701435548}
@@ -28459,8 +28459,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -16.746277, y: 2.730198}
-      - {x: -15.498077, y: 2.6275043}
+    - - {x: -16.835228, y: -0.22629547}
+      - {x: -15.453606, y: -0.20672798}
       - {x: -15.415634, y: -2.1439419}
       - {x: -16.9758, y: -2.52639}
 --- !u!4 &1064671177
@@ -34635,7 +34635,7 @@ MonoBehaviour:
   dst: {fileID: 450900029}
   camerapos: {x: -50, y: 30, z: -10}
   correspondingDoor: {fileID: 562931425}
-  transition: 0
+  transition: 4
   arrivalDirection: 0
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
@@ -38031,7 +38031,7 @@ Transform:
   - {fileID: 1218445517}
   - {fileID: 1949218616}
   m_Father: {fileID: 721397399}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1347792468
 MonoBehaviour:
@@ -39004,7 +39004,7 @@ Transform:
   - {fileID: 471896662}
   - {fileID: 1715637949}
   m_Father: {fileID: 721397399}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1379030970
 MonoBehaviour:
@@ -42735,7 +42735,7 @@ Transform:
   - {fileID: 1773877621}
   - {fileID: 1061004285}
   m_Father: {fileID: 721397399}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1532743334
 MonoBehaviour:
@@ -45641,7 +45641,7 @@ MonoBehaviour:
   dst: {fileID: 791578439}
   camerapos: {x: -158.8, y: 20, z: -10}
   correspondingDoor: {fileID: 774859338}
-  transition: 5
+  transition: 1
   arrivalDirection: 1
   OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -50231,7 +50231,7 @@ Transform:
   - {fileID: 606547603}
   - {fileID: 1515709752}
   m_Father: {fileID: 721397399}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1770484593
 AudioSource:
@@ -50714,7 +50714,7 @@ Transform:
   - {fileID: 1124099422}
   - {fileID: 1199933526}
   m_Father: {fileID: 721397399}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1785264452
 AudioSource:
@@ -61305,7 +61305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da6a069a417664088ee17ea356220b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStair: 1
+  isStair: 0
   left: {fileID: 0}
   right: {fileID: 0}
   top: {fileID: 728686950}

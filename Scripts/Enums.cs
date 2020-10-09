@@ -129,7 +129,7 @@ public enum Running { NotStarted, Running, Completed };
 /// <summary>
 /// Used to transition between rooms 
 /// </summary>
-public enum TransitionType { ScrollL, ScrollR, ScrollU, ScrollD, ZoomIn, ZoomOut };
+public enum TransitionDirection { Left, Right, Up, Down, In, Out };
 
 
 

@@ -1120,7 +1120,17 @@ public class Controller : MonoBehaviour {
 
     // Get dst camera pos + door dst pos
     Vector3 orgp = cam.transform.position;
-    Vector3 dstp = door.camerapos;
+    Vector3 dstp = orgp;
+    float orthos = cam.orthographicSize;
+    float orthod = orthos;
+    switch (door.transition) {
+      case TransitionDirection.Left: dstp += 1.5f * Vector3.left; break;
+      case TransitionDirection.Right: dstp += 1.5f * Vector3.right; break;
+      case TransitionDirection.Up: dstp += 1 * Vector3.up; break;
+      case TransitionDirection.Down: dstp += 1 * Vector3.down; break;
+      case TransitionDirection.In: orthod -= .5f; break;
+      case TransitionDirection.Out: orthod += .5f; break;
+    }
 
     // Move camera quickly from current to dst
     float time = 0;
@@ -1128,24 +1138,26 @@ public class Controller : MonoBehaviour {
       // Fade black
       BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (time * 8)));
       cam.transform.position = (1 - time * 4) * orgp + (time * 4) * dstp;
+      cam.orthographicSize = (1 - time * 4) * orthos + (time * 4) * orthod;
       time += Time.deltaTime;
       yield return null;
     }
     actor.transform.position = door.correspondingDoor.HotSpot;
     yield return null;
-    while (time < .25f) {
-      // Fade black
-      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (1 - (8 * (time - .125f)))));
-      cam.transform.position = (1 - time * 4) * orgp + (time * 4) * dstp;
-      time += Time.deltaTime;
-      yield return null;
+
+    dstp = door.camerapos;
+    orgp = dstp;
+    orthos = 4;
+    orthod = 4;
+    switch (door.correspondingDoor.transition) {
+      case TransitionDirection.Left: orgp += 1.5f * Vector3.left; break;
+      case TransitionDirection.Right: orgp += 1.5f * Vector3.right; break;
+      case TransitionDirection.Up: orgp += 1 * Vector3.up; break;
+      case TransitionDirection.Down: orgp += 1 * Vector3.down; break;
+      case TransitionDirection.In: orthos -= .5f; break;
+      case TransitionDirection.Out: orthos += .5f; break;
     }
-    cam.transform.position = dstp;
-
-    // Disable src
-    door.src.gameObject.SetActive(false);
     actor.Stop();
-
     // Move actor to dst door pos
     currentRoom = door.dst;
     currentActor = actor;
@@ -1158,6 +1170,19 @@ public class Controller : MonoBehaviour {
       currentActor.SetScaleAndPosition(door.correspondingDoor.HotSpot, p);
     }
     yield return null;
+
+    while (time < .25f) {
+      // Fade black
+      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (1 - (8 * (time - .125f)))));
+      cam.transform.position = (1 - time * 4) * orgp + (time * 4) * dstp;
+      cam.orthographicSize = (1 - time * 4) * orthos + (time * 4) * orthod;
+      time += Time.deltaTime;
+      yield return null;
+    }
+    cam.transform.position = dstp;
+
+    // Disable src
+    door.src.gameObject.SetActive(false);
 
     // Disable actors not in current room
     foreach (Actor a in allActors) {

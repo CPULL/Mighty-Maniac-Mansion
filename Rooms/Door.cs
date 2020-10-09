@@ -5,7 +5,7 @@ public class Door : Item {
   public Room dst;
   public Vector3 camerapos;
   public Door correspondingDoor;
-  public TransitionType transition;
+  public TransitionDirection transition;
   public Dir arrivalDirection;
   public AudioClip OpenSound;
   public AudioClip CloseSound;
