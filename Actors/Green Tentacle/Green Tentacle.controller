@@ -110,7 +110,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ollie
+  m_Name: Green Tentacle
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
