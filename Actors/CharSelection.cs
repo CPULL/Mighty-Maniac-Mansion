@@ -20,6 +20,8 @@ public class CharSelection : MonoBehaviour {
   Color Transparent = new Color32(0, 0, 0, 0);
 
   public Button ButtonStart;
+  public GameObject[] Hidden;
+  int mmm = 0;
 
   private void Awake() {
     GD.charSel = this;
@@ -29,6 +31,16 @@ public class CharSelection : MonoBehaviour {
     if (GD.status != GameStatus.CharSelection) return;
     if (!charSelectionCanvas.enabled) SelectCharacters();
     if (Options.IsActive()) return;
+
+    if (Input.GetKeyUp(KeyCode.M)) {
+      mmm++;
+      if (mmm==3) {
+        foreach (GameObject h in Hidden)
+          h.SetActive(true);
+      }
+    }
+    else if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.M)) 
+      mmm = 0;
   }
 
 
@@ -37,7 +49,8 @@ public class CharSelection : MonoBehaviour {
     ButtonStart.interactable = false;
     ActorDescription.text = "";
     foreach (Image img in Selections) {
-      img.color = new Color32(0, 0, 0, 0);
+      if (img != null)
+        img.color = new Color32(0, 0, 0, 0);
     }
     a1 = -1;
     a2 = -1;
@@ -161,8 +174,7 @@ public class CharSelection : MonoBehaviour {
       ActorDescription.text = "";
       return;
     }
-
-    Actor a = Controller.GetActor(num==12 ? Chars.GreenTentacle : (Chars)(20 + num));
+    Actor a = Controller.GetActorForSelection(num);
     ActorPortraitH.color = Color.white;
     ActorPortraitA.color = Color.white;
     ActorPortraitL.color = Color.white;
@@ -170,7 +182,7 @@ public class CharSelection : MonoBehaviour {
     ActorPortraitA.sprite = Arms[num];
     ActorPortraitL.sprite = Legs[num];
     if (a == null)
-      ActorDescription.text = "Not yet available:\n" + ((Chars)(20 + num)).ToString();
+      ActorDescription.text = "Not yet available:\n" + (Chars)num;
     else {
       string descr = a.Description + "\n\n<i>Skills</u>:\n";
       foreach (Skill s in a.skills)
@@ -181,13 +193,10 @@ public class CharSelection : MonoBehaviour {
   }
 
   public void StartGame() {
-    if (a1 == 12)
-      GD.actor1 = Chars.GreenTentacle;
-    else
-      GD.actor1 = (Chars)(a1 + 20);
-    GD.actor2 = (Chars)(a2 + 20);
-    GD.actor3 = (Chars)(a3 + 20);
-    GD.kidnapped = (Chars)(ak + 20);
+    GD.actor1 = (Chars)a1;
+    GD.actor2 = (Chars)a2;
+    GD.actor3 = (Chars)a3;
+    GD.kidnapped = (Chars)ak;
     charSelectionCanvas.enabled = false;
     GD.status = GameStatus.StartGame;
   }

@@ -971,6 +971,8 @@ public class Controller : MonoBehaviour {
       case Chars.Edwige: return GD.c.allEnemies[4];
       case Chars.GreenTentacle: return GD.c.allEnemies[5];
       case Chars.PurpleTentacle: return GD.c.allEnemies[6];
+      case Chars.BlueTentacle: return GD.c.allEnemies[7];
+      case Chars.PurpleMeteor: return GD.c.allEnemies[8];
       case Chars.Dave: return GD.c.allActors[0];
       case Chars.Bernard: return GD.c.allActors[1];
       case Chars.Wendy: return GD.c.allActors[2];
@@ -986,6 +988,11 @@ public class Controller : MonoBehaviour {
     }
     Debug.LogError("Invalid actor requested! " + actor);
     return null;
+  }
+
+  public static Actor GetActorForSelection(int num) {
+    if (num < 9) return GD.c.allEnemies[num];
+    return GD.c.allActors[num - 9];
   }
 
   public Sprite GetActorPortrait(Chars actor) {
