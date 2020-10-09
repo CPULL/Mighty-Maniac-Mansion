@@ -1086,7 +1086,7 @@ public class Controller : MonoBehaviour {
       GD.c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.selectedActor;
     }
     GD.c.ShowName("Selected: " + GD.c.currentActor.name);
-    if (!GD.c.currentActor.gameObject.activeSelf) { // Different room
+    if (GD.c.currentActor.currentRoom != GD.c.currentRoom) { // Different room
       GD.c.StartCoroutine(GD.c.FadeToRoomActor());
     }
     if (GD.c.Inventory.activeSelf) GD.c.ActivateInventory(GD.c.currentActor);

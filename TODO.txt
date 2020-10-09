@@ -19,8 +19,6 @@ FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
 
-Switching actors seems to be not working
-
 * CHARS ************************************************************************************************************
 
 Dr. Fred
@@ -135,5 +133,6 @@ Jeff
 ! Fixed "it does not work" if using the doorbell.
 ! Fixed the scaling of actors after teleporting
 ! We need a way to jumpstart to a room with a char. Maybe a set of buttons in the start area with a specific Cutscene to do it
+! Fixed the problem of switching actors
 
 
