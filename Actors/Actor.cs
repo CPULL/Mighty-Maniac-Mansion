@@ -19,6 +19,7 @@ public class Actor : MonoBehaviour {
   bool walking = false;
   Dir dir = Dir.F;
   private AudioSource audios;
+  bool isTentacle = false;
   public List<Item> inventory;
   public Chars id;
   public float mainScale = 1f;
@@ -31,6 +32,9 @@ public class Actor : MonoBehaviour {
   private void Awake() {
     anim = GetComponent<Animator>();
     audios = GetComponent<AudioSource>();
+
+    isTentacle = id == Chars.GreenTentacle || id == Chars.PurpleTentacle || id == Chars.BlueTentacle;
+    if (isTentacle) audios.clip = Sounds.GetTentacle();
 
     if (currentRoom != null)
       SetScaleAndPosition(new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY - currentRoom.minY), 0));
@@ -161,7 +165,7 @@ public class Actor : MonoBehaviour {
       destination.pos = dest;
       prevFloor = FloorType.None;
       floor = p.floorType;
-      audios.clip = Sounds.GetStepSound(floor);
+      if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
       audios.Play();
     }
     else {
@@ -172,7 +176,7 @@ public class Actor : MonoBehaviour {
 
       if (floor != prevFloor || !audios.isPlaying) {
         prevFloor = floor;
-        audios.clip = Sounds.GetStepSound(floor);
+        if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
         audios.Play();
       }
     }
@@ -183,11 +187,6 @@ public class Actor : MonoBehaviour {
     dir = CalculateDirection(destination.pos);
     anim.Play("Walk" + dir);
     walking = true;
-  }
-
-  internal void PlaySound(AudioClip audioClip) {
-    audios.clip = audioClip;
-    audios.Play();
   }
 
   private void Update() {
@@ -249,7 +248,7 @@ public class Actor : MonoBehaviour {
       destination.node = parcour[0].node;
       floor = parcour[0].node.floorType;
       if (floor != prevFloor) {
-        audios.clip = Sounds.GetStepSound(floor);
+        if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
         audios.Play();
       }
       parcour.RemoveAt(0);
