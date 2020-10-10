@@ -1,0 +1,2632 @@
+fileFormatVersion: 2
+guid: 8a9c476847fed8244a085c7fa23be3ce
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7888902146871769836
+    second: Dave_0
+  - first:
+      213: 8135646650573657831
+    second: Dave_1
+  - first:
+      213: -747637553039879534
+    second: Dave_2
+  - first:
+      213: -1440088328506575641
+    second: Dave_3
+  - first:
+      213: 4910842507438598899
+    second: Dave_4
+  - first:
+      213: 7363506383079820997
+    second: Dave_5
+  - first:
+      213: -8782635571135245053
+    second: Dave_6
+  - first:
+      213: 3731878887476337298
+    second: Dave_7
+  - first:
+      213: 7546045763806733465
+    second: Dave_8
+  - first:
+      213: -2959794242114279973
+    second: Dave_9
+  - first:
+      213: 5330956352606089964
+    second: Dave_10
+  - first:
+      213: -3175745282777762671
+    second: Dave_11
+  - first:
+      213: -9046547721153642166
+    second: Dave_12
+  - first:
+      213: 4474842964128040499
+    second: Dave_13
+  - first:
+      213: -2065442670624400489
+    second: Dave_14
+  - first:
+      213: 504732061343106302
+    second: Dave_15
+  - first:
+      213: -7460426139253168013
+    second: Dave_16
+  - first:
+      213: -6937367103375319229
+    second: Dave_17
+  - first:
+      213: 2992607042968343019
+    second: Dave_18
+  - first:
+      213: 4106430136202557391
+    second: Dave_19
+  - first:
+      213: -7867146419528734320
+    second: Dave_20
+  - first:
+      213: 5248252073891279038
+    second: Dave_21
+  - first:
+      213: -7479142128241946483
+    second: Dave_22
+  - first:
+      213: 8115595807947430086
+    second: Dave_23
+  - first:
+      213: 3579380359600087385
+    second: Dave_24
+  - first:
+      213: 7196515420006497057
+    second: Dave_25
+  - first:
+      213: -6081496003259615544
+    second: Dave_26
+  - first:
+      213: -5621260984230191386
+    second: Dave_27
+  - first:
+      213: 9028926393286250709
+    second: Dave_28
+  - first:
+      213: 5191425839080472334
+    second: Dave_29
+  - first:
+      213: 4349575693236251115
+    second: Dave_30
+  - first:
+      213: -4090228576586214124
+    second: Dave_31
+  - first:
+      213: 3897520715677047314
+    second: Dave_32
+  - first:
+      213: 6305682278443167625
+    second: Dave_33
+  - first:
+      213: -7313390019080279291
+    second: Dave_34
+  - first:
+      213: 6747765485996531226
+    second: Dave_35
+  - first:
+      213: 8301271887010317657
+    second: Dave_36
+  - first:
+      213: 3737286752727135133
+    second: Dave_37
+  - first:
+      213: -6359221482647622273
+    second: Dave_38
+  - first:
+      213: 8873806063167362163
+    second: Dave_39
+  - first:
+      213: 1010070456023070211
+    second: Dave_40
+  - first:
+      213: 3775120826718300322
+    second: Dave_41
+  - first:
+      213: -3973395767477190763
+    second: Dave_42
+  - first:
+      213: 6325384408593354156
+    second: Dave_43
+  - first:
+      213: -8789017560267634472
+    second: Dave_44
+  - first:
+      213: -5518103293305504867
+    second: Dave_45
+  - first:
+      213: 7343898637269568886
+    second: Dave_46
+  - first:
+      213: 8990550243722228724
+    second: Dave_47
+  - first:
+      213: 8648186765697932861
+    second: Dave_48
+  - first:
+      213: 4168226659324570698
+    second: Dave_49
+  - first:
+      213: -3896855140342960559
+    second: Dave_50
+  - first:
+      213: -5053805227437848470
+    second: Dave_51
+  - first:
+      213: -5029619571608823755
+    second: Dave_52
+  - first:
+      213: 6141925264097652475
+    second: Dave_53
+  - first:
+      213: 8442050147283572108
+    second: Dave_54
+  - first:
+      213: -6427586263114401296
+    second: Dave_55
+  - first:
+      213: -4213635897947632198
+    second: Dave_56
+  - first:
+      213: -4374184652258226299
+    second: Dave_57
+  - first:
+      213: -9149808062453588639
+    second: Dave_58
+  - first:
+      213: 8553650366293852298
+    second: Dave_59
+  - first:
+      213: 9097519068360622649
+    second: Wendy_0
+  - first:
+      213: -5385506310963410737
+    second: Wendy_1
+  - first:
+      213: -1011523690761709622
+    second: Wendy_2
+  - first:
+      213: -7228936477933668777
+    second: Wendy_3
+  - first:
+      213: -5195802297227211514
+    second: Wendy_4
+  - first:
+      213: -3690206035930473114
+    second: Wendy_5
+  - first:
+      213: -1075927679363847451
+    second: Wendy_6
+  - first:
+      213: 5713809788657343767
+    second: Wendy_7
+  - first:
+      213: 7103880906612211788
+    second: Wendy_8
+  - first:
+      213: -5772576216422418284
+    second: Wendy_9
+  - first:
+      213: 3173916692904352112
+    second: Wendy_10
+  - first:
+      213: 6027806964285467349
+    second: Wendy_11
+  - first:
+      213: -3922360597051378687
+    second: Wendy_12
+  - first:
+      213: -8346680908902167969
+    second: Wendy_13
+  - first:
+      213: -7883592819698292202
+    second: Wendy_14
+  - first:
+      213: -1882780385505286686
+    second: Wendy_15
+  - first:
+      213: 6987537041969410396
+    second: Wendy_16
+  - first:
+      213: 6229335067452214066
+    second: Wendy_17
+  - first:
+      213: 1808475849451785463
+    second: Wendy_18
+  - first:
+      213: 7036784918087215727
+    second: Wendy_19
+  - first:
+      213: -6244921748636086016
+    second: Wendy_20
+  - first:
+      213: 181977337346456315
+    second: Wendy_21
+  - first:
+      213: -7596871814267780649
+    second: Wendy_22
+  - first:
+      213: 3593884447467464402
+    second: Wendy_23
+  - first:
+      213: 7799979150398999156
+    second: Wendy_24
+  - first:
+      213: -8156994623423769340
+    second: Wendy_25
+  - first:
+      213: -2377842225930457735
+    second: Wendy_26
+  - first:
+      213: 2586485256959922798
+    second: Wendy_27
+  - first:
+      213: -382390377227390721
+    second: Wendy_28
+  - first:
+      213: 1225916760870541614
+    second: Wendy_29
+  - first:
+      213: -5225196126064850204
+    second: Wendy_30
+  - first:
+      213: -4346487244500300391
+    second: Wendy_31
+  - first:
+      213: -2032432329795052751
+    second: Wendy_32
+  - first:
+      213: 1755778467124365621
+    second: Wendy_33
+  - first:
+      213: 585212248112299782
+    second: Wendy_34
+  - first:
+      213: -8175935895819209281
+    second: Wendy_35
+  - first:
+      213: 8174016552212516200
+    second: Wendy_36
+  - first:
+      213: 5145016507227847931
+    second: Wendy_37
+  - first:
+      213: 1288894957171633056
+    second: Wendy_38
+  - first:
+      213: -2228426028099186227
+    second: Wendy_39
+  - first:
+      213: 8651190826888746101
+    second: Wendy_40
+  - first:
+      213: 6982643930283254049
+    second: Wendy_41
+  - first:
+      213: 9023873966551496933
+    second: Wendy_42
+  - first:
+      213: -2220892848878685986
+    second: Wendy_43
+  - first:
+      213: 2103743746750718721
+    second: Wendy_44
+  - first:
+      213: -3513604926967679946
+    second: Wendy_45
+  - first:
+      213: -172213596046261718
+    second: Wendy_46
+  - first:
+      213: -3190984149865918596
+    second: Wendy_47
+  - first:
+      213: -5226820411319951861
+    second: Wendy_48
+  - first:
+      213: -5446545840133778204
+    second: Wendy_49
+  - first:
+      213: -1251785162340036192
+    second: Wendy_50
+  - first:
+      213: -5161082647543855615
+    second: Wendy_51
+  - first:
+      213: -7353637861635100386
+    second: Wendy_52
+  - first:
+      213: 2731574397790076726
+    second: Wendy_53
+  - first:
+      213: -321868448766324847
+    second: Wendy_54
+  - first:
+      213: 9203703785793977036
+    second: Wendy_55
+  - first:
+      213: -7159503083183920745
+    second: Wendy_56
+  - first:
+      213: 4210522344191879514
+    second: Wendy_57
+  - first:
+      213: 1922067464017243
+    second: Wendy_58
+  - first:
+      213: -5843632031468275764
+    second: Wendy_59
+  - first:
+      213: 7190259368201910681
+    second: Sandy_0
+  - first:
+      213: 8746533411789874249
+    second: Sandy_1
+  - first:
+      213: 7520052141426982106
+    second: Sandy_2
+  - first:
+      213: 5724224853273328645
+    second: Sandy_3
+  - first:
+      213: -6330937803339273220
+    second: Sandy_4
+  - first:
+      213: 8574453870533317021
+    second: Sandy_5
+  - first:
+      213: -8120559209466692528
+    second: Sandy_6
+  - first:
+      213: -991536522874817000
+    second: Sandy_7
+  - first:
+      213: 3352418510135867028
+    second: Sandy_8
+  - first:
+      213: 2190182830259732618
+    second: Sandy_9
+  - first:
+      213: -709709334594185832
+    second: Sandy_10
+  - first:
+      213: 5909993054031435092
+    second: Sandy_11
+  - first:
+      213: -1383241365228067376
+    second: Sandy_12
+  - first:
+      213: 5295696298487601129
+    second: Sandy_13
+  - first:
+      213: -8578410112176879281
+    second: Sandy_14
+  - first:
+      213: -4741422125033671501
+    second: Sandy_15
+  - first:
+      213: 2591583139891880976
+    second: Sandy_16
+  - first:
+      213: -6205739080321867406
+    second: Sandy_17
+  - first:
+      213: -975192337526058498
+    second: Sandy_18
+  - first:
+      213: -6166710322012515786
+    second: Sandy_19
+  - first:
+      213: 3376563115203371472
+    second: Sandy_20
+  - first:
+      213: -2095963893221864204
+    second: Sandy_21
+  - first:
+      213: 3479172280577351071
+    second: Sandy_22
+  - first:
+      213: -3263393363223813436
+    second: Sandy_23
+  - first:
+      213: 5587729395815378525
+    second: Sandy_24
+  - first:
+      213: 7081315572890713795
+    second: Sandy_25
+  - first:
+      213: 691212301919318087
+    second: Sandy_26
+  - first:
+      213: -3865941496809468488
+    second: Sandy_27
+  - first:
+      213: -5919584195918355883
+    second: Sandy_28
+  - first:
+      213: -1864356307855453529
+    second: Sandy_29
+  - first:
+      213: -8175449594629364923
+    second: Sandy_30
+  - first:
+      213: -4984470992398497765
+    second: Sandy_31
+  - first:
+      213: -6436544724817154324
+    second: Sandy_32
+  - first:
+      213: 4734792672017983914
+    second: Sandy_33
+  - first:
+      213: 647033332347084461
+    second: Sandy_34
+  - first:
+      213: 6492692339441553377
+    second: Sandy_35
+  - first:
+      213: 8223691988728003610
+    second: Sandy_36
+  - first:
+      213: 445661028547069541
+    second: Sandy_37
+  - first:
+      213: 1972699556676037622
+    second: Sandy_38
+  - first:
+      213: -6332744450398940429
+    second: Sandy_39
+  - first:
+      213: 2871095068723911684
+    second: Sandy_40
+  - first:
+      213: -3757043643253658262
+    second: Sandy_41
+  - first:
+      213: 2986451443140347928
+    second: Sandy_42
+  - first:
+      213: 1689681272434234482
+    second: Sandy_43
+  - first:
+      213: 5709131811835057635
+    second: Sandy_44
+  - first:
+      213: 1640097895641719803
+    second: Sandy_45
+  - first:
+      213: 8978111305470590263
+    second: Sandy_46
+  - first:
+      213: -5358376392743228065
+    second: Sandy_47
+  - first:
+      213: 3771604073982310106
+    second: Sandy_48
+  - first:
+      213: 2172215037275806829
+    second: Sandy_49
+  - first:
+      213: 3162187322451465296
+    second: Sandy_50
+  - first:
+      213: 7616724632819327721
+    second: Sandy_51
+  - first:
+      213: -634274396342604095
+    second: Sandy_52
+  - first:
+      213: -8066855170354259687
+    second: Sandy_53
+  - first:
+      213: -4028573370968111737
+    second: Sandy_54
+  - first:
+      213: 1818527622491886305
+    second: Sandy_55
+  - first:
+      213: 1373926825883370570
+    second: Sandy_56
+  - first:
+      213: 3892433631797338791
+    second: Sandy_57
+  - first:
+      213: 7474042474767991503
+    second: Sandy_58
+  - first:
+      213: -3786261381714090755
+    second: Sandy_59
+  - first:
+      213: -5729636134852518705
+    second: Ollie_0
+  - first:
+      213: 2552125631405968710
+    second: Ollie_1
+  - first:
+      213: -7458349847167912486
+    second: Ollie_2
+  - first:
+      213: 4893047590474853114
+    second: Ollie_3
+  - first:
+      213: 7537690097589500229
+    second: Ollie_4
+  - first:
+      213: 5609853398801328177
+    second: Ollie_5
+  - first:
+      213: 4190664896477950983
+    second: Ollie_6
+  - first:
+      213: 1083457793224323757
+    second: Ollie_7
+  - first:
+      213: -5030107730959188018
+    second: Ollie_8
+  - first:
+      213: -3310439316332939247
+    second: Ollie_9
+  - first:
+      213: -6469605120416431411
+    second: Ollie_10
+  - first:
+      213: 1801019492540833434
+    second: Ollie_11
+  - first:
+      213: 2642878405208207503
+    second: Ollie_12
+  - first:
+      213: 7752052897425806272
+    second: Ollie_13
+  - first:
+      213: 3716672708936334115
+    second: Ollie_14
+  - first:
+      213: 6869271072643590654
+    second: Ollie_15
+  - first:
+      213: 209439674381810932
+    second: Ollie_16
+  - first:
+      213: -1959866427410098966
+    second: Ollie_17
+  - first:
+      213: -3388556295776784619
+    second: Ollie_18
+  - first:
+      213: 5925434948525607247
+    second: Ollie_19
+  - first:
+      213: -7591092641020737250
+    second: Ollie_20
+  - first:
+      213: -3675232186307189449
+    second: Ollie_21
+  - first:
+      213: -5250323604167125124
+    second: Ollie_22
+  - first:
+      213: 8994598445681338170
+    second: Ollie_23
+  - first:
+      213: -6130173262331728456
+    second: Ollie_24
+  - first:
+      213: -7452644199288728969
+    second: Ollie_25
+  - first:
+      213: -9118471183529991638
+    second: Ollie_26
+  - first:
+      213: 8587082789118147695
+    second: Ollie_27
+  - first:
+      213: 7517746796049291149
+    second: Ollie_28
+  - first:
+      213: -1336023594924512710
+    second: Ollie_29
+  - first:
+      213: 2778105855919397592
+    second: Ollie_30
+  - first:
+      213: 2554062684538138807
+    second: Ollie_31
+  - first:
+      213: 1409186465289954293
+    second: Ollie_32
+  - first:
+      213: -537571756336943587
+    second: Ollie_33
+  - first:
+      213: -64915831120018831
+    second: Ollie_34
+  - first:
+      213: -1394549694294028718
+    second: Ollie_35
+  - first:
+      213: 8638024517150513992
+    second: Ollie_36
+  - first:
+      213: 3086850418555731748
+    second: Ollie_37
+  - first:
+      213: -7852174987891509261
+    second: Ollie_38
+  - first:
+      213: 6557829865086235645
+    second: Ollie_39
+  - first:
+      213: 8895049108570195627
+    second: Ollie_40
+  - first:
+      213: -2707719893833736190
+    second: Ollie_41
+  - first:
+      213: 14134204978902235
+    second: Ollie_42
+  - first:
+      213: 1821958908217567845
+    second: Ollie_43
+  - first:
+      213: 4567650778676390212
+    second: Ollie_44
+  - first:
+      213: -8388538827040852561
+    second: Ollie_45
+  - first:
+      213: 7536753162621969675
+    second: Ollie_46
+  - first:
+      213: 8136814531510400377
+    second: Ollie_47
+  - first:
+      213: 3278717517436107840
+    second: Ollie_48
+  - first:
+      213: 2783520080261220135
+    second: Ollie_49
+  - first:
+      213: 465978239131981050
+    second: Ollie_50
+  - first:
+      213: -5855280167999056537
+    second: Ollie_51
+  - first:
+      213: 264691915385411904
+    second: Ollie_52
+  - first:
+      213: 8201330349194628293
+    second: Ollie_53
+  - first:
+      213: 7519677040855900680
+    second: Ollie_54
+  - first:
+      213: -5251758183626561389
+    second: Ollie_55
+  - first:
+      213: 926122175354079035
+    second: Ollie_56
+  - first:
+      213: -1006561258037120816
+    second: Ollie_57
+  - first:
+      213: -7021995516987296160
+    second: Ollie_58
+  - first:
+      213: 4632161520627925751
+    second: Ollie_59
+  - first:
+      213: 8622702462361910600
+    second: Green Tentacle_0
+  - first:
+      213: -5904189613868792394
+    second: Green Tentacle_1
+  - first:
+      213: 3309849109801791501
+    second: Green Tentacle_2
+  - first:
+      213: 3398023379118391797
+    second: Green Tentacle_3
+  - first:
+      213: -7211947040155809573
+    second: Green Tentacle_4
+  - first:
+      213: 8411500963341790652
+    second: Green Tentacle_5
+  - first:
+      213: -7926453181693076810
+    second: Green Tentacle_6
+  - first:
+      213: -3220146066661679201
+    second: Green Tentacle_7
+  - first:
+      213: 5204745036061247745
+    second: Green Tentacle_8
+  - first:
+      213: -4672579981088472559
+    second: Green Tentacle_9
+  - first:
+      213: 8695725472142068091
+    second: Green Tentacle_10
+  - first:
+      213: 1206635001157801447
+    second: Green Tentacle_11
+  - first:
+      213: -713133130753659116
+    second: Green Tentacle_12
+  - first:
+      213: 8214305690074068449
+    second: Green Tentacle_13
+  - first:
+      213: -1253252118903525196
+    second: Green Tentacle_14
+  - first:
+      213: -6598579931958629578
+    second: Green Tentacle_15
+  - first:
+      213: -5405308491454018761
+    second: Green Tentacle_16
+  - first:
+      213: 7393949758634246197
+    second: Green Tentacle_17
+  - first:
+      213: 2085278651514901709
+    second: Green Tentacle_18
+  - first:
+      213: -7073224002714861940
+    second: Green Tentacle_19
+  - first:
+      213: -6773296492244343245
+    second: Green Tentacle_20
+  - first:
+      213: -602280866092358734
+    second: Green Tentacle_21
+  - first:
+      213: 936211493290291108
+    second: Green Tentacle_22
+  - first:
+      213: 7212970945216952847
+    second: Green Tentacle_23
+  - first:
+      213: -7975983951501226160
+    second: Green Tentacle_24
+  - first:
+      213: -8732705314948796835
+    second: Green Tentacle_25
+  - first:
+      213: -6353023298258391974
+    second: Green Tentacle_26
+  - first:
+      213: 8609932925266650791
+    second: Green Tentacle_27
+  - first:
+      213: -3485224445958048601
+    second: Green Tentacle_28
+  - first:
+      213: -7453590942450897656
+    second: Green Tentacle_29
+  - first:
+      213: 7550298831145776501
+    second: Green Tentacle_30
+  - first:
+      213: 5869750200454252234
+    second: Green Tentacle_31
+  - first:
+      213: 918146016521281105
+    second: Green Tentacle_32
+  - first:
+      213: -2135416348363024947
+    second: Green Tentacle_33
+  - first:
+      213: 4457915140565616150
+    second: Green Tentacle_34
+  - first:
+      213: -9156689691279092530
+    second: Green Tentacle_35
+  - first:
+      213: 5016213034943992429
+    second: Green Tentacle_36
+  - first:
+      213: 6524607231571677311
+    second: Green Tentacle_37
+  - first:
+      213: 6220695195269378234
+    second: Green Tentacle_38
+  - first:
+      213: -6203996843573001129
+    second: Green Tentacle_39
+  - first:
+      213: 4719526381555295657
+    second: Green Tentacle_40
+  - first:
+      213: -3835179689657574626
+    second: Green Tentacle_41
+  - first:
+      213: -7165319988397224270
+    second: Green Tentacle_42
+  - first:
+      213: 3900124786371034068
+    second: Green Tentacle_43
+  - first:
+      213: 8655887343702075399
+    second: Green Tentacle_44
+  - first:
+      213: 5433614423095975113
+    second: Green Tentacle_45
+  - first:
+      213: -5775190966632672334
+    second: Green Tentacle_46
+  - first:
+      213: -3262774050364003060
+    second: Green Tentacle_47
+  - first:
+      213: -5452331176109950130
+    second: Green Tentacle_48
+  - first:
+      213: 6023120182980229879
+    second: Green Tentacle_49
+  - first:
+      213: -3110251223243962334
+    second: Green Tentacle_50
+  - first:
+      213: -928773384002672701
+    second: Green Tentacle_51
+  - first:
+      213: -8789958937450198672
+    second: Green Tentacle_52
+  - first:
+      213: -2517247934326897727
+    second: Green Tentacle_53
+  - first:
+      213: -7075244428963353022
+    second: Green Tentacle_54
+  - first:
+      213: -4588228949220551747
+    second: Green Tentacle_55
+  - first:
+      213: -6112877661407618765
+    second: Green Tentacle_56
+  - first:
+      213: -1588094165325147130
+    second: Green Tentacle_57
+  - first:
+      213: -537833616415204146
+    second: Green Tentacle_58
+  - first:
+      213: -9164279726089546022
+    second: Green Tentacle_59
+  - first:
+      213: 3492314855738540403
+    second: Green Tentacle_60
+  - first:
+      213: 1073098941966422061
+    second: Green Tentacle_61
+  - first:
+      213: 2063576670115347250
+    second: Green Tentacle_62
+  - first:
+      213: 2662728227405354913
+    second: Green Tentacle_63
+  - first:
+      213: 7820286698691676054
+    second: Green Tentacle_64
+  - first:
+      213: 4545035509465965544
+    second: Green Tentacle_65
+  - first:
+      213: 4057594475361956097
+    second: Green Tentacle_0
+  - first:
+      213: -6452252565644288119
+    second: Green Tentacle_1
+  - first:
+      213: 2453322575116541815
+    second: Green Tentacle_2
+  - first:
+      213: -8176787469474179095
+    second: Green Tentacle_3
+  - first:
+      213: -6372058272046674087
+    second: Green Tentacle_4
+  - first:
+      213: -1529123851057038203
+    second: Green Tentacle_5
+  - first:
+      213: -1295070239717222746
+    second: Green Tentacle_6
+  - first:
+      213: 4874546958650448069
+    second: Green Tentacle_7
+  - first:
+      213: 4227396254131059706
+    second: Green Tentacle_8
+  - first:
+      213: -8391516260828538723
+    second: Green Tentacle_9
+  - first:
+      213: -9186509767460005537
+    second: Green Tentacle_10
+  - first:
+      213: -6220006180653240522
+    second: Green Tentacle_11
+  - first:
+      213: -3663519272209349977
+    second: Green Tentacle_12
+  - first:
+      213: 8748159278319735060
+    second: Green Tentacle_13
+  - first:
+      213: 3532608417342116495
+    second: Green Tentacle_14
+  - first:
+      213: -8208345583819536994
+    second: Green Tentacle_15
+  - first:
+      213: 4122653197204528743
+    second: Green Tentacle_16
+  - first:
+      213: 4997520975844045024
+    second: Green Tentacle_17
+  - first:
+      213: -7605251022109827049
+    second: Green Tentacle_18
+  - first:
+      213: 2372563550926084504
+    second: Green Tentacle_19
+  - first:
+      213: 5570290292540268288
+    second: Green Tentacle_20
+  - first:
+      213: 4906857148222907965
+    second: Green Tentacle_21
+  - first:
+      213: 8703103406447126472
+    second: Green Tentacle_22
+  - first:
+      213: 7346743050199090904
+    second: Green Tentacle_23
+  - first:
+      213: 9111009333810405378
+    second: Green Tentacle_24
+  - first:
+      213: -3623036881283570629
+    second: Green Tentacle_25
+  - first:
+      213: -912912531687672919
+    second: Green Tentacle_26
+  - first:
+      213: 7357491133049842131
+    second: Green Tentacle_27
+  - first:
+      213: 440055351461386060
+    second: Green Tentacle_28
+  - first:
+      213: -3959502650138970978
+    second: Green Tentacle_29
+  - first:
+      213: 2035081136207362692
+    second: Green Tentacle_30
+  - first:
+      213: -7130461849881515967
+    second: Green Tentacle_31
+  - first:
+      213: -8728225642329653088
+    second: Green Tentacle_32
+  - first:
+      213: 7498871639027107573
+    second: Green Tentacle_33
+  - first:
+      213: 8496291722130714203
+    second: Green Tentacle_34
+  - first:
+      213: 3010767668179774282
+    second: Green Tentacle_35
+  - first:
+      213: -3178604081195503162
+    second: Green Tentacle_36
+  - first:
+      213: -102582858316330242
+    second: Green Tentacle_37
+  - first:
+      213: -3256420733976268904
+    second: Green Tentacle_38
+  - first:
+      213: 368352389764759494
+    second: Green Tentacle_39
+  - first:
+      213: -7842599739799720962
+    second: Green Tentacle_40
+  - first:
+      213: 3341577359834393620
+    second: Green Tentacle_41
+  - first:
+      213: -3344636837719077843
+    second: Green Tentacle_42
+  - first:
+      213: 8757729170089784159
+    second: Green Tentacle_43
+  - first:
+      213: 2801982968685559516
+    second: Green Tentacle_44
+  - first:
+      213: 6875289285196144096
+    second: Green Tentacle_45
+  - first:
+      213: -4874400927592523592
+    second: Green Tentacle_46
+  - first:
+      213: 7606748752990754000
+    second: Green Tentacle_47
+  - first:
+      213: -399664865107153815
+    second: Green Tentacle_48
+  - first:
+      213: -3828062642653655489
+    second: Green Tentacle_49
+  - first:
+      213: 553890583719294749
+    second: Green Tentacle_50
+  - first:
+      213: -4113813210085564713
+    second: Green Tentacle_51
+  - first:
+      213: -4461274354930541189
+    second: Green Tentacle_52
+  - first:
+      213: 1595946888896726626
+    second: Green Tentacle_53
+  - first:
+      213: 6682736838818300018
+    second: Green Tentacle_54
+  - first:
+      213: -2302657443374972108
+    second: Green Tentacle_55
+  - first:
+      213: 8630821024646341664
+    second: Green Tentacle_56
+  - first:
+      213: -3448244763393641843
+    second: Green Tentacle_57
+  - first:
+      213: 3012106158965435945
+    second: Green Tentacle_58
+  - first:
+      213: 1519713862483391102
+    second: Green Tentacle_59
+  - first:
+      213: -4057453843909261794
+    second: Purple Tentacle_0
+  - first:
+      213: -861034588991178594
+    second: Purple Tentacle_1
+  - first:
+      213: 8989995250158993306
+    second: Purple Tentacle_2
+  - first:
+      213: 8672134275013891307
+    second: Purple Tentacle_3
+  - first:
+      213: -8132198126621454427
+    second: Purple Tentacle_4
+  - first:
+      213: 689736328452081520
+    second: Purple Tentacle_5
+  - first:
+      213: 5483696484897997916
+    second: Purple Tentacle_6
+  - first:
+      213: -4252939325870307453
+    second: Purple Tentacle_7
+  - first:
+      213: -9142527421626919711
+    second: Purple Tentacle_8
+  - first:
+      213: 7673356208961965328
+    second: Purple Tentacle_9
+  - first:
+      213: 1098094282703573458
+    second: Purple Tentacle_10
+  - first:
+      213: -6388587408266124432
+    second: Purple Tentacle_11
+  - first:
+      213: -3172145049025810823
+    second: Purple Tentacle_12
+  - first:
+      213: -8833197577607870402
+    second: Purple Tentacle_13
+  - first:
+      213: 5692735033796725117
+    second: Purple Tentacle_14
+  - first:
+      213: -1056159597814008691
+    second: Purple Tentacle_15
+  - first:
+      213: -8429128774143103022
+    second: Purple Tentacle_16
+  - first:
+      213: -7274190564130274139
+    second: Purple Tentacle_17
+  - first:
+      213: -8908334892896810499
+    second: Purple Tentacle_18
+  - first:
+      213: 400024673977209384
+    second: Purple Tentacle_19
+  - first:
+      213: 8249538393625472509
+    second: Purple Tentacle_20
+  - first:
+      213: 6951663378649712788
+    second: Purple Tentacle_21
+  - first:
+      213: 9001012361373007524
+    second: Purple Tentacle_22
+  - first:
+      213: -6066668439809784963
+    second: Purple Tentacle_23
+  - first:
+      213: 3024597311340233029
+    second: Purple Tentacle_24
+  - first:
+      213: 3653395470440435715
+    second: Purple Tentacle_25
+  - first:
+      213: 4688707193739613360
+    second: Purple Tentacle_26
+  - first:
+      213: -1045786986275906904
+    second: Purple Tentacle_27
+  - first:
+      213: -7711770163933955382
+    second: Purple Tentacle_28
+  - first:
+      213: -3702606309259381022
+    second: Purple Tentacle_29
+  - first:
+      213: -7015511760182264752
+    second: Purple Tentacle_30
+  - first:
+      213: -1828275693370971634
+    second: Purple Tentacle_31
+  - first:
+      213: -758914517389378148
+    second: Purple Tentacle_32
+  - first:
+      213: 8504627867773583302
+    second: Purple Tentacle_33
+  - first:
+      213: -8455010160627642530
+    second: Purple Tentacle_34
+  - first:
+      213: -2245026321224309436
+    second: Purple Tentacle_35
+  - first:
+      213: 7430361479898819644
+    second: Purple Tentacle_36
+  - first:
+      213: 7556355935254155930
+    second: Purple Tentacle_37
+  - first:
+      213: -4964786406414678457
+    second: Purple Tentacle_38
+  - first:
+      213: 3721158266497490489
+    second: Purple Tentacle_39
+  - first:
+      213: -6507166830033179632
+    second: Purple Tentacle_40
+  - first:
+      213: 1614933917882683769
+    second: Purple Tentacle_41
+  - first:
+      213: 7100597530765692631
+    second: Purple Tentacle_42
+  - first:
+      213: -1840082071508709398
+    second: Purple Tentacle_43
+  - first:
+      213: -3258912718107348576
+    second: Purple Tentacle_44
+  - first:
+      213: -70470729610090959
+    second: Purple Tentacle_45
+  - first:
+      213: 3046131003100287271
+    second: Purple Tentacle_46
+  - first:
+      213: -7336449051879338930
+    second: Purple Tentacle_47
+  - first:
+      213: -2806498968778069305
+    second: Purple Tentacle_48
+  - first:
+      213: 6645046227323172515
+    second: Purple Tentacle_49
+  - first:
+      213: 4780002357367608908
+    second: Purple Tentacle_50
+  - first:
+      213: 5329971093949901252
+    second: Purple Tentacle_51
+  - first:
+      213: 5651787580717172665
+    second: Purple Tentacle_52
+  - first:
+      213: 166273968138423990
+    second: Purple Tentacle_53
+  - first:
+      213: -3496560014287381582
+    second: Purple Tentacle_54
+  - first:
+      213: 9111064427472469577
+    second: Purple Tentacle_55
+  - first:
+      213: -5246463184289058504
+    second: Purple Tentacle_56
+  - first:
+      213: -925764978799211513
+    second: Purple Tentacle_57
+  - first:
+      213: -465431406441404188
+    second: Purple Tentacle_58
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Purple Tentacle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e16ce3de93701b7c0800000000000000
+      internalID: -4057453843909261794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e983bdf6a9dfc04f0800000000000000
+      internalID: -861034588991178594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9ffc2a8c01e2cc70800000000000000
+      internalID: 8989995250158993306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be451ba1d2c995870800000000000000
+      internalID: 8672134275013891307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5af81abd3e0a42f80800000000000000
+      internalID: -8132198126621454427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077811e498f629900800000000000000
+      internalID: 689736328452081520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c54476e26e00a1c40800000000000000
+      internalID: 5483696484897997916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 387063657368af4c0800000000000000
+      internalID: -4252939325870307453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e4d8accfb73f1180800000000000000
+      internalID: -9142527421626919711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d473e11dc3d7a60800000000000000
+      internalID: 7673356208961965328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d11f62aee63d3f00800000000000000
+      internalID: 1098094282703573458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073a3c1b99d2757a0800000000000000
+      internalID: -6388587408266124432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e6dc872e64af3d0800000000000000
+      internalID: -3172145049025810823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3887db7a9d2a6580800000000000000
+      internalID: -8833197577607870402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7900e11a58a00f40800000000000000
+      internalID: 5692735033796725117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_15
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d843d2a0174c751f0800000000000000
+      internalID: -1056159597814008691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_16
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2df2d231a08b50b80800000000000000
+      internalID: -8429128774143103022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_17
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a44484e832ec0b90800000000000000
+      internalID: -7274190564130274139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_18
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df90ba00d9c3f5480800000000000000
+      internalID: -8908334892896810499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_19
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8229dc1525c2d8500800000000000000
+      internalID: 400024673977209384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfd2ef8067f3c7270800000000000000
+      internalID: 8249538393625472509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 498028ae205497060800000000000000
+      internalID: 6951663378649712788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aeb982ad050aec70800000000000000
+      internalID: 9001012361373007524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_23
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d738013523ddecba0800000000000000
+      internalID: -6066668439809784963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_24
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 541490bca3789f920800000000000000
+      internalID: 3024597311340233029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_25
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3009f97e2d773b230800000000000000
+      internalID: 3653395470440435715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_26
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b41ba2d952a11140800000000000000
+      internalID: 4688707193739613360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_27
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa5c4cd64e9c71f0800000000000000
+      internalID: -1045786986275906904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_28
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acab24505e94af490800000000000000
+      internalID: -7711770163933955382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_29
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e67971dd23bd9cc0800000000000000
+      internalID: -3702606309259381022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05cb2c05935e3ae90800000000000000
+      internalID: -7015511760182264752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0a642981f8a0a6e0800000000000000
+      internalID: -1828275693370971634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_32
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d7e10744bc775f0800000000000000
+      internalID: -758914517389378148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_33
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cf388d7cf1860670800000000000000
+      internalID: 8504627867773583302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_34
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5f88733e05c9aa80800000000000000
+      internalID: -8455010160627642530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_35
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 445e50c947018d0e0800000000000000
+      internalID: -2245026321224309436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_36
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c6d12f562fd1760800000000000000
+      internalID: 7430361479898819644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_37
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a921d3510b19dd860800000000000000
+      internalID: 7556355935254155930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_38
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74607f36119891bb0800000000000000
+      internalID: -4964786406414678457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_39
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e57935ab534a330800000000000000
+      internalID: 3721158266497490489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_40
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01ceaa99e36e1b5a0800000000000000
+      internalID: -6507166830033179632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_41
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 971902f87d5696610800000000000000
+      internalID: 1614933917882683769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_42
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7de0e4a65d36a8260800000000000000
+      internalID: 7100597530765692631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_43
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aef882aea17b676e0800000000000000
+      internalID: -1840082071508709398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_44
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a1753b362406c2d0800000000000000
+      internalID: -3258912718107348576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_45
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 136278aae33a50ff0800000000000000
+      internalID: -70470729610090959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_46
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 721d81b1208064a20800000000000000
+      internalID: 3046131003100287271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_47
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4c0bfd1572bf2a90800000000000000
+      internalID: -7336449051879338930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_48
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7caab7fae005d09d0800000000000000
+      internalID: -2806498968778069305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a6b5a73652f73c50800000000000000
+      internalID: 6645046227323172515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_50
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c461d6881daf55240800000000000000
+      internalID: 4780002357367608908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_51
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c9ebf5787cd7f940800000000000000
+      internalID: 5329971093949901252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_52
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b78c963cde2f6e40800000000000000
+      internalID: 5651787580717172665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_53
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be09460b49be4200800000000000000
+      internalID: 166273968138423990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_54
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bbd09c4139b97fc0800000000000000
+      internalID: -3496560014287381582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_55
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94eb13503d0017e70800000000000000
+      internalID: 9111064427472469577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_56
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8313945e781d037b0800000000000000
+      internalID: -5246463184289058504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_57
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70c0d2d18a50723f0800000000000000
+      internalID: -925764978799211513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Purple Tentacle_58
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e8efbf0a947a89f0800000000000000
+      internalID: -465431406441404188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -29,7 +29,7 @@ public class Actor : MonoBehaviour {
   FloorType floor = FloorType.None;
   FloorType prevFloor = FloorType.None;
 
-  private void Awake() {
+  private void Start() {
     anim = GetComponent<Animator>();
     audios = GetComponent<AudioSource>();
 
