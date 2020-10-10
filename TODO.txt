@@ -3,7 +3,6 @@
 
 Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here
 
-Replace items on the shelf of the service room with actual items.
 implement the bottle breaking, but decide what the liquid should be
 
 
@@ -22,6 +21,7 @@ Complete Sandy and Ollie descriptions
 
 * BUGS ************************************************************************************************************
 
+Probably some anims are still wrong
 
 * CHARS ************************************************************************************************************
 
@@ -141,4 +141,5 @@ Jeff
 ! Use a better way to find the index of the actor from the charselection. Remove the exceptions for green tentacle
 ! Implement the zoom mode to transition between rooms
 ! Improved Ed room and added Ed as playable hidden character
+! Replace items on the shelf of the service room with actual items.
 
