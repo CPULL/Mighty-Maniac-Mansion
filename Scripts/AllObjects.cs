@@ -69,7 +69,8 @@ public enum ItemEnum {
   FrontDoor,
   Flashlight,
   Cheese,
-  Batteries
+  Batteries,
+  Hamster
 
 }
 
