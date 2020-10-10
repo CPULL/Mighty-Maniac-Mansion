@@ -1,7 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
-
+Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here
 
 * TODO ************************************************************************************************************
 
@@ -27,7 +27,7 @@ Cousin Ted
 !Ed
 Edwige
 !Green Tentacle
-Purple Tentacle
+!Purple Tentacle
 Blue Tentacle
 Purple Meteor
 !Dave
@@ -136,5 +136,5 @@ Jeff
 ! Fixed the problem of switching actors
 ! Use a better way to find the index of the actor from the charselection. Remove the exceptions for green tentacle
 ! Implement the zoom mode to transition between rooms
-
+! Improved Ed room and added Ed as playable hidden character
 

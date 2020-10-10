@@ -70,7 +70,9 @@ public enum ItemEnum {
   Flashlight,
   Cheese,
   Batteries,
-  Hamster
+  Hamster,
+  PiggyBank,
+  Coin
 
 }
 

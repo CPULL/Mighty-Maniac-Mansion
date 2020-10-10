@@ -262,6 +262,10 @@ public class Item : GameItem {
         foreach (Item item in c.items)
           if (item.owner == Chars.None)
             item.gameObject.SetActive(true);
+        if (sound && c.OpenSound != null && c.Audio != null) {
+          c.Audio.clip = c.OpenSound;
+          c.Audio.Play();
+        }
       }
     }
   }
@@ -311,6 +315,14 @@ public class Item : GameItem {
         foreach (Item item in c.items)
           if (item.owner == Chars.None)
             item.gameObject.SetActive(false);
+        if (soundC && c.CloseSound != null && c.Audio != null) {
+          c.Audio.clip = c.CloseSound;
+          c.Audio.Play();
+        }
+        else if (soundUl && c.UnlockSound != null && c.Audio != null) {
+          c.Audio.clip = c.UnlockSound;
+          c.Audio.Play();
+        }
       }
     }
   }
