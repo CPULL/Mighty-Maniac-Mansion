@@ -3,6 +3,7 @@
 public class Sounds : MonoBehaviour {
   public AudioClip[] sounds;
   public AudioClip[] StepSounds;
+  public AudioClip TentacleSteps;
   AudioSource source;
 
   private void Awake() {
@@ -42,6 +43,9 @@ public class Sounds : MonoBehaviour {
     return GD.s.StepSounds[num];
   }
 
+  public static AudioClip GetTentacle() {
+    return GD.s.TentacleSteps;
+  }
 
 }
 
