@@ -3,6 +3,10 @@
 
 Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here
 
+Replace items on the shelf of the service room with actual items.
+implement the bottle breaking, but decide what the liquid should be
+
+
 * TODO ************************************************************************************************************
 
 Oven with hamster
