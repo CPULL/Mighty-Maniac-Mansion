@@ -28,16 +28,22 @@ public class Actor : MonoBehaviour {
   [TextArea(3, 12)] public string Description;
   FloorType floor = FloorType.None;
   FloorType prevFloor = FloorType.None;
+  string idle;
+  string walk;
+  public AudioClip TentacleSteps;
 
-  private void Start() {
+  private void Awake() {
     anim = GetComponent<Animator>();
     audios = GetComponent<AudioSource>();
 
     isTentacle = id == Chars.GreenTentacle || id == Chars.PurpleTentacle || id == Chars.BlueTentacle;
-    if (isTentacle) audios.clip = Sounds.GetTentacle();
+    if (isTentacle) audios.clip = TentacleSteps;
 
     if (currentRoom != null)
       SetScaleAndPosition(new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY - currentRoom.minY), 0));
+
+    idle = id.ToString() + " Idle";
+    walk = id.ToString() + " Walk";
   }
 
   internal bool HasItem(ItemEnum item) {
@@ -185,7 +191,7 @@ public class Actor : MonoBehaviour {
     callBack = action;
     callBackItem = item;
     dir = CalculateDirection(destination.pos);
-    anim.Play("Walk" + dir);
+    anim.Play(walk + dir);
     walking = true;
   }
 
@@ -206,7 +212,7 @@ public class Actor : MonoBehaviour {
     }
     if (!walking) {
       if (dir == Dir.None) dir = Dir.F;
-      anim.Play("Idle" + dir);
+      anim.Play(idle + dir);
       if (audios.isPlaying) audios.Stop();
       return;
     }
@@ -253,7 +259,7 @@ public class Actor : MonoBehaviour {
       }
       parcour.RemoveAt(0);
       dir = CalculateDirection(destination.pos);
-      anim.Play("Walk" + dir);
+      anim.Play(walk + dir);
     }
     transform.position = np;
   }

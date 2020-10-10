@@ -5957,6 +5957,7 @@ MonoBehaviour:
   mainScale: 1.05
   skills: 0100000006000000
   Description: <b>Ollie</b> todo...
+  TentacleSteps: {fileID: 0}
 --- !u!95 &211990116
 Animator:
   serializedVersion: 3
@@ -7719,6 +7720,7 @@ MonoBehaviour:
   mainScale: 1.05
   skills: 01000000
   Description: 
+  TentacleSteps: {fileID: 0}
 --- !u!95 &301252753
 Animator:
   serializedVersion: 3
@@ -38174,13 +38176,14 @@ MonoBehaviour:
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 0}
   inventory: []
-  id: 27
+  id: 22
   mainScale: 0.985
   skills: 0300000008000000
   Description: '<b>Wendy</b> wants to be a novelist and writes a lot of fictional
     stories.
 
     She relaxes preparing food and petting her animals.'
+  TentacleSteps: {fileID: 0}
 --- !u!95 &1347792469
 Animator:
   serializedVersion: 3
@@ -39155,6 +39158,7 @@ MonoBehaviour:
 
     He is a nerd who specializes in fixing electronics.
     He lacks guts and is easily terrified.'
+  TentacleSteps: {fileID: 0}
 --- !u!82 &1379030971
 AudioSource:
   m_ObjectHideFlags: 0
@@ -42979,6 +42983,7 @@ MonoBehaviour:
   Description: "<b>Dave Miller</b> is a college student who is dating Sandy. \nHe
     has no specific skills, but has good charisma and can prepare some delicious
     food."
+  TentacleSteps: {fileID: 0}
 --- !u!95 &1532743335
 Animator:
   serializedVersion: 3
@@ -49193,6 +49198,7 @@ MonoBehaviour:
 
     His dream is to achieve success with
     his 8-bit retro music band, named "GT and the Suction Cups".'
+  TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
 --- !u!95 &1730974554
 Animator:
   serializedVersion: 3
@@ -49203,7 +49209,7 @@ Animator:
   m_GameObject: {fileID: 1730974549}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f2dd2389d5819be459ea325c212ccd0b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8b6174ca71db6e145a3be45c7e3cfb62, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -49662,6 +49668,7 @@ MonoBehaviour:
   mainScale: 0.99
   skills: 0100000006000000
   Description: <b>Sandy</b> todo...
+  TentacleSteps: {fileID: 0}
 --- !u!95 &1744431311
 Animator:
   serializedVersion: 3
@@ -50601,6 +50608,7 @@ MonoBehaviour:
 
     He goes to the gym pretty
     much all the time.'
+  TentacleSteps: {fileID: 0}
 --- !u!95 &1770484596
 Animator:
   serializedVersion: 3
@@ -51084,6 +51092,7 @@ MonoBehaviour:
 
     He also has a good knowledge of physical and electronic
     things, and can build, fix, and use pretty much all the things.'
+  TentacleSteps: {fileID: 0}
 --- !u!95 &1785264455
 Animator:
   serializedVersion: 3
@@ -55106,6 +55115,7 @@ MonoBehaviour:
 
     His dream is to achieve success with
     his 8-bit retro music band, named "GT and the Suction Cups".'
+  TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
 --- !u!95 &1918416704
 Animator:
   serializedVersion: 3
