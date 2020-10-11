@@ -21,7 +21,8 @@ Complete Sandy and Ollie descriptions
 
 * BUGS ************************************************************************************************************
 
-Probably some anims are still wrong
+Probably some anims are still wrong (Ed, )
+Fix the problem of the doors walks
 
 * CHARS ************************************************************************************************************
 
