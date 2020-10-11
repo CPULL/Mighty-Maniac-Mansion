@@ -2,9 +2,6 @@
 using UnityEngine;
 
 public class AllObjects : MonoBehaviour {
-
-  // We need to get the items from the scene
-
   public List<Item> itemsList;
   public List<Room> roomsList;
 
@@ -72,7 +69,8 @@ public enum ItemEnum {
   Batteries,
   Hamster,
   PiggyBank,
-  Coin
+  Coin,
+  DeveloperBottle,
 
 }
 

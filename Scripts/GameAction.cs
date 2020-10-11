@@ -171,6 +171,10 @@ public class GameAction {
       case ActionType.Cutscene: return "Cutscene: " + strValue;
       case ActionType.ReceiveY: return "Accept item: " + msg;
       case ActionType.ReceiveN: return "Refuse item: " + msg;
+      case ActionType.FadeIn: return "Fade In";
+      case ActionType.FadeOut: return "Fade Out";
+      case ActionType.AnimItem: return "Anim " + item;
+      case ActionType.AnimActor: return "Anim " + actor;
     }
     return type.ToString() + " " + actor + " " + item.ToString() + " " + strValue;
   }

@@ -17,34 +17,32 @@ public class Item : GameItem {
   }
 
   public string Use(Actor actor) {
-    bool goodByDefault = false;
-
     // Check conditions to use it
     if (!VerifyMainCondition(actor, null, null, When.Use)) return condition.BadResult; // Give the bad result of the condition, if any
 
     if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
 
     if (Usable == Tstatus.Usable) {
-      string res = PlayActions(actor, null, When.Use, this, out goodByDefault);
+      string res = PlayActions(actor, null, When.Use, this, out bool goodByDefault);
       if (string.IsNullOrEmpty(res) && !goodByDefault) 
         return "It does not work";
       return res;
     }
     else if (Usable == Tstatus.OpenableOpen) {
       SetAsClosedUnlocked();
-      return PlayActions(actor, null, When.Use, null, out goodByDefault);
+      return PlayActions(actor, null, When.Use, null, out _);
     }
     else if (Usable == Tstatus.OpenableOpenAutolock) {
       SetAsLockedAuto();
-      return PlayActions(actor, null, When.Use, null, out goodByDefault);
+      return PlayActions(actor, null, When.Use, null, out _);
     }
     else if (Usable == Tstatus.OpenableClosed) {
       SetAsOpen();
-      return PlayActions(actor, null, When.Use, null, out goodByDefault);
+      return PlayActions(actor, null, When.Use, null, out _);
     }
     else if (Usable == Tstatus.OpenableClosedAutolock) {
       SetAsOpenAuto();
-      return PlayActions(actor, null, When.Use, null, out goodByDefault);
+      return PlayActions(actor, null, When.Use, null, out _);
     }
 
     return "Seems it does nothing";

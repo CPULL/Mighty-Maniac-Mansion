@@ -81,7 +81,7 @@ public class Controller : MonoBehaviour {
         }
       }
     }
-    else if (actionsToPlay.Count > 0) currentAction = actionsToPlay.GetFirst();
+    else if (currentAction == null && actionsToPlay.Count > 0) currentAction = actionsToPlay.GetFirst();
 
     if (currentAction != null) {
       PlayCurrentAction();
@@ -231,18 +231,25 @@ public class Controller : MonoBehaviour {
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Pick) || (rmb && overItem.whatItDoesR == WhatItDoes.Pick)) { /* pick */
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
-              ShowName(currentActor + " got " + item.Name);
-              actor.inventory.Add(item);
-              item.transform.parent = PickedItems;
-              item.gameObject.SetActive(false);
-              item.owner = Chars.None;
-              if (actor == actor1) item.owner = Chars.Actor1;
-              else if (actor == actor2) item.owner = Chars.Actor2;
-              else if (actor == actor3) item.owner = Chars.Actor3;
-              item.PlayActions(currentActor, null, When.Pick, null, out bool goodByDefault);
-              item = null;
-              forcedCursor = CursorTypes.None;
-              if (Inventory.activeSelf) ActivateInventory(currentActor);
+              if (item.Usable == Tstatus.Pickable) {
+                ShowName(currentActor + " got " + item.Name);
+                actor.inventory.Add(item);
+                item.transform.parent = PickedItems;
+                item.gameObject.SetActive(false);
+                item.owner = Chars.None;
+                if (actor == actor1) item.owner = Chars.Actor1;
+                else if (actor == actor2) item.owner = Chars.Actor2;
+                else if (actor == actor3) item.owner = Chars.Actor3;
+                item.PlayActions(currentActor, null, When.Pick, null, out bool goodByDefault);
+                item = null;
+                forcedCursor = CursorTypes.None;
+                if (Inventory.activeSelf) ActivateInventory(currentActor);
+              }
+              else {
+                // Just run the actions, the item is special
+                string msg = item.PlayActions(currentActor, null, When.Pick, null, out bool goodByDefault);
+                if (!string.IsNullOrEmpty(msg)) currentActor.Say(msg);
+              }
             }));
           overItem = null;
         }
@@ -282,7 +289,7 @@ public class Controller : MonoBehaviour {
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
               // Can we use the two items together?
-              string res = usedItem.UseTogether(currentActor, overItem);
+              string res = usedItem.UseTogether(currentActor, item);
               if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
               UpdateInventory();
               forcedCursor = CursorTypes.None;
@@ -791,9 +798,12 @@ public class Controller : MonoBehaviour {
 
       case ActionType.Sound: {
         Actor a = GetActor(currentAction.action.actor);
-        if (a != null) a.SetDirection(currentAction.action.dir);
-
-        Sounds.Play(currentAction.action.sound, currentActor.transform.position);
+        if (a != null) {
+          if (currentAction.action.dir != Dir.None) a.SetDirection(currentAction.action.dir);
+          Sounds.Play(currentAction.action.sound, a.transform.position);
+        }
+        else
+          Sounds.Play(currentAction.action.sound, currentActor.transform.position);
         currentAction.Play();
       }
       break;
@@ -833,6 +843,40 @@ public class Controller : MonoBehaviour {
       case ActionType.FadeOut:
         Fader.FadeOut();
         currentAction.Play();
+        break;
+
+      case ActionType.AnimActor:
+        Dbg("FIXME anim actor not implemented!"); // FIXME
+        currentAction.Complete();
+        break;
+
+      case ActionType.AnimItem:
+        Animator anim = currentAction.item.GetComponent<Animator>();
+        if (anim == null) {
+          Debug.LogError("Missing animator for animated item: " + currentAction.item.gameObject.name);
+          Dbg("Missing animator for animated item: " + currentAction.item.gameObject.name);
+          return;
+        }
+        anim.enabled = true;
+        anim.Play(currentAction.action.strValue);
+        currentAction.Play();
+        break;
+
+      case ActionType.AlterItemAction:
+        switch(currentAction.action.strValue[0]) {
+          case 'R': currentAction.item.whatItDoesL = WhatItDoes.Read; break;
+          case 'W': currentAction.item.whatItDoesL = WhatItDoes.Walk; break;
+          case 'P': currentAction.item.whatItDoesL = WhatItDoes.Pick; break;
+          case 'U': currentAction.item.whatItDoesL = WhatItDoes.Use; break;
+        }
+        switch(currentAction.action.strValue[1]) {
+          case 'R': currentAction.item.whatItDoesR = WhatItDoes.Read; break;
+          case 'W': currentAction.item.whatItDoesR = WhatItDoes.Walk; break;
+          case 'P': currentAction.item.whatItDoesR = WhatItDoes.Pick; break;
+          case 'U': currentAction.item.whatItDoesR = WhatItDoes.Use; break;
+        }
+        currentAction.item.dir = currentAction.action.dir;
+        currentAction.Complete();
         break;
 
       default: {

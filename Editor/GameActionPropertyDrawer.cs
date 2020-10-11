@@ -3,7 +3,7 @@ using UnityEngine;
 
 [CustomPropertyDrawer(typeof(GameAction))]
 public class GameActionPropertyDrawer : PropertyDrawer {
-  GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
+  readonly GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
     wordWrap = true,
     fixedHeight = EditorGUIUtility.singleLineHeight * 5
   };
@@ -129,7 +129,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         actor.intValue = EditorGUI.Popup(rect2, "Actor", actor.intValue, actor.enumDisplayNames);
         if (actor.intValue != 0) dir.intValue = EditorGUI.Popup(rect3, "Dir", dir.intValue, dir.enumDisplayNames);
 
-        if (delay.floatValue <= 0 || (actor.intValue != 0 && dir.intValue > 3)) {
+        if (delay.floatValue <= 0 || (actor.intValue != 0 && actor.intValue != 1 && dir.intValue > 3)) {
           GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
           style.normal.textColor = Color.red;
           Rect rectErr = new Rect(position.x + position.width / 4, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
@@ -212,6 +212,45 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         }
       }
       break;
+
+      case ActionType.AnimActor: {
+        rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+        rect2 = new Rect(position.x + position.width / 2, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        // FIXME
+        // pos
+        // direction
+        // anim name
+      }
+      break;
+      case ActionType.AnimItem: {
+        rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+        rect2 = new Rect(position.x + position.width / 2, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+        rect3 = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+        item.intValue = EditorGUI.Popup(rect1, "Item", item.intValue, item.enumDisplayNames);
+        strValue.stringValue = EditorGUI.TextField(rect2, "AnimID", strValue.stringValue);
+        EditorGUIUtility.labelWidth = 100;
+        GoodResult.stringValue = EditorGUI.TextField(rect3, "Good Result", GoodResult.stringValue);
+      }
+      break;
+
+      case ActionType.AlterItemAction: {
+        rect1 = new Rect(position.x, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+        rect2 = new Rect(position.x + position.width / 2, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
+        rect3 = new Rect(position.x + 3 * position.width / 4, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
+        item.intValue = EditorGUI.Popup(rect1, "Item", item.intValue, item.enumDisplayNames);
+        strValue.stringValue = EditorGUI.TextField(rect2, "L&R", strValue.stringValue);
+        dir.intValue = EditorGUI.Popup(rect3, "Dir", dir.intValue, dir.enumDisplayNames);
+
+        if (strValue.stringValue.Length != 2 || "WRPU".IndexOf(strValue.stringValue[0]) == -1 || "WRPU".IndexOf(strValue.stringValue[1]) == -1) {
+          GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
+          style.normal.textColor = Color.red;
+          Rect rectErr = new Rect(position.x + position.width / 4, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
+          EditorGUI.LabelField(rectErr, "INVALID! [W|R|P|U]", style);
+        }
+
+      }
+      break;
     }
 
     EditorGUI.indentLevel = indent;
@@ -238,6 +277,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.Cutscene: return EditorGUIUtility.singleLineHeight * 3;
       case ActionType.FadeIn: return EditorGUIUtility.singleLineHeight * 2;
       case ActionType.FadeOut: return EditorGUIUtility.singleLineHeight * 2;
+      case ActionType.AnimActor: return EditorGUIUtility.singleLineHeight * 3;
+      case ActionType.AnimItem: return EditorGUIUtility.singleLineHeight * 3;
+      case ActionType.AlterItemAction: return EditorGUIUtility.singleLineHeight * 3;
     }
     return EditorGUIUtility.singleLineHeight * 5;
   }

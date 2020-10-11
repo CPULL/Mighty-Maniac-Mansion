@@ -4955,6 +4955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - {fileID: 8300000, guid: 3714f7b8290317d44ada3a1ce06280b5, type: 3}
+  - {fileID: 8300000, guid: 3b77744060984de49bf2873a6373db53, type: 3}
   StepSounds:
   - {fileID: 0}
   - {fileID: 8300000, guid: d1f6efd23f1335d4aa362b976c94295b, type: 3}
@@ -14744,7 +14745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -155.92, y: 20, z: -10}
+  m_LocalPosition: {x: -192.375, y: 19.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -22583,6 +22584,7 @@ GameObject:
   - component: {fileID: 785944030}
   - component: {fileID: 785944029}
   - component: {fileID: 785944031}
+  - component: {fileID: 785944032}
   m_Layer: 0
   m_Name: Developer bottle
   m_TagString: Untagged
@@ -22617,14 +22619,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: 0
+  Item: 19
   Name: Bottle
   owner: 0
   Usable: 0
   UsableWith: 0
-  whatItDoesL: 1
+  whatItDoesL: 3
   whatItDoesR: 2
-  Description: 
+  Description: "The liquid that was inside \ndripped under the grate."
   openImage: {fileID: 0}
   closeImage: {fileID: 0}
   lockImage: {fileID: 0}
@@ -22648,7 +22650,82 @@ MonoBehaviour:
     action: 0
     when: 4
     BadResult: 
-  actions: []
+  actions:
+  - Condition:
+      condition: 19
+      actor: 0
+      skill: 0
+      item: 0
+      otherItem: 0
+      num: 0
+      action: 0
+      when: 0
+      BadResult: 
+    Action:
+      running: 0
+      type: 15
+      Repeatable: 0
+      actor: 0
+      pos: {x: 0, y: 0}
+      strValue: Bottle break
+      expression: 0
+      sound: 0
+      dir: 0
+      delay: 0.275
+      item: 19
+      action: 0
+      change: 0
+      GoodResult: Damn, it felt and broke...
+  - Condition:
+      condition: 19
+      actor: 0
+      skill: 0
+      item: 0
+      otherItem: 0
+      num: 0
+      action: 0
+      when: 0
+      BadResult: 
+    Action:
+      running: 0
+      type: 10
+      Repeatable: 0
+      actor: 1
+      pos: {x: 0, y: 0}
+      strValue: Bottle break
+      expression: 0
+      sound: 1
+      dir: 4
+      delay: 0.5
+      item: 19
+      action: 0
+      change: 0
+      GoodResult: Damn, it felt and broke...
+  - Condition:
+      condition: 19
+      actor: 0
+      skill: 0
+      item: 0
+      otherItem: 0
+      num: 0
+      action: 0
+      when: 0
+      BadResult: 
+    Action:
+      running: 0
+      type: 17
+      Repeatable: 0
+      actor: 1
+      pos: {x: 0, y: 0}
+      strValue: RR
+      expression: 0
+      sound: 1
+      dir: 0
+      delay: 0
+      item: 19
+      action: 0
+      change: 0
+      GoodResult: Damn, it felt and broke...
   sr: {fileID: 0}
 --- !u!212 &785944030
 SpriteRenderer:
@@ -22690,12 +22767,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: adc70eb0294bda34088d7a8b2989b57a, type: 3}
+  m_Sprite: {fileID: -703894949288219697, guid: adc70eb0294bda34088d7a8b2989b57a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1.5, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -22718,8 +22795,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1.5, y: 1}
+    newSize: {x: 1.5, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -22727,6 +22804,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.52597046, y: 0.8420315}
   m_EdgeRadius: 0
+--- !u!95 &785944032
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785944027}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6abdd284c9d777043b2157944b015987, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &786267915
 GameObject:
   m_ObjectHideFlags: 0
@@ -30556,7 +30652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081268452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.202, y: -0.7092, z: 0}
+  m_LocalPosition: {x: -7.202, y: -0.7092, z: -1}
   m_LocalScale: {x: 2.414147, y: 4.033581, z: 1}
   m_Children:
   - {fileID: 1353337855}
@@ -59224,10 +59320,11 @@ MonoBehaviour:
   - {fileID: 1797193201}
   - {fileID: 702021341}
   - {fileID: 1256842730}
-  - {fileID: 0}
+  - {fileID: 13197319}
   - {fileID: 2065761452}
   - {fileID: 1211572500}
   - {fileID: 758301048}
+  - {fileID: 785944029}
   roomsList:
   - {fileID: 1432214312}
   - {fileID: 1117025435}

@@ -52,7 +52,10 @@ public class Sounds : MonoBehaviour {
 /// <summary>
 /// Used to list all possible sounds and musics
 /// </summary>
-public enum Audios { Doorbell = 0 };
+public enum Audios { 
+  Doorbell = 0,
+  BrokenBottle = 1
+};
 
 
 

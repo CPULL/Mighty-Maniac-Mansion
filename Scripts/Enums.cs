@@ -48,6 +48,9 @@ public enum ActionType { None = 0,
   ReceiveN = 12, // Have an actor to deny the receival of an item from another actor and say something (item is not accepted)
   FadeIn = 13,
   FadeOut = 14,
+  AnimItem = 15, // Make an animation to play on an object
+  AnimActor = 16, // Make an animation to play on an actor
+  AlterItemAction = 17 // Changes what you can do with an item
 };
 
 /// <summary>
