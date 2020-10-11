@@ -2,27 +2,28 @@
 
 
 Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here
-
 implement the bottle breaking, but decide what the liquid should be
+
+Fix pants of syd going right
+Icrease resolution of turkey and roast
 
 
 * TODO ************************************************************************************************************
 
-Oven with hamster
+Oven with hamster <- path to Ed room <- overn as container <- action with filter to who will do it
+Piggy bank with coins
 Draw maps
 
 Enable the "prolonged usage" to simulate the push of the gargoyle head. It should go away when the actor moves.
 Complete intro Cutscene, adding variations for each character.
 Implement Conditions on actions that are read from Json
-Add some sounds: door open/close
 Define skills and actions that will allow
 FrontDoor -> Backyard entrance on the left
 Complete Sandy and Ollie descriptions
 
 * BUGS ************************************************************************************************************
 
-Probably some anims are still wrong (Ed, )
-Fix the problem of the doors walks
+
 
 * CHARS ************************************************************************************************************
 
@@ -143,4 +144,4 @@ Jeff
 ! Implement the zoom mode to transition between rooms
 ! Improved Ed room and added Ed as playable hidden character
 ! Replace items on the shelf of the service room with actual items.
-
+! Fix the problem of the doors walks

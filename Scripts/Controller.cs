@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour {
   Camera cam;
   public AllObjects allObjects;
   public LayerMask pathLayer;
+  public LayerMask doorLayer;
   public UnityEngine.UI.Image BlackFade;
   public Transform PickedItems;
   public Material SceneSelectionPoint;
@@ -119,22 +120,14 @@ public class Controller : MonoBehaviour {
     bool lmb = Input.GetMouseButtonDown(0);
     bool rmb = Input.GetMouseButtonDown(1);
 
-    if (overActor != null) {
-      if (rmb && usedItem != null) {
-        if (currentActor == overActor) return;
-        receiverActor = overActor;
-        usedItem.Give(currentActor, receiverActor);
-        Inventory.SetActive(false);
-        usedItem = null;
-        oldCursor = null;
-        forcedCursor = CursorTypes.None;
-        return;
-      }
-      if (lmb) {
-        // FIXME remove from the final build
-        if (overActor != currentActor) {
-          SelectActor(overActor);
-          return;
+
+    Door aDoor = null;
+    if (lmb || rmb) { // Check if we have a door
+      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 10000, doorLayer);
+      if (hit.collider != null && hit.collider.gameObject != null) {
+        Door d = hit.collider.gameObject.GetComponent<Door>();
+        if (d != null) {
+          aDoor = d;
         }
       }
     }
@@ -264,11 +257,10 @@ public class Controller : MonoBehaviour {
         }
 
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Walk) || (rmb && overItem.whatItDoesR == WhatItDoes.Walk)) { /* walk */
-          Door d = overItem as Door;
-          if (d == null)
+          if (aDoor == null)
             WalkAndAction(currentActor, overItem, null);
-          else
-            WalkAndAction(currentActor, overItem,
+          else {
+            WalkAndAction(currentActor, aDoor,
               new System.Action<Actor, Item>((actor, item) => {
                 if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
                   actor.Say("Is locked");
@@ -279,6 +271,7 @@ public class Controller : MonoBehaviour {
                 }
                 StartCoroutine(ChangeRoom(actor, (item as Door)));
               }));
+          }
         }
       }
       else {
@@ -303,6 +296,21 @@ public class Controller : MonoBehaviour {
     }
     else {
       if (lmb && !currentActor.IsWalking()) { /* lmb - walk */
+        if (aDoor != null) {
+          WalkAndAction(currentActor, aDoor,
+            new System.Action<Actor, Item>((actor, item) => {
+              if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
+                actor.Say("Is locked");
+                return;
+              }
+              else if (item.Usable == Tstatus.OpenableClosed || item.Usable == Tstatus.OpenableClosedAutolock) {
+                return;
+              }
+              StartCoroutine(ChangeRoom(actor, (item as Door)));
+            }));
+          return;
+        }
+
         RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
         if (hit.collider != null) {
           PathNode p = hit.collider.GetComponent<PathNode>();
@@ -316,6 +324,29 @@ public class Controller : MonoBehaviour {
         usedItem = null;
       }
     }
+
+
+    if (overActor != null) {
+      if (rmb && usedItem != null) {
+        if (currentActor == overActor) return;
+        receiverActor = overActor;
+        usedItem.Give(currentActor, receiverActor);
+        Inventory.SetActive(false);
+        usedItem = null;
+        oldCursor = null;
+        forcedCursor = CursorTypes.None;
+        return;
+      }
+      if (lmb) {
+        // FIXME remove from the final build
+        if (overActor != currentActor) {
+          SelectActor(overActor);
+          return;
+        }
+      }
+    }
+
+
 
 
     #endregion

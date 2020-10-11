@@ -161,6 +161,7 @@ public class Actor : MonoBehaviour {
     Vector2 wdir = destination.pos - transform.position;
     float dist = Vector2.Distance(transform.position, dest);
     if (wdir.sqrMagnitude < .1f || dist < .15f) {
+      Debug.Log("Too close to dest");
       action?.Invoke(this, item);
       return;
     }
