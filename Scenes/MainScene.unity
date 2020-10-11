@@ -23107,7 +23107,7 @@ MonoBehaviour:
   Item: 0
   Name: Tentacle cereals
   owner: 0
-  Usable: 0
+  Usable: 1
   UsableWith: 0
   whatItDoesL: 1
   whatItDoesR: 2
@@ -64058,7 +64058,7 @@ MonoBehaviour:
   Item: 0
   Name: Glass Can
   owner: 0
-  Usable: 0
+  Usable: 1
   UsableWith: 0
   whatItDoesL: 1
   whatItDoesR: 2
