@@ -1,12 +1,10 @@
 === Mighty Maniac Mansion ===
 
 
-OK, if we have a "pick action" we may want to run it before "picking" the obejct.
 
 Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here
 implement the bottle breaking, but decide what the liquid should be
 
-Fix pants of syd going right
 Icrease resolution of turkey and roast
 Add recycle stuff to the service room
 
@@ -148,3 +146,5 @@ Jeff
 ! Improved Ed room and added Ed as playable hidden character
 ! Replace items on the shelf of the service room with actual items.
 ! Fix the problem of the doors walks
+! Fix pants of syd going right
+
