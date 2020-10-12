@@ -40,7 +40,7 @@ public class Actor : MonoBehaviour {
     if (isTentacle) audios.clip = TentacleSteps;
 
     if (currentRoom != null)
-      SetScaleAndPosition(new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY - currentRoom.minY), 0));
+      SetScaleAndPosition(new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY + currentRoom.minY) / 2, 0));
 
     idle = id.ToString() + " Idle";
     walk = id.ToString() + " Walk";
@@ -299,6 +299,18 @@ public class Actor : MonoBehaviour {
         node = p;
         while (node != null && node.isStair)
           node = node.top;
+      }
+
+      if (node == null) { // Check going left
+        node = p;
+        while (node != null && node.isStair)
+          node = node.left;
+      }
+
+      if (node == null) { // Check going right
+        node = p;
+        while (node != null && node.isStair)
+          node = node.right;
       }
 
       if (node == null) {
