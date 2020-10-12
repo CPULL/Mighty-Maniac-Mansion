@@ -32,6 +32,10 @@ public class Actor : MonoBehaviour {
   string walk;
   public AudioClip TentacleSteps;
 
+
+  public List<Behavior> Behaviors;
+
+
   private void Awake() {
     anim = GetComponent<Animator>();
     audios = GetComponent<AudioSource>();

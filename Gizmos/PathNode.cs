@@ -9,7 +9,7 @@ public class PathNode : MonoBehaviour {
   private Vector2 roomabs = Vector2.up;
   public NavPath parent;
   public bool showMeshLocal;
-  private Color yellowish = new Color32(200, 220, 10, 200);
+  private Color yellowish = new Color32(100, 10, 220, 50);
   public PathNode prev;
   public float g;
   public float h;

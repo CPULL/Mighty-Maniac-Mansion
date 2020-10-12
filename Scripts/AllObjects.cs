@@ -83,3 +83,15 @@ public enum ActionEnum {
   Doorbell,
 }
 
+
+
+public enum GameFlag {
+  GreenTentacleIsFed,
+  LightIsOut,
+  PoolHasWater,
+  PowerIsDown,
+  PackageIsDeliveredStamps,
+}
+public enum FlagValue {
+  Yes, No, NA
+}

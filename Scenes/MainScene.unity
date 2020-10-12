@@ -6305,6 +6305,7 @@ MonoBehaviour:
   skills: 0100000006000000
   Description: <b>Ollie</b> todo...
   TentacleSteps: {fileID: 0}
+  Behaviors: []
 --- !u!95 &211990116
 Animator:
   serializedVersion: 3
@@ -8657,6 +8658,7 @@ MonoBehaviour:
   skills: 01000000
   Description: 
   TentacleSteps: {fileID: 0}
+  Behaviors: []
 --- !u!95 &301252753
 Animator:
   serializedVersion: 3
@@ -25525,7 +25527,7 @@ MonoBehaviour:
   down: {fileID: 1705472265}
   tl: {x: 22.154812, y: 53.326546}
   tr: {x: 23.586197, y: 53.317036}
-  br: {x: 23.571577, y: 49.83704}
+  br: {x: 23.607986, y: 49.818844}
   bl: {x: 22.108444, y: 49.820198}
   parent: {fileID: 810068549}
   showMeshLocal: 1
@@ -25560,7 +25562,7 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 2.1548119, y: 3.3265457}
       - {x: 3.586197, y: 3.3170357}
-      - {x: 3.571577, y: -0.16296005}
+      - {x: 3.6079865, y: -0.18115616}
       - {x: 2.1084442, y: -0.17980194}
 --- !u!4 &847417859
 Transform:
@@ -41007,6 +41009,7 @@ MonoBehaviour:
 
     She relaxes preparing food and petting her animals.'
   TentacleSteps: {fileID: 0}
+  Behaviors: []
 --- !u!95 &1347792469
 Animator:
   serializedVersion: 3
@@ -42064,6 +42067,7 @@ MonoBehaviour:
     He is a nerd who specializes in fixing electronics.
     He lacks guts and is easily terrified.'
   TentacleSteps: {fileID: 0}
+  Behaviors: []
 --- !u!82 &1379030971
 AudioSource:
   m_ObjectHideFlags: 0
@@ -42667,7 +42671,7 @@ MonoBehaviour:
   right: {fileID: 1555834093}
   top: {fileID: 0}
   down: {fileID: 0}
-  tl: {x: 23.571577, y: 49.83704}
+  tl: {x: 23.607986, y: 49.818844}
   tr: {x: 28.736643, y: 49.766533}
   br: {x: 28.64179, y: 46.3327}
   bl: {x: 23.806164, y: 46.602516}
@@ -42702,7 +42706,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.571577, y: -0.16296005}
+    - - {x: 3.6079865, y: -0.18115616}
       - {x: 8.736643, y: -0.2334671}
       - {x: 8.64179, y: -3.6673012}
       - {x: 3.8061638, y: -3.3974838}
@@ -46147,6 +46151,7 @@ MonoBehaviour:
     has no specific skills, but has good charisma and can prepare some delicious
     food."
   TentacleSteps: {fileID: 0}
+  Behaviors: []
 --- !u!95 &1532743335
 Animator:
   serializedVersion: 3
@@ -51878,7 +51883,7 @@ MonoBehaviour:
   top: {fileID: 847417857}
   down: {fileID: 0}
   tl: {x: 22.108444, y: 49.820198}
-  tr: {x: 23.571577, y: 49.83704}
+  tr: {x: 23.607986, y: 49.818844}
   br: {x: 23.806164, y: 46.602516}
   bl: {x: 21.583006, y: 46.65808}
   parent: {fileID: 810068549}
@@ -51913,7 +51918,7 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 2.1084442, y: -0.17980194}
-      - {x: 3.571577, y: -0.16296005}
+      - {x: 3.6079865, y: -0.18115616}
       - {x: 3.8061638, y: -3.3974838}
       - {x: 1.5830059, y: -3.341919}
 --- !u!4 &1705472267
@@ -53212,6 +53217,16 @@ MonoBehaviour:
     His dream is to achieve success with
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
+  Behaviors:
+  - BehaviorConditionLines:
+    - BehaviorConditions:
+      - type: 3
+        item: 0
+        actor: 4
+        flag: 0
+        value: 0
+        dist: 0
+    currentAction: 0
 --- !u!95 &1730974554
 Animator:
   serializedVersion: 3
@@ -53682,6 +53697,7 @@ MonoBehaviour:
   skills: 0100000006000000
   Description: <b>Sandy</b> todo...
   TentacleSteps: {fileID: 0}
+  Behaviors: []
 --- !u!95 &1744431311
 Animator:
   serializedVersion: 3
@@ -54710,6 +54726,7 @@ MonoBehaviour:
     He goes to the gym pretty
     much all the time.'
   TentacleSteps: {fileID: 0}
+  Behaviors: []
 --- !u!95 &1770484596
 Animator:
   serializedVersion: 3
@@ -55194,6 +55211,7 @@ MonoBehaviour:
     He also has a good knowledge of physical and electronic
     things, and can build, fix, and use pretty much all the things.'
   TentacleSteps: {fileID: 0}
+  Behaviors: []
 --- !u!95 &1785264455
 Animator:
   serializedVersion: 3
@@ -59305,6 +59323,7 @@ MonoBehaviour:
     His dream is to achieve success with
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
+  Behaviors: []
 --- !u!95 &1918416704
 Animator:
   serializedVersion: 3
