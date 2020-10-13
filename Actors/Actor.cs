@@ -43,8 +43,13 @@ public class Actor : MonoBehaviour {
     isTentacle = id == Chars.GreenTentacle || id == Chars.PurpleTentacle || id == Chars.BlueTentacle;
     if (isTentacle) audios.clip = TentacleSteps;
 
-    if (currentRoom != null)
-      SetScaleAndPosition(new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY + currentRoom.minY) / 2, 0));
+    if (currentRoom != null) {
+      Vector3 startpos = new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY + currentRoom.minY) / 2, 0);
+      if (Vector3.Distance(transform.position, startpos) > 10)
+        SetScaleAndPosition(startpos);
+      else
+        SetScaleAndPosition(transform.position);
+    }
 
     idle = id.ToString() + " Idle";
     walk = id.ToString() + " Walk";

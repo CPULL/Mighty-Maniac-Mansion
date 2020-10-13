@@ -259,7 +259,12 @@ public class Controller : MonoBehaviour {
             new System.Action<Actor, Item>((actor, item) => {
               actor.SetDirection(item.dir);
               string res = item.Use(currentActor);
-              if (!string.IsNullOrEmpty(res)) actor.Say(res);
+              if (!string.IsNullOrEmpty(res))
+                actor.Say(res);
+              else {
+                forcedCursor = CursorTypes.None;
+                overItem = null;
+              }
             }));
         }
 
@@ -780,6 +785,14 @@ public class Controller : MonoBehaviour {
         foreach (Room r in allObjects.roomsList)
           r.gameObject.SetActive(false);
         currentRoom.gameObject.SetActive(true);
+        foreach (Actor a in allActors) {
+          if (a == null) continue;
+          a.gameObject.SetActive(a.currentRoom == currentRoom);
+        }
+        foreach (Actor a in allEnemies) {
+          if (a == null) continue;
+          a.gameObject.SetActive(a.currentRoom == currentRoom);
+        }
         currentAction.Complete();
       }
       break;
