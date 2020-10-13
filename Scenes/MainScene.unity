@@ -53218,15 +53218,8 @@ MonoBehaviour:
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
   Behaviors:
-  - BehaviorConditionLines:
-    - BehaviorConditions:
-      - type: 3
-        item: 0
-        actor: 4
-        flag: 0
-        value: 0
-        dist: 0
-    currentAction: 0
+  - ConditionsInOr: []
+    Actions: []
 --- !u!95 &1730974554
 Animator:
   serializedVersion: 3

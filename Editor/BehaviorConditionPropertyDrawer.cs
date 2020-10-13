@@ -75,8 +75,7 @@ public class BehaviorConditionPropertyDrawer : PropertyDrawer {
 
   //This will need to be adjusted based on what you are displaying
   public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-    float h = base.GetPropertyHeight(property, label);
-    float l = EditorGUIUtility.singleLineHeight;
-    return h + l;
+    return base.GetPropertyHeight(property, label);
   }
 }
+
