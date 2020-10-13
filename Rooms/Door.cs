@@ -17,6 +17,10 @@ public class Door : Item {
     sr.color = normalColor;
     Audio = GetComponent<AudioSource>();
   }
+
+  internal bool IsOpen() {
+    return Usable == Tstatus.OpenableOpen || Usable == Tstatus.OpenableOpenAutolock;
+  }
 }
 
 

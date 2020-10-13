@@ -957,7 +957,19 @@ public class Controller : MonoBehaviour {
       GD.c.ShowName(item.Name);
     }
     else if (item.whatItDoesR == WhatItDoes.Use) {
-      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.Use;
+      if (GD.c.forcedCursor != CursorTypes.Item) {
+
+        Door d = item as Door;
+        if (d != null) {
+          if (d.IsOpen())
+            GD.c.forcedCursor = CursorTypes.Close;
+          else
+            GD.c.forcedCursor = CursorTypes.Open;
+
+        }
+        else
+          GD.c.forcedCursor = CursorTypes.Use;
+      }
       GD.c.overItem = item;
       GD.c.ShowName(item.Name);
     }
