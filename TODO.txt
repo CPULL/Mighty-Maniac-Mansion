@@ -4,12 +4,13 @@
 Implement some "AI" (cutscene based) for actors to do something.
 -> Use it for the tentacle
 
+>>>> Add ID to behaviors!!!
 Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here
 implement the bottle breaking, but decide what the liquid should be
 
 Icrease resolution of turkey and roast
 Add recycle stuff to the service room
-
+Split again background sounds and normal sounds
 
 * TODO ************************************************************************************************************
 

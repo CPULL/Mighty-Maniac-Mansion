@@ -1,9 +1,12 @@
 ﻿
 
+using System;
 using UnityEngine;
 
 [System.Serializable]
 public class Behavior {
+
+  public BehaviorID name;
 
   // Conditions to have it working
   // List of conditions that are in AND, each item of the list is ORed with the other lines
@@ -22,6 +25,13 @@ public class Behavior {
     }
   }
 
+  internal bool IsValid(Actor caller) {
+    foreach(BehaviorConditionLine bcl in ConditionsInOr) {
+      if (bcl.IsValid(caller)) return true;
+    }
+
+    return false;
+  }
 }
 
 
@@ -45,6 +55,12 @@ public class BehaviorConditionLine {
       res += bc.ToString() + "|";
     return res;
   }
+
+  public bool IsValid(Actor caller) {
+    foreach (BehaviorCondition bc in ConditionsInAnd)
+      if (!bc.IsValid(caller)) return false;
+    return true;
+  }
 }
 
   [System.Serializable]
@@ -55,6 +71,123 @@ public class BehaviorCondition {
       Flag                  |      |       | flag | value |     
       Distance of actor     |      | actor |      |       | dist
    */
+
+
+  public bool IsValid(Actor caller) {
+    switch (type) {
+      case BehaviorConditionType.ItemCollected: return Controller.IsItemCollected(item);
+
+      case BehaviorConditionType.ActorInSameRoom: {
+        bool same;
+        if (actor == Chars.Self) same = true;
+        else if (actor == Chars.Player) {
+          same = (Controller.GetActor(Chars.Actor1).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.Actor2).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.Actor3).currentRoom == caller.currentRoom);
+        }
+        else if (actor == Chars.Enemy) {
+          same = (Controller.GetActor(Chars.Fred).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.Edna).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.Ed).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.Edwige).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.Ted).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.GreenTentacle).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.PurpleTentacle).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.BlueTentacle).currentRoom == caller.currentRoom) ||
+            (Controller.GetActor(Chars.PurpleMeteor).currentRoom == caller.currentRoom);
+        }
+        else
+          same = Controller.GetActor(actor).currentRoom == caller.currentRoom;
+
+        if (value == FlagValue.No) return !same;
+        return same;
+      }
+
+      case BehaviorConditionType.ActorDistanceLess: {
+        float adist;
+        if (actor == Chars.Self) adist = -1;
+        else if (actor == Chars.Player) {
+          float d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Actor1).transform.position);
+          adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Actor2).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Actor3).transform.position);
+          if (adist > d) adist = d;
+        }
+        else if (actor == Chars.Enemy) {
+          float d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Fred).transform.position);
+          adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Edna).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Ed).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Edwige).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Ted).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.GreenTentacle).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.PurpleTentacle).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.BlueTentacle).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.PurpleMeteor).transform.position);
+          if (adist > d) adist = d;
+        }
+        else
+          adist = Vector3.Distance(caller.transform.position, Controller.GetActor(actor).transform.position);
+
+        return adist < dist;
+      }
+
+      case BehaviorConditionType.ActorDistanceMore: {
+        float adist;
+        if (actor == Chars.Self) adist = -1;
+        else if (actor == Chars.Player) {
+          float d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Actor1).transform.position);
+          adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Actor2).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Actor3).transform.position);
+          if (adist > d) adist = d;
+        }
+        else if (actor == Chars.Enemy) {
+          float d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Fred).transform.position);
+          adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Edna).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Ed).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Edwige).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.Ted).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.GreenTentacle).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.PurpleTentacle).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.BlueTentacle).transform.position);
+          if (adist > d) adist = d;
+          d = Vector3.Distance(caller.transform.position, Controller.GetActor(Chars.PurpleMeteor).transform.position);
+          if (adist > d) adist = d;
+        }
+        else
+          adist = Vector3.Distance(caller.transform.position, Controller.GetActor(actor).transform.position);
+
+        return adist > dist;
+      }
+
+      case BehaviorConditionType.Flag: {
+        return GD.a.CheckFlag(flag, value);
+      }
+    }
+
+
+    return false;
+  }
+
+
+
 
   public BehaviorConditionType type;
   public ItemEnum item;
@@ -148,4 +281,10 @@ public enum BehaviorActionType {
   AnimActor,
   AnimItem,
   SetFlag,
+}
+
+public enum BehaviorID {
+  GreenTentacleBlockingPath,
+  EdnaBrowsingFridge,
+  EdGettingCheese
 }

@@ -38,6 +38,7 @@ public class GD : MonoBehaviour {
   public static Options opts;
   public static Confirm confirm;
   public static Sounds s;
+  public static AllObjects a;
   public RestartFrom restartFrom = RestartFrom.NotStarted;
 
   public enum RestartFrom { NotStarted, Intro, CharSel, Game }

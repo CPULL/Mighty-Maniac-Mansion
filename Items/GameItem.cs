@@ -41,7 +41,7 @@ public class GameItem : MonoBehaviour {
       if (ac.Condition.IsValid(actor, secondary, item, this, when)) {
         Item theItem = item;
         if (theItem == null && ac.Action.item != ItemEnum.Undefined)
-          theItem = GD.c.allObjects.FindItemByID(ac.Action.item);
+          theItem = GD.a.FindItemByID(ac.Action.item);
         Controller.AddAction(ac.Action, actor, secondary, theItem);
         if (string.IsNullOrEmpty(ac.Action.GoodResult)) 
           silentGood |= ac.Action.type.GoodByDefault();

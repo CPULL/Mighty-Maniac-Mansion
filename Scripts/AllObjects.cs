@@ -4,6 +4,15 @@ using UnityEngine;
 public class AllObjects : MonoBehaviour {
   public List<Item> itemsList;
   public List<Room> roomsList;
+  public List<FlagStatus> flagsList;
+
+  private void Awake() {
+    GD.a = this;
+
+    flagsList = new List<FlagStatus>();
+    foreach (GameFlag gf in System.Enum.GetValues(typeof(GameFlag)))
+      flagsList.Add(new FlagStatus(gf, FlagValue.No));
+  }
 
   internal Room GetRoom(string id) {
     foreach (Room r in roomsList)
@@ -44,6 +53,11 @@ public class AllObjects : MonoBehaviour {
     return FindItemByID(id);
   }
 
+  internal bool CheckFlag(GameFlag flag, FlagValue value) {
+    foreach (FlagStatus fs in flagsList)
+      if (fs.flag == flag) return fs.value == FlagValue.NA || fs.value == value;
+    return false;
+  }
 }
 
 
@@ -94,4 +108,14 @@ public enum GameFlag {
 }
 public enum FlagValue {
   Yes, No, NA
+}
+
+public class FlagStatus {
+  public GameFlag flag;
+  public FlagValue value;
+
+  public FlagStatus(GameFlag f, FlagValue v) {
+    flag = f;
+    value = v;
+  }
 }

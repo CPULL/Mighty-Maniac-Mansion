@@ -30,11 +30,13 @@ public class Actor : MonoBehaviour {
   FloorType prevFloor = FloorType.None;
   string idle;
   string walk;
+  bool IAmNPC = true;
   public AudioClip TentacleSteps;
-
-
   public List<Behavior> Behaviors;
 
+  public void Player() {
+    IAmNPC = false;
+  }
 
   private void Awake() {
     anim = GetComponent<Animator>();
@@ -205,6 +207,8 @@ public class Actor : MonoBehaviour {
     walking = true;
   }
 
+  float nextBehaviorCheck = .5f;
+
   private void Update() {
     if (isSpeaking) {
       speakt += Time.deltaTime;
@@ -220,6 +224,31 @@ public class Actor : MonoBehaviour {
       case Dir.L: Face.sprite = facesL[faceNum]; break;
       case Dir.R: Face.sprite = facesR[faceNum]; break;
     }
+
+
+
+    // Check if we have a behavior to play, but only every .5 seconds
+    if (IAmNPC) {
+      if (nextBehaviorCheck > 0) {
+        nextBehaviorCheck -= Time.deltaTime;
+        return;
+      }
+      nextBehaviorCheck = .5f;
+
+      foreach (Behavior b in Behaviors) {
+        if (b.IsValid(this)) {
+          Debug.Log("Behavior " + b.name + " valid!");
+          nextBehaviorCheck = 15f;
+        }
+      }
+    }
+
+
+
+
+
+
+
     if (!walking) {
       if (dir == Dir.None) dir = Dir.F;
       anim.Play(idle + dir);

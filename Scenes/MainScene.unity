@@ -53419,7 +53419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730974549}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.87, y: 47.94, z: 0}
+  m_LocalPosition: {x: 23.08, y: 46.12, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 899791774}
@@ -53607,8 +53607,35 @@ MonoBehaviour:
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
   Behaviors:
-  - ConditionsInOr: []
-    Actions: []
+  - name: 0
+    ConditionsInOr:
+    - name: Green Tentacle not feed
+      ConditionsInAnd:
+      - type: 4
+        item: 0
+        actor: 0
+        flag: 0
+        value: 1
+        dist: 0
+      - type: 1
+        item: 0
+        actor: 8
+        flag: 0
+        value: 0
+        dist: 0
+    Actions:
+    - name: Move to (24.7, 48.7)
+      type: 1
+      pos: {x: 24.67, y: 48.69, z: 0}
+      str: SuiteCorridor
+      val1: 0
+      val2: 0
+    - name: Move to (23.1, 46.1)
+      type: 1
+      pos: {x: 23.08, y: 46.12, z: 0}
+      str: SuiteCorridor
+      val1: 0
+      val2: 0
 --- !u!95 &1730974554
 Animator:
   serializedVersion: 3
@@ -66429,7 +66456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 114.20001, y: -88.20001}
+  m_AnchoredPosition: {x: 114.200195, y: -88.19995}
   m_SizeDelta: {x: 0, y: 120}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2114540510

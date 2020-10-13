@@ -23,16 +23,6 @@ public class BehaviorConditionPropertyDrawer : PropertyDrawer {
     SerializedProperty value = property.FindPropertyRelative("value");
     SerializedProperty dist = property.FindPropertyRelative("dist");
 
-
-    BehaviorConditionType typeVal = (BehaviorConditionType)type.intValue;
-    Chars actorVal = (Chars)actor.intValue;
-    ItemEnum itemVal = (ItemEnum)item.intValue;
-    GameFlag flagVal = (GameFlag)flag.intValue;
-    FlagValue valVal = (FlagValue)value.intValue;
-    float distVal = dist.floatValue;
-
-    string name = BehaviorCondition.CalculateName(typeVal, actorVal, itemVal, flagVal, valVal, distVal);
-
     Rect rect1 = new Rect(position.x, position.y, position.width / 3, EditorGUIUtility.singleLineHeight);
     Rect rect2 = new Rect(position.x + 1 * position.width / 3, position.y, position.width / 3, EditorGUIUtility.singleLineHeight);
     Rect rect3 = new Rect(position.x + 2 * position.width / 3, position.y, position.width / 3, EditorGUIUtility.singleLineHeight);
@@ -64,7 +54,7 @@ public class BehaviorConditionPropertyDrawer : PropertyDrawer {
 
       case BehaviorConditionType.Flag:
         flag.intValue = EditorGUI.Popup(rect2, "Flag", flag.intValue, flag.enumDisplayNames);
-        value.intValue = EditorGUI.Popup(rect3, "Val", value.intValue, value.enumDisplayNames);
+        value.intValue = EditorGUI.Popup(rect3, "=", value.intValue, value.enumDisplayNames);
         break;
     }
 

@@ -7,7 +7,6 @@ using SimpleJSON;
 
 public class Controller : MonoBehaviour {
   Camera cam;
-  public AllObjects allObjects;
   public LayerMask pathLayer;
   public LayerMask doorLayer;
   public UnityEngine.UI.Image BlackFade;
@@ -363,6 +362,7 @@ public class Controller : MonoBehaviour {
     #endregion
   }
 
+
   private CursorTypes forcedCursor = CursorTypes.None;
   private Texture2D oldCursor = null;
   public Texture2D[] Cursors;
@@ -449,9 +449,12 @@ public class Controller : MonoBehaviour {
   private void Awake() {
     GD.c = this;
     cam = Camera.main;
+  }
+
+  private void Start() {
     LoadSequences();
 
-    foreach (Room r in allObjects.roomsList) {
+    foreach (Room r in GD.a.roomsList) {
       r.gameObject.SetActive(false);
     }
     foreach (Actor a in allEnemies)
@@ -459,11 +462,9 @@ public class Controller : MonoBehaviour {
     foreach (Actor a in allActors)
       if (a != null) a.gameObject.SetActive(false);
     ActorsButtons.SetActive(false);
-  }
 
-  private void Start() {
     SceneSelectionPoint.color = new Color32(0, 0, 0, 0);
-    currentRoom = allObjects.roomsList[0];
+    currentRoom = GD.a.roomsList[0];
     currentActor = actor1;
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = selectedActor;
 
@@ -472,7 +473,7 @@ public class Controller : MonoBehaviour {
   }
 
   void StartGame() {
-    foreach (Room r in allObjects.roomsList) {
+    foreach (Room r in GD.a.roomsList) {
       r.gameObject.SetActive(r == currentRoom);
     }
     GD.status = GameStatus.NormalGamePlay;
@@ -488,10 +489,13 @@ public class Controller : MonoBehaviour {
 
     actor1 = GetActor(GD.actor1);
     ActorPortrait1.portrait.sprite = GetActorPortrait(GD.actor1);
+    actor1.Player();
     actor2 = GetActor(GD.actor2);
     ActorPortrait2.portrait.sprite = GetActorPortrait(GD.actor2);
+    actor2.Player();
     actor3 = GetActor(GD.actor3);
     ActorPortrait3.portrait.sprite = GetActorPortrait(GD.actor3);
+    actor3.Player();
     kidnappedActor = GetActor(GD.kidnapped);
     currentActor = actor1;
 
@@ -663,7 +667,7 @@ public class Controller : MonoBehaviour {
     switch (currentAction.action.type) {
       case ActionType.Teleport: {
         Actor a = GetActor(currentAction.action.actor);
-        Room aroom = allObjects.GetRoom(currentAction.action.strValue);
+        Room aroom = GD.a.GetRoom(currentAction.action.strValue);
         if (aroom != null) {
           a.currentRoom = aroom;
           a.gameObject.SetActive(aroom == currentRoom);
@@ -762,11 +766,11 @@ public class Controller : MonoBehaviour {
       break;
 
       case ActionType.ShowRoom: {
-        currentRoom = allObjects.GetRoom(currentAction.action.strValue);
+        currentRoom = GD.a.GetRoom(currentAction.action.strValue);
         Vector3 pos = currentAction.action.pos;
         pos.z = -10;
         cam.transform.position = pos;
-        foreach (Room r in allObjects.roomsList)
+        foreach (Room r in GD.a.roomsList)
           r.gameObject.SetActive(false);
         currentRoom.gameObject.SetActive(true);
         foreach (Actor a in allActors) {
@@ -1015,7 +1019,7 @@ public class Controller : MonoBehaviour {
 
   internal static Item GetItem(string item) {
     if (item == null) return null;
-    return GD.c.allObjects.FindItemByID(item);
+    return GD.a.FindItemByID(item);
   }
   #endregion
 
@@ -1187,6 +1191,7 @@ public class Controller : MonoBehaviour {
   internal static void OverActor(Actor actor) {
     GD.c.overActor = actor;
   }
+
 
 
   #endregion
