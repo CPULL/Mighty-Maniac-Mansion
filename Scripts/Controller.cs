@@ -32,7 +32,6 @@ public class Controller : MonoBehaviour {
     if (GD.status != GameStatus.NormalGamePlay && GD.status != GameStatus.Cutscene) return;
 
 
-    cursorTime += Time.deltaTime;
     HandleCursor();
 
 
@@ -368,11 +367,13 @@ public class Controller : MonoBehaviour {
   private Texture2D oldCursor = null;
   public Texture2D[] Cursors;
   float cursorTime = 0;
+  float cursorTimeSpeed = 1;
+  private Vector2 middle = new Vector2(32, 32);
 
   void HandleCursor() {
     if (GD.status != GameStatus.NormalGamePlay) {
       if (oldCursor != Cursors[(int)CursorTypes.Wait]) {
-        Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], new Vector2(Cursors[(int)CursorTypes.Wait].width / 2, Cursors[(int)CursorTypes.Wait].height / 2), CursorMode.Auto);
+        Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], middle, CursorMode.Auto);
         oldCursor = Cursors[(int)CursorTypes.Wait];
       }
       return;
@@ -380,37 +381,20 @@ public class Controller : MonoBehaviour {
 
     if (forcedCursor == CursorTypes.Item) return;
 
+    cursorTime += Time.deltaTime * cursorTimeSpeed;
+    if (cursorTime > 1.5f) {
+      cursorTime = 0;
+      cursorTimeSpeed = Random.Range(.9f, 1.5f);
+    }
+
+
     if (forcedCursor == CursorTypes.None) {
-      if (0 <= cursorTime && cursorTime <= .5f) {
-        if (oldCursor != Cursors[0]) {
-          Cursor.SetCursor(Cursors[0], new Vector2(Cursors[0].width / 2, Cursors[0].height / 2), CursorMode.Auto);
-          oldCursor = Cursors[0];
-        }
-      }
-      else if (.5f < cursorTime && cursorTime <= .75f) {
-        if (oldCursor != Cursors[1]) {
-          Cursor.SetCursor(Cursors[1], new Vector2(Cursors[1].width / 2, Cursors[1].height / 2), CursorMode.Auto);
-          oldCursor = Cursors[1];
-        }
-      }
-      else if (.75f < cursorTime && cursorTime <= .9f) {
-        if (oldCursor != Cursors[2]) {
-          Cursor.SetCursor(Cursors[2], new Vector2(Cursors[2].width / 2, Cursors[2].height / 2), CursorMode.Auto);
-          oldCursor = Cursors[2];
-        }
-      }
-      else if (.9f < cursorTime && cursorTime <= 1.05f) {
-        if (oldCursor != Cursors[1]) {
-          Cursor.SetCursor(Cursors[1], new Vector2(Cursors[1].width / 2, Cursors[1].height / 2), CursorMode.Auto);
-          oldCursor = Cursors[1];
-        }
-      }
-      else {
-        cursorTime = 0;
-        if (oldCursor != Cursors[0]) {
-          Cursor.SetCursor(Cursors[0], new Vector2(Cursors[0].width / 2, Cursors[0].height / 2), CursorMode.Auto);
-          oldCursor = Cursors[0];
-        }
+      float val = Mathf.Cos(cursorTime * 2.1f + 4.7f) * 4.9f;
+      val = Mathf.Clamp(val, 0, 4);
+      int c = 4 - Mathf.RoundToInt(val);
+      if (oldCursor != Cursors[c]) {
+        Cursor.SetCursor(Cursors[c], middle, CursorMode.Auto);
+        oldCursor = Cursors[c];
       }
       return;
     }

@@ -26,7 +26,6 @@ Complete Sandy and Ollie descriptions
 
 * BUGS ************************************************************************************************************
 
-The action is not correct after we teleport
 
 * CHARS ************************************************************************************************************
 
@@ -149,6 +148,7 @@ Jeff
 ! Replace items on the shelf of the service room with actual items.
 ! Fix the problem of the doors walks
 ! Fix pants of syd going right
+! The action is not correct after we teleport
 
 
 
