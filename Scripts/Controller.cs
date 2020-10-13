@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using SimpleJSON;
 
 public class Controller : MonoBehaviour {
-  Camera cam;
+  [HideInInspector] public Camera cam;
   public LayerMask pathLayer;
   public LayerMask doorLayer;
   public UnityEngine.UI.Image BlackFade;

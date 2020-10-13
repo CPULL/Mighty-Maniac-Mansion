@@ -12,6 +12,7 @@ public class Actor : MonoBehaviour {
   public Material Normal;
   public Material Outline;
   public Room currentRoom;
+  public float actorSpeed = 4f;
   Animator anim;
   readonly Parcour3 destination = new Parcour3(Vector3.zero, null);
   System.Action<Actor, Item> callBack = null;
@@ -208,6 +209,9 @@ public class Actor : MonoBehaviour {
   }
 
   float nextBehaviorCheck = .5f;
+  SList<Behavior> validBehaviors = new SList<Behavior>(4);
+  Behavior currentBehavior = null;
+  BehaviorAction currentAction = null;
 
   private void Update() {
     if (isSpeaking) {
@@ -229,16 +233,47 @@ public class Actor : MonoBehaviour {
 
     // Check if we have a behavior to play, but only every .5 seconds
     if (IAmNPC) {
-      if (nextBehaviorCheck > 0) {
-        nextBehaviorCheck -= Time.deltaTime;
-        return;
-      }
-      nextBehaviorCheck = .5f;
+      // Are we playing an action?
+      if (currentAction == null) {
 
-      foreach (Behavior b in Behaviors) {
-        if (b.IsValid(this)) {
-          Debug.Log("Behavior " + b.name + " valid!");
-          nextBehaviorCheck = 15f;
+        if (nextBehaviorCheck > 0) {
+          nextBehaviorCheck -= Time.deltaTime;
+          return;
+        }
+        nextBehaviorCheck = .5f;
+
+        validBehaviors.Clear();
+        foreach (Behavior b in Behaviors) {
+          if (b.IsValid(this)) {
+            validBehaviors.Add(b);
+            nextBehaviorCheck = .5f;
+          }
+        }
+        if (validBehaviors.Count > 0) {
+          // Get the one with high priority or one random?
+          currentBehavior = validBehaviors.GetFirst();
+          currentAction = currentBehavior.GetNextAction(null);
+          Debug.Log("Getting Current action: " + currentAction.ToString() + " from behavior: " + currentBehavior.name);
+        }
+      }
+
+      if (currentAction != null) {
+        // Play it until completed, and the behavior is still valid
+        if (currentAction.status == BehaviorActonStatus.NotStarted) {
+          currentAction.Start();
+        }
+        else if (currentAction.status == BehaviorActonStatus.Running) {
+          PlayAction();
+        }
+        else if (currentAction.status == BehaviorActonStatus.WaitingToCompleteAsync) {
+          // Just wait
+        }
+        else if (currentAction.status == BehaviorActonStatus.Completed) { // Completed, get next
+          currentAction = currentBehavior.GetNextAction(currentAction);
+          if (currentAction == null)
+            currentBehavior = null;
+          else
+            currentAction.status = BehaviorActonStatus.NotStarted;
         }
       }
     }
@@ -263,7 +298,7 @@ public class Actor : MonoBehaviour {
     Vector2 walkDir = (destination.pos - transform.position);
     Vector3 wdir = walkDir.normalized;
     wdir.y *= .65f;
-    Vector3 np = transform.position + wdir * 4f * Controller.walkSpeed * Time.deltaTime;
+    Vector3 np = transform.position + wdir * actorSpeed * Controller.walkSpeed * Time.deltaTime;
     np.z = 0;
 
     float ty = transform.position.y;
@@ -301,6 +336,51 @@ public class Actor : MonoBehaviour {
       anim.Play(walk + dir);
     }
     transform.position = np;
+  }
+
+  private void PlayAction() {
+    switch (currentAction.type) {
+      case BehaviorActionType.Teleport:
+        break;
+      case BehaviorActionType.MoveToSpecificSpot: {
+        // Get the pathnode of where we are (at least the closest one)
+        PathNode p = currentRoom.GetPathNode(transform.position);
+        if (p == null) {
+          Debug.Log("BUMMER! no path node");
+          currentAction.status = BehaviorActonStatus.Completed;
+          return;
+        }
+        currentAction.status = BehaviorActonStatus.WaitingToCompleteAsync;
+        WalkTo(currentAction.pos, p,
+          new System.Action<Actor, Item>((actor, item) => {
+            currentAction.status = BehaviorActonStatus.Completed;
+          }));
+      }
+      break;
+
+      case BehaviorActionType.MoveToActor:
+        break;
+      case BehaviorActionType.Speak:
+        break;
+      case BehaviorActionType.Ask:
+        break;
+      case BehaviorActionType.Expression:
+        break;
+      case BehaviorActionType.EnableDisable:
+        break;
+      case BehaviorActionType.OpenClose:
+        break;
+      case BehaviorActionType.LockUnlock:
+        break;
+      case BehaviorActionType.Sound:
+        break;
+      case BehaviorActionType.AnimActor:
+        break;
+      case BehaviorActionType.AnimItem:
+        break;
+      case BehaviorActionType.SetFlag:
+        break;
+    }
   }
 
   public void SetScaleAndPosition(Vector3 pos, PathNode p = null) {

@@ -32,6 +32,18 @@ public class Behavior {
 
     return false;
   }
+
+  internal BehaviorAction GetNextAction(BehaviorAction currentAction) {
+    if (currentAction == null) {
+      if (Actions == null || Actions.Length == 0) return null;
+      Actions[0].status = BehaviorActonStatus.NotStarted;
+      return Actions[0];
+    }
+    for (int i = 0; i < Actions.Length - 1; i++) {
+      if (Actions[i] == currentAction) return Actions[i + 1];
+    }
+    return null;
+  }
 }
 
 
@@ -231,12 +243,74 @@ public enum BehaviorConditionType {
 [System.Serializable]
 public class BehaviorAction {
   public string name;
+  public BehaviorActonStatus status = BehaviorActonStatus.NotStarted;
   public BehaviorActionType type;
   public Vector3 pos;
   public string str; // room | text
   public int val1; // actor, item, sound, flag
   public int val2; // expr, val, item
-  
+
+  internal void Start() { // FIXME check if we need it
+    status = BehaviorActonStatus.Running;
+    switch (type) {
+      case BehaviorActionType.Teleport: 
+        break;
+      case BehaviorActionType.MoveToSpecificSpot:
+        break;
+      case BehaviorActionType.MoveToActor:
+        break;
+      case BehaviorActionType.Speak:
+        break;
+      case BehaviorActionType.Ask:
+        break;
+      case BehaviorActionType.Expression:
+        break;
+      case BehaviorActionType.EnableDisable:
+        break;
+      case BehaviorActionType.OpenClose:
+        break;
+      case BehaviorActionType.LockUnlock:
+        break;
+      case BehaviorActionType.Sound:
+        break;
+      case BehaviorActionType.AnimActor:
+        break;
+      case BehaviorActionType.AnimItem:
+        break;
+      case BehaviorActionType.SetFlag:
+        break;
+    }
+  }
+
+  public override string ToString() {
+    string name = "FIXME";
+
+    switch (type) {
+      case BehaviorActionType.Teleport: return "Teleport " + pos;
+      case BehaviorActionType.MoveToSpecificSpot: return "Move to " + pos;
+      case BehaviorActionType.MoveToActor: return "Move to " + (Chars)val1;
+      case BehaviorActionType.Speak: return "Say " + str + ": " + (Chars)val1;
+      case BehaviorActionType.Ask: return "Ask " + str + ": " + (Chars)val1;
+      case BehaviorActionType.Expression:
+        break;
+      case BehaviorActionType.EnableDisable:
+        break;
+      case BehaviorActionType.OpenClose:
+        break;
+      case BehaviorActionType.LockUnlock:
+        break;
+      case BehaviorActionType.Sound:
+        break;
+      case BehaviorActionType.AnimActor:
+        break;
+      case BehaviorActionType.AnimItem:
+        break;
+      case BehaviorActionType.SetFlag:
+        break;
+    }
+
+    return name;
+  }
 
   /*
    * 
@@ -281,6 +355,13 @@ public enum BehaviorActionType {
   AnimActor,
   AnimItem,
   SetFlag,
+}
+
+public enum BehaviorActonStatus {
+  NotStarted,
+  Running,
+  WaitingToCompleteAsync,
+  Completed
 }
 
 public enum BehaviorID {
