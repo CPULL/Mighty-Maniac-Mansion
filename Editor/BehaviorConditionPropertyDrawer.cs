@@ -1,6 +1,81 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+[CustomPropertyDrawer(typeof(Behavior))]
+public class BehaviorEditor : PropertyDrawer {
+  private static Behavior copied = null;
+  bool initialized = false;
+
+
+  public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+    EditorGUI.BeginProperty(position, label, property);
+    Rect labelRect = position;
+    labelRect.height = EditorGUIUtility.singleLineHeight;
+    //EditorGUI.PrefixLabel(labelRect, label);
+    position.y += labelRect.height + EditorGUIUtility.standardVerticalSpacing;
+    position.height -= EditorGUIUtility.standardVerticalSpacing + labelRect.height;
+
+    SerializedProperty name = property.FindPropertyRelative("name");
+    SerializedProperty ConditionsInOr = property.FindPropertyRelative("ConditionsInOr");
+    SerializedProperty Actions = property.FindPropertyRelative("Actions");
+
+    int indent = EditorGUI.indentLevel;
+    float labw = EditorGUIUtility.labelWidth;
+    EditorGUIUtility.labelWidth = 70;
+    EditorGUI.indentLevel = 1;
+
+    name.isExpanded = EditorGUI.Foldout(labelRect, name.isExpanded, name.stringValue);
+    if (name.isExpanded) {
+      if (GUI.Button(new Rect(labelRect.x + position.width - 100, labelRect.y, 50, EditorGUIUtility.singleLineHeight), "Copy")) {
+        var obj = fieldInfo.GetValue(property.serializedObject.targetObject);
+        if (obj.GetType() == typeof(System.Collections.Generic.List<Behavior>) || obj.GetType().IsArray) {
+          // Find the last `[` and ']'
+          int pos0 = property.propertyPath.LastIndexOf('[');
+          int pos1 = property.propertyPath.LastIndexOf(']');
+          string sindex = property.propertyPath.Substring(pos0 + 1, pos1 - pos0 - 1);
+          int.TryParse(sindex, out int index);
+
+          copied = ((System.Collections.Generic.List<Behavior>)obj)[index];
+
+          Debug.Log("Copy " + copied.name + " --> *" + index + "*");
+        }
+      }
+      if (GUI.Button(new Rect(labelRect.x + position.width - 50, labelRect.y, 50, EditorGUIUtility.singleLineHeight), "Paste")) {
+        var obj = fieldInfo.GetValue(property.serializedObject.targetObject);
+        if (obj.GetType() == typeof(System.Collections.Generic.List<Behavior>) || obj.GetType().IsArray) {
+          // Find the last `[` and ']'
+          int pos0 = property.propertyPath.LastIndexOf('[');
+          int pos1 = property.propertyPath.LastIndexOf(']');
+          string sindex = property.propertyPath.Substring(pos0 + 1, pos1 - pos0 - 1);
+          int.TryParse(sindex, out int index);
+
+          Behavior newb = ((System.Collections.Generic.List<Behavior>)obj)[index];
+          newb.name = copied.name;
+          newb.ConditionsInOr = new BehaviorConditionLine[copied.ConditionsInOr.Length];
+          for (int i = 0; i < copied.ConditionsInOr.Length; i++) {
+            newb.ConditionsInOr[i] = new BehaviorConditionLine(copied.ConditionsInOr[i]);
+          }
+          newb.Actions = new BehaviorAction[copied.Actions.Length];
+          for (int i = 0; i < copied.Actions.Length; i++) {
+            newb.Actions[i] = new BehaviorAction(copied.Actions[i]);
+          }
+          property.serializedObject.UpdateIfRequiredOrScript();
+        }
+
+
+      }
+      EditorGUI.indentLevel = 2;
+      EditorGUIUtility.labelWidth = 70;
+      EditorGUILayout.PropertyField(name, new GUIContent(""));
+      EditorGUILayout.PropertyField(ConditionsInOr);
+      EditorGUILayout.PropertyField(Actions);
+    }
+    EditorGUI.indentLevel = indent;
+    EditorGUIUtility.labelWidth = labw;
+    EditorGUI.EndProperty();
+  }
+}
+
 [CustomPropertyDrawer(typeof(BehaviorCondition))]
 public class BehaviorConditionPropertyDrawer : PropertyDrawer {
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {

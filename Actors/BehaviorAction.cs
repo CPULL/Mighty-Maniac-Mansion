@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 [System.Serializable]
@@ -10,6 +11,26 @@ public class BehaviorAction {
   public string str; // room | text
   public int val1; // actor, item, sound, flag
   public int val2; // expr, val, item
+
+  public BehaviorAction() {
+    name = "Unnamed";
+    status = BehaviorActonStatus.NotStarted;
+    type = BehaviorActionType.MoveToSpecificSpot;
+    pos = Vector3.zero;
+    str = "";
+    val1 = 0;
+    val2 = 0;
+  }
+
+  public BehaviorAction(BehaviorAction orig) {
+    name = orig.name;
+    status = BehaviorActonStatus.NotStarted;
+    type = orig.type;
+    pos = orig.pos;
+    str = orig.str;
+    val1 = orig.val1;
+    val2 = orig.val2;
+  }
 
   public override string ToString() {
     string name = "FIXME";

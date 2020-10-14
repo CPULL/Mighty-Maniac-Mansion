@@ -53613,37 +53613,7 @@ MonoBehaviour:
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
   Behaviors:
-  - name: 0
-    ConditionsInOr:
-    - name: Green Tentacle not feed
-      ConditionsInAnd:
-      - type: 4
-        item: 0
-        actor: 0
-        flag: 0
-        value: 1
-        num: 0
-      - type: 1
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 0
-      - type: 5
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 7.5
-    Actions:
-    - name: Move to (24.7, 48.7)
-      status: 0
-      type: 3
-      pos: {x: 24.31, y: 49.32, z: 0}
-      str: You shall not pass!
-      val1: 0
-      val2: 0
-  - name: 0
+  - name: Patrolling while not feeded
     ConditionsInOr:
     - name: Green Tentacle not feed
       ConditionsInAnd:
@@ -53680,7 +53650,7 @@ MonoBehaviour:
       str: SuiteCorridor
       val1: 0
       val2: 0
-  - name: 0
+  - name: Block actor while not feeded
     ConditionsInOr:
     - name: Green Tentacle not feed
       ConditionsInAnd:
@@ -53708,7 +53678,20 @@ MonoBehaviour:
         flag: 0
         value: 0
         num: 15.3
+      - type: 3
+        item: 0
+        actor: 8
+        flag: 0
+        value: 0
+        num: 2
     Actions:
+    - name: Current blocked
+      status: 0
+      type: 13
+      pos: {x: 24.31, y: 49.32, z: 0}
+      str: SuiteCorridor
+      val1: 1
+      val2: 0
     - name: Move to Current
       status: 0
       type: 2
@@ -53721,6 +53704,43 @@ MonoBehaviour:
       type: 3
       pos: {x: 24.31, y: 49.32, z: 0}
       str: I am hungry!
+      val1: 0
+      val2: 0
+    - name: Current unblocked
+      status: 0
+      type: 13
+      pos: {x: 24.31, y: 49.32, z: 0}
+      str: I am hungry!
+      val1: 1
+      val2: 1
+  - name: '"Shal not pass" while not feeded'
+    ConditionsInOr:
+    - name: 
+      ConditionsInAnd:
+      - type: 4
+        item: 0
+        actor: 0
+        flag: 0
+        value: 1
+        num: 0
+      - type: 1
+        item: 0
+        actor: 8
+        flag: 0
+        value: 0
+        num: 0
+      - type: 5
+        item: 0
+        actor: 8
+        flag: 0
+        value: 0
+        num: 7.5
+    Actions:
+    - name: Move to (24.7, 48.7)
+      status: 0
+      type: 3
+      pos: {x: 24.31, y: 49.32, z: 0}
+      str: You shall not pass!
       val1: 0
       val2: 0
 --- !u!95 &1730974554

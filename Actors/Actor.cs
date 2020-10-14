@@ -34,6 +34,7 @@ public class Actor : MonoBehaviour {
   bool IAmNPC = true;
   public AudioClip TentacleSteps;
   public List<Behavior> Behaviors;
+  bool block = false;
 
   public void Player() {
     IAmNPC = false;
@@ -167,6 +168,8 @@ public class Actor : MonoBehaviour {
 
 
   internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) {
+    if (block) return;
+
     destination.pos = dest;
     destination.node = p;
     destination.pos.z = transform.position.z;
@@ -209,7 +212,6 @@ public class Actor : MonoBehaviour {
   }
 
   float nextBehaviorCheck = .5f;
-  SList<Behavior> validBehaviors = new SList<Behavior>(4);
   Behavior currentBehavior = null;
   BehaviorAction currentAction = null;
 
@@ -232,31 +234,28 @@ public class Actor : MonoBehaviour {
 
 
     // Check if we have a behavior to play, but only every .5 seconds
-    if (IAmNPC) {
-      // Are we playing an action?
-      if (currentAction == null) {
+    nextBehaviorCheck -= Time.deltaTime;
+    if (IAmNPC && nextBehaviorCheck < 0) { // Behaviors checking
+      nextBehaviorCheck = .25f;
 
-        if (nextBehaviorCheck > 0) {
-          nextBehaviorCheck -= Time.deltaTime;
-          return;
+      // Get the high priority behavior, if one is valid. Check every 1/4 of a second
+      Behavior valid = null;
+      foreach (Behavior b in Behaviors) {
+        if (b.IsValid(this)) {
+          valid = b;
+          break;
         }
-        nextBehaviorCheck = .5f;
-
-        validBehaviors.Clear();
-        foreach (Behavior b in Behaviors) {
-          if (b.IsValid(this)) {
-            validBehaviors.Add(b);
-            nextBehaviorCheck = .5f;
-          }
-        }
-        if (validBehaviors.Count > 0) {
-          // Get the one with high priority or one random?
-          currentBehavior = validBehaviors.GetFirst();
+      }
+      if (valid != null) {
+        if (valid != currentBehavior) {
+          Debug.Log(valid?.name + " <= " + currentBehavior?.name);
+          currentBehavior = valid;
           currentAction = currentBehavior.GetNextAction(null);
-          Debug.Log("Getting Current action: " + currentAction.ToString() + " from behavior: " + currentBehavior.name);
+          Debug.Log("Runnig behavior: " + currentBehavior.name);
         }
       }
 
+      // Play the action, if any
       if (currentAction != null) {
         // Play it until completed, and the behavior is still valid
         if (currentAction.status == BehaviorActonStatus.NotStarted) {
@@ -273,20 +272,7 @@ public class Actor : MonoBehaviour {
           currentAction = currentBehavior.GetNextAction(currentAction);
           if (currentAction == null) {
             currentBehavior = null;
-            // Check if we have a new valid behavior right away
-            validBehaviors.Clear();
-            foreach (Behavior b in Behaviors) {
-              if (b.IsValid(this)) {
-                validBehaviors.Add(b);
-                nextBehaviorCheck = .5f;
-              }
-            }
-            if (validBehaviors.Count > 0) {
-              // Get the one with high priority or one random?
-              currentBehavior = validBehaviors.GetFirst();
-              currentAction = currentBehavior.GetNextAction(null);
-              Debug.Log("Getting Current action: " + currentAction.ToString() + " from behavior: " + currentBehavior.name);
-            }
+            nextBehaviorCheck = 0;
           }
           else
             currentAction.status = BehaviorActonStatus.NotStarted;
@@ -295,12 +281,9 @@ public class Actor : MonoBehaviour {
     }
 
 
+    // Normal movement from here
 
-
-
-
-
-    if (!walking) {
+    if (!walking || block) {
       if (dir == Dir.None) dir = Dir.F;
       anim.Play(idle + dir);
       if (audios.isPlaying) audios.Stop();
@@ -369,7 +352,7 @@ public class Actor : MonoBehaviour {
         currentAction.status = BehaviorActonStatus.WaitingToCompleteAsync;
         WalkTo(currentAction.pos, p,
           new System.Action<Actor, Item>((actor, item) => {
-            currentAction.status = BehaviorActonStatus.Completed;
+            if (currentAction != null) currentAction.status = BehaviorActonStatus.Completed;
           }));
       }
       break;
@@ -396,7 +379,7 @@ public class Actor : MonoBehaviour {
         currentAction.status = BehaviorActonStatus.WaitingToCompleteAsync;
         WalkTo(pos, p,
           new System.Action<Actor, Item>((actor, item) => {
-            currentAction.status = BehaviorActonStatus.Completed;
+            if (currentAction != null) currentAction.status = BehaviorActonStatus.Completed;
           }));
       }
       break;
@@ -425,6 +408,18 @@ public class Actor : MonoBehaviour {
         break;
       case BehaviorActionType.SetFlag:
         break;
+      case BehaviorActionType.BlockActor: {
+        if ((Chars)currentAction.val1 == Chars.Player) currentAction.val1 = (int)Chars.Current;
+        Actor act = Controller.GetActor((Chars)currentAction.val1);
+        if (act == null) {
+          Debug.Log("No actor: " + (Chars)currentAction.val1);
+          currentAction.status = BehaviorActonStatus.Completed;
+          return;
+        }
+        act.block = (FlagValue)currentAction.val2 == FlagValue.Yes;
+        currentAction.status = BehaviorActonStatus.Completed;
+      }
+      break;
     }
   }
 

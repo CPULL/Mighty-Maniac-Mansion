@@ -8,6 +8,13 @@ public class BehaviorConditionLine {
   public string name;
   public BehaviorCondition[] ConditionsInAnd;
 
+  public BehaviorConditionLine(BehaviorConditionLine orig) {
+    ConditionsInAnd = new BehaviorCondition[orig.ConditionsInAnd.Length];
+    for (int i = 0; i < orig.ConditionsInAnd.Length; i++) {
+      ConditionsInAnd[i] = new BehaviorCondition(orig.ConditionsInAnd[i]);
+    }
+  }
+
   public BehaviorConditionLine() {
     ConditionsInAnd = new BehaviorCondition[INITIAL_SIZE];
     for (int i = 0; i < INITIAL_SIZE; i++) {
@@ -166,6 +173,26 @@ public class BehaviorCondition {
   public GameFlag flag;
   public FlagValue value;
   public float num;
+
+  public BehaviorCondition(BehaviorCondition orig) {
+    toRun = System.DateTime.Now;
+    type = orig.type;
+    item = orig.item;
+    actor = orig.actor;
+    flag = orig.flag;
+    value = orig.value;
+    num = orig.num;
+  }
+
+  public BehaviorCondition() {
+    toRun = System.DateTime.Now;
+    type = BehaviorConditionType.Flag;
+    item = 0;
+    actor = 0;
+    flag = 0;
+    value = 0;
+    num = 0;
+  }
 
   public override string ToString() {
     switch (type) {

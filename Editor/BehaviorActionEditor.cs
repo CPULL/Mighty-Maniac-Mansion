@@ -123,6 +123,13 @@ public class BehaviorActionEditor : PropertyDrawer {
         val1.intValue = EditorGUI.Popup(rectA, "Flag", val1.intValue, Enum.GetNames(typeof(GameFlag)));
         val2.intValue = EditorGUI.Popup(rectB, "Val", val2.intValue, Enum.GetNames(typeof(FlagValue)));
         break;
+
+      case BehaviorActionType.BlockActor:
+        if (string.IsNullOrEmpty(name.stringValue)) name.stringValue = Enum.GetNames(typeof(Chars))[val1.intValue] + ((FlagValue)val2.intValue == FlagValue.Yes ? " blocked" : " unblocked");
+        val1.intValue = EditorGUI.Popup(rectA, "Act", val1.intValue, Enum.GetNames(typeof(Chars)));
+        val2.intValue = EditorGUI.Popup(rectB, "Val", val2.intValue, Enum.GetNames(typeof(FlagValue)));
+        break;
+
     }
 
 

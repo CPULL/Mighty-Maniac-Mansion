@@ -3,7 +3,7 @@
 [System.Serializable]
 public class Behavior {
 
-  public BehaviorID name;
+  public string name;
 
   // Conditions to have it working
   // List of conditions that are in AND, each item of the list is ORed with the other lines

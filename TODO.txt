@@ -4,6 +4,9 @@ Draw Edna and do the "Check fridge" at start
 Add a way to give food to GT and stop walking if food is not given
 
 
+The checking of behaviors should be done often. At least 4 times per second. In case a higher priority behavior is valid, replace the current behavior/action
+We cannot really "block" in the tentacle scene. Or we will not be able to move after
+
 >>>> Add ID and names to behaviors!!!
 Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here (use behaviors?)
 
