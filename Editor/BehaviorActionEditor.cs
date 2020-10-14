@@ -41,6 +41,8 @@ public class BehaviorActionEditor : PropertyDrawer {
     Rect rectT = new Rect(position.x + 1 * position.width / 4, position.y, position.width / 4, EditorGUIUtility.singleLineHeight);
     Rect rectA = new Rect(position.x + 2 * position.width / 4, position.y, position.width / 4, EditorGUIUtility.singleLineHeight);
     Rect rectB = new Rect(position.x + 3 * position.width / 4, position.y, position.width / 4, EditorGUIUtility.singleLineHeight);
+    Rect rectC1 = new Rect(position.x + 3 * position.width / 4, position.y, position.width / 8, EditorGUIUtility.singleLineHeight);
+    Rect rectC2 = new Rect(position.x + 3 * position.width / 4 + position.width / 8, position.y, position.width / 8, EditorGUIUtility.singleLineHeight);
 
     EditorGUIUtility.labelWidth = 40;
     name.stringValue = EditorGUI.TextField(rectN, name.stringValue);
@@ -124,10 +126,22 @@ public class BehaviorActionEditor : PropertyDrawer {
         val2.intValue = EditorGUI.Popup(rectB, "Val", val2.intValue, Enum.GetNames(typeof(FlagValue)));
         break;
 
-      case BehaviorActionType.BlockActor:
+      case BehaviorActionType.BlockActorX:
         if (string.IsNullOrEmpty(name.stringValue)) name.stringValue = Enum.GetNames(typeof(Chars))[val1.intValue] + ((FlagValue)val2.intValue == FlagValue.Yes ? " blocked" : " unblocked");
         val1.intValue = EditorGUI.Popup(rectA, "Act", val1.intValue, Enum.GetNames(typeof(Chars)));
-        val2.intValue = EditorGUI.Popup(rectB, "Val", val2.intValue, Enum.GetNames(typeof(FlagValue)));
+        float minx = EditorGUI.FloatField(rectC1, "Min", pos.vector3Value.x);
+        float maxx = EditorGUI.FloatField(rectC2, "Max", pos.vector3Value.y);
+        if (minx != pos.vector3Value.x) {
+          Vector3 val = pos.vector3Value;
+          val.x = minx;
+          val.y = maxx;
+          pos.vector3Value = val;
+        }
+        break;
+
+      case BehaviorActionType.UnBlockActor:
+        if (string.IsNullOrEmpty(name.stringValue)) name.stringValue = Enum.GetNames(typeof(Chars))[val1.intValue] + ((FlagValue)val2.intValue == FlagValue.Yes ? " blocked" : " unblocked");
+        val1.intValue = EditorGUI.Popup(rectA, "Act", val1.intValue, Enum.GetNames(typeof(Chars)));
         break;
 
     }

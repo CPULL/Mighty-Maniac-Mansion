@@ -3,6 +3,9 @@
 Draw Edna and do the "Check fridge" at start
 Add a way to give food to GT and stop walking if food is not given
 
+"Block actor" should set a limit on the X or Y axis
+"Move to actor" should have a way to be fast and be always on a side of an actor
+Maybe add a "same Y" action to have the other actor to walk immediately on the same Y (or ignore "too close to dest" when walking)
 
 The checking of behaviors should be done often. At least 4 times per second. In case a higher priority behavior is valid, replace the current behavior/action
 We cannot really "block" in the tentacle scene. Or we will not be able to move after

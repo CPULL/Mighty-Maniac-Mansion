@@ -49,7 +49,8 @@ public class BehaviorAction {
       case BehaviorActionType.AnimActor: return (Chars)val1 + " anim " + str;
       case BehaviorActionType.AnimItem: return (ItemEnum)val1 + " anim " + str;
       case BehaviorActionType.SetFlag: return (GameFlag)val1 + " " + (FlagValue)val2;
-      case BehaviorActionType.BlockActor: return (Chars)val1 + ((FlagValue)val2 == FlagValue.Yes ? " blocked" : " free");
+      case BehaviorActionType.BlockActorX: return (Chars)val1 + " " + pos.x + " < x < " + pos.y;
+      case BehaviorActionType.UnBlockActor: return (Chars)val1 + " unblocked";
     }
     return name;
   }
@@ -81,7 +82,7 @@ public class BehaviorAction {
 public enum BehaviorActionType {
   Teleport,
   MoveToSpecificSpot,
-  MoveToActor,
+  MoveToActor, // FIXME Add walkL and WalkR, and change also the speed remove too close to dest
   Speak,
   Ask,
   Expression,
@@ -92,7 +93,8 @@ public enum BehaviorActionType {
   AnimActor,
   AnimItem,
   SetFlag,
-  BlockActor
+  BlockActorX,
+  UnBlockActor
 }
 
 public enum BehaviorActonStatus {

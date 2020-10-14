@@ -1052,6 +1052,7 @@ public class Controller : MonoBehaviour {
       case Chars.Actor3: return GD.c.actor3;
       case Chars.KidnappedActor: return GD.c.kidnappedActor;
       case Chars.Receiver: return GD.c.receiverActor;
+      case Chars.Player: return GD.c.currentActor;
       case Chars.Fred: return GD.c.allEnemies[0];
       case Chars.Edna: return GD.c.allEnemies[1];
       case Chars.Ted: return GD.c.allEnemies[2];

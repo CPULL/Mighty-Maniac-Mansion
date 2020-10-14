@@ -4,8 +4,6 @@ using UnityEngine;
 [CustomPropertyDrawer(typeof(Behavior))]
 public class BehaviorEditor : PropertyDrawer {
   private static Behavior copied = null;
-  bool initialized = false;
-
 
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
     EditorGUI.BeginProperty(position, label, property);

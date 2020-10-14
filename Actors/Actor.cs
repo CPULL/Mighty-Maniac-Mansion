@@ -34,7 +34,8 @@ public class Actor : MonoBehaviour {
   bool IAmNPC = true;
   public AudioClip TentacleSteps;
   public List<Behavior> Behaviors;
-  bool block = false;
+  float blockMinX = -float.MaxValue;
+  float blockMaxX = float.MaxValue;
 
   public void Player() {
     IAmNPC = false;
@@ -168,7 +169,8 @@ public class Actor : MonoBehaviour {
 
 
   internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) {
-    if (block) return;
+    if (dest.x < blockMinX) dest.x = blockMinX;
+    if (dest.x > blockMaxX) dest.x = blockMaxX;
 
     destination.pos = dest;
     destination.node = p;
@@ -248,6 +250,7 @@ public class Actor : MonoBehaviour {
       }
       if (valid != null) {
         if (valid != currentBehavior) {
+          if (currentAction != null) currentAction.status = BehaviorActonStatus.Completed;
           Debug.Log(valid?.name + " <= " + currentBehavior?.name);
           currentBehavior = valid;
           currentAction = currentBehavior.GetNextAction(null);
@@ -283,7 +286,7 @@ public class Actor : MonoBehaviour {
 
     // Normal movement from here
 
-    if (!walking || block) {
+    if (!walking) {
       if (dir == Dir.None) dir = Dir.F;
       anim.Play(idle + dir);
       if (audios.isPlaying) audios.Stop();
@@ -408,7 +411,7 @@ public class Actor : MonoBehaviour {
         break;
       case BehaviorActionType.SetFlag:
         break;
-      case BehaviorActionType.BlockActor: {
+      case BehaviorActionType.BlockActorX: {
         if ((Chars)currentAction.val1 == Chars.Player) currentAction.val1 = (int)Chars.Current;
         Actor act = Controller.GetActor((Chars)currentAction.val1);
         if (act == null) {
@@ -416,7 +419,21 @@ public class Actor : MonoBehaviour {
           currentAction.status = BehaviorActonStatus.Completed;
           return;
         }
-        act.block = (FlagValue)currentAction.val2 == FlagValue.Yes;
+        act.blockMinX = currentAction.pos.x;
+        act.blockMaxX = currentAction.pos.y;
+        currentAction.status = BehaviorActonStatus.Completed;
+      }
+      break;
+      case BehaviorActionType.UnBlockActor: {
+        if ((Chars)currentAction.val1 == Chars.Player) currentAction.val1 = (int)Chars.Current;
+        Actor act = Controller.GetActor((Chars)currentAction.val1);
+        if (act == null) {
+          Debug.Log("No actor: " + (Chars)currentAction.val1);
+          currentAction.status = BehaviorActonStatus.Completed;
+          return;
+        }
+        act.blockMaxX = float.MaxValue;
+        act.blockMinX = -float.MaxValue;
         currentAction.status = BehaviorActonStatus.Completed;
       }
       break;
