@@ -61,7 +61,9 @@ public class BehaviorActionEditor : PropertyDrawer {
         pos.vector3Value = EditorGUI.Vector3Field(rectB, "Pos", pos.vector3Value);
         break;
 
-      case BehaviorActionType.MoveToActor:
+      case BehaviorActionType.MoveToActorXX:
+      case BehaviorActionType.MoveToActorL:
+      case BehaviorActionType.MoveToActorR:
         if (string.IsNullOrEmpty(name.stringValue)) name.stringValue = "Move to " + Enum.GetNames(typeof(Chars))[val1.intValue];
         str.stringValue = EditorGUI.TextField(rectA, "Room", str.stringValue);
         val1.intValue = EditorGUI.Popup(rectB, "Act", val1.intValue, Enum.GetNames(typeof(Chars)));

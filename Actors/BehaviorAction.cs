@@ -38,7 +38,9 @@ public class BehaviorAction {
     switch (type) {
       case BehaviorActionType.Teleport: return "Teleport " + pos;
       case BehaviorActionType.MoveToSpecificSpot: return "Move to " + pos;
-      case BehaviorActionType.MoveToActor: return "Move to " + (Chars)val1;
+      case BehaviorActionType.MoveToActorXX: return "Move to " + (Chars)val1;
+      case BehaviorActionType.MoveToActorL: return "Move to L of " + (Chars)val1;
+      case BehaviorActionType.MoveToActorR: return "Move to R of " + (Chars)val1;
       case BehaviorActionType.Speak: return "Say " + str + ": " + (Chars)val1;
       case BehaviorActionType.Ask: return "Ask " + str + ": " + (Chars)val1;
       case BehaviorActionType.Expression: return "Epr " + (Expression)val2 + " " + (Chars)val1;
@@ -82,7 +84,9 @@ public class BehaviorAction {
 public enum BehaviorActionType {
   Teleport,
   MoveToSpecificSpot,
-  MoveToActor, // FIXME Add walkL and WalkR, and change also the speed remove too close to dest
+  MoveToActorXX, // FIXME Add walkL and WalkR, and change also the speed remove too close to dest
+  MoveToActorL, // FIXME Add walkL and WalkR, and change also the speed remove too close to dest
+  MoveToActorR, // FIXME Add walkL and WalkR, and change also the speed remove too close to dest
   Speak,
   Ask,
   Expression,
