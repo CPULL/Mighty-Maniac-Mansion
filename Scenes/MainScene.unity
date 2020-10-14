@@ -6366,7 +6366,7 @@ MonoBehaviour:
   br: {x: 7.7266397, y: 46.68953}
   bl: {x: 5.7453074, y: 46.312603}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -7515,7 +7515,7 @@ MonoBehaviour:
   br: {x: 10.628807, y: 47.014305}
   bl: {x: 7.7266397, y: 46.68953}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -9303,7 +9303,7 @@ MonoBehaviour:
   br: {x: 9.199313, y: 49.765305}
   bl: {x: 7.677141, y: 49.93294}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -11392,7 +11392,7 @@ MonoBehaviour:
   br: {x: 34.90622, y: 49.537823}
   bl: {x: 33.88108, y: 49.009064}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 6.3569207
@@ -12893,10 +12893,10 @@ MonoBehaviour:
   down: {fileID: 0}
   tl: {x: 30.140835, y: 48.465717}
   tr: {x: 33.88108, y: 49.009064}
-  br: {x: 35.33268, y: 46.636105}
+  br: {x: 33.472466, y: 46.471386}
   bl: {x: 30.516205, y: 47.113453}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 1555834093}
   g: 7.8188124
   h: 4.0973377
@@ -12928,7 +12928,7 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 10.140835, y: -1.5342827}
       - {x: 13.881081, y: -0.9909363}
-      - {x: 15.33268, y: -3.3638954}
+      - {x: 13.4724655, y: -3.528614}
       - {x: 10.516205, y: -2.886547}
 --- !u!4 &442102480
 Transform:
@@ -25014,7 +25014,7 @@ MonoBehaviour:
   - {fileID: 1634250372}
   - {fileID: 442102478}
   - {fileID: 1640690830}
-  ShowSubNodes: 1
+  ShowSubNodes: 0
   DoAStar: 0
   start: {x: 33.709526, y: 49.48283}
   end: {x: 29.217775, y: 47.25749}
@@ -25830,7 +25830,7 @@ MonoBehaviour:
   br: {x: 23.607986, y: 49.818844}
   bl: {x: 22.108444, y: 49.820198}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -28265,7 +28265,7 @@ MonoBehaviour:
   br: {x: 21.583006, y: 46.65808}
   bl: {x: 18.67623, y: 46.698437}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -30443,7 +30443,7 @@ MonoBehaviour:
   br: {x: 14.7866955, y: 46.888332}
   bl: {x: 10.628807, y: 47.014305}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -42980,7 +42980,7 @@ MonoBehaviour:
   br: {x: 30.140835, y: 48.465717}
   bl: {x: 24.03648, y: 46.579487}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 1555834093}
   g: 5.814724
   h: 2.0932496
@@ -47636,7 +47636,7 @@ MonoBehaviour:
   br: {x: 33.88108, y: 49.009064}
   bl: {x: 30.140835, y: 48.465717}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 404301105}
   g: 3.7214744
   h: 3.7214744
@@ -47724,7 +47724,7 @@ MonoBehaviour:
   br: {x: 0.8014494, y: 46.107018}
   bl: {x: -1.2594445, y: 46.66069}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -50254,7 +50254,7 @@ MonoBehaviour:
   br: {x: 1.1038247, y: 48.474186}
   bl: {x: -0.62107635, y: 48.550865}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -50342,7 +50342,7 @@ MonoBehaviour:
   br: {x: 30.516205, y: 47.113453}
   bl: {x: 27.49122, y: 46.07654}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 1396073485}
   g: 5.814724
   h: 0
@@ -52281,7 +52281,7 @@ MonoBehaviour:
   br: {x: 24.03648, y: 46.579487}
   bl: {x: 21.583006, y: 46.65808}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 1396073485}
   g: 11.127004
   h: 5.3122797
@@ -53597,7 +53597,7 @@ MonoBehaviour:
   Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 1072545338}
-  actorSpeed: 2
+  actorSpeed: 1.25
   inventory: []
   id: 15
   mainScale: 1.2
@@ -53622,13 +53622,49 @@ MonoBehaviour:
         actor: 0
         flag: 0
         value: 1
-        dist: 0
+        num: 0
       - type: 1
         item: 0
         actor: 8
         flag: 0
         value: 0
-        dist: 0
+        num: 0
+      - type: 5
+        item: 0
+        actor: 8
+        flag: 0
+        value: 0
+        num: 7.5
+    Actions:
+    - name: Move to (24.7, 48.7)
+      status: 0
+      type: 3
+      pos: {x: 24.31, y: 49.32, z: 0}
+      str: You shall not pass!
+      val1: 0
+      val2: 0
+  - name: 0
+    ConditionsInOr:
+    - name: Green Tentacle not feed
+      ConditionsInAnd:
+      - type: 4
+        item: 0
+        actor: 0
+        flag: 0
+        value: 1
+        num: 0
+      - type: 1
+        item: 0
+        actor: 8
+        flag: 0
+        value: 0
+        num: 0
+      - type: 3
+        item: 0
+        actor: 8
+        flag: 0
+        value: 0
+        num: 5
     Actions:
     - name: Move to (24.7, 48.7)
       status: 0
@@ -53653,26 +53689,38 @@ MonoBehaviour:
         actor: 0
         flag: 0
         value: 1
-        dist: 0
+        num: 0
       - type: 1
         item: 0
         actor: 8
         flag: 0
         value: 0
-        dist: 0
+        num: 0
+      - type: 2
+        item: 0
+        actor: 8
+        flag: 0
+        value: 0
+        num: 5
+      - type: 5
+        item: 0
+        actor: 8
+        flag: 0
+        value: 0
+        num: 15.3
     Actions:
-    - name: Move to (24.7, 48.7)
+    - name: Move to Current
       status: 0
-      type: 1
+      type: 2
       pos: {x: 24.31, y: 49.32, z: 0}
       str: SuiteCorridor
-      val1: 0
+      val1: 1
       val2: 0
-    - name: Move to (23.1, 46.1)
+    - name: Say I am hungr -> None
       status: 0
-      type: 1
-      pos: {x: 22.22, y: 46.83, z: 0}
-      str: SuiteCorridor
+      type: 3
+      pos: {x: 24.31, y: 49.32, z: 0}
+      str: I am hungry!
       val1: 0
       val2: 0
 --- !u!95 &1730974554
@@ -54206,7 +54254,7 @@ MonoBehaviour:
   br: {x: 17.625566, y: 49.84811}
   bl: {x: 16.240435, y: 49.92466}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -55722,7 +55770,7 @@ MonoBehaviour:
   br: {x: 18.67623, y: 46.698437}
   bl: {x: 14.7866955, y: 46.888332}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -60817,7 +60865,7 @@ MonoBehaviour:
   br: {x: 5.7453074, y: 46.312603}
   bl: {x: 0.8014494, y: 46.107018}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -67775,7 +67823,7 @@ MonoBehaviour:
   br: {x: 38.331364, y: 47.864056}
   bl: {x: 34.90622, y: 49.537823}
   parent: {fileID: 810068549}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 404301105}
   g: 8.940714
   h: 8.940714

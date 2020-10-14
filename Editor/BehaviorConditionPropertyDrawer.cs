@@ -21,7 +21,7 @@ public class BehaviorConditionPropertyDrawer : PropertyDrawer {
     SerializedProperty actor = property.FindPropertyRelative("actor");
     SerializedProperty flag = property.FindPropertyRelative("flag");
     SerializedProperty value = property.FindPropertyRelative("value");
-    SerializedProperty dist = property.FindPropertyRelative("dist");
+    SerializedProperty dist = property.FindPropertyRelative("num");
 
     Rect rect1 = new Rect(position.x, position.y, position.width / 3, EditorGUIUtility.singleLineHeight);
     Rect rect2 = new Rect(position.x + 1 * position.width / 3, position.y, position.width / 3, EditorGUIUtility.singleLineHeight);
@@ -55,6 +55,10 @@ public class BehaviorConditionPropertyDrawer : PropertyDrawer {
       case BehaviorConditionType.Flag:
         flag.intValue = EditorGUI.Popup(rect2, "Flag", flag.intValue, flag.enumDisplayNames);
         value.intValue = EditorGUI.Popup(rect3, "=", value.intValue, value.enumDisplayNames);
+        break;
+
+      case BehaviorConditionType.Timed:
+        dist.floatValue = EditorGUI.FloatField(rect2, "Secs", dist.floatValue);
         break;
     }
 

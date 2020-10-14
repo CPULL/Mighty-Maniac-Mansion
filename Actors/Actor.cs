@@ -260,7 +260,8 @@ public class Actor : MonoBehaviour {
       if (currentAction != null) {
         // Play it until completed, and the behavior is still valid
         if (currentAction.status == BehaviorActonStatus.NotStarted) {
-          currentAction.Start();
+          currentAction.status = BehaviorActonStatus.Running;
+          PlayAction();
         }
         else if (currentAction.status == BehaviorActonStatus.Running) {
           PlayAction();
@@ -270,8 +271,23 @@ public class Actor : MonoBehaviour {
         }
         else if (currentAction.status == BehaviorActonStatus.Completed) { // Completed, get next
           currentAction = currentBehavior.GetNextAction(currentAction);
-          if (currentAction == null)
+          if (currentAction == null) {
             currentBehavior = null;
+            // Check if we have a new valid behavior right away
+            validBehaviors.Clear();
+            foreach (Behavior b in Behaviors) {
+              if (b.IsValid(this)) {
+                validBehaviors.Add(b);
+                nextBehaviorCheck = .5f;
+              }
+            }
+            if (validBehaviors.Count > 0) {
+              // Get the one with high priority or one random?
+              currentBehavior = validBehaviors.GetFirst();
+              currentAction = currentBehavior.GetNextAction(null);
+              Debug.Log("Getting Current action: " + currentAction.ToString() + " from behavior: " + currentBehavior.name);
+            }
+          }
           else
             currentAction.status = BehaviorActonStatus.NotStarted;
         }
@@ -358,10 +374,39 @@ public class Actor : MonoBehaviour {
       }
       break;
 
-      case BehaviorActionType.MoveToActor:
-        break;
-      case BehaviorActionType.Speak:
-        break;
+      case BehaviorActionType.MoveToActor: {
+        // Get the pathnode of where we are (at least the closest one)
+        PathNode p = currentRoom.GetPathNode(transform.position);
+        if (p == null) {
+          Debug.Log("BUMMER! no path node");
+          currentAction.status = BehaviorActonStatus.Completed;
+          return;
+        }
+        Actor act = Controller.GetActor((Chars)currentAction.val1);
+        if (act == null) {
+          Debug.Log("No actor: " + (Chars)currentAction.val1);
+          currentAction.status = BehaviorActonStatus.Completed;
+          return;
+        }
+        Vector2 pos = act.transform.position;
+        if (transform.position.x - pos.x < 0)
+          pos.x -= 2f;
+        else
+          pos.x += 2f;
+        currentAction.status = BehaviorActonStatus.WaitingToCompleteAsync;
+        WalkTo(pos, p,
+          new System.Action<Actor, Item>((actor, item) => {
+            currentAction.status = BehaviorActonStatus.Completed;
+          }));
+      }
+      break;
+
+      case BehaviorActionType.Speak: {
+        Say(currentAction.str);
+        currentAction.status = BehaviorActonStatus.Completed;
+      }
+      break;
+
       case BehaviorActionType.Ask:
         break;
       case BehaviorActionType.Expression:

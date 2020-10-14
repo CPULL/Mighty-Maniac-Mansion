@@ -1,17 +1,11 @@
 === Mighty Maniac Mansion ===
 
+Draw Edna and do the "Check fridge" at start
+Add a way to give food to GT and stop walking if food is not given
 
 
-Add a way to say something while playing other behaviors. Add some "probabiility"or "timeout" to behaviors (as variable condition)
-Remove the delay from one action to the next when a behavior is completed
-Add an explicit "wait" action in case we need to wait
-
-Implement some "AI" (cutscene based) for actors to do something.
--> Use it for the tentacle
-
->>>> Add ID to behaviors!!!
-Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here
-implement the bottle breaking, but decide what the liquid should be
+>>>> Add ID and names to behaviors!!!
+Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here (use behaviors?)
 
 Icrease resolution of turkey and roast
 Add recycle stuff to the service room
@@ -149,27 +143,17 @@ Jeff
 ! We need a way to jumpstart to a room with a char. Maybe a set of buttons in the start area with a specific Cutscene to do it
 ! Fixed the problem of switching actors
 ! Use a better way to find the index of the actor from the charselection. Remove the exceptions for green tentacle
+! implement the bottle breaking, but decide what the liquid should be
 ! Implement the zoom mode to transition between rooms
 ! Improved Ed room and added Ed as playable hidden character
 ! Replace items on the shelf of the service room with actual items.
 ! Fix the problem of the doors walks
 ! Fix pants of syd going right
 ! The action is not correct after we teleport
-
-
-
-
-
-
-
-"Behavior" field in actor
-Select action based on sequence and conditions
-Run action
-Apply consequences (block actor, start a cutscene, etc)
-
-
-
-
+! Add a way to say something while playing other behaviors. Add some "probabiility"or "timeout" to behaviors (as variable condition)
+! Remove the delay from one action to the next when a behavior is completed
+! Add an explicit "wait" action in case we need to wait
+! Implement some "AI" (cutscene based) for actors to do something.
 
 
 
