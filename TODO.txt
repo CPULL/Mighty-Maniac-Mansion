@@ -1,6 +1,11 @@
 === Mighty Maniac Mansion ===
 
 
+
+Add a way to say something while playing other behaviors. Add some "probabiility"or "timeout" to behaviors (as variable condition)
+Remove the delay from one action to the next when a behavior is completed
+Add an explicit "wait" action in case we need to wait
+
 Implement some "AI" (cutscene based) for actors to do something.
 -> Use it for the tentacle
 

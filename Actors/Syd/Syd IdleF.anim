@@ -29,9 +29,9 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
     - time: 0
-      value: {fileID: 4534733849922827717, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+      value: {fileID: -5106305890914756296, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
     - time: 1.0333333
-      value: {fileID: 4534733849922827717, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+      value: {fileID: -5106305890914756296, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
     attribute: m_Sprite
     path: Legs
     classID: 212
@@ -60,8 +60,8 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: -3872115873242591782, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
     - {fileID: -3872115873242591782, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
-    - {fileID: 4534733849922827717, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
-    - {fileID: 4534733849922827717, guid: 91d50ffb800d3644993c24bdf025d0fb, type: 3}
+    - {fileID: -5106305890914756296, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
+    - {fileID: -5106305890914756296, guid: f199bc18f5f9d644dadc445669d329a0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
