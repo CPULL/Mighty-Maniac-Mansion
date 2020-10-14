@@ -36882,7 +36882,32 @@ MonoBehaviour:
     action: 0
     when: 4
     BadResult: 
-  actions: []
+  actions:
+  - Condition:
+      condition: 0
+      actor: 0
+      skill: 0
+      item: 0
+      otherItem: 0
+      num: 0
+      action: 0
+      when: 0
+      BadResult: 
+    Action:
+      running: 0
+      type: 0
+      Repeatable: 0
+      actor: 0
+      pos: {x: 0, y: 0}
+      strValue: 
+      expression: 0
+      sound: 0
+      dir: 0
+      delay: 0
+      item: 0
+      action: 0
+      change: 0
+      GoodResult: 
   sr: {fileID: 0}
 --- !u!212 &1211572501
 SpriteRenderer:
