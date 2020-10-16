@@ -5,6 +5,7 @@ public class AllObjects : MonoBehaviour {
   public List<Item> itemsList;
   public List<Room> roomsList;
   public List<FlagStatus> flagsList;
+  public List<Cutscene> cutscenes;
 
   private void Awake() {
     GD.a = this;
@@ -58,6 +59,37 @@ public class AllObjects : MonoBehaviour {
       if (fs.flag == flag) return fs.value == FlagValue.NA || fs.value == value;
     return false;
   }
+
+  internal void SetFlag(GameFlag flag, FlagValue val) {
+    foreach(FlagStatus fs in flagsList)
+      if (fs.flag==flag) {
+        fs.value = val;
+        return;
+      }
+  }
+
+  public Cutscene GetCutscene(string id) {
+    string val = id.ToLowerInvariant();
+    foreach (Cutscene s in cutscenes) {
+      if (s.idstr.ToLowerInvariant() == val) {
+        return s;
+      }
+    }
+    Debug.LogError("Cutscene not found: \"" + id + "\"");
+    return null;
+  }
+
+  public Cutscene GetCutscene(CutsceneID id) {
+    foreach (Cutscene s in cutscenes) {
+      if (s.id == id) {
+        return s;
+      }
+    }
+    Debug.LogError("Cutscene not found: \"" + id + "\"");
+    return null;
+  }
+
+
 }
 
 
@@ -87,16 +119,6 @@ public enum ItemEnum {
   DeveloperBottle,
 
 }
-
-/// <summary>
-/// List of all the actions that have an ID (mostly sequences)
-/// </summary>
-public enum ActionEnum {
-  NoAction,
-  Intro,
-  Doorbell,
-}
-
 
 
 public enum GameFlag {

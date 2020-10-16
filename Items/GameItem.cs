@@ -39,14 +39,11 @@ public class GameItem : MonoBehaviour {
     foreach (ActionAndCondition ac in actions) {
       Controller.KnowAction(ac.Action);
       if (ac.Condition.IsValid(actor, secondary, item, this, when)) {
-        Item theItem = item;
-        if (theItem == null && ac.Action.item != ItemEnum.Undefined)
-          theItem = GD.a.FindItemByID(ac.Action.item);
-        Controller.AddAction(ac.Action, actor, secondary, theItem);
-        if (string.IsNullOrEmpty(ac.Action.GoodResult)) 
+        Controller.AddAction(ac.Action, actor, secondary);
+        if (string.IsNullOrEmpty(ac.Action.str)) 
           silentGood |= ac.Action.type.GoodByDefault();
         else
-          goodResult = ac.Action.GoodResult;
+          goodResult = ac.Action.str;
       }
       else {
         if (badResult == null) badResult = ac.Condition.BadResult;

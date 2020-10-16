@@ -26,7 +26,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
     Skill skillVal = (Skill)skill.intValue;
     int numVal = num.intValue;
     Condition conditionVal = (Condition)type.intValue;
-    ActionEnum actionVal = (ActionEnum)action.intValue;
+    CutsceneID actionVal = (CutsceneID)action.intValue;
     When whenVal = (When)when.intValue;
 
     string name = GameCondition.CalculateName(conditionVal, actorVal, skillVal, itemVal, otherItemVal, numVal, actionVal, whenVal);
@@ -103,17 +103,10 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
         BadResult.stringValue = EditorGUI.TextField(rectResult, "Bad Result", BadResult.stringValue);
         break;
 
-      case Condition.ActionCompleted:
-      case Condition.ActionNotStarted:
-      case Condition.ActionRunning:
-        rect1 = new Rect(position.x + 10, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
-        action.intValue = EditorGUI.Popup(rect1, "Action", action.intValue, action.enumDisplayNames);
-        rectResult = new Rect(position.x + 10, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
-        EditorGUIUtility.labelWidth = 80;
-        BadResult.stringValue = EditorGUI.TextField(rectResult, "Bad Result", BadResult.stringValue);
+      case Condition.WhenIs:
         break;
 
-      case Condition.WhenIs:
+      case Condition.GameFlag:
         break;
 
       case Condition.ItemCouple:
@@ -161,11 +154,9 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.ItemIsNotCollected: return h + l;
       case Condition.ItemIsUnlocked: return h + l;
       case Condition.WithItem: return h + l;
-      case Condition.ActionCompleted: return h + l;
-      case Condition.ActionNotStarted: return h + l;
-      case Condition.ActionRunning: return h + l;
       case Condition.WhenIs: return h + l;
       case Condition.ItemCouple: return h + 2 * l;
+      case Condition.GameFlag: return h + l;
     }
     return (h + l) * 2;
   }

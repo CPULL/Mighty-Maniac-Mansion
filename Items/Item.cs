@@ -96,11 +96,11 @@ public class Item : GameItem {
 
   }
 
-  public string Open(ChangeWay val) {
+  public string Open(FlagValue val) {
     switch (val) {
-      case ChangeWay.Ignore: return null;
+      case FlagValue.NA: return null;
 
-      case ChangeWay.EnOpenLock: // Open
+      case FlagValue.Yes: // Open
         if (Usable == Tstatus.OpenableClosed) SetAsOpen();
         else if (Usable == Tstatus.OpenableClosedAutolock) SetAsOpen();
         else if (Usable == Tstatus.OpenableOpen) return null;
@@ -110,7 +110,7 @@ public class Item : GameItem {
         else return "Cannot open it";
         return null;
 
-      case ChangeWay.DisCloseUnlock: // Close
+      case FlagValue.No: // Close
         if (Usable == Tstatus.OpenableClosed) return null;
         else if (Usable == Tstatus.OpenableClosedAutolock) return null;
         else if (Usable == Tstatus.OpenableOpen) SetAsClosedUnlocked();
@@ -120,25 +120,15 @@ public class Item : GameItem {
         else return "Does not work";
         return this.Name + " locked";
 
-      case ChangeWay.SwapSwitch:
-        if (Usable == Tstatus.OpenableClosed) SetAsOpen();
-        else if (Usable == Tstatus.OpenableClosedAutolock) SetAsOpenAuto();
-        else if (Usable == Tstatus.OpenableOpen) SetAsClosedUnlocked();
-        else if (Usable == Tstatus.OpenableOpenAutolock) SetAsClosedUnlockedAuto();
-        else if (Usable == Tstatus.OpenableLocked) return "It is locked.";
-        else if (Usable == Tstatus.OpenableLockedAutolock) return "It is locked.";
-        else return "Does not work";
-        return null;
-
       default:
         Debug.LogError("Not handled Open case! " + val.ToString());
         return "Not handled Open case! " + val.ToString();
     }
   }
 
-  public void ForceOpen(ChangeWay val) {
+  public void ForceOpen(FlagValue val) {
     switch (val) {
-      case ChangeWay.EnOpenLock: // Open
+      case FlagValue.Yes: // Open
         if (Usable == Tstatus.OpenableClosed) SetAsOpen();
         else if (Usable == Tstatus.OpenableClosedAutolock) SetAsOpen();
         else if (Usable == Tstatus.OpenableOpen) SetAsOpen();
@@ -147,7 +137,7 @@ public class Item : GameItem {
         else if (Usable == Tstatus.OpenableLockedAutolock) SetAsOpenAuto();
         return;
 
-      case ChangeWay.DisCloseUnlock: // Close
+      case FlagValue.No: // Close
         if (Usable == Tstatus.OpenableClosed) SetAsClosedUnlocked();
         else if (Usable == Tstatus.OpenableClosedAutolock) SetAsClosedUnlockedAuto();
         else if (Usable == Tstatus.OpenableOpen) SetAsClosedUnlocked();
@@ -158,11 +148,11 @@ public class Item : GameItem {
     }
   }
 
-  public string Lock(ChangeWay val) {
+  public string Lock(FlagValue val) {
     switch(val) {
-      case ChangeWay.Ignore: return null;
+      case FlagValue.NA: return null;
 
-      case ChangeWay.EnOpenLock: // Lock
+      case FlagValue.Yes: // Lock
         if (Usable == Tstatus.OpenableClosed) SetAsLocked();
         else if (Usable == Tstatus.OpenableClosedAutolock) SetAsLockedAuto();
         else if (Usable == Tstatus.OpenableOpen) SetAsLocked();
@@ -172,7 +162,7 @@ public class Item : GameItem {
         else return "Does not work";
         return this.Name + " locked.";
 
-      case ChangeWay.DisCloseUnlock: // Unlock
+      case FlagValue.No: // Unlock
         if (Usable == Tstatus.OpenableClosed) return "Already unlocked";
         else if (Usable == Tstatus.OpenableClosedAutolock) return "Already unlocked";
         else if (Usable == Tstatus.OpenableOpen) return "Already unlocked";
@@ -182,24 +172,15 @@ public class Item : GameItem {
         else return "Does not work";
         return this.Name + " unlocked!";
 
-      case ChangeWay.SwapSwitch:
-        if (Usable == Tstatus.OpenableClosed) { SetAsLocked(); return Name + " locked."; }
-        else if (Usable == Tstatus.OpenableClosedAutolock) { SetAsLockedAuto(); return Name + " locked."; }
-        else if (Usable == Tstatus.OpenableOpen) { SetAsLocked(); return Name + " locked."; }
-        else if (Usable == Tstatus.OpenableOpenAutolock) { SetAsLockedAuto(); return Name + " locked."; }
-        else if (Usable == Tstatus.OpenableLocked) { SetAsClosedUnlocked(); return Name + " unlocked!"; }
-        else if (Usable == Tstatus.OpenableLockedAutolock) { SetAsClosedUnlockedAuto(); return Name + " unlocked!"; }
-        else return "Does not work";
-
       default:
         Debug.LogError("Not handled Lock case! " + val.ToString());
         return "Not handled Lock case! " + val.ToString();
     }
   }
 
-  public void ForceLock(ChangeWay val) {
+  public void ForceLock(FlagValue val) {
     switch (val) {
-      case ChangeWay.EnOpenLock: // Lock
+      case FlagValue.Yes: // Lock
         if (Usable == Tstatus.OpenableClosed) SetAsLocked();
         else if (Usable == Tstatus.OpenableClosedAutolock) SetAsLockedAuto();
         else if (Usable == Tstatus.OpenableOpen) SetAsLocked();
@@ -208,7 +189,7 @@ public class Item : GameItem {
         else if (Usable == Tstatus.OpenableLockedAutolock) SetAsLockedAuto();
         break;
 
-      case ChangeWay.DisCloseUnlock: // Unlock
+      case FlagValue.No: // Unlock
         if (Usable == Tstatus.OpenableClosed) SetAsClosedUnlocked();
         else if (Usable == Tstatus.OpenableClosedAutolock) SetAsClosedUnlockedAuto();
         else if (Usable == Tstatus.OpenableOpen) SetAsOpen();

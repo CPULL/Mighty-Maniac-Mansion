@@ -170,6 +170,10 @@ public class Actor : MonoBehaviour {
   }
 
 
+  internal void WalkTo(Transform destActor, int side, GameAction action) {
+
+  }
+
   internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) {
     if (dest.x < blockMinX) dest.x = blockMinX;
     if (dest.x > blockMaxX) dest.x = blockMaxX;
@@ -539,5 +543,10 @@ public class Actor : MonoBehaviour {
     }
     pos.y = ty;
     transform.position = pos;
+  }
+
+  internal void SetMinMaxX(float minx, float maxx) {
+    blockMinX = minx;
+    blockMaxX = maxx;
   }
 }

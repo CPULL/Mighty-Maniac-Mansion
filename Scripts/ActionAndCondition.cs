@@ -14,7 +14,6 @@ public class ContextualizedAction {
   [SerializeField] public GameAction action;
   [SerializeField] public Actor performer;
   [SerializeField] public Actor secondary;
-  [SerializeField] public Item item;
 
   internal void Complete() {
     action.Complete();

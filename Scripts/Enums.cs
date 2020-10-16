@@ -31,29 +31,6 @@ public enum Axis { X, Y, Z };
 public enum GameStatus { NotYetLoaded, IntroVideo, CharSelection, Cutscene, NormalGamePlay, StartGame, Confirming };
 
 /// <summary>
-/// Used to specify the type of actions
-/// </summary>
-public enum ActionType { None = 0, 
-  Teleport = 1, // Teleport an actor somewhere 
-  Speak = 2, // Have an actor to say something
-  Move = 3, // Have an actor to walk to a destination
-  Expression = 4, // Set an expression to an actor
-  Open = 5, // Open or close a door
-  Enable = 6, // Enable or disable an item
-  Lock = 7, // Lock or unlock a door
-  ShowRoom = 8, // Jumps to a specific room enabling it
-  Cutscene = 9, // Starts a Cutscene (FIXME not done)
-  Sound = 10, // Play a sound
-  ReceiveY = 11, // Have an actor to receive an item from another actor and say something (item is accepted)
-  ReceiveN = 12, // Have an actor to deny the receival of an item from another actor and say something (item is not accepted)
-  FadeIn = 13,
-  FadeOut = 14,
-  AnimItem = 15, // Make an animation to play on an object
-  AnimActor = 16, // Make an animation to play on an actor
-  AlterItemAction = 17 // Changes what you can do with an item
-};
-
-/// <summary>
 /// List of all actors and generic actor references, like Actor1
 /// </summary>
 public enum Chars {
@@ -98,28 +75,29 @@ public static class Enums {
 
   public static bool GoodByDefault(this ActionType type) {
     switch (type) {
-      case ActionType.None: return false;
+      case ActionType.None: return true;
+      case ActionType.ShowRoom: return true;
       case ActionType.Teleport: return true;
       case ActionType.Speak: return true;
-      case ActionType.Move: return false;
       case ActionType.Expression: return true;
-      case ActionType.Open: return false;
-      case ActionType.Enable: return false;
-      case ActionType.Lock: return false;
-      case ActionType.ShowRoom: return true;
+      case ActionType.WalkToPos: return true;
+      case ActionType.WalkToActor: return true;
+      case ActionType.BlockActorX: return true;
+      case ActionType.UnBlockActor: return true;
+      case ActionType.OpenClose: return false;
+      case ActionType.EnableDisable: return false;
+      case ActionType.Lockunlock: return false;
       case ActionType.Cutscene: return true;
       case ActionType.Sound: return true;
-      case ActionType.ReceiveY: return false;
-      case ActionType.ReceiveN: return false;
-      case ActionType.FadeIn: return true;
-      case ActionType.FadeOut: return true;
+      case ActionType.ReceiveCutscene: return false;
+      case ActionType.ReceiveFlag: return false;
+      case ActionType.Fade: return true;
+      case ActionType.Anim: return true;
+      case ActionType.AlterItem: return true;
+      case ActionType.SetFlag: return true;
     }
     return false;
   }
-
-
-
-
 }
 
 
@@ -190,12 +168,6 @@ public enum When {
   Always
 }
 
-public enum ChangeWay {
-  Ignore = 0,
-  EnOpenLock = 1,
-  DisCloseUnlock = 2,
-  SwapSwitch = 3
-}
 
 public enum FloorType {
   None,

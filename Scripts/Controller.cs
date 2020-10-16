@@ -512,7 +512,7 @@ public class Controller : MonoBehaviour {
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
   Cutscene currentCutscene;
   ContextualizedAction currentAction;
-  public List<Cutscene> cutscenes;
+  
   readonly SList<ContextualizedAction> actionsToPlay = new SList<ContextualizedAction>(16);
   readonly HashSet<GameAction> allKnownActions = new HashSet<GameAction>();
 
@@ -533,57 +533,128 @@ public class Controller : MonoBehaviour {
           JSONNode.ValueEnumerator vals = j["actions"].Values;
           foreach (JSONNode val in vals) {
             GameAction a = new GameAction(val["type"].Value);
-            if (a.type == ActionType.Teleport) {
-              a.SetActor(val["actor"].Value);
-              a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-              a.SetDir(val["dir"].Value);
-              a.SetValue(val["room"].Value);
-            }
-            else if (a.type == ActionType.Move) {
-              a.SetActor(val["actor"].Value);
-              a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-              a.SetDir(val["dir"].Value);
-              a.SetValue(val["room"].Value);
-            }
-            else if (a.type == ActionType.Speak) {
-              a.SetActor(val["actor"].Value);
-              a.SetDir(val["dir"].Value);
-              a.SetValue(val["msg"].Value);
-            }
-            else if (a.type == ActionType.Expression) {
-              a.SetActor(val["actor"].Value);
-              a.SetDir(val["dir"].Value);
-              a.SetValue(val["expr"].Value);
-            }
-            else if (a.type == ActionType.ShowRoom) {
-              a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-              a.SetValue(val["room"].Value);
-            }
-            else if (a.type == ActionType.Sound) {
-              a.SetActor(val["actor"].Value);
-              a.SetDir(val["dir"].Value);
-              a.SetSound(val["snd"].Value);
+
+            switch (a.type) {
+              case ActionType.None:
+                Debug.LogError("Not handled action type: " + val["type"].Value);
+                break;
+
+              case ActionType.ShowRoom: {
+                a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
+                a.SetText(val["room"].Value);
+              }
+              break;
+
+              case ActionType.Teleport: {
+                a.SetActor(val["actor"].Value);
+                a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
+                a.SetDir(val["dir"].Value);
+                a.SetText(val["room"].Value);
+              }
+              break;
+
+              case ActionType.Speak: {
+                a.SetActor(val["actor"].Value);
+                a.SetDir(val["dir"].Value);
+                a.SetText(val["msg"].Value);
+              }
+              break;
+
+              case ActionType.Expression: {
+                a.SetActor(val["actor"].Value);
+                a.SetDir(val["dir"].Value);
+                a.SetID((int)Enums.GetExp(val["expr"].Value));
+              }
+              break;
+
+              case ActionType.WalkToPos: {
+                a.SetActor(val["actor"].Value);
+                a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
+                a.SetDir(val["dir"].Value);
+                a.SetText(val["room"].Value);
+              }
+              break;
+
+              case ActionType.WalkToActor: {
+                a.SetActor(val["ref"].Value); // Set it to actor just ot parse the actor name
+                a.id = a.actor;
+                a.SetActor(val["actor"].Value);
+                bool left = val["left"].AsBool || val["l"].AsBool;
+                a.SetVal(!left);
+              }
+              break;
+
+              case ActionType.BlockActorX: {
+                a.SetActor(val["actor"].Value);
+                a.SetPos(val["min"].AsFloat, val["max"].AsFloat);
+              }
+              break;
+
+              case ActionType.UnBlockActor: {
+                a.SetActor(val["actor"].Value);
+              }
+              break;
+
+              case ActionType.OpenClose: {
+                a.SetText(val["msg"].Value);
+                a.SetText(val["item"].Value);
+                a.SetVal(val["mode"].AsBool);
+              }
+              break;
+
+              case ActionType.EnableDisable: {
+                a.SetText(val["msg"].Value);
+                a.SetText(val["item"].Value);
+                a.SetVal(val["mode"].AsBool);
+              }
+              break;
+
+              case ActionType.Lockunlock: {
+                a.SetText(val["msg"].Value);
+                a.SetText(val["item"].Value);
+                a.SetVal(val["mode"].AsBool);
+              }
+              break;
+
+              case ActionType.Cutscene: {
+                a.SetText(val["cutscene"].Value);
+              }
+              break;
+
+              case ActionType.Sound: {
+                a.SetActor(val["actor"].Value);
+                a.SetDir(val["dir"].Value);
+                Audios snd = (Audios)System.Enum.Parse(typeof(Audios), val["snd"].Value, true);
+                if (!System.Enum.IsDefined(typeof(Audios), snd)) {
+                  Debug.LogError("Invalid ID for sound: \"" + val["snd"].Value + "\"");
+                }
+                else
+                  a.SetID((int)snd);
+              }
+              break;
+              case ActionType.ReceiveCutscene: { } // FIXME
+              break;
+              case ActionType.ReceiveFlag: { } // FIXME
+              break;
+              case ActionType.Fade: { } // FIXME
+              break;
+              case ActionType.Anim: { } // FIXME
+              break;
+              case ActionType.AlterItem: { } // FIXME
+              break;
+
+              case ActionType.SetFlag: {
+                GameFlag flag = (GameFlag)System.Enum.Parse(typeof(GameFlag), val["flag"].Value, true);
+                if (!System.Enum.IsDefined(typeof(GameFlag), flag)) {
+                  Debug.LogError("Invalid ID for GameFlag: \"" + val["flag"].Value + "\"");
+                }
+                else
+                  a.SetID((int)flag);
+                a.SetVal(val["value"].AsBool || val["val"].AsBool);
+              }
+              break;
             }
 
-            else if (a.type == ActionType.Open) {
-              a.SetActor(val["actor"].Value);
-              a.SetValue(val["item"].Value);
-              a.SetMode(val["mode"].AsBool);
-            }
-            else if (a.type == ActionType.Lock) {
-              a.SetActor(val["actor"].Value);
-              a.SetValue(val["item"].Value);
-              a.SetMode(val["mode"].AsBool);
-            }
-            else if (a.type == ActionType.Enable) {
-              a.SetValue(val["item"].Value);
-              a.SetMode(val["mode"].AsBool);
-            }
-
-            else if (a.type == ActionType.FadeIn || a.type == ActionType.FadeOut) {
-            }
-
-            else Debug.LogError("Not handled action type: " + a.type);
             a.SetWait(val["wait"].AsFloat);
 
             if (!val["norepeat"])
@@ -591,7 +662,7 @@ public class Controller : MonoBehaviour {
 
             seq.actions.Add(a);
           }
-          cutscenes.Add(seq);
+          GD.a.cutscenes.Add(seq);
 
         } catch (System.Exception e) {
           Debug.Log("ERROR (" + file + "): " + e.Message);
@@ -606,25 +677,14 @@ public class Controller : MonoBehaviour {
   }
 
   void StartIntroCutscene() {
-    currentCutscene = GetCutscene("intro");
+    currentCutscene = GD.a.GetCutscene("intro");
     forcedCursor = CursorTypes.Wait;
     oldCursor = null;
     GD.status = GameStatus.NormalGamePlay;
   }
 
-  Cutscene GetCutscene(string id) {
-    string val = id.ToLowerInvariant();
-    foreach (Cutscene s in cutscenes) {
-      if (s.id.ToLowerInvariant() == val) {
-        return s;
-      }
-    }
-    Debug.LogError("Cutscene not found: \"" + id + "\"");
-    return null;
-  }
-
-  public static void AddAction(GameAction a, Actor perf, Actor sec, Item item) {
-    GD.c.actionsToPlay.Add(new ContextualizedAction { action = a, performer = perf, secondary = sec, item = item });
+  public static void AddAction(GameAction a, Actor perf, Actor sec) {
+    GD.c.actionsToPlay.Add(new ContextualizedAction { action = a, performer = perf, secondary = sec });
     GD.c.allKnownActions.Add(a);
   }
 
@@ -656,18 +716,31 @@ public class Controller : MonoBehaviour {
     }
   }
 
-  internal static Running ActionStatus(ActionEnum action) {
-    foreach(GameAction a in GD.c.allKnownActions) {
-      if (a.action == action) return a.running;
-    }
-    return Running.NotStarted;
-  }
-
   void RunCurrentAction() {
     switch (currentAction.action.type) {
+      case ActionType.ShowRoom: {
+        currentRoom = GD.a.GetRoom(currentAction.action.str);
+        Vector3 pos = currentAction.action.pos;
+        pos.z = -10;
+        cam.transform.position = pos;
+        foreach (Room r in GD.a.roomsList)
+          r.gameObject.SetActive(false);
+        currentRoom.gameObject.SetActive(true);
+        foreach (Actor a in allActors) {
+          if (a == null) continue;
+          a.gameObject.SetActive(a.currentRoom == currentRoom);
+        }
+        foreach (Actor a in allEnemies) {
+          if (a == null) continue;
+          a.gameObject.SetActive(a.currentRoom == currentRoom);
+        }
+        currentAction.Complete();
+      }
+      break;
+
       case ActionType.Teleport: {
-        Actor a = GetActor(currentAction.action.actor);
-        Room aroom = GD.a.GetRoom(currentAction.action.strValue);
+        Actor a = GetActor((Chars)currentAction.action.actor);
+        Room aroom = GD.a.GetRoom(currentAction.action.str);
         if (aroom != null) {
           a.currentRoom = aroom;
           a.gameObject.SetActive(aroom == currentRoom);
@@ -687,9 +760,9 @@ public class Controller : MonoBehaviour {
       break;
 
       case ActionType.Speak: {
-        Actor a = GetActor(currentAction.action.actor);
+        Actor a = GetActor((Chars)currentAction.action.actor);
         if (a != null) {
-          a.Say(currentAction.action.strValue, currentAction.action);
+          a.Say(currentAction.action.str, currentAction.action);
           a.SetDirection(currentAction.action.dir);
           currentAction.Play();
         }
@@ -698,95 +771,104 @@ public class Controller : MonoBehaviour {
       }
       break;
 
-      case ActionType.Move: {
+      case ActionType.Expression: {
+        Actor a = GetActor((Chars)currentAction.action.actor);
+        a.SetDirection(currentAction.action.dir);
+        a.SetExpression((Expression)currentAction.action.id);
+        currentAction.Play();
+      }
+      break;
+
+      case ActionType.WalkToPos: {
+        Actor a = GetActor((Chars)currentAction.action.actor);
         RaycastHit2D hit = Physics2D.Raycast(currentAction.action.pos, cam.transform.forward, 10000, pathLayer);
         if (hit.collider != null) {
           PathNode p = hit.collider.GetComponent<PathNode>();
           GameAction copy = currentAction.action;
           currentAction.Play();
-          currentAction.performer.WalkTo(currentAction.action.pos, p,
+          a.WalkTo(currentAction.action.pos, p,
           new System.Action<Actor, Item>((actor, item) => {
             actor.SetDirection(copy.dir);
-            copy.Complete(); 
+            copy.Complete();
           }));
         }
       }
       break;
 
-      case ActionType.Expression: {
-        Actor a = GetActor(currentAction.action.actor);
-        a.SetDirection(currentAction.action.dir);
-        a.SetExpression(Enums.GetExp(currentAction.action.strValue));
-        currentAction.Play();
+      case ActionType.WalkToActor: { // This action is set in the actor and run in the actor itself, it is completed when the actor is reached (or the actor goes in another room), but it will not end until a different teleport or walk is done
+        Actor walker = GetActor((Chars)currentAction.action.actor);
+        Actor destAct = GetActor((Chars)currentAction.action.id);
+        walker.WalkTo(destAct.transform, currentAction.action.val, currentAction.action);
       }
       break;
 
-      case ActionType.Open: {
-        // Find the actual Item from all the known items, pick it by enum
-        Actor a = GetActor(currentAction.action.actor);
-        Item item = currentAction.item;
+      case ActionType.BlockActorX: {
+        Actor act = GetActor((Chars)currentAction.action.actor);
+        if ((Chars)currentAction.action.actor == Chars.Player) act = currentActor;
+        if (act == null) {
+          Debug.Log("No actor: " + (Chars)currentAction.action.actor);
+          currentAction.Complete();
+          return;
+        }
+        act.SetMinMaxX(currentAction.action.pos.x, currentAction.action.pos.y);
+        currentAction.Complete();
+      }
+      break;
+
+      case ActionType.UnBlockActor: {
+        Actor act = GetActor((Chars)currentAction.action.actor);
+        if ((Chars)currentAction.action.actor == Chars.Player) act = currentActor;
+        if (act == null) {
+          Debug.Log("No actor: " + (Chars)currentAction.action.actor);
+          currentAction.Complete();
+          return;
+        }
+        act.SetMinMaxX(-float.MaxValue, float.MaxValue);
+        currentAction.Complete();
+      }
+      break;
+
+      case ActionType.OpenClose: {
+        Actor a = GetActor((Chars)currentAction.action.actor);
+        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
         if (item == null) {
           Debug.LogError("Item not defined for Open");
           currentAction.Complete();
           return;
         }
-        item.ForceOpen(currentAction.action.change);
+        item.ForceOpen((FlagValue)currentAction.action.val);
         currentAction.Complete();
       }
       break;
 
-      case ActionType.Enable: {
-        // Find the actual Item from all the known items, pick it by enum
-        Item item = currentAction.item;
+      case ActionType.EnableDisable: {
+        Actor a = GetActor((Chars)currentAction.action.actor);
+        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
         if (item == null) {
-          Debug.LogError("Item not defined for Enable");
+          Debug.LogError("Item not defined for Open");
           currentAction.Complete();
           return;
         }
-        if (currentAction.action.change == ChangeWay.SwapSwitch)
-          item.gameObject.SetActive(!item.gameObject.activeSelf);
-        else
-          item.gameObject.SetActive(currentAction.action.change == ChangeWay.EnOpenLock);
+        item.gameObject.SetActive((FlagValue)currentAction.action.val != FlagValue.No);
         currentAction.Complete();
       }
       break;
 
-      case ActionType.Lock: {
-        // Find the actual Item from all the known items, pick it by enum
-        Actor a = GetActor(currentAction.action.actor);
-        Item item = currentAction.item;
+      case ActionType.Lockunlock: {
+        Actor a = GetActor((Chars)currentAction.action.actor);
+        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
         if (item == null) {
-          Debug.LogError("Item not defined for Lock");
+          Debug.LogError("Item not defined for Open");
           currentAction.Complete();
           return;
         }
-        item.ForceLock(currentAction.action.change);
-        currentAction.Complete();
-      }
-      break;
-
-      case ActionType.ShowRoom: {
-        currentRoom = GD.a.GetRoom(currentAction.action.strValue);
-        Vector3 pos = currentAction.action.pos;
-        pos.z = -10;
-        cam.transform.position = pos;
-        foreach (Room r in GD.a.roomsList)
-          r.gameObject.SetActive(false);
-        currentRoom.gameObject.SetActive(true);
-        foreach (Actor a in allActors) {
-          if (a == null) continue;
-          a.gameObject.SetActive(a.currentRoom == currentRoom);
-        }
-        foreach (Actor a in allEnemies) {
-          if (a == null) continue;
-          a.gameObject.SetActive(a.currentRoom == currentRoom);
-        }
+        item.ForceLock((FlagValue)currentAction.action.val);
         currentAction.Complete();
       }
       break;
 
       case ActionType.Cutscene: {
-        currentCutscene = GetCutscene(currentAction.action.strValue);
+        currentCutscene = GD.a.GetCutscene((CutsceneID)currentAction.action.id);
         if (currentCutscene != null) {
           currentCutscene.Reset();
           forcedCursor = CursorTypes.Wait;
@@ -798,87 +880,140 @@ public class Controller : MonoBehaviour {
       break;
 
       case ActionType.Sound: {
-        Actor a = GetActor(currentAction.action.actor);
+        Actor a = GetActor((Chars)currentAction.action.actor);
         if (a != null) {
           if (currentAction.action.dir != Dir.None) a.SetDirection(currentAction.action.dir);
-          Sounds.Play(currentAction.action.sound, a.transform.position);
+          Sounds.Play((Audios)currentAction.action.id, a.transform.position);
         }
         else
-          Sounds.Play(currentAction.action.sound, currentActor.transform.position);
+          Sounds.Play((Audios)currentAction.action.id, currentActor.transform.position);
         currentAction.Play();
       }
       break;
 
-      case ActionType.ReceiveY: {
-        currentAction.performer.inventory.Remove(currentAction.item);
-        currentAction.secondary.inventory.Add(currentAction.item);
-        currentAction.item.owner = GetCharFromActor(currentAction.secondary);
-        UpdateInventory();
-        if (currentAction.secondary != null) {
-          currentAction.secondary.Say(currentAction.action.strValue, currentAction.action);
-          currentAction.secondary.SetDirection(currentAction.action.dir);
-          currentAction.Play();
+      case ActionType.ReceiveCutscene: {
+        // Are we accpeting?
+        if ((FlagValue)currentAction.action.val == FlagValue.Yes) { // Yes
+          Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.actor);
+          currentAction.performer.inventory.Remove(item);
+          currentAction.secondary.inventory.Add(item);
+          item.owner = GetCharFromActor(currentAction.secondary);
+          UpdateInventory();
+          if (currentAction.secondary != null) {
+            currentAction.secondary.Say(currentAction.action.str, currentAction.action);
+            currentAction.secondary.SetDirection(currentAction.action.dir);
+            currentAction.Play();
+
+            currentCutscene = GD.a.GetCutscene((CutsceneID)currentAction.action.id);
+            if (currentCutscene != null) {
+              currentCutscene.Reset();
+              forcedCursor = CursorTypes.Wait;
+              oldCursor = null;
+              GD.status = GameStatus.NormalGamePlay;
+            }
+            currentAction.Complete();
+
+
+          }
+          else
+            currentAction.Complete();
         }
+        else { // No
+          if (currentAction.secondary != null) {
+            currentAction.secondary.Say(currentAction.action.str, currentAction.action);
+            currentAction.secondary.SetDirection(currentAction.action.dir);
+            currentAction.Play();
+          }
+          else
+            currentAction.Complete();
+        }
+      }
+      break;
+
+      case ActionType.ReceiveFlag: {         
+        // Are we accpeting?
+        if ((FlagValue)currentAction.action.val == FlagValue.Yes) { // Yes
+          Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.actor);
+          currentAction.performer.inventory.Remove(item);
+          currentAction.secondary.inventory.Add(item);
+          item.owner = GetCharFromActor(currentAction.secondary);
+          UpdateInventory();
+          if (currentAction.secondary != null) {
+            currentAction.secondary.Say(currentAction.action.str, currentAction.action);
+            currentAction.secondary.SetDirection(currentAction.action.dir);
+            GD.a.SetFlag((GameFlag)currentAction.action.id, FlagValue.Yes);
+            currentAction.Play();
+          }
+          else
+            currentAction.Complete();
+        }
+        else { // No
+          if (currentAction.secondary != null) {
+            currentAction.secondary.Say(currentAction.action.str, currentAction.action);
+            currentAction.secondary.SetDirection(currentAction.action.dir);
+            currentAction.Play();
+          }
+          else
+            currentAction.Complete();
+        }
+      }
+      break;
+
+      case ActionType.Fade: { 
+        if ((FlagValue)currentAction.action.val == FlagValue.Yes)
+          Fader.FadeIn();
         else
+          Fader.FadeOut();
+        currentAction.Play();
+      }
+      break;
+
+      case ActionType.Anim: {
+        if (currentAction.action.actor != 0) {
+          Actor a = GetActor((Chars)currentAction.action.actor);
+          Dbg("FIXME anim actor not implemented!"); // FIXME
           currentAction.Complete();
-      }
-      break;
-
-      case ActionType.ReceiveN: {
-        if (currentAction.secondary != null) {
-          currentAction.secondary.Say(currentAction.action.strValue, currentAction.action);
-          currentAction.secondary.SetDirection(currentAction.action.dir);
-          currentAction.Play();
+          return;
         }
-        else
-          currentAction.Complete();
-      }
-      break;
-
-
-      case ActionType.FadeIn:
-        Fader.FadeIn();
-        currentAction.Play();
-        break;
-
-      case ActionType.FadeOut:
-        Fader.FadeOut();
-        currentAction.Play();
-        break;
-
-      case ActionType.AnimActor:
-        Dbg("FIXME anim actor not implemented!"); // FIXME
-        currentAction.Complete();
-        break;
-
-      case ActionType.AnimItem:
-        Animator anim = currentAction.item.GetComponent<Animator>();
+        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
+        Animator anim = item.GetComponent<Animator>();
         if (anim == null) {
-          Debug.LogError("Missing animator for animated item: " + currentAction.item.gameObject.name);
-          Dbg("Missing animator for animated item: " + currentAction.item.gameObject.name);
+          Debug.LogError("Missing animator for animated item: " + item.gameObject.name);
+          Dbg("Missing animator for animated item: " + item.gameObject.name);
           return;
         }
         anim.enabled = true;
-        anim.Play(currentAction.action.strValue);
+        anim.Play(currentAction.action.str);
         currentAction.Play();
-        break;
+      }
+      break;
 
-      case ActionType.AlterItemAction:
-        switch(currentAction.action.strValue[0]) {
-          case 'R': currentAction.item.whatItDoesL = WhatItDoes.Read; break;
-          case 'W': currentAction.item.whatItDoesL = WhatItDoes.Walk; break;
-          case 'P': currentAction.item.whatItDoesL = WhatItDoes.Pick; break;
-          case 'U': currentAction.item.whatItDoesL = WhatItDoes.Use; break;
+      case ActionType.AlterItem: {
+        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
+        switch (currentAction.action.str[0]) {
+          case 'R': item.whatItDoesL = WhatItDoes.Read; break;
+          case 'W': item.whatItDoesL = WhatItDoes.Walk; break;
+          case 'P': item.whatItDoesL = WhatItDoes.Pick; break;
+          case 'U': item.whatItDoesL = WhatItDoes.Use; break;
         }
-        switch(currentAction.action.strValue[1]) {
-          case 'R': currentAction.item.whatItDoesR = WhatItDoes.Read; break;
-          case 'W': currentAction.item.whatItDoesR = WhatItDoes.Walk; break;
-          case 'P': currentAction.item.whatItDoesR = WhatItDoes.Pick; break;
-          case 'U': currentAction.item.whatItDoesR = WhatItDoes.Use; break;
+        switch (currentAction.action.str[1]) {
+          case 'R': item.whatItDoesR = WhatItDoes.Read; break;
+          case 'W': item.whatItDoesR = WhatItDoes.Walk; break;
+          case 'P': item.whatItDoesR = WhatItDoes.Pick; break;
+          case 'U': item.whatItDoesR = WhatItDoes.Use; break;
         }
-        currentAction.item.dir = currentAction.action.dir;
+        item.dir = currentAction.action.dir;
         currentAction.Complete();
-        break;
+      }
+      break;
+
+      case ActionType.SetFlag: {
+        GameFlag flag = (GameFlag)currentAction.action.id;
+        GD.a.SetFlag(flag, (FlagValue)currentAction.action.val);
+        currentAction.Complete();
+      }
+      break;
+
 
       default: {
         // FIXME do the other actions
