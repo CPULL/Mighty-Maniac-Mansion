@@ -79,7 +79,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         rect4 = new Rect(position.x + 3 * w4, position.y + 1 * lh, w4, lh);
 
         EditorGUIUtility.labelWidth = 60;
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         str.stringValue = EditorGUI.TextField(rect2, "RoomID", str.stringValue);
         pos.vector2Value = EditorGUI.Vector2Field(rect3, "Pos", pos.vector2Value);
         dir.intValue = EditorGUI.Popup(rect4, "Dir", dir.intValue, dir.enumDisplayNames);
@@ -99,7 +99,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         rect3 = new Rect(position.x + 0 * w1, position.y + 2 * lh, w1, 3 * lh);
 
         EditorGUIUtility.labelWidth = 60;
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumDisplayNames);
         str.stringValue = EditorGUI.TextArea(rect3, str.stringValue, textAreaStyle);
 
@@ -117,7 +117,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         rect2 = new Rect(position.x + 1 * w3, position.y + 1 * lh, w3, lh);
         rect3 = new Rect(position.x + 2 * w3, position.y + 1 * lh, w3, lh);
         EditorGUIUtility.labelWidth = 60;
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         id.intValue = EditorGUI.Popup(rect2, "Expr", id.intValue, System.Enum.GetNames(typeof(Expression)));
         dir.intValue = EditorGUI.Popup(rect3, "Dir", dir.intValue, dir.enumDisplayNames);
 
@@ -137,7 +137,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         rect4 = new Rect(position.x + 3 * w4, position.y + 1 * lh, w4, lh);
 
         EditorGUIUtility.labelWidth = 60;
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         str.stringValue = EditorGUI.TextField(rect2, "RoomID", str.stringValue);
         pos.vector2Value = EditorGUI.Vector2Field(rect3, "Pos", pos.vector2Value);
         dir.intValue = EditorGUI.Popup(rect4, "Dir", dir.intValue, dir.enumDisplayNames);
@@ -156,8 +156,8 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         rect2 = new Rect(position.x + 1 * w3, position.y + 1 * lh, w3, lh);
         rect3 = new Rect(position.x + 2 * w3, position.y + 1 * lh, w3, lh);
         EditorGUIUtility.labelWidth = 90;
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
-        id.intValue = EditorGUI.Popup(rect2, "Dest Actor", id.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
+        id.intValue = EditorGUI.Popup(rect2, "Dest Actor", id.intValue, System.Enum.GetNames(typeof(Chars)));
         val.intValue = EditorGUI.Popup(rect2, "LR", val.intValue, LeftRightStrArray);
 
         if (actor.intValue < 1) {
@@ -174,7 +174,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         rect2 = new Rect(position.x + 1 * w3, position.y + 1 * lh, w3, lh);
         rect3 = new Rect(position.x + 2 * w3, position.y + 1 * lh, w3, lh);
         EditorGUIUtility.labelWidth = 60;
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         Vector2 vec = pos.vector2Value;
         vec.x = EditorGUI.FloatField(rect2, "Min X", pos.vector2Value.x);
         vec.y = EditorGUI.FloatField(rect3, "Max X", pos.vector2Value.y);
@@ -192,7 +192,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.UnBlockActor: {
         rect1 = new Rect(position.x + 0 * w1, position.y + 1 * lh, w1, lh);
         EditorGUIUtility.labelWidth = 60;
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
 
         if (actor.intValue < 1) {
           GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
@@ -270,11 +270,11 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.Sound: {
         rect1 = new Rect(position.x + 0 * w3, position.y + 1 * lh, w3, lh);
         rect2 = new Rect(position.x + 1 * w3, position.y + 1 * lh, w3, lh);
-        rect3 = new Rect(position.x + 2 * w3, position.y + 2 * lh, w3, lh);
+        rect3 = new Rect(position.x + 2 * w3, position.y + 1 * lh, w3, lh);
 
         EditorGUIUtility.labelWidth = 60;
         id.intValue = EditorGUI.Popup(rect1, "Sound", id.intValue, System.Enum.GetNames(typeof(Audios)));
-        actor.intValue = EditorGUI.Popup(rect2, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect2, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         dir.intValue = EditorGUI.Popup(rect3, "Dir", dir.intValue, dir.enumDisplayNames);
 
         if (delay.floatValue <= 0 || (actor.intValue != 0 && actor.intValue != 1 && dir.intValue > 3)) {
@@ -331,7 +331,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         rect3 = new Rect(position.x + 2 * w3, position.y + 1 * lh, w3, lh);
 
         EditorGUIUtility.labelWidth = 60;
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         if (actor.intValue == 0) {
           id.intValue = EditorGUI.Popup(rect2, "Item", id.intValue, System.Enum.GetNames(typeof(ItemEnum)));
         }
@@ -340,15 +340,16 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       break;
 
       case ActionType.AlterItem: {
-        rect1 = new Rect(position.x + 0 * w2, position.y + 1 * lh, w2, lh);
-        rect2 = new Rect(position.x + 1 * w2, position.y + 1 * lh, w2, lh);
+        rect1 = new Rect(position.x + 0 * w3, position.y + 1 * lh, w3, lh);
+        rect2 = new Rect(position.x + 1 * w3, position.y + 1 * lh, w3, lh);
+        rect3 = new Rect(position.x + 2 * w3, position.y + 1 * lh, w3, lh);
 
         id.intValue = EditorGUI.Popup(rect1, "Item", id.intValue, System.Enum.GetNames(typeof(ItemEnum)));
         if (str.stringValue.Length < 2) str.stringValue = "WW";
         int vl = str.stringValue[0] == 'W' ? 0 : (str.stringValue[0] == 'R' ? 1 : (str.stringValue[0] == 'U' ? 2 : 3));
         vl = EditorGUI.Popup(rect2, "LeftClick", vl, ItemActionStrArray);
         int vr = str.stringValue[1] == 'W' ? 0 : (str.stringValue[1] == 'R' ? 1 : (str.stringValue[1] == 'U' ? 2 : 3));
-        vr = EditorGUI.Popup(rect2, "RightClick", vr, ItemActionStrArray);
+        vr = EditorGUI.Popup(rect3, "RightClick", vr, ItemActionStrArray);
         str.stringValue = (vl == 0 ? "W" : (vl == 1 ? "R" : (vl == 2 ? "U" : "P"))) + (vr == 0 ? "W" : (vr == 1 ? "R" : (vr == 2 ? "U" : "P")));
       }
       break;
@@ -386,12 +387,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.EnableDisable: return sl * 3;
       case ActionType.Lockunlock: return sl * 3;
       case ActionType.Cutscene: return sl * 2;
-      case ActionType.Sound: return sl * 1;
+      case ActionType.Sound: return sl * 2;
       case ActionType.ReceiveCutscene: return sl * 3;
       case ActionType.ReceiveFlag: return sl * 3;
       case ActionType.Fade: return sl * 1;
-      case ActionType.Anim: return sl * 1;
-      case ActionType.AlterItem: return sl * 1;
+      case ActionType.Anim: return sl * 3;
+      case ActionType.AlterItem: return sl * 3;
       case ActionType.SetFlag: return sl * 1;
     }
     return EditorGUIUtility.singleLineHeight * 5;

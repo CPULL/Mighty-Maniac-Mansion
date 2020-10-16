@@ -15761,7 +15761,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.8, y: 30, z: -10}
+  m_LocalPosition: {x: -192.375, y: 19.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -23905,49 +23905,7 @@ MonoBehaviour:
     BadResult: 
   actions:
   - Condition:
-      condition: 19
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
-    Action:
-      running: 0
-      type: 15
-      Repeatable: 0
-      delay: 0.275
-      actor: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      id: 0
-      val: 0
-  - Condition:
-      condition: 19
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
-    Action:
-      running: 0
-      type: 10
-      Repeatable: 0
-      delay: 0.5
-      actor: 1
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 4
-      id: 0
-      val: 0
-  - Condition:
-      condition: 19
+      condition: 0
       actor: 0
       skill: 0
       item: 0
@@ -23960,12 +23918,54 @@ MonoBehaviour:
       running: 0
       type: 17
       Repeatable: 0
-      delay: 0
-      actor: 1
+      delay: 0.25
+      actor: 0
+      str: Bottle break
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 19
+      val: 0
+  - Condition:
+      condition: 0
+      actor: 0
+      skill: 0
+      item: 0
+      otherItem: 0
+      num: 0
+      action: 0
+      when: 0
+      BadResult: 
+    Action:
+      running: 0
+      type: 13
+      Repeatable: 0
+      delay: 0.3
+      actor: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
+      id: 1
+      val: 0
+  - Condition:
+      condition: 0
+      actor: 0
+      skill: 0
+      item: 0
+      otherItem: 0
+      num: 0
+      action: 0
+      when: 0
+      BadResult: 
+    Action:
+      running: 0
+      type: 18
+      Repeatable: 0
+      delay: 1
+      actor: 0
+      str: WR
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 19
       val: 0
   sr: {fileID: 0}
 --- !u!212 &785944030
@@ -29555,12 +29555,28 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 3506ed8c30d500d42a7f71b8844f9bb1, type: 3}
   - {fileID: 2800000, guid: 2a45e606b6c8a2c46aaff3fdad3dd7bd, type: 3}
   - {fileID: 2800000, guid: a9be4d282cd68f84e8ffaca7723bfb60, type: 3}
+  currentCutscene:
+    idstr: 
+    id: 0
+    name: 
+    condition:
+      condition: 0
+      actor: 0
+      skill: 0
+      item: 0
+      otherItem: 0
+      num: 0
+      action: 0
+      when: 4
+      BadResult: 
+    actions: []
   Inventory: {fileID: 411817673}
   InventoryItemTemplate: {fileID: 1650692365}
   ActorPortrait1: {fileID: 1687621014}
   ActorPortrait2: {fileID: 1443085112}
   ActorPortrait3: {fileID: 1970159875}
   InventoryPortrait: {fileID: 211150873}
+  currentActor: {fileID: 0}
   allEnemies:
   - {fileID: 0}
   - {fileID: 0}
@@ -29615,6 +29631,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  currentRoom: {fileID: 0}
   options: {fileID: 1590990658}
   TextMsg: {fileID: 1516758395}
   TextMsgRT: {fileID: 1516758394}

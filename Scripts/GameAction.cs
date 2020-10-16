@@ -213,7 +213,7 @@ public class GameAction {
       case ActionType.EnableDisable: return (ItemEnum)id + " " + (((FlagValue)val == FlagValue.Yes) ? "Enable" : "Disable");
       case ActionType.Lockunlock: return (ItemEnum)id + " " + (((FlagValue)val == FlagValue.Yes) ? "Lock" : "Unlock");
       case ActionType.Cutscene: return "Cutscene: " + (CutsceneID)id;
-      case ActionType.Sound: return "Saund: " + (Audios)id;
+      case ActionType.Sound: return "Sound: " + (Audios)id;
       case ActionType.ReceiveCutscene: return "";
       case ActionType.ReceiveFlag: return "";
       case ActionType.Fade: return "";
@@ -226,7 +226,7 @@ public class GameAction {
 
 
 
-  void RunAction(Actor performer, Actor secondary) {
+  public void RunAction(Actor performer, Actor secondary) {
     switch (type) {
       case ActionType.ShowRoom: {
         GD.c.currentRoom = AllObjects.GetRoom(str);

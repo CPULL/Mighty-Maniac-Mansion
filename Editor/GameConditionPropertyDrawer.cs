@@ -54,14 +54,14 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.RecipientIs:
       case Condition.RecipientIsNot:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         break;
 
       case Condition.HasItem:
         rect1 = new Rect(position.x + 10,                               position.y + EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 10 + position.width / 3,          position.y + EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
         rect3 = new Rect(position.x + 10 + 2 * position.width / 3,      position.y + EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         num.intValue = EditorGUI.IntField(rect2, "Num", item.intValue);
         item.intValue = EditorGUI.Popup(rect3, "Item", item.intValue, item.enumDisplayNames);
         rectResult = new Rect(position.x + 10, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
@@ -72,7 +72,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.DoesNotHaveItem:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 10 + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         item.intValue = EditorGUI.Popup(rect2, "Item", item.intValue, item.enumDisplayNames);
         rectResult = new Rect(position.x + 10, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
         EditorGUIUtility.labelWidth = 80;
@@ -82,7 +82,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.ActorHasSkill:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 10 + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
-        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         skill.intValue = EditorGUI.Popup(rect2, "Skill", skill.intValue, skill.enumDisplayNames);
         rectResult = new Rect(position.x + 10, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
         EditorGUIUtility.labelWidth = 80;
@@ -117,7 +117,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
         EditorGUIUtility.labelWidth = 40;
         item.intValue = EditorGUI.Popup(rect1, "Item", item.intValue, item.enumDisplayNames);
         otherItem.intValue = EditorGUI.Popup(rect2, "Item", otherItem.intValue, otherItem.enumDisplayNames);
-        actor.intValue = EditorGUI.Popup(rect3, "Actor", actor.intValue, actor.enumDisplayNames);
+        actor.intValue = EditorGUI.Popup(rect3, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         skill.intValue = EditorGUI.Popup(rect4, "Skill", skill.intValue, skill.enumDisplayNames);
         rectResult = new Rect(position.x + 10, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
         EditorGUIUtility.labelWidth = 80;

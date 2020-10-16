@@ -152,7 +152,7 @@ public class BehaviorCondition {
       }
 
       case BehaviorConditionType.Flag: {
-        return GD.a.CheckFlag(flag, value);
+        return AllObjects.CheckFlag(flag, value);
       }
 
       case BehaviorConditionType.Timed: {
