@@ -206,12 +206,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.OpenClose: {
         rect1 = new Rect(position.x + 0 * w2, position.y + 1 * lh, w2, lh);
         rect2 = new Rect(position.x + 1 * w2, position.y + 1 * lh, w2, lh);
-        rect3 = new Rect(position.x + 0 * w1, position.y + 2 * lh, w1, 3 * lh);
+        rect3 = new Rect(position.x + 0 * w1, position.y + 2 * lh, w1, lh);
 
         id.intValue = EditorGUI.Popup(rect1, "Item", id.intValue, System.Enum.GetNames(typeof(ItemEnum)));
         val.intValue = EditorGUI.Popup(rect2, "Mode", val.intValue, OpenCloseStrArray);
         EditorGUIUtility.labelWidth = 100;
-        str.stringValue = EditorGUI.TextArea(rect3, str.stringValue, textAreaStyle);
+        str.stringValue = EditorGUI.TextField(rect3, str.stringValue);
 
         if (id.intValue == 0) {
           GUIStyle style = new GUIStyle();
@@ -225,12 +225,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.EnableDisable: {
         rect1 = new Rect(position.x + 0 * w2, position.y + 1 * lh, w2, lh);
         rect2 = new Rect(position.x + 1 * w2, position.y + 1 * lh, w2, lh);
-        rect3 = new Rect(position.x + 0 * w1, position.y + 2 * lh, w1, 3 * lh);
+        rect3 = new Rect(position.x + 0 * w1, position.y + 2 * lh, w1, lh);
 
         id.intValue = EditorGUI.Popup(rect1, "Item", id.intValue, System.Enum.GetNames(typeof(ItemEnum)));
         val.intValue = EditorGUI.Popup(rect2, "Mode", val.intValue, EnableDisableStrArray);
         EditorGUIUtility.labelWidth = 100;
-        str.stringValue = EditorGUI.TextArea(rect3, str.stringValue, textAreaStyle);
+        str.stringValue = EditorGUI.TextField(rect3, str.stringValue);
 
         if (id.intValue == 0) {
           GUIStyle style = new GUIStyle();
@@ -244,12 +244,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.Lockunlock: {
         rect1 = new Rect(position.x + 0 * w2, position.y + 1 * lh, w2, lh);
         rect2 = new Rect(position.x + 1 * w2, position.y + 1 * lh, w2, lh);
-        rect3 = new Rect(position.x + 0 * w1, position.y + 2 * lh, w1, 3 * lh);
+        rect3 = new Rect(position.x + 0 * w1, position.y + 2 * lh, w1, lh);
 
         id.intValue = EditorGUI.Popup(rect1, "Item", id.intValue, System.Enum.GetNames(typeof(ItemEnum)));
         val.intValue = EditorGUI.Popup(rect2, "Mode", val.intValue, LockUnlockStrArray);
         EditorGUIUtility.labelWidth = 100;
-        str.stringValue = EditorGUI.TextArea(rect3, str.stringValue, textAreaStyle);
+        str.stringValue = EditorGUI.TextField(rect3, str.stringValue);
 
         if (id.intValue == 0) {
           GUIStyle style = new GUIStyle();
@@ -382,9 +382,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.WalkToActor: return sl * 2;
       case ActionType.BlockActorX: return sl * 2;
       case ActionType.UnBlockActor: return sl * 2;
-      case ActionType.OpenClose: return sl * 5;
-      case ActionType.EnableDisable: return sl * 5;
-      case ActionType.Lockunlock: return sl * 5;
+      case ActionType.OpenClose: return sl * 3;
+      case ActionType.EnableDisable: return sl * 3;
+      case ActionType.Lockunlock: return sl * 3;
       case ActionType.Cutscene: return sl * 2;
       case ActionType.Sound: return sl * 1;
       case ActionType.ReceiveCutscene: return sl * 3;

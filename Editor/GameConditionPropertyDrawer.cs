@@ -150,10 +150,10 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       case Condition.ItemIsOpen: return h + l;
       case Condition.ItemIsClosed: return h + l;
       case Condition.ItemIsLocked: return h + l;
-      case Condition.ItemIsCollected: return h + l;
-      case Condition.ItemIsNotCollected: return h + l;
+      case Condition.ItemIsCollected: return h + 2 * l;
+      case Condition.ItemIsNotCollected: return h + 2 * l;
       case Condition.ItemIsUnlocked: return h + l;
-      case Condition.WithItem: return h + l;
+      case Condition.WithItem: return h + 2 * l;
       case Condition.WhenIs: return h + l;
       case Condition.ItemCouple: return h + 2 * l;
       case Condition.GameFlag: return h + l;

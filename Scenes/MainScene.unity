@@ -11519,28 +11519,7 @@ MonoBehaviour:
     BadResult: 
   actions:
   - Condition:
-      condition: 19
-      actor: 1
-      skill: 1
-      item: 4
-      otherItem: 0
-      num: 4
-      action: 0
-      when: 0
-      BadResult: 
-    Action:
-      running: 0
-      type: 6
-      Repeatable: 0
-      delay: 0.5
-      actor: 1
-      str: 
-      pos: {x: -55, y: 2}
-      dir: 4
-      id: 0
-      val: 0
-  - Condition:
-      condition: 17
+      condition: 14
       actor: 28
       skill: 1
       item: 4
@@ -11551,36 +11530,36 @@ MonoBehaviour:
       BadResult: 
     Action:
       running: 0
-      type: 11
-      Repeatable: 1
-      delay: 2
-      actor: 29
-      str: 
-      pos: {x: -55, y: 2}
-      dir: 4
-      id: 0
-      val: 0
-  - Condition:
-      condition: 18
-      actor: 28
-      skill: 1
-      item: 4
-      otherItem: 0
-      num: 4
-      action: 0
-      when: 2
-      BadResult: 
-    Action:
-      running: 0
-      type: 12
+      type: 15
       Repeatable: 1
       delay: 2
       actor: 6
-      str: 
+      str: Thanks, I will roll a joint.
       pos: {x: -55, y: 2}
       dir: 4
       id: 0
       val: 0
+  - Condition:
+      condition: 15
+      actor: 28
+      skill: 1
+      item: 4
+      otherItem: 0
+      num: 4
+      action: 0
+      when: 2
+      BadResult: 
+    Action:
+      running: 0
+      type: 15
+      Repeatable: 1
+      delay: 2
+      actor: 6
+      str: I have no use for it
+      pos: {x: -55, y: 2}
+      dir: 4
+      id: 0
+      val: 1
   sr: {fileID: 0}
 --- !u!65 &405510475
 BoxCollider:
@@ -38723,7 +38702,7 @@ MonoBehaviour:
     BadResult: 
   actions:
   - Condition:
-      condition: 20
+      condition: 17
       actor: 0
       skill: 0
       item: 5
@@ -38734,15 +38713,15 @@ MonoBehaviour:
       BadResult: Not the right key
     Action:
       running: 0
-      type: 7
+      type: 11
       Repeatable: 1
       delay: 0.1
       actor: 0
-      str: 
+      str: It is unlocked!
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
-      val: 0
+      id: 12
+      val: 1
   sr: {fileID: 0}
 --- !u!61 &1256842731
 BoxCollider2D:
@@ -45004,7 +44983,7 @@ MonoBehaviour:
     BadResult: 
   actions:
   - Condition:
-      condition: 15
+      condition: 12
       actor: 0
       skill: 0
       item: 5
@@ -45015,14 +44994,14 @@ MonoBehaviour:
       BadResult: 
     Action:
       running: 0
-      type: 6
+      type: 10
       Repeatable: 0
       delay: 0
       actor: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
+      id: 5
       val: 0
   sr: {fileID: 0}
 --- !u!212 &1486595614
