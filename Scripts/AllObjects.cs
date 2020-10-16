@@ -15,8 +15,8 @@ public class AllObjects : MonoBehaviour {
       flagsList.Add(new FlagStatus(gf, FlagValue.No));
   }
 
-  internal Room GetRoom(string id) {
-    foreach (Room r in roomsList)
+  internal static Room GetRoom(string id) {
+    foreach (Room r in GD.a.roomsList)
       if (r.ID == id) {
         return r;
       }
@@ -24,8 +24,8 @@ public class AllObjects : MonoBehaviour {
     return null;
   }
 
-  internal Item FindItemByID(ItemEnum id) {
-    foreach (Item i in itemsList) {
+  internal static Item FindItemByID(ItemEnum id) {
+    foreach (Item i in GD.a.itemsList) {
       if (i.Item == id) {
         return i;
       }
@@ -34,7 +34,7 @@ public class AllObjects : MonoBehaviour {
     return null;
   }
 
-  internal Item FindItemByID(string sid) {
+  internal static Item FindItemByID(string sid) {
     string val = sid.Trim().ToLowerInvariant();
     ItemEnum id = ItemEnum.Undefined;
     if (val == "sign") id = ItemEnum.Sign;
@@ -54,23 +54,23 @@ public class AllObjects : MonoBehaviour {
     return FindItemByID(id);
   }
 
-  internal bool CheckFlag(GameFlag flag, FlagValue value) {
-    foreach (FlagStatus fs in flagsList)
+  internal static bool CheckFlag(GameFlag flag, FlagValue value) {
+    foreach (FlagStatus fs in GD.a.flagsList)
       if (fs.flag == flag) return fs.value == FlagValue.NA || fs.value == value;
     return false;
   }
 
-  internal void SetFlag(GameFlag flag, FlagValue val) {
-    foreach(FlagStatus fs in flagsList)
+  internal static void SetFlag(GameFlag flag, FlagValue val) {
+    foreach(FlagStatus fs in GD.a.flagsList)
       if (fs.flag==flag) {
         fs.value = val;
         return;
       }
   }
 
-  public Cutscene GetCutscene(string id) {
+  public static Cutscene GetCutscene(string id) {
     string val = id.ToLowerInvariant();
-    foreach (Cutscene s in cutscenes) {
+    foreach (Cutscene s in GD.a.cutscenes) {
       if (s.idstr.ToLowerInvariant() == val) {
         return s;
       }
@@ -79,8 +79,8 @@ public class AllObjects : MonoBehaviour {
     return null;
   }
 
-  public Cutscene GetCutscene(CutsceneID id) {
-    foreach (Cutscene s in cutscenes) {
+  public static Cutscene GetCutscene(CutsceneID id) {
+    foreach (Cutscene s in GD.a.cutscenes) {
       if (s.id == id) {
         return s;
       }

@@ -223,6 +223,306 @@ public class GameAction {
     }
     return type.ToString() + " " + actor + " " + str;
   }
+
+
+
+  void RunAction(Actor performer, Actor secondary) {
+    switch (type) {
+      case ActionType.ShowRoom: {
+        GD.c.currentRoom = AllObjects.GetRoom(str);
+        Vector3 rpos = pos;
+        rpos.z = -10;
+        GD.c.cam.transform.position = rpos;
+        foreach (Room r in GD.a.roomsList)
+          r.gameObject.SetActive(false);
+        GD.c.currentRoom.gameObject.SetActive(true);
+        foreach (Actor a in GD.c.allActors) {
+          if (a == null) continue;
+          a.gameObject.SetActive(a.currentRoom == GD.c.currentRoom);
+        }
+        foreach (Actor a in GD.c.allEnemies) {
+          if (a == null) continue;
+          a.gameObject.SetActive(a.currentRoom == GD.c.currentRoom);
+        }
+        Complete();
+      }
+      break;
+
+      case ActionType.Teleport: {
+        Actor a = Controller.GetActor((Chars)actor);
+        Room aroom = AllObjects.GetRoom(str);
+        if (aroom != null) {
+          a.currentRoom = aroom;
+          a.gameObject.SetActive(aroom == GD.c.currentRoom);
+        }
+        a.transform.position = pos;
+        a.SetDirection(dir);
+        RaycastHit2D hit = Physics2D.Raycast(pos, GD.c.cam.transform.forward, 10000, GD.c.pathLayer);
+        if (hit.collider != null) {
+          PathNode p = hit.collider.GetComponent<PathNode>();
+          a.SetScaleAndPosition(pos, p);
+        }
+        else {
+          a.SetScaleAndPosition(pos);
+        }
+        Complete();
+      }
+      break;
+
+      case ActionType.Speak: {
+        Actor a = Controller.GetActor((Chars)actor);
+        if (a != null) {
+          a.Say(str, this);
+          a.SetDirection(dir);
+          Play();
+        }
+        else
+          Complete();
+      }
+      break;
+
+      case ActionType.Expression: {
+        Actor a = Controller.GetActor((Chars)actor);
+        a.SetDirection(dir);
+        a.SetExpression((Expression)id);
+        Play();
+      }
+      break;
+
+      case ActionType.WalkToPos: {
+        Actor a = Controller.GetActor((Chars)actor);
+        RaycastHit2D hit = Physics2D.Raycast(pos, GD.c.cam.transform.forward, 10000, GD.c.pathLayer);
+        if (hit.collider != null) {
+          PathNode p = hit.collider.GetComponent<PathNode>();
+          GameAction copy = this;
+          Play();
+          a.WalkTo(pos, p,
+          new System.Action<Actor, Item>((actor, item) => {
+            actor.SetDirection(copy.dir);
+            copy.Complete();
+          }));
+        }
+      }
+      break;
+
+      case ActionType.WalkToActor: { // This action is set in the actor and run in the actor itself, it is completed when the actor is reached (or the actor goes in another room), but it will not end until a different teleport or walk is done
+        Actor walker = Controller.GetActor((Chars)actor);
+        Actor destAct = Controller.GetActor((Chars)id);
+        walker.WalkTo(destAct.transform, val, this);
+      }
+      break;
+
+      case ActionType.BlockActorX: {
+        Actor act = Controller.GetActor((Chars)actor);
+        if ((Chars)actor == Chars.Player) act = GD.c.currentActor;
+        if (act == null) {
+          Debug.Log("No actor: " + (Chars)actor);
+          Complete();
+          return;
+        }
+        act.SetMinMaxX(pos.x, pos.y);
+        Complete();
+      }
+      break;
+
+      case ActionType.UnBlockActor: {
+        Actor act = Controller.GetActor((Chars)actor);
+        if ((Chars)actor == Chars.Player) act = GD.c.currentActor;
+        if (act == null) {
+          Debug.Log("No actor: " + (Chars)actor);
+          Complete();
+          return;
+        }
+        act.SetMinMaxX(-float.MaxValue, float.MaxValue);
+        Complete();
+      }
+      break;
+
+      case ActionType.OpenClose: {
+        Actor a = Controller.GetActor((Chars)actor);
+        Item item = AllObjects.FindItemByID((ItemEnum)id);
+        if (item == null) {
+          Debug.LogError("Item not defined for Open " + ToString());
+          Complete();
+          return;
+        }
+        item.ForceOpen((FlagValue)val);
+        Complete();
+      }
+      break;
+
+      case ActionType.EnableDisable: {
+        Actor a = Controller.GetActor((Chars)actor);
+        Item item = AllObjects.FindItemByID((ItemEnum)id);
+        if (item == null) {
+          Debug.LogError("Item not defined for Enable");
+          Complete();
+          return;
+        }
+        item.gameObject.SetActive((FlagValue)val != FlagValue.No);
+        Complete();
+      }
+      break;
+
+      case ActionType.Lockunlock: {
+        Actor a = Controller.GetActor((Chars)actor);
+        Item item = AllObjects.FindItemByID((ItemEnum)id);
+        if (item == null) {
+          Debug.LogError("Item not defined for Lock");
+          Complete();
+          return;
+        }
+        item.ForceLock((FlagValue)val);
+        Complete();
+      }
+      break;
+
+      case ActionType.Cutscene: {
+        Controller.StartCutScene(AllObjects.GetCutscene((CutsceneID)id));
+        Complete();
+      }
+      break;
+
+      case ActionType.Sound: {
+        Actor a = Controller.GetActor((Chars)actor);
+        if (a != null) {
+          if (dir != Dir.None) a.SetDirection(dir);
+          Sounds.Play((Audios)id, a.transform.position);
+        }
+        else
+          Sounds.Play((Audios)id, GD.c.currentActor.transform.position);
+        Play();
+      }
+      break;
+
+      case ActionType.ReceiveCutscene: {
+        // Are we accpeting?
+        if ((FlagValue)val == FlagValue.Yes) { // Yes
+          Item item = AllObjects.FindItemByID((ItemEnum)actor);
+          performer.inventory.Remove(item);
+          secondary.inventory.Add(item);
+          item.owner = Controller.GetCharFromActor(secondary);
+          Controller.UpdateInventory();
+          if (secondary != null) {
+            secondary.Say(str, this);
+            secondary.SetDirection(dir);
+            Play();
+
+            Controller.StartCutScene(AllObjects.GetCutscene((CutsceneID)id));
+            Complete();
+
+          }
+          else
+            Complete();
+        }
+        else { // No
+          if (secondary != null) {
+            secondary.Say(str, this);
+            secondary.SetDirection(dir);
+            Play();
+          }
+          else
+            Complete();
+        }
+      }
+      break;
+
+      case ActionType.ReceiveFlag: {
+        // Are we accpeting?
+        if ((FlagValue)val == FlagValue.Yes) { // Yes
+          Item item = AllObjects.FindItemByID((ItemEnum)actor);
+          performer.inventory.Remove(item);
+          secondary.inventory.Add(item);
+          item.owner = Controller.GetCharFromActor(secondary);
+          Controller.UpdateInventory();
+          if (secondary != null) {
+            secondary.Say(str, this);
+            secondary.SetDirection(dir);
+            AllObjects.SetFlag((GameFlag)id, FlagValue.Yes);
+            Play();
+          }
+          else
+            Complete();
+        }
+        else { // No
+          if (secondary != null) {
+            secondary.Say(str, this);
+            secondary.SetDirection(dir);
+            Play();
+          }
+          else
+            Complete();
+        }
+      }
+      break;
+
+      case ActionType.Fade: {
+        if ((FlagValue)val == FlagValue.Yes)
+          Fader.FadeIn();
+        else
+          Fader.FadeOut();
+        Play();
+      }
+      break;
+
+      case ActionType.Anim: {
+        if (actor != 0) {
+          Actor a = Controller.GetActor((Chars)actor);
+          Debug.LogError("FIXME anim actor not implemented!"); // FIXME
+          Complete();
+          return;
+        }
+        Item item = AllObjects.FindItemByID((ItemEnum)id);
+        Animator anim = item.GetComponent<Animator>();
+        if (anim == null) {
+          Debug.LogError("Missing animator for animated item: " + item.gameObject.name);
+          return;
+        }
+        anim.enabled = true;
+        anim.Play(str);
+        Play();
+      }
+      break;
+
+      case ActionType.AlterItem: {
+        Item item = AllObjects.FindItemByID((ItemEnum)id);
+        switch (str[0]) {
+          case 'R': item.whatItDoesL = WhatItDoes.Read; break;
+          case 'W': item.whatItDoesL = WhatItDoes.Walk; break;
+          case 'P': item.whatItDoesL = WhatItDoes.Pick; break;
+          case 'U': item.whatItDoesL = WhatItDoes.Use; break;
+        }
+        switch (str[1]) {
+          case 'R': item.whatItDoesR = WhatItDoes.Read; break;
+          case 'W': item.whatItDoesR = WhatItDoes.Walk; break;
+          case 'P': item.whatItDoesR = WhatItDoes.Pick; break;
+          case 'U': item.whatItDoesR = WhatItDoes.Use; break;
+        }
+        item.dir = dir;
+        Complete();
+      }
+      break;
+
+      case ActionType.SetFlag: {
+        GameFlag flag = (GameFlag)id;
+        AllObjects.SetFlag(flag, (FlagValue)val);
+        Complete();
+      }
+      break;
+
+
+      default: {
+        // FIXME do the other actions
+        Debug.Log("Not implemented action: " + ToString());
+        Complete(); // Just to avoid to block the game for action not yet done
+      }
+      break;
+    }
+
+  }
+
+
+
 }
 
 

@@ -1,5 +1,14 @@
 === Mighty Maniac Mansion ===
 
+Have a way to play actions in parallel.
+Some actions have a sequence, and it should be possible to run multiple sequences together.
+How to identify a sequence? From where the action is collected? Cutscene, Item, Behavior
+And we need a way to stop actions for something that is no more valid (mostly behaviors)
+
+Cutscene <- from start and from the actions play cutscene
+Item <- when running the actions of the item, all of them should be collected
+Behavior <- when a behavior of an actor is valid
+
 Draw Edna and do the "Check fridge" at start
 Add a way to give food to GT and stop walking if food is not given
 

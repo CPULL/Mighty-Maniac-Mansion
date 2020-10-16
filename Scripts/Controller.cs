@@ -510,7 +510,7 @@ public class Controller : MonoBehaviour {
 
 
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
-  Cutscene currentCutscene;
+  public Cutscene currentCutscene;
   ContextualizedAction currentAction;
   
   readonly SList<ContextualizedAction> actionsToPlay = new SList<ContextualizedAction>(16);
@@ -696,10 +696,21 @@ public class Controller : MonoBehaviour {
   }
 
   void StartIntroCutscene() {
-    currentCutscene = GD.a.GetCutscene("intro");
+    currentCutscene = AllObjects.GetCutscene("intro");
     forcedCursor = CursorTypes.Wait;
     oldCursor = null;
     GD.status = GameStatus.NormalGamePlay;
+  }
+
+
+  public static void StartCutScene(Cutscene scene) {
+    GD.c.currentCutscene = scene;
+    if (GD.c.currentCutscene != null) {
+      GD.c.currentCutscene.Reset();
+      GD.c.forcedCursor = CursorTypes.Wait;
+      GD.c.oldCursor = null;
+      GD.status = GameStatus.NormalGamePlay;
+    }
   }
 
   public static void AddAction(GameAction a, Actor perf, Actor sec) {
@@ -738,7 +749,7 @@ public class Controller : MonoBehaviour {
   void RunCurrentAction() {
     switch (currentAction.action.type) {
       case ActionType.ShowRoom: {
-        currentRoom = GD.a.GetRoom(currentAction.action.str);
+        currentRoom = AllObjects.GetRoom(currentAction.action.str);
         Vector3 pos = currentAction.action.pos;
         pos.z = -10;
         cam.transform.position = pos;
@@ -759,7 +770,7 @@ public class Controller : MonoBehaviour {
 
       case ActionType.Teleport: {
         Actor a = GetActor((Chars)currentAction.action.actor);
-        Room aroom = GD.a.GetRoom(currentAction.action.str);
+        Room aroom = AllObjects.GetRoom(currentAction.action.str);
         if (aroom != null) {
           a.currentRoom = aroom;
           a.gameObject.SetActive(aroom == currentRoom);
@@ -849,7 +860,7 @@ public class Controller : MonoBehaviour {
 
       case ActionType.OpenClose: {
         Actor a = GetActor((Chars)currentAction.action.actor);
-        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
+        Item item = AllObjects.FindItemByID((ItemEnum)currentAction.action.id);
         if (item == null) {
           Debug.LogError("Item not defined for Open " + currentAction.action.ToString());
           currentAction.Complete();
@@ -862,7 +873,7 @@ public class Controller : MonoBehaviour {
 
       case ActionType.EnableDisable: {
         Actor a = GetActor((Chars)currentAction.action.actor);
-        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
+        Item item = AllObjects.FindItemByID((ItemEnum)currentAction.action.id);
         if (item == null) {
           Debug.LogError("Item not defined for Open");
           currentAction.Complete();
@@ -875,7 +886,7 @@ public class Controller : MonoBehaviour {
 
       case ActionType.Lockunlock: {
         Actor a = GetActor((Chars)currentAction.action.actor);
-        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
+        Item item = AllObjects.FindItemByID((ItemEnum)currentAction.action.id);
         if (item == null) {
           Debug.LogError("Item not defined for Open");
           currentAction.Complete();
@@ -887,7 +898,7 @@ public class Controller : MonoBehaviour {
       break;
 
       case ActionType.Cutscene: {
-        currentCutscene = GD.a.GetCutscene((CutsceneID)currentAction.action.id);
+        currentCutscene = AllObjects.GetCutscene((CutsceneID)currentAction.action.id);
         if (currentCutscene != null) {
           currentCutscene.Reset();
           forcedCursor = CursorTypes.Wait;
@@ -913,7 +924,7 @@ public class Controller : MonoBehaviour {
       case ActionType.ReceiveCutscene: {
         // Are we accpeting?
         if ((FlagValue)currentAction.action.val == FlagValue.Yes) { // Yes
-          Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.actor);
+          Item item = AllObjects.FindItemByID((ItemEnum)currentAction.action.actor);
           currentAction.performer.inventory.Remove(item);
           currentAction.secondary.inventory.Add(item);
           item.owner = GetCharFromActor(currentAction.secondary);
@@ -923,7 +934,7 @@ public class Controller : MonoBehaviour {
             currentAction.secondary.SetDirection(currentAction.action.dir);
             currentAction.Play();
 
-            currentCutscene = GD.a.GetCutscene((CutsceneID)currentAction.action.id);
+            currentCutscene = AllObjects.GetCutscene((CutsceneID)currentAction.action.id);
             if (currentCutscene != null) {
               currentCutscene.Reset();
               forcedCursor = CursorTypes.Wait;
@@ -952,7 +963,7 @@ public class Controller : MonoBehaviour {
       case ActionType.ReceiveFlag: {         
         // Are we accpeting?
         if ((FlagValue)currentAction.action.val == FlagValue.Yes) { // Yes
-          Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.actor);
+          Item item = AllObjects.FindItemByID((ItemEnum)currentAction.action.actor);
           currentAction.performer.inventory.Remove(item);
           currentAction.secondary.inventory.Add(item);
           item.owner = GetCharFromActor(currentAction.secondary);
@@ -960,7 +971,7 @@ public class Controller : MonoBehaviour {
           if (currentAction.secondary != null) {
             currentAction.secondary.Say(currentAction.action.str, currentAction.action);
             currentAction.secondary.SetDirection(currentAction.action.dir);
-            GD.a.SetFlag((GameFlag)currentAction.action.id, FlagValue.Yes);
+            AllObjects.SetFlag((GameFlag)currentAction.action.id, FlagValue.Yes);
             currentAction.Play();
           }
           else
@@ -994,7 +1005,7 @@ public class Controller : MonoBehaviour {
           currentAction.Complete();
           return;
         }
-        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
+        Item item = AllObjects.FindItemByID((ItemEnum)currentAction.action.id);
         Animator anim = item.GetComponent<Animator>();
         if (anim == null) {
           Debug.LogError("Missing animator for animated item: " + item.gameObject.name);
@@ -1008,7 +1019,7 @@ public class Controller : MonoBehaviour {
       break;
 
       case ActionType.AlterItem: {
-        Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
+        Item item = AllObjects.FindItemByID((ItemEnum)currentAction.action.id);
         switch (currentAction.action.str[0]) {
           case 'R': item.whatItDoesL = WhatItDoes.Read; break;
           case 'W': item.whatItDoesL = WhatItDoes.Walk; break;
@@ -1028,7 +1039,7 @@ public class Controller : MonoBehaviour {
 
       case ActionType.SetFlag: {
         GameFlag flag = (GameFlag)currentAction.action.id;
-        GD.a.SetFlag(flag, (FlagValue)currentAction.action.val);
+        AllObjects.SetFlag(flag, (FlagValue)currentAction.action.val);
         currentAction.Complete();
       }
       break;
@@ -1173,7 +1184,7 @@ public class Controller : MonoBehaviour {
 
   internal static Item GetItem(string item) {
     if (item == null) return null;
-    return GD.a.FindItemByID(item);
+    return AllObjects.FindItemByID(item);
   }
   #endregion
 
@@ -1187,7 +1198,7 @@ public class Controller : MonoBehaviour {
   Actor actor3;
   Actor kidnappedActor;
   Actor receiverActor;
-  Actor currentActor = null;
+  public Actor currentActor = null;
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
   Color32 selectedActor = new Color32(200, 232, 152, 255);
   public Actor[] allEnemies;
@@ -1352,7 +1363,7 @@ public class Controller : MonoBehaviour {
   #endregion
 
   #region *********************** Rooms and Transitions *********************** Rooms and Transitions *********************** Rooms and Transitions ***********************
-  Room currentRoom;
+  public Room currentRoom;
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
     // Disable gameplay
