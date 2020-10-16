@@ -385,7 +385,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.OpenClose: return sl * 5;
       case ActionType.EnableDisable: return sl * 5;
       case ActionType.Lockunlock: return sl * 5;
-      case ActionType.Cutscene: return sl * 1;
+      case ActionType.Cutscene: return sl * 2;
       case ActionType.Sound: return sl * 1;
       case ActionType.ReceiveCutscene: return sl * 3;
       case ActionType.ReceiveFlag: return sl * 3;

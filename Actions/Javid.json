@@ -19,7 +19,7 @@
 		{ "type":"Expression", "actor":"Actor2", "expr":"Normal", "dir":"F", "wait":.01 },
 		{ "type":"Expression", "actor":"Actor3", "expr":"Normal", "dir":"R", "wait":.75 },
 		
-		{ "type":"Move", "actor":"Actor2", "pos":[-51,38], "dir":"L" },
+		{ "type":"Walk", "actor":"Actor2", "pos":[-51,38], "dir":"L" },
 		{ "type":"Speak", "actor":"Actor2", "msg":"Hey Javid.", "dir":"L" },
 		{ "type":"Speak", "actor":"Actor1", "msg":"Hello!", "dir":"R" },
 		
@@ -57,7 +57,7 @@
 		{ "type":"Speak", "actor":"Actor1", "msg":"Take care", "dir":"F" },
 		{ "type":"Speak", "actor":"Actor1", "msg":"Bye bye", "dir":"F" },
 		
-		{ "type":"Move", "actor":"Actor1", "pos":[-47.25,39.3], "dir":"B" },
+		{ "type":"Walk", "actor":"Actor1", "pos":[-47.25,39.3], "dir":"B" },
 		{ "type":"Teleport", "room":"StartArea", "actor":"Actor1", "pos":[1,2], "dir":"F" },
 		{ "type":"Expression", "actor":"Actor2", "expr":"Happy", "dir":"F", "wait":.1 },
 		{ "type":"Expression", "actor":"Actor3", "expr":"Normal", "dir":"F", "wait":2.5 }

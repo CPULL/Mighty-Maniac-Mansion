@@ -57,4 +57,5 @@ public enum CutsceneID {
   EdHungryCheese,
   EdnaBrowsingFridge,
   FredTalkingToKidnapped,
+  Javidx9 // FIXME
 }

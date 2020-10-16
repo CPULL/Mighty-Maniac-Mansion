@@ -11532,17 +11532,13 @@ MonoBehaviour:
       running: 0
       type: 6
       Repeatable: 0
-      actor: 1
-      pos: {x: -55, y: 2}
-      strValue: Somesound
-      expression: 0
-      sound: 0
-      dir: 4
       delay: 0.5
-      item: 9
-      action: 0
-      change: 1
-      GoodResult: 
+      actor: 1
+      str: 
+      pos: {x: -55, y: 2}
+      dir: 4
+      id: 0
+      val: 0
   - Condition:
       condition: 17
       actor: 28
@@ -11557,19 +11553,13 @@ MonoBehaviour:
       running: 0
       type: 11
       Repeatable: 1
-      actor: 29
-      pos: {x: -55, y: 2}
-      strValue: 'Thanks!
-
-        I may roll a joint...'
-      expression: 0
-      sound: 0
-      dir: 4
       delay: 2
-      item: 9
-      action: 0
-      change: 1
-      GoodResult: 
+      actor: 29
+      str: 
+      pos: {x: -55, y: 2}
+      dir: 4
+      id: 0
+      val: 0
   - Condition:
       condition: 18
       actor: 28
@@ -11584,17 +11574,13 @@ MonoBehaviour:
       running: 0
       type: 12
       Repeatable: 1
-      actor: 6
-      pos: {x: -55, y: 2}
-      strValue: Winners don't do drugs!
-      expression: 0
-      sound: 0
-      dir: 4
       delay: 2
-      item: 9
-      action: 0
-      change: 1
-      GoodResult: 
+      actor: 6
+      str: 
+      pos: {x: -55, y: 2}
+      dir: 4
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!65 &405510475
 BoxCollider:
@@ -13423,19 +13409,15 @@ MonoBehaviour:
       BadResult: 
     Action:
       running: 0
-      type: 9
+      type: 12
       Repeatable: 1
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: Doorbell
-      expression: 0
-      sound: 0
-      dir: 2
       delay: 1
-      item: 0
-      action: 2
-      change: 0
-      GoodResult: 
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 2
+      id: 2
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &456024917
 SpriteRenderer:
@@ -13606,17 +13588,13 @@ MonoBehaviour:
       running: 0
       type: 8
       Repeatable: 0
-      actor: 0
-      pos: {x: 30, y: 50}
-      strValue: SuitesCorridor
-      expression: 0
-      sound: 0
-      dir: 0
       delay: 0
-      item: 0
-      action: 0
-      change: 0
-      GoodResult: 
+      actor: 0
+      str: 
+      pos: {x: 30, y: 50}
+      dir: 0
+      id: 0
+      val: 0
   - Condition:
       condition: 0
       actor: 0
@@ -13631,17 +13609,13 @@ MonoBehaviour:
       running: 0
       type: 1
       Repeatable: 0
-      actor: 1
-      pos: {x: 30, y: 48}
-      strValue: SuitesCorridor
-      expression: 0
-      sound: 0
-      dir: 2
       delay: 0
-      item: 0
-      action: 0
-      change: 0
-      GoodResult: 
+      actor: 1
+      str: 
+      pos: {x: 30, y: 48}
+      dir: 2
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &464047115
 SpriteRenderer:
@@ -22665,17 +22639,13 @@ MonoBehaviour:
       running: 0
       type: 2
       Repeatable: 1
-      actor: 1
-      pos: {x: 0, y: 0}
-      strValue: These battetries have no power.
-      expression: 0
-      sound: 0
-      dir: 4
       delay: 1
-      item: 0
-      action: 0
-      change: 0
-      GoodResult: 
+      actor: 1
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 4
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &758301049
 SpriteRenderer:
@@ -23059,17 +23029,13 @@ MonoBehaviour:
       running: 0
       type: 8
       Repeatable: 0
-      actor: 0
-      pos: {x: -50, y: 30}
-      strValue: Upstairs
-      expression: 0
-      sound: 0
-      dir: 0
       delay: 0
-      item: 0
-      action: 0
-      change: 0
-      GoodResult: 
+      actor: 0
+      str: 
+      pos: {x: -50, y: 30}
+      dir: 0
+      id: 0
+      val: 0
   - Condition:
       condition: 0
       actor: 0
@@ -23084,17 +23050,13 @@ MonoBehaviour:
       running: 0
       type: 1
       Repeatable: 0
-      actor: 1
-      pos: {x: -55, y: 26}
-      strValue: Upstairs
-      expression: 0
-      sound: 0
-      dir: 2
       delay: 0
-      item: 0
-      action: 0
-      change: 0
-      GoodResult: 
+      actor: 1
+      str: 
+      pos: {x: -55, y: 26}
+      dir: 2
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &759445684
 SpriteRenderer:
@@ -23977,17 +23939,13 @@ MonoBehaviour:
       running: 0
       type: 15
       Repeatable: 0
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: Bottle break
-      expression: 0
-      sound: 0
-      dir: 0
       delay: 0.275
-      item: 19
-      action: 0
-      change: 0
-      GoodResult: Damn, it felt and broke...
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
   - Condition:
       condition: 19
       actor: 0
@@ -24002,17 +23960,13 @@ MonoBehaviour:
       running: 0
       type: 10
       Repeatable: 0
-      actor: 1
-      pos: {x: 0, y: 0}
-      strValue: Bottle break
-      expression: 0
-      sound: 1
-      dir: 4
       delay: 0.5
-      item: 19
-      action: 0
-      change: 0
-      GoodResult: Damn, it felt and broke...
+      actor: 1
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 4
+      id: 0
+      val: 0
   - Condition:
       condition: 19
       actor: 0
@@ -24027,17 +23981,13 @@ MonoBehaviour:
       running: 0
       type: 17
       Repeatable: 0
-      actor: 1
-      pos: {x: 0, y: 0}
-      strValue: RR
-      expression: 0
-      sound: 1
-      dir: 0
       delay: 0
-      item: 19
-      action: 0
-      change: 0
-      GoodResult: Damn, it felt and broke...
+      actor: 1
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &785944030
 SpriteRenderer:
@@ -29626,7 +29576,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 3506ed8c30d500d42a7f71b8844f9bb1, type: 3}
   - {fileID: 2800000, guid: 2a45e606b6c8a2c46aaff3fdad3dd7bd, type: 3}
   - {fileID: 2800000, guid: a9be4d282cd68f84e8ffaca7723bfb60, type: 3}
-  cutscenes: []
   Inventory: {fileID: 411817673}
   InventoryItemTemplate: {fileID: 1650692365}
   ActorPortrait1: {fileID: 1687621014}
@@ -36897,17 +36846,13 @@ MonoBehaviour:
       running: 0
       type: 0
       Repeatable: 0
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: 
-      expression: 0
-      sound: 0
-      dir: 0
       delay: 0
-      item: 0
-      action: 0
-      change: 0
-      GoodResult: 
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &1211572501
 SpriteRenderer:
@@ -38791,17 +38736,13 @@ MonoBehaviour:
       running: 0
       type: 7
       Repeatable: 1
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: 
-      expression: 0
-      sound: 0
-      dir: 0
       delay: 0.1
-      item: 12
-      action: 0
-      change: 2
-      GoodResult: It opens
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!61 &1256842731
 BoxCollider2D:
@@ -45076,17 +45017,13 @@ MonoBehaviour:
       running: 0
       type: 6
       Repeatable: 0
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: 
-      expression: 0
-      sound: 0
-      dir: 0
       delay: 0
-      item: 5
-      action: 0
-      change: 1
-      GoodResult: 
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &1486595614
 SpriteRenderer:
@@ -56454,17 +56391,13 @@ MonoBehaviour:
       running: 0
       type: 6
       Repeatable: 0
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: 
-      expression: 0
-      sound: 0
-      dir: 0
       delay: 0
-      item: 9
-      action: 0
-      change: 2
-      GoodResult: 
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
   - Condition:
       condition: 4
       actor: 1
@@ -56479,17 +56412,13 @@ MonoBehaviour:
       running: 0
       type: 6
       Repeatable: 0
-      actor: 0
-      pos: {x: 0, y: 0}
-      strValue: 
-      expression: 0
-      sound: 0
-      dir: 0
       delay: 0
-      item: 10
-      action: 0
-      change: 1
-      GoodResult: 
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
   - Condition:
       condition: 1
       actor: 19
@@ -56504,17 +56433,13 @@ MonoBehaviour:
       running: 0
       type: 2
       Repeatable: 0
-      actor: 1
-      pos: {x: 0, y: 0}
-      strValue: Easy peasy.
-      expression: 0
-      sound: 0
-      dir: 2
       delay: 0
-      item: 10
-      action: 0
-      change: 1
-      GoodResult: 
+      actor: 1
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 2
+      id: 0
+      val: 0
   - Condition:
       condition: 1
       actor: 9
@@ -56529,17 +56454,13 @@ MonoBehaviour:
       running: 0
       type: 2
       Repeatable: 0
-      actor: 1
-      pos: {x: 0, y: 0}
-      strValue: I should not have done that!!!!
-      expression: 0
-      sound: 0
-      dir: 2
       delay: 2
-      item: 10
-      action: 0
-      change: 1
-      GoodResult: 
+      actor: 1
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 2
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!1 &1805491017
 GameObject:
@@ -57204,17 +57125,13 @@ MonoBehaviour:
       running: 0
       type: 8
       Repeatable: 0
-      actor: 0
-      pos: {x: -50, y: 80}
-      strValue: EdRoom
-      expression: 0
-      sound: 0
-      dir: 0
       delay: 0
-      item: 0
-      action: 0
-      change: 0
-      GoodResult: 
+      actor: 0
+      str: 
+      pos: {x: -50, y: 80}
+      dir: 0
+      id: 0
+      val: 0
   - Condition:
       condition: 0
       actor: 0
@@ -57229,17 +57146,13 @@ MonoBehaviour:
       running: 0
       type: 1
       Repeatable: 0
-      actor: 1
-      pos: {x: -53, y: 78}
-      strValue: EdRoom
-      expression: 0
-      sound: 0
-      dir: 2
       delay: 0
-      item: 0
-      action: 0
-      change: 0
-      GoodResult: 
+      actor: 1
+      str: 
+      pos: {x: -53, y: 78}
+      dir: 2
+      id: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &1815643621
 SpriteRenderer:
@@ -62379,6 +62292,7 @@ MonoBehaviour:
   - {fileID: 1940318746}
   - {fileID: 1072545338}
   - {fileID: 718837450}
+  cutscenes: []
 --- !u!4 &1966254327
 Transform:
   m_ObjectHideFlags: 0

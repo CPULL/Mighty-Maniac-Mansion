@@ -597,21 +597,36 @@ public class Controller : MonoBehaviour {
 
               case ActionType.OpenClose: {
                 a.SetText(val["msg"].Value);
-                a.SetText(val["item"].Value);
+                ItemEnum item = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), val["item"].Value, true);
+                if (!System.Enum.IsDefined(typeof(ItemEnum), item)) {
+                  Debug.LogError("Invalid ID for Item to open: \"" + val["item"].Value + "\"");
+                }
+                else
+                  a.SetID((int)item);
                 a.SetVal(val["mode"].AsBool);
               }
               break;
 
               case ActionType.EnableDisable: {
                 a.SetText(val["msg"].Value);
-                a.SetText(val["item"].Value);
+                ItemEnum item = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), val["item"].Value, true);
+                if (!System.Enum.IsDefined(typeof(ItemEnum), item)) {
+                  Debug.LogError("Invalid ID for Item to open: \"" + val["item"].Value + "\"");
+                }
+                else
+                  a.SetID((int)item);
                 a.SetVal(val["mode"].AsBool);
               }
               break;
 
               case ActionType.Lockunlock: {
                 a.SetText(val["msg"].Value);
-                a.SetText(val["item"].Value);
+                ItemEnum item = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), val["item"].Value, true);
+                if (!System.Enum.IsDefined(typeof(ItemEnum), item)) {
+                  Debug.LogError("Invalid ID for Item to open: \"" + val["item"].Value + "\"");
+                }
+                else
+                  a.SetID((int)item);
                 a.SetVal(val["mode"].AsBool);
               }
               break;
@@ -636,8 +651,12 @@ public class Controller : MonoBehaviour {
               break;
               case ActionType.ReceiveFlag: { } // FIXME
               break;
-              case ActionType.Fade: { } // FIXME
+
+              case ActionType.Fade: {
+                a.SetVal(val["in"].AsBool || val["In"].AsBool || val["i"].AsBool || val["I"].AsBool);
+              }
               break;
+
               case ActionType.Anim: { } // FIXME
               break;
               case ActionType.AlterItem: { } // FIXME
@@ -832,7 +851,7 @@ public class Controller : MonoBehaviour {
         Actor a = GetActor((Chars)currentAction.action.actor);
         Item item = GD.a.FindItemByID((ItemEnum)currentAction.action.id);
         if (item == null) {
-          Debug.LogError("Item not defined for Open");
+          Debug.LogError("Item not defined for Open " + currentAction.action.ToString());
           currentAction.Complete();
           return;
         }
