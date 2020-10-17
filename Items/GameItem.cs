@@ -40,9 +40,9 @@ public class GameItem : MonoBehaviour {
       Controller.KnowAction(ac.Action);
       if (ac.Condition.IsValid(actor, secondary, item, this, when)) {
         Controller.AddAction(ac.Action, actor, secondary);
-        if (string.IsNullOrEmpty(ac.Action.str)) 
-          silentGood |= ac.Action.type.GoodByDefault();
-        else
+        if (ac.Action.type.GoodByDefault())
+          silentGood = true;
+        else if (!string.IsNullOrEmpty(ac.Action.str))
           goodResult = ac.Action.str;
       }
       else {

@@ -104,8 +104,7 @@ public static class Enums {
 /// <summary>
 /// Used for Sequences and Actions
 /// </summary>
-public enum Running { NotStarted, Running, Completed };
-
+public enum Running { NotStarted, Running, WaitingToCompleteAsync, Completed };
 
 /// <summary>
 /// Used to transition between rooms 

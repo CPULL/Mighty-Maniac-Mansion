@@ -169,9 +169,36 @@ public class Actor : MonoBehaviour {
     }
   }
 
+  Transform followed = null;
+  FlagValue followSide = FlagValue.NA;
 
-  internal void WalkTo(Transform destActor, int side, GameAction action) {
+  internal bool WalkTo(Transform destActor, FlagValue side, GameAction action) {
+    // FIXME develop, have normal x-coordinate, but have a super-fast movement on Y coordinate. Do not walk on stairs
+    followed = destActor;
+    followSide = side;
 
+    // Get the pathnode of where we are (at least the closest one)
+    PathNode p = currentRoom.GetPathNode(destActor.position);
+    if (p == null) {
+      Debug.Log("BUMMER! no path node");
+      return true;
+    }
+    if (p.isStair) return true; // Not following on stairs
+
+    Vector2 pos = followed.position;
+    pos.x += 1.5f * (followSide == FlagValue.Yes ? -1 : 1);
+    WalkTo(pos, p,
+      new System.Action<Actor, Item>((actor, item) => {
+
+        // Should we do something if we reach the destination?
+
+      }));
+
+    actorSpeed = origSpeed * 2;
+
+
+
+    return false;
   }
 
   internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) {
@@ -220,8 +247,6 @@ public class Actor : MonoBehaviour {
   }
 
   float nextBehaviorCheck = .5f;
-  Behavior currentBehavior = null;
-  BehaviorAction currentAction = null;
 
   private void Update() {
     if (isSpeaking) {
@@ -240,53 +265,31 @@ public class Actor : MonoBehaviour {
     }
 
 
-
-    // Check if we have a behavior to play, but only every .5 seconds
     nextBehaviorCheck -= Time.deltaTime;
     if (IAmNPC && nextBehaviorCheck < 0) { // Behaviors checking
       nextBehaviorCheck = .25f;
 
-      // Get the high priority behavior, if one is valid. Check every 1/4 of a second
-      Behavior valid = null;
       foreach (Behavior b in Behaviors) {
-        if (b.IsValid(this)) {
-          valid = b;
-          break;
-        }
-      }
-      if (valid != null) {
-        if (valid != currentBehavior) {
-          if (currentAction != null) {
-            currentAction.status = BehaviorActonStatus.Completed;
-            actorSpeed = origSpeed;
+        if (!b.IsValid(this)) {
+          if (b.currentAction != null) {
+            if (b.currentAction.type == ActionType.WalkToActor) {
+              followed = null;
+              actorSpeed = origSpeed;
+            }
+            b.currentAction.running = Running.Completed;
           }
-          Debug.Log(valid?.name + " <= " + currentBehavior?.name);
-          currentBehavior = valid;
-          currentAction = currentBehavior.GetNextAction(null);
+          continue;
         }
-      }
-
-      // Play the action, if any
-      if (currentAction != null) {
-        // Play it until completed, and the behavior is still valid
-        if (currentAction.status == BehaviorActonStatus.NotStarted) {
-          currentAction.status = BehaviorActonStatus.Running;
-          PlayAction();
-        }
-        else if (currentAction.status == BehaviorActonStatus.Running) {
-          PlayAction();
-        }
-        else if (currentAction.status == BehaviorActonStatus.WaitingToCompleteAsync) {
-          // Just wait
-        }
-        else if (currentAction.status == BehaviorActonStatus.Completed) { // Completed, get next
-          currentAction = currentBehavior.GetNextAction(currentAction);
-          if (currentAction == null) {
-            currentBehavior = null;
-            nextBehaviorCheck = 0;
+        b.CheckActions();
+        if (b.currentAction != null) {
+          // Play it until completed, and the behavior is still valid
+          if (b.currentAction.running == Running.NotStarted) {
+            b.currentAction.running = Running.Running;
+            b.currentAction.RunAction(this, null);
           }
-          else
-            currentAction.status = BehaviorActonStatus.NotStarted;
+          else if (b.currentAction.running == Running.Running) {
+            b.currentAction.CheckTime(Time.deltaTime);
+          }
         }
       }
     }
@@ -326,12 +329,28 @@ public class Actor : MonoBehaviour {
 
     if (walkDir.sqrMagnitude < .05f) {
       if (parcour == null || parcour.Count == 0) {
-        transform.position = destination.pos;
-        walking = false;
-        callBack?.Invoke(this, callBackItem);
-        callBack = null;
-        audios.Stop();
-        prevFloor = FloorType.None;
+        if (followed == null) { // Normal walking
+          transform.position = destination.pos;
+          walking = false;
+          callBack?.Invoke(this, callBackItem);
+          callBack = null;
+          audios.Stop();
+          prevFloor = FloorType.None;
+        }
+        else { // Following somebody, just set the usual dest point
+          destination.pos = followed.position;
+          destination.pos.x += 1.5f * (followSide == FlagValue.Yes ? -1 : 1);
+          dir = CalculateDirection(destination.pos);
+
+          if ((destination.pos-transform.position).sqrMagnitude < .1f) {
+            audios.Stop();
+            prevFloor = FloorType.None;
+            anim.Play(idle + dir);
+          }
+          else {
+            anim.Play(walk + dir);
+          }
+        }
         return;
       }
       destination.pos = parcour[0].pos;
@@ -348,135 +367,6 @@ public class Actor : MonoBehaviour {
     transform.position = np;
   }
 
-  private void PlayAction() {
-    switch (currentAction.type) {
-      case BehaviorActionType.Teleport:
-        break;
-      case BehaviorActionType.MoveToSpecificSpot: {
-        // Get the pathnode of where we are (at least the closest one)
-        PathNode p = currentRoom.GetPathNode(transform.position);
-        if (p == null) {
-          Debug.Log("BUMMER! no path node");
-          currentAction.status = BehaviorActonStatus.Completed;
-          return;
-        }
-        currentAction.status = BehaviorActonStatus.WaitingToCompleteAsync;
-        WalkTo(currentAction.pos, p,
-          new System.Action<Actor, Item>((actor, item) => {
-            if (currentAction != null) currentAction.status = BehaviorActonStatus.Completed;
-          }));
-      }
-      break;
-
-      case BehaviorActionType.MoveToActorXX: {
-        actorSpeed = origSpeed;
-        // Get the pathnode of where we are (at least the closest one)
-        PathNode p = currentRoom.GetPathNode(transform.position);
-        if (p == null) {
-          Debug.Log("BUMMER! no path node");
-          currentAction.status = BehaviorActonStatus.Completed;
-          return;
-        }
-        Actor act = Controller.GetActor((Chars)currentAction.val1);
-        if (act == null) {
-          Debug.Log("No actor: " + (Chars)currentAction.val1);
-          currentAction.status = BehaviorActonStatus.Completed;
-          return;
-        }
-        Vector2 pos = act.transform.position;
-        if (transform.position.x - pos.x < 0)
-          pos.x -= 2f;
-        else
-          pos.x += 2f;
-        currentAction.status = BehaviorActonStatus.WaitingToCompleteAsync;
-        WalkTo(pos, p,
-          new System.Action<Actor, Item>((actor, item) => {
-            if (currentAction != null) currentAction.status = BehaviorActonStatus.Completed;
-          }));
-      }
-      break;
-
-      case BehaviorActionType.MoveToActorR:
-      case BehaviorActionType.MoveToActorL: {
-        // Get the pathnode of where we are (at least the closest one)
-        PathNode p = currentRoom.GetPathNode(transform.position);
-        if (p == null) {
-          Debug.Log("BUMMER! no path node");
-          currentAction.status = BehaviorActonStatus.Completed;
-          return;
-        }
-        Actor act = Controller.GetActor((Chars)currentAction.val1);
-        if (act == null) {
-          Debug.Log("No actor: " + (Chars)currentAction.val1);
-          currentAction.status = BehaviorActonStatus.Completed;
-          return;
-        }
-        Vector2 pos = act.transform.position;
-        pos.x += 1.5f * (currentAction.type == BehaviorActionType.MoveToActorL ? -1 : 1);
-        actorSpeed = origSpeed * 2;
-        currentAction.status = BehaviorActonStatus.WaitingToCompleteAsync;
-        WalkTo(pos, p,
-          new System.Action<Actor, Item>((actor, item) => {
-            if (currentAction != null) currentAction.status = BehaviorActonStatus.Completed;
-            actorSpeed = origSpeed;
-          }));
-        nextBehaviorCheck = 0;
-      }
-      break;
-
-      case BehaviorActionType.Speak: {
-        Say(currentAction.str);
-        currentAction.status = BehaviorActonStatus.Completed;
-        nextBehaviorCheck = 0;
-      }
-      break;
-
-      case BehaviorActionType.Ask:
-        break;
-      case BehaviorActionType.Expression:
-        break;
-      case BehaviorActionType.EnableDisable:
-        break;
-      case BehaviorActionType.OpenClose:
-        break;
-      case BehaviorActionType.LockUnlock:
-        break;
-      case BehaviorActionType.Sound:
-        break;
-      case BehaviorActionType.AnimActor:
-        break;
-      case BehaviorActionType.AnimItem:
-        break;
-      case BehaviorActionType.SetFlag:
-        break;
-      case BehaviorActionType.BlockActorX: {
-        if ((Chars)currentAction.val1 == Chars.Player) currentAction.val1 = (int)Chars.Current;
-        Actor act = Controller.GetActor((Chars)currentAction.val1);
-        if (act == null) {
-          Debug.Log("No actor: " + (Chars)currentAction.val1);
-          currentAction.status = BehaviorActonStatus.Completed;
-          return;
-        }
-        act.blockMinX = currentAction.pos.x;
-        act.blockMaxX = currentAction.pos.y;
-        currentAction.status = BehaviorActonStatus.Completed;
-      }
-      break;
-      case BehaviorActionType.UnBlockActor: {
-        if ((Chars)currentAction.val1 == Chars.Player) currentAction.val1 = (int)Chars.Current;
-        Actor act = Controller.GetActor((Chars)currentAction.val1);
-        if (act == null) {
-          Debug.Log("No actor: " + (Chars)currentAction.val1);
-          currentAction.status = BehaviorActonStatus.Completed;
-          return;
-        }
-        act.blockMaxX = float.MaxValue;
-        act.blockMinX = -float.MaxValue;
-        currentAction.status = BehaviorActonStatus.Completed;
-      }
-      break;
-    }
-  }
 
   public void SetScaleAndPosition(Vector3 pos, PathNode p = null) {
     float ty = pos.y;

@@ -53,9 +53,9 @@ public class BehaviorEditor : PropertyDrawer {
           for (int i = 0; i < copied.ConditionsInOr.Length; i++) {
             newb.ConditionsInOr[i] = new BehaviorConditionLine(copied.ConditionsInOr[i]);
           }
-          newb.Actions = new BehaviorAction[copied.Actions.Length];
+          newb.Actions = new GameAction[copied.Actions.Length];
           for (int i = 0; i < copied.Actions.Length; i++) {
-            newb.Actions[i] = new BehaviorAction(copied.Actions[i]);
+            newb.Actions[i] = new GameAction(copied.Actions[i]);
           }
           property.serializedObject.UpdateIfRequiredOrScript();
         }

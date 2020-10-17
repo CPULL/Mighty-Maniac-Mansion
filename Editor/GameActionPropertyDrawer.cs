@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameActionPropertyDrawer : PropertyDrawer {
   readonly GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
     wordWrap = true,
-    fixedHeight = EditorGUIUtility.singleLineHeight * 5
+    fixedHeight = EditorGUIUtility.singleLineHeight * 2
   };
   private readonly string[] LeftRightStrArray = { "Left", "Right" };
   private readonly string[] OpenCloseStrArray = { "Open", "Close" };
@@ -75,12 +75,13 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.Teleport: {
         rect1 = new Rect(position.x + 0 * w4, position.y + 1 * lh, w4, lh);
         rect2 = new Rect(position.x + 1 * w4, position.y + 1 * lh, w4, lh);
-        rect3 = new Rect(position.x + 2 * w4, position.y + 1 * lh, w4, lh);
-        rect4 = new Rect(position.x + 3 * w4, position.y + 1 * lh, w4, lh);
+        rect3 = new Rect(position.x + 2 * w4, position.y + 1 * lh, w4*1.5f, lh);
+        rect4 = new Rect(position.x + 3.25f * w4, position.y + 1 * lh, w4*.7f, lh);
 
         EditorGUIUtility.labelWidth = 60;
         actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         str.stringValue = EditorGUI.TextField(rect2, "RoomID", str.stringValue);
+        EditorGUIUtility.labelWidth = 40;
         pos.vector2Value = EditorGUI.Vector2Field(rect3, "Pos", pos.vector2Value);
         dir.intValue = EditorGUI.Popup(rect4, "Dir", dir.intValue, dir.enumDisplayNames);
 
@@ -133,12 +134,13 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.WalkToPos: {
         rect1 = new Rect(position.x + 0 * w4, position.y + 1 * lh, w4, lh);
         rect2 = new Rect(position.x + 1 * w4, position.y + 1 * lh, w4, lh);
-        rect3 = new Rect(position.x + 2 * w4, position.y + 1 * lh, w4, lh);
-        rect4 = new Rect(position.x + 3 * w4, position.y + 1 * lh, w4, lh);
+        rect3 = new Rect(position.x + 2f * w4, position.y + 1 * lh, w4*1.5f, lh);
+        rect4 = new Rect(position.x + 3.25f * w4, position.y + 1 * lh, w4*.6f, lh);
 
         EditorGUIUtility.labelWidth = 60;
         actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         str.stringValue = EditorGUI.TextField(rect2, "RoomID", str.stringValue);
+        EditorGUIUtility.labelWidth = 40;
         pos.vector2Value = EditorGUI.Vector2Field(rect3, "Pos", pos.vector2Value);
         dir.intValue = EditorGUI.Popup(rect4, "Dir", dir.intValue, dir.enumDisplayNames);
 
@@ -155,10 +157,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         rect1 = new Rect(position.x + 0 * w3, position.y + 1 * lh, w3, lh);
         rect2 = new Rect(position.x + 1 * w3, position.y + 1 * lh, w3, lh);
         rect3 = new Rect(position.x + 2 * w3, position.y + 1 * lh, w3, lh);
-        EditorGUIUtility.labelWidth = 90;
+        EditorGUIUtility.labelWidth = 50;
         actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
+        EditorGUIUtility.labelWidth = 80;
         id.intValue = EditorGUI.Popup(rect2, "Dest Actor", id.intValue, System.Enum.GetNames(typeof(Chars)));
-        val.intValue = EditorGUI.Popup(rect2, "LR", val.intValue, LeftRightStrArray);
+        EditorGUIUtility.labelWidth = 40;
+        val.intValue = EditorGUI.Popup(rect3, "LR", val.intValue, LeftRightStrArray);
 
         if (actor.intValue < 1) {
           GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
@@ -379,8 +383,8 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.Teleport: return sl * 2;
       case ActionType.Speak: return sl * 5;
       case ActionType.Expression: return sl * 2;
-      case ActionType.WalkToPos: return sl * 2;
-      case ActionType.WalkToActor: return sl * 2;
+      case ActionType.WalkToPos: return sl * 2.5f;
+      case ActionType.WalkToActor: return sl * 2.5f;
       case ActionType.BlockActorX: return sl * 2;
       case ActionType.UnBlockActor: return sl * 2;
       case ActionType.OpenClose: return sl * 3;

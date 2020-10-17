@@ -48,6 +48,9 @@ public class GameAction {
   public int id;
   public int val;
 
+  public GameAction() {
+    type = ActionType.None;
+  }
   public GameAction(string stype) {
     string t = stype.ToLowerInvariant();
 
@@ -81,6 +84,20 @@ public class GameAction {
     else if (t == "alteritem") type = ActionType.AlterItem;
     else if (t == "setflag") type = ActionType.SetFlag;
     else Debug.LogError("Unknown type for GameAction: *" + t + "*");
+  }
+
+  public GameAction(GameAction gameAction) {
+    running = Running.NotStarted;
+    time = 0;
+    type = gameAction.type;
+    Repeatable = gameAction.Repeatable;
+    delay = gameAction.delay;
+    actor = gameAction.actor;
+    str = gameAction.str;
+    pos = gameAction.pos;
+    dir = gameAction.dir;
+    id = gameAction.id;
+    val = gameAction.val;
   }
 
   internal void SetActor(string a) {
@@ -164,6 +181,7 @@ public class GameAction {
   }
 
   internal void Complete() {
+    Debug.Log("Completed: " + ToString());
     running = Running.Completed;
   }
 
@@ -218,8 +236,8 @@ public class GameAction {
       case ActionType.ReceiveFlag: return "";
       case ActionType.Fade: return "";
       case ActionType.Anim: return "";
-      case ActionType.AlterItem: return "";
-      case ActionType.SetFlag: return "";
+      case ActionType.AlterItem: return "Alter " + (ItemEnum)id + " " + str;
+      case ActionType.SetFlag: return "Set " + (GameFlag)id + " " + (FlagValue)val;
     }
     return type.ToString() + " " + actor + " " + str;
   }
@@ -271,18 +289,24 @@ public class GameAction {
 
       case ActionType.Speak: {
         Actor a = Controller.GetActor((Chars)actor);
-        if (a != null) {
-          a.Say(str, this);
-          a.SetDirection(dir);
-          Play();
-        }
-        else
+        if (a == null) a = performer;
+        if (a == null) {
           Complete();
+          return;
+        }
+        a.Say(str, this);
+        a.SetDirection(dir);
+        Play();
       }
       break;
 
       case ActionType.Expression: {
         Actor a = Controller.GetActor((Chars)actor);
+        if (a == null) a = performer;
+        if (a == null) {
+          Complete();
+          return;
+        }
         a.SetDirection(dir);
         a.SetExpression((Expression)id);
         Play();
@@ -291,6 +315,11 @@ public class GameAction {
 
       case ActionType.WalkToPos: {
         Actor a = Controller.GetActor((Chars)actor);
+        if (a == null) a = performer;
+        if (a == null) {
+          Complete();
+          return;
+        }
         RaycastHit2D hit = Physics2D.Raycast(pos, GD.c.cam.transform.forward, 10000, GD.c.pathLayer);
         if (hit.collider != null) {
           PathNode p = hit.collider.GetComponent<PathNode>();
@@ -302,13 +331,22 @@ public class GameAction {
             copy.Complete();
           }));
         }
+        else
+          Debug.LogError("No collider for walk");
       }
       break;
 
       case ActionType.WalkToActor: { // This action is set in the actor and run in the actor itself, it is completed when the actor is reached (or the actor goes in another room), but it will not end until a different teleport or walk is done
         Actor walker = Controller.GetActor((Chars)actor);
+        if (walker == null) walker = performer;
+        if (walker == null) {
+          Debug.LogError("Missing walker in action: " + ToString());
+          Complete();
+          return;
+        }
         Actor destAct = Controller.GetActor((Chars)id);
-        walker.WalkTo(destAct.transform, val, this);
+        if (walker.WalkTo(destAct.transform, (FlagValue)val, this))
+          Complete(); // Not possible to reach
       }
       break;
 
@@ -339,7 +377,6 @@ public class GameAction {
       break;
 
       case ActionType.OpenClose: {
-        Actor a = Controller.GetActor((Chars)actor);
         Item item = AllObjects.FindItemByID((ItemEnum)id);
         if (item == null) {
           Debug.LogError("Item not defined for Open " + ToString());
@@ -352,7 +389,6 @@ public class GameAction {
       break;
 
       case ActionType.EnableDisable: {
-        Actor a = Controller.GetActor((Chars)actor);
         Item item = AllObjects.FindItemByID((ItemEnum)id);
         if (item == null) {
           Debug.LogError("Item not defined for Enable");
@@ -365,7 +401,6 @@ public class GameAction {
       break;
 
       case ActionType.Lockunlock: {
-        Actor a = Controller.GetActor((Chars)actor);
         Item item = AllObjects.FindItemByID((ItemEnum)id);
         if (item == null) {
           Debug.LogError("Item not defined for Lock");
@@ -385,6 +420,7 @@ public class GameAction {
 
       case ActionType.Sound: {
         Actor a = Controller.GetActor((Chars)actor);
+        if (a == null) a = performer;
         if (a != null) {
           if (dir != Dir.None) a.SetDirection(dir);
           Sounds.Play((Audios)id, a.transform.position);

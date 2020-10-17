@@ -13565,11 +13565,11 @@ MonoBehaviour:
       BadResult: 
     Action:
       running: 0
-      type: 8
-      Repeatable: 0
+      type: 1
+      Repeatable: 1
       delay: 0
       actor: 0
-      str: 
+      str: SuitesCorridor
       pos: {x: 30, y: 50}
       dir: 0
       id: 0
@@ -13586,11 +13586,11 @@ MonoBehaviour:
       BadResult: 
     Action:
       running: 0
-      type: 1
+      type: 2
       Repeatable: 0
       delay: 0
       actor: 1
-      str: 
+      str: SuitesCorridor
       pos: {x: 30, y: 48}
       dir: 2
       id: 0
@@ -23006,11 +23006,11 @@ MonoBehaviour:
       BadResult: 
     Action:
       running: 0
-      type: 8
+      type: 1
       Repeatable: 0
       delay: 0
       actor: 0
-      str: 
+      str: Upstairs
       pos: {x: -50, y: 30}
       dir: 0
       id: 0
@@ -23027,11 +23027,11 @@ MonoBehaviour:
       BadResult: 
     Action:
       running: 0
-      type: 1
+      type: 2
       Repeatable: 0
       delay: 0
       actor: 1
-      str: 
+      str: Upstairs
       pos: {x: -55, y: 26}
       dir: 2
       id: 0
@@ -28191,7 +28191,7 @@ MonoBehaviour:
   down: {fileID: 0}
   tl: {x: 17.625566, y: 49.84811}
   tr: {x: 22.108444, y: 49.820198}
-  br: {x: 21.583006, y: 46.65808}
+  br: {x: 21.19873, y: 46.458908}
   bl: {x: 18.67623, y: 46.698437}
   parent: {fileID: 810068549}
   showMeshLocal: 0
@@ -28226,7 +28226,7 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -2.3744335, y: -0.1518898}
       - {x: 2.1084442, y: -0.17980194}
-      - {x: 1.5830059, y: -3.341919}
+      - {x: 1.1987305, y: -3.541092}
       - {x: -1.3237705, y: -3.3015633}
 --- !u!4 &945029451
 Transform:
@@ -42940,7 +42940,7 @@ MonoBehaviour:
   tl: {x: 23.607986, y: 49.818844}
   tr: {x: 28.736643, y: 49.766533}
   br: {x: 30.140835, y: 48.465717}
-  bl: {x: 24.03648, y: 46.579487}
+  bl: {x: 23.467182, y: 46.337635}
   parent: {fileID: 810068549}
   showMeshLocal: 0
   prev: {fileID: 1555834093}
@@ -42975,7 +42975,7 @@ PolygonCollider2D:
     - - {x: 3.6079865, y: -0.18115616}
       - {x: 8.736643, y: -0.2334671}
       - {x: 10.140835, y: -1.5342827}
-      - {x: 4.03648, y: -3.4205132}
+      - {x: 3.4671822, y: -3.662365}
 --- !u!4 &1396073487
 Transform:
   m_ObjectHideFlags: 0
@@ -50274,10 +50274,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 4.03648, y: -3.4205132}
+    - - {x: 3.4671822, y: -3.662365}
       - {x: 10.140835, y: -1.5342827}
       - {x: 10.516205, y: -2.886547}
-      - {x: 7.4912205, y: -3.923458}
+      - {x: 4.8334923, y: -4.131851}
 --- !u!114 &1640690830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50295,10 +50295,10 @@ MonoBehaviour:
   right: {fileID: 442102478}
   top: {fileID: 1396073485}
   down: {fileID: 0}
-  tl: {x: 24.03648, y: 46.579487}
+  tl: {x: 23.467182, y: 46.337635}
   tr: {x: 30.140835, y: 48.465717}
   br: {x: 30.516205, y: 47.113453}
-  bl: {x: 27.49122, y: 46.07654}
+  bl: {x: 24.833492, y: 45.86815}
   parent: {fileID: 810068549}
   showMeshLocal: 0
   prev: {fileID: 1396073485}
@@ -52236,8 +52236,8 @@ MonoBehaviour:
   down: {fileID: 0}
   tl: {x: 22.108444, y: 49.820198}
   tr: {x: 23.607986, y: 49.818844}
-  br: {x: 24.03648, y: 46.579487}
-  bl: {x: 21.583006, y: 46.65808}
+  br: {x: 23.467182, y: 46.337635}
+  bl: {x: 21.19873, y: 46.458908}
   parent: {fileID: 810068549}
   showMeshLocal: 0
   prev: {fileID: 1396073485}
@@ -52271,8 +52271,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 2.1084442, y: -0.17980194}
       - {x: 3.6079865, y: -0.18115616}
-      - {x: 4.03648, y: -3.4205132}
-      - {x: 1.5830059, y: -3.341919}
+      - {x: 3.4671822, y: -3.662365}
+      - {x: 1.1987305, y: -3.541092}
 --- !u!4 &1705472267
 Transform:
   m_ObjectHideFlags: 0
@@ -53382,7 +53382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730974549}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.53, y: 48.26, z: 0}
+  m_LocalPosition: {x: 22, y: 46.7, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 899791774}
@@ -53572,6 +53572,17 @@ MonoBehaviour:
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
   Behaviors:
   - name: '"Shall not pass" while not feeded'
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
     ConditionsInOr:
     - name: 
       ConditionsInAnd:
@@ -53600,14 +53611,28 @@ MonoBehaviour:
         value: 0
         num: 7.7
     Actions:
-    - name: Say You shall  -> None
-      status: 0
-      type: 5
-      pos: {x: 24.31, y: 49.32, z: 0}
+    - running: 0
+      type: 3
+      Repeatable: 1
+      delay: 0
+      actor: 7
       str: You shall not pass!
-      val1: 0
-      val2: 0
+      pos: {x: 24.31, y: 49.32}
+      dir: 4
+      id: 0
+      val: 0
   - name: Patrolling while not feeded
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
     ConditionsInOr:
     - name: 
       ConditionsInAnd:
@@ -53628,30 +53653,50 @@ MonoBehaviour:
         actor: 8
         flag: 0
         value: 0
-        num: 3
+        num: 4
     Actions:
-    - name: Move to (24.7, 48.7)
-      status: 0
-      type: 1
-      pos: {x: 24.5, y: 49.47, z: 0}
+    - running: 0
+      type: 5
+      Repeatable: 1
+      delay: 0
+      actor: 7
       str: SuiteCorridor
-      val1: 0
-      val2: 0
-    - name: Move to (23.1, 46.1)
-      status: 0
-      type: 1
-      pos: {x: 22, y: 46.57, z: 0}
+      pos: {x: 24.5, y: 49.47}
+      dir: 0
+      id: 0
+      val: 0
+    - running: 0
+      type: 5
+      Repeatable: 1
+      delay: 0
+      actor: 7
       str: SuiteCorridor
-      val1: 0
-      val2: 0
-    - name: Move to (23.1, 46.1)
-      status: 0
-      type: 16
-      pos: {x: 23.5, y: 46.57, z: 0}
+      pos: {x: 22, y: 46.7}
+      dir: 0
+      id: 0
+      val: 0
+    - running: 0
+      type: 8
+      Repeatable: 1
+      delay: 0
+      actor: 8
       str: SuiteCorridor
-      val1: 8
-      val2: 0
+      pos: {x: 23.5, y: 46.57}
+      dir: 0
+      id: 0
+      val: 0
   - name: Block actor while not feeded (speak)
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
     ConditionsInOr:
     - name: 
       ConditionsInAnd:
@@ -53680,21 +53725,38 @@ MonoBehaviour:
         value: 0
         num: 5.2
     Actions:
-    - name: Say I am hungr -> None
-      status: 0
-      type: 5
-      pos: {x: 24.31, y: 49.32, z: 0}
+    - running: 0
+      type: 3
+      Repeatable: 1
+      delay: 0
+      actor: 7
       str: I am hungry!
-      val1: 0
-      val2: 0
-    - name: Player blocked
-      status: 0
-      type: 15
-      pos: {x: 25, y: 49.32, z: 0}
-      str: I am hungry!
-      val1: 8
-      val2: 0
+      pos: {x: 24.31, y: 49.32}
+      dir: 4
+      id: 0
+      val: 0
+    - running: 0
+      type: 7
+      Repeatable: 0
+      delay: 0
+      actor: 8
+      str: 
+      pos: {x: 25, y: 49.32}
+      dir: 0
+      id: 0
+      val: 0
   - name: Block actor while not feeded (walk)
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
     ConditionsInOr:
     - name: 
       ConditionsInAnd:
@@ -53715,22 +53777,28 @@ MonoBehaviour:
         actor: 8
         flag: 0
         value: 0
-        num: 3
+        num: 4
     Actions:
-    - name: Move to Player
-      status: 0
-      type: 3
-      pos: {x: 24.31, y: 49.32, z: 0}
+    - running: 0
+      type: 6
+      Repeatable: 1
+      delay: 0
+      actor: 7
       str: SuiteCorridor
-      val1: 8
-      val2: 0
-    - name: Player blocked
-      status: 0
-      type: 15
-      pos: {x: 25, y: 49.32, z: 0}
+      pos: {x: 24.31, y: 49.32}
+      dir: 0
+      id: 8
+      val: 0
+    - running: 0
+      type: 7
+      Repeatable: 0
+      delay: 0
+      actor: 8
       str: SuiteCorridor
-      val1: 8
-      val2: 0
+      pos: {x: 25, y: 49.32}
+      dir: 0
+      id: 0
+      val: 0
 --- !u!95 &1730974554
 Animator:
   serializedVersion: 3
@@ -57119,11 +57187,11 @@ MonoBehaviour:
       BadResult: 
     Action:
       running: 0
-      type: 8
-      Repeatable: 0
+      type: 1
+      Repeatable: 1
       delay: 0
       actor: 0
-      str: 
+      str: EdRoom
       pos: {x: -50, y: 80}
       dir: 0
       id: 0
@@ -57140,11 +57208,11 @@ MonoBehaviour:
       BadResult: 
     Action:
       running: 0
-      type: 1
-      Repeatable: 0
+      type: 2
+      Repeatable: 1
       delay: 0
       actor: 1
-      str: 
+      str: EdRoom
       pos: {x: -53, y: 78}
       dir: 2
       id: 0

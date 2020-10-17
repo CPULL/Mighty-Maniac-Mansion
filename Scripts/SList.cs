@@ -166,4 +166,44 @@ public class SList<T> {
     }
   }
 
+  /// <summary>
+  /// Checks if the item to add is already in the list, if missing the item will be inserted.
+  /// Returns <i>true</i> if the object was already there
+  /// </summary>
+  /// <param name="t">The item to be inserted</param>
+  internal bool AddIfMissing(T t) {
+    int num = Count;
+    for (int i = 0; i < num; i++)
+      if (Get(i).Equals(t)) return true;
+    Add(t);
+    return false;
+  }
+
+  /// <summary>
+  /// Remove the element from the list.
+  /// The position of the element will be filles with the last element of the list, if any.
+  /// </summary>
+  /// <param name="t">The element to be removed</param>
+  internal void Remove(T t) {
+    lock (locker) {
+      int num = Count;
+      for (int i = 0; i < num; i++) {
+        int pos = (first + i) % vals.Length;
+        T ith = vals[pos];
+        if (ith.Equals(t)) {
+          if (Count == 1) {
+            vals[pos] = default;
+            Count = 0;
+            return;
+          }
+          lastPlusOne--;
+          if (lastPlusOne < 0) lastPlusOne = vals.Length - 1;
+          Count--;
+          vals[pos] = vals[lastPlusOne];
+          vals[lastPlusOne] = default;
+          return;
+        }
+      }
+    }
+  }
 }
