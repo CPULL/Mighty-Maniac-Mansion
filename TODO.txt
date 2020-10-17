@@ -1,6 +1,5 @@
 === Mighty Maniac Mansion ===
 
-Add a behaviorcondition "actor < X" and "actor > x" in specific room
 
 Draw Edna and do the "Check fridge" at start
 Add a way to give food to GT and stop walking if food is not given
@@ -165,6 +164,7 @@ Jeff
 ! "Block actor" should set a limit on the X or Y axis
 ! "Move to actor" should have a way to be fast and be always on a side of an actor
 ! Remove behavioraction and replace with gameaction
+! Add a behaviorcondition "actor < X" and "actor > x" in specific room
 
 
 

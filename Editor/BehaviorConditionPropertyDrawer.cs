@@ -32,9 +32,7 @@ public class BehaviorEditor : PropertyDrawer {
           int pos1 = property.propertyPath.LastIndexOf(']');
           string sindex = property.propertyPath.Substring(pos0 + 1, pos1 - pos0 - 1);
           int.TryParse(sindex, out int index);
-
           copied = ((System.Collections.Generic.List<Behavior>)obj)[index];
-
           Debug.Log("Copy " + copied.name + " --> *" + index + "*");
         }
       }
@@ -59,8 +57,6 @@ public class BehaviorEditor : PropertyDrawer {
           }
           property.serializedObject.UpdateIfRequiredOrScript();
         }
-
-
       }
       EditorGUI.indentLevel = 2;
       EditorGUIUtility.labelWidth = 70;
@@ -133,6 +129,17 @@ public class BehaviorConditionPropertyDrawer : PropertyDrawer {
       case BehaviorConditionType.Timed:
         dist.floatValue = EditorGUI.FloatField(rect2, "Secs", dist.floatValue);
         break;
+
+      case BehaviorConditionType.ActorXLess:
+        actor.intValue = EditorGUI.Popup(rect2, "NPC", actor.intValue, actor.enumDisplayNames);
+        dist.floatValue = EditorGUI.FloatField(rect3, "X<", dist.floatValue);
+        break;
+
+      case BehaviorConditionType.ActorXMore:
+        actor.intValue = EditorGUI.Popup(rect2, "NPC", actor.intValue, actor.enumDisplayNames);
+        dist.floatValue = EditorGUI.FloatField(rect3, "X>", dist.floatValue);
+        break;
+
     }
 
     EditorGUI.indentLevel = indent;

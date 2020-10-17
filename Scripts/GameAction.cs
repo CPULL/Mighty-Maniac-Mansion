@@ -181,7 +181,6 @@ public class GameAction {
   }
 
   internal void Complete() {
-    Debug.Log("Completed: " + ToString());
     running = Running.Completed;
   }
 

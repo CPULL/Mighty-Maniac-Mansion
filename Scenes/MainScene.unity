@@ -53648,12 +53648,12 @@ MonoBehaviour:
         flag: 0
         value: 0
         num: 0
-      - type: 3
+      - type: 7
         item: 0
         actor: 8
         flag: 0
         value: 0
-        num: 4
+        num: 26.5
     Actions:
     - running: 0
       type: 5
@@ -53772,12 +53772,12 @@ MonoBehaviour:
         flag: 0
         value: 0
         num: 0
-      - type: 2
+      - type: 6
         item: 0
         actor: 8
         flag: 0
         value: 0
-        num: 4
+        num: 26.5
     Actions:
     - running: 0
       type: 6

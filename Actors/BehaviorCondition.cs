@@ -162,6 +162,27 @@ public class BehaviorCondition {
         }
         return false;
       }
+
+      case BehaviorConditionType.ActorXLess: {
+        float X;
+        if (actor == Chars.Self) X = caller.transform.position.x;
+        else if (actor == Chars.Player) X = GD.c.currentActor.transform.position.x;
+        else if (actor == Chars.Enemy) X = float.MaxValue;
+        else X = Controller.GetActor(actor).transform.position.x;
+        return X <= num;
+      }
+
+      case BehaviorConditionType.ActorXMore: {
+        float X;
+        if (actor == Chars.Self) X = caller.transform.position.x;
+        else if (actor == Chars.Player) X = GD.c.currentActor.transform.position.x;
+        else if (actor == Chars.Enemy) X = float.MaxValue;
+        else X = Controller.GetActor(actor).transform.position.x;
+        return X >= num;
+      }
+
+
+
     }
     return false;
   }
@@ -202,6 +223,8 @@ public class BehaviorCondition {
       case BehaviorConditionType.ActorDistanceMore: return actor + " > " + num;
       case BehaviorConditionType.Flag: return flag + " is " + (value == FlagValue.Yes ? " yes" : ((value == FlagValue.No ? " no" : " NA")));
       case BehaviorConditionType.Timed: return "Every " + num + " secs";
+      case BehaviorConditionType.ActorXLess: return actor + " X < " + num;
+      case BehaviorConditionType.ActorXMore: return actor + " X > " + num;
     }
     return "undefined";
   }
@@ -214,6 +237,8 @@ public class BehaviorCondition {
       case BehaviorConditionType.ActorDistanceMore: return actorVal + " > " + distVal;
       case BehaviorConditionType.Flag: return flagVal + " is " + (valVal == FlagValue.Yes ? " yes" : ((valVal == FlagValue.No ? " no" : " NA")));
       case BehaviorConditionType.Timed: return "Every " + distVal + " secs";
+      case BehaviorConditionType.ActorXLess: return actorVal + " X < " + distVal;
+      case BehaviorConditionType.ActorXMore: return actorVal + " X > " + distVal;
     }
     return "undefined";
 
@@ -227,5 +252,7 @@ public enum BehaviorConditionType {
   ActorDistanceMore,
   Flag,
   Timed,
+  ActorXLess,
+  ActorXMore,
 }
 
