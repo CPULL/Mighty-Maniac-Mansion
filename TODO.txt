@@ -2,15 +2,8 @@
 
 
 Draw Edna and do the "Check fridge" at start
-Add a way to give food to GT and stop walking if food is not given
 
-Add the Give action to cheese to test the Tentacle.
-We need a new action to change a game flag
 
-The checking of behaviors should be done often. At least 4 times per second. In case a higher priority behavior is valid, replace the current behavior/action
-We cannot really "block" in the tentacle scene. Or we will not be able to move after
-
->>>> Add ID and names to behaviors!!!
 Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here (use behaviors?)
 
 Icrease resolution of turkey and roast
@@ -165,6 +158,9 @@ Jeff
 ! "Move to actor" should have a way to be fast and be always on a side of an actor
 ! Remove behavioraction and replace with gameaction
 ! Add a behaviorcondition "actor < X" and "actor > x" in specific room
+! Add a way to give food to GT and stop walking if food is not given
+! Add the Give action to cheese to test the Tentacle.
+! We need a new action to change a game flag
 
 
 
