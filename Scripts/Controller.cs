@@ -305,33 +305,35 @@ public class Controller : MonoBehaviour {
       }
     }
     else {
-      if (lmb && !currentActor.IsWalking()) { /* lmb - walk */
-        if (aDoor != null) {
-          WalkAndAction(currentActor, aDoor,
-            new System.Action<Actor, Item>((actor, item) => {
-              if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
-                actor.Say("Is locked");
-                return;
-              }
-              else if (item.Usable == Tstatus.OpenableClosed || item.Usable == Tstatus.OpenableClosedAutolock) {
-                return;
-              }
-              StartCoroutine(ChangeRoom(actor, (item as Door)));
-            }));
-          return;
-        }
+      if (lmb) {
+        if (!currentActor.IsWalking()) { /* lmb - walk */
+          if (aDoor != null) {
+            WalkAndAction(currentActor, aDoor,
+              new System.Action<Actor, Item>((actor, item) => {
+                if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
+                  actor.Say("Is locked");
+                  return;
+                }
+                else if (item.Usable == Tstatus.OpenableClosed || item.Usable == Tstatus.OpenableClosedAutolock) {
+                  return;
+                }
+                StartCoroutine(ChangeRoom(actor, (item as Door)));
+              }));
+            return;
+          }
 
-        RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
-        if (hit.collider != null) {
-          PathNode p = hit.collider.GetComponent<PathNode>();
-          currentActor.WalkTo(hit.point, p);
-          walkDelay = 0;
+          RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
+          if (hit.collider != null) {
+            PathNode p = hit.collider.GetComponent<PathNode>();
+            currentActor.WalkTo(hit.point, p);
+            walkDelay = 0;
+          }
         }
-      }
-      else { /* rmb - do nothing but unselect used items */
-        forcedCursor = CursorTypes.None;
-        oldCursor = null;
-        usedItem = null;
+        else { /* rmb - do nothing but unselect used items */
+          forcedCursor = CursorTypes.None;
+          oldCursor = null;
+          usedItem = null;
+        }
       }
     }
 

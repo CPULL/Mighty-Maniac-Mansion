@@ -317,7 +317,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         actor.intValue = EditorGUI.Popup(rect1, "Item", actor.intValue, System.Enum.GetNames(typeof(ItemEnum)));
         dir.intValue = EditorGUI.Popup(rect2, "Dir", dir.intValue, dir.enumDisplayNames);
         id.intValue = EditorGUI.Popup(rect3, "Flag", id.intValue, System.Enum.GetNames(typeof(GameFlag)));
+        EditorGUIUtility.labelWidth = 70;
         val.intValue = EditorGUI.Popup(rect4, "Accept", val.intValue, System.Enum.GetNames(typeof(FlagValue)));
+        EditorGUIUtility.labelWidth = 70;
         str.stringValue = EditorGUI.TextField(rect5, "Answer", str.stringValue);
       }
       break;

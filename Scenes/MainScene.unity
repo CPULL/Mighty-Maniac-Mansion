@@ -22575,7 +22575,7 @@ MonoBehaviour:
   Item: 15
   Name: Batteries
   owner: 0
-  Usable: 0
+  Usable: 1
   UsableWith: 0
   whatItDoesL: 1
   whatItDoesR: 2
@@ -36799,7 +36799,7 @@ MonoBehaviour:
   Item: 14
   Name: Cheese
   owner: 0
-  Usable: 0
+  Usable: 1
   UsableWith: 0
   whatItDoesL: 1
   whatItDoesR: 2
@@ -36829,26 +36829,47 @@ MonoBehaviour:
     BadResult: 
   actions:
   - Condition:
-      condition: 0
-      actor: 0
+      condition: 14
+      actor: 15
       skill: 0
       item: 0
       otherItem: 0
       num: 0
       action: 0
-      when: 0
+      when: 2
       BadResult: 
     Action:
       running: 0
-      type: 0
+      type: 15
       Repeatable: 0
       delay: 0
-      actor: 0
-      str: 
+      actor: 14
+      str: Wow! The one I like!
       pos: {x: 0, y: 0}
-      dir: 0
+      dir: 4
       id: 0
       val: 0
+  - Condition:
+      condition: 15
+      actor: 15
+      skill: 0
+      item: 0
+      otherItem: 0
+      num: 0
+      action: 0
+      when: 2
+      BadResult: 
+    Action:
+      running: 0
+      type: 15
+      Repeatable: 1
+      delay: 0
+      actor: 14
+      str: It is disgusting, I don't want it
+      pos: {x: 0, y: 0}
+      dir: 4
+      id: 0
+      val: 1
   sr: {fileID: 0}
 --- !u!212 &1211572501
 SpriteRenderer:
