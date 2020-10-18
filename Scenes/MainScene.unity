@@ -29604,7 +29604,7 @@ MonoBehaviour:
   - {fileID: 1744431310}
   Portraits:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: eb317c0e99ce76346a8adfd7949745d3, type: 3}
   - {fileID: 0}
   - {fileID: 21300000, guid: d3f1e7fc751cf844388f4e6078bdcd01, type: 3}
   - {fileID: 0}
