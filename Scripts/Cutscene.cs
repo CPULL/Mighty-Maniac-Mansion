@@ -31,7 +31,7 @@ public class Cutscene {
   }
 
   internal ContextualizedAction GetNextAction() {
-    if (step >= actions.Count) {
+    if (actions == null || step >= actions.Count) {
       running = Running.Running;
       return null;
     }
