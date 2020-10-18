@@ -722,6 +722,186 @@ TextureImporter:
   - first:
       213: 4632161520627925751
     second: Ollie_59
+  - first:
+      213: -5492027134688465971
+    second: Edna_0
+  - first:
+      213: 392607122943075028
+    second: Edna_1
+  - first:
+      213: 5793220930528336034
+    second: Edna_2
+  - first:
+      213: 3779531324452781072
+    second: Edna_3
+  - first:
+      213: -1440371333474841878
+    second: Edna_4
+  - first:
+      213: -1207479300948183332
+    second: Edna_5
+  - first:
+      213: 8294180611411178728
+    second: Edna_6
+  - first:
+      213: 5676698478267257840
+    second: Edna_7
+  - first:
+      213: 2500724884816875974
+    second: Edna_8
+  - first:
+      213: 2605064419887555491
+    second: Edna_9
+  - first:
+      213: 1235082546812443634
+    second: Edna_10
+  - first:
+      213: 4428081647446845116
+    second: Edna_11
+  - first:
+      213: 3976066052669681733
+    second: Edna_12
+  - first:
+      213: 4843544317290726492
+    second: Edna_13
+  - first:
+      213: -6324878531906429035
+    second: Edna_14
+  - first:
+      213: -4985918599339806354
+    second: Edna_15
+  - first:
+      213: 3700813979482609283
+    second: Edna_16
+  - first:
+      213: -8825423977814091906
+    second: Edna_17
+  - first:
+      213: 5180489842045756483
+    second: Edna_18
+  - first:
+      213: 4022414120371369568
+    second: Edna_19
+  - first:
+      213: 6078231403568954154
+    second: Edna_20
+  - first:
+      213: -3262430638215259455
+    second: Edna_21
+  - first:
+      213: 5110714998651034424
+    second: Edna_22
+  - first:
+      213: -9144283249039880884
+    second: Edna_23
+  - first:
+      213: -7928327058808015275
+    second: Edna_24
+  - first:
+      213: 4938949280227381959
+    second: Edna_25
+  - first:
+      213: -2752239758205560832
+    second: Edna_26
+  - first:
+      213: -9121746062475750942
+    second: Edna_27
+  - first:
+      213: -8646929294139740690
+    second: Edna_28
+  - first:
+      213: 8867548363346232387
+    second: Edna_29
+  - first:
+      213: 5387641983598226707
+    second: Edna_30
+  - first:
+      213: -297947370237758147
+    second: Edna_31
+  - first:
+      213: 7031004933950046589
+    second: Edna_32
+  - first:
+      213: -5873257879731358786
+    second: Edna_33
+  - first:
+      213: -4428354155136334386
+    second: Edna_34
+  - first:
+      213: -7545237278100819762
+    second: Edna_35
+  - first:
+      213: 7487829408320986860
+    second: Edna_36
+  - first:
+      213: -3079485246361338453
+    second: Edna_37
+  - first:
+      213: 7007125145889824460
+    second: Edna_38
+  - first:
+      213: -1425545805960162777
+    second: Edna_39
+  - first:
+      213: 2691254717702444426
+    second: Edna_40
+  - first:
+      213: -3076212348633728424
+    second: Edna_41
+  - first:
+      213: -5794870726707994364
+    second: Edna_42
+  - first:
+      213: -4712760058060947419
+    second: Edna_43
+  - first:
+      213: -931765586243821836
+    second: Edna_44
+  - first:
+      213: 1382696642200062545
+    second: Edna_45
+  - first:
+      213: -3102506249714034846
+    second: Edna_46
+  - first:
+      213: 1893710309009107350
+    second: Edna_47
+  - first:
+      213: 7148474129785656554
+    second: Edna_48
+  - first:
+      213: 6640548877370105798
+    second: Edna_49
+  - first:
+      213: 980343529593150468
+    second: Edna_50
+  - first:
+      213: -3740830122212941243
+    second: Edna_51
+  - first:
+      213: -7001221919479975953
+    second: Edna_52
+  - first:
+      213: 2337014895248192492
+    second: Edna_53
+  - first:
+      213: -4036503622518901459
+    second: Edna_54
+  - first:
+      213: 1414412420264442033
+    second: Edna_55
+  - first:
+      213: -1544021598393430847
+    second: Edna_56
+  - first:
+      213: -8944019007128526387
+    second: Edna_57
+  - first:
+      213: 7271480038811184061
+    second: Edna_58
+  - first:
+      213: -2634383053123266781
+    second: Edna_59
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -821,7 +1001,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ollie_0
+      name: Edna_0
       rect:
         serializedVersion: 2
         x: 0
@@ -835,14 +1015,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcc9fd1da4e3c70b0800000000000000
-      internalID: -5729636134852518705
+      spriteID: dcb66144b6668c3b0800000000000000
+      internalID: -5492027134688465971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_1
+      name: Edna_1
       rect:
         serializedVersion: 2
         x: 256
@@ -856,14 +1036,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64d4f127db8fa6320800000000000000
-      internalID: 2552125631405968710
+      spriteID: 4d26f432912d27500800000000000000
+      internalID: 392607122943075028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_2
+      name: Edna_2
       rect:
         serializedVersion: 2
         x: 512
@@ -877,14 +1057,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad5b7fc745e9e7890800000000000000
-      internalID: -7458349847167912486
+      spriteID: 2a8df751eb7a56050800000000000000
+      internalID: 5793220930528336034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_3
+      name: Edna_3
       rect:
         serializedVersion: 2
         x: 768
@@ -898,14 +1078,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afaa55bebd897e340800000000000000
-      internalID: 4893047590474853114
+      spriteID: 01c387bf6b7937430800000000000000
+      internalID: 3779531324452781072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_4
+      name: Edna_4
       rect:
         serializedVersion: 2
         x: 1024
@@ -919,14 +1099,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5493dc515314b9860800000000000000
-      internalID: 7537690097589500229
+      spriteID: aea839357e5c20ce0800000000000000
+      internalID: -1440371333474841878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_5
+      name: Edna_5
       rect:
         serializedVersion: 2
         x: 1280
@@ -940,14 +1120,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1382295a1f33add40800000000000000
-      internalID: 5609853398801328177
+      spriteID: cd6b85929fb2e3fe0800000000000000
+      internalID: -1207479300948183332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_6
+      name: Edna_6
       rect:
         serializedVersion: 2
         x: 1536
@@ -961,14 +1141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 704744f258b382a30800000000000000
-      internalID: 4190664896477950983
+      spriteID: 8e478165259da1370800000000000000
+      internalID: 8294180611411178728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_7
+      name: Edna_7
       rect:
         serializedVersion: 2
         x: 1792
@@ -982,14 +1162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da2b34e5f17390f00800000000000000
-      internalID: 1083457793224323757
+      spriteID: 0f3de16803fa7ce40800000000000000
+      internalID: 5676698478267257840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_8
+      name: Edna_8
       rect:
         serializedVersion: 2
         x: 2048
@@ -1003,14 +1183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecf3b3a5ba7713ab0800000000000000
-      internalID: -5030107730959188018
+      spriteID: 6c15d78880c54b220800000000000000
+      internalID: 2500724884816875974
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_9
+      name: Edna_9
       rect:
         serializedVersion: 2
         x: 2304
@@ -1024,14 +1204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 118fc733bf4fe02d0800000000000000
-      internalID: -3310439316332939247
+      spriteID: 3a32864a94c072420800000000000000
+      internalID: 2605064419887555491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_10
+      name: Edna_10
       rect:
         serializedVersion: 2
         x: 0
@@ -1045,14 +1225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc2c780ab685736a0800000000000000
-      internalID: -6469605120416431411
+      spriteID: 2fb5a075805e32110800000000000000
+      internalID: 1235082546812443634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_11
+      name: Edna_11
       rect:
         serializedVersion: 2
         x: 256
@@ -1066,14 +1246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9e537eafa18ef810800000000000000
-      internalID: 1801019492540833434
+      spriteID: cb6ee702cc4b37d30800000000000000
+      internalID: 4428081647446845116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_12
+      name: Edna_12
       rect:
         serializedVersion: 2
         x: 512
@@ -1087,14 +1267,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f807cfe28e36da420800000000000000
-      internalID: 2642878405208207503
+      spriteID: 540bdd04203dd2730800000000000000
+      internalID: 3976066052669681733
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_13
+      name: Edna_13
       rect:
         serializedVersion: 2
         x: 768
@@ -1108,14 +1288,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c35a1fb903d49b60800000000000000
-      internalID: 7752052897425806272
+      spriteID: c54c9f5f4e9b73340800000000000000
+      internalID: 4843544317290726492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_14
+      name: Edna_14
       rect:
         serializedVersion: 2
         x: 1024
@@ -1129,14 +1309,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32bf9821326449330800000000000000
-      internalID: 3716672708936334115
+      spriteID: 59f19326c748938a0800000000000000
+      internalID: -6324878531906429035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_15
+      name: Edna_15
       rect:
         serializedVersion: 2
         x: 1280
@@ -1150,14 +1330,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef9a9c645ad845f50800000000000000
-      internalID: 6869271072643590654
+      spriteID: e61765f43757ecab0800000000000000
+      internalID: -4985918599339806354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_16
+      name: Edna_16
       rect:
         serializedVersion: 2
         x: 1536
@@ -1171,14 +1351,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fcb661364418e200800000000000000
-      internalID: 209439674381810932
+      spriteID: 3865cd2e4beeb5330800000000000000
+      internalID: 3700813979482609283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_17
+      name: Edna_17
       rect:
         serializedVersion: 2
         x: 1792
@@ -1192,14 +1372,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae4d10b3ed72dc4e0800000000000000
-      internalID: -1959866427410098966
+      spriteID: e771d2ab6abc58580800000000000000
+      internalID: -8825423977814091906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_18
+      name: Edna_18
       rect:
         serializedVersion: 2
         x: 2048
@@ -1213,14 +1393,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51fafc8900e69f0d0800000000000000
-      internalID: -3388556295776784619
+      spriteID: 34428ad501cc4e740800000000000000
+      internalID: 5180489842045756483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_19
+      name: Edna_19
       rect:
         serializedVersion: 2
         x: 2304
@@ -1234,14 +1414,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f49cd8ef0bf5b3250800000000000000
-      internalID: 5925434948525607247
+      spriteID: 0663040b45c72d730800000000000000
+      internalID: 4022414120371369568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_20
+      name: Edna_20
       rect:
         serializedVersion: 2
         x: 0
@@ -1255,14 +1435,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1980ea567507a690800000000000000
-      internalID: -7591092641020737250
+      spriteID: a2bf958f1473a5450800000000000000
+      internalID: 6078231403568954154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_21
+      name: Edna_21
       rect:
         serializedVersion: 2
         x: 256
@@ -1276,14 +1456,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 735e31c7cc3fefcc0800000000000000
-      internalID: -3675232186307189449
+      spriteID: 1ca14d0ae9489b2d0800000000000000
+      internalID: -3262430638215259455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_22
+      name: Edna_22
       rect:
         serializedVersion: 2
         x: 512
@@ -1297,14 +1477,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7715c9df7a1327b0800000000000000
-      internalID: -5250323604167125124
+      spriteID: 83b1bdaa638ece640800000000000000
+      internalID: 5110714998651034424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_23
+      name: Edna_23
       rect:
         serializedVersion: 2
         x: 768
@@ -1318,14 +1498,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a37ed1481ab33dc70800000000000000
-      internalID: 8994598445681338170
+      spriteID: c4d4c6f55daf81180800000000000000
+      internalID: -9144283249039880884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_24
+      name: Edna_24
       rect:
         serializedVersion: 2
         x: 1024
@@ -1339,14 +1519,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bdae1f95ef3deaa0800000000000000
-      internalID: -6130173262331728456
+      spriteID: 55671accb8ce8f190800000000000000
+      internalID: -7928327058808015275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_25
+      name: Edna_25
       rect:
         serializedVersion: 2
         x: 1280
@@ -1360,14 +1540,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77215082693e29890800000000000000
-      internalID: -7452644199288728969
+      spriteID: 7c2df93e33caa8440800000000000000
+      internalID: 4938949280227381959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_26
+      name: Edna_26
       rect:
         serializedVersion: 2
         x: 1536
@@ -1381,14 +1561,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a222f0335cea47180800000000000000
-      internalID: -9118471183529991638
+      spriteID: 008537b95841ec9d0800000000000000
+      internalID: -2752239758205560832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_27
+      name: Edna_27
       rect:
         serializedVersion: 2
         x: 1792
@@ -1402,14 +1582,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6cf146ec427b2770800000000000000
-      internalID: 8587082789118147695
+      spriteID: 2e190d6094c096180800000000000000
+      internalID: -9121746062475750942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_28
+      name: Edna_28
       rect:
         serializedVersion: 2
         x: 2048
@@ -1423,14 +1603,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8759d951e6645860800000000000000
-      internalID: 7517746796049291149
+      spriteID: eeda1e0de9feff780800000000000000
+      internalID: -8646929294139740690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_29
+      name: Edna_29
       rect:
         serializedVersion: 2
         x: 2304
@@ -1444,14 +1624,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3aebf47e9d757de0800000000000000
-      internalID: -1336023594924512710
+      spriteID: 34449d1114cdf0b70800000000000000
+      internalID: 8867548363346232387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_30
+      name: Edna_30
       rect:
         serializedVersion: 2
         x: 0
@@ -1465,14 +1645,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8da12829e80dd8620800000000000000
-      internalID: 2778105855919397592
+      spriteID: 31d6a51d6dfb4ca40800000000000000
+      internalID: 5387641983598226707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_31
+      name: Edna_31
       rect:
         serializedVersion: 2
         x: 256
@@ -1486,14 +1666,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b0f9f5ca7ad17320800000000000000
-      internalID: 2554062684538138807
+      spriteID: d357733027a7ddbf0800000000000000
+      internalID: -297947370237758147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_32
+      name: Edna_32
       rect:
         serializedVersion: 2
         x: 512
@@ -1507,14 +1687,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f365edbf9f6e8310800000000000000
-      internalID: 1409186465289954293
+      spriteID: d718c1e4cb5239160800000000000000
+      internalID: 7031004933950046589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_33
+      name: Edna_33
       rect:
         serializedVersion: 2
         x: 768
@@ -1528,14 +1708,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1ee046f5592a88f0800000000000000
-      internalID: -537571756336943587
+      spriteID: eb33954831ffd7ea0800000000000000
+      internalID: -5873257879731358786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_34
+      name: Edna_34
       rect:
         serializedVersion: 2
         x: 1024
@@ -1549,14 +1729,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 172cac1456f591ff0800000000000000
-      internalID: -64915831120018831
+      spriteID: ec5497bbb535b82c0800000000000000
+      internalID: -4428354155136334386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_35
+      name: Edna_35
       rect:
         serializedVersion: 2
         x: 1280
@@ -1570,14 +1750,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25e89f1117095ace0800000000000000
-      internalID: -1394549694294028718
+      spriteID: ec0f3c40caee94790800000000000000
+      internalID: -7545237278100819762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_36
+      name: Edna_36
       rect:
         serializedVersion: 2
         x: 1536
@@ -1591,14 +1771,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84b1fd9388d60e770800000000000000
-      internalID: 8638024517150513992
+      spriteID: cee12b5bc2d1ae760800000000000000
+      internalID: 7487829408320986860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_37
+      name: Edna_37
       rect:
         serializedVersion: 2
         x: 1792
@@ -1612,14 +1792,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42fb7c0d912b6da20800000000000000
-      internalID: 3086850418555731748
+      spriteID: bad7397fb787345d0800000000000000
+      internalID: -3079485246361338453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_38
+      name: Edna_38
       rect:
         serializedVersion: 2
         x: 2048
@@ -1633,14 +1813,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f7f48c7378770390800000000000000
-      internalID: -7852174987891509261
+      spriteID: cce5871e13f4e3160800000000000000
+      internalID: 7007125145889824460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_39
+      name: Edna_39
       rect:
         serializedVersion: 2
         x: 2304
@@ -1654,14 +1834,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df3b9e57487120b50800000000000000
-      internalID: 6557829865086235645
+      spriteID: 72252b074a1773ce0800000000000000
+      internalID: -1425545805960162777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_40
+      name: Edna_40
       rect:
         serializedVersion: 2
         x: 0
@@ -1675,14 +1855,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba64bf74900917b70800000000000000
-      internalID: 8895049108570195627
+      spriteID: a859fb828e1495520800000000000000
+      internalID: 2691254717702444426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_41
+      name: Edna_41
       rect:
         serializedVersion: 2
         x: 256
@@ -1696,14 +1876,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20028c84a1f3c6ad0800000000000000
-      internalID: -2707719893833736190
+      spriteID: 85a340ada291f45d0800000000000000
+      internalID: -3076212348633728424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_42
+      name: Edna_42
       rect:
         serializedVersion: 2
         x: 512
@@ -1717,14 +1897,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd433fa0cf6323000800000000000000
-      internalID: 14134204978902235
+      spriteID: 401a24fc6cb749fa0800000000000000
+      internalID: -5794870726707994364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_43
+      name: Edna_43
       rect:
         serializedVersion: 2
         x: 768
@@ -1738,14 +1918,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56aaaaf49f5e84910800000000000000
-      internalID: 1821958908217567845
+      spriteID: 520c0ab42b9e89eb0800000000000000
+      internalID: -4712760058060947419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_44
+      name: Edna_44
       rect:
         serializedVersion: 2
         x: 1024
@@ -1759,14 +1939,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 449ea09ce2e836f30800000000000000
-      internalID: 4567650778676390212
+      spriteID: 4fed002d224b113f0800000000000000
+      internalID: -931765586243821836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_45
+      name: Edna_45
       rect:
         serializedVersion: 2
         x: 1280
@@ -1780,14 +1960,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa578a5916ce59b80800000000000000
-      internalID: -8388538827040852561
+      spriteID: 15ac57e2543503310800000000000000
+      internalID: 1382696642200062545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_46
+      name: Edna_46
       rect:
         serializedVersion: 2
         x: 1536
@@ -1801,14 +1981,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0562e9e11de79860800000000000000
-      internalID: 7536753162621969675
+      spriteID: 2679d50f00fa1f4d0800000000000000
+      internalID: -3102506249714034846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_47
+      name: Edna_47
       rect:
         serializedVersion: 2
         x: 1792
@@ -1822,14 +2002,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 975f9e9a4b5cbe070800000000000000
-      internalID: 8136814531510400377
+      spriteID: 699abf32e7fc74a10800000000000000
+      internalID: 1893710309009107350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_48
+      name: Edna_48
       rect:
         serializedVersion: 2
         x: 2048
@@ -1843,14 +2023,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04c31a1f538508d20800000000000000
-      internalID: 3278717517436107840
+      spriteID: ae491f7c85b743360800000000000000
+      internalID: 7148474129785656554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_49
+      name: Edna_49
       rect:
         serializedVersion: 2
         x: 2304
@@ -1864,14 +2044,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7270329e3cc01a620800000000000000
-      internalID: 2783520080261220135
+      spriteID: 6cf93455508f72c50800000000000000
+      internalID: 6640548877370105798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_50
+      name: Edna_50
       rect:
         serializedVersion: 2
         x: 0
@@ -1885,14 +2065,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af416885dbc777600800000000000000
-      internalID: 465978239131981050
+      spriteID: 40c904ffe31ea9d00800000000000000
+      internalID: 980343529593150468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_51
+      name: Edna_51
       rect:
         serializedVersion: 2
         x: 256
@@ -1906,14 +2086,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 765d606b5bdddbea0800000000000000
-      internalID: -5855280167999056537
+      spriteID: 542aa68d2d6e51cc0800000000000000
+      internalID: -3740830122212941243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_52
+      name: Edna_52
       rect:
         serializedVersion: 2
         x: 512
@@ -1927,14 +2107,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 049177705ef5ca300800000000000000
-      internalID: 264691915385411904
+      spriteID: fefa7bf12c9a6de90800000000000000
+      internalID: -7001221919479975953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_53
+      name: Edna_53
       rect:
         serializedVersion: 2
         x: 768
@@ -1948,14 +2128,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cc4065008af0d170800000000000000
-      internalID: 8201330349194628293
+      spriteID: ce3b01a4aaebe6020800000000000000
+      internalID: 2337014895248192492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_54
+      name: Edna_54
       rect:
         serializedVersion: 2
         x: 1024
@@ -1969,14 +2149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80260ed7d624b5860800000000000000
-      internalID: 7519677040855900680
+      spriteID: d25fe2577557bf7c0800000000000000
+      internalID: -4036503622518901459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_55
+      name: Edna_55
       rect:
         serializedVersion: 2
         x: 1280
@@ -1990,14 +2170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39820bac1c10e17b0800000000000000
-      internalID: -5251758183626561389
+      spriteID: 1b833c33a9001a310800000000000000
+      internalID: 1414412420264442033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_56
+      name: Edna_56
       rect:
         serializedVersion: 2
         x: 1536
@@ -2011,14 +2191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b378790363f3adc00800000000000000
-      internalID: 926122175354079035
+      spriteID: 1cc8a3e6988829ae0800000000000000
+      internalID: -1544021598393430847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_57
+      name: Edna_57
       rect:
         serializedVersion: 2
         x: 1792
@@ -2032,14 +2212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d0f60a6ed9f702f0800000000000000
-      internalID: -1006561258037120816
+      spriteID: dc123c7b91670e380800000000000000
+      internalID: -8944019007128526387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_58
+      name: Edna_58
       rect:
         serializedVersion: 2
         x: 2048
@@ -2053,14 +2233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 066369b084cdc8e90800000000000000
-      internalID: -7021995516987296160
+      spriteID: dbb2fa0c19c79e460800000000000000
+      internalID: 7271480038811184061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ollie_59
+      name: Edna_59
       rect:
         serializedVersion: 2
         x: 2304
@@ -2074,8 +2254,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f2c24b5c5eb84040800000000000000
-      internalID: 4632161520627925751
+      spriteID: 327574c129ac07bd0800000000000000
+      internalID: -2634383053123266781
       vertices: []
       indices: 
       edges: []

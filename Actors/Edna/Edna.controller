@@ -1,13 +1,13 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-9040722169446211356
+--- !u!1102 &-8500753915699330962
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ollie IdleF
+  m_Name: Edna WalkF
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,20 +20,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 795ef30b8b30c294b8b902425e2f3c32, type: 2}
+  m_Motion: {fileID: 7400000, guid: c384a4dffa1926b458235e698c36e4f8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-4068692571213505163
+--- !u!1102 &-8466124771716954681
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ollie WalkR
+  m_Name: Edna IdleF
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -46,20 +46,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2832d97e6d508f249947afbba1d0061d, type: 2}
+  m_Motion: {fileID: 7400000, guid: f13072e617c21aa448d9cc1319b8c751, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-4000442751215398353
+--- !u!1102 &-603428670097639253
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ollie IdleL
+  m_Name: Edna WalkB
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -72,33 +72,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 147d2bb91e6b08d48a5135d8107a1bfa, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-925433035688247096
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Ollie WalkB
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: db5a76112a6e4a147a34eb6f5a82268b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0ad9b39befd33c547badaba08fa24f43, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -126,14 +100,14 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &581616081702209334
+--- !u!1102 &569464754240219186
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ollie IdleB
+  m_Name: Edna IdleL
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -146,20 +120,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 558e47eca20e61940837478b3887d340, type: 2}
+  m_Motion: {fileID: 7400000, guid: 297b849a23c44a243b36ee61102bb70e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &4334483473822313814
+--- !u!1102 &3375102747572065832
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ollie WalkF
+  m_Name: Edna IdleR
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -172,7 +146,33 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a080e8d1875b8f048822b460613924b3, type: 2}
+  m_Motion: {fileID: 7400000, guid: bcde43b502fb53f4a9b9b709e2d29c9f, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &3920494957618855592
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Edna WalkL
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 9d649d3e48253de4f8ed81ffdb4b17e7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -188,28 +188,28 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -9040722169446211356}
-    m_Position: {x: 300, y: 0, z: 0}
+    m_State: {fileID: -8466124771716954681}
+    m_Position: {x: 297.16617, y: 2.2337341, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 581616081702209334}
+    m_State: {fileID: 7391741930196211186}
     m_Position: {x: 500, y: 0, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -4000442751215398353}
+    m_State: {fileID: 569464754240219186}
     m_Position: {x: 700, y: 0, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 8137929974942851954}
+    m_State: {fileID: 3375102747572065832}
     m_Position: {x: 900, y: 0, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 4334483473822313814}
+    m_State: {fileID: -8500753915699330962}
     m_Position: {x: 300, y: 60, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -925433035688247096}
+    m_State: {fileID: -603428670097639253}
     m_Position: {x: 500, y: 60, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 6387575061478015100}
+    m_State: {fileID: 3920494957618855592}
     m_Position: {x: 700, y: 60, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -4068692571213505163}
+    m_State: {fileID: 5891401781273395144}
     m_Position: {x: 900, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
@@ -220,15 +220,15 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 10, y: 260, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -9040722169446211356}
---- !u!1102 &6387575061478015100
+  m_DefaultState: {fileID: -8466124771716954681}
+--- !u!1102 &5891401781273395144
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ollie WalkL
+  m_Name: Edna WalkR
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -241,20 +241,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 362795167fbb5cb43a92caa51638bc51, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7eeacc1ee90189b4ab01883980d8edcb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &8137929974942851954
+--- !u!1102 &7391741930196211186
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ollie IdleR
+  m_Name: Edna IdleB
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -267,7 +267,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2f5a0bce5c80b134d91119f445e4d700, type: 2}
+  m_Motion: {fileID: 7400000, guid: 22a9427df1232594ca90071cafd3dc23, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -5826,7 +5826,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6bf6f754eb8bbea4581786acbcb21220, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb317c0e99ce76346a8adfd7949745d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9666,7 +9666,7 @@ MonoBehaviour:
   ActorDescription: {fileID: 1795951006}
   Heads:
   - {fileID: 21300000, guid: 6bf6f754eb8bbea4581786acbcb21220, type: 3}
-  - {fileID: 21300000, guid: 6bf6f754eb8bbea4581786acbcb21220, type: 3}
+  - {fileID: -5492027134688465971, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
   - {fileID: 21300000, guid: 6bf6f754eb8bbea4581786acbcb21220, type: 3}
   - {fileID: 6552597437052334498, guid: a873a14b48817b84eaa24c45f8cca4d6, type: 3}
   - {fileID: 21300000, guid: 6bf6f754eb8bbea4581786acbcb21220, type: 3}
@@ -9688,7 +9688,7 @@ MonoBehaviour:
   - {fileID: 7190259368201910681, guid: 530251762d43c794e9df4513e2278f9d, type: 3}
   Arms:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1235082546812443634, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
   - {fileID: 0}
   - {fileID: -1670587966868410421, guid: a873a14b48817b84eaa24c45f8cca4d6, type: 3}
   - {fileID: 0}
@@ -9710,7 +9710,7 @@ MonoBehaviour:
   - {fileID: -709709334594185832, guid: 530251762d43c794e9df4513e2278f9d, type: 3}
   Legs:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6078231403568954154, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
   - {fileID: 0}
   - {fileID: -5632813212969735250, guid: a873a14b48817b84eaa24c45f8cca4d6, type: 3}
   - {fileID: 0}
@@ -9732,6 +9732,7 @@ MonoBehaviour:
   - {fileID: 3376563115203371472, guid: 530251762d43c794e9df4513e2278f9d, type: 3}
   ButtonStart: {fileID: 1919958872}
   Hidden:
+  - {fileID: 46216497}
   - {fileID: 1968538877}
   - {fileID: 369835979}
   - {fileID: 798564119}
@@ -29580,7 +29581,7 @@ MonoBehaviour:
   currentActor: {fileID: 0}
   allEnemies:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1533143414}
   - {fileID: 0}
   - {fileID: 301252752}
   - {fileID: 0}
@@ -34419,7 +34420,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5632813212969735250, guid: a873a14b48817b84eaa24c45f8cca4d6, type: 3}
+  m_Sprite: {fileID: 6078231403568954154, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -37941,7 +37942,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6552597437052334498, guid: a873a14b48817b84eaa24c45f8cca4d6, type: 3}
+  m_Sprite: {fileID: -5492027134688465971, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -46939,10 +46940,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29677a0e7fbc50f489151e35bed62b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facesF: []
-  facesB: []
-  facesL: []
-  facesR: []
+  facesF:
+  - {fileID: -5492027134688465971, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 392607122943075028, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 5793220930528336034, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 3779531324452781072, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: -1440371333474841878, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  facesB:
+  - {fileID: 5387641983598226707, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: -297947370237758147, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 7031004933950046589, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: -5873257879731358786, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: -4428354155136334386, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  facesL:
+  - {fileID: -1207479300948183332, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 8294180611411178728, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 5676698478267257840, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 2500724884816875974, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 2605064419887555491, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  facesR:
+  - {fileID: -7545237278100819762, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 7487829408320986860, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: -3079485246361338453, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: 7007125145889824460, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
+  - {fileID: -1425545805960162777, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
   Face: {fileID: 1232501907}
   Arms: {fileID: 1924005229}
   Legs: {fileID: 1149741276}
@@ -46954,7 +46975,10 @@ MonoBehaviour:
   id: 11
   mainScale: 0.95
   skills: 01000000
-  Description: 
+  Description: Edna is Dr.Fred's wife and a retired nurse. She mainly stays in her
+    room but is occasionally found in other parts of the house. If she catches you
+    in the mansion, she will send you to the dungeon. Some of her dialogue hints
+    that she is into sado-masochism and obscene phone calls.
   TentacleSteps: {fileID: 0}
   Behaviors: []
 --- !u!95 &1533143415
@@ -60789,7 +60813,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1670587966868410421, guid: a873a14b48817b84eaa24c45f8cca4d6, type: 3}
+  m_Sprite: {fileID: 1235082546812443634, guid: 26c95da2da9c96a4fb759d4223b9cf60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
