@@ -364,7 +364,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         rect1 = new Rect(position.x + 0 * w2, position.y + 1 * lh, w2, lh);
         rect2 = new Rect(position.x + 1 * w2, position.y + 1 * lh, w2, lh);
         id.intValue = EditorGUI.Popup(rect1, "Flag", id.intValue, System.Enum.GetNames(typeof(GameFlag)));
-        val.intValue = EditorGUI.Popup(rect2, "Fade In/Out", val.intValue, System.Enum.GetNames(typeof(FlagValue)));
+        val.intValue = EditorGUI.Popup(rect2, "Val", val.intValue, System.Enum.GetNames(typeof(FlagValue)));
       }
       break;
 
@@ -399,7 +399,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.Fade: return sl * 1;
       case ActionType.Anim: return sl * 3;
       case ActionType.AlterItem: return sl * 3;
-      case ActionType.SetFlag: return sl * 1;
+      case ActionType.SetFlag: return sl * 4;
     }
     return EditorGUIUtility.singleLineHeight * 5;
   }

@@ -2888,7 +2888,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.14100647, y: -0.11459541}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2899,7 +2899,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 5.9375}
+  m_Size: {x: 4.2625275, y: 5.4614887}
   m_EdgeRadius: 0
 --- !u!114 &80141349
 MonoBehaviour:
@@ -2914,9 +2914,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: 0
-  Name: 
+  Name: Secret Lab
   owner: 0
-  Usable: 4
+  Usable: 5
   UsableWith: 0
   whatItDoesL: 3
   whatItDoesR: 0
@@ -19083,9 +19083,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: 0
-  Name: 
+  Name: Dungeon Exit
   owner: 0
-  Usable: 4
+  Usable: 6
   UsableWith: 0
   whatItDoesL: 3
   whatItDoesR: 0
@@ -47918,7 +47918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533143410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -94.08, y: 17.31, z: 0}
+  m_LocalPosition: {x: -89.33, y: 17.91, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 1149741274}
@@ -48101,7 +48101,203 @@ MonoBehaviour:
     in the mansion, she will send you to the dungeon. Some of her dialogue hints
     that she is into sado-masochism and obscene phone calls.
   TentacleSteps: {fileID: 0}
-  Behaviors: []
+  Behaviors:
+  - name: Browsing fridge
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
+    ConditionsInOr:
+    - name: Edna browsing fridge
+      ConditionsInAnd:
+      - type: 4
+        item: 0
+        actor: 0
+        flag: 5
+        value: 1
+        num: 0
+        str: 
+      - type: 8
+        item: 0
+        actor: 8
+        flag: 5
+        value: 0
+        num: 0
+        str: Kitchen
+      - type: 6
+        item: 0
+        actor: 8
+        flag: 5
+        value: 0
+        num: -93
+        str: 
+      - type: 4
+        item: 0
+        actor: 8
+        flag: 6
+        value: 1
+        num: -93
+        str: 
+    Actions:
+    - running: 0
+      type: 9
+      Repeatable: 1
+      delay: 0
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 20
+      val: 0
+    - running: 0
+      type: 2
+      Repeatable: 1
+      delay: 0
+      actor: 11
+      str: Kitchen
+      pos: {x: -89, y: 17.9}
+      dir: 2
+      id: 0
+      val: 0
+  - name: Browsing fridge - Catch player start
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
+    ConditionsInOr:
+    - name: Edna browsing fridge
+      ConditionsInAnd:
+      - type: 4
+        item: 0
+        actor: 0
+        flag: 5
+        value: 1
+        num: 0
+        str: 
+      - type: 8
+        item: 0
+        actor: 8
+        flag: 5
+        value: 0
+        num: 0
+        str: Kitchen
+      - type: 7
+        item: 0
+        actor: 8
+        flag: 5
+        value: 0
+        num: -93
+        str: 
+      - type: 4
+        item: 0
+        actor: 8
+        flag: 6
+        value: 1
+        num: -93
+        str: 
+    Actions:
+    - running: 0
+      type: 9
+      Repeatable: 1
+      delay: 0
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 20
+      val: 1
+    - running: 0
+      type: 3
+      Repeatable: 1
+      delay: 0
+      actor: 11
+      str: 'Oh. An unwelcome visitor.
+
+        Let me catch you!'
+      pos: {x: -89, y: 17.9}
+      dir: 1
+      id: 0
+      val: 0
+    - running: 0
+      type: 6
+      Repeatable: 1
+      delay: 0
+      actor: 11
+      str: 'Oh. An unwelcome visitor.
+
+        Let me catch you!'
+      pos: {x: -89, y: 17.9}
+      dir: 1
+      id: 8
+      val: 1
+    - running: 0
+      type: 19
+      Repeatable: 1
+      delay: 0
+      actor: 11
+      str: 'Oh. An unwelcome visitor.
+
+        Let me catch you!'
+      pos: {x: -89, y: 17.9}
+      dir: 1
+      id: 6
+      val: 0
+  - name: Browsing fridge - Catch player
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      actor: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      id: 0
+      val: 0
+    ConditionsInOr:
+    - name: Edna browsing fridge
+      ConditionsInAnd:
+      - type: 1
+        item: 0
+        actor: 8
+        flag: 5
+        value: 0
+        num: 0
+        str: Kitchen
+      - type: 4
+        item: 0
+        actor: 8
+        flag: 6
+        value: 0
+        num: 0
+        str: Kitchen
+    Actions:
+    - running: 0
+      type: 6
+      Repeatable: 1
+      delay: 0
+      actor: 11
+      str: 'Oh. An unwelcome visitor.
+
+        Let me catch you!'
+      pos: {x: -89, y: 17.9}
+      dir: 1
+      id: 8
+      val: 1
 --- !u!95 &1533143415
 Animator:
   serializedVersion: 3
@@ -55219,24 +55415,28 @@ MonoBehaviour:
         flag: 0
         value: 1
         num: 0
+        str: 
       - type: 1
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 0
+        str: 
       - type: 2
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 10
+        str: 
       - type: 5
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 7.7
+        str: 
     Actions:
     - running: 0
       type: 3
@@ -55269,18 +55469,21 @@ MonoBehaviour:
         flag: 0
         value: 1
         num: 0
+        str: 
       - type: 1
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 0
+        str: 
       - type: 7
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 26.5
+        str: 
     Actions:
     - running: 0
       type: 5
@@ -55333,24 +55536,28 @@ MonoBehaviour:
         flag: 0
         value: 1
         num: 0
+        str: 
       - type: 1
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 0
+        str: 
       - type: 2
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 3
+        str: 
       - type: 5
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 5.2
+        str: 
     Actions:
     - running: 0
       type: 3
@@ -55393,18 +55600,21 @@ MonoBehaviour:
         flag: 0
         value: 1
         num: 0
+        str: 
       - type: 1
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 0
+        str: 
       - type: 6
         item: 0
         actor: 8
         flag: 0
         value: 0
         num: 26.5
+        str: 
     Actions:
     - running: 0
       type: 6
@@ -64155,6 +64365,7 @@ MonoBehaviour:
   - {fileID: 1211572500}
   - {fileID: 758301048}
   - {fileID: 785944029}
+  - {fileID: 1973022117}
   roomsList:
   - {fileID: 1432214312}
   - {fileID: 1117025435}
@@ -64165,6 +64376,7 @@ MonoBehaviour:
   - {fileID: 791578439}
   - {fileID: 1940318746}
   - {fileID: 1072545338}
+  - {fileID: 202005218}
   - {fileID: 718837450}
   cutscenes: []
 --- !u!4 &1966254327
@@ -64634,7 +64846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 637f299ffccc9954ca57a113a8a56e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: 0
+  Item: 20
   Name: Refrigerator
   owner: 0
   Usable: 4

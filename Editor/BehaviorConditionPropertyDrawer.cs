@@ -91,6 +91,7 @@ public class BehaviorConditionPropertyDrawer : PropertyDrawer {
     SerializedProperty flag = property.FindPropertyRelative("flag");
     SerializedProperty value = property.FindPropertyRelative("value");
     SerializedProperty dist = property.FindPropertyRelative("num");
+    SerializedProperty str = property.FindPropertyRelative("str");
 
     Rect rect1 = new Rect(position.x, position.y, position.width / 3, EditorGUIUtility.singleLineHeight);
     Rect rect2 = new Rect(position.x + 1 * position.width / 3, position.y, position.width / 3, EditorGUIUtility.singleLineHeight);
@@ -140,6 +141,9 @@ public class BehaviorConditionPropertyDrawer : PropertyDrawer {
         dist.floatValue = EditorGUI.FloatField(rect3, "X>", dist.floatValue);
         break;
 
+      case BehaviorConditionType.CurrentRoom:
+        str.stringValue = EditorGUI.TextField(rect2, "Room", str.stringValue);
+        break;
     }
 
     EditorGUI.indentLevel = indent;

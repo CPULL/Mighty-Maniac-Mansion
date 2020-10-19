@@ -117,6 +117,7 @@ public enum ItemEnum {
   PiggyBank,
   Coin,
   DeveloperBottle,
+  Fridge,
 
 }
 
@@ -127,6 +128,8 @@ public enum GameFlag {
   PoolHasWater,
   PowerIsDown,
   PackageIsDeliveredStamps,
+  EdnaBrowsingFridge,
+  EdnaCatching,
 }
 public enum FlagValue {
   Yes, No, NA

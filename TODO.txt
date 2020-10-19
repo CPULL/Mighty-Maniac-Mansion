@@ -3,6 +3,7 @@
 
 Draw Edna and do the "Check fridge" at start
 
+Do arms forward in all characters
 
 Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here (use behaviors?)
 
@@ -168,9 +169,16 @@ Jeff
 
 
 
+EdnaCatching Player<X SameRoom
+ Open Fridge
+ Wait B
+ 
+EdnaCatching Player>X SameRoom
+	Close Fridge
+	Say "Unwelcome visitor"
+	Run to side of player
 
-
-
+If catched start cutscene
 
 
 

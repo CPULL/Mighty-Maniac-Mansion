@@ -182,6 +182,10 @@ public class BehaviorCondition {
       }
 
 
+      case BehaviorConditionType.CurrentRoom: {
+        return GD.c.currentRoom.ID == str;
+      }
+
 
     }
     return false;
@@ -194,6 +198,7 @@ public class BehaviorCondition {
   public GameFlag flag;
   public FlagValue value;
   public float num;
+  public string str;
 
   public BehaviorCondition(BehaviorCondition orig) {
     toRun = System.DateTime.Now;
@@ -203,6 +208,7 @@ public class BehaviorCondition {
     flag = orig.flag;
     value = orig.value;
     num = orig.num;
+    str = orig.str;
   }
 
   public BehaviorCondition() {
@@ -213,6 +219,7 @@ public class BehaviorCondition {
     flag = 0;
     value = 0;
     num = 0;
+    str = null;
   }
 
   public override string ToString() {
@@ -225,11 +232,12 @@ public class BehaviorCondition {
       case BehaviorConditionType.Timed: return "Every " + num + " secs";
       case BehaviorConditionType.ActorXLess: return actor + " X < " + num;
       case BehaviorConditionType.ActorXMore: return actor + " X > " + num;
+      case BehaviorConditionType.CurrentRoom: return "Room is " + str;
     }
     return "undefined";
   }
 
-  public static string CalculateName(BehaviorConditionType typeVal, Chars actorVal, ItemEnum itemVal, GameFlag flagVal, FlagValue valVal, float distVal) {
+  public static string CalculateName(BehaviorConditionType typeVal, Chars actorVal, ItemEnum itemVal, GameFlag flagVal, FlagValue valVal, float distVal, string str) {
     switch (typeVal) {
       case BehaviorConditionType.ItemCollected: return itemVal + (valVal == FlagValue.Yes ? "Collected" : "Not collected");
       case BehaviorConditionType.ActorInSameRoom: return actorVal + (valVal == FlagValue.Yes ? "same room" : "other room");
@@ -239,6 +247,7 @@ public class BehaviorCondition {
       case BehaviorConditionType.Timed: return "Every " + distVal + " secs";
       case BehaviorConditionType.ActorXLess: return actorVal + " X < " + distVal;
       case BehaviorConditionType.ActorXMore: return actorVal + " X > " + distVal;
+      case BehaviorConditionType.CurrentRoom: return "Room is " + str;
     }
     return "undefined";
 
@@ -254,5 +263,6 @@ public enum BehaviorConditionType {
   Timed,
   ActorXLess,
   ActorXMore,
+  CurrentRoom
 }
 
