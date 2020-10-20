@@ -579,7 +579,7 @@ public class Controller : MonoBehaviour {
 
               case ActionType.WalkToActor: {
                 a.SetActor(val["ref"].Value); // Set it to actor just ot parse the actor name
-                a.id = a.actor;
+                a.id2 = a.id1;
                 a.SetActor(val["actor"].Value);
                 bool left = val["left"].AsBool || val["l"].AsBool;
                 a.SetVal(!left);
@@ -597,7 +597,7 @@ public class Controller : MonoBehaviour {
               }
               break;
 
-              case ActionType.OpenClose: {
+              case ActionType.Open: {
                 a.SetText(val["msg"].Value);
                 ItemEnum item = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), val["item"].Value, true);
                 if (!System.Enum.IsDefined(typeof(ItemEnum), item)) {
@@ -621,6 +621,7 @@ public class Controller : MonoBehaviour {
               }
               break;
 
+              /* FIXME
               case ActionType.Lockunlock: {
                 a.SetText(val["msg"].Value);
                 ItemEnum item = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), val["item"].Value, true);
@@ -632,6 +633,7 @@ public class Controller : MonoBehaviour {
                 a.SetVal(val["mode"].AsBool);
               }
               break;
+              */
 
               case ActionType.Cutscene: {
                 a.SetText(val["cutscene"].Value);

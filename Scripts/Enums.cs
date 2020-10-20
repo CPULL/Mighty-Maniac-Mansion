@@ -84,9 +84,9 @@ public static class Enums {
       case ActionType.WalkToActor: return true;
       case ActionType.BlockActorX: return true;
       case ActionType.UnBlockActor: return true;
-      case ActionType.OpenClose: return false;
+      case ActionType.Open: return false;
       case ActionType.EnableDisable: return false;
-      case ActionType.Lockunlock: return false;
+      //case ActionType.Lockunlock: return false;
       case ActionType.Cutscene: return true;
       case ActionType.Sound: return true;
       case ActionType.ReceiveCutscene: return false;

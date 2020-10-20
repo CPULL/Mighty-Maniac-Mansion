@@ -6791,6 +6791,7 @@ MonoBehaviour:
   Description: <b>Ollie</b> todo...
   TentacleSteps: {fileID: 0}
   Behaviors: []
+  scenes: []
 --- !u!95 &211990116
 Animator:
   serializedVersion: 3
@@ -9145,6 +9146,7 @@ MonoBehaviour:
   Description: 
   TentacleSteps: {fileID: 0}
   Behaviors: []
+  scenes: []
 --- !u!95 &301252753
 Animator:
   serializedVersion: 3
@@ -42609,6 +42611,7 @@ MonoBehaviour:
     She relaxes preparing food and petting her animals.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
+  scenes: []
 --- !u!95 &1347792469
 Animator:
   serializedVersion: 3
@@ -43668,6 +43671,7 @@ MonoBehaviour:
     He lacks guts and is easily terrified.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
+  scenes: []
 --- !u!82 &1379030971
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47749,6 +47753,7 @@ MonoBehaviour:
     food."
   TentacleSteps: {fileID: 0}
   Behaviors: []
+  scenes: []
 --- !u!95 &1532743335
 Animator:
   serializedVersion: 3
@@ -48091,7 +48096,7 @@ MonoBehaviour:
   Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 428433903}
-  actorSpeed: 3
+  actorSpeed: 1.5
   inventory: []
   id: 11
   mainScale: 0.95
@@ -48102,7 +48107,7 @@ MonoBehaviour:
     that she is into sado-masochism and obscene phone calls.
   TentacleSteps: {fileID: 0}
   Behaviors:
-  - name: Browsing fridge
+  - name: Edna debug
     currentAction:
       running: 0
       type: 0
@@ -48166,138 +48171,8 @@ MonoBehaviour:
       dir: 2
       id: 0
       val: 0
-  - name: Browsing fridge - Catch player start
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      actor: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      id: 0
-      val: 0
-    ConditionsInOr:
-    - name: Edna browsing fridge
-      ConditionsInAnd:
-      - type: 4
-        item: 0
-        actor: 0
-        flag: 5
-        value: 1
-        num: 0
-        str: 
-      - type: 8
-        item: 0
-        actor: 8
-        flag: 5
-        value: 0
-        num: 0
-        str: Kitchen
-      - type: 7
-        item: 0
-        actor: 8
-        flag: 5
-        value: 0
-        num: -93
-        str: 
-      - type: 4
-        item: 0
-        actor: 8
-        flag: 6
-        value: 1
-        num: -93
-        str: 
-    Actions:
-    - running: 0
-      type: 9
-      Repeatable: 1
-      delay: 0
-      actor: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      id: 20
-      val: 1
-    - running: 0
-      type: 3
-      Repeatable: 1
-      delay: 0
-      actor: 11
-      str: 'Oh. An unwelcome visitor.
-
-        Let me catch you!'
-      pos: {x: -89, y: 17.9}
-      dir: 1
-      id: 0
-      val: 0
-    - running: 0
-      type: 6
-      Repeatable: 1
-      delay: 0
-      actor: 11
-      str: 'Oh. An unwelcome visitor.
-
-        Let me catch you!'
-      pos: {x: -89, y: 17.9}
-      dir: 1
-      id: 8
-      val: 1
-    - running: 0
-      type: 19
-      Repeatable: 1
-      delay: 0
-      actor: 11
-      str: 'Oh. An unwelcome visitor.
-
-        Let me catch you!'
-      pos: {x: -89, y: 17.9}
-      dir: 1
-      id: 6
-      val: 0
-  - name: Browsing fridge - Catch player
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      actor: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      id: 0
-      val: 0
-    ConditionsInOr:
-    - name: Edna browsing fridge
-      ConditionsInAnd:
-      - type: 1
-        item: 0
-        actor: 8
-        flag: 5
-        value: 0
-        num: 0
-        str: Kitchen
-      - type: 4
-        item: 0
-        actor: 8
-        flag: 6
-        value: 0
-        num: 0
-        str: Kitchen
-    Actions:
-    - running: 0
-      type: 6
-      Repeatable: 1
-      delay: 0
-      actor: 11
-      str: 'Oh. An unwelcome visitor.
-
-        Let me catch you!'
-      pos: {x: -89, y: 17.9}
-      dir: 1
-      id: 8
-      val: 1
+  scenes:
+  - {fileID: 0}
 --- !u!95 &1533143415
 Animator:
   serializedVersion: 3
@@ -55636,6 +55511,7 @@ MonoBehaviour:
       dir: 0
       id: 0
       val: 0
+  scenes: []
 --- !u!95 &1730974554
 Animator:
   serializedVersion: 3
@@ -56108,6 +55984,7 @@ MonoBehaviour:
   Description: <b>Sandy</b> todo...
   TentacleSteps: {fileID: 0}
   Behaviors: []
+  scenes: []
 --- !u!95 &1744431311
 Animator:
   serializedVersion: 3
@@ -57138,6 +57015,7 @@ MonoBehaviour:
     much all the time.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
+  scenes: []
 --- !u!95 &1770484596
 Animator:
   serializedVersion: 3
@@ -57624,6 +57502,7 @@ MonoBehaviour:
     things, and can build, fix, and use pretty much all the things.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
+  scenes: []
 --- !u!95 &1785264455
 Animator:
   serializedVersion: 3
@@ -61801,6 +61680,7 @@ MonoBehaviour:
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
   Behaviors: []
+  scenes: []
 --- !u!95 &1918416704
 Animator:
   serializedVersion: 3

@@ -38,6 +38,9 @@ public class Actor : MonoBehaviour {
   float blockMinX = -float.MaxValue;
   float blockMaxX = float.MaxValue;
 
+  [SerializeField]
+  public GameScene scene;
+
   public void Player() {
     IAmNPC = false;
   }
@@ -281,6 +284,7 @@ public class Actor : MonoBehaviour {
           continue;
         }
         b.CheckActions();
+        Debug.Log("Actions for " + b.name + " => " + b.currentAction);
         if (b.currentAction != null) {
           // Play it until completed, and the behavior is still valid
           if (b.currentAction.running == Running.NotStarted) {

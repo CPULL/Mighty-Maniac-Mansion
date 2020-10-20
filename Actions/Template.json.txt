@@ -1,0 +1,30 @@
+{
+	"id":"", "name":"","type":"cutscene|actor|item","AppliesTo":null,
+
+	"condition":[
+		{ "type":"", "id1":"", "id2":"", "bval":"", "sval":"", "ival":"" },
+		{ "type":"", "id1":"", "id2":"", "val":"" },
+		{ "type":"", "id1":"", "id2":"", "val":"" }
+	],
+	
+	"sequence":[
+		{
+			"name":"",
+			"condition":[
+			{ "type":"", "id1":"", "id2":"", "val":"" }
+			],
+			"action":[
+				{ "type":"", "rep":true, "delay":0, "id1":"", "id2":"", "sval":"", "ival1":"", "ival2":"" },
+				{ "type":"", "rep":true, "delay":0, "id1":"", "id2":"", "sval":"", "ival1":"", "ival2":"" },
+				{ "type":"", "rep":true, "delay":0, "id1":"", "id2":"", "sval":"", "ival1":"", "ival2":"" },
+				{ "type":"", "rep":true, "delay":0, "id1":"", "id2":"", "sval":"", "ival1":"", "ival2":"" }
+			]
+		}, ...
+	]
+
+
+}
+
+
+
+

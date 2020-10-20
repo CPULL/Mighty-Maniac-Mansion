@@ -27,10 +27,10 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     SerializedProperty str = property.FindPropertyRelative("str");
     SerializedProperty pos = property.FindPropertyRelative("pos");
     SerializedProperty dir = property.FindPropertyRelative("dir");
-    SerializedProperty id = property.FindPropertyRelative("id");
+    SerializedProperty id = property.FindPropertyRelative("id1");
     SerializedProperty val = property.FindPropertyRelative("val");
 
-    string name = GameAction.CalculateName((ActionType)type.intValue, actor.intValue, str.stringValue, pos.vector2Value, (Dir)dir.intValue, id.intValue, val.intValue);
+    string name = ((ActionType)type.intValue).ToString();
 
     Rect rectAct  = new Rect(position.x + 0,                              position.y, 70, EditorGUIUtility.singleLineHeight);
     Rect rectRep  = new Rect(position.x + 70,                             position.y, 30, EditorGUIUtility.singleLineHeight);
@@ -57,11 +57,13 @@ public class GameActionPropertyDrawer : PropertyDrawer {
 
     switch ((ActionType)type.intValue) {
       case ActionType.ShowRoom: {
-        rect1 = new Rect(position.x + 0 * w2, position.y + 1 * lh, w2, lh);
-        rect2 = new Rect(position.x + 1 * w2, position.y + 1 * lh, w2, lh);
+        rect1 = new Rect(position.x + 0 * w3, position.y + 1 * lh, w3, lh);
+        rect2 = new Rect(position.x + 1 * w3, position.y + 1 * lh, w3, lh);
+        rect3 = new Rect(position.x + 2 * w3, position.y + 1 * lh, w3, lh);
         EditorGUIUtility.labelWidth = 80;
         str.stringValue = EditorGUI.TextField(rect1, "RoomID", str.stringValue);
         pos.vector2Value = EditorGUI.Vector2Field(rect2, "Position", pos.vector2Value);
+        val.intValue = EditorGUI.Popup(rect3, "Pan", val.intValue, System.Enum.GetNames(typeof(FlagValue)));
 
         if (string.IsNullOrEmpty(str.stringValue) || pos.vector2Value == Vector2.zero) {
           GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
@@ -207,7 +209,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       }
       break;
 
-      case ActionType.OpenClose: {
+      case ActionType.Open: {
         rect1 = new Rect(position.x + 0 * w2, position.y + 1 * lh, w2, lh);
         rect2 = new Rect(position.x + 1 * w2, position.y + 1 * lh, w2, lh);
         rect3 = new Rect(position.x + 0 * w1, position.y + 2 * lh, w1, lh);
@@ -245,6 +247,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       }
       break;
 
+      /*
       case ActionType.Lockunlock: {
         rect1 = new Rect(position.x + 0 * w2, position.y + 1 * lh, w2, lh);
         rect2 = new Rect(position.x + 1 * w2, position.y + 1 * lh, w2, lh);
@@ -263,6 +266,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         }
       }
       break;
+      */
 
       case ActionType.Cutscene: {
         rect1 = new Rect(position.x, position.y + 1 * lh, w1, EditorGUIUtility.singleLineHeight);
@@ -389,9 +393,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       case ActionType.WalkToActor: return sl * 2.5f;
       case ActionType.BlockActorX: return sl * 2;
       case ActionType.UnBlockActor: return sl * 2;
-      case ActionType.OpenClose: return sl * 3;
+      case ActionType.Open: return sl * 3;
       case ActionType.EnableDisable: return sl * 3;
-      case ActionType.Lockunlock: return sl * 3;
+      //case ActionType.Lockunlock: return sl * 3;
       case ActionType.Cutscene: return sl * 2;
       case ActionType.Sound: return sl * 2;
       case ActionType.ReceiveCutscene: return sl * 3;

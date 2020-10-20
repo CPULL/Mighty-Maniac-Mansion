@@ -1,6 +1,21 @@
 === Mighty Maniac Mansion ===
 
 
+Usual refurbish of th ecode.
+
+1) remove conditions in Or from behaviors
+2) change the flags to int, because we may need multiple stages
+3) have a way to load and update behaviors from a json file
+
+
+
+
+
+
+When going in the kitched with Edna, we should move the camera to show the fridge. Then do the behavior.
+
+
+
 Draw Edna and do the "Check fridge" at start
 
 Do arms forward in all characters
@@ -162,23 +177,6 @@ Jeff
 ! Add a way to give food to GT and stop walking if food is not given
 ! Add the Give action to cheese to test the Tentacle.
 ! We need a new action to change a game flag
-
-
-
-
-
-
-
-EdnaCatching Player<X SameRoom
- Open Fridge
- Wait B
- 
-EdnaCatching Player>X SameRoom
-	Close Fridge
-	Say "Unwelcome visitor"
-	Run to side of player
-
-If catched start cutscene
 
 
 

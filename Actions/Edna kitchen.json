@@ -1,0 +1,41 @@
+{
+	"id":"EdnaBrowsingFridge", "name":"Edna Browsing Fridge","type":"actor","AppliesTo":"Edna",
+
+	"condition":[
+		{ "type":"CurrentRoomIs", "sv":"Kitchen", "bv":true },
+		{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true }
+	],
+	
+	"sequence":[
+		{ "name":"Setup",
+			"condition":[],
+			"action":[
+				{ "type":"Teleport", "rep":true, "delay":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-89,17.9] },
+				{ "type":"Open", "rep":true, "delay":0, "id1":"Fridge", "id2":"", "sv":"Open", "iv":"", "dv":"", "vv":[] }
+			]
+		},
+				
+		{ "name":"CameraPan",
+			"condition":[
+				{ "type":"StepValueIs", "iv":0 },
+				{ "type":"ActorXLess", "id":"Current", "fv":-103, "bv":false }
+			],
+			"action":[
+				{ "type":"ShowRoom", "rep":true, "delay":.5, "vv":[-101, 20], "id2":"1" },
+				{ "type":"Speak", "rep":true, "delay":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder.", "iv":"", "dv":"L", "vv":[] }
+			]
+		},
+				
+		{ "name":"CatchPlayer",
+			"condition":[],
+			"action":[
+				{ "type":"WalkToActor", "rep":true, "delay":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"R", "vv":[] }
+			]
+		}
+	]
+
+}
+
+
+
+

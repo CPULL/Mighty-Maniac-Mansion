@@ -202,7 +202,7 @@ public class Item : GameItem {
 
   internal bool HasActions(When when) {
     foreach(ActionAndCondition ac in actions) {
-      if (ac.Condition.condition != Condition.None && ac.Condition.when == when) return true;
+      if (ac.Condition.condition != OLDConditionType.None && ac.Condition.when == when) return true;
     }
     return false;
   }

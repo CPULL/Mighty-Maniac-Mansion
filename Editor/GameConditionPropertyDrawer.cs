@@ -25,7 +25,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
     ItemEnum otherItemVal = (ItemEnum)otherItem.intValue;
     Skill skillVal = (Skill)skill.intValue;
     int numVal = num.intValue;
-    Condition conditionVal = (Condition)type.intValue;
+    OLDConditionType conditionVal = (OLDConditionType)type.intValue;
     CutsceneID actionVal = (CutsceneID)action.intValue;
     When whenVal = (When)when.intValue;
 
@@ -45,19 +45,19 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
       EditorGUI.LabelField(rectName, name);
     }
 
-    switch ((Condition)type.intValue) {
-      case Condition.None: break;
+    switch ((OLDConditionType)type.intValue) {
+      case OLDConditionType.None: break;
 
-      case Condition.CurrentActorEqual:
-      case Condition.CurrentActorNotEqual:
-      case Condition.ActorIsAvailable:
-      case Condition.RecipientIs:
-      case Condition.RecipientIsNot:
+      case OLDConditionType.CurrentActorEqual:
+      case OLDConditionType.CurrentActorNotEqual:
+      case OLDConditionType.ActorIsAvailable:
+      case OLDConditionType.RecipientIs:
+      case OLDConditionType.RecipientIsNot:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
         actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
         break;
 
-      case Condition.HasItem:
+      case OLDConditionType.HasItem:
         rect1 = new Rect(position.x + 10,                               position.y + EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 10 + position.width / 3,          position.y + EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
         rect3 = new Rect(position.x + 10 + 2 * position.width / 3,      position.y + EditorGUIUtility.singleLineHeight, position.width / 3, EditorGUIUtility.singleLineHeight);
@@ -69,7 +69,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
         BadResult.stringValue = EditorGUI.TextField(rectResult, "Bad Result", BadResult.stringValue);
         break;
 
-      case Condition.DoesNotHaveItem:
+      case OLDConditionType.DoesNotHaveItem:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 10 + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
@@ -79,7 +79,7 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
         BadResult.stringValue = EditorGUI.TextField(rectResult, "Bad Result", BadResult.stringValue);
         break;
 
-      case Condition.ActorHasSkill:
+      case OLDConditionType.ActorHasSkill:
         rect1 = new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 10 + position.width / 2, position.y + EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
         actor.intValue = EditorGUI.Popup(rect1, "Actor", actor.intValue, System.Enum.GetNames(typeof(Chars)));
@@ -89,13 +89,13 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
         BadResult.stringValue = EditorGUI.TextField(rectResult, "Bad Result", BadResult.stringValue);
         break;
 
-      case Condition.ItemIsOpen:
-      case Condition.ItemIsClosed:
-      case Condition.ItemIsLocked:
-      case Condition.ItemIsUnlocked:
-      case Condition.ItemIsCollected:
-      case Condition.ItemIsNotCollected:
-      case Condition.WithItem:
+      case OLDConditionType.ItemIsOpen:
+      case OLDConditionType.ItemIsClosed:
+      case OLDConditionType.ItemIsLocked:
+      case OLDConditionType.ItemIsUnlocked:
+      case OLDConditionType.ItemIsCollected:
+      case OLDConditionType.ItemIsNotCollected:
+      case OLDConditionType.WithItem:
         rect2 = new Rect(position.x + 10, position.y + 1 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
         item.intValue = EditorGUI.Popup(rect2, "Item", item.intValue, item.enumDisplayNames);
         rectResult = new Rect(position.x + 10, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width - 10, EditorGUIUtility.singleLineHeight);
@@ -103,13 +103,13 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
         BadResult.stringValue = EditorGUI.TextField(rectResult, "Bad Result", BadResult.stringValue);
         break;
 
-      case Condition.WhenIs:
+      case OLDConditionType.WhenIs:
         break;
 
-      case Condition.GameFlag:
+      case OLDConditionType.GameFlag:
         break;
 
-      case Condition.ItemCouple:
+      case OLDConditionType.ItemCouple:
         rect1 = new Rect(position.x + 0 * position.width / 4,    position.y + EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
         rect2 = new Rect(position.x + 1 * position.width / 4,    position.y + EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
         rect3 = new Rect(position.x + 2 * position.width / 4,    position.y + EditorGUIUtility.singleLineHeight, position.width / 4, EditorGUIUtility.singleLineHeight);
@@ -137,26 +137,26 @@ public class GameConditionPropertyDrawer : PropertyDrawer {
     float l = EditorGUIUtility.singleLineHeight;
 
     SerializedProperty type = property.FindPropertyRelative("condition");
-    switch ((Condition)type.intValue) {
-      case Condition.None: return h + l;
-      case Condition.ActorIsAvailable: return h + l;
-      case Condition.CurrentActorEqual: return h + l;
-      case Condition.CurrentActorNotEqual: return h + l;
-      case Condition.RecipientIs: return h + l;
-      case Condition.RecipientIsNot: return h + l;
-      case Condition.ActorHasSkill: return h + l;
-      case Condition.HasItem: return h + l;
-      case Condition.DoesNotHaveItem: return h + l;
-      case Condition.ItemIsOpen: return h + l;
-      case Condition.ItemIsClosed: return h + l;
-      case Condition.ItemIsLocked: return h + l;
-      case Condition.ItemIsCollected: return h + 2 * l;
-      case Condition.ItemIsNotCollected: return h + 2 * l;
-      case Condition.ItemIsUnlocked: return h + l;
-      case Condition.WithItem: return h + 2 * l;
-      case Condition.WhenIs: return h + l;
-      case Condition.ItemCouple: return h + 2 * l;
-      case Condition.GameFlag: return h + l;
+    switch ((OLDConditionType)type.intValue) {
+      case OLDConditionType.None: return h + l;
+      case OLDConditionType.ActorIsAvailable: return h + l;
+      case OLDConditionType.CurrentActorEqual: return h + l;
+      case OLDConditionType.CurrentActorNotEqual: return h + l;
+      case OLDConditionType.RecipientIs: return h + l;
+      case OLDConditionType.RecipientIsNot: return h + l;
+      case OLDConditionType.ActorHasSkill: return h + l;
+      case OLDConditionType.HasItem: return h + l;
+      case OLDConditionType.DoesNotHaveItem: return h + l;
+      case OLDConditionType.ItemIsOpen: return h + l;
+      case OLDConditionType.ItemIsClosed: return h + l;
+      case OLDConditionType.ItemIsLocked: return h + l;
+      case OLDConditionType.ItemIsCollected: return h + 2 * l;
+      case OLDConditionType.ItemIsNotCollected: return h + 2 * l;
+      case OLDConditionType.ItemIsUnlocked: return h + l;
+      case OLDConditionType.WithItem: return h + 2 * l;
+      case OLDConditionType.WhenIs: return h + l;
+      case OLDConditionType.ItemCouple: return h + 2 * l;
+      case OLDConditionType.GameFlag: return h + l;
     }
     return (h + l) * 2;
   }
