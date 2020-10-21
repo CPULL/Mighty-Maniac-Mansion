@@ -5,7 +5,7 @@ public class AllObjects : MonoBehaviour {
   public List<Item> itemsList;
   public List<Room> roomsList;
   public List<FlagStatus> flagsList;
-  public List<Cutscene> cutscenes;
+  public List<GameScene> cutscenes;
 
   private void Awake() {
     GD.a = this;
@@ -68,20 +68,9 @@ public class AllObjects : MonoBehaviour {
       }
   }
 
-  public static Cutscene GetCutscene(string id) {
-    string val = id.ToLowerInvariant();
-    foreach (Cutscene s in GD.a.cutscenes) {
-      if (s.idstr.ToLowerInvariant() == val) {
-        return s;
-      }
-    }
-    Debug.LogError("Cutscene not found: \"" + id + "\"");
-    return null;
-  }
-
-  public static Cutscene GetCutscene(CutsceneID id) {
-    foreach (Cutscene s in GD.a.cutscenes) {
-      if (s.id == id) {
+  public static GameScene GetCutscene(CutsceneID id) {
+    foreach (GameScene s in GD.a.cutscenes) {
+      if (s.Id == id) {
         return s;
       }
     }

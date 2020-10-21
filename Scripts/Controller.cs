@@ -71,7 +71,11 @@ public class Controller : MonoBehaviour {
     #region Sequences and actions
     if (currentCutscene != null) { // Do we have a sequence?
       if (currentAction == null) { // Do we have the action?
-        currentAction = currentCutscene.GetNextAction();
+        GameAction act = currentCutscene.GetNext();
+        if (act == null)
+          currentAction = null;
+        else
+          currentAction = new ContextualizedAction { action = act, performer = null, secondary = null };
         if (currentAction == null) {
           currentCutscene = null;
           forcedCursor = CursorTypes.None;
@@ -454,7 +458,7 @@ public class Controller : MonoBehaviour {
   }
 
   private void Start() {
-    LoadSequences();
+    GD.LoadGameScenes();
 
     foreach (Room r in GD.a.roomsList) {
       r.gameObject.SetActive(false);
@@ -512,202 +516,23 @@ public class Controller : MonoBehaviour {
 
 
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
-  public Cutscene currentCutscene;
+  public GameScene currentCutscene;
   ContextualizedAction currentAction;
   
   readonly SList<ContextualizedAction> actionsToPlay = new SList<ContextualizedAction>(16);
   readonly HashSet<GameAction> allKnownActions = new HashSet<GameAction>();
 
-  void LoadSequences() {
-    string path = Application.dataPath + "/Actions/";
 
-    try {
-      foreach (string file in System.IO.Directory.GetFiles(path, "*.json")) {
-        //FIXME Debug.Log(file);
-        string json = System.IO.File.ReadAllText(file);
-
-        try {
-          JSONNode j = JSON.Parse(json);
-
-          Cutscene seq = new Cutscene(j["id"].Value, j["name"].Value);
-          // FIXME conditions
-          // Actions
-          JSONNode.ValueEnumerator vals = j["actions"].Values;
-          foreach (JSONNode val in vals) {
-            GameAction a = new GameAction(val["type"].Value);
-
-            switch (a.type) {
-              case ActionType.None:
-                Debug.LogError("Not handled action type: " + val["type"].Value);
-                break;
-
-              case ActionType.ShowRoom: {
-                a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-                a.SetText(val["room"].Value);
-              }
-              break;
-
-              case ActionType.Teleport: {
-                a.SetActor(val["actor"].Value);
-                a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-                a.SetDir(val["dir"].Value);
-                a.SetText(val["room"].Value);
-              }
-              break;
-
-              case ActionType.Speak: {
-                a.SetActor(val["actor"].Value);
-                a.SetDir(val["dir"].Value);
-                a.SetText(val["msg"].Value);
-              }
-              break;
-
-              case ActionType.Expression: {
-                a.SetActor(val["actor"].Value);
-                a.SetDir(val["dir"].Value);
-                a.SetID((int)Enums.GetExp(val["expr"].Value));
-              }
-              break;
-
-              case ActionType.WalkToPos: {
-                a.SetActor(val["actor"].Value);
-                a.SetPos(val["pos"][0].AsFloat, val["pos"][1].AsFloat);
-                a.SetDir(val["dir"].Value);
-                a.SetText(val["room"].Value);
-              }
-              break;
-
-              case ActionType.WalkToActor: {
-                a.SetActor(val["ref"].Value); // Set it to actor just ot parse the actor name
-                a.id2 = a.id1;
-                a.SetActor(val["actor"].Value);
-                bool left = val["left"].AsBool || val["l"].AsBool;
-                a.SetVal(!left);
-              }
-              break;
-
-              case ActionType.BlockActorX: {
-                a.SetActor(val["actor"].Value);
-                a.SetPos(val["min"].AsFloat, val["max"].AsFloat);
-              }
-              break;
-
-              case ActionType.UnBlockActor: {
-                a.SetActor(val["actor"].Value);
-              }
-              break;
-
-              case ActionType.Open: {
-                a.SetText(val["msg"].Value);
-                ItemEnum item = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), val["item"].Value, true);
-                if (!System.Enum.IsDefined(typeof(ItemEnum), item)) {
-                  Debug.LogError("Invalid ID for Item to open: \"" + val["item"].Value + "\"");
-                }
-                else
-                  a.SetID((int)item);
-                a.SetVal(val["mode"].AsBool);
-              }
-              break;
-
-              case ActionType.EnableDisable: {
-                a.SetText(val["msg"].Value);
-                ItemEnum item = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), val["item"].Value, true);
-                if (!System.Enum.IsDefined(typeof(ItemEnum), item)) {
-                  Debug.LogError("Invalid ID for Item to open: \"" + val["item"].Value + "\"");
-                }
-                else
-                  a.SetID((int)item);
-                a.SetVal(val["mode"].AsBool);
-              }
-              break;
-
-              /* FIXME
-              case ActionType.Lockunlock: {
-                a.SetText(val["msg"].Value);
-                ItemEnum item = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), val["item"].Value, true);
-                if (!System.Enum.IsDefined(typeof(ItemEnum), item)) {
-                  Debug.LogError("Invalid ID for Item to open: \"" + val["item"].Value + "\"");
-                }
-                else
-                  a.SetID((int)item);
-                a.SetVal(val["mode"].AsBool);
-              }
-              break;
-              */
-
-              case ActionType.Cutscene: {
-                a.SetText(val["cutscene"].Value);
-              }
-              break;
-
-              case ActionType.Sound: {
-                a.SetActor(val["actor"].Value);
-                a.SetDir(val["dir"].Value);
-                Audios snd = (Audios)System.Enum.Parse(typeof(Audios), val["snd"].Value, true);
-                if (!System.Enum.IsDefined(typeof(Audios), snd)) {
-                  Debug.LogError("Invalid ID for sound: \"" + val["snd"].Value + "\"");
-                }
-                else
-                  a.SetID((int)snd);
-              }
-              break;
-              case ActionType.ReceiveCutscene: { } // FIXME
-              break;
-              case ActionType.ReceiveFlag: { } // FIXME
-              break;
-
-              case ActionType.Fade: {
-                a.SetVal(val["in"].AsBool || val["In"].AsBool || val["i"].AsBool || val["I"].AsBool);
-              }
-              break;
-
-              case ActionType.Anim: { } // FIXME
-              break;
-              case ActionType.AlterItem: { } // FIXME
-              break;
-
-              case ActionType.SetFlag: {
-                GameFlag flag = (GameFlag)System.Enum.Parse(typeof(GameFlag), val["flag"].Value, true);
-                if (!System.Enum.IsDefined(typeof(GameFlag), flag)) {
-                  Debug.LogError("Invalid ID for GameFlag: \"" + val["flag"].Value + "\"");
-                }
-                else
-                  a.SetID((int)flag);
-                a.SetVal(val["value"].AsBool || val["val"].AsBool);
-              }
-              break;
-            }
-
-            a.SetWait(val["wait"].AsFloat);
-
-            if (!val["norepeat"])
-              a.Repeatable = true;
-
-            seq.actions.Add(a);
-          }
-          GD.a.cutscenes.Add(seq);
-
-        } catch (System.Exception e) {
-          Debug.Log("ERROR (" + file + "): " + e.Message);
-        }
-      }
-    } catch (System.Exception e) {
-      Debug.Log("Main ERROR reading " + path + ": " + e.Message);
-      // FIXME here we need a better message
-    }
-
-    currentCutscene = null;
-  }
 
   void StartIntroCutscene() {
-    currentCutscene = AllObjects.GetCutscene("intro");
+    currentCutscene = AllObjects.GetCutscene(CutsceneID.Intro);
     forcedCursor = CursorTypes.Wait;
     oldCursor = null;
     GD.status = GameStatus.NormalGamePlay;
   }
 
 
-  public static void StartCutScene(Cutscene scene) {
+  public static void StartCutScene(GameScene scene) {
     GD.c.currentCutscene = scene;
     if (GD.c.currentCutscene != null) {
       GD.c.currentCutscene.Reset();
@@ -736,7 +561,11 @@ public class Controller : MonoBehaviour {
     else if (currentAction.IsCompleted()) {
       if (currentAction.action.Repeatable) currentAction.action.Reset();
       if (currentCutscene != null) {
-        currentAction = currentCutscene.GetNextAction();
+        GameAction act = currentCutscene.GetNext();
+        if (act == null)
+          currentAction = null;
+        else
+          currentAction = new ContextualizedAction { action = act, performer = null, secondary = null };
       }
       else if (actionsToPlay.Count > 0) {
         currentAction = actionsToPlay.GetFirst();

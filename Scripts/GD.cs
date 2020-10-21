@@ -18,7 +18,6 @@ public class GD : MonoBehaviour {
 
     gs = this;
     DontDestroyOnLoad(this.gameObject);
-    LoadScenes();
   }
 
 
@@ -67,25 +66,25 @@ public class GD : MonoBehaviour {
     }
   }
 
-
+  public static void LoadGameScenes() {
+    gs.LoadScenes();
+  }
 
   private void LoadScenes() {
     string path = Application.dataPath + "/Actions/";
 
-    foreach (string file in Directory.GetFiles(path, "*.json", SearchOption.AllDirectories)) {
+    foreach (string file in Directory.GetFiles(path, "*.json", SearchOption.TopDirectoryOnly)) {
       try {
         Debug.Log("GD: " + file);
         string json = File.ReadAllText(file);
         JSONNode js = JSON.Parse(json);
 
-
-        // 	"id":"", "name":"","type":"cutscene|actor|item","AppliesTo":null,
         GameScene seq = new GameScene(js["id"].Value, js["name"].Value, js["type"].Value);
         if (js["condition"].IsArray) {
           JSONNode conditions = js["condition"];
           for (int i = 0; i < conditions.AsArray.Count; i++) {
             JSONNode condition = conditions[i];
-            seq.condition.Add(new Condition(condition["type"].Value, condition["id"].AsInt, condition["id"].Value, condition["iv"].AsInt, condition["bv"].AsBool, condition["sv"].Value, condition["fv"].AsFloat));
+            seq.conditions.Add(new Condition(condition["type"].Value, condition["id"].AsInt, condition["id"].Value, condition["iv"].AsInt, condition["bv"].AsBool, condition["sv"].Value, condition["fv"].AsFloat));
           }
         }
 
@@ -112,28 +111,35 @@ public class GD : MonoBehaviour {
                   vv.x = action["vv"][0].AsFloat;
                   vv.y = action["vv"][1].AsFloat;
                 }
+                string a = action["type"].Value;
+                bool repeatable = action["rep"].IsNull;
+                if (!repeatable ) repeatable = action["rep"].AsBool;
+
+                float c = action["del"].AsFloat;
+                string d = action["id1"].Value;
+                string e = action["id2"].Value;
+                string f = action["sv"].Value;
+                int g = action["iv"].AsInt;
+                string h = action["dv"].Value;
+                GameAction ga = new GameAction(a, repeatable, c, d, e, f, g, h, vv);
                 step.actions.Add(
-                  new GameAction(action["type"].Value, action["rep"].IsNull ? true : actions["rep"].AsBool, action["del"].AsFloat, action["id1"].Value, action["id2"].Value, action["sv"].Value, action["iv"].AsInt, action["dv"].Value, vv)
+                  ga
                 );
               }
             }
 
-
             seq.steps.Add(step);
-
           }
         }
 
-        continue;
-
-
-      
-      
-      */
+        if (seq.Type == GameSceneType.Cutscene) {
+          a.cutscenes.Add(seq);
+        }
       } catch (System.Exception e) {
         Debug.Log("Main ERROR reading " + file + ": " + e.Message);
         // FIXME here we need a better message
       }
+
     }
   }
 

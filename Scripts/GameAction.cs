@@ -152,6 +152,25 @@ public class GameAction {
       }
       break;
 
+      case ActionType.Expression: {
+        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
+        if (!System.Enum.IsDefined(typeof(Chars), id)) {
+          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+        id2 = (int)Expression.Normal;
+        char ex = (sv.ToLowerInvariant() + "n")[0];
+        switch(ex) {
+          case 'h': id2 = (int)Expression.Happy; break;
+          case 's': id2 = (int)Expression.Sad; break;
+          case 'n': id2 = (int)Expression.Normal; break;
+          case 'o': id2 = (int)Expression.Open; break;
+          case 'b': id2 = (int)Expression.BigOpen; break;
+        }
+      }
+      break;
+
+
     }
 
     str = sv;
@@ -329,6 +348,7 @@ public class GameAction {
 
 
   public void RunAction(Actor performer, Actor secondary) {
+    Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
         GD.c.currentRoom = AllObjects.GetRoom(str);

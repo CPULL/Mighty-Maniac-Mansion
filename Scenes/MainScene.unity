@@ -6791,7 +6791,23 @@ MonoBehaviour:
   Description: <b>Ollie</b> todo...
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &211990116
 Animator:
   serializedVersion: 3
@@ -9146,7 +9162,23 @@ MonoBehaviour:
   Description: 
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &301252753
 Animator:
   serializedVersion: 3
@@ -12108,11 +12140,11 @@ MonoBehaviour:
       type: 15
       Repeatable: 1
       delay: 2
-      actor: 6
+      id1: 0
+      id2: 0
       str: Thanks, I will roll a joint.
       pos: {x: -55, y: 2}
       dir: 4
-      id: 0
       val: 0
   - Condition:
       condition: 15
@@ -12129,11 +12161,11 @@ MonoBehaviour:
       type: 15
       Repeatable: 1
       delay: 2
-      actor: 6
+      id1: 0
+      id2: 0
       str: I have no use for it
       pos: {x: -55, y: 2}
       dir: 4
-      id: 0
       val: 1
   sr: {fileID: 0}
 --- !u!65 &405510475
@@ -12816,7 +12848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428433900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -99, y: 20, z: 0}
+  m_LocalPosition: {x: -105.5, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 196292426}
@@ -13966,11 +13998,11 @@ MonoBehaviour:
       type: 12
       Repeatable: 1
       delay: 1
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 2
-      id: 2
       val: 0
   sr: {fileID: 0}
 --- !u!212 &456024917
@@ -14143,11 +14175,11 @@ MonoBehaviour:
       type: 1
       Repeatable: 1
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: SuitesCorridor
       pos: {x: 30, y: 50}
       dir: 0
-      id: 0
       val: 0
   - Condition:
       condition: 0
@@ -14164,11 +14196,11 @@ MonoBehaviour:
       type: 2
       Repeatable: 0
       delay: 0
-      actor: 1
+      id1: 0
+      id2: 0
       str: SuitesCorridor
       pos: {x: 30, y: 48}
       dir: 2
-      id: 0
       val: 0
   sr: {fileID: 0}
 --- !u!212 &464047115
@@ -16424,7 +16456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -99, y: 10, z: -10}
+  m_LocalPosition: {x: -101, y: 20, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -23568,11 +23600,11 @@ MonoBehaviour:
       type: 2
       Repeatable: 1
       delay: 1
-      actor: 1
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 4
-      id: 0
       val: 0
   sr: {fileID: 0}
 --- !u!212 &758301049
@@ -23958,11 +23990,11 @@ MonoBehaviour:
       type: 1
       Repeatable: 0
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: Upstairs
       pos: {x: -50, y: 30}
       dir: 0
-      id: 0
       val: 0
   - Condition:
       condition: 0
@@ -23979,11 +24011,11 @@ MonoBehaviour:
       type: 2
       Repeatable: 0
       delay: 0
-      actor: 1
+      id1: 0
+      id2: 0
       str: Upstairs
       pos: {x: -55, y: 26}
       dir: 2
-      id: 0
       val: 0
   sr: {fileID: 0}
 --- !u!212 &759445684
@@ -24868,11 +24900,11 @@ MonoBehaviour:
       type: 17
       Repeatable: 0
       delay: 0.25
-      actor: 0
+      id1: 0
+      id2: 0
       str: Bottle break
       pos: {x: 0, y: 0}
       dir: 0
-      id: 19
       val: 0
   - Condition:
       condition: 0
@@ -24889,11 +24921,11 @@ MonoBehaviour:
       type: 13
       Repeatable: 0
       delay: 0.3
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 1
       val: 0
   - Condition:
       condition: 0
@@ -24910,11 +24942,11 @@ MonoBehaviour:
       type: 18
       Repeatable: 0
       delay: 1
-      actor: 0
+      id1: 0
+      id2: 0
       str: WR
       pos: {x: 0, y: 0}
       dir: 0
-      id: 19
       val: 0
   sr: {fileID: 0}
 --- !u!212 &785944030
@@ -38063,11 +38095,11 @@ MonoBehaviour:
       type: 15
       Repeatable: 0
       delay: 0
-      actor: 14
+      id1: 0
+      id2: 0
       str: Wow! The one I like!
       pos: {x: 0, y: 0}
       dir: 4
-      id: 0
       val: 0
   - Condition:
       condition: 15
@@ -38084,11 +38116,11 @@ MonoBehaviour:
       type: 15
       Repeatable: 1
       delay: 0
-      actor: 14
+      id1: 0
+      id2: 0
       str: It is disgusting, I don't want it
       pos: {x: 0, y: 0}
       dir: 4
-      id: 0
       val: 1
   sr: {fileID: 0}
 --- !u!212 &1211572501
@@ -40069,11 +40101,11 @@ MonoBehaviour:
       type: 11
       Repeatable: 1
       delay: 0.1
-      actor: 0
+      id1: 0
+      id2: 0
       str: It is unlocked!
       pos: {x: 0, y: 0}
       dir: 0
-      id: 12
       val: 1
   sr: {fileID: 0}
 --- !u!61 &1256842731
@@ -42611,7 +42643,23 @@ MonoBehaviour:
     She relaxes preparing food and petting her animals.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &1347792469
 Animator:
   serializedVersion: 3
@@ -43671,7 +43719,23 @@ MonoBehaviour:
     He lacks guts and is easily terrified.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!82 &1379030971
 AudioSource:
   m_ObjectHideFlags: 0
@@ -46352,11 +46416,11 @@ MonoBehaviour:
       type: 10
       Repeatable: 0
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 5
       val: 0
   sr: {fileID: 0}
 --- !u!212 &1486595614
@@ -47753,7 +47817,23 @@ MonoBehaviour:
     food."
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &1532743335
 Animator:
   serializedVersion: 3
@@ -47923,7 +48003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533143410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -89.33, y: 17.91, z: 0}
+  m_LocalPosition: {x: -103, y: 17.91, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 1149741274}
@@ -48113,11 +48193,11 @@ MonoBehaviour:
       type: 0
       Repeatable: 0
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
       val: 0
     ConditionsInOr:
     - name: Edna browsing fridge
@@ -48155,24 +48235,39 @@ MonoBehaviour:
       type: 9
       Repeatable: 1
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 20
       val: 0
     - running: 0
       type: 2
       Repeatable: 1
       delay: 0
-      actor: 11
+      id1: 0
+      id2: 0
       str: Kitchen
       pos: {x: -89, y: 17.9}
       dir: 2
-      id: 0
       val: 0
-  scenes:
-  - {fileID: 0}
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &1533143415
 Animator:
   serializedVersion: 3
@@ -55275,11 +55370,11 @@ MonoBehaviour:
       type: 0
       Repeatable: 0
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
       val: 0
     ConditionsInOr:
     - name: 
@@ -55317,11 +55412,11 @@ MonoBehaviour:
       type: 3
       Repeatable: 1
       delay: 0
-      actor: 7
+      id1: 0
+      id2: 0
       str: You shall not pass!
       pos: {x: 24.31, y: 49.32}
       dir: 4
-      id: 0
       val: 0
   - name: Patrolling while not feeded
     currentAction:
@@ -55329,11 +55424,11 @@ MonoBehaviour:
       type: 0
       Repeatable: 0
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
       val: 0
     ConditionsInOr:
     - name: 
@@ -55364,31 +55459,31 @@ MonoBehaviour:
       type: 5
       Repeatable: 1
       delay: 0
-      actor: 7
+      id1: 0
+      id2: 0
       str: SuiteCorridor
       pos: {x: 24.5, y: 49.47}
       dir: 0
-      id: 0
       val: 0
     - running: 0
       type: 5
       Repeatable: 1
       delay: 0
-      actor: 7
+      id1: 0
+      id2: 0
       str: SuiteCorridor
       pos: {x: 22, y: 46.7}
       dir: 0
-      id: 0
       val: 0
     - running: 0
       type: 8
       Repeatable: 1
       delay: 0
-      actor: 8
+      id1: 0
+      id2: 0
       str: SuiteCorridor
       pos: {x: 23.5, y: 46.57}
       dir: 0
-      id: 0
       val: 0
   - name: Block actor while not feeded (speak)
     currentAction:
@@ -55396,11 +55491,11 @@ MonoBehaviour:
       type: 0
       Repeatable: 0
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
       val: 0
     ConditionsInOr:
     - name: 
@@ -55438,21 +55533,21 @@ MonoBehaviour:
       type: 3
       Repeatable: 1
       delay: 0
-      actor: 7
+      id1: 0
+      id2: 0
       str: I am hungry!
       pos: {x: 24.31, y: 49.32}
       dir: 4
-      id: 0
       val: 0
     - running: 0
       type: 7
       Repeatable: 0
       delay: 0
-      actor: 8
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 25, y: 49.32}
       dir: 0
-      id: 0
       val: 0
   - name: Block actor while not feeded (walk)
     currentAction:
@@ -55460,11 +55555,11 @@ MonoBehaviour:
       type: 0
       Repeatable: 0
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
       val: 0
     ConditionsInOr:
     - name: 
@@ -55495,23 +55590,39 @@ MonoBehaviour:
       type: 6
       Repeatable: 1
       delay: 0
-      actor: 7
+      id1: 0
+      id2: 0
       str: SuiteCorridor
       pos: {x: 24.31, y: 49.32}
       dir: 0
-      id: 8
       val: 0
     - running: 0
       type: 7
       Repeatable: 0
       delay: 0
-      actor: 8
+      id1: 0
+      id2: 0
       str: SuiteCorridor
       pos: {x: 25, y: 49.32}
       dir: 0
-      id: 0
       val: 0
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &1730974554
 Animator:
   serializedVersion: 3
@@ -55984,7 +56095,23 @@ MonoBehaviour:
   Description: <b>Sandy</b> todo...
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &1744431311
 Animator:
   serializedVersion: 3
@@ -57015,7 +57142,23 @@ MonoBehaviour:
     much all the time.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &1770484596
 Animator:
   serializedVersion: 3
@@ -57502,7 +57645,23 @@ MonoBehaviour:
     things, and can build, fix, and use pretty much all the things.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &1785264455
 Animator:
   serializedVersion: 3
@@ -58172,11 +58331,11 @@ MonoBehaviour:
       type: 6
       Repeatable: 0
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
       val: 0
   - Condition:
       condition: 4
@@ -58193,11 +58352,11 @@ MonoBehaviour:
       type: 6
       Repeatable: 0
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      id: 0
       val: 0
   - Condition:
       condition: 1
@@ -58214,11 +58373,11 @@ MonoBehaviour:
       type: 2
       Repeatable: 0
       delay: 0
-      actor: 1
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 2
-      id: 0
       val: 0
   - Condition:
       condition: 1
@@ -58235,11 +58394,11 @@ MonoBehaviour:
       type: 2
       Repeatable: 0
       delay: 2
-      actor: 1
+      id1: 0
+      id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 2
-      id: 0
       val: 0
   sr: {fileID: 0}
 --- !u!1 &1805491017
@@ -58906,11 +59065,11 @@ MonoBehaviour:
       type: 1
       Repeatable: 1
       delay: 0
-      actor: 0
+      id1: 0
+      id2: 0
       str: EdRoom
       pos: {x: -50, y: 80}
       dir: 0
-      id: 0
       val: 0
   - Condition:
       condition: 0
@@ -58927,11 +59086,11 @@ MonoBehaviour:
       type: 2
       Repeatable: 1
       delay: 0
-      actor: 1
+      id1: 0
+      id2: 0
       str: EdRoom
       pos: {x: -53, y: 78}
       dir: 2
-      id: 0
       val: 0
   sr: {fileID: 0}
 --- !u!212 &1815643621
@@ -61680,7 +61839,23 @@ MonoBehaviour:
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
   Behaviors: []
-  scenes: []
+  scene:
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
 --- !u!95 &1918416704
 Animator:
   serializedVersion: 3

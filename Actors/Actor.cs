@@ -70,8 +70,8 @@ public class Actor : MonoBehaviour {
       if (i.Item == item) return true;
     return false;
   }
-
-  public string HasSkill(Skill skill) {
+  
+  public string HasSkillOLD(Skill skill) {
     foreach (Skill s in skills)
       if (s == skill) return null;
     switch (skill) {
@@ -87,6 +87,12 @@ public class Actor : MonoBehaviour {
         break;
     }
     return "I cannot do it";
+  }
+
+  public bool HasSkill(Skill skill) {
+    foreach (Skill s in skills)
+      if (s == skill) return true;
+    return false;
   }
 
   public void AddSkill(Skill skill) {

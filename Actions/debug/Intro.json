@@ -1,0 +1,28 @@
+{
+	"name":"Intro Sequence",
+	"id":"intro",
+	"conditions":{
+		"condition":["CurrentActorEqual", "CurrentActorNotEqual", "ActorIsAvailable", "ActorHasSkill", "HasItem", "DoesNotHaveItem", "ItemIsOpen", "ItemIsLocked", "ItemIsUnlocked", "ItemIsClosed", "ActionCompleted", "ActionNotStarted", "ActionRunning", "ItemIsCollected", "ItemIsNotCollected", "WithItem", "RecipientIs", "RecipientIsNot", "WhenIs"],
+		"actor":"id",
+		"skill":"id",
+		"item":"id",
+		"num":0,
+		"action":"id"
+	},
+	"actions":[
+		{ "type":"ShowRoom", "room":"StartArea", "pos":[7,2] },
+		{ "type":"Teleport", "room":"StartArea", "actor":"Actor1", "pos":[8.82,-0.76], "dir":"F" },
+		{ "type":"Teleport", "room":"StartArea", "actor":"Actor2", "pos":[13.23,-1.43], "dir":"L" },
+		{ "type":"Teleport", "room":"StartArea", "actor":"Actor3", "pos":[11.45,-0.46], "dir":"F" },
+		
+		{ "type":"Expression", "actor":"Actor1", "expr":"Normal", "dir":"F", "wait":.01 },
+		{ "type":"Expression", "actor":"Actor2", "expr":"Normal", "dir":"F", "wait":.01 },
+		{ "type":"Expression", "actor":"Actor3", "expr":"Normal", "dir":"F", "wait":.75 },
+		
+		{ "type":"Speak", "actor":"Actor1", "msg":"OK, this will be really dangerous.", "dir":"R" },
+		{ "type":"Speak", "actor":"Actor1", "msg":"We may die.", "dir":"F" },
+		{ "type":"Expression", "actor":"Actor2", "expr":"BigOpen", "dir":"F", "wait":.01 }
+		//, { "type":"Speak", "actor":"Actor1", "msg":"Watch my back!", "dir":"B" }
+		//, { "type":"Speak", "actor":"Javid", "msg":"This is a long sentence.\nIt is long just to have the balloon to stay\nfor quite some time.\nAlso if the text will go really fast.\nWatch my back!", "dir":"F" }
+	]
+}

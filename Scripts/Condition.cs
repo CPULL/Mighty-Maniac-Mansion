@@ -84,6 +84,88 @@ public class Condition {
     return res;
   }
 
+  public bool IsValid(Chars actor) {
+    switch (type) {
+      case ConditionType.None: return true;
+
+      case ConditionType.ActorIs: { // We need an actor to test
+        bool res;
+        if ((Chars)id1 == Chars.Current) res = GD.c.currentActor.id == actor;
+        else if ((Chars)id1 == Chars.Actor1) res = GD.actor1 == actor;
+        else if ((Chars)id1 == Chars.Actor2) res = GD.actor2 == actor;
+        else if ((Chars)id1 == Chars.Actor3) res = GD.actor3 == actor;
+        else if ((Chars)id1 == Chars.KidnappedActor) res = GD.kidnapped == actor;
+        else if ((Chars)id1 == Chars.Player) res = (GD.actor1 == actor || GD.actor2 == actor || GD.actor3 == actor);
+        else res = actor == (Chars)id1;
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
+      case ConditionType.ActorHasSkill: {
+        bool res = Controller.GetActor((Chars)id1).HasSkill((Skill)iv1);
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
+      case ConditionType.CurrentRoomIs: {
+        bool res = sv.ToLowerInvariant().Equals(GD.c.currentRoom.ID.ToLowerInvariant());
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
+      case ConditionType.FlagValueIs: {
+        return AllObjects.CheckFlag((GameFlag)id1, bv ? FlagValue.Yes : FlagValue.No);
+      }
+
+      case ConditionType.StepValueIs: {
+        bool res = true;
+        // FIXME
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
+
+      case ConditionType.ItemCollected: {
+        bool res = true;
+        // FIXME
+
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+      case ConditionType.ActorInSameRoom: {
+        bool res = true;
+        // FIXME
+
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+      case ConditionType.ActorDistanceLess:// FIXME
+        break;
+      case ConditionType.ActorXLess:// FIXME
+        break;
+      case ConditionType.ItemOpen:// FIXME
+        break;
+      case ConditionType.RecipientIs:// FIXME
+        break;
+      case ConditionType.WhenIs:// FIXME
+        break;
+      case ConditionType.ItemCouple:// FIXME
+        break;
+    }
+    return false; // FIXME
+  }
 }
 
 

@@ -19,7 +19,7 @@ public class GameCondition {
     if (when != this.when && this.when != When.Always) return false;
 
     if (actor != Chars.None && performer != null && actor != performer.id) return false;
-    if (skill != Skill.None && performer != null && performer.HasSkill(skill) != null) return false;
+    if (skill != Skill.None && performer != null && performer.HasSkillOLD(skill) != null) return false;
 
     return (obj1.Item == item && obj2.Item == otherItem) || (obj2.Item == item && obj1.Item == otherItem);
   }
@@ -34,7 +34,7 @@ public class GameCondition {
       case OLDConditionType.CurrentActorEqual: return actor == performer.id;
       case OLDConditionType.CurrentActorNotEqual: return actor != performer.id;
       case OLDConditionType.ActorIsAvailable: return Controller.WeHaveActorPlaying(actor);
-      case OLDConditionType.ActorHasSkill: return a != null && a.HasSkill(skill) == null;
+      case OLDConditionType.ActorHasSkill: return a != null && a.HasSkillOLD(skill) == null;
       case OLDConditionType.HasItem: return a != null && a.HasItem(item);
       case OLDConditionType.DoesNotHaveItem: return a == null || !a.HasItem(item);
       case OLDConditionType.ItemIsOpen: return obj1.Usable == Tstatus.OpenableOpen || obj1.Usable == Tstatus.OpenableOpenAutolock;

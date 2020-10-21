@@ -1,13 +1,13 @@
 === Mighty Maniac Mansion ===
 
 
-Usual refurbish of th ecode.
+Usual refurbish of the code.
 
-1) remove conditions in Or from behaviors
-2) change the flags to int, because we may need multiple stages
-3) have a way to load and update behaviors from a json file
-
-
+1) remove old behaviors from actors and push the gameactions to the correct actor
+1.b) Remove the old code for GameCOndidtion and BehaviorCondition
+1.c) Add a way to see the actions and conditions on items and actors (property drawers but readonly)
+2) implement all new conditions and logic to check if they are valid [in progress]
+3) Have a way to reload a json using a button, and debug Edna scene
 
 
 
@@ -46,7 +46,7 @@ Serious problem when going down from suitescorridor, the destination clicks look
 * CHARS ************************************************************************************************************
 
 Dr. Fred
-Nurse Edna
+!Nurse Edna
 Cousin Ted
 !Ed
 Edwige
@@ -177,7 +177,7 @@ Jeff
 ! Add a way to give food to GT and stop walking if food is not given
 ! Add the Give action to cheese to test the Tentacle.
 ! We need a new action to change a game flag
-
+! Refactoring of actions
 
 
 
