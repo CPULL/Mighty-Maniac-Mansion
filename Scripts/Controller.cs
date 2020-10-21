@@ -79,11 +79,11 @@ public class Controller : MonoBehaviour {
         if (currentAction == null) {
           currentCutscene = null;
           forcedCursor = CursorTypes.None;
-          if (actionsToPlay.Count > 0) currentAction = actionsToPlay.GetFirst();
+          Debug.Log("Booooof");
+          oldCursor = null;
         }
       }
     }
-    else if (currentAction == null && actionsToPlay.Count > 0) currentAction = actionsToPlay.GetFirst();
 
     if (currentAction != null) {
       PlayCurrentAction();
@@ -518,11 +518,7 @@ public class Controller : MonoBehaviour {
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
   public GameScene currentCutscene;
   ContextualizedAction currentAction;
-  
-  readonly SList<ContextualizedAction> actionsToPlay = new SList<ContextualizedAction>(16);
   readonly HashSet<GameAction> allKnownActions = new HashSet<GameAction>();
-
-
 
   void StartIntroCutscene() {
     currentCutscene = AllObjects.GetCutscene(CutsceneID.Intro);
@@ -543,9 +539,8 @@ public class Controller : MonoBehaviour {
   }
 
   public static void AddAction(GameAction a, Actor perf, Actor sec) {
-    GD.c.actionsToPlay.Add(new ContextualizedAction { action = a, performer = perf, secondary = sec });
-    GD.c.allKnownActions.Add(a);
-  }
+    // FIXME remove, items can only start cutscenes
+ }
 
   public static void KnowAction(GameAction a) {
     GD.c.allKnownActions.Add(a);
@@ -567,14 +562,14 @@ public class Controller : MonoBehaviour {
         else
           currentAction = new ContextualizedAction { action = act, performer = null, secondary = null };
       }
-      else if (actionsToPlay.Count > 0) {
-        currentAction = actionsToPlay.GetFirst();
-      }
       else
         currentAction = null;
 
       if (currentAction == null) {
         GD.status = GameStatus.NormalGamePlay;
+        forcedCursor = CursorTypes.None;
+        oldCursor = null;
+        currentCutscene = null;
       }
     }
   }
