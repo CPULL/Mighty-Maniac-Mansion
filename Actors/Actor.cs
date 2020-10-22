@@ -34,11 +34,10 @@ public class Actor : MonoBehaviour {
   string walk;
   bool IAmNPC = true;
   public AudioClip TentacleSteps;
-  public List<Behavior> Behaviors;
   float blockMinX = -float.MaxValue;
   float blockMaxX = float.MaxValue;
 
-  public List<GameScene> scenes;
+  public List<GameScene> behaviors;
 
   public void Player() {
     IAmNPC = false;
@@ -277,28 +276,10 @@ public class Actor : MonoBehaviour {
     if (IAmNPC && nextBehaviorCheck < 0) { // Behaviors checking
       nextBehaviorCheck = .25f;
 
-      foreach (Behavior b in Behaviors) {
-        if (!b.IsValid(this)) {
-          if (b.currentAction != null) {
-            if (b.currentAction.type == ActionType.WalkToActor) {
-              followed = null;
-              actorSpeed = origSpeed;
-            }
-            b.currentAction.running = Running.Completed;
-          }
-          continue;
-        }
-        b.CheckActions();
-        Debug.Log("Actions for " + b.name + " => " + b.currentAction);
-        if (b.currentAction != null) {
-          // Play it until completed, and the behavior is still valid
-          if (b.currentAction.running == Running.NotStarted) {
-            b.currentAction.running = Running.Running;
-            b.currentAction.RunAction(this, null);
-          }
-          else if (b.currentAction.running == Running.Running) {
-            b.currentAction.CheckTime(Time.deltaTime);
-          }
+      // Check if at least one of the behaviors is valid
+      foreach(GameScene b in behaviors) {
+        if (b.IsValid(this, null, ItemEnum.Undefined, ItemEnum.Undefined, When.Always)) {
+          b.Run(this, null, ItemEnum.Undefined, ItemEnum.Undefined, When.Always);
         }
       }
     }

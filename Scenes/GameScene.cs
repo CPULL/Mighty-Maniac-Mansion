@@ -8,11 +8,32 @@ public class GameScene {
   public GameSceneType Type;
 
   public Running status = Running.NotStarted;
-  public int step = 0;
+
+  public int stepnum = -1;
+  public GameStep currentStep = null;
+  public int actionnum = -1;
   public GameAction currentAction = null;
 
   public List<Condition> conditions;
   public List<GameStep> steps;
+
+
+  /*
+
+A behavior should run only if the condition is valid.
+!The behavior should have currentstep, currentaction, stepnum, actionnum
+!If a behavior was valid and it is no more, the actions that are running should be blocked   
+   
+  if it is valid, and nothing is running, the steps will be checked in sequence
+  the first one that is valid will be run
+
+  step run meand get the action and run it until is completed, then get the next action.
+  Once completed the actions check for the step to run
+
+   */
+
+
+
 
   public GameScene(string id, string name, string type) {
     Name = name;
@@ -32,86 +53,119 @@ public class GameScene {
   }
 
   public override string ToString() {
-    return Id + " " + Name;
+    return Id + " - " + Name + " (" + stepnum + "/" + actionnum + ")";
   }
 
   internal void Reset() {
     status = Running.NotStarted;
+    currentStep = null;
+    stepnum = -1;
     currentAction = null;
-    step = 0;
+    actionnum = -1;
   }
 
 
   /// <summary>
   /// Check if the main conditions are satisfied
   /// </summary>
-  public bool IsValid() {
+  public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when) { // FIXME
+    Actor p = Controller.GetActor(performer);
+    Actor r = Controller.GetActor(receiver);
+    return IsValid(p, r, item1, item2, when);
+  }
+  public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when) { // FIXME
     foreach (Condition c in conditions)
-      if (!c.IsValid(Chars.None)) return false;
+      if (!c.IsValid(performer, receiver, item1, item2, when, stepnum)) {
+        currentStep = null;
+        stepnum = -1;
+        if (currentAction != null) {
+          currentAction.running = Running.NotStarted;
+        }
+        actionnum = -1;
+        return false;
+      }
 
     return true;
   }
 
-  public GameAction GetNext() {
-    // If we have an action for a step get the next action. If none get the next valid step
-    if (currentAction != null) {
-      int pos = -1;
-      for(int i = 0; i < steps[step].actions.Count; i++)
-        if (steps[step].actions[i] == currentAction) {
-          pos = i;
-          break;
-        }
-      if (pos == -1) { // Not found, that is a problem. Run the first action of the current step, if valid. Or the first valid one after
-        if (steps[step].IsValid()) {
-          currentAction = steps[step].actions[0];
-          return currentAction;
-        }
-        else {
-          for (int i = step + 1; i < steps.Count; i++) {
-            if (steps[i].IsValid()) {
-              step = i;
-              currentAction = steps[step].actions[0];
-              return currentAction;
-            }
-          }
-          // No steps are valid
-          currentAction = null;
-          return null;
-        }
-      }
-
-      // Try next action
-      if (pos + 1 < steps[step].actions.Count) {
-        currentAction = steps[step].actions[pos + 1];
-        return currentAction;
-      }
-
-      // Find the next valid step
-      for (int i = step + 1; i < steps.Count; i++) {
-        if (steps[i].IsValid()) {
-          step = i;
-          currentAction = steps[step].actions[0];
-          return currentAction;
-        }
-      }
-      // No steps are valid
-      currentAction = null;
-      return null;
+  private bool RunAction(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2) {
+    if (currentAction.running == Running.NotStarted) { // Start the action
+      currentAction.RunAction(performer, receiver, item1, item2);
     }
-
-    // Find the first step that is valid
-    for (int i = 0; i < steps.Count; i++) {
-      if (steps[i].IsValid()) {
-        step = i;
-        currentAction = steps[step].actions[0];
-        return currentAction;
-      }
+    else if (currentAction.running == Running.Running) { // Wait it to complete
+      currentAction.CheckTime(Time.deltaTime);
     }
-    // No steps are valid
-    currentAction = null; // Redundant, was already null
-    return null;
+    else if (currentAction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
+    }
+    else if (currentAction.running == Running.Completed) { // Get the next
+      actionnum++;
+      if (steps[stepnum].actions.Count > actionnum) {
+        currentAction = steps[stepnum].actions[actionnum];
+        currentAction.running = Running.NotStarted;
+      }
+      else
+        return true;
+    }
+    return false;
   }
 
+  private bool GetNextStep(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
+    for (int i = stepnum + 1; i < steps.Count; i++) {
+      if (steps[i].IsValid(performer, receiver, item1, item2, when, step)) {
+        currentStep = steps[i];
+        stepnum = i;
+        status = Running.Running;
+        return true;
+      }
+    }
+    for (int i = 0; i < stepnum + 1; i++) {
+      if (steps[i].IsValid(performer, receiver, item1, item2, when, step)) {
+        currentStep = steps[i];
+        stepnum = i;
+        status = Running.Running;
+        return true;
+      }
+    }
+    stepnum = -1;
+    currentStep = null;
+    status = Running.Completed;
+    return false;
+  }
+
+  public void Run(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when) {
+    Actor p = Controller.GetActor(performer);
+    Actor r = Controller.GetActor(receiver);
+    Run(p, r, item1, item2, when);
+  }
+
+  public bool Run(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when) {
+    if (currentStep != null) {
+      // Check if step is still valid
+      if (currentStep.IsValid(performer, receiver, item1, item2, when, stepnum)) {
+        // Do we have an action to run?
+        if (currentAction != null) { // Yes
+          return !RunAction(performer, receiver, item1, item2);
+        }
+        else { // No, get the first one
+          actionnum = 0;
+          currentAction = currentStep.actions[0];
+          currentAction.running = Running.NotStarted;
+        }
+        return true;
+      }
+      else { // Not valid, stop the action if it was running, and check for thee next valid step
+        if (currentAction != null) {
+          currentAction.running = Running.NotStarted;
+          actionnum = -1;
+        }
+        return GetNextStep(performer, receiver, item1, item2, when, stepnum);
+      }
+    }
+    else { // No current step. Find one
+      stepnum = -1;
+      return GetNextStep(performer, receiver, item1, item2, when, stepnum);
+    }
+  }
 
 
 }
@@ -131,9 +185,16 @@ public class GameStep {
     return name;
   }
 
-  public bool IsValid() {
+  public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
     foreach (Condition c in conditions)
-      if (!c.IsValid(Chars.None)) return false;
+      if (!c.IsValid(performer, receiver, item1, item2, when, step)) return false;
+
+    return true;
+  }
+
+  public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
+    foreach (Condition c in conditions)
+      if (!c.IsValid(performer, receiver, item1, item2, when, step)) return false;
 
     return true;
   }

@@ -3,7 +3,12 @@
 
 Usual refurbish of the code.
 
-1) remove old behaviors from actors and push the gameactions to the correct actor
+
+What should be the logic of running the actions?
+
+
+
+
 1.b) Remove the old code for GameCOndidtion and BehaviorCondition
 1.c) Add a way to see the actions and conditions on items and actors (property drawers but readonly)
 2) implement all new conditions and logic to check if they are valid [in progress]
@@ -175,6 +180,7 @@ Jeff
 ! Add the Give action to cheese to test the Tentacle.
 ! We need a new action to change a game flag
 ! Refactoring of actions
+! remove old behaviors from actors and push the gameactions to the correct actor
 
 
 

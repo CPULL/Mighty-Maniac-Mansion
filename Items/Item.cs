@@ -56,17 +56,17 @@ public class Item : GameItem {
     // Case of two items
     string res = null;
     foreach (ActionAndCondition ac in actions) {
-      if (ac.Condition.VerifyCombinedItems(actor, this, other, When.Use)) {
+      if (ac.Condition.IsValid(actor, null, this.Item, other == null ? ItemEnum.Undefined : other.Item, When.Use, 0)) {
         return PlayActions(actor, null, When.Use, other, out bool goodByDefault);
       }
-      if (res == null) res = ac.Condition.BadResult;
+      if (res == null) res = "FIXME ac.Condition.BadResult";
     }
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
-      if (ac.Condition.VerifyCombinedItems(actor, other, this, When.Use)) {
+      if (ac.Condition.IsValid(actor, null, this.Item, other == null ? ItemEnum.Undefined : other.Item, When.Use, 0)) {
         return other.PlayActions(actor, null, When.Use, this, out bool goodByDefault);
       }
-      if (res == null) res = ac.Condition.BadResult;
+      if (res == null) res = "FIXME ac.Condition.BadResult";
     }
     if (res != null) return res;
 
@@ -202,7 +202,7 @@ public class Item : GameItem {
 
   internal bool HasActions(When when) {
     foreach(ActionAndCondition ac in actions) {
-      if (ac.Condition.condition != OLDConditionType.None && ac.Condition.when == when) return true;
+      if (ac.Condition.type != ConditionType.None && (When)ac.Condition.id1 == when) return true;
     }
     return false;
   }

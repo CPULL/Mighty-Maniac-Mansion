@@ -35,7 +35,7 @@ public class Condition {
 
         case ConditionType.ItemCollected:
         case ConditionType.ItemOpen:
-        case ConditionType.ItemCouple:
+        case ConditionType.UsedWith:
           if (System.Enum.TryParse<ItemEnum>(ids, out ItemEnum resi)) {
             id1 = (int)resi;
           }
@@ -67,39 +67,43 @@ public class Condition {
       case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " is true" : " is false");
       case ConditionType.StepValueIs: return "Step " + (bv ? " is " : " is not ") + iv1;
 
-      case ConditionType.ItemCollected:
+      case ConditionType.ItemCollected: // FIXME
         break;
-      case ConditionType.ActorInSameRoom:
-        break;
+      case ConditionType.ActorInSameRoom: return "Actor " + (Chars)id1 + " is " + (!bv ? "not in " : "in ") + sv;
+
       case ConditionType.ActorDistanceLess: return "Actor " + (Chars)id1 + " dist " + (bv ? "< " : "> ") + fv1;
       case ConditionType.ActorXLess: return "Actor " + (Chars)id1 + " X " + (bv ? "< " : "> ") + fv1;
 
-      case ConditionType.ItemOpen:
+      case ConditionType.ItemOpen: // FIXME
         break;
-      case ConditionType.RecipientIs:
+      case ConditionType.RecipientIs: // FIXME
         break;
-      case ConditionType.WhenIs:
+      case ConditionType.WhenIs: // FIXME
         break;
-      case ConditionType.ItemCouple:
-        break;
+      case ConditionType.UsedWith: return "Used with " + (bv ? "" : "not ") + (ItemEnum)id1;
     }
 
     return res;
   }
 
-  public bool IsValid(Chars actor) {
+  public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
+    Actor p = Controller.GetActor(performer);
+    Actor r = Controller.GetActor(receiver);
+    return IsValid(p, r, item1, item2, when, step);
+  }
+  public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
     switch (type) {
       case ConditionType.None: return true;
 
       case ConditionType.ActorIs: { // We need an actor to test
         bool res;
-        if ((Chars)id1 == Chars.Current) res = GD.c.currentActor.id == actor;
-        else if ((Chars)id1 == Chars.Actor1) res = GD.actor1 == actor;
-        else if ((Chars)id1 == Chars.Actor2) res = GD.actor2 == actor;
-        else if ((Chars)id1 == Chars.Actor3) res = GD.actor3 == actor;
-        else if ((Chars)id1 == Chars.KidnappedActor) res = GD.kidnapped == actor;
-        else if ((Chars)id1 == Chars.Player) res = (GD.actor1 == actor || GD.actor2 == actor || GD.actor3 == actor);
-        else res = actor == (Chars)id1;
+        if ((Chars)id1 == Chars.Current) res = (GD.c.currentActor == performer || GD.c.currentActor == receiver);
+        else if ((Chars)id1 == Chars.Actor1) res = (GD.c.actor1 == performer || GD.c.actor1 == receiver);
+        else if ((Chars)id1 == Chars.Actor2) res = (GD.c.actor2 == performer || GD.c.actor2 == receiver);
+        else if ((Chars)id1 == Chars.Actor3) res = (GD.c.actor3 == performer || GD.c.actor3 == receiver);
+        else if ((Chars)id1 == Chars.KidnappedActor) res = (GD.c.kidnappedActor == performer || GD.c.kidnappedActor == receiver);
+        else if ((Chars)id1 == Chars.Player) res = (GD.c.actor1 == performer || GD.c.actor2 == performer || GD.c.actor3 == performer);
+        else res = performer.id == (Chars)id1;
         if (bv)
           return res;
         else
@@ -127,8 +131,7 @@ public class Condition {
       }
 
       case ConditionType.StepValueIs: {
-        bool res = true;
-        // FIXME
+        bool res = iv1 == step;
         if (bv)
           return res;
         else
@@ -145,26 +148,51 @@ public class Condition {
         else
           return !res;
       }
-      case ConditionType.ActorInSameRoom: {
-        bool res = true;
-        // FIXME
 
+      case ConditionType.ActorInSameRoom: {
+        Actor a = Controller.GetActor((Chars)id1);
+        if (a == null) return false;
+        bool res = a.currentRoom.ID.ToLowerInvariant().Equals(sv.ToLowerInvariant());
         if (bv)
           return res;
         else
           return !res;
       }
-      case ConditionType.ActorDistanceLess:// FIXME
-        break;
-      case ConditionType.ActorXLess:// FIXME
-        break;
+
+      case ConditionType.ActorDistanceLess: {
+        Actor a = Controller.GetActor((Chars)id1);
+        if (a == null) return false;
+        bool res = Vector2.Distance(a.transform.position, performer.transform.position) < fv1;
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
+      case ConditionType.ActorXLess: {
+        Actor a = Controller.GetActor((Chars)id1);
+        if (a == null) return false;
+        bool res = a.transform.position.x < fv1;
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
       case ConditionType.ItemOpen:// FIXME
         break;
       case ConditionType.RecipientIs:// FIXME
         break;
-      case ConditionType.WhenIs:// FIXME
-        break;
-      case ConditionType.ItemCouple:// FIXME
+
+      case ConditionType.WhenIs: {
+        bool res = (When)id1 == when;
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
+      case ConditionType.UsedWith:// FIXME
         break;
     }
     return false; // FIXME
@@ -187,7 +215,7 @@ public enum ConditionType {
   ItemOpen,           // ID of item, value for open, closed, locked                                        (ID1, IV1)
   RecipientIs,        // ID of actor                                                                       (ID1, BV)
   WhenIs,             // ID of action (give, pick, use, etc.)                                              (ID1, BV)
-  ItemCouple,         // ID of two items                                                                   (ID1, IV1, BV)
+  UsedWith,           // ID of items                                                                       (ID1, BV)
 }
 
 

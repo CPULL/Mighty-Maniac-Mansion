@@ -6790,8 +6790,7 @@ MonoBehaviour:
   skills: 0100000006000000
   Description: <b>Ollie</b> todo...
   TentacleSteps: {fileID: 0}
-  Behaviors: []
-  scenes: []
+  behaviors: []
 --- !u!95 &211990116
 Animator:
   serializedVersion: 3
@@ -9145,8 +9144,7 @@ MonoBehaviour:
   skills: 01000000
   Description: 
   TentacleSteps: {fileID: 0}
-  Behaviors: []
-  scenes: []
+  behaviors: []
 --- !u!95 &301252753
 Animator:
   serializedVersion: 3
@@ -42612,8 +42610,7 @@ MonoBehaviour:
 
     She relaxes preparing food and petting her animals.'
   TentacleSteps: {fileID: 0}
-  Behaviors: []
-  scenes: []
+  behaviors: []
 --- !u!95 &1347792469
 Animator:
   serializedVersion: 3
@@ -43672,8 +43669,7 @@ MonoBehaviour:
     He is a nerd who specializes in fixing electronics.
     He lacks guts and is easily terrified.'
   TentacleSteps: {fileID: 0}
-  Behaviors: []
-  scenes: []
+  behaviors: []
 --- !u!82 &1379030971
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47754,8 +47750,7 @@ MonoBehaviour:
     has no specific skills, but has good charisma and can prepare some delicious
     food."
   TentacleSteps: {fileID: 0}
-  Behaviors: []
-  scenes: []
+  behaviors: []
 --- !u!95 &1532743335
 Animator:
   serializedVersion: 3
@@ -48108,40 +48103,7 @@ MonoBehaviour:
     in the mansion, she will send you to the dungeon. Some of her dialogue hints
     that she is into sado-masochism and obscene phone calls.
   TentacleSteps: {fileID: 0}
-  Behaviors: []
-  scenes:
-  - Name: A generic name
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
-  - Name: Second scene
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  behaviors: []
 --- !u!95 &1533143415
 Animator:
   serializedVersion: 3
@@ -55237,250 +55199,7 @@ MonoBehaviour:
     His dream is to achieve success with
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
-  Behaviors:
-  - name: '"Shall not pass" while not feeded'
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
-    ConditionsInOr:
-    - name: 
-      ConditionsInAnd:
-      - type: 4
-        item: 0
-        actor: 0
-        flag: 0
-        value: 1
-        num: 0
-        str: 
-      - type: 1
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 0
-        str: 
-      - type: 2
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 10
-        str: 
-      - type: 5
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 7.7
-        str: 
-    Actions:
-    - running: 0
-      type: 3
-      Repeatable: 1
-      delay: 0
-      id1: 0
-      id2: 0
-      str: You shall not pass!
-      pos: {x: 24.31, y: 49.32}
-      dir: 4
-      val: 0
-  - name: Patrolling while not feeded
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
-    ConditionsInOr:
-    - name: 
-      ConditionsInAnd:
-      - type: 4
-        item: 0
-        actor: 0
-        flag: 0
-        value: 1
-        num: 0
-        str: 
-      - type: 1
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 0
-        str: 
-      - type: 7
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 26.5
-        str: 
-    Actions:
-    - running: 0
-      type: 5
-      Repeatable: 1
-      delay: 0
-      id1: 0
-      id2: 0
-      str: SuiteCorridor
-      pos: {x: 24.5, y: 49.47}
-      dir: 0
-      val: 0
-    - running: 0
-      type: 5
-      Repeatable: 1
-      delay: 0
-      id1: 0
-      id2: 0
-      str: SuiteCorridor
-      pos: {x: 22, y: 46.7}
-      dir: 0
-      val: 0
-    - running: 0
-      type: 8
-      Repeatable: 1
-      delay: 0
-      id1: 0
-      id2: 0
-      str: SuiteCorridor
-      pos: {x: 23.5, y: 46.57}
-      dir: 0
-      val: 0
-  - name: Block actor while not feeded (speak)
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
-    ConditionsInOr:
-    - name: 
-      ConditionsInAnd:
-      - type: 4
-        item: 0
-        actor: 0
-        flag: 0
-        value: 1
-        num: 0
-        str: 
-      - type: 1
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 0
-        str: 
-      - type: 2
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 3
-        str: 
-      - type: 5
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 5.2
-        str: 
-    Actions:
-    - running: 0
-      type: 3
-      Repeatable: 1
-      delay: 0
-      id1: 0
-      id2: 0
-      str: I am hungry!
-      pos: {x: 24.31, y: 49.32}
-      dir: 4
-      val: 0
-    - running: 0
-      type: 7
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 25, y: 49.32}
-      dir: 0
-      val: 0
-  - name: Block actor while not feeded (walk)
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
-    ConditionsInOr:
-    - name: 
-      ConditionsInAnd:
-      - type: 4
-        item: 0
-        actor: 0
-        flag: 0
-        value: 1
-        num: 0
-        str: 
-      - type: 1
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 0
-        str: 
-      - type: 6
-        item: 0
-        actor: 8
-        flag: 0
-        value: 0
-        num: 26.5
-        str: 
-    Actions:
-    - running: 0
-      type: 6
-      Repeatable: 1
-      delay: 0
-      id1: 0
-      id2: 0
-      str: SuiteCorridor
-      pos: {x: 24.31, y: 49.32}
-      dir: 0
-      val: 0
-    - running: 0
-      type: 7
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: SuiteCorridor
-      pos: {x: 25, y: 49.32}
-      dir: 0
-      val: 0
-  scenes: []
+  behaviors: []
 --- !u!95 &1730974554
 Animator:
   serializedVersion: 3
@@ -55952,8 +55671,7 @@ MonoBehaviour:
   skills: 0100000006000000
   Description: <b>Sandy</b> todo...
   TentacleSteps: {fileID: 0}
-  Behaviors: []
-  scenes: []
+  behaviors: []
 --- !u!95 &1744431311
 Animator:
   serializedVersion: 3
@@ -56983,8 +56701,7 @@ MonoBehaviour:
     He goes to the gym pretty
     much all the time.'
   TentacleSteps: {fileID: 0}
-  Behaviors: []
-  scenes: []
+  behaviors: []
 --- !u!95 &1770484596
 Animator:
   serializedVersion: 3
@@ -57470,8 +57187,7 @@ MonoBehaviour:
     He also has a good knowledge of physical and electronic
     things, and can build, fix, and use pretty much all the things.'
   TentacleSteps: {fileID: 0}
-  Behaviors: []
-  scenes: []
+  behaviors: []
 --- !u!95 &1785264455
 Animator:
   serializedVersion: 3
@@ -61648,8 +61364,7 @@ MonoBehaviour:
     His dream is to achieve success with
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
-  Behaviors: []
-  scenes: []
+  behaviors: []
 --- !u!95 &1918416704
 Animator:
   serializedVersion: 3

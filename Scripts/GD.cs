@@ -143,7 +143,7 @@ public class GD : MonoBehaviour {
             continue;
           }
           Actor actor = Controller.GetActor(ch);
-          actor.scenes.Add(seq);
+          actor.behaviors.Add(seq);
         }
       } catch (System.Exception e) {
         Debug.Log("Main ERROR reading " + file + ": " + e.Message);

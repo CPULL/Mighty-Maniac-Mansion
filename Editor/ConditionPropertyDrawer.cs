@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(GameCondition))]
+[CustomPropertyDrawer(typeof(Condition))]
 public class ConditionPropertyDrawer : PropertyDrawer {
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
     EditorGUI.BeginProperty(position, label, property);

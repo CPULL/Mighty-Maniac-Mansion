@@ -50,41 +50,6 @@ public class GameAction {
   public GameAction() {
     type = ActionType.None;
   }
-  public GameAction(string stype) {
-    return; // FIXME remove it later
-    string t = stype.ToLowerInvariant();
-
-    if (t == "none") type = ActionType.None;
-    else if (t == "showroom") type = ActionType.ShowRoom;
-    else if (t == "teleport") type = ActionType.Teleport;
-    else if (t == "speak") type = ActionType.Speak;
-    else if (t == "say") type = ActionType.Speak;
-    else if (t == "expression") type = ActionType.Expression;
-    else if (t == "expr") type = ActionType.Expression;
-    else if (t == "walk") type = ActionType.WalkToPos;
-    else if (t == "walktopos") type = ActionType.WalkToPos;
-    else if (t == "walktoactor") type = ActionType.WalkToActor;
-    else if (t == "blockactorx") type = ActionType.BlockActorX;
-    else if (t == "unblockactor") type = ActionType.UnBlockActor;
-    else if (t == "open") type = ActionType.Open;
-    else if (t == "openclose") type = ActionType.Open;
-    else if (t == "close") type = ActionType.Open;
-    else if (t == "enable") type = ActionType.EnableDisable;
-    else if (t == "enabledisable") type = ActionType.EnableDisable;
-    else if (t == "disable") type = ActionType.EnableDisable;
-    //else if (t == "lock") type = ActionType.Lockunlock;
-    //else if (t == "lockunlock") type = ActionType.Lockunlock;
-    //else if (t == "unlock") type = ActionType.Lockunlock;
-    else if (t == "cutscene") type = ActionType.Cutscene;
-    else if (t == "sound") type = ActionType.Sound;
-    else if (t == "receivecutscene") type = ActionType.ReceiveCutscene;
-    else if (t == "receiveflag") type = ActionType.ReceiveFlag;
-    else if (t == "fade") type = ActionType.Fade;
-    else if (t == "anim") type = ActionType.Anim;
-    else if (t == "alteritem") type = ActionType.AlterItem;
-    else if (t == "setflag") type = ActionType.SetFlag;
-    else Debug.LogError("Unknown type for GameAction: *" + t + "*");
-  }
 
   public GameAction(GameAction gameAction) {
     running = Running.NotStarted;
@@ -100,7 +65,7 @@ public class GameAction {
     val = gameAction.val;
   }
 
-  public GameAction(string stype, bool rep, float del, string vid1, string vid2, string sv, int iv, string dv, Vector2 vv) : this(stype) {
+  public GameAction(string stype, bool rep, float del, string vid1, string vid2, string sv, int iv, string dv, Vector2 vv) {
     type = (ActionType)System.Enum.Parse(typeof(ActionType), stype, true);
     if (!System.Enum.IsDefined(typeof(ActionType), type)) {
       Debug.LogError("Unknown ActionType: \"" + stype + "\"");
@@ -347,7 +312,12 @@ public class GameAction {
 
 
 
-  public void RunAction(Actor performer, Actor secondary) {
+  public void RunAction(Chars perf, Chars recv, ItemEnum item1, ItemEnum item2) {
+    Actor performer = Controller.GetActor(perf);
+    Actor secondary = Controller.GetActor(recv);
+    RunAction(performer, secondary, item1, item2);
+  }
+  public void RunAction(Actor performer, Actor secondary, ItemEnum item1, ItemEnum item2) {
     Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {

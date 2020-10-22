@@ -133,3 +133,13 @@ public class FlagStatus {
     value = v;
   }
 }
+
+public enum CutsceneID {
+  NONE,
+  Intro,
+  Doorbell,
+  EdHungryCheese,
+  EdnaBrowsingFridge,
+  FredTalkingToKidnapped,
+  Javidx9 // FIXME
+}

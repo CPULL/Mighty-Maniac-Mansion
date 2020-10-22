@@ -70,24 +70,16 @@ public class Controller : MonoBehaviour {
 
     #region Sequences and actions
     if (currentCutscene != null) { // Do we have a sequence?
-      if (currentAction == null) { // Do we have the action?
-        GameAction act = currentCutscene.GetNext();
-        if (act == null)
-          currentAction = null;
-        else
-          currentAction = new ContextualizedAction { action = act, performer = null, secondary = null };
-        if (currentAction == null) {
-          currentCutscene = null;
-          forcedCursor = CursorTypes.None;
-          Debug.Log("Booooof");
-          oldCursor = null;
-        }
+      if (!currentCutscene.Run(null, null, ItemEnum.Undefined, ItemEnum.Undefined, When.Always)) { // Completed
+        currentCutscene = null;
+        GD.status = GameStatus.NormalGamePlay;
+        forcedCursor = CursorTypes.None;
+        Debug.Log("Booooof");
+        oldCursor = null;
       }
-    }
-
-    if (currentAction != null) {
-      PlayCurrentAction();
-      return;
+      else {
+        GD.status = GameStatus.Cutscene;
+      }
     }
     #endregion
 
@@ -516,7 +508,7 @@ public class Controller : MonoBehaviour {
 
 
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
-  public GameScene currentCutscene;
+  GameScene currentCutscene;
   ContextualizedAction currentAction;
   readonly HashSet<GameAction> allKnownActions = new HashSet<GameAction>();
 
@@ -544,34 +536,6 @@ public class Controller : MonoBehaviour {
 
   public static void KnowAction(GameAction a) {
     GD.c.allKnownActions.Add(a);
-  }
-
-  void PlayCurrentAction() {
-    if (currentAction.NotStarted()) {
-      currentAction.action.RunAction(currentAction.performer, currentAction.secondary);
-    }
-    else if (currentAction.IsPlaying()) {
-      currentAction.action.CheckTime(Time.deltaTime);
-    }
-    else if (currentAction.IsCompleted()) {
-      if (currentAction.action.Repeatable) currentAction.action.Reset();
-      if (currentCutscene != null) {
-        GameAction act = currentCutscene.GetNext();
-        if (act == null)
-          currentAction = null;
-        else
-          currentAction = new ContextualizedAction { action = act, performer = null, secondary = null };
-      }
-      else
-        currentAction = null;
-
-      if (currentAction == null) {
-        GD.status = GameStatus.NormalGamePlay;
-        forcedCursor = CursorTypes.None;
-        oldCursor = null;
-        currentCutscene = null;
-      }
-    }
   }
 
   #endregion
@@ -712,10 +676,10 @@ public class Controller : MonoBehaviour {
   public PortraitClickHandler ActorPortrait2;
   public PortraitClickHandler ActorPortrait3;
   public PortraitClickHandler InventoryPortrait;
-  Actor actor1;
-  Actor actor2;
-  Actor actor3;
-  Actor kidnappedActor;
+  public Actor actor1;
+  public Actor actor2;
+  public Actor actor3;
+  public Actor kidnappedActor;
   Actor receiverActor;
   public Actor currentActor = null;
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
