@@ -17,7 +17,6 @@
 				
 		{ "name":"CameraPan",
 			"condition":[
-				{ "type":"StepValueIs", "iv":0 },
 				{ "type":"ActorXLess", "id":"Current", "fv":-103, "bv":false }
 			],
 			"action":[

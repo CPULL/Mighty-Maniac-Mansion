@@ -6791,23 +6791,7 @@ MonoBehaviour:
   Description: <b>Ollie</b> todo...
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!95 &211990116
 Animator:
   serializedVersion: 3
@@ -9162,23 +9146,7 @@ MonoBehaviour:
   Description: 
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!95 &301252753
 Animator:
   serializedVersion: 3
@@ -13998,7 +13966,7 @@ MonoBehaviour:
       type: 12
       Repeatable: 1
       delay: 1
-      id1: 0
+      id1: 2
       id2: 0
       str: 
       pos: {x: 0, y: 0}
@@ -30625,20 +30593,22 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2a45e606b6c8a2c46aaff3fdad3dd7bd, type: 3}
   - {fileID: 2800000, guid: a9be4d282cd68f84e8ffaca7723bfb60, type: 3}
   currentCutscene:
-    idstr: 
-    id: 0
-    name: 
-    condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 4
-      BadResult: 
-    actions: []
+    Name: 
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
+    currentAction:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
   Inventory: {fileID: 411817673}
   InventoryItemTemplate: {fileID: 1650692365}
   ActorPortrait1: {fileID: 1687621014}
@@ -42643,23 +42613,7 @@ MonoBehaviour:
     She relaxes preparing food and petting her animals.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!95 &1347792469
 Animator:
   serializedVersion: 3
@@ -43719,23 +43673,7 @@ MonoBehaviour:
     He lacks guts and is easily terrified.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!82 &1379030971
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47817,23 +47755,7 @@ MonoBehaviour:
     food."
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!95 &1532743335
 Animator:
   serializedVersion: 3
@@ -48186,8 +48108,13 @@ MonoBehaviour:
     in the mansion, she will send you to the dungeon. Some of her dialogue hints
     that she is into sado-masochism and obscene phone calls.
   TentacleSteps: {fileID: 0}
-  Behaviors:
-  - name: Edna debug
+  Behaviors: []
+  scenes:
+  - Name: A generic name
+    Id: 0
+    Type: 0
+    status: 0
+    step: 0
     currentAction:
       running: 0
       type: 0
@@ -48199,60 +48126,7 @@ MonoBehaviour:
       pos: {x: 0, y: 0}
       dir: 0
       val: 0
-    ConditionsInOr:
-    - name: Edna browsing fridge
-      ConditionsInAnd:
-      - type: 4
-        item: 0
-        actor: 0
-        flag: 5
-        value: 1
-        num: 0
-        str: 
-      - type: 8
-        item: 0
-        actor: 8
-        flag: 5
-        value: 0
-        num: 0
-        str: Kitchen
-      - type: 6
-        item: 0
-        actor: 8
-        flag: 5
-        value: 0
-        num: -93
-        str: 
-      - type: 4
-        item: 0
-        actor: 8
-        flag: 6
-        value: 1
-        num: -93
-        str: 
-    Actions:
-    - running: 0
-      type: 9
-      Repeatable: 1
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
-    - running: 0
-      type: 2
-      Repeatable: 1
-      delay: 0
-      id1: 0
-      id2: 0
-      str: Kitchen
-      pos: {x: -89, y: 17.9}
-      dir: 2
-      val: 0
-  scene:
-    Name: 
+  - Name: Second scene
     Id: 0
     Type: 0
     status: 0
@@ -55606,23 +55480,7 @@ MonoBehaviour:
       pos: {x: 25, y: 49.32}
       dir: 0
       val: 0
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!95 &1730974554
 Animator:
   serializedVersion: 3
@@ -56095,23 +55953,7 @@ MonoBehaviour:
   Description: <b>Sandy</b> todo...
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!95 &1744431311
 Animator:
   serializedVersion: 3
@@ -57142,23 +56984,7 @@ MonoBehaviour:
     much all the time.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!95 &1770484596
 Animator:
   serializedVersion: 3
@@ -57645,23 +57471,7 @@ MonoBehaviour:
     things, and can build, fix, and use pretty much all the things.'
   TentacleSteps: {fileID: 0}
   Behaviors: []
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!95 &1785264455
 Animator:
   serializedVersion: 3
@@ -61839,23 +61649,7 @@ MonoBehaviour:
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
   Behaviors: []
-  scene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
+  scenes: []
 --- !u!95 &1918416704
 Animator:
   serializedVersion: 3

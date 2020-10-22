@@ -135,6 +135,16 @@ public class GD : MonoBehaviour {
         if (seq.Type == GameSceneType.Cutscene) {
           a.cutscenes.Add(seq);
         }
+        else if (seq.Type == GameSceneType.ActorBehavior) {
+          string at = js["AppliesTo"].Value;
+          Chars ch = (Chars)System.Enum.Parse(typeof(Chars), at, true);
+          if (!System.Enum.IsDefined(typeof(Chars), ch)) {
+            Debug.LogError("Unknown Actor: \"" + at + "\" in file " + file);
+            continue;
+          }
+          Actor actor = Controller.GetActor(ch);
+          actor.scenes.Add(seq);
+        }
       } catch (System.Exception e) {
         Debug.Log("Main ERROR reading " + file + ": " + e.Message);
         // FIXME here we need a better message

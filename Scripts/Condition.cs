@@ -2,7 +2,6 @@
 
 public class Condition {
   public ConditionType type;
-
   public int id1;
   public int iv1;
   public float fv1;
@@ -54,6 +53,10 @@ public class Condition {
   }
 
   public override string ToString() {
+    return StringName(type, id1, iv1, fv1, sv, bv);
+  }
+
+  public static string StringName(ConditionType type, int id1, int iv1, float fv1, string sv, bool bv) {
     string res = "";
 
     switch (type) {

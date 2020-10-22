@@ -186,7 +186,7 @@ public class GameAction {
       case ActionType.None: return "No action";
       case ActionType.ShowRoom: return "Show room " + str + (id2 == 0 ? "" : " [panning]");
       case ActionType.Teleport: return "Teleport " + (Chars)id1 + " [" + pos.x + "," + pos.y + "]";
-      case ActionType.Speak: return (Chars)id1 + " say: \"" + str.Substring(0, str.Length > 10 ? 10 : str.Length);
+      case ActionType.Speak: return (Chars)id1 + " say: \"" + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
       case ActionType.Expression: return (Chars)id1 + " " + (Expression)id2;
       case ActionType.WalkToPos: return (Chars)id1 + " walk [" + pos.x + "," + pos.y + "]";
       case ActionType.WalkToActor: return (Chars)id1 + " walk [" + (Chars)id2 + "]";

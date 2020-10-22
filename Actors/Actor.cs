@@ -38,8 +38,7 @@ public class Actor : MonoBehaviour {
   float blockMinX = -float.MaxValue;
   float blockMaxX = float.MaxValue;
 
-  [SerializeField]
-  public GameScene scene;
+  public List<GameScene> scenes;
 
   public void Player() {
     IAmNPC = false;
