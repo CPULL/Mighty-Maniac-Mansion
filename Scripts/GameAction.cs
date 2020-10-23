@@ -86,9 +86,13 @@ public class GameAction {
           return "Refuse " + (ItemEnum)id1 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
         }
       }
-      case ActionType.Fade: return "FIXME";
-      case ActionType.Anim: return "FIXME";
-      case ActionType.AlterItem: return "Alter " + (ItemEnum)id1 + " " + str;
+      case ActionType.Fade: return ((FlagValue)val == FlagValue.Yes) ? "Fade In" : "Fade Out";
+      case ActionType.Anim: {
+        if ((Chars)id1 == Chars.None) return (ItemEnum)id2 + " anim: " + str;
+        return (Chars)id1 + " anim: " + str;
+      }
+
+      case ActionType.AlterItem: return "Alter " + (ItemEnum)id1 + " L[" + (WhatItDoes)id2 + "] R[" + (WhatItDoes)val + "]";
       case ActionType.SetFlag: return "Set " + (GameFlag)id1 + " " + (FlagValue)val;
     }
     return res;
