@@ -17,11 +17,15 @@ public class CharSelection : MonoBehaviour {
   int a2 = -1;
   int a3 = -1;
   int ak = -1;
+  int akOver = -1;
   Color Transparent = new Color32(0, 0, 0, 0);
+  public Image[] SPs;
+  public Sprite[] Portraits;
+  public Sprite QuestionMark;
 
   public Button ButtonStart;
   public GameObject[] Hidden;
-  int mmm = 0;
+  int mmm = 0; // FIXME not sure it will go in the final version
   int over = -1;
 
   private void Awake() {
@@ -65,10 +69,20 @@ public class CharSelection : MonoBehaviour {
     if (a1 != -1) num++;
     if (a2 != -1) num++;
     if (a3 != -1) num++;
-    Text.text = "Select your team (" + num + "/3) and the person that was kidnapped.";
     if (ak != -1) num++;
 
-    ButtonStart.interactable = num == 4;
+    SPs[0].sprite = (a1 != -1) ? Portraits[a1 - 10] : QuestionMark;
+    SPs[1].sprite = (a2 != -1) ? Portraits[a2 - 10] : QuestionMark;
+    SPs[2].sprite = (a3 != -1) ? Portraits[a3 - 10] : QuestionMark;
+    SPs[3].sprite = (ak != -1) ? Portraits[ak - 10] : QuestionMark;
+
+    if (num == 4) {
+      ButtonStart.interactable = true;
+      Text.text = "Select your team (            ) and\nthe person     that was kidnapped\nStart!";
+    } else {
+      ButtonStart.interactable = false;
+      Text.text = "Select your team (            ) and\nthe person     that was kidnapped";
+    }
   }
 
 
@@ -151,14 +165,17 @@ public class CharSelection : MonoBehaviour {
       }
       else if (ak == -1) {
         ak = pos;
+        akOver = over;
         Selections[over].color = new Color32(220, 50, 0, 255);
       }
     }
 
-    else if (num == 4) { // FIXME this will not work, the pos of the kidnapped is not the same as the id
-      Selections[ak].color = new Color32(0, 0, 0, 0);
+    else if (num == 4) {
+      if (akOver != -1)
+        Selections[akOver].color = new Color32(0, 0, 0, 0);
       ak = pos;
       Selections[over].color = new Color32(220, 50, 0, 255);
+      akOver = over;
     }
 
     UpdateTitle();

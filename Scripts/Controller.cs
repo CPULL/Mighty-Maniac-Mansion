@@ -123,6 +123,11 @@ public class Controller : MonoBehaviour {
         if (d != null) {
           aDoor = d;
         }
+        Item i = hit.collider.gameObject.GetComponent<Item>();
+        if (i != null) {
+          overItem = i;
+          Debug.Log("Zumba " + i);
+        }
       }
     }
 

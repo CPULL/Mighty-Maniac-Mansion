@@ -1,6 +1,6 @@
 {
 
-	"id":"doorbell", "name":"Ring doorbell NEW","type":"item","AppliesTo":"Doorbell",
+	"id":"doorbell", "name":"Ring doorbell","type":"item","AppliesTo":"Doorbell",
 
 	"conditions":[],
 	"actions":[

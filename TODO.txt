@@ -1,11 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
-Usual refurbish of the code.
 
-Do same PropDrawer for Actions like the one for conditions
-
-1.c) Add a way to see the actions and conditions on items and actors (property drawers but readonly)
 2) implement all new conditions and logic to check if they are valid [in progress]
 3) Have a way to reload a json using a button, and debug Edna scene
 
@@ -174,6 +170,8 @@ Jeff
 ! Refactoring of actions
 ! remove old behaviors from actors and push the gameactions to the correct actor
 ! Remove the old code for GameCondidtion and BehaviorCondition
+! Do same PropDrawer for Actions like the one for conditions
+! Add a way to see the actions and conditions on items and actors (property drawers but readonly)
 
 
 
