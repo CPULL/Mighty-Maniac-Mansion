@@ -123,11 +123,15 @@ public class GameAction {
     }
     Repeatable = rep;
     delay = del;
+    str = sv;
+    val = iv;
+    pos = vv;
 
     // id1 and id2 should be parsed based on the type
-    switch(type) {
+    switch (type) {
       case ActionType.Teleport:
-      case ActionType.Speak: {
+      case ActionType.Speak:
+      case ActionType.WalkToPos: {
         Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
         if (!System.Enum.IsDefined(typeof(Chars), id)) {
           Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
@@ -182,9 +186,9 @@ public class GameAction {
         char ov = (sv.ToLowerInvariant()+"X")[0];
         switch(ov) {
           case 'o': val = 0; break; // Open
-          case 'c': val = 0; break; // Open
-          case 'l': val = 0; break; // Open
-          case 'u': val = 0; break; // Open
+          case 'c': val = 1; break; // Open
+          case 'l': val = 2; break; // Open
+          case 'u': val = 3; break; // Open
           default: Debug.LogError("Unknown Open/Close/Lock/Unlock for " + (ItemEnum)id1); break;
         }
       }
@@ -209,12 +213,6 @@ public class GameAction {
       break;
 
     }
-
-    str = sv;
-    val = iv;
-    pos = vv;
-
-
   }
 
   public override string ToString() {
