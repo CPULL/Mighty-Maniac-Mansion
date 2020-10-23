@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Item : GameItem {
   [HideInInspector] public SpriteRenderer sr;
@@ -325,6 +326,24 @@ public class Item : GameItem {
       }
     }
   }
+
+  internal void ForceStatus(int val) {
+    switch (val) {
+      case 0: // Open
+        ForceOpen(FlagValue.Yes);
+        break;
+      case 1: // Close
+        ForceOpen(FlagValue.No);
+        break;
+      case 2: // Lock
+        ForceLock(FlagValue.Yes);
+        break;
+      case 3: // Unlock
+        ForceLock(FlagValue.No);
+        break;
+    }
+  }
+
   private void SetAsLocked() {
     bool soundC = Usable == Tstatus.OpenableOpen || Usable == Tstatus.OpenableOpenAutolock;
     bool sound = Usable != Tstatus.OpenableLocked && Usable != Tstatus.OpenableLockedAutolock;

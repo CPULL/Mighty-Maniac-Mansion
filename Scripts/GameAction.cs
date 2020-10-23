@@ -18,15 +18,15 @@ public enum ActionType {
   Open = 9, // Open or close or lock or unlock a door or a container
   EnableDisable = 10, // Enable or disable an item
 
-  Cutscene = 12, // Starts a Cutscene
-  Sound = 13, // Play a sound
-  ReceiveCutscene = 14, // Have an actor to receive an item from another actor, accept or decline, say something, and start a cutscene
-  ReceiveFlag = 15, // Have an actor to receive an item from another actor, accept or decline, say something, and set a flag
+  Cutscene = 11, // Starts a Cutscene
+  Sound = 12, // Play a sound
+  ReceiveCutscene = 13, // Have an actor to receive an item from another actor, accept or decline, say something, and start a cutscene
+  ReceiveFlag = 14, // Have an actor to receive an item from another actor, accept or decline, say something, and set a flag
 
-  Fade = 16, // Fade the screen in or out
-  Anim = 17, // Make an animation to play on an object or on an actor
-  AlterItem = 18, // Changes what you can do with an item
-  SetFlag = 19, // Sets a flag
+  Fade = 15, // Fade the screen in or out
+  Anim = 16, // Make an animation to play on an object or on an actor
+  AlterItem = 17, // Changes what you can do with an item
+  SetFlag = 18, // Sets a flag
 };
 
 
@@ -46,6 +46,53 @@ public class GameAction {
   public Vector2 pos;
   public Dir dir;
   public int val;
+
+
+  public static string StringName(ActionType type, bool rep, float del, int id1, int id2, string str, Vector2 pos, Dir dir, int val) {
+  string res = "Action name not yet calculated " + type;
+    switch (type) {
+      case ActionType.None: return "No action";
+      case ActionType.ShowRoom: return "Show room " + str + (id2 == 0 ? "" : " [panning]");
+      case ActionType.Teleport: return "Teleport " + (Chars)id1 + " [" + pos.x + "," + pos.y + "]";
+      case ActionType.Speak: return (Chars)id1 + " say: \"" + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+      case ActionType.Expression: return (Chars)id1 + " " + (Expression)id2;
+      case ActionType.WalkToPos: return (Chars)id1 + " walk [" + pos.x + "," + pos.y + "]";
+      case ActionType.WalkToActor: return (Chars)id1 + " walk [" + (Chars)id2 + ", " + dir + "]";
+      case ActionType.BlockActorX: return (Chars)id1 + " block [" + pos.x + "," + pos.y + "]";
+      case ActionType.UnBlockActor: return (Chars)id1 + " unblock";
+      case ActionType.Open: {
+        if (val == 0) return "Open " + (ItemEnum)id1;
+        if (val == 1) return "Close " + (ItemEnum)id1;
+        if (val == 2) return "Lock " + (ItemEnum)id1;
+        if (val == 3) return "Unlock " + (ItemEnum)id1;
+      }
+      break;
+      case ActionType.EnableDisable: return (ItemEnum)id1 + " " + (((FlagValue)val == FlagValue.Yes) ? "Enable" : "Disable");
+      case ActionType.Cutscene: return "Cutscene: " + (CutsceneID)id1;
+      case ActionType.Sound: return "Sound: " + (Audios)id1;
+      case ActionType.ReceiveCutscene: {
+        if ((FlagValue)val == FlagValue.Yes) { // Yes
+          return "Accept " + (ItemEnum)id1 + "->" + (CutsceneID)id2 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+        }
+        else { // No
+          return "Refuse " + (ItemEnum)id1 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+        }
+      }
+      case ActionType.ReceiveFlag: {
+        if ((FlagValue)val == FlagValue.Yes) { // Yes
+          return "Accept " + (ItemEnum)id1 + "->" + (GameFlag)id2 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+        }
+        else { // No
+          return "Refuse " + (ItemEnum)id1 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+        }
+      }
+      case ActionType.Fade: return "FIXME";
+      case ActionType.Anim: return "FIXME";
+      case ActionType.AlterItem: return "Alter " + (ItemEnum)id1 + " " + str;
+      case ActionType.SetFlag: return "Set " + (GameFlag)id1 + " " + (FlagValue)val;
+    }
+    return res;
+  }
 
   public GameAction() {
     type = ActionType.None;
@@ -146,105 +193,7 @@ public class GameAction {
   }
 
   public override string ToString() {
-    string res = "Action name not yet calculated";
-    switch (type) {
-      case ActionType.None: return "No action";
-      case ActionType.ShowRoom: return "Show room " + str + (id2 == 0 ? "" : " [panning]");
-      case ActionType.Teleport: return "Teleport " + (Chars)id1 + " [" + pos.x + "," + pos.y + "]";
-      case ActionType.Speak: return (Chars)id1 + " say: \"" + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
-      case ActionType.Expression: return (Chars)id1 + " " + (Expression)id2;
-      case ActionType.WalkToPos: return (Chars)id1 + " walk [" + pos.x + "," + pos.y + "]";
-      case ActionType.WalkToActor: return (Chars)id1 + " walk [" + (Chars)id2 + "]";
-      case ActionType.BlockActorX: return (Chars)id1 + " block [" + pos.x + "," + pos.y + "]";
-      case ActionType.UnBlockActor: return (Chars)id1 + " unblock";
-      case ActionType.Open: return (ItemEnum)id1 + " = " + str;
-      case ActionType.EnableDisable: return (ItemEnum)id1 + " " + (((FlagValue)val == FlagValue.Yes) ? "Enable" : "Disable");
-      case ActionType.Cutscene: return "Cutscene: " + (CutsceneID)id1;
-      case ActionType.Sound: return "Sound: " + (Audios)id1;
-      case ActionType.ReceiveCutscene: return "";
-      case ActionType.ReceiveFlag: return "";
-      case ActionType.Fade: return "";
-      case ActionType.Anim: return "";
-      case ActionType.AlterItem: return "Alter " + (ItemEnum)id1 + " " + str;
-      case ActionType.SetFlag: return "Set " + (GameFlag)id1 + " " + (FlagValue)val;
-    }
-
-    return res;
-  }
-
-
-  internal void SetActor(string a) {
-    if (a == null) {
-      id1 = 0;
-      return;
-    }
-    string n = a.ToLowerInvariant();
-
-    if (n == "none") id1 = (int)Chars.None;
-    if (n == "current") id1 = (int)Chars.Current;
-    if (n == "actor1") id1 = (int)Chars.Actor1;
-    if (n == "actor2") id1 = (int)Chars.Actor2;
-    if (n == "actor3") id1 = (int)Chars.Actor3;
-    if (n == "receiver") id1 = (int)Chars.Receiver;
-    if (n == "player") id1 = (int)Chars.Player;
-    if (n == "enemy") id1 = (int)Chars.Enemy;
-    if (n == "kidnapped") id1 = (int)Chars.KidnappedActor;
-    if (n == "player") id1 = (int)Chars.Player;
-    if (n == "enemy") id1 = (int)Chars.Enemy;
-
-    if (n == "fred") id1 = (int)Chars.Fred;
-    if (n == "edna") id1 = (int)Chars.Edna;
-    if (n == "ted") id1 = (int)Chars.Ted;
-    if (n == "ed") id1 = (int)Chars.Ed;
-    if (n == "edwige") id1 = (int)Chars.Edwige;
-    if (n == "greententacle") id1 = (int)Chars.GreenTentacle;
-    if (n == "purpletentacle") id1 = (int)Chars.PurpleTentacle;
-    if (n == "bluetentacle") id1 = (int)Chars.BlueTentacle;
-    if (n == "purplemeteor") id1 = (int)Chars.PurpleMeteor;
-
-    if (n == "dave") id1 = (int)Chars.Dave;
-    if (n == "bernard") id1 = (int)Chars.Bernard;
-    if (n == "wendy") id1 = (int)Chars.Wendy;
-    if (n == "syd") id1 = (int)Chars.Syd;
-    if (n == "hoagie") id1 = (int)Chars.Hoagie;
-    if (n == "razor") id1 = (int)Chars.Razor;
-    if (n == "michael") id1 = (int)Chars.Michael;
-    if (n == "jeff") id1 = (int)Chars.Jeff;
-    if (n == "javid") id1 = (int)Chars.Javid;
-    if (n == "laverne") id1 = (int)Chars.Laverne;
-    if (n == "ollie") id1 = (int)Chars.Ollie;
-    if (n == "sandy") id1 = (int)Chars.Sandy;
-  }
-
-  internal void SetDir(string value) {
-    string d = value.ToLowerInvariant();
-    if (d == "b") dir = Dir.B;
-    if (d == "f") dir = Dir.F;
-    if (d == "l") dir = Dir.L;
-    if (d == "r") dir = Dir.R;
-  }
-
-  internal void SetSound(string value) {
-    string d = value.ToLowerInvariant();
-    if (d == "doorbell") id2 = (int)Audios.Doorbell;
-  }
-
-  internal void SetPos(float x, float y) {
-    pos = new Vector2(x, y);
-  }
-
-  internal void SetText(string txt) {
-    str = txt;
-  }
-  internal void SetWait(float w) {
-    delay = w;
-  }
-
-  internal void SetVal(bool m) {
-    val = (int)(m ? FlagValue.Yes : FlagValue.No);
-  }
-  internal void SetID(int i) {
-    id2 = i;
+    return StringName(type, Repeatable, delay, id1, id2, str, pos, dir, val);
   }
 
   
@@ -282,32 +231,6 @@ public class GameAction {
   internal void Reset() {
     running = Running.NotStarted;
     time = delay;
-  }
-
-  public static string CalculateName(ActionType type, int actor, string str, Vector2 pos, Dir dir, int id, int val) {
-    switch (type) {
-      case ActionType.None: return "No action";
-      case ActionType.ShowRoom: return "Show room " + str;
-      case ActionType.Teleport: return "Teleport " + (Chars)actor + " [" + pos.x + "," + pos.y + "]";
-      case ActionType.Speak: return (Chars)actor + " say: \"" + str.Substring(0, str.Length > 10 ? 10 : str.Length);
-      case ActionType.Expression: return (Chars)actor + " " + (Expression)id;
-      case ActionType.WalkToPos: return (Chars)actor + " walk [" + pos.x + "," + pos.y + "]";
-      case ActionType.WalkToActor: return (Chars)actor + " walk [" + (Chars)id + "]";
-      case ActionType.BlockActorX: return (Chars)actor + " block [" + pos.x + "," + pos.y + "]";
-      case ActionType.UnBlockActor: return (Chars)actor + " unblock";
-      case ActionType.Open: return (ItemEnum)id + " " + (((FlagValue)val == FlagValue.Yes) ? "Open" : "Close");
-      case ActionType.EnableDisable: return (ItemEnum)id + " " + (((FlagValue)val == FlagValue.Yes) ? "Enable" : "Disable");
-      //case ActionType.Lockunlock: return (ItemEnum)id + " " + (((FlagValue)val == FlagValue.Yes) ? "Lock" : "Unlock");
-      case ActionType.Cutscene: return "Cutscene: " + (CutsceneID)id;
-      case ActionType.Sound: return "Sound: " + (Audios)id;
-      case ActionType.ReceiveCutscene: return "";
-      case ActionType.ReceiveFlag: return "";
-      case ActionType.Fade: return "";
-      case ActionType.Anim: return "";
-      case ActionType.AlterItem: return "Alter " + (ItemEnum)id + " " + str;
-      case ActionType.SetFlag: return "Set " + (GameFlag)id + " " + (FlagValue)val;
-    }
-    return type.ToString() + " " + actor + " " + str;
   }
 
 
@@ -419,7 +342,7 @@ public class GameAction {
           return;
         }
         Actor destAct = Controller.GetActor((Chars)id2);
-        if (walker.WalkTo(destAct.transform, (FlagValue)val, this))
+        if (walker.WalkTo(destAct.transform, dir, this))
           Complete(); // Not possible to reach
       }
       break;
@@ -457,7 +380,7 @@ public class GameAction {
           Complete();
           return;
         }
-        item.ForceOpen((FlagValue)val);
+        item.ForceStatus(val);
         Complete();
       }
       break;
@@ -474,22 +397,8 @@ public class GameAction {
       }
       break;
 
-      /*
-      case ActionType.Lockunlock: {
-        Item item = AllObjects.FindItemByID((ItemEnum)id2);
-        if (item == null) {
-          Debug.LogError("Item not defined for Lock");
-          Complete();
-          return;
-        }
-        item.ForceLock((FlagValue)val);
-        Complete();
-      }
-      break;
-      */
-
       case ActionType.Cutscene: {
-        Controller.StartCutScene(AllObjects.GetCutscene((CutsceneID)id2));
+        Controller.StartCutScene(AllObjects.GetCutscene((CutsceneID)id1));
         Complete();
       }
       break;

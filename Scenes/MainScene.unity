@@ -14165,14 +14165,14 @@ MonoBehaviour:
       bv: 0
     Action:
       running: 0
-      type: 0
+      type: 9
       Repeatable: 0
       delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
+      id1: 15
+      id2: 8
+      str: Kitchen
+      pos: {x: 12, y: 55}
+      dir: 1
       val: 0
   sr: {fileID: 0}
 --- !u!4 &465122628

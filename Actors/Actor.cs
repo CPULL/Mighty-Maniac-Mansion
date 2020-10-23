@@ -177,9 +177,9 @@ public class Actor : MonoBehaviour {
   }
 
   Transform followed = null;
-  FlagValue followSide = FlagValue.NA;
+  Dir followSide = Dir.None;
 
-  internal bool WalkTo(Transform destActor, FlagValue side, GameAction action) {
+  internal bool WalkTo(Transform destActor, Dir side, GameAction action) {
     // FIXME develop, have normal x-coordinate, but have a super-fast movement on Y coordinate. Do not walk on stairs
     followed = destActor;
     followSide = side;
@@ -193,7 +193,10 @@ public class Actor : MonoBehaviour {
     if (p.isStair) return true; // Not following on stairs
 
     Vector2 pos = followed.position;
-    pos.x += 1.5f * (followSide == FlagValue.Yes ? -1 : 1);
+    if (side == Dir.L) pos.x -= 1.5f;
+    if (side == Dir.R) pos.x += 1.5f;
+    if (side == Dir.F) pos.y -= 1.5f;
+    if (side == Dir.B) pos.y += 1.5f;
     WalkTo(pos, p,
       new System.Action<Actor, Item>((actor, item) => {
 
@@ -329,7 +332,10 @@ public class Actor : MonoBehaviour {
         }
         else { // Following somebody, just set the usual dest point
           destination.pos = followed.position;
-          destination.pos.x += 1.5f * (followSide == FlagValue.Yes ? -1 : 1);
+          if (followSide == Dir.L) destination.pos.x -= 1.5f;
+          if (followSide == Dir.R) destination.pos.x += 1.5f;
+          if (followSide == Dir.F) destination.pos.y -= 1.5f;
+          if (followSide == Dir.B) destination.pos.y += 1.5f;
           dir = CalculateDirection(destination.pos);
 
           if ((destination.pos-transform.position).sqrMagnitude < .1f) {

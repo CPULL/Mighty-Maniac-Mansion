@@ -3,15 +3,13 @@
 
 Usual refurbish of the code.
 
+Do same PropDrawer for Actions like the one for conditions
 
 1.c) Add a way to see the actions and conditions on items and actors (property drawers but readonly)
 2) implement all new conditions and logic to check if they are valid [in progress]
 3) Have a way to reload a json using a button, and debug Edna scene
 
-
 When going in the kitched with Edna, we should move the camera to show the fridge. Then do the behavior.
-
-
 
 Draw Edna and do the "Check fridge" at start
 
