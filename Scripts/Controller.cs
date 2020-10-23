@@ -535,10 +535,6 @@ public class Controller : MonoBehaviour {
     }
   }
 
-  public static void AddAction(GameAction a, Actor perf, Actor sec) {
-    // FIXME remove, items can only start cutscenes
- }
-
   public static void KnowAction(GameAction a) {
     GD.c.allKnownActions.Add(a);
   }

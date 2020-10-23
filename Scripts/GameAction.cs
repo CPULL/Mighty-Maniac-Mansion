@@ -141,12 +141,52 @@ public class GameAction {
       }
       break;
 
+      case ActionType.Expression: {
+        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
+        if (!System.Enum.IsDefined(typeof(Chars), id)) {
+          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+        dir = (Dir)System.Enum.Parse(typeof(Dir), dv, true);
+        if (!System.Enum.IsDefined(typeof(Dir), dir)) {
+          Debug.LogError("Unknown Dir: \"" + dv + "\"");
+          dir = Dir.None;
+        }
+
+        id2 = (int)Expression.Normal;
+        char ex = (sv.ToLowerInvariant() + "!")[0];
+        switch (ex) {
+          case 'h': id2 = (int)Expression.Happy; break;
+          case 's': id2 = (int)Expression.Sad; break;
+          case 'n': id2 = (int)Expression.Normal; break;
+          case 'o': id2 = (int)Expression.Open; break;
+          case 'b': id2 = (int)Expression.BigOpen; break;
+          case '!': { // Try by ID
+            Expression ide = (Expression)System.Enum.Parse(typeof(Expression), vid2, true);
+            if (System.Enum.IsDefined(typeof(Expression), ide)) {
+              id2 = (int)ide;
+            }
+          }
+          break;
+        }
+      }
+      break;
+
       case ActionType.Open: {
         ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
         if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
           Debug.LogError("Unknown Item: \"" + vid1 + "\"");
         }
         id1 = (int)id;
+
+        char ov = (sv.ToLowerInvariant()+"X")[0];
+        switch(ov) {
+          case 'o': val = 0; break; // Open
+          case 'c': val = 0; break; // Open
+          case 'l': val = 0; break; // Open
+          case 'u': val = 0; break; // Open
+          default: Debug.LogError("Unknown Open/Close/Lock/Unlock for " + (ItemEnum)id1); break;
+        }
       }
       break;
 
@@ -167,25 +207,6 @@ public class GameAction {
         id2 = (int)id;
       }
       break;
-
-      case ActionType.Expression: {
-        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
-        if (!System.Enum.IsDefined(typeof(Chars), id)) {
-          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
-        id2 = (int)Expression.Normal;
-        char ex = (sv.ToLowerInvariant() + "n")[0];
-        switch(ex) {
-          case 'h': id2 = (int)Expression.Happy; break;
-          case 's': id2 = (int)Expression.Sad; break;
-          case 'n': id2 = (int)Expression.Normal; break;
-          case 'o': id2 = (int)Expression.Open; break;
-          case 'b': id2 = (int)Expression.BigOpen; break;
-        }
-      }
-      break;
-
 
     }
 
@@ -378,7 +399,7 @@ public class GameAction {
       break;
 
       case ActionType.Open: {
-        Item item = AllObjects.FindItemByID((ItemEnum)id2);
+        Item item = AllObjects.FindItemByID((ItemEnum)id1);
         if (item == null) {
           Debug.LogError("Item not defined for Open " + ToString());
           Complete();
@@ -544,6 +565,7 @@ public class GameAction {
       break;
     }
 
+//    Debug.Break();
   }
 
 

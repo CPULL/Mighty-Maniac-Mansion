@@ -38,7 +38,7 @@ public class GameItem : MonoBehaviour {
     foreach (ActionAndCondition ac in actions) {
       Controller.KnowAction(ac.Action);
       if (ac.Condition.IsValid(actor, secondary, item.Item, this.Item, when, 0)) {
-        Controller.AddAction(ac.Action, actor, secondary);
+        ac.Action.RunAction(actor, secondary, item.Item, this.Item);
         if (ac.Action.type.GoodByDefault())
           silentGood = true;
         else if (!string.IsNullOrEmpty(ac.Action.str))

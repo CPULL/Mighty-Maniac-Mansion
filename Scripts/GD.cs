@@ -105,26 +105,30 @@ public class GD : MonoBehaviour {
             if (jstep["action"].IsArray) {
               JSONNode actions = jstep["action"];
               for (int j = 0; j < actions.AsArray.Count; j++) {
-                JSONNode action = actions[j];
-                Vector2 vv = Vector2.zero;
-                if (action["vv"].IsArray) {
-                  vv.x = action["vv"][0].AsFloat;
-                  vv.y = action["vv"][1].AsFloat;
-                }
-                string a = action["type"].Value;
-                bool repeatable = action["rep"].IsNull;
-                if (!repeatable ) repeatable = action["rep"].AsBool;
+                try {
+                  JSONNode action = actions[j];
+                  Vector2 vv = Vector2.zero;
+                  if (action["vv"].IsArray) {
+                    vv.x = action["vv"][0].AsFloat;
+                    vv.y = action["vv"][1].AsFloat;
+                  }
+                  string a = action["type"].Value;
+                  bool repeatable = action["rep"].IsNull;
+                  if (!repeatable) repeatable = action["rep"].AsBool;
 
-                float c = action["del"].AsFloat;
-                string d = action["id1"].Value;
-                string e = action["id2"].Value;
-                string f = action["sv"].Value;
-                int g = action["iv"].AsInt;
-                string h = action["dv"].Value;
-                GameAction ga = new GameAction(a, repeatable, c, d, e, f, g, h, vv);
-                step.actions.Add(
-                  ga
-                );
+                  float c = action["del"].AsFloat;
+                  string d = action["id1"].Value;
+                  string e = action["id2"].Value;
+                  string f = action["sv"].Value;
+                  int g = action["iv"].AsInt;
+                  string h = action["dv"].Value;
+                  GameAction ga = new GameAction(a, repeatable, c, d, e, f, g, h, vv);
+                  step.actions.Add(
+                    ga
+                  );
+                } catch(System.Exception e) {
+                  Debug.Log("Action ERROR in " + file + ", action #" + j +": " + e.Message);
+                }
               }
             }
 
@@ -145,6 +149,16 @@ public class GD : MonoBehaviour {
           Actor actor = Controller.GetActor(ch);
           actor.behaviors.Add(seq);
         }
+
+        if (seq.steps.Count == 0)
+          Debug.LogError("Scene without steps: " + file);
+        else {
+          for (int i = 0; i < seq.steps.Count; i++) {
+            if (seq.steps[i].actions.Count == 0)
+              Debug.LogError("Scene with steps(" + i + ") without actions: " + file);
+          }
+        }
+
       } catch (System.Exception e) {
         Debug.Log("Main ERROR reading " + file + ": " + e.Message);
         // FIXME here we need a better message
