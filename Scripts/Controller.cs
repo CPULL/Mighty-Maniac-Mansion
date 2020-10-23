@@ -70,7 +70,7 @@ public class Controller : MonoBehaviour {
 
     #region Sequences and actions
     if (currentCutscene != null) { // Do we have a sequence?
-      if (!currentCutscene.Run(null, null, ItemEnum.Undefined, ItemEnum.Undefined, When.Always)) { // Completed
+      if (!currentCutscene.Run(null, null)) { // Completed
         currentCutscene = null;
         GD.status = GameStatus.NormalGamePlay;
         forcedCursor = CursorTypes.None;
@@ -126,7 +126,6 @@ public class Controller : MonoBehaviour {
         Item i = hit.collider.gameObject.GetComponent<Item>();
         if (i != null) {
           overItem = i;
-          Debug.Log("Zumba " + i);
         }
       }
     }

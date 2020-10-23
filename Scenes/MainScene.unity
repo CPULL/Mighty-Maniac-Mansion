@@ -16468,7 +16468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -101, y: 20, z: -10}
+  m_LocalPosition: {x: -50.050003, y: 80, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -24797,11 +24797,11 @@ MonoBehaviour:
       bv: 0
     Action:
       running: 0
-      type: 17
+      type: 16
       Repeatable: 0
       delay: 0.25
       id1: 0
-      id2: 0
+      id2: 19
       str: Bottle break
       pos: {x: 0, y: 0}
       dir: 0
@@ -24815,14 +24815,14 @@ MonoBehaviour:
       bv: 0
     Action:
       running: 0
-      type: 13
+      type: 12
       Repeatable: 0
       delay: 0.3
       id1: 0
-      id2: 0
+      id2: 1
       str: 
       pos: {x: 0, y: 0}
-      dir: 0
+      dir: 4
       val: 0
   - Condition:
       type: 0
@@ -24833,15 +24833,15 @@ MonoBehaviour:
       bv: 0
     Action:
       running: 0
-      type: 18
+      type: 17
       Repeatable: 0
       delay: 1
-      id1: 0
-      id2: 0
+      id1: 19
+      id2: 3
       str: WR
       pos: {x: 0, y: 0}
       dir: 0
-      val: 0
+      val: 1
   sr: {fileID: 0}
 --- !u!212 &785944030
 SpriteRenderer:
@@ -40129,25 +40129,7 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  actions:
-  - Condition:
-      type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
-      sv: 
-      bv: 0
-    Action:
-      running: 0
-      type: 11
-      Repeatable: 1
-      delay: 0.1
-      id1: 0
-      id2: 0
-      str: It is unlocked!
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 1
+  actions: []
   sr: {fileID: 0}
 --- !u!61 &1256842731
 BoxCollider2D:
@@ -46456,8 +46438,26 @@ MonoBehaviour:
     rgba: 4294967295
   actions:
   - Condition:
-      type: 0
-      id1: 0
+      type: 10
+      id1: 8
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 1
+    Action:
+      running: 0
+      type: 10
+      Repeatable: 0
+      delay: 0
+      id1: 5
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
+  - Condition:
+      type: 10
+      id1: 8
       iv1: 0
       fv1: 0
       sv: 
@@ -46467,12 +46467,12 @@ MonoBehaviour:
       type: 10
       Repeatable: 0
       delay: 0
-      id1: 0
+      id1: 5
       id2: 0
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      val: 0
+      val: 1
   sr: {fileID: 0}
 --- !u!212 &1486595614
 SpriteRenderer:
@@ -64314,6 +64314,7 @@ MonoBehaviour:
   - {fileID: 758301048}
   - {fileID: 785944029}
   - {fileID: 1973022117}
+  - {fileID: 1486595613}
   roomsList:
   - {fileID: 1432214312}
   - {fileID: 1117025435}

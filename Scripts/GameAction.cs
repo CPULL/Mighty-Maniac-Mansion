@@ -258,12 +258,12 @@ public class GameAction {
 
 
 
-  public void RunAction(Chars perf, Chars recv, ItemEnum item1, ItemEnum item2) {
+  public void RunAction(Chars perf, Chars recv, Item item1, Item item2) {
     Actor performer = Controller.GetActor(perf);
     Actor secondary = Controller.GetActor(recv);
     RunAction(performer, secondary, item1, item2);
   }
-  public void RunAction(Actor performer, Actor secondary, ItemEnum item1, ItemEnum item2) {
+  public void RunAction(Actor performer, Actor secondary, Item item1, Item item2) {
     Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
@@ -409,7 +409,7 @@ public class GameAction {
       break;
 
       case ActionType.EnableDisable: {
-        Item item = AllObjects.FindItemByID((ItemEnum)id2);
+        Item item = AllObjects.FindItemByID((ItemEnum)id1);
         if (item == null) {
           Debug.LogError("Item not defined for Enable");
           Complete();

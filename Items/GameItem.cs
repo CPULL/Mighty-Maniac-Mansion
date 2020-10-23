@@ -28,28 +28,6 @@ public class GameItem : MonoBehaviour {
 
   public List<ActionAndCondition> actions;
 
-  internal string PlayActions(Actor actor, Actor secondary, When when, Item item, out bool silentGood) {
-    silentGood = false;
-    if (actions == null || actions.Count == 0) return null;
-
-    string badResult = null;
-    string goodResult = null;
-
-    foreach (ActionAndCondition ac in actions) {
-      Controller.KnowAction(ac.Action);
-      if (ac.Condition.IsValid(actor, secondary, item.Item, this.Item, when, 0)) {
-        ac.Action.RunAction(actor, secondary, item.Item, this.Item);
-        if (ac.Action.type.GoodByDefault())
-          silentGood = true;
-        else if (!string.IsNullOrEmpty(ac.Action.str))
-          goodResult = ac.Action.str;
-      }
-      else {
-        if (badResult == null) badResult = "FIXME ac.Condition.BadResult";
-      }
-    }
-    return goodResult ?? badResult;
-  }
 
 }
 

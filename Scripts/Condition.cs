@@ -84,9 +84,25 @@ public class Condition {
   public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
     Actor p = Controller.GetActor(performer);
     Actor r = Controller.GetActor(receiver);
+    Item i1 = AllObjects.FindItemByID(item1);
+    Item i2 = AllObjects.FindItemByID(item2);
+    return IsValid(p, r, i1, i2, when, step);
+  }
+
+  public bool IsValid(Chars performer, Chars receiver, Item item1, Item item2, When when, int step) {
+    Actor p = Controller.GetActor(performer);
+    Actor r = Controller.GetActor(receiver);
     return IsValid(p, r, item1, item2, when, step);
   }
+
   public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
+    Item i1 = AllObjects.FindItemByID(item1);
+    Item i2 = AllObjects.FindItemByID(item2);
+    return IsValid(performer, receiver, i1, i2, when, step);
+  }
+
+
+  public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when, int step) {
     switch (type) {
       case ConditionType.None: return true;
 
@@ -174,8 +190,20 @@ public class Condition {
           return !res;
       }
 
-      case ConditionType.ItemOpen:// FIXME
-        break;
+      case ConditionType.ItemOpen:
+        if (iv1 == 0) {
+          if (bv)
+            return item1.IsOpen();
+          else
+            return !item1.IsOpen();
+        }
+        else {
+          if (bv)
+            return item1.IsLocked();
+          else
+            return !item1.IsLocked();
+        }
+
       case ConditionType.RecipientIs:// FIXME
         break;
 

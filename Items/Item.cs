@@ -45,18 +45,42 @@ public class Item : GameItem {
     return "Seems it does nothing";
   }
 
+  internal string PlayActions(Actor actor, Actor secondary, When when, Item item, out bool silentGood) {
+    silentGood = false;
+    if (actions == null || actions.Count == 0) return null;
+
+    string badResult = null;
+    string goodResult = null;
+
+    foreach (ActionAndCondition ac in actions) {
+      Controller.KnowAction(ac.Action);
+      if (ac.Condition.IsValid(actor, secondary, this, item, when, 0)) {
+        ac.Action.RunAction(actor, secondary, this, item);
+        if (ac.Action.type.GoodByDefault())
+          silentGood = true;
+        else if (!string.IsNullOrEmpty(ac.Action.str))
+          goodResult = ac.Action.str;
+      }
+      else {
+        if (!ac.Action.type.GoodByDefault() && badResult == null) badResult = ac.Action.str;
+      }
+    }
+    return goodResult ?? badResult;
+  }
+
+
   public string UseTogether(Actor actor, Item other) {
     // Case of two items
     string res = null;
     foreach (ActionAndCondition ac in actions) {
-      if (ac.Condition.IsValid(actor, null, this.Item, other == null ? ItemEnum.Undefined : other.Item, When.Use, 0)) {
+      if (ac.Condition.IsValid(actor, null, this, other, When.Use, 0)) {
         return PlayActions(actor, null, When.Use, other, out bool goodByDefault);
       }
       if (res == null) res = "FIXME ac.Condition.BadResult";
     }
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
-      if (ac.Condition.IsValid(actor, null, this.Item, other == null ? ItemEnum.Undefined : other.Item, When.Use, 0)) {
+      if (ac.Condition.IsValid(actor, null, this, other, When.Use, 0)) {
         return other.PlayActions(actor, null, When.Use, this, out bool goodByDefault);
       }
       if (res == null) res = "FIXME ac.Condition.BadResult";
@@ -210,6 +234,24 @@ public class Item : GameItem {
       case Tstatus.OpenableClosedAutolock: return "Is closed";
     }
     return "";
+  }
+
+  internal bool IsOpen() {
+    switch (Usable) {
+      case Tstatus.OpenableOpen: return true;
+      case Tstatus.OpenableOpenAutolock: return true;
+      default: return false;
+    }
+  }
+
+  internal bool IsLocked() {
+    switch (Usable) {
+      case Tstatus.OpenableLocked: return true;
+      case Tstatus.OpenableLockedAutolock: return true;
+      case Tstatus.OpenableClosedAutolock: return true;
+      default: return false;
+    }
+
   }
 
   private void SetAsOpen() {

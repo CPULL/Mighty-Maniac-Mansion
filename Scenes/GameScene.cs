@@ -88,7 +88,7 @@ A behavior should run only if the condition is valid.
     return true;
   }
 
-  private bool RunAction(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2) {
+  private bool RunAction(Actor performer, Actor receiver, Item item1, Item item2) {
     if (currentAction.running == Running.NotStarted) { // Start the action
       currentAction.RunAction(performer, receiver, item1, item2);
     }
@@ -109,9 +109,9 @@ A behavior should run only if the condition is valid.
     return false;
   }
 
-  private bool GetNextStep(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
+  private bool GetNextStep(Actor performer, Actor receiver, int step) {
     for (int i = stepnum + 1; i < steps.Count; i++) {
-      if (steps[i].IsValid(performer, receiver, item1, item2, when, step)) {
+      if (steps[i].IsValid(performer, receiver, step)) {
         currentStep = steps[i];
         stepnum = i;
         status = Running.Running;
@@ -119,7 +119,7 @@ A behavior should run only if the condition is valid.
       }
     }
     for (int i = 0; i < stepnum + 1; i++) {
-      if (steps[i].IsValid(performer, receiver, item1, item2, when, step)) {
+      if (steps[i].IsValid(performer, receiver, step)) {
         currentStep = steps[i];
         stepnum = i;
         status = Running.Running;
@@ -132,19 +132,13 @@ A behavior should run only if the condition is valid.
     return false;
   }
 
-  public void Run(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when) {
-    Actor p = Controller.GetActor(performer);
-    Actor r = Controller.GetActor(receiver);
-    Run(p, r, item1, item2, when);
-  }
-
-  public bool Run(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when) {
+  public bool Run(Actor performer, Actor receiver) {
     if (currentStep != null) {
       // Check if step is still valid
-      if (currentStep.IsValid(performer, receiver, item1, item2, when, stepnum)) {
+      if (currentStep.IsValid(performer, receiver, stepnum)) {
         // Do we have an action to run?
         if (currentAction != null) { // Yes
-          return !RunAction(performer, receiver, item1, item2);
+          return !RunAction(performer, receiver, null, null);
         }
         else { // No, get the first one
           actionnum = 0;
@@ -158,12 +152,12 @@ A behavior should run only if the condition is valid.
           currentAction.running = Running.NotStarted;
           actionnum = -1;
         }
-        return GetNextStep(performer, receiver, item1, item2, when, stepnum);
+        return GetNextStep(performer, receiver, stepnum);
       }
     }
     else { // No current step. Find one
       stepnum = -1;
-      return GetNextStep(performer, receiver, item1, item2, when, stepnum);
+      return GetNextStep(performer, receiver, stepnum);
     }
   }
 
@@ -185,16 +179,16 @@ public class GameStep {
     return name;
   }
 
-  public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
+  public bool IsValid(Chars performer, Chars receiver, int step) {
     foreach (Condition c in conditions)
-      if (!c.IsValid(performer, receiver, item1, item2, when, step)) return false;
+      if (!c.IsValid(performer, receiver, null, null, When.Always, step)) return false;
 
     return true;
   }
 
-  public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
+  public bool IsValid(Actor performer, Actor receiver, int step) {
     foreach (Condition c in conditions)
-      if (!c.IsValid(performer, receiver, item1, item2, when, step)) return false;
+      if (!c.IsValid(performer, receiver, null, null, When.Always, step)) return false;
 
     return true;
   }

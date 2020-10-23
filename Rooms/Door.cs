@@ -18,9 +18,6 @@ public class Door : Item {
     Audio = GetComponent<AudioSource>();
   }
 
-  internal bool IsOpen() {
-    return Usable == Tstatus.OpenableOpen || Usable == Tstatus.OpenableOpenAutolock;
-  }
 }
 
 
