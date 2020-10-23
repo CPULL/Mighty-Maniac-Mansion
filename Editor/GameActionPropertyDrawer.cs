@@ -247,27 +247,6 @@ public class GameActionPropertyDrawer : PropertyDrawer {
       }
       break;
 
-      /*
-      case ActionType.Lockunlock: {
-        rect1 = new Rect(position.x + 0 * w2, position.y + 1 * lh, w2, lh);
-        rect2 = new Rect(position.x + 1 * w2, position.y + 1 * lh, w2, lh);
-        rect3 = new Rect(position.x + 0 * w1, position.y + 2 * lh, w1, lh);
-
-        id.intValue = EditorGUI.Popup(rect1, "Item", id.intValue, System.Enum.GetNames(typeof(ItemEnum)));
-        val.intValue = EditorGUI.Popup(rect2, "Mode", val.intValue, LockUnlockStrArray);
-        EditorGUIUtility.labelWidth = 100;
-        str.stringValue = EditorGUI.TextField(rect3, str.stringValue);
-
-        if (id.intValue == 0) {
-          GUIStyle style = new GUIStyle();
-          style.normal.textColor = Color.red;
-          Rect rectErr = new Rect(position.x + position.width / 4, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width / 2, EditorGUIUtility.singleLineHeight);
-          EditorGUI.LabelField(rectErr, "INVALID!", style);
-        }
-      }
-      break;
-      */
-
       case ActionType.Cutscene: {
         rect1 = new Rect(position.x, position.y + 1 * lh, w1, EditorGUIUtility.singleLineHeight);
         EditorGUIUtility.labelWidth = 100;

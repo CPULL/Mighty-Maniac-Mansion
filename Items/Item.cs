@@ -17,13 +17,10 @@ public class Item : GameItem {
   }
 
   public string Use(Actor actor) {
-    // Check conditions to use it
-    if (!VerifyMainCondition(actor, null, null, When.Use)) return condition.BadResult; // Give the bad result of the condition, if any
-
     if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
 
     if (Usable == Tstatus.Usable) {
-      string res = PlayActions(actor, null, When.Use, this, out bool goodByDefault);
+      string res = PlayActions(actor, null, When.Use, this, out bool goodByDefault); // FIXME here we should go over all items and play the ones that have the condition fulfilled
       if (string.IsNullOrEmpty(res) && !goodByDefault) 
         return "It does not work";
       return res;
@@ -49,10 +46,6 @@ public class Item : GameItem {
   }
 
   public string UseTogether(Actor actor, Item other) {
-    // Can we use the two items together?
-    if (!VerifyMainCondition(actor, null, other, When.Use)) return condition.BadResult;
-    if (!other.VerifyMainCondition(actor, null, this, When.Use)) return other.condition.BadResult;
-
     // Case of two items
     string res = null;
     foreach (ActionAndCondition ac in actions) {
@@ -388,11 +381,9 @@ public class Item : GameItem {
   }
 
   internal void Give(Actor giver, Actor receiver) {
-    // Check give conditions
-    if (!VerifyMainCondition(giver, receiver, null, When.Give)) {
-      receiver.Say(condition.BadResult);
-      return;
-    }
+    // FIXME here we should check the conditions of the actions
+
+
     PlayActions(giver, receiver, When.Give, this, out bool goodByDefault);
   }
 }

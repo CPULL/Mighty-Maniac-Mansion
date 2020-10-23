@@ -419,16 +419,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1117025435}
@@ -1432,16 +1422,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 428433903}
@@ -2934,16 +2914,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 202005218}
@@ -4527,16 +4497,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 791578439}
@@ -6508,16 +6468,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1158860359}
@@ -7601,16 +7551,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1940318746}
@@ -8533,16 +8473,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 0}
@@ -12080,27 +12010,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 14
-      actor: 28
-      skill: 1
-      item: 4
-      otherItem: 0
-      num: 4
-      action: 0
-      when: 2
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 15
@@ -12113,15 +12030,12 @@ MonoBehaviour:
       dir: 4
       val: 0
   - Condition:
-      condition: 15
-      actor: 28
-      skill: 1
-      item: 4
-      otherItem: 0
-      num: 4
-      action: 0
-      when: 2
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 15
@@ -13938,27 +13852,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 12
@@ -14115,27 +14016,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 1
@@ -14148,15 +14036,12 @@ MonoBehaviour:
       dir: 0
       val: 0
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 2
@@ -14220,6 +14105,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &465122626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 465122628}
+  - component: {fileID: 465122627}
+  m_Layer: 0
+  m_Name: Debug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &465122627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465122626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: 0
+  Name: 
+  owner: 0
+  Usable: 0
+  UsableWith: 0
+  whatItDoesL: 3
+  whatItDoesR: 0
+  Description: 
+  openImage: {fileID: 0}
+  closeImage: {fileID: 0}
+  lockImage: {fileID: 0}
+  iconImage: {fileID: 0}
+  cursorImage: {fileID: 0}
+  HotSpot: {x: 0, y: 0}
+  dir: 0
+  overColor:
+    serializedVersion: 2
+    rgba: 4278255615
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  actions:
+  - Condition:
+      type: 13
+      id1: 13
+      iv1: 1
+      fv1: 15
+      sv: Kitchen
+      bv: 0
+    Action:
+      running: 0
+      type: 0
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
+  sr: {fileID: 0}
+--- !u!4 &465122628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465122626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -98.33996, y: 22.317137, z: -0.7194325}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &465841224
 GameObject:
   m_ObjectHideFlags: 0
@@ -14787,16 +14756,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 436207615
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1072545338}
@@ -15555,16 +15514,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1158860359}
@@ -17227,16 +17176,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 436207615
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 450900029}
@@ -17558,16 +17497,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 450900029}
@@ -19103,16 +19032,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 202005218}
@@ -21656,16 +21575,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1117025435}
@@ -22293,16 +22202,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 436207615
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 2064089266}
@@ -23031,16 +22930,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1158860359}
@@ -23540,27 +23429,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 15
-    otherItem: 13
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 20
-      actor: 0
-      skill: 0
-      item: 13
-      otherItem: 15
-      num: 0
-      action: 0
-      when: 0
-      BadResult: They do not fit
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 2
@@ -23930,27 +23806,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 1
@@ -23963,15 +23826,12 @@ MonoBehaviour:
       dir: 0
       val: 0
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 2
@@ -24528,16 +24388,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 791578439}
@@ -24840,27 +24690,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 17
@@ -24873,15 +24710,12 @@ MonoBehaviour:
       dir: 0
       val: 0
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 13
@@ -24894,15 +24728,12 @@ MonoBehaviour:
       dir: 0
       val: 0
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 18
@@ -25313,16 +25144,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!212 &798120824
@@ -30590,29 +30411,16 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 3506ed8c30d500d42a7f71b8844f9bb1, type: 3}
   - {fileID: 2800000, guid: 2a45e606b6c8a2c46aaff3fdad3dd7bd, type: 3}
   - {fileID: 2800000, guid: a9be4d282cd68f84e8ffaca7723bfb60, type: 3}
-  currentCutscene:
-    Name: 
-    Id: 0
-    Type: 0
-    status: 0
-    step: 0
-    currentAction:
-      running: 0
-      type: 0
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
   Inventory: {fileID: 411817673}
   InventoryItemTemplate: {fileID: 1650692365}
   ActorPortrait1: {fileID: 1687621014}
   ActorPortrait2: {fileID: 1443085112}
   ActorPortrait3: {fileID: 1970159875}
   InventoryPortrait: {fileID: 211150873}
+  actor1: {fileID: 0}
+  actor2: {fileID: 0}
+  actor3: {fileID: 0}
+  kidnappedActor: {fileID: 0}
   currentActor: {fileID: 0}
   allEnemies:
   - {fileID: 0}
@@ -33559,16 +33367,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 436207615
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1432214312}
@@ -37149,16 +36947,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!61 &1182378099
@@ -38037,27 +37825,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 14
-      actor: 15
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 2
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 15
@@ -38070,15 +37845,12 @@ MonoBehaviour:
       dir: 4
       val: 0
   - Condition:
-      condition: 15
-      actor: 15
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 2
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 15
@@ -38958,16 +38730,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 2064089266}
@@ -40043,27 +39805,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 17
-      actor: 0
-      skill: 0
-      item: 5
-      otherItem: 12
-      num: 0
-      action: 0
-      when: 1
-      BadResult: Not the right key
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 11
@@ -41647,16 +41396,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!212 &1318194160
@@ -45146,16 +44885,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!1 &1432214309
@@ -46324,27 +46053,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 12
-      actor: 0
-      skill: 0
-      item: 5
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 1
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 10
@@ -46682,16 +46398,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 436207615
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1158860359}
@@ -50998,16 +50704,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 428433903}
@@ -53043,16 +52739,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!61 &1684838715
@@ -54856,16 +54542,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1940318746}
@@ -55363,16 +55039,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!1 &1743800345
@@ -57831,27 +57497,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 4
-      actor: 1
-      skill: 1
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 6
@@ -57864,15 +57517,12 @@ MonoBehaviour:
       dir: 0
       val: 0
   - Condition:
-      condition: 4
-      actor: 1
-      skill: 1
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 6
@@ -57885,15 +57535,12 @@ MonoBehaviour:
       dir: 0
       val: 0
   - Condition:
-      condition: 1
-      actor: 19
-      skill: 1
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 2
@@ -57906,15 +57553,12 @@ MonoBehaviour:
       dir: 2
       val: 0
   - Condition:
-      condition: 1
-      actor: 9
-      skill: 1
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 2
@@ -58565,27 +58209,14 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions:
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 1
@@ -58598,15 +58229,12 @@ MonoBehaviour:
       dir: 0
       val: 0
   - Condition:
-      condition: 0
-      actor: 0
-      skill: 0
-      item: 0
-      otherItem: 0
-      num: 0
-      action: 0
-      when: 0
-      BadResult: 
+      type: 0
+      id1: 0
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 0
     Action:
       running: 0
       type: 2
@@ -60559,16 +60187,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 436207615
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1117025435}
@@ -60868,16 +60486,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!1 &1910928021
@@ -63598,16 +63206,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!65 &1956777063
@@ -64431,16 +64029,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   OpenSound: {fileID: 0}
@@ -66000,16 +65588,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!1 &2030846128
@@ -66231,16 +65809,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!1 &2037223596
@@ -66605,16 +66173,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 436207615
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1117025435}
@@ -67107,16 +66665,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!212 &2065761453
@@ -67849,16 +67397,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
   OpenSound: {fileID: 8300000, guid: 3b77744060984de49bf2873a6373db53, type: 3}
@@ -68775,16 +68313,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}
 --- !u!212 &2120003146
@@ -69994,15 +69522,5 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  condition:
-    condition: 0
-    actor: 0
-    skill: 0
-    item: 0
-    otherItem: 0
-    num: 0
-    action: 0
-    when: 4
-    BadResult: 
   actions: []
   sr: {fileID: 0}

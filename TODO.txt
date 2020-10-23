@@ -4,11 +4,6 @@
 Usual refurbish of the code.
 
 
-What should be the logic of running the actions?
-
-
-
-
 1.b) Remove the old code for GameCOndidtion and BehaviorCondition
 1.c) Add a way to see the actions and conditions on items and actors (property drawers but readonly)
 2) implement all new conditions and logic to check if they are valid [in progress]

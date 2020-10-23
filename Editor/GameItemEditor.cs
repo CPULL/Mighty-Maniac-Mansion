@@ -13,7 +13,6 @@ public class GameItemEditor : Editor {
   SerializedProperty overColor, normalColor;
   SerializedProperty HotSpot, dir;
   SerializedProperty actions;
-  SerializedProperty condition;
 
 
   void OnEnable() {
@@ -35,7 +34,6 @@ public class GameItemEditor : Editor {
     HotSpot = serializedObject.FindProperty("HotSpot");
     dir = serializedObject.FindProperty("dir");
     actions = serializedObject.FindProperty("actions");
-    condition = serializedObject.FindProperty("condition");
   }
 
   public override void OnInspectorGUI() {
@@ -111,9 +109,12 @@ public class GameItemEditor : Editor {
     EditorGUILayout.EndHorizontal();
 
     EditorGUIUtility.labelWidth = 120;
-    EditorGUILayout.PropertyField(condition);
 
-    // Actions detailed
+
+    EditorGUILayout.PropertyField(actions);
+
+
+    /*/ Actions detailed
     actions.isExpanded = EditorGUILayout.Foldout(actions.isExpanded, "Actions");
     if (actions.isExpanded) {
       EditorGUI.indentLevel++;
@@ -129,6 +130,7 @@ public class GameItemEditor : Editor {
       }
       EditorGUI.indentLevel--;
     }
+    */
 
 
     serializedObject.ApplyModifiedProperties();

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public class Condition {
   public ConditionType type;
   public int id1;
@@ -66,20 +67,14 @@ public class Condition {
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
       case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " is true" : " is false");
       case ConditionType.StepValueIs: return "Step " + (bv ? " is " : " is not ") + iv1;
-
-      case ConditionType.ItemCollected: // FIXME
-        break;
+      case ConditionType.ItemCollected: return "Item " + (ItemEnum)id1 + (bv ? " is collected by " : " is not collected by ") + (Chars)iv1;
       case ConditionType.ActorInSameRoom: return "Actor " + (Chars)id1 + " is " + (!bv ? "not in " : "in ") + sv;
-
       case ConditionType.ActorDistanceLess: return "Actor " + (Chars)id1 + " dist " + (bv ? "< " : "> ") + fv1;
       case ConditionType.ActorXLess: return "Actor " + (Chars)id1 + " X " + (bv ? "< " : "> ") + fv1;
+      case ConditionType.ItemOpen: return "Item " + (ItemEnum)id1 + (bv ? " is " : " is not ") + (iv1 == 0 ? "Open" : "Locked");
+      case ConditionType.RecipientIs: return "Recipient " + (bv ? "is " : "is not ") + (Chars)id1;
+      case ConditionType.WhenIs: return "When " + (bv ? "is " : "is not ") + (When)id1;
 
-      case ConditionType.ItemOpen: // FIXME
-        break;
-      case ConditionType.RecipientIs: // FIXME
-        break;
-      case ConditionType.WhenIs: // FIXME
-        break;
       case ConditionType.UsedWith: return "Used with " + (bv ? "" : "not ") + (ItemEnum)id1;
     }
 

@@ -26,7 +26,6 @@ public class GameItem : MonoBehaviour {
   public Color32 overColor = new Color32(255, 255, 0, 255);
   public Color32 normalColor = new Color32(255, 255, 255, 255);
 
-  public GameCondition condition;
   public List<ActionAndCondition> actions;
 
   internal string PlayActions(Actor actor, Actor secondary, When when, Item item, out bool silentGood) {
@@ -50,10 +49,6 @@ public class GameItem : MonoBehaviour {
       }
     }
     return goodResult ?? badResult;
-  }
-
-  public bool VerifyMainCondition(Actor performer, Actor secondary, GameItem otherItem, When when) {
-    return condition.IsValid(performer, secondary, this, otherItem, when);
   }
 
 }
