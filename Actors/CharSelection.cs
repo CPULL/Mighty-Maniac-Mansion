@@ -61,6 +61,10 @@ public class CharSelection : MonoBehaviour {
     a2 = -1;
     a3 = -1;
     ak = -1;
+    a1 = 23; // FIXME
+    a2 = 22;
+    a3 = 21;
+    ak = 20;
     UpdateTitle();
   }
 
