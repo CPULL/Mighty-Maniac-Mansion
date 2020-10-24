@@ -12119,40 +12119,24 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
-      type: 15
+      type: 10
       Repeatable: 1
       delay: 2
-      id1: 0
+      id1: 9
       id2: 0
       str: Thanks, I will roll a joint.
       pos: {x: -55, y: 2}
       dir: 4
       val: 0
-  - Condition:
-      type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
-      sv: 
-      bv: 0
-    Action:
-      running: 0
-      type: 15
-      Repeatable: 1
-      delay: 2
-      id1: 0
-      id2: 0
-      str: I have no use for it
-      pos: {x: -55, y: 2}
-      dir: 4
-      val: 1
   sr: {fileID: 0}
 --- !u!65 &405510475
 BoxCollider:
@@ -13961,11 +13945,13 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 11
@@ -14125,11 +14111,13 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 1
@@ -14143,11 +14131,13 @@ MonoBehaviour:
       val: 0
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 2
@@ -23529,11 +23519,13 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 2
@@ -23906,11 +23898,13 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 1
@@ -23924,11 +23918,13 @@ MonoBehaviour:
       val: 0
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 2
@@ -24790,11 +24786,13 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 16
@@ -24808,11 +24806,13 @@ MonoBehaviour:
       val: 0
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 12
@@ -24826,11 +24826,13 @@ MonoBehaviour:
       val: 0
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 17
@@ -38152,11 +38154,13 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 15
@@ -38170,11 +38174,13 @@ MonoBehaviour:
       val: 0
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 15
@@ -40132,11 +40138,13 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 13
-      id1: 12
-      iv1: 0
-      fv1: 0
+      id: 12
+      iv: 0
+      fv: 0
       sv: 
       bv: 1
+      msg: Not the right key
+      when: 1
     Action:
       running: 0
       type: 9
@@ -46457,11 +46465,13 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 10
-      id1: 8
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 1
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 10
@@ -46475,11 +46485,13 @@ MonoBehaviour:
       val: 0
   - Condition:
       type: 10
-      id1: 8
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 10
@@ -58228,74 +58240,42 @@ MonoBehaviour:
     rgba: 4294967295
   actions:
   - Condition:
-      type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
-      sv: 
-      bv: 0
-    Action:
-      running: 0
-      type: 6
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
-  - Condition:
-      type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
-      sv: 
-      bv: 0
-    Action:
-      running: 0
-      type: 6
-      Repeatable: 0
-      delay: 0
-      id1: 0
-      id2: 0
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 0
-  - Condition:
-      type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
-      sv: 
-      bv: 0
-    Action:
-      running: 0
       type: 2
+      id: 1
+      iv: 1
+      fv: 0
+      sv: 
+      bv: 0
+      msg: 
+      when: 0
+    Action:
+      running: 0
+      type: 3
       Repeatable: 0
       delay: 0
-      id1: 0
+      id1: 1
       id2: 0
-      str: 
+      str: I am not strong enough
       pos: {x: 0, y: 0}
       dir: 2
       val: 0
   - Condition:
-      type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      type: 2
+      id: 1
+      iv: 1
+      fv: 0
       sv: 
-      bv: 0
+      bv: 1
+      msg: 
+      when: 0
     Action:
       running: 0
-      type: 2
+      type: 10
       Repeatable: 0
-      delay: 2
-      id1: 0
+      delay: 0
+      id1: 10
       id2: 0
-      str: 
+      str: I am not strong enough
       pos: {x: 0, y: 0}
       dir: 2
       val: 0
@@ -58941,11 +58921,13 @@ MonoBehaviour:
   actions:
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 1
@@ -58959,11 +58941,13 @@ MonoBehaviour:
       val: 0
   - Condition:
       type: 0
-      id1: 0
-      iv1: 0
-      fv1: 0
+      id: 0
+      iv: 0
+      fv: 0
       sv: 
       bv: 0
+      msg: 
+      when: 0
     Action:
       running: 0
       type: 2

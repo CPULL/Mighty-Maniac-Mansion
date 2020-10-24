@@ -1,7 +1,6 @@
 === Mighty Maniac Mansion ===
 
 
-We miss the sentences to say when an action is not valid or when an action is valid
 Some of the actions should be limited to particular actions (Use, Pick, Give, etc.)
 Edna behavior looks not working
 
@@ -175,6 +174,7 @@ Jeff
 ! Remove the old code for GameCondidtion and BehaviorCondition
 ! Do same PropDrawer for Actions like the one for conditions
 ! Add a way to see the actions and conditions on items and actors (property drawers but readonly)
+! We miss the sentences to say when an action is not valid or when an action is valid
 
 
 

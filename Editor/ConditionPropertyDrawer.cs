@@ -18,19 +18,25 @@ public class ConditionPropertyDrawer : PropertyDrawer {
     EditorGUI.indentLevel = 1;
 
     SerializedProperty type = property.FindPropertyRelative("type");
-    SerializedProperty id1 = property.FindPropertyRelative("id1");
-    SerializedProperty iv1 = property.FindPropertyRelative("iv1");
-    SerializedProperty fv1 = property.FindPropertyRelative("fv1");
+    SerializedProperty id1 = property.FindPropertyRelative("id");
+    SerializedProperty iv1 = property.FindPropertyRelative("iv");
+    SerializedProperty fv1 = property.FindPropertyRelative("fv");
     SerializedProperty sv = property.FindPropertyRelative("sv");
     SerializedProperty bv = property.FindPropertyRelative("bv");
+    SerializedProperty msg = property.FindPropertyRelative("msg");
+    SerializedProperty when = property.FindPropertyRelative("when");
 
     string name = Condition.StringName((ConditionType)type.intValue, id1.intValue, iv1.intValue, fv1.floatValue, sv.stringValue, bv.boolValue);
 
     float w4 = position.width * .25f;
     float lh = EditorGUIUtility.singleLineHeight;
 
-    Rect titleR = new Rect(position.x, position.y, position.width, lh);
+    Rect titleR = new Rect(position.x, position.y, position.width * .5f, lh);
+    Rect whenR = new Rect(position.x + position.width * .5f, position.y, position.width * .2f, lh);
+    Rect msgR = new Rect(position.x + position.width * .7f, position.y, position.width * .3f, lh);
     EditorGUI.LabelField(titleR, "Condition: " + name, EditorStyles.boldLabel);
+    when.intValue = EditorGUI.Popup(whenR, when.intValue, when.enumDisplayNames);
+    msg.stringValue = EditorGUI.TextField(msgR, msg.stringValue);
     property.isExpanded = EditorGUI.Foldout(titleR, property.isExpanded, new GUIContent(""));
 
     if (property.isExpanded) {

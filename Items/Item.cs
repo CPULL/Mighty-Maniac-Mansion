@@ -76,14 +76,14 @@ public class Item : GameItem {
       if (ac.Condition.IsValid(actor, null, this, other, When.Use, 0)) {
         return PlayActions(actor, null, When.Use, other, out bool goodByDefault);
       }
-      if (res == null) res = "FIXME ac.Condition.BadResult";
+      else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
     }
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
       if (ac.Condition.IsValid(actor, null, this, other, When.Use, 0)) {
         return other.PlayActions(actor, null, When.Use, this, out bool goodByDefault);
       }
-      if (res == null) res = "FIXME ac.Condition.BadResult";
+      else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
     }
     if (res != null) return res;
 
@@ -219,7 +219,7 @@ public class Item : GameItem {
 
   internal bool HasActions(When when) {
     foreach(ActionAndCondition ac in actions) {
-      if (ac.Condition.type != ConditionType.None && (When)ac.Condition.id1 == when) return true;
+      if (ac.Condition.type != ConditionType.None && (When)ac.Condition.id == when) return true;
     }
     return false;
   }

@@ -3,11 +3,13 @@
 [System.Serializable]
 public class Condition {
   public ConditionType type;
-  public int id1;
-  public int iv1;
-  public float fv1;
+  public int id;
+  public int iv;
+  public float fv;
   public string sv;
   public bool bv;
+  public string msg;
+  public When when;
 
   public Condition(string stype, int idi, string ids, int siv, bool sbv, string svs, float svf) {
     type = (ConditionType)System.Enum.Parse(typeof(ConditionType), stype, true);
@@ -24,13 +26,13 @@ public class Condition {
         case ConditionType.ActorXLess:         // ID and dist value                                                                 (ID1, FV, BV)
         case ConditionType.RecipientIs:        // ID of actor                                                                       (ID1, BV)
           if (System.Enum.TryParse<Chars>(ids, out Chars resa)) {
-            id1 = (int)resa;
+            id = (int)resa;
           }
           break;
 
         case ConditionType.FlagValueIs:
           if (System.Enum.TryParse<GameFlag>(ids, out GameFlag resf)) {
-            id1 = (int)resf;
+            id = (int)resf;
           }
           break;
 
@@ -38,23 +40,23 @@ public class Condition {
         case ConditionType.ItemOpen:
         case ConditionType.UsedWith:
           if (System.Enum.TryParse<ItemEnum>(ids, out ItemEnum resi)) {
-            id1 = (int)resi;
+            id = (int)resi;
           }
           break;
       }
     }
     else
-      id1 = idi;
+      id = idi;
 
 
-    iv1 = siv;
+    iv = siv;
     sv = svs;
     bv = sbv;
-    fv1 = svf;
+    fv = svf;
   }
 
   public override string ToString() {
-    return StringName(type, id1, iv1, fv1, sv, bv);
+    return StringName(type, id, iv, fv, sv, bv);
   }
 
   public static string StringName(ConditionType type, int id1, int iv1, float fv1, string sv, bool bv) {
@@ -108,13 +110,13 @@ public class Condition {
 
       case ConditionType.ActorIs: { // We need an actor to test
         bool res;
-        if ((Chars)id1 == Chars.Current) res = (GD.c.currentActor == performer || GD.c.currentActor == receiver);
-        else if ((Chars)id1 == Chars.Actor1) res = (GD.c.actor1 == performer || GD.c.actor1 == receiver);
-        else if ((Chars)id1 == Chars.Actor2) res = (GD.c.actor2 == performer || GD.c.actor2 == receiver);
-        else if ((Chars)id1 == Chars.Actor3) res = (GD.c.actor3 == performer || GD.c.actor3 == receiver);
-        else if ((Chars)id1 == Chars.KidnappedActor) res = (GD.c.kidnappedActor == performer || GD.c.kidnappedActor == receiver);
-        else if ((Chars)id1 == Chars.Player) res = (GD.c.actor1 == performer || GD.c.actor2 == performer || GD.c.actor3 == performer);
-        else res = performer.id == (Chars)id1;
+        if ((Chars)id == Chars.Current) res = (GD.c.currentActor == performer || GD.c.currentActor == receiver);
+        else if ((Chars)id == Chars.Actor1) res = (GD.c.actor1 == performer || GD.c.actor1 == receiver);
+        else if ((Chars)id == Chars.Actor2) res = (GD.c.actor2 == performer || GD.c.actor2 == receiver);
+        else if ((Chars)id == Chars.Actor3) res = (GD.c.actor3 == performer || GD.c.actor3 == receiver);
+        else if ((Chars)id == Chars.KidnappedActor) res = (GD.c.kidnappedActor == performer || GD.c.kidnappedActor == receiver);
+        else if ((Chars)id == Chars.Player) res = (GD.c.actor1 == performer || GD.c.actor2 == performer || GD.c.actor3 == performer);
+        else res = performer.id == (Chars)id;
         if (bv)
           return res;
         else
@@ -122,7 +124,7 @@ public class Condition {
       }
 
       case ConditionType.ActorHasSkill: {
-        bool res = Controller.GetActor((Chars)id1).HasSkill((Skill)iv1);
+        bool res = Controller.GetActor((Chars)id).HasSkill((Skill)iv);
         if (bv)
           return res;
         else
@@ -138,11 +140,11 @@ public class Condition {
       }
 
       case ConditionType.FlagValueIs: {
-        return AllObjects.CheckFlag((GameFlag)id1, bv ? FlagValue.Yes : FlagValue.No);
+        return AllObjects.CheckFlag((GameFlag)id, bv ? FlagValue.Yes : FlagValue.No);
       }
 
       case ConditionType.StepValueIs: {
-        bool res = iv1 == step;
+        bool res = iv == step;
         if (bv)
           return res;
         else
@@ -161,7 +163,7 @@ public class Condition {
       }
 
       case ConditionType.ActorInSameRoom: {
-        Actor a = Controller.GetActor((Chars)id1);
+        Actor a = Controller.GetActor((Chars)id);
         if (a == null) return false;
         bool res = a.currentRoom.ID.ToLowerInvariant().Equals(sv.ToLowerInvariant());
         if (bv)
@@ -171,9 +173,9 @@ public class Condition {
       }
 
       case ConditionType.ActorDistanceLess: {
-        Actor a = Controller.GetActor((Chars)id1);
+        Actor a = Controller.GetActor((Chars)id);
         if (a == null) return false;
-        bool res = Vector2.Distance(a.transform.position, performer.transform.position) < fv1;
+        bool res = Vector2.Distance(a.transform.position, performer.transform.position) < fv;
         if (bv)
           return res;
         else
@@ -181,9 +183,9 @@ public class Condition {
       }
 
       case ConditionType.ActorXLess: {
-        Actor a = Controller.GetActor((Chars)id1);
+        Actor a = Controller.GetActor((Chars)id);
         if (a == null) return false;
-        bool res = a.transform.position.x < fv1;
+        bool res = a.transform.position.x < fv;
         if (bv)
           return res;
         else
@@ -191,7 +193,7 @@ public class Condition {
       }
 
       case ConditionType.ItemOpen:
-        if (iv1 == 0) {
+        if (iv == 0) {
           if (bv)
             return item1.IsOpen();
           else
@@ -205,27 +207,27 @@ public class Condition {
         }
 
       case ConditionType.RecipientIs: {
-        Chars id = (Chars)id1;
-        if (id == Chars.Player) {
+        Chars idc = (Chars)id;
+        if (idc == Chars.Player) {
           if (bv)
             return (GD.c.actor1 == receiver) || (GD.c.actor2 == receiver) || (GD.c.actor3 == receiver);
           else
             return (GD.c.actor1 != receiver) && (GD.c.actor2 != receiver) && (GD.c.actor3 != receiver);
         }
-        if (id == Chars.Enemy) {
+        if (idc == Chars.Enemy) {
           if (bv)
             return (receiver.id == Chars.Fred) || (receiver.id == Chars.Edna) || (receiver.id == Chars.Ed) || (receiver.id == Chars.Ted) || (receiver.id == Chars.Edwige) || (receiver.id == Chars.GreenTentacle) || (receiver.id == Chars.PurpleTentacle) || (receiver.id == Chars.BlueTentacle) || (receiver.id == Chars.PurpleMeteor);
           else
             return (receiver.id != Chars.Fred) && (receiver.id != Chars.Edna) && (receiver.id != Chars.Ed) && (receiver.id != Chars.Ted) && (receiver.id != Chars.Edwige) && (receiver.id != Chars.GreenTentacle) && (receiver.id != Chars.PurpleTentacle) && (receiver.id != Chars.BlueTentacle) && (receiver.id != Chars.PurpleMeteor);
         }
         if (bv)
-          return ((Chars)id1 == receiver.id);
+          return (idc == receiver.id);
         else
-          return ((Chars)id1 != receiver.id);
+          return (idc != receiver.id);
       }
 
       case ConditionType.WhenIs: {
-        bool res = (When)id1 == when;
+        bool res = (When)id == when;
         if (bv)
           return res;
         else
@@ -235,15 +237,15 @@ public class Condition {
       case ConditionType.UsedWith: {
         if (item2 != null) {
           if (bv)
-            return ((ItemEnum)id1 == item2.Item);
+            return ((ItemEnum)id == item2.Item);
           else
-            return ((ItemEnum)id1 != item2.Item);
+            return ((ItemEnum)id != item2.Item);
         }
         else if (item2 != null) {
           if (bv)
-            return ((ItemEnum)id1 == item1.Item);
+            return ((ItemEnum)id == item1.Item);
           else
-            return ((ItemEnum)id1 != item1.Item);
+            return ((ItemEnum)id != item1.Item);
         }
         else return false;
       }
