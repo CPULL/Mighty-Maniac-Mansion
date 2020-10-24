@@ -1,7 +1,11 @@
 === Mighty Maniac Mansion ===
 
 
-Some of the actions should be limited to particular actions (Use, Pick, Give, etc.)
+!Tests: Use an object that is not supposed to do anything
+!Tests: Use a key in the wrong object
+Tests: Give an object to somebody else
+
+
 Edna behavior looks not working
 
 2) implement all new conditions and logic to check if they are valid [in progress]
@@ -175,6 +179,8 @@ Jeff
 ! Do same PropDrawer for Actions like the one for conditions
 ! Add a way to see the actions and conditions on items and actors (property drawers but readonly)
 ! We miss the sentences to say when an action is not valid or when an action is valid
+! Some of the actions should be limited to particular actions (Use, Pick, Give, etc.)
+! Disable actors colliders if we are not "giving" an object
 
 
 

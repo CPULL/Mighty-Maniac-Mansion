@@ -34,6 +34,7 @@ public enum ActionType {
 public class GameAction {
   public Running running = Running.NotStarted; // FIXME check that we have these values: BehaviorActonStatus
   private float time;
+  public string msg;
 
 
   public ActionType type;
@@ -562,12 +563,11 @@ public class GameAction {
       }
       break;
     }
-
-//    Debug.Break();
   }
-
-
 
 }
 
-
+public class ActionRes {
+  public bool actionDone = false;
+  public string res = null;
+}

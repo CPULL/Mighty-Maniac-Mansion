@@ -30,6 +30,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     SerializedProperty pos = property.FindPropertyRelative("pos");
     SerializedProperty dir = property.FindPropertyRelative("dir");
     SerializedProperty val = property.FindPropertyRelative("val");
+    SerializedProperty msg = property.FindPropertyRelative("msg");
 
     string name = GameAction.StringName((ActionType)type.intValue, Repeatable.boolValue, delay.floatValue, id1.intValue, id2.intValue, str.stringValue, pos.vector2Value, (Dir)dir.intValue, val.intValue);
 
@@ -38,8 +39,10 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     float w8 = position.width * .125f;
     float lh = EditorGUIUtility.singleLineHeight;
 
-    Rect titleR = new Rect(position.x, position.y, position.width, lh);
+    Rect titleR = new Rect(position.x, position.y, position.width * .5f, lh);
+    Rect msgR = new Rect(position.x + position.width * .5f, position.y, position.width * .5f, lh);
     EditorGUI.LabelField(titleR, "Action: " + name, EditorStyles.boldLabel);
+    msg.stringValue = EditorGUI.TextArea(msgR, msg.stringValue);
     property.isExpanded = EditorGUI.Foldout(titleR, property.isExpanded, new GUIContent(""));
 
     if (property.isExpanded) {

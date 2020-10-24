@@ -105,6 +105,9 @@ public class Condition {
 
 
   public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when, int step) {
+    if (this.when != When.Always && this.when != when) return false;
+    if (item1 != null && item2 != null && type != ConditionType.UsedWith) return false;
+
     switch (type) {
       case ConditionType.None: return true;
 

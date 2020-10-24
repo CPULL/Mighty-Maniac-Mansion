@@ -152,14 +152,15 @@ public class Controller : MonoBehaviour {
           forcedCursor = CursorTypes.None;
           oldCursor = null;
           usedItem = null;
+          EnableActorSelection(false);
         }
         else { /* rmb - read */
           if (overInventoryItem.HasActions(When.Use)) {
-            string res = overInventoryItem.PlayActions(currentActor, null, When.Use, null, out bool goodByDefault);
-            if (string.IsNullOrEmpty(res))
+            ActionRes res = overInventoryItem.PlayActions(currentActor, null, When.Use, null);
+            if (res == null || res.actionDone)
               currentActor.Say(overInventoryItem.Description); // By default read what is written in the description of the object
             else
-              currentActor.Say(res);
+              currentActor.Say(res.res);
           }
           else {
             string msg = overInventoryItem.Description.Replace("%open", overInventoryItem.GetOpenStatus());
@@ -170,6 +171,7 @@ public class Controller : MonoBehaviour {
       else if (usedItem == null) {
         if (lmb) { /* lmb - set as used */
           usedItem = overInventoryItem;
+          EnableActorSelection(true);
           overInventoryItem = null;
           oldCursor = null;
           forcedCursor = CursorTypes.Item;
@@ -184,6 +186,7 @@ public class Controller : MonoBehaviour {
       else {
         if (lmb) { /* lmb - Swap */
           usedItem = overInventoryItem;
+          EnableActorSelection(true);
           overInventoryItem = null;
           oldCursor = null;
           forcedCursor = CursorTypes.Item;
@@ -197,6 +200,7 @@ public class Controller : MonoBehaviour {
           forcedCursor = CursorTypes.None;
           oldCursor = null;
           usedItem = null;
+          EnableActorSelection(false);
           Inventory.SetActive(false);
           return;
         }
@@ -212,11 +216,11 @@ public class Controller : MonoBehaviour {
             new System.Action<Actor, Item>((actor, item) => {
               actor.SetDirection(item.dir);
               if (item.HasActions(When.Use)) {
-                string res = item.PlayActions(currentActor, null, When.Use, null, out bool goodByDefault);
-                if (string.IsNullOrEmpty(res))
+                ActionRes res = item.PlayActions(currentActor, null, When.Use, null);
+                if (res == null || res.actionDone)
                   actor.Say(item.Description); // By default read what is written in the description of the object
                 else
-                  actor.Say(res);
+                  actor.Say(res.res);
               }
               else {
                 string msg = item.Description.Replace("%open", item.GetOpenStatus());
@@ -237,15 +241,15 @@ public class Controller : MonoBehaviour {
                 if (actor == actor1) item.owner = Chars.Actor1;
                 else if (actor == actor2) item.owner = Chars.Actor2;
                 else if (actor == actor3) item.owner = Chars.Actor3;
-                item.PlayActions(currentActor, null, When.Pick, null, out bool goodByDefault);
+                item.PlayActions(currentActor, null, When.Pick, null);
                 item = null;
                 forcedCursor = CursorTypes.None;
                 if (Inventory.activeSelf) ActivateInventory(currentActor);
               }
               else {
                 // Just run the actions, the item is special
-                string msg = item.PlayActions(currentActor, null, When.Pick, null, out bool goodByDefault);
-                if (!goodByDefault && !string.IsNullOrEmpty(msg)) currentActor.Say(msg);
+                ActionRes msg = item.PlayActions(currentActor, null, When.Pick, null);
+                if (msg != null && !msg.actionDone) currentActor.Say(msg.res);
               }
             }));
           overItem = null;
@@ -297,6 +301,7 @@ public class Controller : MonoBehaviour {
               forcedCursor = CursorTypes.None;
               oldCursor = null;
               usedItem = null;
+              EnableActorSelection(false);
               Inventory.SetActive(false);
               return;
             }));
@@ -332,6 +337,7 @@ public class Controller : MonoBehaviour {
           forcedCursor = CursorTypes.None;
           oldCursor = null;
           usedItem = null;
+          EnableActorSelection(false);
         }
       }
     }
@@ -344,6 +350,7 @@ public class Controller : MonoBehaviour {
         usedItem.Give(currentActor, receiverActor);
         Inventory.SetActive(false);
         usedItem = null;
+        EnableActorSelection(false);
         oldCursor = null;
         forcedCursor = CursorTypes.None;
         return;
@@ -499,6 +506,7 @@ public class Controller : MonoBehaviour {
     actor3.Player();
     kidnappedActor = GetActor(GD.kidnapped);
     currentActor = actor1;
+    EnableActorSelection(false);
 
     ActorsButtons.SetActive(true);
     StartIntroCutscene();
@@ -816,6 +824,7 @@ public class Controller : MonoBehaviour {
     GD.c.forcedCursor = CursorTypes.None;
     GD.c.oldCursor = null;
     GD.c.usedItem = null;
+    GD.c.EnableActorSelection(false);
 
     GD.c.currentActor = actor;
     GD.c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.unselectedActor;
@@ -842,12 +851,17 @@ public class Controller : MonoBehaviour {
     GD.c.overActor = actor;
   }
 
+  void EnableActorSelection(bool enable) {
+    foreach (Actor a in allActors)
+      if (a != null) a.GetComponent<BoxCollider2D>().enabled = enable;
+    foreach (Actor a in allEnemies)
+      if (a != null) a.GetComponent<BoxCollider2D>().enabled = enable;
+  }
 
+#endregion
 
-  #endregion
-
-  #region *********************** Rooms and Transitions *********************** Rooms and Transitions *********************** Rooms and Transitions ***********************
-  public Room currentRoom;
+#region *********************** Rooms and Transitions *********************** Rooms and Transitions *********************** Rooms and Transitions ***********************
+public Room currentRoom;
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
     // Disable gameplay

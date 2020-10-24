@@ -12128,6 +12128,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 10
       Repeatable: 1
       delay: 2
@@ -13951,9 +13952,10 @@ MonoBehaviour:
       sv: 
       bv: 0
       msg: 
-      when: 0
+      when: 1
     Action:
       running: 0
+      msg: 
       type: 11
       Repeatable: 1
       delay: 1
@@ -14120,6 +14122,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 1
       Repeatable: 1
       delay: 0
@@ -14140,6 +14143,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 2
       Repeatable: 0
       delay: 0
@@ -23528,6 +23532,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 2
       Repeatable: 1
       delay: 1
@@ -23907,6 +23912,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 1
       Repeatable: 0
       delay: 0
@@ -23927,6 +23933,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 2
       Repeatable: 0
       delay: 0
@@ -24795,6 +24802,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 16
       Repeatable: 0
       delay: 0.25
@@ -24815,6 +24823,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 12
       Repeatable: 0
       delay: 0.3
@@ -24835,6 +24844,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 17
       Repeatable: 0
       delay: 1
@@ -38163,6 +38173,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 15
       Repeatable: 0
       delay: 0
@@ -38183,6 +38194,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 15
       Repeatable: 1
       delay: 0
@@ -40147,6 +40159,7 @@ MonoBehaviour:
       when: 1
     Action:
       running: 0
+      msg: The door is unlocked!
       type: 9
       Repeatable: 0
       delay: 0
@@ -46471,9 +46484,10 @@ MonoBehaviour:
       sv: 
       bv: 1
       msg: 
-      when: 0
+      when: 1
     Action:
       running: 0
+      msg: 
       type: 10
       Repeatable: 0
       delay: 0
@@ -46491,9 +46505,10 @@ MonoBehaviour:
       sv: 
       bv: 0
       msg: 
-      when: 0
+      when: 1
     Action:
       running: 0
+      msg: 
       type: 10
       Repeatable: 0
       delay: 0
@@ -58247,9 +58262,10 @@ MonoBehaviour:
       sv: 
       bv: 0
       msg: 
-      when: 0
+      when: 1
     Action:
       running: 0
+      msg: 
       type: 3
       Repeatable: 0
       delay: 0
@@ -58267,9 +58283,10 @@ MonoBehaviour:
       sv: 
       bv: 1
       msg: 
-      when: 0
+      when: 1
     Action:
       running: 0
+      msg: 
       type: 10
       Repeatable: 0
       delay: 0
@@ -58279,6 +58296,27 @@ MonoBehaviour:
       pos: {x: 0, y: 0}
       dir: 2
       val: 0
+  - Condition:
+      type: 2
+      id: 1
+      iv: 1
+      fv: 0
+      sv: 
+      bv: 1
+      msg: 
+      when: 1
+    Action:
+      running: 0
+      msg: 
+      type: 10
+      Repeatable: 0
+      delay: 0
+      id1: 9
+      id2: 0
+      str: I am not strong enough
+      pos: {x: 0, y: 0}
+      dir: 2
+      val: 1
   sr: {fileID: 0}
 --- !u!1 &1805491017
 GameObject:
@@ -58930,6 +58968,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 1
       Repeatable: 1
       delay: 0
@@ -58950,6 +58989,7 @@ MonoBehaviour:
       when: 0
     Action:
       running: 0
+      msg: 
       type: 2
       Repeatable: 1
       delay: 0

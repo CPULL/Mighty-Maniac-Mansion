@@ -20,72 +20,88 @@ public class Item : GameItem {
     if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
 
     if (Usable == Tstatus.Usable) {
-      string res = PlayActions(actor, null, When.Use, this, out bool goodByDefault); // FIXME here we should go over all items and play the ones that have the condition fulfilled
-      if (string.IsNullOrEmpty(res) && !goodByDefault) 
-        return "It does not work";
-      return res;
+      ActionRes res = PlayActions(actor, null, When.Use, this);
+      if (res == null || !res.actionDone) return "It does not work";
+      return null;
     }
     else if (Usable == Tstatus.OpenableOpen) {
       SetAsClosedUnlocked();
-      return PlayActions(actor, null, When.Use, null, out _);
+      ActionRes res = PlayActions(actor, null, When.Use, null);
+      if (res != null && !res.actionDone) return res.res;
+      return null;
     }
     else if (Usable == Tstatus.OpenableOpenAutolock) {
       SetAsLockedAuto();
-      return PlayActions(actor, null, When.Use, null, out _);
+      ActionRes res = PlayActions(actor, null, When.Use, null);
+      if (res != null && !res.actionDone) return res.res;
+      return null;
     }
     else if (Usable == Tstatus.OpenableClosed) {
       SetAsOpen();
-      return PlayActions(actor, null, When.Use, null, out _);
+      ActionRes res = PlayActions(actor, null, When.Use, null);
+      if (res != null && !res.actionDone) return res.res;
+      return null;
     }
     else if (Usable == Tstatus.OpenableClosedAutolock) {
       SetAsOpenAuto();
-      return PlayActions(actor, null, When.Use, null, out _);
+      ActionRes res = PlayActions(actor, null, When.Use, null);
+      if (res != null && !res.actionDone) return res.res;
+      return null;
     }
 
     return "Seems it does nothing";
   }
 
-  internal string PlayActions(Actor actor, Actor secondary, When when, Item item, out bool silentGood) {
-    silentGood = false;
+  internal ActionRes PlayActions(Actor actor, Actor secondary, When when, Item item) {
     if (actions == null || actions.Count == 0) return null;
 
-    string badResult = null;
-    string goodResult = null;
+    ActionRes res = null;
+    Item item1 = this;
+    Item item2 = (this == item ? null : item);
 
     foreach (ActionAndCondition ac in actions) {
       Controller.KnowAction(ac.Action);
-      if (ac.Condition.IsValid(actor, secondary, this, item, when, 0)) {
+      if (ac.Condition.IsValid(actor, secondary, item1, item2, when, 0)) {
         ac.Action.RunAction(actor, secondary, this, item);
-        if (ac.Action.type.GoodByDefault())
-          silentGood = true;
-        else if (!string.IsNullOrEmpty(ac.Action.str))
-          goodResult = ac.Action.str;
+        if (res == null) res = new ActionRes { actionDone = true, res = null };
+        if (!ac.Action.type.GoodByDefault() && !string.IsNullOrEmpty(ac.Action.msg))
+          res.res = ac.Action.msg;
       }
-      else {
-        if (!ac.Action.type.GoodByDefault() && badResult == null) badResult = ac.Action.str;
+      else if (!string.IsNullOrEmpty(ac.Condition.msg)) {
+        if (res == null) res = new ActionRes();
+        res.res = ac.Condition.msg;
       }
     }
-    return goodResult ?? badResult;
+    return res;
   }
 
 
   public string UseTogether(Actor actor, Item other) {
     // Case of two items
     string res = null;
+    bool done = false;
     foreach (ActionAndCondition ac in actions) {
       if (ac.Condition.IsValid(actor, null, this, other, When.Use, 0)) {
-        return PlayActions(actor, null, When.Use, other, out bool goodByDefault);
+        ActionRes pares = PlayActions(actor, null, When.Use, other);
+        if (pares != null) {
+          done = pares.actionDone;
+          res = pares.res;
+        }
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
     }
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
       if (ac.Condition.IsValid(actor, null, this, other, When.Use, 0)) {
-        return other.PlayActions(actor, null, When.Use, this, out bool goodByDefault);
+        ActionRes pares = other.PlayActions(actor, null, When.Use, this);
+        if (pares != null) {
+          done = pares.actionDone;
+          res = pares.res;
+        }
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
     }
-    if (res != null) return res;
+    if (!done && res != null) return res;
 
     // Case of an item and a container
     Container c = other as Container;
@@ -444,7 +460,7 @@ public class Item : GameItem {
     // FIXME here we should check the conditions of the actions
 
 
-    PlayActions(giver, receiver, When.Give, this, out bool goodByDefault);
+    PlayActions(giver, receiver, When.Give, this);
   }
 }
 
