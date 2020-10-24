@@ -860,8 +860,8 @@ public class Controller : MonoBehaviour {
 
 #endregion
 
-#region *********************** Rooms and Transitions *********************** Rooms and Transitions *********************** Rooms and Transitions ***********************
-public Room currentRoom;
+  #region *********************** Rooms and Transitions *********************** Rooms and Transitions *********************** Rooms and Transitions ***********************
+  public Room currentRoom;
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
     // Disable gameplay
@@ -1000,6 +1000,25 @@ public Room currentRoom;
     }
     forcedCursor = CursorTypes.None;
     overItem = null;
+  }
+
+  internal static void PanCamera(Vector3 rpos, float del) {
+    GD.c.StartCoroutine(GD.c.CameraPanning(rpos, del));
+  }
+
+  IEnumerator CameraPanning(Vector3 pos, float del) {
+    Vector3 start = cam.transform.position;
+    Vector3 dest = pos;
+    float time = del;
+    yield return null;
+
+    while (time >= 0) {
+      time -= Time.deltaTime;
+      Vector3 here = (time / del) * start + (1 - time / del) * dest;
+      cam.transform.position = here;
+      yield return null;
+    }
+    cam.transform.position = pos;
   }
 
   #endregion

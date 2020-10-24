@@ -27,6 +27,7 @@ public enum ActionType {
   Anim = 16, // Make an animation to play on an object or on an actor
   AlterItem = 17, // Changes what you can do with an item
   SetFlag = 18, // Sets a flag
+  CompleteStep = 19, // Sets the step of a gamescene as completed and moves to the next one
 };
 
 
@@ -49,7 +50,7 @@ public class GameAction {
   public int val;
 
 
-  public static string StringName(ActionType type, bool rep, float del, int id1, int id2, string str, Vector2 pos, Dir dir, int val) {
+  public static string StringName(ActionType type, int id1, int id2, string str, Vector2 pos, Dir dir, int val) {
   string res = "Action name not yet calculated " + type;
     switch (type) {
       case ActionType.None: return "No action";
@@ -213,11 +214,26 @@ public class GameAction {
       }
       break;
 
+      case ActionType.SetFlag: {
+        GameFlag id = (GameFlag)System.Enum.Parse(typeof(GameFlag), vid1, true);
+        if (!System.Enum.IsDefined(typeof(GameFlag), id)) {
+          Debug.LogError("Unknown GameFlag: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+        if (!string.IsNullOrEmpty(sv)) {
+          if (sv.ToLowerInvariant()[0] == 'y') val = 0;
+          else val = 1;
+        }
+        else {
+          val = iv;
+        }
+      }
+      break;
     }
   }
 
   public override string ToString() {
-    return StringName(type, Repeatable, delay, id1, id2, str, pos, dir, val);
+    return StringName(type, id1, id2, str, pos, dir, val);
   }
 
   
@@ -271,7 +287,6 @@ public class GameAction {
         GD.c.currentRoom = AllObjects.GetRoom(str);
         Vector3 rpos = pos;
         rpos.z = -10;
-        GD.c.cam.transform.position = rpos;
         foreach (Room r in GD.a.roomsList)
           r.gameObject.SetActive(false);
         GD.c.currentRoom.gameObject.SetActive(true);
@@ -282,6 +297,13 @@ public class GameAction {
         foreach (Actor a in GD.c.allEnemies) {
           if (a == null) continue;
           a.gameObject.SetActive(a.currentRoom == GD.c.currentRoom);
+        }
+
+        if (id2 != 0) {
+          Controller.PanCamera(rpos, delay); // PAN
+        }
+        else {
+          GD.c.cam.transform.position = rpos;
         }
         Complete();
       }
@@ -549,7 +571,7 @@ public class GameAction {
       break;
 
       case ActionType.SetFlag: {
-        GameFlag flag = (GameFlag)id2;
+        GameFlag flag = (GameFlag)id1;
         AllObjects.SetFlag(flag, (FlagValue)val);
         Complete();
       }

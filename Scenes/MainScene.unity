@@ -13952,7 +13952,7 @@ MonoBehaviour:
       sv: 
       bv: 0
       msg: 
-      when: 1
+      when: 0
     Action:
       running: 0
       msg: 
@@ -67486,7 +67486,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 21300000, guid: f3df41d8b748bfa4dba8101f14872c55, type: 3}
   cursorImage: {fileID: 2800000, guid: d53232a9f3aa5f541a295f9931b24bf4, type: 3}
-  HotSpot: {x: -105.219734, y: 17.880287}
+  HotSpot: {x: -111.719734, y: 17.880287}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -67494,7 +67494,28 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  actions: []
+  actions:
+  - Condition:
+      type: 0
+      id: 0
+      iv: 0
+      fv: 0
+      sv: 
+      bv: 0
+      msg: 
+      when: 0
+    Action:
+      running: 0
+      msg: Edna should startt
+      type: 18
+      Repeatable: 0
+      delay: 0
+      id1: 5
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &2065761453
 SpriteRenderer:

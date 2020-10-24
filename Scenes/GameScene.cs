@@ -68,12 +68,7 @@ A behavior should run only if the condition is valid.
   /// <summary>
   /// Check if the main conditions are satisfied
   /// </summary>
-  public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when) { // FIXME
-    Actor p = Controller.GetActor(performer);
-    Actor r = Controller.GetActor(receiver);
-    return IsValid(p, r, item1, item2, when);
-  }
-  public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when) { // FIXME
+  public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when) {
     foreach (Condition c in conditions)
       if (!c.IsValid(performer, receiver, item1, item2, when, stepnum)) {
         currentStep = null;

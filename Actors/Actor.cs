@@ -180,7 +180,6 @@ public class Actor : MonoBehaviour {
   Dir followSide = Dir.None;
 
   internal bool WalkTo(Transform destActor, Dir side, GameAction action) {
-    // FIXME develop, have normal x-coordinate, but have a super-fast movement on Y coordinate. Do not walk on stairs
     followed = destActor;
     followSide = side;
 
@@ -201,6 +200,7 @@ public class Actor : MonoBehaviour {
       new System.Action<Actor, Item>((actor, item) => {
 
         // Should we do something if we reach the destination?
+        Debug.LogError(this + " reached destination");
 
       }));
 
@@ -281,7 +281,7 @@ public class Actor : MonoBehaviour {
 
       // Check if at least one of the behaviors is valid
       foreach(GameScene b in behaviors) {
-        if (b.IsValid(this, null, ItemEnum.Undefined, ItemEnum.Undefined, When.Always)) {
+        if (b.IsValid(this, null, null, null, When.Always)) {
           b.Run(this, null);
         }
       }

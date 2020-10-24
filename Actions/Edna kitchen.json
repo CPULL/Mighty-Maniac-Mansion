@@ -8,25 +8,32 @@
 	
 	"sequence":[
 		{ "name":"Setup",
-			"condition":[],
+			"condition":[
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridgeStart", "bv":false }
+			],
 			"action":[
-				{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-89,17.9] },
-				{ "type":"Open", "rep":true, "del":0, "id1":"Fridge", "id2":"", "sv":"Open", "iv":"", "dv":"", "vv":[] }
+				{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-95.6,17.9] },
+				{ "type":"Open", "rep":true, "del":0, "id1":"Fridge", "id2":"", "sv":"Open", "iv":"", "dv":"", "vv":[] },
+				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridgeStart", "id2":"", "sv":"Y", "iv":"", "dv":"", "vv":[] }
 			]
 		},
 				
 		{ "name":"CameraPan",
 			"condition":[
-				{ "type":"ActorXLess", "id":"Current", "fv":-103, "bv":false }
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridgeStart", "bv":true },
+				{ "type":"ActorXLess", "id":"Current", "fv":-101, "bv":false }
 			],
 			"action":[
-				{ "type":"ShowRoom", "rep":true, "del":.5, "vv":[-101, 20], "id2":"1" },
-				{ "type":"Speak", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder.", "iv":"", "dv":"L", "vv":[] }
+				{ "type":"ShowRoom", "rep":true, "del":.25, "sv":"Kitchen", "vv":[-100, 20], "id2":"1" },
+				{ "type":"Speak", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder.", "iv":"", "dv":"L", "vv":[] },
+				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaCatching", "id2":"", "sv":"Y", "iv":"", "dv":"", "vv":[] }
 			]
 		},
 				
 		{ "name":"CatchPlayer",
-			"condition":[],
+			"condition":[
+				{ "type":"FlagValueIs", "id":"EdnaCatching", "bv":true },
+			],
 			"action":[
 				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"R", "vv":[] }
 			]

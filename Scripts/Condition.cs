@@ -9,7 +9,7 @@ public class Condition {
   public string sv;
   public bool bv;
   public string msg;
-  public When when;
+  public When when = When.Always;
 
   public Condition(string stype, int idi, string ids, int siv, bool sbv, string svs, float svf) {
     type = (ConditionType)System.Enum.Parse(typeof(ConditionType), stype, true);

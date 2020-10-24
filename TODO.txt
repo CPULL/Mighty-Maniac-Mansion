@@ -6,12 +6,7 @@
 Tests: Give an object to somebody else
 
 
-Edna behavior looks not working
-
-2) implement all new conditions and logic to check if they are valid [in progress]
-3) Have a way to reload a json using a button, and debug Edna scene
-
-When going in the kitched with Edna, we should move the camera to show the fridge. Then do the behavior.
+Edna behavior looks not working: the walktoactor looks not right
 
 Draw Edna and do the "Check fridge" at start
 
@@ -181,6 +176,7 @@ Jeff
 ! We miss the sentences to say when an action is not valid or when an action is valid
 ! Some of the actions should be limited to particular actions (Use, Pick, Give, etc.)
 ! Disable actors colliders if we are not "giving" an object
+! When going in the kitched with Edna, we should move the camera to show the fridge. Then do the behavior.
 
 
 

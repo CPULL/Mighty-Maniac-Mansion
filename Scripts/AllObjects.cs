@@ -119,6 +119,7 @@ public enum GameFlag {
   PackageIsDeliveredStamps,
   EdnaBrowsingFridge,
   EdnaCatching,
+  EdnaBrowsingFridgeStart
 }
 public enum FlagValue {
   Yes, No, NA

@@ -32,7 +32,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     SerializedProperty val = property.FindPropertyRelative("val");
     SerializedProperty msg = property.FindPropertyRelative("msg");
 
-    string name = GameAction.StringName((ActionType)type.intValue, Repeatable.boolValue, delay.floatValue, id1.intValue, id2.intValue, str.stringValue, pos.vector2Value, (Dir)dir.intValue, val.intValue);
+    string name = GameAction.StringName((ActionType)type.intValue, id1.intValue, id2.intValue, str.stringValue, pos.vector2Value, (Dir)dir.intValue, val.intValue);
 
     float w2 = position.width * .5f;
     float w4 = position.width * .25f;
