@@ -107,7 +107,6 @@ public class Controller : MonoBehaviour {
     }
     #endregion
 
-
     if (GD.status != GameStatus.NormalGamePlay) return;
 
     #region Mouse control

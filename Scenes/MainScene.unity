@@ -40129,7 +40129,25 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  actions: []
+  actions:
+  - Condition:
+      type: 13
+      id1: 12
+      iv1: 0
+      fv1: 0
+      sv: 
+      bv: 1
+    Action:
+      running: 0
+      type: 9
+      Repeatable: 0
+      delay: 0
+      id1: 12
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 3
   sr: {fileID: 0}
 --- !u!61 &1256842731
 BoxCollider2D:

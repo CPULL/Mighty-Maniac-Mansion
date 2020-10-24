@@ -204,8 +204,25 @@ public class Condition {
             return !item1.IsLocked();
         }
 
-      case ConditionType.RecipientIs:// FIXME
-        break;
+      case ConditionType.RecipientIs: {
+        Chars id = (Chars)id1;
+        if (id == Chars.Player) {
+          if (bv)
+            return (GD.c.actor1 == receiver) || (GD.c.actor2 == receiver) || (GD.c.actor3 == receiver);
+          else
+            return (GD.c.actor1 != receiver) && (GD.c.actor2 != receiver) && (GD.c.actor3 != receiver);
+        }
+        if (id == Chars.Enemy) {
+          if (bv)
+            return (receiver.id == Chars.Fred) || (receiver.id == Chars.Edna) || (receiver.id == Chars.Ed) || (receiver.id == Chars.Ted) || (receiver.id == Chars.Edwige) || (receiver.id == Chars.GreenTentacle) || (receiver.id == Chars.PurpleTentacle) || (receiver.id == Chars.BlueTentacle) || (receiver.id == Chars.PurpleMeteor);
+          else
+            return (receiver.id != Chars.Fred) && (receiver.id != Chars.Edna) && (receiver.id != Chars.Ed) && (receiver.id != Chars.Ted) && (receiver.id != Chars.Edwige) && (receiver.id != Chars.GreenTentacle) && (receiver.id != Chars.PurpleTentacle) && (receiver.id != Chars.BlueTentacle) && (receiver.id != Chars.PurpleMeteor);
+        }
+        if (bv)
+          return ((Chars)id1 == receiver.id);
+        else
+          return ((Chars)id1 != receiver.id);
+      }
 
       case ConditionType.WhenIs: {
         bool res = (When)id1 == when;
@@ -215,10 +232,23 @@ public class Condition {
           return !res;
       }
 
-      case ConditionType.UsedWith:// FIXME
-        break;
+      case ConditionType.UsedWith: {
+        if (item2 != null) {
+          if (bv)
+            return ((ItemEnum)id1 == item2.Item);
+          else
+            return ((ItemEnum)id1 != item2.Item);
+        }
+        else if (item2 != null) {
+          if (bv)
+            return ((ItemEnum)id1 == item1.Item);
+          else
+            return ((ItemEnum)id1 != item1.Item);
+        }
+        else return false;
+      }
     }
-    return false; // FIXME
+    return false;
   }
 }
 

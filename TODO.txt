@@ -1,6 +1,9 @@
 === Mighty Maniac Mansion ===
 
 
+We miss the sentences to say when an action is not valid or when an action is valid
+Some of the actions should be limited to particular actions (Use, Pick, Give, etc.)
+Edna behavior looks not working
 
 2) implement all new conditions and logic to check if they are valid [in progress]
 3) Have a way to reload a json using a button, and debug Edna scene
