@@ -283,7 +283,8 @@ public class Actor : MonoBehaviour {
       // Check if at least one of the behaviors is valid
       foreach(GameScene b in behaviors) {
         if (b.IsValid(this, null, null, null, When.Always)) {
-          b.Run(this, null);
+          if (b.Run(this, null))
+            nextBehaviorCheck = 0;
         }
       }
     }

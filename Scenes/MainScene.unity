@@ -1414,7 +1414,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -113.168, y: 17.598001}
+  HotSpot: {x: -104.168, y: 17.598001}
   dir: 1
   overColor:
     serializedVersion: 2
@@ -12819,7 +12819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428433900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -105.5, y: 20, z: 0}
+  m_LocalPosition: {x: -90, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 196292426}
@@ -12941,8 +12941,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Kitchen
   RoomName: Kitchen
-  minL: -108
-  maxR: -90
+  minL: -99
+  maxR: -81
   minY: 16.2
   maxY: 23
   scalePerc: 1.4
@@ -16462,7 +16462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.050003, y: 80, z: -10}
+  m_LocalPosition: {x: -90, y: 20, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -23512,7 +23512,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 21300000, guid: 27e22c6f57179b1418ffa365922853e1, type: 3}
   cursorImage: {fileID: 2800000, guid: ee643cc917ac1714297fd46e98d578df, type: 3}
-  HotSpot: {x: -89.8815, y: 17.744}
+  HotSpot: {x: -80.8815, y: 17.744}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -23907,7 +23907,7 @@ MonoBehaviour:
       iv: 0
       fv: 0
       sv: 
-      bv: 0
+      bv: 1
       msg: 
       when: 0
     Action:
@@ -38153,7 +38153,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 21300000, guid: d60f009245e731e489f780c23426d4cd, type: 3}
   cursorImage: {fileID: 2800000, guid: f7b47c8c565d8f545b0862b3cb167cd8, type: 3}
-  HotSpot: {x: -89.8815, y: 17.744}
+  HotSpot: {x: -80.8815, y: 17.744}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -48149,7 +48149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533143410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -103, y: 17.91, z: 0}
+  m_LocalPosition: {x: -82.97, y: 17.29, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 1149741274}
@@ -51373,7 +51373,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -85.428, y: 17.598001}
+  HotSpot: {x: -76.428, y: 17.598001}
   dir: 3
   overColor:
     serializedVersion: 2
@@ -67486,7 +67486,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 21300000, guid: f3df41d8b748bfa4dba8101f14872c55, type: 3}
   cursorImage: {fileID: 2800000, guid: d53232a9f3aa5f541a295f9931b24bf4, type: 3}
-  HotSpot: {x: -111.719734, y: 17.880287}
+  HotSpot: {x: -96.219734, y: 17.880287}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -67515,7 +67515,7 @@ MonoBehaviour:
       str: 
       pos: {x: 0, y: 0}
       dir: 0
-      val: 0
+      val: 1
   sr: {fileID: 0}
 --- !u!212 &2065761453
 SpriteRenderer:

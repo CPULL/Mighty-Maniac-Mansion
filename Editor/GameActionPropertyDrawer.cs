@@ -169,9 +169,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect c1Rect = new Rect(position.x + 5 * w8, position.y + lh, w4, lh); // Cutscene
           Rect d1Rect = new Rect(position.x + 7 * w8, position.y + lh, w8, lh); // Answer
           Rect c2Rect = new Rect(position.x + 5 * w8, position.y + lh, 3 * w8, lh); // Answer
-          val.intValue = EditorGUI.Popup(aRect, val.intValue, System.Enum.GetNames(typeof(FlagValue)));
+          val.intValue = EditorGUI.Toggle(aRect, val.intValue == 0) ? 0 : 1;
           id1.intValue = EditorGUI.Popup(bRect, id1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
-          if ((FlagValue)val.intValue == FlagValue.Yes) {
+          if (val.intValue == 0) {
             id2.intValue = EditorGUI.Popup(c1Rect, id2.intValue, System.Enum.GetNames(typeof(CutsceneID)));
             str.stringValue = EditorGUI.TextField(d1Rect, str.stringValue);
           }
@@ -186,9 +186,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect c1Rect = new Rect(position.x + 5 * w8, position.y + lh, w4, lh); // Flag
           Rect d1Rect = new Rect(position.x + 7 * w8, position.y + lh, w8, lh); // Answer
           Rect c2Rect = new Rect(position.x + 5 * w8, position.y + lh, 3 * w8, lh); // Answer
-          val.intValue = EditorGUI.Popup(aRect, val.intValue, System.Enum.GetNames(typeof(FlagValue)));
+          val.intValue = EditorGUI.Toggle(aRect, val.intValue == 0) ? 0 : 1;
           id1.intValue = EditorGUI.Popup(bRect, id1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
-          if ((FlagValue)val.intValue == FlagValue.Yes) {
+          if (val.intValue == 0) {
             id2.intValue = EditorGUI.Popup(c1Rect, id2.intValue, System.Enum.GetNames(typeof(GameFlag)));
             str.stringValue = EditorGUI.TextField(d1Rect, str.stringValue);
           }
@@ -231,7 +231,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
           Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);
           id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(GameFlag)));
-          val.intValue = EditorGUI.Popup(bRect, val.intValue, System.Enum.GetNames(typeof(FlagValue)));
+          val.intValue = EditorGUI.IntField(bRect, val.intValue);
         }
         break;
 

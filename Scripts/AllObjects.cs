@@ -12,7 +12,7 @@ public class AllObjects : MonoBehaviour {
 
     flagsList = new List<FlagStatus>();
     foreach (GameFlag gf in System.Enum.GetValues(typeof(GameFlag)))
-      flagsList.Add(new FlagStatus(gf, FlagValue.No));
+      flagsList.Add(new FlagStatus(gf, 0));
   }
 
   internal static Room GetRoom(string id) {
@@ -54,13 +54,13 @@ public class AllObjects : MonoBehaviour {
     return FindItemByID(id);
   }
 
-  internal static bool CheckFlag(GameFlag flag, FlagValue value) {
+  internal static bool CheckFlag(GameFlag flag, int value) {
     foreach (FlagStatus fs in GD.a.flagsList)
-      if (fs.flag == flag) return fs.value == FlagValue.NA || fs.value == value;
+      if (fs.flag == flag) return fs.value == value;
     return false;
   }
 
-  internal static void SetFlag(GameFlag flag, FlagValue val) {
+  internal static void SetFlag(GameFlag flag, int val) {
     foreach(FlagStatus fs in GD.a.flagsList)
       if (fs.flag==flag) {
         fs.value = val;
@@ -121,15 +121,15 @@ public enum GameFlag {
   EdnaCatching,
   EdnaBrowsingFridgeStart
 }
-public enum FlagValue {
+public enum FlagValueOLD {
   Yes, No, NA
 }
 
 public class FlagStatus {
   public GameFlag flag;
-  public FlagValue value;
+  public int value;
 
-  public FlagStatus(GameFlag f, FlagValue v) {
+  public FlagStatus(GameFlag f, int v) {
     flag = f;
     value = v;
   }

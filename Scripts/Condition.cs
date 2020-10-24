@@ -67,7 +67,7 @@ public class Condition {
       case ConditionType.ActorIs: return "Actor is " + (!bv ? "not " : "") + (Chars)id1;
       case ConditionType.ActorHasSkill: return "Actor " + (Chars)id1 + " has " + (!bv ? "not skill " : "skill ") + (Skill)iv1;
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
-      case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " is true" : " is false");
+      case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " == " : " != ") + iv1;
       case ConditionType.StepValueIs: return "Step " + (bv ? " is " : " is not ") + iv1;
       case ConditionType.ItemCollected: return "Item " + (ItemEnum)id1 + (bv ? " is collected by " : " is not collected by ") + (Chars)iv1;
       case ConditionType.ActorInSameRoom: return "Actor " + (Chars)id1 + " is " + (!bv ? "not in " : "in ") + sv;
@@ -143,7 +143,10 @@ public class Condition {
       }
 
       case ConditionType.FlagValueIs: {
-        return AllObjects.CheckFlag((GameFlag)id, bv ? FlagValue.Yes : FlagValue.No);
+        if (bv)
+          return AllObjects.CheckFlag((GameFlag)id, iv);
+        else
+          return !AllObjects.CheckFlag((GameFlag)id, iv);
       }
 
       case ConditionType.StepValueIs: {

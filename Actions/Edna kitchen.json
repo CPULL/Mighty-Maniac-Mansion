@@ -3,29 +3,47 @@
 
 	"condition":[
 		{ "type":"CurrentRoomIs", "sv":"Kitchen", "bv":true },
-		{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true }
+		{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":false, "iv":0 }
 	],
 	
 	"sequence":[
 		{ "name":"Setup",
 			"condition":[
-				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridgeStart", "bv":false }
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":1 }
 			],
 			"action":[
-				{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-95.6,17.9] },
+				{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-80.12,17.9] },
 				{ "type":"Open", "rep":true, "del":0, "id1":"Fridge", "id2":"", "sv":"Open", "iv":"", "dv":"", "vv":[] },
-				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridgeStart", "id2":"", "sv":"Y", "iv":"", "dv":"", "vv":[] }
+				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":2, "dv":"", "vv":[] }
 			]
 		},
 				
-		{ "name":"Catching",
+		{ "name":"Wait in position",
 			"condition":[
-				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridgeStart", "bv":true },
-				{ "type":"ActorXLess", "id":"Current", "fv":-101, "bv":false }
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":2 },
+				{ "type":"ActorXLess", "id":"Current", "fv":-86, "bv":false }
 			],
 			"action":[
-				{ "type":"ShowRoom", "rep":true, "del":.25, "sv":"Kitchen", "vv":[-100, 20], "id2":"1" },
+				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":3, "dv":"", "vv":[] }
+			]
+		},
+		
+		{ "name":"Start Catching",
+			"condition":[
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":3 }
+			],
+			"action":[
+				{ "type":"ShowRoom", "rep":true, "del":.25, "sv":"Kitchen", "vv":[-84, 20], "id2":"1" },
 				{ "type":"Speak", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder.", "iv":"", "dv":"L", "vv":[] },
+				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":4, "dv":"", "vv":[] }
+			]
+		},
+		
+		{ "name":"Catching",
+			"condition":[
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":4 }
+			],
+			"action":[
 				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"R", "vv":[] },
 				{ "type":"Speak", "id1":"Edna", "sv":"Gotcha!", "dv":"F" }
 			]

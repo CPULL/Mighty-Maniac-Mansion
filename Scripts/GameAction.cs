@@ -69,11 +69,11 @@ public class GameAction {
         if (val == 3) return "Unlock " + (ItemEnum)id1;
       }
       break;
-      case ActionType.EnableDisable: return (ItemEnum)id1 + " " + (((FlagValue)val == FlagValue.Yes) ? "Enable" : "Disable");
+      case ActionType.EnableDisable: return (ItemEnum)id1 + " " + (val == 0 ? "Enable" : "Disable");
       case ActionType.Cutscene: return "Cutscene: " + (CutsceneID)id1;
       case ActionType.Sound: return "Sound: " + (Audios)id1;
       case ActionType.ReceiveCutscene: {
-        if ((FlagValue)val == FlagValue.Yes) { // Yes
+        if (val == 0) { // Yes
           return "Accept " + (ItemEnum)id1 + "->" + (CutsceneID)id2 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
         }
         else { // No
@@ -81,21 +81,21 @@ public class GameAction {
         }
       }
       case ActionType.ReceiveFlag: {
-        if ((FlagValue)val == FlagValue.Yes) { // Yes
+        if (val == 0) { // Yes
           return "Accept " + (ItemEnum)id1 + "->" + (GameFlag)id2 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
         }
         else { // No
           return "Refuse " + (ItemEnum)id1 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
         }
       }
-      case ActionType.Fade: return ((FlagValue)val == FlagValue.Yes) ? "Fade In" : "Fade Out";
+      case ActionType.Fade: return (val == 0) ? "Fade In" : "Fade Out";
       case ActionType.Anim: {
         if ((Chars)id1 == Chars.None) return (ItemEnum)id2 + " anim: " + str;
         return (Chars)id1 + " anim: " + str;
       }
 
       case ActionType.AlterItem: return "Alter " + (ItemEnum)id1 + " L[" + (WhatItDoes)id2 + "] R[" + (WhatItDoes)val + "]";
-      case ActionType.SetFlag: return "Set " + (GameFlag)id1 + " " + (FlagValue)val;
+      case ActionType.SetFlag: return "Set " + (GameFlag)id1 + " = " + val;
     }
     return res;
   }
@@ -395,6 +395,7 @@ public class GameAction {
         Actor destAct = Controller.GetActor((Chars)id2);
         if (walker.WalkTo(destAct.transform, dir, this))
           Complete(); // Not possible to reach
+        Play();
       }
       break;
 
@@ -443,7 +444,7 @@ public class GameAction {
           Complete();
           return;
         }
-        item.gameObject.SetActive((FlagValue)val != FlagValue.No);
+        item.gameObject.SetActive(val == 0);
         Complete();
       }
       break;
@@ -469,7 +470,7 @@ public class GameAction {
 
       case ActionType.ReceiveCutscene: {
         // Are we accpeting?
-        if ((FlagValue)val == FlagValue.Yes) { // Yes
+        if (val == 0) { // Yes
           Item item = AllObjects.FindItemByID((ItemEnum)id1);
           performer.inventory.Remove(item);
           secondary.inventory.Add(item);
@@ -501,7 +502,7 @@ public class GameAction {
 
       case ActionType.ReceiveFlag: {
         // Are we accpeting?
-        if ((FlagValue)val == FlagValue.Yes) { // Yes
+        if (val == 0) { // Yes
           Item item = AllObjects.FindItemByID((ItemEnum)id1);
           performer.inventory.Remove(item);
           secondary.inventory.Add(item);
@@ -510,7 +511,7 @@ public class GameAction {
           if (secondary != null) {
             secondary.Say(str, this);
             secondary.SetDirection(dir);
-            AllObjects.SetFlag((GameFlag)id2, FlagValue.Yes);
+            AllObjects.SetFlag((GameFlag)id2, 1);
             Play();
           }
           else
@@ -529,7 +530,7 @@ public class GameAction {
       break;
 
       case ActionType.Fade: {
-        if ((FlagValue)val == FlagValue.Yes)
+        if (val == 0)
           Fader.FadeIn();
         else
           Fader.FadeOut();
@@ -577,7 +578,7 @@ public class GameAction {
 
       case ActionType.SetFlag: {
         GameFlag flag = (GameFlag)id1;
-        AllObjects.SetFlag(flag, (FlagValue)val);
+        AllObjects.SetFlag(flag, val);
         Complete();
       }
       break;

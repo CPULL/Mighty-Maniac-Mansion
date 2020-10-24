@@ -3,12 +3,12 @@ using UnityEngine;
 
 [CustomPropertyDrawer(typeof(Condition))]
 public class ConditionPropertyDrawer : PropertyDrawer {
-  private string[] isIsNot = { "Is Not", "Is" };
-  private string[] hasHasNot = { "Has Not", "Has" };
-  private string[] lessMore = { "is More", "is Less" };
-  private string[] trueFalse = { "is False", "is True" };
-  private string[] openLocked = { "Open", "Locked" };
-  private string[] withWithNot = { "with not", "with" };
+  private readonly string[] isIsNot = { "Is Not", "Is" };
+  private readonly string[] hasHasNot = { "Has Not", "Has" };
+  private readonly string[] lessMore = { "is More", "is Less" };
+  private readonly string[] openLocked = { "Open", "Locked" };
+  private readonly string[] withWithNot = { "with not", "with" };
+  private readonly string[] equalDifferent = { "==", "!=" };
 
 
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
@@ -76,8 +76,10 @@ public class ConditionPropertyDrawer : PropertyDrawer {
         case ConditionType.FlagValueIs: {
           Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
           Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
+          Rect cRect = new Rect(position.x + w4 * 3, position.y + lh, w4, lh);
           id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(GameFlag)));
-          bv.intValue = EditorGUI.Popup(bRect, bv.intValue, trueFalse);
+          bv.intValue = EditorGUI.Popup(bRect, bv.intValue, equalDifferent);
+          iv1.intValue = EditorGUI.IntField(cRect, iv1.intValue);
         }
         break;
 

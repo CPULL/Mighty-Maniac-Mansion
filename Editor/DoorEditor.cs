@@ -134,7 +134,6 @@ public class DoorEditor : Editor {
     EditorGUILayout.PropertyField(unlockSound, new GUIContent("Unlock Snd"));
     EditorGUILayout.EndHorizontal();
 
-    EditorGUILayout.PropertyField(condition);
     EditorGUILayout.PropertyField(actions);
 
     serializedObject.ApplyModifiedProperties();
