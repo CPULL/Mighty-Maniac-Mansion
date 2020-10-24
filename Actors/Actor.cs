@@ -198,10 +198,11 @@ public class Actor : MonoBehaviour {
     if (side == Dir.B) pos.y += 1.5f;
     WalkTo(pos, p,
       new System.Action<Actor, Item>((actor, item) => {
-
         // Should we do something if we reach the destination?
-        Debug.LogError(this + " reached destination");
-
+        Debug.Log(this + " reached destination");
+        action.Complete();
+        followed = null;
+        walking = false;
       }));
 
     actorSpeed = origSpeed * 2;
@@ -301,6 +302,17 @@ public class Actor : MonoBehaviour {
       audios.Play();
     }
     anim.speed = Controller.walkSpeed * .8f;
+
+
+    if (followed != null) {
+      destination.pos = followed.position;
+      if (followSide == Dir.L) destination.pos.x -= 1.5f;
+      if (followSide == Dir.R) destination.pos.x += 1.5f;
+      if (followSide == Dir.F) destination.pos.y -= 1.5f;
+      if (followSide == Dir.B) destination.pos.y += 1.5f;
+      dir = CalculateDirection(destination.pos);
+    }
+
     Vector2 walkDir = (destination.pos - transform.position);
     Vector3 wdir = walkDir.normalized;
     wdir.y *= .65f;
@@ -322,31 +334,12 @@ public class Actor : MonoBehaviour {
 
     if (walkDir.sqrMagnitude < .05f) {
       if (parcour == null || parcour.Count == 0) {
-        if (followed == null) { // Normal walking
-          transform.position = destination.pos;
-          walking = false;
-          callBack?.Invoke(this, callBackItem);
-          callBack = null;
-          audios.Stop();
-          prevFloor = FloorType.None;
-        }
-        else { // Following somebody, just set the usual dest point
-          destination.pos = followed.position;
-          if (followSide == Dir.L) destination.pos.x -= 1.5f;
-          if (followSide == Dir.R) destination.pos.x += 1.5f;
-          if (followSide == Dir.F) destination.pos.y -= 1.5f;
-          if (followSide == Dir.B) destination.pos.y += 1.5f;
-          dir = CalculateDirection(destination.pos);
-
-          if ((destination.pos-transform.position).sqrMagnitude < .1f) {
-            audios.Stop();
-            prevFloor = FloorType.None;
-            anim.Play(idle + dir);
-          }
-          else {
-            anim.Play(walk + dir);
-          }
-        }
+        transform.position = destination.pos;
+        walking = false;
+        callBack?.Invoke(this, callBackItem);
+        callBack = null;
+        audios.Stop();
+        prevFloor = FloorType.None;
         return;
       }
       destination.pos = parcour[0].pos;

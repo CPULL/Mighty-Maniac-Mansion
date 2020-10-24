@@ -48322,7 +48322,7 @@ MonoBehaviour:
   Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 428433903}
-  actorSpeed: 1.5
+  actorSpeed: 1.25
   inventory: []
   id: 11
   mainScale: 0.95

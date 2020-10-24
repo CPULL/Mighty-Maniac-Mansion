@@ -18,7 +18,7 @@
 			]
 		},
 				
-		{ "name":"CameraPan",
+		{ "name":"Catching",
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridgeStart", "bv":true },
 				{ "type":"ActorXLess", "id":"Current", "fv":-101, "bv":false }
@@ -26,16 +26,8 @@
 			"action":[
 				{ "type":"ShowRoom", "rep":true, "del":.25, "sv":"Kitchen", "vv":[-100, 20], "id2":"1" },
 				{ "type":"Speak", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder.", "iv":"", "dv":"L", "vv":[] },
-				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaCatching", "id2":"", "sv":"Y", "iv":"", "dv":"", "vv":[] }
-			]
-		},
-				
-		{ "name":"CatchPlayer",
-			"condition":[
-				{ "type":"FlagValueIs", "id":"EdnaCatching", "bv":true },
-			],
-			"action":[
-				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"R", "vv":[] }
+				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"R", "vv":[] },
+				{ "type":"Speak", "id1":"Edna", "sv":"Gotcha!", "dv":"F" }
 			]
 		}
 	]

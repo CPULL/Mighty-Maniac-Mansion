@@ -16,7 +16,7 @@
 				{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"F", "del":.01 },
 				{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"F", "del":.75 },
 				
-				{ "type":"Speak", "id1":"Actor1", "sv":"OK, this will be really dangerous.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"OK,", "aa":"this will be really dangerous.", "dv":"R" },
 				{ "type":"Speak", "id1":"Actor1", "sv":"We may die.", "dv":"F" },
 				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.01 }
 			]

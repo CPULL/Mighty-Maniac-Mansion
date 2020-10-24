@@ -211,6 +211,11 @@ public class GameAction {
           Debug.LogError("Unknown Chars: \"" + vid2 + "\"");
         }
         id2 = (int)id;
+        dir = (Dir)System.Enum.Parse(typeof(Dir), dv, true);
+        if (!System.Enum.IsDefined(typeof(Dir), dir)) {
+          Debug.LogError("Unknown Dir: \"" + dv + "\"");
+          dir = Dir.None;
+        }
       }
       break;
 

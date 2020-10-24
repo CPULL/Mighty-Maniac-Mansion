@@ -42,9 +42,9 @@ A behavior should run only if the condition is valid.
     else if (type[0] == 'a') Type = GameSceneType.ActorBehavior;
     else if (type[0] == 'i') Type = GameSceneType.ItemAction;
 
-
-    Id = (CutsceneID)System.Enum.Parse(typeof(CutsceneID), id, true);
-    if (!System.Enum.IsDefined(typeof(CutsceneID), Id)) {
+    try {
+      Id = (CutsceneID)System.Enum.Parse(typeof(CutsceneID), id, true);
+    } catch (System.Exception) { 
       Debug.LogError("Unknown GameScene ID: \"" + id + "\"");
     }
 

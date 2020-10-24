@@ -1,6 +1,10 @@
 === Mighty Maniac Mansion ===
 
 
+
+Change the flags to int
+
+
 !Tests: Use an object that is not supposed to do anything
 !Tests: Use a key in the wrong object
 Tests: Give an object to somebody else
