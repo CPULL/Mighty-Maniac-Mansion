@@ -13,7 +13,6 @@ public class Actor : MonoBehaviour {
   public Material Outline;
   public Room currentRoom;
   public float actorSpeed = 4f;
-  float origSpeed = 4f;
   Animator anim;
   readonly Parcour3 destination = new Parcour3(Vector3.zero, null);
   System.Action<Actor, Item> callBack = null;
@@ -60,7 +59,6 @@ public class Actor : MonoBehaviour {
 
     idle = id.ToString() + " Idle";
     walk = id.ToString() + " Walk";
-    origSpeed = actorSpeed;
   }
 
   internal bool HasItem(ItemEnum item) {
@@ -213,10 +211,6 @@ public class Actor : MonoBehaviour {
           walking = false;
         }
       ));
-
-    actorSpeed = origSpeed * 2;
-
-
 
     return false;
   }

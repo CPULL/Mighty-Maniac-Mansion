@@ -28,6 +28,7 @@ public enum ActionType {
   AlterItem = 17, // Changes what you can do with an item
   SetFlag = 18, // Sets a flag
   CompleteStep = 19, // Sets the step of a gamescene as completed and moves to the next one
+  Wait = 20, // Wait the specified time
 };
 
 
@@ -50,7 +51,7 @@ public class GameAction {
   public int val;
 
 
-  public static string StringName(ActionType type, int id1, int id2, string str, Vector2 pos, Dir dir, int val) {
+  public static string StringName(ActionType type, int id1, int id2, string str, Vector2 pos, Dir dir, int val)   {
   string res = "Action name not yet calculated " + type;
     switch (type) {
       case ActionType.None: return "No action";
@@ -96,12 +97,12 @@ public class GameAction {
       case ActionType.AlterItem: return "Alter " + (ItemEnum)id1 + " L[" + (WhatItDoes)id2 + "] R[" + (WhatItDoes)val + "]";
       case ActionType.SetFlag: return "Set " + (GameFlag)id1 + " = " + val;
       case ActionType.CompleteStep: return "Complete step";
+      case ActionType.Wait: return "Wait";
     }
     return res;
   }
 
   internal void Stop() {
-    Debug.Log("*************** stopping action: " + ToString());
     running = Running.NotStarted;
     switch (type) {
       case ActionType.None:
@@ -120,6 +121,7 @@ public class GameAction {
       case ActionType.AlterItem:
       case ActionType.SetFlag:
       case ActionType.CompleteStep:
+      case ActionType.Wait:
         return;
 
       case ActionType.Speak: {
@@ -277,7 +279,6 @@ public class GameAction {
 
       case ActionType.CompleteStep: {
         int.TryParse(vid2, out id2); // 0 for immediate, 1 for restart step
-
       }
       break;
     }
@@ -624,6 +625,14 @@ public class GameAction {
       break;
 
       case ActionType.CompleteStep: {
+        if (delay > 0)
+          Play();
+        else
+          Complete();
+      }
+      break;
+
+      case ActionType.Wait: {
         if (delay > 0)
           Play();
         else

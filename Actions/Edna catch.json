@@ -5,7 +5,6 @@
 	],
 	
 	"startup" : [
-		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"StartArea", "iv":"", "dv":"R", "vv":[7,-0.76] },
 		{ "type":"Speak", "id1":"Edna", "sv":"Gotcha!", "dv":"F" },
 		{ "type":"Fade", "rep":true, "del":0.5, "iv":"0" },
 		{ "type":"ShowRoom", "rep":true, "del":0, "sv":"Dungeon", "vv":[-93, 10] },

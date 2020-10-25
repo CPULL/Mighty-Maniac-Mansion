@@ -6,22 +6,57 @@
 		{ "type":"FlagValueIs", "id":"GreenTentacleIsFed", "bv":true, "iv":0 }
 	],
 	
+		"startup" : [
+		{ "type":"Teleport", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"", "sv":"SuitesCorridor", "iv":"", "dv":"R", "vv":[22.7,46.8] },
+		{ "type":"BlockActorX", "rep":true, "del":0, "id1":"Player", "id2":"", "sv":"", "iv":"", "dv":"None", "vv":[26,2500] }
+	],
+	
+	"shutdown" : [
+		{ "type":"UnBlockActor", "rep":true, "del":0, "id1":"Player", "id2":"", "sv":"", "iv":"", "dv":"None", "vv":[] }
+	],
+
+	
 	"sequence":[
 		{ "name":"Patrol",
-			"condition":[
-				{ "type":"ActorXLess", "id":"Player", "fv":29, "bv":false }
-			],
+			"condition":[ { "type":"ActorXLess", "id":"Player", "fv":29, "bv":false } ],
 			"action":[
-				{ "type":"UnBlockActor", "rep":true, "del":0, "id1":"Player", "id2":"", "sv":"", "iv":"", "dv":"None", "vv":[] },
 				{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[25.4,49.4], "dv":"B" },
 				{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[22.7,46.8], "dv":"F" },
-				{ "type":"CompleteStep", "bv":true }
+				{ "type":"CompleteStep", "id2":1 }
 			]
-		}
+		},
+		
+		{ "name":"Say shall not pass",
+			"condition":[ { "type":"ActorXLess", "id":"Player", "fv":29, "bv":false } ],
+			"action":[
+				{ "type":"Speak", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"", "sv":"You shall not pass!", "iv":"", "dv":"None", "vv":[] },
+				{ "type":"CompleteStep", "del":7.2, "id2":1 }
+			]
+		},
+
+		{ "name":"Block player",
+			"condition":[ { "type":"ActorXLess", "id":"Player", "fv":29, "bv":true } ],
+			"action":[
+				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"Current", "sv":"", "iv":"1", "dv":"L", "vv":[] },
+				{ "type":"CompleteStep", "id2":1 }
+			]
+		},
+		
+		{ "name":"Say I'm hungry",
+			"condition":[ { "type":"ActorXLess", "id":"Player", "fv":29, "bv":true } ],
+			"action":[
+				{ "type":"Wait", "del":2.1 },
+				{ "type":"Speak", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"", "sv":"I am hungry...", "iv":"", "dv":"None", "vv":[] },
+				{ "type":"Wait", "del":1.1 },
+				{ "type":"Speak", "rep":true, "del":0, "id1":"Ollie", "id2":"", "sv":"This is a fanmade game\nmade by CPU\n\nEnjoy BG Ollie music!", "iv":"", "dv":"None", "vv":[] }
+				{ "type":"CompleteStep", "del":3.2, "id2":1 },
+			]
+		},
+
 	]
 
 }
 
 
 
-Some steps may be done in parallel.
+

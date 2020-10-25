@@ -13952,7 +13952,7 @@ MonoBehaviour:
       sv: 
       bv: 0
       msg: 
-      when: 0
+      when: 4
     Action:
       running: 0
       msg: 
@@ -38163,47 +38163,47 @@ MonoBehaviour:
     rgba: 4294967295
   actions:
   - Condition:
-      type: 0
-      id: 0
+      type: 1
+      id: 15
       iv: 0
       fv: 0
       sv: 
       bv: 0
       msg: 
-      when: 0
+      when: 2
     Action:
       running: 0
-      msg: 
-      type: 15
+      msg: No, thanks.\nIt is disgusting.
+      type: 13
       Repeatable: 0
       delay: 0
-      id1: 0
+      id1: 14
       id2: 0
-      str: Wow! The one I like!
+      str: No, thanks.\nIt is disgusting.
       pos: {x: 0, y: 0}
       dir: 4
       val: 0
   - Condition:
-      type: 0
-      id: 0
+      type: 1
+      id: 15
       iv: 0
       fv: 0
       sv: 
-      bv: 0
+      bv: 1
       msg: 
-      when: 0
+      when: 2
     Action:
       running: 0
       msg: 
-      type: 15
+      type: 14
       Repeatable: 1
       delay: 0
-      id1: 0
+      id1: 14
       id2: 0
-      str: It is disgusting, I don't want it
+      str: Thank you!
       pos: {x: 0, y: 0}
       dir: 4
-      val: 1
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &1211572501
 SpriteRenderer:
@@ -40149,7 +40149,7 @@ MonoBehaviour:
     rgba: 4294967295
   actions:
   - Condition:
-      type: 13
+      type: 12
       id: 12
       iv: 0
       fv: 0
@@ -46477,8 +46477,8 @@ MonoBehaviour:
     rgba: 4294967295
   actions:
   - Condition:
-      type: 10
-      id: 0
+      type: 9
+      id: 8
       iv: 0
       fv: 0
       sv: 
@@ -46498,8 +46498,8 @@ MonoBehaviour:
       dir: 0
       val: 0
   - Condition:
-      type: 10
-      id: 0
+      type: 9
+      id: 8
       iv: 0
       fv: 0
       sv: 
@@ -64829,7 +64829,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -90.769806, y: 17.70704}
+  HotSpot: {x: -81.769806, y: 17.70704}
   dir: 2
   overColor:
     serializedVersion: 2
