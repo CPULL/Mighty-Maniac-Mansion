@@ -7,32 +7,25 @@ public class GameScene {
   public CutsceneID Id;
   public GameSceneType Type;
 
-  public Running status = Running.NotStarted;
-
-  public int stepnum = -1;
-  public GameStep currentStep = null;
-  public int actionnum = -1;
-  public GameAction currentAction = null;
-
-  public List<Condition> conditions;
+  public List<Condition> globalCondition;
+  public List<GameAction> startup;
+  public List<GameAction> shutdown;
   public List<GameStep> steps;
+  public bool AmIActive = false;
+  public GameAction startupaction = null;
+  public int startupactionnum = -1;
+  public GameAction shutdownaction = null;
+  public int shutdownactionnum = -1;
 
 
   /*
-
-A behavior should run only if the condition is valid.
-!The behavior should have currentstep, currentaction, stepnum, actionnum
-!If a behavior was valid and it is no more, the actions that are running should be blocked   
-   
-  if it is valid, and nothing is running, the steps will be checked in sequence
-  the first one that is valid will be run
-
-  step run meand get the action and run it until is completed, then get the next action.
-  Once completed the actions check for the step to run
-
+   * Global condition:
+   *    if switched to true, run the setup actions
+   *    if switched to false, run the shutdown actions
+   * 
+   * Run all steps in parallel, all the time their condition is true. Stop their action in case the condition become false
+   * 
    */
-
-
 
 
   public GameScene(string id, string name, string type) {
@@ -48,20 +41,22 @@ A behavior should run only if the condition is valid.
       Debug.LogError("Unknown GameScene ID: \"" + id + "\"");
     }
 
-    conditions = new List<Condition>();
+    globalCondition = new List<Condition>();
     steps = new List<GameStep>();
+    startup = new List<GameAction>();
+    shutdown = new List<GameAction>();
   }
 
   public override string ToString() {
-    return Id + " - " + Name + " (" + stepnum + "/" + actionnum + ")";
+    return Id + " - " + Name + (AmIActive ? " (running)": "");
   }
 
   internal void Reset() {
-    status = Running.NotStarted;
-    currentStep = null;
-    stepnum = -1;
-    currentAction = null;
-    actionnum = -1;
+    if (AmIActive)
+      PlayActions(shutdown);
+    AmIActive = false;
+    startupaction = null;
+    startupactionnum = -1;
   }
 
 
@@ -69,96 +64,118 @@ A behavior should run only if the condition is valid.
   /// Check if the main conditions are satisfied
   /// </summary>
   public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when) {
-    foreach (Condition c in conditions)
-      if (!c.IsValid(performer, receiver, item1, item2, when, stepnum)) {
-        currentStep = null;
-        stepnum = -1;
-        if (currentAction != null) {
-          currentAction.running = Running.NotStarted;
-        }
-        actionnum = -1;
-        return false;
+    bool valid = true;
+    foreach (Condition c in globalCondition)
+      if (!c.IsValid(performer, receiver, item1, item2, when)) {
+        valid = false;
+        break;
       }
 
-    return true;
+    if (!valid && AmIActive) {
+      PlayActions(shutdown);
+      AmIActive = false;
+    }
+
+    return valid;
   }
 
-  private bool RunAction(Actor performer, Actor receiver, Item item1, Item item2) {
-    if (currentAction.running == Running.NotStarted) { // Start the action
-      currentAction.RunAction(performer, receiver, item1, item2);
+  private void PlayActions(List<GameAction> actions) {
+    foreach (GameAction a in actions) {
+      a.RunAction(null, null, null, null);
+      a.Complete();
     }
-    else if (currentAction.running == Running.Running) { // Wait it to complete
-      currentAction.CheckTime(Time.deltaTime);
-    }
-    else if (currentAction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
-    }
-    else if (currentAction.running == Running.Completed) { // Get the next
-      if (currentAction.type == ActionType.CompleteStep) {
-        actionnum = -1;
-        currentAction = null;
-        return !GetNextStep(performer, receiver, stepnum);
-      }
-      actionnum++;
-      if (steps[stepnum].actions.Count > actionnum) {
-        currentAction = steps[stepnum].actions[actionnum];
-        currentAction.running = Running.NotStarted;
-      }
-      else
-        return true;
-    }
-    return false;
   }
 
-  private bool GetNextStep(Actor performer, Actor receiver, int step) {
-    for (int i = stepnum + 1; i < steps.Count; i++) {
-      if (steps[i].IsValid(performer, receiver, step)) {
-        currentStep = steps[i];
-        stepnum = i;
-        status = Running.Running;
-        return true;
-      }
-    }
-    for (int i = 0; i < stepnum + 1; i++) {
-      if (steps[i].IsValid(performer, receiver, step)) {
-        currentStep = steps[i];
-        stepnum = i;
-        status = Running.Running;
-        return true;
-      }
-    }
-    stepnum = -1;
-    currentStep = null;
-    status = Running.Completed;
-    return false;
-  }
 
   public bool Run(Actor performer, Actor receiver) {
-    if (currentStep != null) {
-      // Check if step is still valid
-      if (currentStep.IsValid(performer, receiver, stepnum)) {
-        // Do we have an action to run?
-        if (currentAction != null) { // Yes
-          return !RunAction(performer, receiver, null, null);
-        }
-        else { // No, get the first one
-          actionnum = 0;
-          currentAction = currentStep.actions[0];
-          currentAction.running = Running.NotStarted;
-        }
-        return true;
+    // Are we valid?
+    if (!IsValid(performer, receiver, null, null, When.Always)) return false;
+
+
+    if (!AmIActive) {
+      shutdownaction = null;
+      shutdownactionnum = -1;
+      if (startup.Count == 0) {
+        AmIActive = true;
       }
-      else { // Not valid, stop the action if it was running, and check for thee next valid step
-        if (currentAction != null) {
-          currentAction.running = Running.NotStarted;
-          actionnum = -1;
+      if (startup.Count > 0) {
+        if (startupaction == null) {
+          startupaction = startup[0];
+          startupaction.running = Running.NotStarted;
+          startupactionnum++;
         }
-        return GetNextStep(performer, receiver, stepnum);
+
+        if (startupaction.running == Running.NotStarted) { // Start the action
+          startupaction.RunAction(performer, receiver, null, null);
+        }
+        else if (startupaction.running == Running.Running) { // Wait it to complete
+          if (startupaction.type == ActionType.WalkToPos || startupaction.type == ActionType.WalkToActor) {
+            if (performer != null && !performer.IsWalking()) performer.RestoreWalking();
+          }
+          startupaction.CheckTime(Time.deltaTime);
+        }
+        else if (startupaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
+        }
+        else if (startupaction.running == Running.Completed) { // Get the next
+          startupactionnum++;
+          if (startupactionnum < startup.Count) {
+            startupaction = startup[startupactionnum];
+            startupaction.running = Running.NotStarted;
+          }
+          else
+            AmIActive = true;
+          return true;
+        }
       }
+      return true;
     }
-    else { // No current step. Find one
-      stepnum = -1;
-      return GetNextStep(performer, receiver, stepnum);
+
+
+    // Check all the behaviros that are valid and run all of them
+    bool atLeastOne = false;
+    foreach (GameStep gs in steps)
+      atLeastOne |= gs.Run(performer, receiver, null, null);
+
+    if (!atLeastOne && AmIActive) {
+      if (shutdown.Count == 0) {
+        AmIActive = false;
+        return false;
+      }
+      if (shutdown.Count > 0) {
+        if (shutdownaction == null) {
+          shutdownaction = shutdown[0];
+          shutdownaction.running = Running.NotStarted;
+          shutdownactionnum++;
+        }
+
+        if (shutdownaction.running == Running.NotStarted) { // Start the action
+          shutdownaction.RunAction(performer, receiver, null, null);
+        }
+        else if (shutdownaction.running == Running.Running) { // Wait it to complete
+          if (shutdownaction.type == ActionType.WalkToPos || startupaction.type == ActionType.WalkToActor) {
+            if (performer != null && !performer.IsWalking()) performer.RestoreWalking();
+          }
+          shutdownaction.CheckTime(Time.deltaTime);
+        }
+        else if (shutdownaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
+        }
+        else if (shutdownaction.running == Running.Completed) { // Get the next
+          shutdownactionnum++;
+          if (shutdownactionnum < shutdown.Count) {
+            shutdownaction = shutdown[shutdownactionnum];
+            shutdownaction.running = Running.NotStarted;
+            return true;
+          }
+          else {
+            AmIActive = false;
+            return false;
+          }
+        }
+      }
+      return true;
     }
+
+    return atLeastOne;
   }
 
 
@@ -168,28 +185,74 @@ public class GameStep {
   public string name;
   public List<Condition> conditions;
   public List<GameAction> actions;
+  public GameAction currentAction;
+  public int actionnum = -1;
 
   public GameStep(string n) {
     name = n;
     conditions = new List<Condition>();
     actions = new List<GameAction>();
+    currentAction = null;
+    actionnum = -1;
   }
 
   public override string ToString() {
     return name;
   }
 
-  public bool IsValid(Chars performer, Chars receiver, int step) {
+  public bool IsValid(Actor performer, Actor receiver) {
+    if (actions.Count == 0) return false;
+
     foreach (Condition c in conditions)
-      if (!c.IsValid(performer, receiver, null, null, When.Always, step)) return false;
+      if (!c.IsValid(performer, receiver, null, null, When.Always)) return false;
 
     return true;
   }
 
-  public bool IsValid(Actor performer, Actor receiver, int step) {
-    foreach (Condition c in conditions)
-      if (!c.IsValid(performer, receiver, null, null, When.Always, step)) return false;
+  internal bool Run(Actor performer, Actor receiver, object p1, object p2) {
+    if (!IsValid(performer, receiver)) {
+      // Stop the actions in case they were running
+      if (currentAction != null) currentAction.Stop();
+      currentAction = null;
+      actionnum = -1;
+      return false;
+    }
 
+    if (currentAction == null) {
+      currentAction = actions[0];
+      actionnum = 0;
+    }
+
+    if (currentAction.running == Running.NotStarted) { // Start the action
+      currentAction.RunAction(performer, receiver, null, null);
+    }
+    else if (currentAction.running == Running.Running) { // Wait it to complete
+      if (currentAction.type == ActionType.WalkToPos || currentAction.type == ActionType.WalkToActor) {
+        if (!performer.IsWalking()) performer.RestoreWalking();
+      }
+      currentAction.CheckTime(Time.deltaTime);
+    }
+    else if (currentAction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
+    }
+    else if (currentAction.running == Running.Completed) { // Get the next
+      if (currentAction.type == ActionType.CompleteStep) {
+        if (currentAction.id2 == 0) {
+          actionnum = -1;
+          currentAction = null;
+          return false;
+        }
+        else {
+          actionnum = -1;
+        }
+      }
+      actionnum++;
+      if (actions.Count > actionnum) {
+        currentAction = actions[actionnum];
+        currentAction.running = Running.NotStarted;
+      }
+      else
+        return false;
+    }
     return true;
   }
 }

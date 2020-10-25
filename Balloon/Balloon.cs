@@ -80,8 +80,6 @@ public class Balloon : MonoBehaviour {
     bool right = tlc.x > Screen.width * .5;
     bool bottom = tlc.y < Screen.height * .25;
 
-    Controller.Dbg(size.ToString());
-
     if (right && bottom) {
       Vector3 location = new Vector3(speakerBounds.center.x, speakerBounds.max.y, 0) + Vector3.left * (size.x * .2f + .75f) + Vector3.up * size.y * .25f;
       tip.transform.localPosition = new Vector3(size.x * .5f - .9f, size.y * -.5f + 0.24f, 0);
@@ -143,6 +141,10 @@ public class Balloon : MonoBehaviour {
     }
   }
 
+  internal static void Stop() {
+    GD.b.delay = -1;
+    GD.b.gameObject.SetActive(false);
+  }
 }
 
 

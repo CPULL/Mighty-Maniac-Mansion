@@ -84,7 +84,61 @@ public class GD : MonoBehaviour {
           JSONNode conditions = js["condition"];
           for (int i = 0; i < conditions.AsArray.Count; i++) {
             JSONNode condition = conditions[i];
-            seq.conditions.Add(new Condition(condition["type"].Value, condition["id"].AsInt, condition["id"].Value, condition["iv"].AsInt, condition["bv"].AsBool, condition["sv"].Value, condition["fv"].AsFloat));
+            seq.globalCondition.Add(new Condition(condition["type"].Value, condition["id"].AsInt, condition["id"].Value, condition["iv"].AsInt, condition["bv"].AsBool, condition["sv"].Value, condition["fv"].AsFloat));
+          }
+        }
+
+        if (js["startup"].IsArray && js["startup"].AsArray.Count > 0) {
+          JSONNode startup = js["startup"];
+          for (int i = 0; i < startup.AsArray.Count; i++) {
+            try {
+              JSONNode action = startup[i];
+              Vector2 vv = Vector2.zero;
+              if (action["vv"].IsArray) {
+                vv.x = action["vv"][0].AsFloat;
+                vv.y = action["vv"][1].AsFloat;
+              }
+              string a = action["type"].Value;
+              bool repeatable = action["rep"].IsNull;
+              if (!repeatable) repeatable = action["rep"].AsBool;
+
+              float c = action["del"].AsFloat;
+              string d = action["id1"].Value;
+              string e = action["id2"].Value;
+              string f = action["sv"].Value;
+              int g = action["iv"].AsInt;
+              string h = action["dv"].Value;
+              seq.startup.Add(new GameAction(a, repeatable, c, d, e, f, g, h, vv));
+            } catch (System.Exception e) {
+              Debug.Log("Action ERROR in " + file + ", startup #" + i + ": " + e.Message);
+            }
+          }
+        }
+
+        if (js["shutdown"].IsArray && js["shutdown"].AsArray.Count > 0) {
+          JSONNode shutdown = js["shutdown"];
+          for (int i = 0; i < shutdown.AsArray.Count; i++) {
+            try {
+              JSONNode action = shutdown[i];
+              Vector2 vv = Vector2.zero;
+              if (action["vv"].IsArray) {
+                vv.x = action["vv"][0].AsFloat;
+                vv.y = action["vv"][1].AsFloat;
+              }
+              string a = action["type"].Value;
+              bool repeatable = action["rep"].IsNull;
+              if (!repeatable) repeatable = action["rep"].AsBool;
+
+              float c = action["del"].AsFloat;
+              string d = action["id1"].Value;
+              string e = action["id2"].Value;
+              string f = action["sv"].Value;
+              int g = action["iv"].AsInt;
+              string h = action["dv"].Value;
+              seq.shutdown.Add(new GameAction(a, repeatable, c, d, e, f, g, h, vv));
+            } catch (System.Exception e) {
+              Debug.Log("Action ERROR in " + file + ", shutdown #" + i + ": " + e.Message);
+            }
           }
         }
 

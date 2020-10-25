@@ -3,22 +3,29 @@
 
 	"condition":[],
 	
+	"startup": [
+		{ "type":"ShowRoom", "sv":"StartArea", "vv":[7,2] },
+		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor1", "vv":[8.82,-0.76], "dv":"F" },
+		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor2", "vv":[13.23,-1.43], "dv":"L" },
+		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor3", "vv":[11.45,-0.46], "dv":"F" },
+		
+		{ "type":"Expression", "id1":"Actor1", "sv":"Normal", "dv":"F", "del":.01 },
+		{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"F", "del":.01 },
+		{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"F", "del":.75 }
+	],
+	
+	"shutdown": [
+		{ "type":"Expression", "id1":"Actor1", "sv":"Normal", "dv":"F", "del":.01 },
+		{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"F", "del":.01 },
+		{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"F", "del":.01 }
+	],
+	
 	"sequence":[
-		{ "name":"Startup",
+		{ "name":"Intro dialogue",
 			"condition":[],
 			"action":[
-				{ "type":"ShowRoom", "sv":"StartArea", "vv":[7,2] },
-				{ "type":"Teleport", "sv":"StartArea", "id1":"Actor1", "vv":[8.82,-0.76], "dv":"F" },
-				{ "type":"Teleport", "sv":"StartArea", "id1":"Actor2", "vv":[13.23,-1.43], "dv":"L" },
-				{ "type":"Teleport", "sv":"StartArea", "id1":"Actor3", "vv":[11.45,-0.46], "dv":"F" },
-				
-				{ "type":"Expression", "id1":"Actor1", "sv":"Normal", "dv":"F", "del":.01 },
-				{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"F", "del":.01 },
-				{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"F", "del":.75 },
-				
-				{ "type":"Speak", "id1":"Actor1", "sv":"OK,", "aa":"this will be really dangerous.", "dv":"R" },
 				{ "type":"Speak", "id1":"Actor1", "sv":"We may die.", "dv":"F" },
-				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.01 }
+				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.5 }
 			]
 		}
 	]

@@ -22,12 +22,12 @@ public class GameSceneEditor : PropertyDrawer {
       int index = int.Parse(num);
 
       Rect condr = new Rect(position.x, position.y + lh, position.width, lh);
-      if (a.behaviors[index].conditions == null)
+      if (a.behaviors[index].globalCondition == null)
         EditorGUI.LabelField(condr, "Conds: none");
       else {
         string condname = "Conds: ";
-        for (int i = 0; i < a.behaviors[index].conditions.Count; i++) {
-          condname += a.behaviors[index].conditions[i].ToString() + " | ";
+        for (int i = 0; i < a.behaviors[index].globalCondition.Count; i++) {
+          condname += a.behaviors[index].globalCondition[i].ToString() + " | ";
         }
         EditorGUI.LabelField(condr, condname);
       }

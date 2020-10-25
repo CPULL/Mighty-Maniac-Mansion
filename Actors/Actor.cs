@@ -137,6 +137,10 @@ public class Actor : MonoBehaviour {
     return walking;
   }
 
+  internal void RestoreWalking() {
+    walking = true;
+  }
+
   void OnMouseEnter() {
     Controller.OverActor(this);
     Face.material = Outline;
@@ -153,6 +157,7 @@ public class Actor : MonoBehaviour {
 
   public void Stop() {
     isSpeaking = false;
+    followed = null;
     walking = false;
   }
 
@@ -197,13 +202,17 @@ public class Actor : MonoBehaviour {
     if (side == Dir.F) pos.y -= 1.5f;
     if (side == Dir.B) pos.y += 1.5f;
     WalkTo(pos, p,
-      new System.Action<Actor, Item>((actor, item) => {
-        // Should we do something if we reach the destination?
-        Debug.Log(this + " reached destination");
-        action.Complete();
-        followed = null;
-        walking = false;
-      }));
+      action == null ? 
+        null 
+      :
+        new System.Action<Actor, Item>((actor, item) => {
+          // Should we do something if we reach the destination?
+          Debug.Log(this + " reached destination");
+          action.Complete();
+          followed = null;
+          walking = false;
+        }
+      ));
 
     actorSpeed = origSpeed * 2;
 
@@ -291,7 +300,6 @@ public class Actor : MonoBehaviour {
 
 
     // Normal movement from here
-
     if (!walking) {
       if (dir == Dir.None) dir = Dir.F;
       anim.Play(idle + dir);
@@ -334,6 +342,12 @@ public class Actor : MonoBehaviour {
     }
 
     if (walkDir.sqrMagnitude < .05f) {
+      if (callBack == null && followed != null) { // Persistent following
+        audios.Stop();
+        prevFloor = FloorType.None;
+        anim.Play(idle + dir);
+        return;
+      }
       if (parcour == null || parcour.Count == 0) {
         transform.position = destination.pos;
         walking = false;

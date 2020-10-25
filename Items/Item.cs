@@ -61,7 +61,7 @@ public class Item : GameItem {
 
     foreach (ActionAndCondition ac in actions) {
       Controller.KnowAction(ac.Action);
-      if (ac.Condition.IsValid(actor, secondary, item1, item2, when, 0)) {
+      if (ac.Condition.IsValid(actor, secondary, item1, item2, when)) {
         ac.Action.RunAction(actor, secondary, this, item);
         if (res == null) res = new ActionRes { actionDone = true, res = null };
         if (!ac.Action.type.GoodByDefault() && !string.IsNullOrEmpty(ac.Action.msg))
@@ -81,7 +81,7 @@ public class Item : GameItem {
     string res = null;
     bool done = false;
     foreach (ActionAndCondition ac in actions) {
-      if (ac.Condition.IsValid(actor, null, this, other, When.Use, 0)) {
+      if (ac.Condition.IsValid(actor, null, this, other, When.Use)) {
         ActionRes pares = PlayActions(actor, null, When.Use, other);
         if (pares != null) {
           done = pares.actionDone;
@@ -92,7 +92,7 @@ public class Item : GameItem {
     }
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
-      if (ac.Condition.IsValid(actor, null, this, other, When.Use, 0)) {
+      if (ac.Condition.IsValid(actor, null, this, other, When.Use)) {
         ActionRes pares = other.PlayActions(actor, null, When.Use, this);
         if (pares != null) {
           done = pares.actionDone;

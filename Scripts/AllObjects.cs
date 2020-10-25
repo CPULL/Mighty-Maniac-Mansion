@@ -140,6 +140,10 @@ public enum CutsceneID {
   EdHungryCheese,
   EdnaBrowsingFridge,
   EdnaCatch,
+  GreenTentaclePatrolling,
+  GreenTentaclePatrolling2,
+  GreenTentaclePatrolling3,
+  GreenTentaclePatrolling4,
   FredTalkingToKidnapped,
   Javidx9 // FIXME
       

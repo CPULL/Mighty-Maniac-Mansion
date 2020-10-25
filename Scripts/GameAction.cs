@@ -100,6 +100,48 @@ public class GameAction {
     return res;
   }
 
+  internal void Stop() {
+    Debug.Log("*************** stopping action: " + ToString());
+    running = Running.NotStarted;
+    switch (type) {
+      case ActionType.None:
+      case ActionType.ShowRoom:
+      case ActionType.Teleport:
+      case ActionType.Expression:
+      case ActionType.BlockActorX:
+      case ActionType.UnBlockActor:
+      case ActionType.Open:
+      case ActionType.EnableDisable:
+      case ActionType.Cutscene:
+      case ActionType.ReceiveCutscene:
+      case ActionType.ReceiveFlag:
+      case ActionType.Fade:
+      case ActionType.Anim:
+      case ActionType.AlterItem:
+      case ActionType.SetFlag:
+      case ActionType.CompleteStep:
+        return;
+
+      case ActionType.Speak: {
+        Balloon.Stop();
+        return;
+      }
+
+      case ActionType.WalkToActor:
+      case ActionType.WalkToPos: {
+        Actor a = Controller.GetActor((Chars)id1);
+        if (a == null) return;
+        a.Stop();
+      }
+      break;
+
+      case ActionType.Sound: {
+        Sounds.Stop();
+      }
+      break;
+    }
+  }
+
   public GameAction() {
     type = ActionType.None;
   }
@@ -119,6 +161,8 @@ public class GameAction {
     switch (type) {
       case ActionType.Teleport:
       case ActionType.Speak:
+      case ActionType.BlockActorX:
+      case ActionType.UnBlockActor:
       case ActionType.WalkToPos: {
         Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
         if (!System.Enum.IsDefined(typeof(Chars), id)) {
@@ -230,6 +274,12 @@ public class GameAction {
         id1 = (int)id;
       }
       break;
+
+      case ActionType.CompleteStep: {
+        int.TryParse(vid2, out id2); // 0 for immediate, 1 for restart step
+
+      }
+      break;
     }
   }
 
@@ -275,12 +325,6 @@ public class GameAction {
   }
 
 
-
-  public void RunAction(Chars perf, Chars recv, Item item1, Item item2) {
-    Actor performer = Controller.GetActor(perf);
-    Actor secondary = Controller.GetActor(recv);
-    RunAction(performer, secondary, item1, item2);
-  }
   public void RunAction(Actor performer, Actor secondary, Item item1, Item item2) {
     Debug.Log("Playing: " + ToString());
     switch (type) {
@@ -389,7 +433,7 @@ public class GameAction {
           return;
         }
         Actor destAct = Controller.GetActor((Chars)id2);
-        if (walker.WalkTo(destAct.transform, dir, this))
+        if (walker.WalkTo(destAct.transform, dir, val == 0 ? this : null))
           Complete(); // Not possible to reach
         Play();
       }

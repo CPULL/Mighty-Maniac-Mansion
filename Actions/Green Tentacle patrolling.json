@@ -1,0 +1,27 @@
+{
+	"id":"GreenTentaclePatrolling", "name":"Green Tentacle patrolling","type":"actor","AppliesTo":"GreenTentacle",
+
+	"condition":[
+		{ "type":"CurrentRoomIs", "sv":"SuitesCorridor", "bv":true },
+		{ "type":"FlagValueIs", "id":"GreenTentacleIsFed", "bv":true, "iv":0 }
+	],
+	
+	"sequence":[
+		{ "name":"Patrol",
+			"condition":[
+				{ "type":"ActorXLess", "id":"Player", "fv":29, "bv":false }
+			],
+			"action":[
+				{ "type":"UnBlockActor", "rep":true, "del":0, "id1":"Player", "id2":"", "sv":"", "iv":"", "dv":"None", "vv":[] },
+				{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[25.4,49.4], "dv":"B" },
+				{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[22.7,46.8], "dv":"F" },
+				{ "type":"CompleteStep", "bv":true }
+			]
+		}
+	]
+
+}
+
+
+
+Some steps may be done in parallel.

@@ -71,10 +71,10 @@ public class Controller : MonoBehaviour {
     #region Sequences and actions
     if (currentCutscene != null) { // Do we have a sequence?
       if (!currentCutscene.Run(null, null)) { // Completed
+        Debug.Log("Completed cutscene " + currentCutscene.ToString());
         currentCutscene = null;
         GD.status = GameStatus.NormalGamePlay;
         forcedCursor = CursorTypes.None;
-        Debug.Log("Booooof");
         oldCursor = null;
       }
       else {

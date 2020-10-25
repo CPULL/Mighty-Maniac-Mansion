@@ -75,7 +75,6 @@ public class Condition {
       case ConditionType.ActorHasSkill: return "Actor " + (Chars)id1 + " has " + (!bv ? "not skill " : "skill ") + (Skill)iv1;
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
       case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " == " : " != ") + iv1;
-      case ConditionType.StepValueIs: return "Step " + (bv ? " is " : " is not ") + iv1;
       case ConditionType.ItemCollected: return "Item " + (ItemEnum)id1 + (bv ? " is collected by " : " is not collected by ") + (Chars)iv1;
       case ConditionType.ActorInSameRoom: return "Actor " + (Chars)id1 + " is " + (!bv ? "not in " : "in ") + sv;
       case ConditionType.ActorDistanceLess: return "Actor " + (Chars)id1 + " dist " + (bv ? "< " : "> ") + fv1;
@@ -89,28 +88,28 @@ public class Condition {
     return res;
   }
 
-  public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
+  public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when) {
     Actor p = Controller.GetActor(performer);
     Actor r = Controller.GetActor(receiver);
     Item i1 = AllObjects.FindItemByID(item1);
     Item i2 = AllObjects.FindItemByID(item2);
-    return IsValid(p, r, i1, i2, when, step);
+    return IsValid(p, r, i1, i2, when);
   }
 
-  public bool IsValid(Chars performer, Chars receiver, Item item1, Item item2, When when, int step) {
+  public bool IsValid(Chars performer, Chars receiver, Item item1, Item item2, When when) {
     Actor p = Controller.GetActor(performer);
     Actor r = Controller.GetActor(receiver);
-    return IsValid(p, r, item1, item2, when, step);
+    return IsValid(p, r, item1, item2, when);
   }
 
-  public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when, int step) {
+  public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when) {
     Item i1 = AllObjects.FindItemByID(item1);
     Item i2 = AllObjects.FindItemByID(item2);
-    return IsValid(performer, receiver, i1, i2, when, step);
+    return IsValid(performer, receiver, i1, i2, when);
   }
 
 
-  public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when, int step) {
+  public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when) {
     if (this.when != When.Always && this.when != when) return false;
     if (item1 != null && item2 != null && type != ConditionType.UsedWith) return false;
 
@@ -162,15 +161,6 @@ public class Condition {
         else
           return !AllObjects.CheckFlag((GameFlag)id, iv);
       }
-
-      case ConditionType.StepValueIs: {
-        bool res = iv == step;
-        if (bv)
-          return res;
-        else
-          return !res;
-      }
-
 
       case ConditionType.ItemCollected: {
         bool res = true;
@@ -282,7 +272,6 @@ public enum ConditionType {
   ActorHasSkill,      // ID of actor and ID of skill                                                       (ID1, IV1, BV)
   CurrentRoomIs,      // String name of the room                                                           (SV, BV)
   FlagValueIs,        // ID of flag, and value                                                             (ID1, IV1, BV)
-  StepValueIs,        // ID of step and value                                                              (ID1, IV1, BV)
   ItemCollected,      // ID of item                                                                        (ID1, BV)
   ActorInSameRoom,    // ID of item                                                                        (ID1, SV, BV)
   ActorDistanceLess,  // ID and dist value                                                                 (ID1, FV, BV)

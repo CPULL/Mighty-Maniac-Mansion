@@ -84,14 +84,6 @@ public class ConditionPropertyDrawer : PropertyDrawer {
         }
         break;
 
-        case ConditionType.StepValueIs: {
-          Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
-          Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
-          bv.intValue = EditorGUI.Popup(aRect, bv.intValue, isIsNot);
-          iv1.intValue = EditorGUI.IntField(bRect, iv1.intValue);
-        }
-        break;
-
         case ConditionType.ItemCollected: {
           Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
           Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
