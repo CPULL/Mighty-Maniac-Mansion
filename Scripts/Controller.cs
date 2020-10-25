@@ -370,7 +370,6 @@ public class Controller : MonoBehaviour {
     #endregion
   }
 
-
   private CursorTypes forcedCursor = CursorTypes.None;
   private Texture2D oldCursor = null;
   public Texture2D[] Cursors;
@@ -734,6 +733,46 @@ public class Controller : MonoBehaviour {
     Debug.LogError("Invalid actor requested! " + actor);
     return null;
   }
+
+
+  internal static bool ValidActor(Chars id, Actor actor) {
+    switch (id) {
+      case Chars.None: return false;
+      case Chars.Current: return actor == GD.c.currentActor;
+      case Chars.Actor1: return actor == GD.c.actor1;
+      case Chars.Actor2: return actor == GD.c.actor2;
+      case Chars.Actor3: return actor == GD.c.actor3;
+      case Chars.KidnappedActor: return actor == GD.c.kidnappedActor;
+      case Chars.Receiver: return false;
+      case Chars.Self: return false;
+      case Chars.Player: return (actor == GD.c.actor1 || actor == GD.c.actor2 || actor == GD.c.actor3);
+      case Chars.Enemy: return (actor != GD.c.actor1 && actor != GD.c.actor2 && actor != GD.c.actor3 && actor != GD.c.kidnappedActor);
+      case Chars.Fred: return actor == GD.c.allEnemies[0];
+      case Chars.Edna: return actor == GD.c.allEnemies[1];
+      case Chars.Ted: return actor == GD.c.allEnemies[2];
+      case Chars.Ed: return actor == GD.c.allEnemies[3];
+      case Chars.Edwige: return actor == GD.c.allEnemies[4];
+      case Chars.GreenTentacle: return actor == GD.c.allEnemies[5];
+      case Chars.PurpleTentacle: return actor == GD.c.allEnemies[6];
+      case Chars.BlueTentacle: return actor == GD.c.allEnemies[7];
+      case Chars.PurpleMeteor: return actor == GD.c.allEnemies[8];
+
+      case Chars.Dave: return actor == GD.c.allActors[0];
+      case Chars.Bernard: return actor == GD.c.allActors[1];
+      case Chars.Wendy: return actor == GD.c.allActors[2];
+      case Chars.Syd: return actor == GD.c.allActors[3];
+      case Chars.Hoagie: return actor == GD.c.allActors[4];
+      case Chars.Razor: return actor == GD.c.allActors[5];
+      case Chars.Michael: return actor == GD.c.allActors[6];
+      case Chars.Jeff: return actor == GD.c.allActors[7];
+      case Chars.Javid: return actor == GD.c.allActors[8];
+      case Chars.Laverne: return actor == GD.c.allActors[9];
+      case Chars.Ollie: return actor == GD.c.allActors[10];
+      case Chars.Sandy: return actor == GD.c.allActors[11];
+    }
+    return false;
+  }
+
 
   public static Actor GetActorForSelection(int num) {
     if (num < 9) return GD.c.allEnemies[num];

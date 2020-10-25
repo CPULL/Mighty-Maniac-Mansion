@@ -118,8 +118,6 @@ public enum GameFlag {
   PowerIsDown,
   PackageIsDeliveredStamps,
   EdnaBrowsingFridge,
-  EdnaCatching,
-  EdnaBrowsingFridgeStart
 }
 public enum FlagValueOLD {
   Yes, No, NA
@@ -141,6 +139,9 @@ public enum CutsceneID {
   Doorbell,
   EdHungryCheese,
   EdnaBrowsingFridge,
+  EdnaCatch,
   FredTalkingToKidnapped,
   Javidx9 // FIXME
+      
+
 }

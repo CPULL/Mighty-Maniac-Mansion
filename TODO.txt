@@ -2,16 +2,12 @@
 
 
 
-Change the flags to int
-When an action of an actor behavior is completed, zero the time for the next checking
 
 
 !Tests: Use an object that is not supposed to do anything
 !Tests: Use a key in the wrong object
 Tests: Give an object to somebody else
 
-
-Edna behavior looks not working: the walktoactor looks not right
 
 Draw Edna and do the "Check fridge" at start
 
@@ -182,6 +178,8 @@ Jeff
 ! Some of the actions should be limited to particular actions (Use, Pick, Give, etc.)
 ! Disable actors colliders if we are not "giving" an object
 ! When going in the kitched with Edna, we should move the camera to show the fridge. Then do the behavior.
+! Change the flags to int
+! When an action of an actor behavior is completed, zero the time for the next checking
 
 
 

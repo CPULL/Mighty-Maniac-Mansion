@@ -6029,10 +6029,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Dungeon
   RoomName: Dungeon
-  minL: -108
-  maxR: -90
-  minY: 16.2
-  maxY: 23
+  minL: -115.5
+  maxR: -6.5
+  minY: 6.1
+  maxY: 7.6
   scalePerc: 1.4
   CameraGround: 10
 --- !u!82 &202005219
@@ -9547,7 +9547,7 @@ MonoBehaviour:
   br: {x: -112.47543, y: 5.896019}
   bl: {x: -117.56872, y: 5.9982624}
   parent: {fileID: 1705001485}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1179892425}
   g: 49.376442
   h: 26.673548
@@ -16166,7 +16166,7 @@ MonoBehaviour:
   br: {x: -107.7493, y: 7.643273}
   bl: {x: -111.856735, y: 7.6453032}
   parent: {fileID: 1705001485}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: 0
   h: 22.305458
@@ -16462,7 +16462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -90, y: 20, z: -10}
+  m_LocalPosition: {x: -92, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20049,7 +20049,7 @@ MonoBehaviour:
   br: {x: -89.12263, y: 5.9712887}
   bl: {x: -107.39172, y: 5.8747215}
   parent: {fileID: 1705001485}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1179892425}
   g: 34.10363
   h: 11.400733
@@ -29633,7 +29633,7 @@ MonoBehaviour:
   br: {x: -86.083984, y: 7.6603603}
   bl: {x: -88.83452, y: 7.667414}
   parent: {fileID: 1705001485}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1853731659}
   g: 37.678852
   h: 0
@@ -36943,7 +36943,7 @@ MonoBehaviour:
   br: {x: -107.39172, y: 5.8747215}
   bl: {x: -112.47543, y: 5.896019}
   parent: {fileID: 1705001485}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 509967852}
   g: 22.702896
   h: 22.702896
@@ -48149,7 +48149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533143410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -82.97, y: 17.29, z: 0}
+  m_LocalPosition: {x: -90.07, y: 7.6, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 1149741274}
@@ -54191,7 +54191,7 @@ MonoBehaviour:
   - {fileID: 2015481465}
   - {fileID: 957614879}
   - {fileID: 509967852}
-  ShowSubNodes: 0
+  ShowSubNodes: 1
   DoAStar: 0
   start: {x: -109.77794, y: 10.224848}
   end: {x: -87.43355, y: 9.587871}
@@ -58876,7 +58876,7 @@ GameObject:
   - component: {fileID: 1815643620}
   - component: {fileID: 1815643619}
   m_Layer: 0
-  m_Name: EdRoom
+  m_Name: Cutscene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58936,7 +58936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: 0
-  Name: Jumpstart Ed Room
+  Name: Cutscene
   owner: 0
   Usable: 2
   UsableWith: 0
@@ -58965,39 +58965,18 @@ MonoBehaviour:
       sv: 
       bv: 0
       msg: 
-      when: 0
+      when: 4
     Action:
       running: 0
       msg: 
-      type: 1
+      type: 11
       Repeatable: 1
       delay: 0
-      id1: 0
+      id1: 5
       id2: 0
       str: EdRoom
       pos: {x: -50, y: 80}
       dir: 0
-      val: 0
-  - Condition:
-      type: 0
-      id: 0
-      iv: 0
-      fv: 0
-      sv: 
-      bv: 0
-      msg: 
-      when: 0
-    Action:
-      running: 0
-      msg: 
-      type: 2
-      Repeatable: 1
-      delay: 0
-      id1: 0
-      id2: 0
-      str: EdRoom
-      pos: {x: -53, y: 78}
-      dir: 2
       val: 0
   sr: {fileID: 0}
 --- !u!212 &1815643621
@@ -59934,7 +59913,7 @@ MonoBehaviour:
   br: {x: -85.68451, y: 5.9443035}
   bl: {x: -89.12263, y: 5.9712887}
   parent: {fileID: 1705001485}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 649684536}
   g: 37.678852
   h: 3.575221
@@ -65893,7 +65872,7 @@ MonoBehaviour:
   br: {x: -80.398834, y: 6.0053616}
   bl: {x: -85.68451, y: 5.9443035}
   parent: {fileID: 1705001485}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1853731659}
   g: 42.6039
   h: 4.925048

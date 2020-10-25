@@ -47,6 +47,7 @@ public class ConditionPropertyDrawer : PropertyDrawer {
       ConditionType t = (ConditionType)type.intValue;
       switch (t) {
         case ConditionType.None: break;
+        case ConditionType.CurrentActorIs:
         case ConditionType.ActorIs: {
           Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
           Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);

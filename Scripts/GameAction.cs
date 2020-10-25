@@ -93,29 +93,15 @@ public class GameAction {
         if ((Chars)id1 == Chars.None) return (ItemEnum)id2 + " anim: " + str;
         return (Chars)id1 + " anim: " + str;
       }
-
       case ActionType.AlterItem: return "Alter " + (ItemEnum)id1 + " L[" + (WhatItDoes)id2 + "] R[" + (WhatItDoes)val + "]";
       case ActionType.SetFlag: return "Set " + (GameFlag)id1 + " = " + val;
+      case ActionType.CompleteStep: return "Complete step";
     }
     return res;
   }
 
   public GameAction() {
     type = ActionType.None;
-  }
-
-  public GameAction(GameAction gameAction) {
-    running = Running.NotStarted;
-    time = 0;
-    type = gameAction.type;
-    Repeatable = gameAction.Repeatable;
-    delay = gameAction.delay;
-    id1 = gameAction.id1;
-    str = gameAction.str;
-    pos = gameAction.pos;
-    dir = gameAction.dir;
-    id2 = gameAction.id2;
-    val = gameAction.val;
   }
 
   public GameAction(string stype, bool rep, float del, string vid1, string vid2, string sv, int iv, string dv, Vector2 vv) {
@@ -196,9 +182,10 @@ public class GameAction {
       }
       break;
 
-      case ActionType.ShowRoom:
+      case ActionType.ShowRoom: {
         int.TryParse(vid2, out id2); // 0 for immediate, not zero for panning
-        break;
+      }
+      break;
 
       case ActionType.WalkToActor: {
         Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
@@ -232,6 +219,15 @@ public class GameAction {
         else {
           val = iv;
         }
+      }
+      break;
+
+      case ActionType.Cutscene: {
+        CutsceneID id = (CutsceneID)System.Enum.Parse(typeof(CutsceneID), vid1, true);
+        if (!System.Enum.IsDefined(typeof(CutsceneID), id)) {
+          Debug.LogError("Unknown Cutscene ID: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
       }
       break;
     }
@@ -583,6 +579,13 @@ public class GameAction {
       }
       break;
 
+      case ActionType.CompleteStep: {
+        if (delay > 0)
+          Play();
+        else
+          Complete();
+      }
+      break;
 
       default: {
         // FIXME do the other actions

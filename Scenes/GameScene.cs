@@ -93,6 +93,11 @@ A behavior should run only if the condition is valid.
     else if (currentAction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
     }
     else if (currentAction.running == Running.Completed) { // Get the next
+      if (currentAction.type == ActionType.CompleteStep) {
+        actionnum = -1;
+        currentAction = null;
+        return !GetNextStep(performer, receiver, stepnum);
+      }
       actionnum++;
       if (steps[stepnum].actions.Count > actionnum) {
         currentAction = steps[stepnum].actions[actionnum];

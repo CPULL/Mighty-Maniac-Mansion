@@ -30,6 +30,12 @@ public class Condition {
           }
           break;
 
+        case ConditionType.CurrentActorIs:
+          if (System.Enum.TryParse<Chars>(ids, out Chars reszz)) {
+            id = (int)reszz;
+          }
+          break;
+
         case ConditionType.FlagValueIs:
           if (System.Enum.TryParse<GameFlag>(ids, out GameFlag resf)) {
             id = (int)resf;
@@ -65,6 +71,7 @@ public class Condition {
     switch (type) {
       case ConditionType.None: return "<none>";
       case ConditionType.ActorIs: return "Actor is " + (!bv ? "not " : "") + (Chars)id1;
+      case ConditionType.CurrentActorIs: return "Current Actor is " + (!bv ? "not " : "") + (Chars)id1;
       case ConditionType.ActorHasSkill: return "Actor " + (Chars)id1 + " has " + (!bv ? "not skill " : "skill ") + (Skill)iv1;
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
       case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " == " : " != ") + iv1;
@@ -76,7 +83,6 @@ public class Condition {
       case ConditionType.ItemOpen: return "Item " + (ItemEnum)id1 + (bv ? " is " : " is not ") + (iv1 == 0 ? "Open" : "Locked");
       case ConditionType.RecipientIs: return "Recipient " + (bv ? "is " : "is not ") + (Chars)id1;
       case ConditionType.WhenIs: return "When " + (bv ? "is " : "is not ") + (When)id1;
-
       case ConditionType.UsedWith: return "Used with " + (bv ? "" : "not ") + (ItemEnum)id1;
     }
 
@@ -111,7 +117,7 @@ public class Condition {
     switch (type) {
       case ConditionType.None: return true;
 
-      case ConditionType.ActorIs: { // We need an actor to test
+      case ConditionType.ActorIs: {
         bool res;
         if ((Chars)id == Chars.Current) res = (GD.c.currentActor == performer || GD.c.currentActor == receiver);
         else if ((Chars)id == Chars.Actor1) res = (GD.c.actor1 == performer || GD.c.actor1 == receiver);
@@ -120,6 +126,14 @@ public class Condition {
         else if ((Chars)id == Chars.KidnappedActor) res = (GD.c.kidnappedActor == performer || GD.c.kidnappedActor == receiver);
         else if ((Chars)id == Chars.Player) res = (GD.c.actor1 == performer || GD.c.actor2 == performer || GD.c.actor3 == performer);
         else res = performer.id == (Chars)id;
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
+      case ConditionType.CurrentActorIs: {
+        bool res = Controller.ValidActor((Chars)id, GD.c.currentActor);
         if (bv)
           return res;
         else
@@ -277,6 +291,7 @@ public enum ConditionType {
   RecipientIs,        // ID of actor                                                                       (ID1, BV)
   WhenIs,             // ID of action (give, pick, use, etc.)                                              (ID1, BV)
   UsedWith,           // ID of items                                                                       (ID1, BV)
+  CurrentActorIs,     // ID of actor                                                                       (ID1, BV)
 }
 
 

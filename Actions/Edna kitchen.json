@@ -45,7 +45,7 @@
 			],
 			"action":[
 				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"R", "vv":[] },
-				{ "type":"Speak", "id1":"Edna", "sv":"Gotcha!", "dv":"F" }
+				{ "type":"Cutscene", "id1":"EdnaCatch" }
 			]
 		}
 	]
