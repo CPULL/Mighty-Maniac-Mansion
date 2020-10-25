@@ -6,46 +6,55 @@
 		{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":false, "iv":0 }
 	],
 	
+	"startup" : [
+		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-80.12,17.9] },
+		{ "type":"Open", "rep":true, "del":0, "id1":"Fridge", "id2":"", "sv":"Open", "iv":"", "dv":"", "vv":[] }
+	],
+	
+	"shutdown" : [
+		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-95,7] },
+		{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":0, "dv":"", "vv":[] }
+	],
+	
 	"sequence":[
-		{ "name":"Setup",
+		{ "name":"Wait in position < X",
 			"condition":[
-				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":1 }
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":1 },
+				{ "type":"ActorXLess", "id":"Current", "fv":-86, "bv":true }
 			],
 			"action":[
-				{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-80.12,17.9] },
-				{ "type":"Open", "rep":true, "del":0, "id1":"Fridge", "id2":"", "sv":"Open", "iv":"", "dv":"", "vv":[] },
-				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":2, "dv":"", "vv":[] }
+				{ "type":"CompleteStep", "del":5, "id2":1 }
 			]
 		},
-				
-		{ "name":"Wait in position",
+		
+		{ "name":"Wait in position > X",
 			"condition":[
-				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":2 },
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":1 },
 				{ "type":"ActorXLess", "id":"Current", "fv":-86, "bv":false }
 			],
 			"action":[
-				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":3, "dv":"", "vv":[] }
+				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":2, "dv":"", "vv":[] }
 			]
 		},
 		
 		{ "name":"Start Catching",
 			"condition":[
-				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":3 }
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":2 }
 			],
 			"action":[
 				{ "type":"ShowRoom", "rep":true, "del":.25, "sv":"Kitchen", "vv":[-84, 20], "id2":"1" },
 				{ "type":"Speak", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder.", "iv":"", "dv":"L", "vv":[] },
-				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":4, "dv":"", "vv":[] }
+				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":3, "dv":"", "vv":[] }
 			]
 		},
 		
 		{ "name":"Catching",
 			"condition":[
-				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":4 }
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":3 }
 			],
 			"action":[
 				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"R", "vv":[] },
-				{ "type":"Cutscene", "id1":"EdnaCatch" }
+				{ "type":"Cutscene", "id1":"EdnaCatch" },
 			]
 		}
 	]

@@ -47,8 +47,6 @@
 			"action":[
 				{ "type":"Wait", "del":2.1 },
 				{ "type":"Speak", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"", "sv":"I am hungry...", "iv":"", "dv":"None", "vv":[] },
-				{ "type":"Wait", "del":1.1 },
-				{ "type":"Speak", "rep":true, "del":0, "id1":"Ollie", "id2":"", "sv":"This is a fanmade game\nmade by CPU\n\nEnjoy BG Ollie music!", "iv":"", "dv":"None", "vv":[] }
 				{ "type":"CompleteStep", "del":3.2, "id2":1 },
 			]
 		},

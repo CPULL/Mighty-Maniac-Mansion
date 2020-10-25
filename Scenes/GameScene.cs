@@ -72,6 +72,7 @@ public class GameScene {
       }
 
     if (!valid && AmIActive) {
+      Debug.Log(">>>>>>>>>>>>>>> shutting down XXX " + ToString());
       PlayActions(shutdown);
       AmIActive = false;
     }
@@ -134,7 +135,7 @@ public class GameScene {
     // Check all the behaviros that are valid and run all of them
     bool atLeastOne = false;
     foreach (GameStep gs in steps)
-      atLeastOne |= gs.Run(performer, receiver, null, null);
+      atLeastOne |= gs.Run(this, performer, receiver, null, null);
 
     if (!atLeastOne && AmIActive) {
       if (shutdown.Count == 0) {
@@ -209,7 +210,7 @@ public class GameStep {
     return true;
   }
 
-  internal bool Run(Actor performer, Actor receiver, object p1, object p2) {
+  internal bool Run(GameScene gameScene, Actor performer, Actor receiver, object p1, object p2) {
     if (!IsValid(performer, receiver)) {
       // Stop the actions in case they were running
       if (currentAction != null) currentAction.Stop();
@@ -225,6 +226,10 @@ public class GameStep {
 
     if (currentAction.running == Running.NotStarted) { // Start the action
       currentAction.RunAction(performer, receiver, null, null);
+      if (currentAction.type == ActionType.Cutscene) {
+        // Quickly stop parent scene
+        gameScene.AmIActive = false;
+      }
     }
     else if (currentAction.running == Running.Running) { // Wait it to complete
       if (currentAction.type == ActionType.WalkToPos || currentAction.type == ActionType.WalkToActor) {

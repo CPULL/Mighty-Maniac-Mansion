@@ -301,7 +301,7 @@ public class Actor : MonoBehaviour {
       return;
     }
 
-    if (!audios.isPlaying) {
+    if (!audios.isPlaying && gameObject.activeSelf) {
       audios.Play();
     }
     anim.speed = Controller.walkSpeed * .8f;
@@ -326,7 +326,7 @@ public class Actor : MonoBehaviour {
     if (ty < currentRoom.minY) ty = currentRoom.minY;
     if (ty > currentRoom.maxY) ty = currentRoom.maxY;
     float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
-    if (!destination.node.isStair) {
+    if (destination.node != null && !destination.node.isStair) {
       scaley *= currentRoom.scalePerc;
       transform.localScale = new Vector3(scaley, scaley, 1);
       int zpos = (int)(scaley * 10000);
@@ -339,7 +339,16 @@ public class Actor : MonoBehaviour {
       if (callBack == null && followed != null) { // Persistent following
         audios.Stop();
         prevFloor = FloorType.None;
-        anim.Play(idle + dir);
+
+        if (followSide == Dir.L) anim.Play(idle + Dir.R);
+        if (followSide == Dir.R) anim.Play(idle + Dir.L);
+        if (followSide == Dir.F) anim.Play(idle + Dir.B);
+        if (followSide == Dir.B) anim.Play(idle + Dir.F);
+        PathNode p = currentRoom.GetPathNode(followed.position);
+        if (p != null) {
+          anim.Play(walk + dir);
+          WalkTo(followed.position, p, null);
+        }
         return;
       }
       if (parcour == null || parcour.Count == 0) {
@@ -354,7 +363,7 @@ public class Actor : MonoBehaviour {
       destination.pos = parcour[0].pos;
       destination.node = parcour[0].node;
       floor = parcour[0].node.floorType;
-      if (floor != prevFloor) {
+      if (floor != prevFloor && gameObject.activeSelf) {
         if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
         audios.Play();
       }

@@ -5,6 +5,7 @@
 	],
 	
 	"startup" : [
+		{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":0, "dv":"", "vv":[] },
 		{ "type":"Speak", "id1":"Edna", "sv":"Gotcha!", "dv":"F" },
 		{ "type":"Fade", "rep":true, "del":0.5, "iv":"0" },
 		{ "type":"ShowRoom", "rep":true, "del":0, "sv":"Dungeon", "vv":[-93, 10] },

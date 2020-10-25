@@ -364,13 +364,15 @@ public class GameAction {
         }
         a.transform.position = pos;
         a.SetDirection(dir);
-        RaycastHit2D hit = Physics2D.Raycast(pos, GD.c.cam.transform.forward, 10000, GD.c.pathLayer);
-        if (hit.collider != null) {
-          PathNode p = hit.collider.GetComponent<PathNode>();
-          a.SetScaleAndPosition(pos, p);
-        }
-        else {
-          a.SetScaleAndPosition(pos);
+        if (aroom != null) {
+          RaycastHit2D hit = Physics2D.Raycast(pos, GD.c.cam.transform.forward, 10000, GD.c.pathLayer);
+          if (hit.collider != null) {
+            PathNode p = hit.collider.GetComponent<PathNode>();
+            a.SetScaleAndPosition(pos, p);
+          }
+          else {
+            a.SetScaleAndPosition(pos);
+          }
         }
         Complete();
       }

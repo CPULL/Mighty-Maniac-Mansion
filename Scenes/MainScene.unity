@@ -38169,12 +38169,12 @@ MonoBehaviour:
       fv: 0
       sv: 
       bv: 0
-      msg: 
+      msg: No, thanks.\nIt is disgusting. 1
       when: 2
     Action:
       running: 0
-      msg: No, thanks.\nIt is disgusting.
-      type: 13
+      msg: No, thanks.\nIt is disgusting. 2
+      type: 0
       Repeatable: 0
       delay: 0
       id1: 14
@@ -48322,7 +48322,7 @@ MonoBehaviour:
   Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 428433903}
-  actorSpeed: 1.25
+  actorSpeed: 1.75
   inventory: []
   id: 11
   mainScale: 0.95
