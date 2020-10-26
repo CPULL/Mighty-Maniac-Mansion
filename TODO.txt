@@ -1,5 +1,6 @@
 === Mighty Maniac Mansion ===
 
+Set all non-working doors as "Not in the demo"
 
 !Tests: Use an object that is not supposed to do anything
 !Tests: Use a key in the wrong object

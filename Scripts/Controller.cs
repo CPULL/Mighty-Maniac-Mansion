@@ -903,6 +903,11 @@ public class Controller : MonoBehaviour {
   public Room currentRoom;
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
+    if (door == null || door.dst == null) {
+      Dbg("Not available in demo!");
+      yield break;
+    }
+
     // Disable gameplay
     GD.status = GameStatus.Cutscene;
     yield return null;
