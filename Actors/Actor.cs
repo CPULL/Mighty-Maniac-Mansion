@@ -79,24 +79,6 @@ public class Actor : MonoBehaviour {
     return false;
   }
   
-  public string HasSkillOLD(Skill skill) { // FIXME
-    foreach (Skill s in skills)
-      if (s == skill) return null;
-    switch (skill) {
-      case Skill.Strenght: return "I am not strong enough!";
-      case Skill.Courage: return "It is scary!\nI will not do it!";
-      case Skill.Chef: return "I am not a chef";
-      case Skill.Handyman: return "I don't know how to do it";
-      case Skill.Geek: return "I am not a geek";
-      case Skill.Nerd: return "I am not a nerd";
-      case Skill.Music: return "I don't know how to play";
-      case Skill.Writing: return "I am not a writer";
-      case Skill.None:
-        break;
-    }
-    return "I cannot do it";
-  }
-
   public bool HasSkill(Skill skill) {
     foreach (Skill s in skills)
       if (s == skill) return true;
@@ -116,7 +98,7 @@ public class Actor : MonoBehaviour {
     faceNum = 0;
     speakt = 0;
     fromAction = action;
-    Balloon.Show(message, transform, CompleteSpeaking);
+    Balloon.Show(message.Replace("\\n", "\n"), transform, CompleteSpeaking);
     return false;
   }
 
@@ -220,19 +202,59 @@ public class Actor : MonoBehaviour {
 
     walking = WalkingMode.Follower;
 
-    if (action == null)
-      WalkTo(pos, p, null);
-    else
+    if (action == null) WalkTo(pos, p, null);
+    else {
       WalkTo(pos, p, new System.Action<Actor, Item>((actor, item) => {
-            // Should we do something if we reach the destination?
-            Debug.Log(this + " reached destination");
-            action.Complete();
-            followed = null;
-            walking = WalkingMode.None;
-          }
-        ));
+          // Should we do something if we reach the destination?
+          Debug.Log(this + " reached destination");
+          action.Complete();
+          followed = null;
+          walking = WalkingMode.None;
+        }
+      ));
+    }
 
+    WalkToFollower(pos, p);
     return false;
+  }
+
+  internal void WalkToFollower(Vector2 dest, PathNode p) { // DESTINATION of the FOLLOWER *******************************
+    if (dest.x < blockMinX) dest.x = blockMinX;
+    if (dest.x > blockMaxX) dest.x = blockMaxX;
+
+    destination.pos = dest;
+    destination.node = p;
+    destination.pos.z = transform.position.z;
+    Vector2 wdir = destination.pos - transform.position;
+    float dist = Vector2.Distance(transform.position, dest);
+    if (wdir.sqrMagnitude < .01f || dist < .05f) return;
+
+    // Calculate the path
+    parcour = p.parent.PathFind(transform.position, dest);
+    if (parcour == null) {
+      destination.pos = dest;
+      prevFloor = FloorType.None;
+      floor = p.floorType;
+      if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
+      audios.Play();
+    }
+    else {
+      destination.pos = parcour[1].pos;
+      destination.node = parcour[1].node;
+      floor = parcour[1].node.floorType;
+      parcour.RemoveRange(0, 2);
+
+      if (floor != prevFloor || !audios.isPlaying) {
+        prevFloor = floor;
+        if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
+        audios.Play();
+      }
+    }
+    destination.pos.z = (destination.pos.y - currentRoom.CameraGround) / 10f;
+
+    dir = CalculateDirection(destination.pos);
+    anim.Play(walk + dir);
+    walking = WalkingMode.Follower;
   }
 
   internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) { // DESTINATION *******************************
@@ -432,7 +454,7 @@ public class Actor : MonoBehaviour {
       if (followSide == Dir.F) pos.y -= 1.5f;
       if (followSide == Dir.B) pos.y += 1.5f;
       walking = WalkingMode.Follower;
-      WalkTo(pos, p, callBack);
+      WalkToFollower(pos, p);
     }
 
     destination.pos = followed.position;
@@ -490,7 +512,6 @@ public class Actor : MonoBehaviour {
           transform.position = destination.pos;
           audios.Stop();
           prevFloor = FloorType.None;
-
           
           if (walkDir == Vector2.zero && lastChangedDir >= .3f) {
             if (followSide == Dir.L) dir = Dir.R;
@@ -522,72 +543,6 @@ public class Actor : MonoBehaviour {
       dir = CalculateDirection(destination.pos);
     }
   }
-
-  void Recycle() { 
-
-
-
-    if (followed != null) {
-      destination.pos = followed.position;
-      if (followSide == Dir.L) destination.pos.x -= 1.5f;
-      if (followSide == Dir.R) destination.pos.x += 1.5f;
-      if (followSide == Dir.F) destination.pos.y -= 1.5f;
-      if (followSide == Dir.B) destination.pos.y += 1.5f;
-      dir = CalculateDirection(destination.pos);
-    }
-
-    Vector2 walkDir = (destination.pos - transform.position);
-    Vector3 wdir = walkDir.normalized;
-    wdir.y *= .65f;
-    Vector3 np = transform.position + wdir * actorSpeed * Controller.walkSpeed * Time.deltaTime;
-    np.z = 0;
-
-
-    if (walkDir.sqrMagnitude < .05f) {
-      if (callBack == null && followed != null) { // Persistent following
-        audios.Stop();
-        prevFloor = FloorType.None;
-
-        if (followSide == Dir.L) dir = Dir.R;
-        if (followSide == Dir.R) dir = Dir.L;
-        if (followSide == Dir.F) dir = Dir.B;
-        if (followSide == Dir.B) dir = Dir.F;
-        anim.Play(idle + dir);
-        return;
-      }
-      if (parcour == null || parcour.Count == 0) {
-        transform.position = destination.pos;
-        walking = WalkingMode.None;
-        callBack?.Invoke(this, callBackItem);
-        callBack = null;
-        audios.Stop();
-        prevFloor = FloorType.None;
-        return;
-      }
-      destination.pos = parcour[0].pos;
-      destination.node = parcour[0].node;
-      floor = parcour[0].node.floorType;
-      if (floor != prevFloor && gameObject.activeSelf) {
-        if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
-        audios.Play();
-      }
-      parcour.RemoveAt(0);
-      dir = CalculateDirection(destination.pos);
-      anim.Play(walk + dir);
-    }
-    transform.position = np;
-
-    if (callBack == null && followed != null) {
-      PathNode p = currentRoom.GetPathNode(followed.position);
-      if (p != null && p != destination.node) {
-        Controller.Dbg("Re-walk");
-        anim.Play(walk + dir);
-        WalkTo(followed, followSide, null);
-      }
-    }
-  }
-
-  public void RestoreWalking() { }
 }
 
 public enum WalkingMode {

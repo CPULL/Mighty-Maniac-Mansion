@@ -12,6 +12,7 @@ public class GameScene {
   public List<GameAction> shutdown;
   public List<GameStep> steps;
   public bool AmIActive = false;
+  public bool AmIShuttingDown = false;
   public GameAction startupaction = null;
   public int startupactionnum = -1;
   public GameAction shutdownaction = null;
@@ -52,9 +53,14 @@ public class GameScene {
   }
 
   internal void Reset() {
-    if (AmIActive)
-      PlayActions(shutdown);
+    if (AmIActive) { // Play quickly all actions
+      foreach (GameAction a in shutdown) {
+        a.RunAction(null, null, null, null);
+        a.Complete();
+      }
+    }
     AmIActive = false;
+    AmIShuttingDown = false;
     startupaction = null;
     startupactionnum = -1;
   }
@@ -73,20 +79,43 @@ public class GameScene {
 
     if (!valid && AmIActive) {
       Debug.Log(">>>>>>>>>>>>>>> shutting down XXX " + ToString());
-      PlayActions(shutdown);
+      shutdownaction = null;
+      shutdownactionnum = -1;
       AmIActive = false;
+      AmIShuttingDown = shutdown.Count > 0;
+    }
+
+    if (AmIShuttingDown) {
+      if (shutdownaction == null) {
+        shutdownaction = shutdown[0];
+        shutdownaction.running = Running.NotStarted;
+        shutdownactionnum++;
+      }
+
+      if (shutdownaction.running == Running.NotStarted) { // Start the action
+        shutdownaction.RunAction(performer, receiver, null, null);
+      }
+      else if (shutdownaction.running == Running.Running) { // Wait it to complete
+        shutdownaction.CheckTime(Time.deltaTime);
+      }
+      else if (shutdownaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
+      }
+      else if (shutdownaction.running == Running.Completed) { // Get the next
+        shutdownactionnum++;
+        if (shutdownactionnum < shutdown.Count) {
+          shutdownaction = shutdown[shutdownactionnum];
+          shutdownaction.running = Running.NotStarted;
+        }
+        else {
+          AmIActive = false;
+          AmIShuttingDown = false;
+        }
+      }
+      return false;
     }
 
     return valid;
   }
-
-  private void PlayActions(List<GameAction> actions) {
-    foreach (GameAction a in actions) {
-      a.RunAction(null, null, null, null);
-      a.Complete();
-    }
-  }
-
 
   public bool Run(Actor performer, Actor receiver) {
     // Are we valid?
@@ -110,9 +139,6 @@ public class GameScene {
           startupaction.RunAction(performer, receiver, null, null);
         }
         else if (startupaction.running == Running.Running) { // Wait it to complete
-          if (startupaction.type == ActionType.WalkToPos || startupaction.type == ActionType.WalkToActor) {
-            if (performer != null && !performer.IsWalking()) performer.RestoreWalking();
-          }
           startupaction.CheckTime(Time.deltaTime);
         }
         else if (startupaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
@@ -153,9 +179,6 @@ public class GameScene {
           shutdownaction.RunAction(performer, receiver, null, null);
         }
         else if (shutdownaction.running == Running.Running) { // Wait it to complete
-          if (shutdownaction.type == ActionType.WalkToPos || startupaction.type == ActionType.WalkToActor) {
-            if (performer != null && !performer.IsWalking()) performer.RestoreWalking();
-          }
           shutdownaction.CheckTime(Time.deltaTime);
         }
         else if (shutdownaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
@@ -232,9 +255,6 @@ public class GameStep {
       }
     }
     else if (currentAction.running == Running.Running) { // Wait it to complete
-      if (currentAction.type == ActionType.WalkToPos || currentAction.type == ActionType.WalkToActor) {
-        if (!performer.IsWalking()) performer.RestoreWalking();
-      }
       currentAction.CheckTime(Time.deltaTime);
     }
     else if (currentAction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
