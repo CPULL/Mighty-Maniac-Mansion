@@ -78,7 +78,6 @@ public class GameScene {
       }
 
     if (!valid && AmIActive) {
-      Debug.Log(">>>>>>>>>>>>>>> shutting down XXX " + ToString());
       shutdownaction = null;
       shutdownactionnum = -1;
       AmIActive = false;
@@ -96,7 +95,7 @@ public class GameScene {
         shutdownaction.RunAction(performer, receiver, null, null);
       }
       else if (shutdownaction.running == Running.Running) { // Wait it to complete
-        shutdownaction.CheckTime(Time.deltaTime);
+        shutdownaction.CheckTime(.25f);
       }
       else if (shutdownaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
       }

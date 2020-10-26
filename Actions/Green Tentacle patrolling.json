@@ -13,7 +13,11 @@
 	
 	"shutdown" : [
 		{ "type":"UnBlockActor", "rep":true, "del":0, "id1":"Player", "id2":"", "sv":"", "iv":"", "dv":"None", "vv":[] },
-		{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[25.4,49.4], "dv":"F" },
+		{ "type":"Wait", "del":0.5 },
+		{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[21,49], "dv":"F" },
+		{ "type":"Wait", "del":1.1 },
+		{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[32,47], "dv":"F" },
+		{ "type":"Wait", "del":0.001 },
 		{ "type":"Speak", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"", "sv":"I should write\nsome music now...", "iv":"", "dv":"None", "vv":[] },
 	],
 
