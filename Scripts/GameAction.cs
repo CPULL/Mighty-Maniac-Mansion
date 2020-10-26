@@ -493,7 +493,8 @@ public class GameAction {
       break;
 
       case ActionType.Cutscene: {
-        Controller.StartCutScene(AllObjects.GetCutscene((CutsceneID)id1));
+        CutsceneID id = (CutsceneID)id1;
+        if (id != CutsceneID.NONE) Controller.StartCutScene(AllObjects.GetCutscene(id));
         Complete();
       }
       break;
@@ -524,9 +525,9 @@ public class GameAction {
             secondary.SetDirection(dir);
             Play();
 
-            Controller.StartCutScene(AllObjects.GetCutscene((CutsceneID)id2));
+            CutsceneID id = (CutsceneID)id2;
+            if (id != CutsceneID.NONE) Controller.StartCutScene(AllObjects.GetCutscene(id));
             Complete();
-
           }
           else
             Complete();

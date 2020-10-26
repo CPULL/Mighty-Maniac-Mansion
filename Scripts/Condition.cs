@@ -217,6 +217,7 @@ public class Condition {
         }
 
       case ConditionType.RecipientIs: {
+        if (receiver == null) return false;
         Chars idc = (Chars)id;
         if (idc == Chars.Player) {
           if (bv)
