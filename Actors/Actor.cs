@@ -17,7 +17,7 @@ public class Actor : MonoBehaviour {
   readonly Parcour3 destination = new Parcour3(Vector3.zero, null);
   System.Action<Actor, Item> callBack = null;
   Item callBackItem = null;
-  bool walking = false;
+  WalkingMode walking = WalkingMode.None;
   Dir dir = Dir.F;
   private AudioSource audios;
   bool isTentacle = false;
@@ -37,6 +37,18 @@ public class Actor : MonoBehaviour {
   float blockMaxX = float.MaxValue;
 
   public List<GameScene> behaviors;
+
+
+  bool isSpeaking = false;
+  int faceNum = 0;
+  float speakt = 0;
+  GameAction fromAction = null;
+  float lastChangedDir = 0;
+  Transform followed = null;
+  Dir followSide = Dir.None;
+  float nextBehaviorCheck = .5f;
+
+
 
   public void Player() {
     IAmNPC = false;
@@ -67,7 +79,7 @@ public class Actor : MonoBehaviour {
     return false;
   }
   
-  public string HasSkillOLD(Skill skill) {
+  public string HasSkillOLD(Skill skill) { // FIXME
     foreach (Skill s in skills)
       if (s == skill) return null;
     switch (skill) {
@@ -97,10 +109,6 @@ public class Actor : MonoBehaviour {
     skills.Add(skill);
   }
 
-  bool isSpeaking = false;
-  int faceNum = 0;
-  float speakt = 0;
-  GameAction fromAction = null;
 
   public bool Say(string message, GameAction action = null) {
     if (message == null) return true;
@@ -132,12 +140,9 @@ public class Actor : MonoBehaviour {
   }
 
   internal bool IsWalking() {
-    return walking;
+    return walking != WalkingMode.None;
   }
 
-  internal void RestoreWalking() {
-    walking = true;
-  }
 
   void OnMouseEnter() {
     Controller.OverActor(this);
@@ -156,33 +161,46 @@ public class Actor : MonoBehaviour {
   public void Stop() {
     isSpeaking = false;
     followed = null;
-    walking = false;
+    walking = WalkingMode.None;
   }
 
   Dir CalculateDirection(Vector3 point) {
+    if (lastChangedDir < .3f) return dir;
     Vector3 ap = transform.position;
     Vector3 mp = point;
 
     float dx = ap.x - mp.x;
     float dy = ap.y - mp.y;
 
+    if (Mathf.Abs(dx) < .025f && Mathf.Abs(dy) < .025f) return dir;
+
     // Vert or Horiz?
-    if (Mathf.Abs(dx) * 1.2f < Mathf.Abs(dy)) {
-      // Vert
-      if (dy < 0) return Dir.B;
-      return Dir.F;
+    float mult = .75f;
+    if (dir == Dir.F || dir == Dir.B) mult = 1.5f;
+    if (Mathf.Abs(dx) * mult < Mathf.Abs(dy)) { // Vert
+      if (dy < 0) {
+        if (dir != Dir.B) lastChangedDir = 0;
+        return Dir.B;
+      }
+      else {
+        if (dir != Dir.F) lastChangedDir = 0;
+        return Dir.F;
+      }
     }
-    else {
-      // Horiz
-      if (dx < 0) return Dir.R;
-      return Dir.L;
+    else { // Horiz
+      if (dx < 0) {
+        if (dir != Dir.R) lastChangedDir = 0;
+        return Dir.R;
+      }
+      else {
+        if (dir != Dir.L) lastChangedDir = 0;
+        return Dir.L;
+      }
     }
   }
 
-  Transform followed = null;
-  Dir followSide = Dir.None;
 
-  internal bool WalkTo(Transform destActor, Dir side, GameAction action) {
+  internal bool WalkTo(Transform destActor, Dir side, GameAction action) { // FOLLOWER *********************************
     followed = destActor;
     followSide = side;
 
@@ -199,23 +217,25 @@ public class Actor : MonoBehaviour {
     if (side == Dir.R) pos.x += 1.5f;
     if (side == Dir.F) pos.y -= 1.5f;
     if (side == Dir.B) pos.y += 1.5f;
-    WalkTo(pos, p,
-      action == null ? 
-        null 
-      :
-        new System.Action<Actor, Item>((actor, item) => {
-          // Should we do something if we reach the destination?
-          Debug.Log(this + " reached destination");
-          action.Complete();
-          followed = null;
-          walking = false;
-        }
-      ));
+
+    walking = WalkingMode.Follower;
+
+    if (action == null)
+      WalkTo(pos, p, null);
+    else
+      WalkTo(pos, p, new System.Action<Actor, Item>((actor, item) => {
+            // Should we do something if we reach the destination?
+            Debug.Log(this + " reached destination");
+            action.Complete();
+            followed = null;
+            walking = WalkingMode.None;
+          }
+        ));
 
     return false;
   }
 
-  internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) {
+  internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) { // DESTINATION *******************************
     if (dest.x < blockMinX) dest.x = blockMinX;
     if (dest.x > blockMaxX) dest.x = blockMaxX;
 
@@ -224,7 +244,7 @@ public class Actor : MonoBehaviour {
     destination.pos.z = transform.position.z;
     Vector2 wdir = destination.pos - transform.position;
     float dist = Vector2.Distance(transform.position, dest);
-    if (wdir.sqrMagnitude < .1f || dist < .15f) {
+    if (wdir.sqrMagnitude < .01f || dist < .05f) {
       Debug.Log("Too close to dest");
       action?.Invoke(this, item);
       return;
@@ -257,123 +277,11 @@ public class Actor : MonoBehaviour {
     callBackItem = item;
     dir = CalculateDirection(destination.pos);
     anim.Play(walk + dir);
-    walking = true;
+    if (walking == WalkingMode.None) {
+      walking = WalkingMode.Position;
+      followed = null;
+    }
   }
-
-  float nextBehaviorCheck = .5f;
-
-  private void Update() {
-    if (isSpeaking) {
-      speakt += Time.deltaTime;
-      if (speakt > .15f) {
-        speakt = 0;
-        faceNum = Random.Range(2, 5);
-      }
-    }
-
-    switch (dir) {
-      case Dir.F: Face.sprite = facesF[faceNum]; break;
-      case Dir.B: Face.sprite = facesB[faceNum]; break;
-      case Dir.L: Face.sprite = facesL[faceNum]; break;
-      case Dir.R: Face.sprite = facesR[faceNum]; break;
-    }
-
-
-    nextBehaviorCheck -= Time.deltaTime;
-    if (IAmNPC && nextBehaviorCheck < 0) { // Behaviors checking
-      nextBehaviorCheck = .25f;
-
-      // Check if at least one of the behaviors is valid
-      foreach(GameScene b in behaviors) {
-        if (b.IsValid(this, null, null, null, When.Always)) {
-          if (b.Run(this, null))
-            nextBehaviorCheck = 0;
-        }
-      }
-    }
-
-
-    // Normal movement from here
-    if (!walking) {
-      if (dir == Dir.None) dir = Dir.F;
-      anim.Play(idle + dir);
-      if (audios.isPlaying) audios.Stop();
-      return;
-    }
-
-    if (!audios.isPlaying && gameObject.activeSelf) {
-      audios.Play();
-    }
-    anim.speed = Controller.walkSpeed * .8f;
-
-
-    if (followed != null) {
-      destination.pos = followed.position;
-      if (followSide == Dir.L) destination.pos.x -= 1.5f;
-      if (followSide == Dir.R) destination.pos.x += 1.5f;
-      if (followSide == Dir.F) destination.pos.y -= 1.5f;
-      if (followSide == Dir.B) destination.pos.y += 1.5f;
-      dir = CalculateDirection(destination.pos);
-    }
-
-    Vector2 walkDir = (destination.pos - transform.position);
-    Vector3 wdir = walkDir.normalized;
-    wdir.y *= .65f;
-    Vector3 np = transform.position + wdir * actorSpeed * Controller.walkSpeed * Time.deltaTime;
-    np.z = 0;
-
-    float ty = transform.position.y;
-    if (ty < currentRoom.minY) ty = currentRoom.minY;
-    if (ty > currentRoom.maxY) ty = currentRoom.maxY;
-    float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
-    if (destination.node != null && !destination.node.isStair) {
-      scaley *= currentRoom.scalePerc;
-      transform.localScale = new Vector3(scaley, scaley, 1);
-      int zpos = (int)(scaley * 10000);
-      Face.sortingOrder = zpos + 1;
-      Arms.sortingOrder = zpos + 2;
-      Legs.sortingOrder = zpos;
-    }
-
-    if (walkDir.sqrMagnitude < .05f) {
-      if (callBack == null && followed != null) { // Persistent following
-        audios.Stop();
-        prevFloor = FloorType.None;
-
-        if (followSide == Dir.L) anim.Play(idle + Dir.R);
-        if (followSide == Dir.R) anim.Play(idle + Dir.L);
-        if (followSide == Dir.F) anim.Play(idle + Dir.B);
-        if (followSide == Dir.B) anim.Play(idle + Dir.F);
-        PathNode p = currentRoom.GetPathNode(followed.position);
-        if (p != null) {
-          anim.Play(walk + dir);
-          WalkTo(followed.position, p, null);
-        }
-        return;
-      }
-      if (parcour == null || parcour.Count == 0) {
-        transform.position = destination.pos;
-        walking = false;
-        callBack?.Invoke(this, callBackItem);
-        callBack = null;
-        audios.Stop();
-        prevFloor = FloorType.None;
-        return;
-      }
-      destination.pos = parcour[0].pos;
-      destination.node = parcour[0].node;
-      floor = parcour[0].node.floorType;
-      if (floor != prevFloor && gameObject.activeSelf) {
-        if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
-        audios.Play();
-      }
-      parcour.RemoveAt(0);
-      dir = CalculateDirection(destination.pos);
-      anim.Play(walk + dir);
-    }
-    transform.position = np;
-  }
-
 
   public void SetScaleAndPosition(Vector3 pos, PathNode p = null) {
     float ty = pos.y;
@@ -446,4 +354,242 @@ public class Actor : MonoBehaviour {
     blockMinX = minx;
     blockMaxX = maxx;
   }
+
+  private void Update() {
+    if (isSpeaking) {
+      speakt += Time.deltaTime;
+      if (speakt > .15f) {
+        speakt = 0;
+        faceNum = Random.Range(2, 5);
+      }
+    }
+
+    switch (dir) {
+      case Dir.F: Face.sprite = facesF[faceNum]; break;
+      case Dir.B: Face.sprite = facesB[faceNum]; break;
+      case Dir.L: Face.sprite = facesL[faceNum]; break;
+      case Dir.R: Face.sprite = facesR[faceNum]; break;
+    }
+
+    nextBehaviorCheck -= Time.deltaTime;
+    if (IAmNPC && nextBehaviorCheck < 0) { // Behaviors checking
+      nextBehaviorCheck = .25f;
+
+      // Check if at least one of the behaviors is valid
+      foreach (GameScene b in behaviors) {
+        if (b.IsValid(this, null, null, null, When.Always)) {
+          if (b.Run(this, null))
+            nextBehaviorCheck = 0;
+        }
+      }
+    }
+
+    lastChangedDir += Time.deltaTime;
+    // Normal movement from here
+    switch (walking) {
+      case WalkingMode.None:
+        if (dir == Dir.None) dir = Dir.F;
+        anim.Play(idle + dir);
+        if (audios.isPlaying) audios.Stop();
+        return;
+      case WalkingMode.Position: WalkPosition(); break;
+      case WalkingMode.Follower: Follow(); break;
+    }
+  }
+
+  void WalkPosition() {
+    // Claculate the step
+    Vector2 walkDir = (destination.pos - transform.position);
+    Vector3 wdir = walkDir.normalized;
+    wdir.y *= .65f;
+    Vector3 np = transform.position + wdir * actorSpeed * Controller.walkSpeed * Time.deltaTime;
+    np.z = 0;
+    transform.position = np;
+
+    ScaleByPosition();
+
+    if (!audios.isPlaying && gameObject.activeSelf) {
+      audios.Play();
+    }
+    anim.speed = Controller.walkSpeed * .8f;
+
+    // Check if we reached the destination
+    CheckReachingDestination(walkDir);
+  }
+
+  void Follow() {
+    // Update position
+
+    PathNode p = currentRoom.GetPathNode(followed.position);
+    if (p == null || p.isStair) {
+      walking = WalkingMode.None;
+      return;
+    }
+    if (p != destination.node) { // Recalculate path
+      Vector2 pos = followed.position;
+      if (followSide == Dir.L) pos.x -= 1.5f;
+      if (followSide == Dir.R) pos.x += 1.5f;
+      if (followSide == Dir.F) pos.y -= 1.5f;
+      if (followSide == Dir.B) pos.y += 1.5f;
+      walking = WalkingMode.Follower;
+      WalkTo(pos, p, callBack);
+    }
+
+    destination.pos = followed.position;
+    if (followSide == Dir.L) destination.pos.x -= 1.5f;
+    if (followSide == Dir.R) destination.pos.x += 1.5f;
+    if (followSide == Dir.F) destination.pos.y -= 1.5f;
+    if (followSide == Dir.B) destination.pos.y += 1.5f;
+
+    // Claculate the step
+    Vector2 walkDir = (destination.pos - transform.position);
+    Vector3 wdir = walkDir.normalized;
+    wdir.y *= .65f;
+    Vector3 np = transform.position + wdir * actorSpeed * 1.5f * Controller.walkSpeed * Time.deltaTime;
+    np.z = 0;
+    transform.position = np;
+
+    ScaleByPosition();
+
+    if (!audios.isPlaying && gameObject.activeSelf) {
+      audios.Play();
+    }
+    anim.speed = Controller.walkSpeed * .8f;
+    dir = CalculateDirection(destination.pos);
+
+    // Check if we reached the destination
+    CheckReachingDestination(walkDir); 
+  }
+
+  void ScaleByPosition() {
+    float ty = transform.position.y;
+    if (ty < currentRoom.minY) ty = currentRoom.minY;
+    if (ty > currentRoom.maxY) ty = currentRoom.maxY;
+    float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
+    if (destination.node != null && !destination.node.isStair) {
+      scaley *= currentRoom.scalePerc;
+      transform.localScale = new Vector3(scaley, scaley, 1);
+      int zpos = (int)(scaley * 10000);
+      Face.sortingOrder = zpos + 1;
+      Arms.sortingOrder = zpos + 2;
+      Legs.sortingOrder = zpos;
+    }
+  }
+
+  void CheckReachingDestination(Vector2 walkDir) {
+    if (walkDir != Vector2.zero) {
+      // Play walk anim
+      anim.Play(walk + dir);
+    }
+
+    // Check if we reached the destination
+    if (walkDir.sqrMagnitude < .05f) {
+      // Do we still have a path to follow?
+      if (parcour == null || parcour.Count == 0) {
+        if (followed && callBack == null) { // This is continous following. Stop walk anim but do not stop the cycle
+          transform.position = destination.pos;
+          audios.Stop();
+          prevFloor = FloorType.None;
+
+          
+          if (walkDir == Vector2.zero && lastChangedDir >= .3f) {
+            if (followSide == Dir.L) dir = Dir.R;
+            if (followSide == Dir.R) dir = Dir.L;
+            if (followSide == Dir.F) dir = Dir.B;
+            if (followSide == Dir.B) dir = Dir.F;
+            anim.Play(idle + dir);
+            lastChangedDir = 0;
+          }
+          return;
+        }
+        transform.position = destination.pos;
+        walking = WalkingMode.None;
+        callBack?.Invoke(this, callBackItem);
+        callBack = null;
+        audios.Stop();
+        prevFloor = FloorType.None;
+        return;
+      }
+      // Get next node from the path
+      destination.pos = parcour[0].pos;
+      destination.node = parcour[0].node;
+      floor = parcour[0].node.floorType;
+      if (floor != prevFloor && gameObject.activeSelf) {
+        if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
+        audios.Play();
+      }
+      parcour.RemoveAt(0);
+      dir = CalculateDirection(destination.pos);
+    }
+  }
+
+  void Recycle() { 
+
+
+
+    if (followed != null) {
+      destination.pos = followed.position;
+      if (followSide == Dir.L) destination.pos.x -= 1.5f;
+      if (followSide == Dir.R) destination.pos.x += 1.5f;
+      if (followSide == Dir.F) destination.pos.y -= 1.5f;
+      if (followSide == Dir.B) destination.pos.y += 1.5f;
+      dir = CalculateDirection(destination.pos);
+    }
+
+    Vector2 walkDir = (destination.pos - transform.position);
+    Vector3 wdir = walkDir.normalized;
+    wdir.y *= .65f;
+    Vector3 np = transform.position + wdir * actorSpeed * Controller.walkSpeed * Time.deltaTime;
+    np.z = 0;
+
+
+    if (walkDir.sqrMagnitude < .05f) {
+      if (callBack == null && followed != null) { // Persistent following
+        audios.Stop();
+        prevFloor = FloorType.None;
+
+        if (followSide == Dir.L) dir = Dir.R;
+        if (followSide == Dir.R) dir = Dir.L;
+        if (followSide == Dir.F) dir = Dir.B;
+        if (followSide == Dir.B) dir = Dir.F;
+        anim.Play(idle + dir);
+        return;
+      }
+      if (parcour == null || parcour.Count == 0) {
+        transform.position = destination.pos;
+        walking = WalkingMode.None;
+        callBack?.Invoke(this, callBackItem);
+        callBack = null;
+        audios.Stop();
+        prevFloor = FloorType.None;
+        return;
+      }
+      destination.pos = parcour[0].pos;
+      destination.node = parcour[0].node;
+      floor = parcour[0].node.floorType;
+      if (floor != prevFloor && gameObject.activeSelf) {
+        if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
+        audios.Play();
+      }
+      parcour.RemoveAt(0);
+      dir = CalculateDirection(destination.pos);
+      anim.Play(walk + dir);
+    }
+    transform.position = np;
+
+    if (callBack == null && followed != null) {
+      PathNode p = currentRoom.GetPathNode(followed.position);
+      if (p != null && p != destination.node) {
+        Controller.Dbg("Re-walk");
+        anim.Play(walk + dir);
+        WalkTo(followed, followSide, null);
+      }
+    }
+  }
+
+  public void RestoreWalking() { }
+}
+
+public enum WalkingMode {
+  None, Position, Follower
 }

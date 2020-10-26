@@ -327,7 +327,7 @@ public class GameAction {
 
 
   public void RunAction(Actor performer, Actor secondary, Item item1, Item item2) {
-    Debug.Log("Playing: " + ToString());
+    // FIXME Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
         GD.c.currentRoom = AllObjects.GetRoom(str);

@@ -78,7 +78,8 @@ public class Balloon : MonoBehaviour {
     Bounds speakerBounds = srAnchor.bounds;
     Vector2 tlc = cam.WorldToScreenPoint(new Vector2(speakerBounds.min.x, speakerBounds.min.y));
     bool right = tlc.x > Screen.width * .5;
-    bool bottom = tlc.y < Screen.height * .25;
+    float y = GD.b.txtrt.sizeDelta.y;
+    bool bottom = tlc.y < Screen.height * (y < 3.2f ? .5f : .25f);
 
     if (right && bottom) {
       Vector3 location = new Vector3(speakerBounds.center.x, speakerBounds.max.y, 0) + Vector3.left * (size.x * .2f + .75f) + Vector3.up * size.y * .25f;

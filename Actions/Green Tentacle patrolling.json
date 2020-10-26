@@ -21,7 +21,7 @@
 			"condition":[ { "type":"ActorXLess", "id":"Player", "fv":29, "bv":false } ],
 			"action":[
 				{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[25.4,49.4], "dv":"B" },
-				{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[22.7,46.8], "dv":"F" },
+				{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[23.7,46.8], "dv":"F" },
 				{ "type":"CompleteStep", "id2":1 }
 			]
 		},
