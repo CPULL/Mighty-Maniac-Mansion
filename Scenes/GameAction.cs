@@ -29,6 +29,9 @@ public enum ActionType {
   SetFlag = 18, // Sets a flag
   CompleteStep = 19, // Sets the step of a gamescene as completed and moves to the next one
   Wait = 20, // Wait the specified time
+
+  PressAndFlag = 21, // Press an item and set a flag (until the actor moves away)
+  PressAndItem = 22, // Press an item and set a door (until the actor moves away)
 };
 
 
@@ -98,6 +101,15 @@ public class GameAction {
       case ActionType.SetFlag: return "Set " + (GameFlag)id1 + " = " + val;
       case ActionType.CompleteStep: return "Complete step";
       case ActionType.Wait: return "Wait";
+
+      case ActionType.PressAndFlag: return "Press and set " + (GameFlag)id1 + " = " + val;
+      case ActionType.PressAndItem: {
+        if (val == 0) return "Press and Open " + (ItemEnum)id1;
+        if (val == 1) return "Press and Close " + (ItemEnum)id1;
+        if (val == 2) return "Press and Lock " + (ItemEnum)id1;
+        if (val == 3) return "Press and Unlock " + (ItemEnum)id1;
+      }
+      break;
     }
     return res;
   }
@@ -141,6 +153,22 @@ public class GameAction {
         Sounds.Stop();
       }
       break;
+
+      case ActionType.PressAndFlag: {
+        GD.c.pressActions[0].Reset((GameFlag)id1);
+        GD.c.pressActions[1].Reset((GameFlag)id1);
+        GD.c.pressActions[2].Reset((GameFlag)id1);
+      }
+      break;
+
+      case ActionType.PressAndItem: {
+        Item item = AllObjects.FindItemByID((ItemEnum)id1);
+        GD.c.pressActions[0].Reset(item);
+        GD.c.pressActions[1].Reset(item);
+        GD.c.pressActions[2].Reset(item);
+      }
+      break;
+
     }
   }
 
@@ -281,6 +309,27 @@ public class GameAction {
         int.TryParse(vid2, out id2); // 0 for immediate, 1 for restart step
       }
       break;
+
+      case ActionType.PressAndFlag: {
+        GameFlag id = (GameFlag)System.Enum.Parse(typeof(GameFlag), vid1, true);
+        if (!System.Enum.IsDefined(typeof(GameFlag), id)) {
+          Debug.LogError("Unknown GameFlag: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+        val = iv;
+      }
+      break;
+
+      case ActionType.PressAndItem: {
+        ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
+        if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
+          Debug.LogError("Unknown ItemEnum: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+        val = iv;
+      }
+      break;
+
     }
   }
 
@@ -640,6 +689,25 @@ public class GameAction {
           Play();
         else
           Complete();
+      }
+      break;
+
+      case ActionType.PressAndFlag: {
+        int pos = 0;
+        if (performer == GD.c.actor2) pos = 1;
+        if (performer == GD.c.actor3) pos = 2;
+        GD.c.pressActions[pos].Set(performer, (GameFlag)id1);
+        AllObjects.SetFlag((GameFlag)id1, val);
+      }
+      break;
+
+      case ActionType.PressAndItem: {
+        Item item = AllObjects.FindItemByID((ItemEnum)id1);
+        int pos = 0;
+        if (performer == GD.c.actor2) pos = 1;
+        if (performer == GD.c.actor3) pos = 2;
+        GD.c.pressActions[pos].Set(performer, item);
+        item.ForceStatus(val);
       }
       break;
 

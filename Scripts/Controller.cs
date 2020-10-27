@@ -275,14 +275,11 @@ public class Controller : MonoBehaviour {
               new System.Action<Actor, Item>((actor, item) => {
                 if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
                   actor.Say("Is locked");
-                  Debug.Log("Door walking " + item.name + " << but locked");
                   return;
                 }
                 else if (item.Usable == Tstatus.OpenableClosed || item.Usable == Tstatus.OpenableClosedAutolock) {
-                  Debug.Log("Door walking " + item.name + " << but go fuck yourself");
                   return;
                 }
-                Debug.Log("Door walking " + item.name + " << change?");
                 StartCoroutine(ChangeRoom(actor, (item as Door)));
               }));
           }
@@ -364,9 +361,6 @@ public class Controller : MonoBehaviour {
         }
       }
     }
-
-
-
 
     #endregion
   }
@@ -697,6 +691,9 @@ public class Controller : MonoBehaviour {
   public Actor[] allActors;
   public Sprite[] Portraits;
 
+  public PressAction[] pressActions;
+
+
   /// <summary>
   /// Gets the actual Actor from the Chars enum
   /// </summary>
@@ -854,12 +851,10 @@ public class Controller : MonoBehaviour {
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
         currentActor.WalkTo(overItem.HotSpot, p, action, item);
-        Debug.Log("WalkAndAction on " + item.name);
       }
       return;
     }
     else {
-      Debug.Log("Immediate WalkAndAction on " + item.name);
       action?.Invoke(currentActor, item);
     }
   }

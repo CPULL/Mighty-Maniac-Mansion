@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Item : GameItem {
   [HideInInspector] public SpriteRenderer sr;
@@ -233,6 +234,31 @@ public class Item : GameItem {
     }
     return "";
   }
+
+  internal int GetOpeningStatus() {
+    switch (Usable) {
+      case Tstatus.OpenableOpen: return 0;
+      case Tstatus.OpenableClosed: return 1;
+      case Tstatus.OpenableLocked: return 2;
+      case Tstatus.OpenableLockedAutolock: return 3;
+      case Tstatus.OpenableOpenAutolock: return 4;
+      case Tstatus.OpenableClosedAutolock: return 5;
+    }
+    return -1;
+  }
+
+  internal void SetOpeningStatus(int val) {
+    switch (val) {
+      case 0: Usable = Tstatus.OpenableOpen; break;
+      case 1: Usable = Tstatus.OpenableClosed; break;
+      case 2: Usable = Tstatus.OpenableLocked; break;
+      case 3: Usable = Tstatus.OpenableLockedAutolock; break;
+      case 4: Usable = Tstatus.OpenableOpenAutolock; break;
+      case 5: Usable = Tstatus.OpenableClosedAutolock; break;
+    }
+  }
+
+
 
   internal bool IsOpen() {
     switch (Usable) {

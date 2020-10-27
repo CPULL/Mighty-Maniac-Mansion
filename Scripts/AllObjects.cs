@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AllObjects : MonoBehaviour {
@@ -63,11 +64,19 @@ public class AllObjects : MonoBehaviour {
   }
 
   internal static void SetFlag(GameFlag flag, int val) {
-    foreach(FlagStatus fs in GD.a.flagsList)
-      if (fs.flag==flag) {
+    foreach (FlagStatus fs in GD.a.flagsList)
+      if (fs.flag == flag) {
         fs.value = val;
         return;
       }
+  }
+
+  internal static int GetFlag(GameFlag flag) {
+    foreach (FlagStatus fs in GD.a.flagsList)
+      if (fs.flag == flag) {
+        return fs.value;
+      }
+    return 0;
   }
 
   public static GameScene GetCutscene(CutsceneID id) {
@@ -131,7 +140,7 @@ public enum ItemEnum {
   Coin,
   DeveloperBottle,
   Fridge,
-
+  BasementDoor,
 }
 
 
@@ -175,6 +184,58 @@ public enum CutsceneID {
 
 }
 
+public class PressAction {
+  public Actor actor;
+  public GameFlag flag;
+  public Item item;
+  public int previous;
 
+  internal void Set(Actor a, GameFlag f) {
+    actor = a;
+    flag = f;
+    item = null;
+    previous = AllObjects.GetFlag(f);
+  }
+
+  internal void Set(Actor a, Item i) {
+    actor = a;
+    flag = default;
+    item = i;
+    previous = item.GetOpeningStatus();
+  }
+
+  internal void Reset(Actor a) {
+    if (actor != a) return;
+    if (item == null)
+      AllObjects.SetFlag(flag, previous);
+    else
+      item.SetOpeningStatus(previous);
+
+    item = null;
+    flag = default;
+    previous = 0;
+    actor = null;
+  }
+
+  internal void Reset(GameFlag f) {
+    if (flag != f) return;
+
+    AllObjects.SetFlag(flag, previous);
+    item = null;
+    flag = default;
+    previous = 0;
+    actor = null;
+  }
+
+  internal void Reset(Item i) {
+    if (item != i) return;
+
+    item.SetOpeningStatus(previous);
+    item = null;
+    flag = default;
+    previous = 0;
+    actor = null;
+  }
+}
 
 

@@ -235,6 +235,22 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         }
         break;
 
+        case ActionType.PressAndFlag: {
+          Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(GameFlag)));
+          val.intValue = EditorGUI.IntField(bRect, val.intValue);
+        }
+        break;
+
+        case ActionType.PressAndItem: {
+          Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
+          val.intValue = EditorGUI.Popup(bRect, val.intValue, openCloseLock);
+        }
+        break;
+
       }
     }
 
