@@ -1,6 +1,6 @@
 {
 
-	"id":"doorbell", "name":"Ring doorbell","type":"Cutscene",
+	"id":"doorbell", "name":"Ring doorbell","type":"Cutscene","AppliesTo":"Ed",
 
 	"conditions":[],
 	"sequence":[
@@ -9,12 +9,12 @@
 		"action":[
 			{ "type":"Sound", "id1":"Ed", "dv":"R", "id2":"doorbell", "del":0.25 },
 			{ "type":"Fade", "iv":0, "del":0.5 },
-			{ "type":"ShowRoom", "sv":"EdRoom", "vv":[-50,80] },
-			{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-52.5,78.2], "dv":"F" },
+			{ "type":"ShowRoom", "sv":"EdRoom", "vv":[-10,90] },
+			{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" },
 			{ "type":"Fade", "iv":1, "del":0.5 },
 			{ "type":"Speak", "id1":"Ed", "sv":"The doorbell.\nMaybe it is the package\nI was waiting for.", "dv":"F" },
 			{ "type":"Expression", "id1":"Ed", "id2":"Happy", "dv":"F", "del":0.5 },
-			{ "type":"WalkToPos", "id1":"Ed", "vv":[-47.25,79.3], "dv":"B" },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[-7.31,89.3], "dv":"B" },
 			{ "type":"ShowRoom", "sv":"MainHall", "vv":[-52,20] },
 			{ "type":"Teleport", "sv":"MainHall", "id1":"Ed", "vv":[-49.68,23.26], "dv":"F" },
 			{ "type":"WalkToPos", "id1":"Ed", "vv":[-59.28,17.32], "dv":"L" },
@@ -27,7 +27,7 @@
 			{ "type":"Speak", "id1":"Ed", "sv":"You are not the delivery guy!\n\nCannot you read the sign?", "dv":"F" },
 			{ "type":"Speak", "id1":"Ed", "sv":"Go away!", "dv":"F" },
 			{ "type":"Expression", "id1":"Ed", "id2":"Sad", "dv":"F", "del":0.5 },
-			{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-52.5,78.2], "dv":"F" },
+			{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" },
 			{ "type":"Expression", "id1":"Ed", "id2":"Sad", "dv":"F", "del":0.5 },
 			{ "type":"Open", "id1":"FrontDoor", "sv":"c" },
 			{ "type":"Open", "id1":"FrontDoor", "sv":"l" }

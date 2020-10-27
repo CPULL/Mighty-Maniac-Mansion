@@ -1,5 +1,5 @@
 {
-	"id":"EdnaCatch", "name":"Edna Catch player","type":"cutscene"
+	"id":"EdnaCatch", "name":"Edna Catch player","type":"cutscene","AppliesTo":"Edna",
 
 	"condition":[
 	],

@@ -38,7 +38,11 @@ public enum Chars {
   Fred = 10, Edna = 11, Ted = 12, Ed = 13, Edwige = 14, GreenTentacle = 15, PurpleTentacle = 16, BlueTentacle = 17, PurpleMeteor = 18, Unused19 = 19,
   Dave = 20, Bernard = 21, Wendy = 22, Syd = 23, Hoagie = 24, Razor = 25, Michael = 26, Jeff = 27, Javid = 28, Laverne = 29, Ollie = 30, Sandy = 31,
   Unused32 = 32, Unused33 = 33, Unused34 = 34, Unused35 = 35, Unused36 = 36, Unused37 = 37, Unused38 = 38, Unused39 = 39, 
-  otheractorslikepolice = 40 // FIXME this name will change
+  otheractorslikepolice = 40, // FIXME this name will change
+
+
+
+  Male = 100, Female = 101
 };
 
 /// <summary>

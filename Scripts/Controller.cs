@@ -531,6 +531,8 @@ public class Controller : MonoBehaviour {
 
 
   public static void StartCutScene(GameScene scene) {
+    Chars main = scene.mainChar;
+    AllObjects.StopScenes(main);
     GD.c.currentCutscene = scene;
     if (GD.c.currentCutscene != null) {
       GD.c.currentCutscene.Reset();
@@ -769,6 +771,9 @@ public class Controller : MonoBehaviour {
       case Chars.Laverne: return actor == GD.c.allActors[9];
       case Chars.Ollie: return actor == GD.c.allActors[10];
       case Chars.Sandy: return actor == GD.c.allActors[11];
+
+      case Chars.Male: return actor.male;
+      case Chars.Female: return !actor.male;
     }
     return false;
   }

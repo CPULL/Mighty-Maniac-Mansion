@@ -17,36 +17,54 @@ public class Condition {
       Debug.LogError("Unknown ConditionType: \"" + stype + "\"");
     }
 
+    iv = siv;
+    sv = svs;
+    bv = sbv;
+    fv = svf;
+
     if (!string.IsNullOrEmpty(ids)) {
-      switch(type) {
+      Chars ch;
+      GameFlag gf;
+      ItemEnum ie;
+
+      switch (type) {
         case ConditionType.ActorIs:
-        case ConditionType.ActorHasSkill:      // ID of actor and ID of skill                                                       (ID1, IV1, BV)
-        case ConditionType.ActorInSameRoom:    // ID of item                                                                        (ID1, SV, BV)
-        case ConditionType.ActorDistanceLess:  // ID and dist value                                                                 (ID1, FV, BV)
-        case ConditionType.ActorXLess:         // ID and dist value                                                                 (ID1, FV, BV)
-        case ConditionType.RecipientIs:        // ID of actor                                                                       (ID1, BV)
-          if (System.Enum.TryParse<Chars>(ids, out Chars resa)) {
-            id = (int)resa;
+        case ConditionType.ActorHasSkill:      // ID of actor and ID of skill                            (ID1, IV1, BV)
+        case ConditionType.ActorInRoom:    // ID of item                                             (ID1, SV, BV)
+        case ConditionType.ActorDistanceLess:  // ID and dist value                                      (ID1, FV, BV)
+        case ConditionType.ActorXLess:         // ID and dist value                                      (ID1, FV, BV)
+        case ConditionType.RecipientIs:        // ID of actor                                            (ID1, BV)
+          if (System.Enum.TryParse<Chars>(ids, out ch)) {
+            id = (int)ch;
           }
           break;
 
         case ConditionType.CurrentActorIs:
-          if (System.Enum.TryParse<Chars>(ids, out Chars reszz)) {
-            id = (int)reszz;
+          if (System.Enum.TryParse<Chars>(ids, out ch)) {
+            id = (int)ch;
           }
           break;
 
         case ConditionType.FlagValueIs:
-          if (System.Enum.TryParse<GameFlag>(ids, out GameFlag resf)) {
-            id = (int)resf;
+          if (System.Enum.TryParse<GameFlag>(ids, out gf)) {
+            id = (int)gf;
           }
           break;
 
         case ConditionType.ItemCollected:
         case ConditionType.ItemOpen:
         case ConditionType.UsedWith:
-          if (System.Enum.TryParse<ItemEnum>(ids, out ItemEnum resi)) {
-            id = (int)resi;
+          if (System.Enum.TryParse<ItemEnum>(ids, out ie)) {
+            id = (int)ie;
+          }
+          break;
+
+        case ConditionType.SameRoom:
+          if (System.Enum.TryParse<Chars>(ids, out ch)) {
+            id = (int)ch;
+          }
+          if (System.Enum.TryParse<Chars>(sv, out ch)) {
+            iv = (int)ch;
           }
           break;
       }
@@ -54,11 +72,6 @@ public class Condition {
     else
       id = idi;
 
-
-    iv = siv;
-    sv = svs;
-    bv = sbv;
-    fv = svf;
   }
 
   public override string ToString() {
@@ -74,9 +87,10 @@ public class Condition {
       case ConditionType.CurrentActorIs: return "Current Actor is " + (!bv ? "not " : "") + (Chars)id1;
       case ConditionType.ActorHasSkill: return "Actor " + (Chars)id1 + " has " + (!bv ? "not skill " : "skill ") + (Skill)iv1;
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
+      case ConditionType.SameRoom: return (!bv ? "Not same" : "Same") + " Room " + (Chars)id1 + " & " + (Chars)iv1;
       case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " == " : " != ") + iv1;
       case ConditionType.ItemCollected: return "Item " + (ItemEnum)id1 + (bv ? " is collected by " : " is not collected by ") + (Chars)iv1;
-      case ConditionType.ActorInSameRoom: return "Actor " + (Chars)id1 + " is " + (!bv ? "not in " : "in ") + sv;
+      case ConditionType.ActorInRoom: return "Actor " + (Chars)id1 + " is " + (!bv ? "not in " : "in ") + sv;
       case ConditionType.ActorDistanceLess: return "Actor " + (Chars)id1 + " dist " + (bv ? "< " : "> ") + fv1;
       case ConditionType.ActorXLess: return "Actor " + (Chars)id1 + " X " + (bv ? "< " : "> ") + fv1;
       case ConditionType.ItemOpen: return "Item " + (ItemEnum)id1 + (bv ? " is " : " is not ") + (iv1 == 0 ? "Open" : "Locked");
@@ -155,6 +169,36 @@ public class Condition {
           return !res;
       }
 
+      case ConditionType.SameRoom: {
+        Actor a1, a2;
+        if ((Chars)id == Chars.Current) a1 = GD.c.currentActor;
+        else if ((Chars)id == Chars.Actor1) a1 = GD.c.actor1;
+        else if ((Chars)id == Chars.Actor2) a1 = GD.c.actor2;
+        else if ((Chars)id == Chars.Actor3) a1 = GD.c.actor3;
+        else if ((Chars)id == Chars.KidnappedActor) a1 = GD.c.kidnappedActor;
+        else if ((Chars)id == Chars.Player) a1 = GD.c.currentActor;
+        else if ((Chars)id == Chars.Self) a1 = performer;
+        else if ((Chars)id == Chars.Receiver) a1 = receiver;
+        else a1 = Controller.GetActor((Chars)id);
+
+        if ((Chars)iv == Chars.Current) a2 = GD.c.currentActor;
+        else if ((Chars)iv == Chars.Actor1) a2 = GD.c.actor1;
+        else if ((Chars)iv == Chars.Actor2) a2 = GD.c.actor2;
+        else if ((Chars)iv == Chars.Actor3) a2 = GD.c.actor3;
+        else if ((Chars)iv == Chars.KidnappedActor) a2 = GD.c.kidnappedActor;
+        else if ((Chars)iv == Chars.Player) a2 = GD.c.currentActor;
+        else if ((Chars)iv == Chars.Self) a2 = performer;
+        else if ((Chars)iv == Chars.Receiver) a2 = receiver;
+        else a2 = Controller.GetActor((Chars)iv);
+
+        if (a1 == null || a2 == null) return false;
+        bool res = a1.currentRoom.Equals(a2.currentRoom);
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
       case ConditionType.FlagValueIs: {
         if (bv)
           return AllObjects.CheckFlag((GameFlag)id, iv);
@@ -163,16 +207,15 @@ public class Condition {
       }
 
       case ConditionType.ItemCollected: {
-        bool res = true;
-        // FIXME
-
+        Item item = AllObjects.FindItemByID((ItemEnum)id);
+        bool res = item != null && item.owner != Chars.None;
         if (bv)
           return res;
         else
           return !res;
       }
 
-      case ConditionType.ActorInSameRoom: {
+      case ConditionType.ActorInRoom: {
         Actor a = Controller.GetActor((Chars)id);
         if (a == null) return false;
         bool res = a.currentRoom.ID.ToLowerInvariant().Equals(sv.ToLowerInvariant());
@@ -274,7 +317,7 @@ public enum ConditionType {
   CurrentRoomIs,      // String name of the room                                                           (SV, BV)
   FlagValueIs,        // ID of flag, and value                                                             (ID1, IV1, BV)
   ItemCollected,      // ID of item                                                                        (ID1, BV)
-  ActorInSameRoom,    // ID of item                                                                        (ID1, SV, BV)
+  ActorInRoom,    // ID of item                                                                        (ID1, SV, BV)
   ActorDistanceLess,  // ID and dist value                                                                 (ID1, FV, BV)
   ActorXLess,         // ID and dist value                                                                 (ID1, FV, BV)
   ItemOpen,           // ID of item, value for open, closed, locked                                        (ID1, IV1)
@@ -282,6 +325,7 @@ public enum ConditionType {
   WhenIs,             // ID of action (give, pick, use, etc.)                                              (ID1, BV)
   UsedWith,           // ID of items                                                                       (ID1, BV)
   CurrentActorIs,     // ID of actor                                                                       (ID1, BV)
+  SameRoom,           // ID f actor, ID of other actor                                                     (ID1, IV1, BV)
 }
 
 

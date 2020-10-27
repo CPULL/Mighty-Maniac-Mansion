@@ -74,6 +74,16 @@ public class ConditionPropertyDrawer : PropertyDrawer {
         }
         break;
 
+        case ConditionType.SameRoom: {
+          Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
+          Rect cRect = new Rect(position.x + w4 * 3, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(Chars)));
+          bv.intValue = EditorGUI.Popup(bRect, bv.intValue, isIsNot);
+          iv1.intValue = EditorGUI.Popup(cRect, id1.intValue, System.Enum.GetNames(typeof(Chars)));
+        }
+        break;
+
         case ConditionType.FlagValueIs: {
           Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
           Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
@@ -94,7 +104,7 @@ public class ConditionPropertyDrawer : PropertyDrawer {
         }
         break;
 
-        case ConditionType.ActorInSameRoom: {
+        case ConditionType.ActorInRoom: {
           Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
           Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
           Rect cRect = new Rect(position.x + w4 * 3, position.y + lh, w4, lh);

@@ -6,6 +6,7 @@ public class AllObjects : MonoBehaviour {
   public List<Room> roomsList;
   public List<FlagStatus> flagsList;
   public List<GameScene> cutscenes;
+  public List<GameScene> runningCutscenes;
 
   private void Awake() {
     GD.a = this;
@@ -13,6 +14,7 @@ public class AllObjects : MonoBehaviour {
     flagsList = new List<FlagStatus>();
     foreach (GameFlag gf in System.Enum.GetValues(typeof(GameFlag)))
       flagsList.Add(new FlagStatus(gf, 0));
+    runningCutscenes = new List<GameScene>();
   }
 
   internal static Room GetRoom(string id) {
@@ -78,7 +80,29 @@ public class AllObjects : MonoBehaviour {
     return null;
   }
 
+  internal static void StopScenes(Chars main) {
+    if (main == Chars.None) return;
+    foreach(GameScene gs in GD.a.runningCutscenes) {
+      if (gs.mainChar == main)
+        gs.ForceStop();
+    }
+  }
 
+  internal static void SetSceneAsPlaying(GameScene scene) {
+    if (!GD.a.runningCutscenes.Contains(scene))
+      GD.a.runningCutscenes.Add(scene);
+  }
+  internal static void SetSceneAsStopped(GameScene scene) {
+    if (GD.a.runningCutscenes.Contains(scene))
+      GD.a.runningCutscenes.Remove(scene);
+  }
+
+  internal static bool SceneRunningWithMe(GameScene gameScene, Chars mainChar) {
+    foreach(GameScene s in GD.a.runningCutscenes) {
+      if (s != gameScene && s.mainChar == mainChar) return true;
+    }
+    return false;
+  }
 }
 
 
@@ -141,9 +165,10 @@ public enum CutsceneID {
   EdnaBrowsingFridge,
   EdnaCatch,
   GreenTentaclePatrolling,
-  GreenTentaclePatrolling2,
-  GreenTentaclePatrolling3,
-  GreenTentaclePatrolling4,
+  EdWatch,
+  EdCatch,
+  unused1,
+  unused2,
   FredTalkingToKidnapped,
   Javidx9 // FIXME
 

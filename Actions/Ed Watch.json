@@ -1,0 +1,29 @@
+{
+	"id":"EdWatch", "name":"Ed Watch intruders","type":"actor","AppliesTo":"Ed",
+
+	"condition":[
+		{ "type":"SameRoom", "id":"Ed", "sv":"Player", "bv":true },
+	],	
+	
+	"shutdown" : [
+		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" }
+	],
+
+	
+	"sequence":[
+		{ "name":"Catching",
+			"condition":[],
+			"action":[
+				{ "type":"Speak", "rep":true, "del":0, "id1":"Ed", "id2":"", "sv":"Who are you?\nYou are not welcome here!", "iv":"", "dv":"None", "vv":[] },
+				{ "type":"Wait", "del":1 },
+				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Ed", "id2":"Current", "sv":"", "iv":"", "dv":"L", "vv":[] },
+				{ "type":"Cutscene", "id1":"EdCatch" }
+			]
+		}
+	]
+
+}
+
+
+
+

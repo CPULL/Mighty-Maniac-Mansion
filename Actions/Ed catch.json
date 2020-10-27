@@ -1,0 +1,38 @@
+{
+	"id":"EdCatch", "name":"Ed Catch player","type":"cutscene","AppliesTo":"Ed",
+
+	"condition":[
+	],
+	
+	"startup" : [
+		{ "type":"Speak", "id1":"Ed", "sv":"Gotcha!\nI am bringing you to\nthe dungeon!", "dv":"F" },
+		{ "type":"Fade", "rep":true, "del":0.5, "iv":"0" },
+		{ "type":"ShowRoom", "rep":true, "del":0, "sv":"Dungeon", "vv":[-93, 10] },
+		{ "type":"Teleport", "rep":true, "del":0, "id1":"Ed", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-91,6.9] },
+		{ "type":"Teleport", "rep":true, "del":0, "id1":"current", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-93,6.9] },
+		{ "type":"Fade", "rep":true, "del":0.5, "iv":"1" },
+		{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"R", "del":.01 },
+		{ "type":"Expression", "id1":"Ed", "sv":"Happy", "dv":"L", "del":.01 }
+	],
+	
+	"shutdown" : [
+		{ "type":"WalkToPos", "id1":"Ed", "vv":[-87.55,7.58], "dv":"B" },
+		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" }
+	],
+	
+	"sequence":[
+		{ "name":"Message M",
+			"condition":[{ "type":"CurrentActorIs", "id":"Male", "bv":true }],
+			"action":[{ "type":"Speak", "id1":"Ed", "sv":"Now you will stay here.\nUntil my dad will decide\nwhat to do with you.\n\nIf he will exit from the Lab", "dv":"L" },{ "type":"CompleteStep", "del":.2 }]
+		},
+		{ "name":"Message F",
+			"condition":[{ "type":"CurrentActorIs", "id":"Female", "bv":true }],
+			"action":[{ "type":"Speak", "id1":"Ed", "sv":"Now you will stay here.\nMaybe my dad exit the Lab,\nand he will decide what\nto do with you.", "dv":"L" },{ "type":"CompleteStep", "del":.2 }]
+		}
+	]
+
+}
+
+
+
+

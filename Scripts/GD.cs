@@ -79,7 +79,7 @@ public class GD : MonoBehaviour {
         string json = File.ReadAllText(file);
         JSONNode js = JSON.Parse(json);
 
-        GameScene seq = new GameScene(js["id"].Value, js["name"].Value, js["type"].Value);
+        GameScene seq = new GameScene(js["id"].Value, js["name"].Value, js["type"].Value, js["AppliesTo"].Value);
         if (js["condition"].IsArray) {
           JSONNode conditions = js["condition"];
           for (int i = 0; i < conditions.AsArray.Count; i++) {

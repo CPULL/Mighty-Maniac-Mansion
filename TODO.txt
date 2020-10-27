@@ -1,10 +1,6 @@
 === Mighty Maniac Mansion ===
 
-Set all non-working doors as "Not in the demo"
 
-!Tests: Use an object that is not supposed to do anything
-!Tests: Use a key in the wrong object
-Tests: Give an object to somebody else
 
 
 Draw Edna and do the "Check fridge" at start
@@ -30,8 +26,6 @@ FrontDoor -> Backyard entrance on the left
 Complete Sandy and Ollie descriptions
 
 * BUGS ************************************************************************************************************
-
-Serious problem when going down from suitescorridor, the destination clicks look completely off
 
 * CHARS ************************************************************************************************************
 
@@ -181,6 +175,8 @@ Jeff
 ! Add an action (a set of) to be done when the scene is no more valid
 ! Improve the continue follow actor for the tentacle. Make it actually play walk anim, and be faced to the side of the destination
 ! Fixed action of type ReceiveCut/Flag
+! Set all non-working doors as "Not in the demo"
+! handled parallel cutscenes, now Ed can catch intruders
 
 
 

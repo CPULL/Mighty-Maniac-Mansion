@@ -17,7 +17,8 @@ public class GameScene {
   public int startupactionnum = -1;
   public GameAction shutdownaction = null;
   public int shutdownactionnum = -1;
-
+  public Chars mainChar;
+  public List<Chars> participants;
 
   /*
    * Global condition:
@@ -29,7 +30,7 @@ public class GameScene {
    */
 
 
-  public GameScene(string id, string name, string type) {
+  public GameScene(string id, string name, string type, string main) {
     Name = name;
     type = type.ToLowerInvariant()+"c";
     if (type[0] == 'c') Type = GameSceneType.Cutscene;
@@ -40,6 +41,19 @@ public class GameScene {
       Id = (CutsceneID)System.Enum.Parse(typeof(CutsceneID), id, true);
     } catch (System.Exception) { 
       Debug.LogError("Unknown GameScene ID: \"" + id + "\"");
+    }
+
+    if (!string.IsNullOrEmpty(main)) {
+      try {
+        mainChar = (Chars)System.Enum.Parse(typeof(Chars), main, true);
+        participants = new List<Chars>() { mainChar };
+      } catch (System.Exception) {
+        Debug.LogError("Unknown Char: \"" + main + "\"");
+      }
+    }
+    else {
+      mainChar = Chars.None;
+      participants = new List<Chars>();
     }
 
     globalCondition = new List<Condition>();
@@ -53,6 +67,7 @@ public class GameScene {
   }
 
   internal void Reset() {
+    AllObjects.SetSceneAsStopped(this);
     if (AmIActive) { // Play quickly all actions
       foreach (GameAction a in shutdown) {
         a.RunAction(null, null, null, null);
@@ -116,10 +131,29 @@ public class GameScene {
     return valid;
   }
 
+  internal void ForceStop() {
+    foreach (GameAction a in startup) {
+      a.Complete();
+    }
+    foreach (GameAction a in shutdown) {
+      a.Complete();
+    }
+    foreach(GameStep s in steps) {
+      foreach (GameAction a in s.actions) {
+        a.Complete();
+      }
+    }
+    AmIActive = false;
+    AmIShuttingDown = false;
+    startupaction = null;
+    startupactionnum = -1;
+  }
+
   public bool Run(Actor performer, Actor receiver) {
     // Are we valid?
     if (!IsValid(performer, receiver, null, null, When.Always)) return false;
 
+    AllObjects.SetSceneAsPlaying(this);
 
     if (!AmIActive) {
       shutdownaction = null;
@@ -163,8 +197,16 @@ public class GameScene {
       atLeastOne |= gs.Run(this, performer, receiver, null, null);
 
     if (!atLeastOne && AmIActive) {
+      if (AllObjects.SceneRunningWithMe(this, mainChar)) {
+        AmIActive = false;
+        AllObjects.SetSceneAsStopped(this);
+        return false;
+      }
+
+
       if (shutdown.Count == 0) {
         AmIActive = false;
+        AllObjects.SetSceneAsStopped(this);
         return false;
       }
       if (shutdown.Count > 0) {
@@ -191,6 +233,7 @@ public class GameScene {
           }
           else {
             AmIActive = false;
+            AllObjects.SetSceneAsStopped(this);
             return false;
           }
         }
@@ -243,6 +286,7 @@ public class GameStep {
 
     if (currentAction == null) {
       currentAction = actions[0];
+      currentAction.running = Running.NotStarted;
       actionnum = 0;
     }
 

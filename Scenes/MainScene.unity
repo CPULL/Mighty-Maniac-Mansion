@@ -7500,6 +7500,7 @@ MonoBehaviour:
   id: 30
   mainScale: 1.05
   skills: 0100000006000000
+  male: 1
   Description: <b>Ollie</b> todo...
   TentacleSteps: {fileID: 0}
   behaviors: []
@@ -9916,6 +9917,7 @@ MonoBehaviour:
   id: 13
   mainScale: 1.05
   skills: 01000000
+  male: 1
   Description: 
   TentacleSteps: {fileID: 0}
   behaviors: []
@@ -28842,7 +28844,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820921419}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
@@ -28855,7 +28857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -22.7625, y: -48.525}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &820921424
@@ -41422,7 +41424,7 @@ MonoBehaviour:
   Item: 16
   Name: Hamster
   owner: 0
-  Usable: 0
+  Usable: 1
   UsableWith: 0
   whatItDoesL: 1
   whatItDoesR: 2
@@ -41434,7 +41436,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 21300000, guid: 8defc960b9f7c4d45a9cb5881de9bdbb, type: 3}
   cursorImage: {fileID: 2800000, guid: 54d93b0144fdfa843a193a86e67ee459, type: 3}
-  HotSpot: {x: -49.4532, y: 79.1018}
+  HotSpot: {x: -9.4532, y: 89.1018}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -47487,6 +47489,7 @@ MonoBehaviour:
   id: 22
   mainScale: 0.985
   skills: 0300000008000000
+  male: 0
   Description: '<b>Wendy</b> wants to be a novelist and writes a lot of fictional
     stories.
 
@@ -48545,6 +48548,7 @@ MonoBehaviour:
   id: 21
   mainScale: 0.995
   skills: 050000000600000004000000
+  male: 1
   Description: '<b>Bernard Bernoulli</b> is President of the physics club and winner
     of the college''s Geek Award.
 
@@ -53209,6 +53213,7 @@ MonoBehaviour:
   id: 20
   mainScale: 1
   skills: 0200000003000000
+  male: 1
   Description: "<b>Dave Miller</b> is a college student who is dating Sandy. \nHe
     has no specific skills, but has good charisma and can prepare some delicious
     food."
@@ -53561,6 +53566,7 @@ MonoBehaviour:
   id: 11
   mainScale: 0.925
   skills: 01000000
+  male: 0
   Description: '<b>Nurse Edna</b> is Dr.Fred''s wife and a retired nurse.
 
     She
@@ -61656,6 +61662,7 @@ MonoBehaviour:
   id: 15
   mainScale: 1.2
   skills: 0100000006000000
+  male: 1
   Description: '<b>Green Tentacle</b> is a sentient disembodied tentacle who lives
     in Dr. Fred''s house.
 
@@ -62126,6 +62133,7 @@ MonoBehaviour:
   id: 31
   mainScale: 0.99
   skills: 0100000006000000
+  male: 0
   Description: <b>Sandy</b> todo...
   TentacleSteps: {fileID: 0}
   behaviors: []
@@ -63365,6 +63373,7 @@ MonoBehaviour:
   id: 23
   mainScale: 1.05
   skills: 0100000007000000
+  male: 1
   Description: '<b>Syd</b> loves making music.
 
     He has a daily podcast and he
@@ -63851,6 +63860,7 @@ MonoBehaviour:
   id: 28
   mainScale: 1.04
   skills: 0500000004000000
+  male: 1
   Description: '<b>Javid</b> is a computer programmer.
 
     He loves creating videos
@@ -68189,6 +68199,7 @@ MonoBehaviour:
   id: 16
   mainScale: 1.25
   skills: 0100000006000000
+  male: 1
   Description: '<b>Purple Tentacle</b> is a sentient disembodied tentacle who lives
     in Dr. Fred''s house.
 
@@ -71062,6 +71073,7 @@ MonoBehaviour:
   - {fileID: 2124229613}
   - {fileID: 718837450}
   cutscenes: []
+  runningCutscenes: []
 --- !u!4 &1966254327
 Transform:
   m_ObjectHideFlags: 0
@@ -75648,7 +75660,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -46.75, y: 76.27}
+  HotSpot: {x: -6.75, y: 86.27}
   dir: 0
   overColor:
     serializedVersion: 2

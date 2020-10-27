@@ -25,6 +25,7 @@ public class Actor : MonoBehaviour {
   public Chars id;
   public float mainScale = 1f;
   public List<Skill> skills;
+  public bool male;
   List<Parcour> parcour;
   [TextArea(3, 12)] public string Description;
   FloorType floor = FloorType.None;

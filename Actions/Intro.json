@@ -1,5 +1,5 @@
 {
-	"id":"intro", "name":"Intro Sequence","type":"cutscene","AppliesTo":null,
+	"id":"intro", "name":"Intro Sequence","type":"cutscene","AppliesTo":"None",
 
 	"condition":[],
 	
