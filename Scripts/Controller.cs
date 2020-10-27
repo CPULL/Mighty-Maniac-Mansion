@@ -20,7 +20,6 @@ public class Controller : MonoBehaviour {
     GD.c.DbgMsg.text = txt;
   }
 
-
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
   void Update() {
     if (Options.IsActive()) return;
@@ -115,12 +114,13 @@ public class Controller : MonoBehaviour {
 
 
     Door aDoor = null;
-    if (lmb || rmb) { // Check if we have a door
+    if ((lmb || rmb) && walkDelay < 0) { // Check if we have a door
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 10000, doorLayer);
       if (hit.collider != null && hit.collider.gameObject != null) {
         Door d = hit.collider.gameObject.GetComponent<Door>();
         if (d != null) {
           aDoor = d;
+          Dbg(d.name);
         }
         Item i = hit.collider.gameObject.GetComponent<Item>();
         if (i != null) {
@@ -129,18 +129,13 @@ public class Controller : MonoBehaviour {
       }
     }
 
-
-    if (Input.GetMouseButton(0) && currentActor.IsWalking()) {
-      if (walkDelay > .25f) {
-        RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
-        if (hit.collider != null) {
-          PathNode p = hit.collider.GetComponent<PathNode>();
-          currentActor.WalkTo(hit.point, p);
-          walkDelay = 0;
-        }
-      }
-      else {
-        walkDelay += Time.deltaTime;
+    walkDelay -= Time.deltaTime;
+    if (Input.GetMouseButton(0) && currentActor.IsWalking() && walkDelay < 0) {
+      walkDelay = .25f;
+      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
+      if (hit.collider != null) {
+        PathNode p = hit.collider.GetComponent<PathNode>();
+        currentActor.WalkTo(hit.point, p);
       }
     }
 
@@ -270,18 +265,24 @@ public class Controller : MonoBehaviour {
         }
 
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Walk) || (rmb && overItem.whatItDoesR == WhatItDoes.Walk)) { /* walk */
-          if (aDoor == null)
+          if (aDoor == null) {
             WalkAndAction(currentActor, overItem, null);
+            Debug.Log("walk no door");
+          }
           else {
+            Debug.Log("Door walking " + aDoor.name);
             WalkAndAction(currentActor, aDoor,
               new System.Action<Actor, Item>((actor, item) => {
                 if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
                   actor.Say("Is locked");
+                  Debug.Log("Door walking " + item.name + " << but locked");
                   return;
                 }
                 else if (item.Usable == Tstatus.OpenableClosed || item.Usable == Tstatus.OpenableClosedAutolock) {
+                  Debug.Log("Door walking " + item.name + " << but go fuck yourself");
                   return;
                 }
+                Debug.Log("Door walking " + item.name + " << change?");
                 StartCoroutine(ChangeRoom(actor, (item as Door)));
               }));
           }
@@ -843,7 +844,6 @@ public class Controller : MonoBehaviour {
   /// Moves the actor to the destination and execute the action callback when the destination is reached
   /// </summary>
   void WalkAndAction(Actor actor, Item item, System.Action<Actor, Item> action) {
-    if (overItem == null) return;
     Vector3 one = actor.transform.position;
     one.z = 0;
     Vector3 two = item.HotSpot;
@@ -854,10 +854,12 @@ public class Controller : MonoBehaviour {
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
         currentActor.WalkTo(overItem.HotSpot, p, action, item);
+        Debug.Log("WalkAndAction on " + item.name);
       }
       return;
     }
     else {
+      Debug.Log("Immediate WalkAndAction on " + item.name);
       action?.Invoke(currentActor, item);
     }
   }

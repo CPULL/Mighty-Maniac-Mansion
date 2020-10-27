@@ -1,13 +1,13 @@
 === Mighty Maniac Mansion ===
 
+Fix Ed catch, and Ed room door that cannot exit
 
-
-
-Draw Edna and do the "Check fridge" at start
+[demo] Draw Edna and do the "Check fridge" at start
+[demo] Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here (use behaviors?)
+[demo] disable doors that are not working (do not let to walk over them)
 
 Do arms forward in all characters
 
-Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here (use behaviors?)
 
 Icrease resolution of turkey and roast
 Add recycle stuff to the service room
@@ -178,5 +178,6 @@ Jeff
 ! Set all non-working doors as "Not in the demo"
 ! handled parallel cutscenes, now Ed can catch intruders
 ! improved the pathfinding
+! Fixed the walking on doors problem
 
 

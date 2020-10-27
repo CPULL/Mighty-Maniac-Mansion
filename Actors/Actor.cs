@@ -259,6 +259,8 @@ public class Actor : MonoBehaviour {
   }
 
   internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) { // DESTINATION *******************************
+    if (callBack != null && walking != WalkingMode.None) return;
+
     if (dest.x < blockMinX) dest.x = blockMinX;
     if (dest.x > blockMaxX) dest.x = blockMaxX;
 
