@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NavPath : MonoBehaviour {
@@ -28,7 +29,6 @@ public class NavPath : MonoBehaviour {
 
 
     if (gizmoLines == null || gizmoLines.Count < 2) return;
-    //    ShowPaths = false;
 
     Gizmos.color = Color.red;
     for (int i = 0; i < gizmoLines.Count - 1; i++) {
@@ -95,13 +95,9 @@ public class NavPath : MonoBehaviour {
       openSet.Remove(q);
 
       if (q.left != null) {
-        // d(current,neighbor) is the weight of the edge from current to neighbor
-        // tentative_gScore is the distance from start to the neighbor through current
-
         q.left.h = Vector2.Distance(q.left.Center(), pend.Center());
         float tentativeScore = q.g + q.left.h;
         if (tentativeScore < q.left.g) {
-          // This path to neighbor is better than any previous one. Record it!
           q.left.prev = q;
           q.left.g = tentativeScore;
           if (!openSet.Contains(q.left)) openSet.Add(q.left);
@@ -111,7 +107,6 @@ public class NavPath : MonoBehaviour {
         q.right.h = Vector2.Distance(q.right.Center(), pend.Center());
         float tentativeScore = q.g + q.right.h;
         if (tentativeScore < q.right.g) {
-          // This path to neighbor is better than any previous one. Record it!
           q.right.prev = q;
           q.right.g = tentativeScore;
           if (!openSet.Contains(q.right)) openSet.Add(q.right);
@@ -121,7 +116,6 @@ public class NavPath : MonoBehaviour {
         q.top.h = Vector2.Distance(q.top.Center(), pend.Center());
         float tentativeScore = q.g + q.top.h;
         if (tentativeScore < q.top.g) {
-          // This path to neighbor is better than any previous one. Record it!
           q.top.prev = q;
           q.top.g = tentativeScore;
           if (!openSet.Contains(q.top)) openSet.Add(q.top);
@@ -131,7 +125,6 @@ public class NavPath : MonoBehaviour {
         q.down.h = Vector2.Distance(q.down.Center(), pend.Center());
         float tentativeScore = q.g + q.down.h;
         if (tentativeScore < q.down.g) {
-          // This path to neighbor is better than any previous one. Record it!
           q.down.prev = q;
           q.down.g = tentativeScore;
           if (!openSet.Contains(q.down)) openSet.Add(q.down);
@@ -146,9 +139,7 @@ public class NavPath : MonoBehaviour {
       return res;
     }
 
-    // reconstruct the path and Create the result of vector2s
-    // Minimize the paths
-
+    // reconstruct the path and Create the result of vector2s, Minimize the paths
     res.Add(new Parcour(end, pend));
     PathNode p1 = pend;
     PathNode p2 = pend.prev;
@@ -184,9 +175,40 @@ public class NavPath : MonoBehaviour {
     }
 
     // We need to check if the "line" from prev to current will pass on the merged edge. If not we need to add a point on the edge
-    res.Reverse();
-    return res;
+    return RevFin(res);
   }
+
+  List<Parcour> RevFin(List<Parcour> res) {
+    res.Reverse();
+    if (res.Count < 3) return res;
+
+    List<Parcour> newres = new List<Parcour>();
+    // Check if we can remove nodes because the line between the previous points is still inside the blocks
+    for (int s = 0; s < res.Count; s++) {
+      Parcour a = res[s];
+      newres.Add(a);
+
+      if (s + 2 >= res.Count) continue;
+
+      Parcour b = res[s + 1];
+      Parcour c = res[s + 2];
+
+      Vector2 p1s = a.pos;
+      Vector2 p1e = c.pos;
+      Vector2 p2s = GetEdge(b.node, c.node, true);
+      Vector2 p2e = GetEdge(b.node, c.node, false);
+      Vector2 intersect = FindIntersection(p1s, p1e, p2s, p2e);
+
+      if (intersect.x == float.NaN || intersect == p2s || intersect == p2e) {
+        // Cannot
+      }
+      else
+        s++;
+    }
+    return newres;
+  }
+
+
 
   PathNode GetMinPath(List<PathNode> list) {
     float min = float.MaxValue;
@@ -262,6 +284,11 @@ public class Parcour {
     pos = p;
     node = n;
   }
+
+  public override string ToString() {
+    return node.name + " " + ((int)(pos.x * 10)) / 10 + "," + ((int)(pos.y * 10)) / 10;
+  }
+
 }
 
 public class Parcour3 {

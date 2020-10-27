@@ -177,6 +177,6 @@ Jeff
 ! Fixed action of type ReceiveCut/Flag
 ! Set all non-working doors as "Not in the demo"
 ! handled parallel cutscenes, now Ed can catch intruders
-
+! improved the pathfinding
 
 

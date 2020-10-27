@@ -15,6 +15,9 @@ public class PathNode : MonoBehaviour {
   public float h;
   public FloorType floorType;
 
+  public override string ToString() {
+    return name + " " + ((int)(100f * (g + h)))/100f + (prev != null ? " " + prev.name : "");
+  }
   void OnDrawGizmos() {
     if (!showMeshLocal) return;
     if (roomabs == Vector2.up) roomabs = parent.transform.parent.position;
