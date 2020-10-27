@@ -15493,7 +15493,7 @@ MonoBehaviour:
       id1: 1
       id2: 0
       str: SuitesCorridor
-      pos: {x: 30, y: 48}
+      pos: {x: 15, y: 48}
       dir: 2
       val: 0
   sr: {fileID: 0}
@@ -48281,8 +48281,8 @@ MonoBehaviour:
   right: {fileID: 0}
   top: {fileID: 0}
   down: {fileID: 328017764}
-  tl: {x: -8.215023, y: 90.9236}
-  tr: {x: -6.4268, y: 90.94937}
+  tl: {x: -8.263289, y: 93.11973}
+  tr: {x: -6.3785343, y: 93.217896}
   br: {x: -6.381998, y: 89.18545}
   bl: {x: -8.202133, y: 89.10402}
   parent: {fileID: 1134120969}
@@ -48316,8 +48316,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.784977, y: 0.92359924}
-      - {x: 3.5732002, y: 0.94937134}
+    - - {x: 1.7367105, y: 3.119728}
+      - {x: 3.6214657, y: 3.2178955}
       - {x: 3.618002, y: -0.8145523}
       - {x: 1.7978668, y: -0.89598083}
 --- !u!4 &1372057460
@@ -66151,7 +66151,7 @@ GameObject:
   - component: {fileID: 1851188565}
   - component: {fileID: 1851188563}
   - component: {fileID: 1851188564}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ed Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66187,7 +66187,7 @@ MonoBehaviour:
   dir: 2
   overColor:
     serializedVersion: 2
-    rgba: 4278255615
+    rgba: 4294963712
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -66267,8 +66267,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1934202997
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -24382052254557, guid: 82a96343b133b9e4b8d8a21a1a1ae456, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -66289,7 +66289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1851188562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3300018, y: 0.9810028, z: 0}
+  m_LocalPosition: {x: 3.3300018, y: 0.9810028, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2064402700}
