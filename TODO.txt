@@ -1,7 +1,6 @@
 === Mighty Maniac Mansion ===
 
 
-Have actors to get light off shader when in a room without lights
 
 
 How to have the cutscene running but in background?
@@ -31,6 +30,7 @@ FrontDoor -> Backyard entrance on the left
 Complete Sandy and Ollie descriptions
 
 * BUGS ************************************************************************************************************
+
 
 * CHARS ************************************************************************************************************
 
@@ -186,6 +186,7 @@ Jeff
 ! Fixed the walking on doors problem
 ! Fixed Ed internal door
 ! Have "light off" for room (and whole game)
-
+! Points are not disabled
+! Have actors to get light off shader when in a room without lights
 
 

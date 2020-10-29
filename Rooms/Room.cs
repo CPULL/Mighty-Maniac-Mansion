@@ -23,8 +23,12 @@ public class Room : MonoBehaviour {
 
   void CollectAllRenderers(Transform tran) {
     SpriteRenderer sr = tran.GetComponent<SpriteRenderer>();
-    if (sr != null && sr.material.name.IndexOf("SceneSelectionPoint") == -1) 
-      srs.Add(sr);
+    if (sr != null) {
+      if (sr.material.name.IndexOf("SceneSelectionPoint") == -1)
+        srs.Add(sr);
+      else
+        sr.enabled = false;
+    }
     foreach (Transform t in tran)
       CollectAllRenderers(t);
   }
@@ -32,10 +36,7 @@ public class Room : MonoBehaviour {
 
   internal PathNode GetPathNode(Vector3 position) {
     NavPath nav = transform.GetComponentInChildren<NavPath>();
-    if (nav == null) {
-      Debug.Log("Fucking hell!");
-      return null;
-    }
+    if (nav == null) return null;
     float minDist = float.MaxValue;
     PathNode closest = null;
     foreach(PathNode pn in nav.nodes) {

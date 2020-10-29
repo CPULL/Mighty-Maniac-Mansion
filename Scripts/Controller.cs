@@ -11,7 +11,6 @@ public class Controller : MonoBehaviour {
   public LayerMask doorLayer;
   public UnityEngine.UI.Image BlackFade;
   public Transform PickedItems;
-  public Material SceneSelectionPoint;
   public AudioSource MusicPlayer;
 
 
@@ -463,7 +462,6 @@ public class Controller : MonoBehaviour {
       if (a != null) a.gameObject.SetActive(false);
     ActorsButtons.SetActive(false);
 
-    SceneSelectionPoint.color = new Color32(0, 0, 0, 0);
     currentRoom = GD.a.roomsList[0];
     currentActor = actor1;
     ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = selectedActor;
@@ -504,9 +502,6 @@ public class Controller : MonoBehaviour {
     StartIntroCutscene();
   }
 
-  void OnApplicationQuit() {
-    SceneSelectionPoint.color = new Color32(255, 255, 255, 255);
-  }
   #endregion
 
 
