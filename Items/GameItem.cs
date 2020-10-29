@@ -9,6 +9,8 @@ public class GameItem : MonoBehaviour {
   public Chars owner;
   public Tstatus Usable;
   public ItemEnum UsableWith;
+  public OpenStatus openStatus;
+  public LockStatus lockStatus;
 
   public WhatItDoes whatItDoesL = WhatItDoes.Walk;
   public WhatItDoes whatItDoesR = WhatItDoes.Use;

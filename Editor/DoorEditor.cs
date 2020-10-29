@@ -12,8 +12,9 @@ public class DoorEditor : Editor {
   SerializedProperty HotSpot, dir, arrivaldir;
   SerializedProperty src, dst, correspondingDoor;
   SerializedProperty camerapos, transition;
-  SerializedProperty actions, condition;
+  SerializedProperty actions;
   SerializedProperty openSound, closeSound, lockSound, unlockSound;
+  SerializedProperty openStatus, lockStatus;
 
 
   void OnEnable() {
@@ -37,11 +38,12 @@ public class DoorEditor : Editor {
     correspondingDoor = serializedObject.FindProperty("correspondingDoor");
     transition = serializedObject.FindProperty("transition");
     actions = serializedObject.FindProperty("actions");
-    condition = serializedObject.FindProperty("condition");
     openSound = serializedObject.FindProperty("OpenSound");
     closeSound= serializedObject.FindProperty("CloseSound");
     lockSound= serializedObject.FindProperty("LockSound");
     unlockSound = serializedObject.FindProperty("UnlockSound");
+    openStatus = serializedObject.FindProperty("openStatus");
+    lockStatus = serializedObject.FindProperty("lockStatus");
   }
 
 
@@ -68,6 +70,13 @@ public class DoorEditor : Editor {
     EditorGUILayout.BeginHorizontal();
     EditorGUILayout.PropertyField(Usable, new GUIContent("Usable"));
     EditorGUILayout.PropertyField(UsableWith, new GUIContent("  with"));
+    EditorGUILayout.EndHorizontal();
+
+    // Open/Lock status
+    EditorGUILayout.BeginHorizontal();
+    EditorGUIUtility.labelWidth = 70;
+    EditorGUILayout.PropertyField(openStatus, new GUIContent("Open status"));
+    EditorGUILayout.PropertyField(lockStatus, new GUIContent("Lock stauts"));
     EditorGUILayout.EndHorizontal();
 
     // Images

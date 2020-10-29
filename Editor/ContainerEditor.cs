@@ -12,6 +12,7 @@ public class ContainerEditor : Editor {
   SerializedProperty HotSpot, dir;
   SerializedProperty items, actions;
   SerializedProperty openSound, closeSound, lockSound, unlockSound;
+  SerializedProperty openStatus, lockStatus;
 
 
   void OnEnable() {
@@ -34,6 +35,8 @@ public class ContainerEditor : Editor {
     dir = serializedObject.FindProperty("dir");
     items = serializedObject.FindProperty("items");
     actions = serializedObject.FindProperty("actions");
+    openStatus = serializedObject.FindProperty("openStatus");
+    lockStatus = serializedObject.FindProperty("lockStatus");
   }
 
 
@@ -61,6 +64,14 @@ public class ContainerEditor : Editor {
     EditorGUILayout.PropertyField(Usable, new GUIContent("Usable"));
     EditorGUILayout.PropertyField(UsableWith, new GUIContent("  with"));
     EditorGUILayout.EndHorizontal();
+
+    // Open/Lock status
+    EditorGUILayout.BeginHorizontal();
+    EditorGUIUtility.labelWidth = 70;
+    EditorGUILayout.PropertyField(openStatus, new GUIContent("Open status"));
+    EditorGUILayout.PropertyField(lockStatus, new GUIContent("Lock stauts"));
+    EditorGUILayout.EndHorizontal();
+
 
     // Images
     EditorGUILayout.BeginHorizontal();

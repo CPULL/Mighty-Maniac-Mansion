@@ -1,5 +1,15 @@
 === Mighty Maniac Mansion ===
 
+
+Doors:
+Not a door
+Open, Close
+Unlocked, Locked, AutoLock
+
+
+
+
+
 A door may not need to be locked if the other side is locked (front door, basement door)
 
 

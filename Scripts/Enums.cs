@@ -142,12 +142,20 @@ public enum Tstatus {
   NotUsable,
   Pickable,
   Usable,
-  OpenableOpen,
-  OpenableClosed,
-  OpenableLocked,
-  OpenableLockedAutolock,
-  OpenableOpenAutolock,
-  OpenableClosedAutolock
+  Openable
+}
+
+public enum OpenStatus { 
+  Open,
+  Closed,
+  Irrelevant
+}
+
+public enum LockStatus { 
+  Unlocked,
+  UnlockedAutolock,
+  Locked,
+  Autolock
 }
 
 /// <summary>

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Item : GameItem {
   [HideInInspector] public SpriteRenderer sr;
@@ -18,33 +17,21 @@ public class Item : GameItem {
   }
 
   public string Use(Actor actor) {
-    if (Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock) return "It is locked";
+    if (Usable == Tstatus.Openable && !IsOpen() && IsLocked()) return "It is locked";
 
     if (Usable == Tstatus.Usable) {
       ActionRes res = PlayActions(actor, null, When.Use, this);
       if (res == null || !res.actionDone) return "It does not work";
       return null;
     }
-    else if (Usable == Tstatus.OpenableOpen) {
-      SetAsClosedUnlocked();
+    else if (Usable == Tstatus.Openable && openStatus == OpenStatus.Open) {
+      SetAsClosed(); // FIXME Handle the autolocks here
       ActionRes res = PlayActions(actor, null, When.Use, null);
       if (res != null && !res.actionDone) return res.res;
       return null;
     }
-    else if (Usable == Tstatus.OpenableOpenAutolock) {
-      SetAsLockedAuto();
-      ActionRes res = PlayActions(actor, null, When.Use, null);
-      if (res != null && !res.actionDone) return res.res;
-      return null;
-    }
-    else if (Usable == Tstatus.OpenableClosed) {
+    else if (Usable == Tstatus.Openable && openStatus == OpenStatus.Closed) {
       SetAsOpen();
-      ActionRes res = PlayActions(actor, null, When.Use, null);
-      if (res != null && !res.actionDone) return res.res;
-      return null;
-    }
-    else if (Usable == Tstatus.OpenableClosedAutolock) {
-      SetAsOpenAuto();
       ActionRes res = PlayActions(actor, null, When.Use, null);
       if (res != null && !res.actionDone) return res.res;
       return null;
@@ -107,7 +94,7 @@ public class Item : GameItem {
     // Case of an item and a container
     Container c = other as Container;
     if (c != null) {
-      if (c.Usable != Tstatus.OpenableOpen && c.Usable != Tstatus.OpenableOpenAutolock) return "It is closed";
+      if (c.Usable != Tstatus.Openable && c.openStatus != OpenStatus.Open) return "It is closed";
 
       if (c.HasItem(this)) {
         // Put item back
@@ -130,89 +117,25 @@ public class Item : GameItem {
 
   }
 
-  public string Open(bool val) {
-    if (val) { // Open
-      if (Usable == Tstatus.OpenableClosed) SetAsOpen();
-      else if (Usable == Tstatus.OpenableClosedAutolock) SetAsOpen();
-      else if (Usable == Tstatus.OpenableOpen) return null;
-      else if (Usable == Tstatus.OpenableOpenAutolock) return null;
-      else if (Usable == Tstatus.OpenableLocked) return "It is locked.";
-      else if (Usable == Tstatus.OpenableLockedAutolock) return "It is locked.";
-      else return "Cannot open it";
-      return null;
-    }
-    else { // Close
-      if (Usable == Tstatus.OpenableClosed) return null;
-      else if (Usable == Tstatus.OpenableClosedAutolock) return null;
-      else if (Usable == Tstatus.OpenableOpen) SetAsClosedUnlocked();
-      else if (Usable == Tstatus.OpenableOpenAutolock) SetAsClosedUnlockedAuto();
-      else if (Usable == Tstatus.OpenableLocked) return null;
-      else if (Usable == Tstatus.OpenableLockedAutolock) return null;
-      else return "Does not work";
-      return this.Name + " locked";
-    }
-  }
 
   public void ForceOpen(bool val) {
+    if (Usable != Tstatus.Openable) return;
     if (val) { // Open
-      if (Usable == Tstatus.OpenableClosed) SetAsOpen();
-      else if (Usable == Tstatus.OpenableClosedAutolock) SetAsOpen();
-      else if (Usable == Tstatus.OpenableOpen) SetAsOpen();
-      else if (Usable == Tstatus.OpenableOpenAutolock) SetAsOpenAuto();
-      else if (Usable == Tstatus.OpenableLocked) SetAsOpen();
-      else if (Usable == Tstatus.OpenableLockedAutolock) SetAsOpenAuto();
-      return;
+      SetAsOpen();
     }
     else { // Close
-      if (Usable == Tstatus.OpenableClosed) SetAsClosedUnlocked();
-      else if (Usable == Tstatus.OpenableClosedAutolock) SetAsClosedUnlockedAuto();
-      else if (Usable == Tstatus.OpenableOpen) SetAsClosedUnlocked();
-      else if (Usable == Tstatus.OpenableOpenAutolock) SetAsClosedUnlockedAuto();
-      else if (Usable == Tstatus.OpenableLocked) SetAsClosedUnlocked();
-      else if (Usable == Tstatus.OpenableLockedAutolock) SetAsClosedUnlockedAuto();
-      return;
+      SetAsClosed();
     }
   }
 
-  public string Lock(bool val) {
-    if (val) { // Lock
-      if (Usable == Tstatus.OpenableClosed) SetAsLocked();
-      else if (Usable == Tstatus.OpenableClosedAutolock) SetAsLockedAuto();
-      else if (Usable == Tstatus.OpenableOpen) SetAsLocked();
-      else if (Usable == Tstatus.OpenableOpenAutolock) SetAsLockedAuto();
-      else if (Usable == Tstatus.OpenableLocked) return "Already locked";
-      else if (Usable == Tstatus.OpenableLockedAutolock) return "Already locked";
-      else return "Does not work";
-      return Name + " locked.";
-    }
-    else { // Unlock
-      if (Usable == Tstatus.OpenableClosed) return "Already unlocked";
-      else if (Usable == Tstatus.OpenableClosedAutolock) return "Already unlocked";
-      else if (Usable == Tstatus.OpenableOpen) return "Already unlocked";
-      else if (Usable == Tstatus.OpenableOpenAutolock) return "Already unlocked";
-      else if (Usable == Tstatus.OpenableLocked) SetAsClosedUnlocked();
-      else if (Usable == Tstatus.OpenableLockedAutolock) SetAsClosedUnlockedAuto();
-      else return "Does not work";
-      return Name + " unlocked!";
-    }
-  }
 
   public void ForceLock(bool val) {
     if (val) { // Lock
-      if (Usable == Tstatus.OpenableClosed) SetAsLocked();
-      else if (Usable == Tstatus.OpenableClosedAutolock) SetAsLockedAuto();
-      else if (Usable == Tstatus.OpenableOpen) SetAsLocked();
-      else if (Usable == Tstatus.OpenableOpenAutolock) SetAsLockedAuto();
-      else if (Usable == Tstatus.OpenableLocked) SetAsLocked();
-      else if (Usable == Tstatus.OpenableLockedAutolock) SetAsLockedAuto();
+      SetAsClosed();
+      SetAsLocked();
     }
     else { // Unlock
-      if (Usable == Tstatus.OpenableClosed) SetAsClosedUnlocked();
-      else if (Usable == Tstatus.OpenableClosedAutolock) SetAsClosedUnlockedAuto();
-      else if (Usable == Tstatus.OpenableOpen) SetAsOpen();
-      else if (Usable == Tstatus.OpenableOpenAutolock) SetAsOpenAuto();
-      else if (Usable == Tstatus.OpenableLocked) SetAsClosedUnlocked();
-      else if (Usable == Tstatus.OpenableLockedAutolock) SetAsClosedUnlockedAuto();
+      SetAsUnlocked();
     }
   }
 
@@ -224,71 +147,65 @@ public class Item : GameItem {
   }
 
   internal string GetOpenStatus() {
-    switch (Usable) {
-      case Tstatus.OpenableOpen: return "Is open";
-      case Tstatus.OpenableClosed: return "Is closed";
-      case Tstatus.OpenableLocked: return "Is locked";
-      case Tstatus.OpenableLockedAutolock: return "Is locked";
-      case Tstatus.OpenableOpenAutolock: return "Is open";
-      case Tstatus.OpenableClosedAutolock: return "Is closed";
-    }
-    return "";
+    if (Usable != Tstatus.Openable) return "";
+
+    if (openStatus == OpenStatus.Open) return "Is open";
+    if (lockStatus == LockStatus.Unlocked) return "Is closed";
+    return "Is locked";
   }
 
   internal int GetOpeningStatus() {
-    switch (Usable) {
-      case Tstatus.OpenableOpen: return 0;
-      case Tstatus.OpenableClosed: return 1;
-      case Tstatus.OpenableLocked: return 2;
-      case Tstatus.OpenableLockedAutolock: return 3;
-      case Tstatus.OpenableOpenAutolock: return 4;
-      case Tstatus.OpenableClosedAutolock: return 5;
+    if (Usable != Tstatus.Openable) return -1;
+    if (openStatus == OpenStatus.Open) {
+      if (lockStatus == LockStatus.Unlocked) return 0;
+      if (lockStatus == LockStatus.UnlockedAutolock) return 1;
+      if (lockStatus == LockStatus.Locked) return 2;
+      if (lockStatus == LockStatus.Autolock) return 3;
     }
-    return -1;
+    if (openStatus == OpenStatus.Closed) {
+      if (lockStatus == LockStatus.Unlocked) return 4;
+      if (lockStatus == LockStatus.UnlockedAutolock) return 5;
+      if (lockStatus == LockStatus.Locked) return 6;
+      if (lockStatus == LockStatus.Autolock) return 7;
+    }
+    return 0;
   }
 
   internal void SetOpeningStatus(int val) {
     switch (val) {
-      case 0: Usable = Tstatus.OpenableOpen; ForceOpen(true); break;
-      case 1: Usable = Tstatus.OpenableClosed; ForceOpen(false); break;
-      case 2: Usable = Tstatus.OpenableLocked; ForceLock(true); break;
-      case 3: Usable = Tstatus.OpenableLockedAutolock; ForceLock(true); break;
-      case 4: Usable = Tstatus.OpenableOpenAutolock; ForceOpen(true); break;
-      case 5: Usable = Tstatus.OpenableClosedAutolock; ForceOpen(false); ForceLock(true); break;
+      case 0: ForceOpen(true); ForceLock(false); break;
+      case 1: ForceOpen(true); ForceLock(false); break;
+      case 2: ForceOpen(true); ForceLock(true); break;
+      case 3: ForceOpen(true); ForceLock(true); break;
+
+      case 4: ForceOpen(false); ForceLock(false); break;
+      case 5: ForceOpen(false); ForceLock(false); break;
+      case 6: ForceOpen(false); ForceLock(true); break;
+      case 7: ForceOpen(false); ForceLock(true); break;
     }
   }
 
 
 
   internal bool IsOpen() {
-    switch (Usable) {
-      case Tstatus.OpenableOpen: return true;
-      case Tstatus.OpenableOpenAutolock: return true;
-      default: return false;
-    }
+    return Usable == Tstatus.Openable && openStatus != OpenStatus.Closed;
   }
 
   internal bool IsLocked() {
-    switch (Usable) {
-      case Tstatus.OpenableLocked: return true;
-      case Tstatus.OpenableLockedAutolock: return true;
-      case Tstatus.OpenableClosedAutolock: return true;
-      default: return false;
-    }
-
+    if (Usable != Tstatus.Openable) return false;
+    return lockStatus == LockStatus.Locked || lockStatus == LockStatus.Autolock;
   }
 
   private void SetAsOpen() {
-    bool sound = Usable != Tstatus.OpenableOpen && Usable != Tstatus.OpenableOpenAutolock;
-    Usable = Tstatus.OpenableOpen;
+    bool sound = openStatus == OpenStatus.Closed;
+    openStatus = OpenStatus.Open;
     sr.sprite = openImage;
     Door door = this as Door;
     if (door != null) {
-      if (door.correspondingDoor.Usable == Tstatus.OpenableClosedAutolock || door.correspondingDoor.Usable == Tstatus.OpenableLockedAutolock || door.correspondingDoor.Usable == Tstatus.OpenableOpenAutolock)
-        door.correspondingDoor.Usable = Tstatus.OpenableOpenAutolock;
-      else
-        door.correspondingDoor.Usable = Tstatus.OpenableOpen;
-      door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
+      if (door.correspondingDoor != null) {
+        door.correspondingDoor.openStatus = OpenStatus.Open;
+        door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
+      }
       if (sound && door.OpenSound != null && door.Audio != null) {
         door.Audio.clip = door.OpenSound;
         door.Audio.Play();
@@ -307,14 +224,20 @@ public class Item : GameItem {
       }
     }
   }
-  private void SetAsOpenAuto() {
-    bool sound = Usable != Tstatus.OpenableOpen && Usable != Tstatus.OpenableOpenAutolock;
-    Usable = Tstatus.OpenableOpenAutolock;
-    sr.sprite = openImage;
+  private void SetAsClosed() {
+    bool sound = openStatus == OpenStatus.Open;
+    if (openStatus == OpenStatus.Open) {
+      openStatus = OpenStatus.Closed;
+      sr.sprite = closeImage;
+      if (lockStatus == LockStatus.UnlockedAutolock) lockStatus = LockStatus.Autolock;
+    }
     Door door = this as Door;
     if (door != null) {
-      door.correspondingDoor.Usable = Tstatus.OpenableOpenAutolock;
-      door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
+      if (door.correspondingDoor != null && door.correspondingDoor.openStatus == OpenStatus.Open) {
+        door.correspondingDoor.openStatus = OpenStatus.Closed;
+        door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
+        if (door.correspondingDoor.lockStatus == LockStatus.UnlockedAutolock) door.correspondingDoor.lockStatus = LockStatus.Autolock;
+      }
       if (sound && door.OpenSound != null && door.Audio != null) {
         door.Audio.clip = door.OpenSound;
         door.Audio.Play();
@@ -326,25 +249,40 @@ public class Item : GameItem {
         foreach (Item item in c.items)
           if (item.owner == Chars.None)
             item.gameObject.SetActive(true);
+        if (sound && c.OpenSound != null && c.Audio != null) {
+          c.Audio.clip = c.OpenSound;
+          c.Audio.Play();
+        }
       }
     }
   }
-  private void SetAsClosedUnlocked() {
-    bool soundC = Usable == Tstatus.OpenableOpen || Usable == Tstatus.OpenableOpenAutolock;
-    bool soundUl = Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock;
-    Usable = Tstatus.OpenableClosed;
+
+  private void SetAsUnlocked() {
+    bool soundC = openStatus == OpenStatus.Open;
+    bool soundUl = lockStatus == LockStatus.Locked || lockStatus == LockStatus.Autolock;
+    if (lockStatus == LockStatus.Locked) lockStatus = LockStatus.Unlocked;
+    if (lockStatus == LockStatus.Autolock) lockStatus = LockStatus.UnlockedAutolock;
     sr.sprite = closeImage;
     Door door = this as Door;
     if (door != null) {
-      door.correspondingDoor.Usable = Tstatus.OpenableClosed;
-      door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
-      if (soundC && door.CloseSound != null && door.Audio != null) {
-        door.Audio.clip = door.CloseSound;
-        door.Audio.Play();
-      }
-      else if (soundUl && door.UnlockSound != null && door.Audio != null) {
-        door.Audio.clip = door.UnlockSound;
-        door.Audio.Play();
+      if (door.correspondingDoor != null) {
+        if (door.correspondingDoor.openStatus == OpenStatus.Open) door.correspondingDoor.openStatus = OpenStatus.Closed;
+        if (door.correspondingDoor.lockStatus == LockStatus.Locked) {
+          door.correspondingDoor.lockStatus = LockStatus.Unlocked;
+          door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+        }
+        else if (door.correspondingDoor.lockStatus == LockStatus.Autolock) {
+          door.correspondingDoor.lockStatus = LockStatus.UnlockedAutolock;
+          door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+        }
+        if (soundC && door.CloseSound != null && door.Audio != null) {
+          door.Audio.clip = door.CloseSound;
+          door.Audio.Play();
+        }
+        else if (soundUl && door.UnlockSound != null && door.Audio != null) {
+          door.Audio.clip = door.UnlockSound;
+          door.Audio.Play();
+        }
       }
     }
     else {
@@ -364,22 +302,33 @@ public class Item : GameItem {
       }
     }
   }
-  private void SetAsClosedUnlockedAuto() {
-    bool soundC = Usable == Tstatus.OpenableOpen || Usable == Tstatus.OpenableOpenAutolock;
-    bool soundUl = Usable == Tstatus.OpenableLocked || Usable == Tstatus.OpenableLockedAutolock;
-    Usable = Tstatus.OpenableClosedAutolock;
+
+  private void SetAsLocked() {
+    bool soundC = openStatus == OpenStatus.Open;
+    bool soundUl = lockStatus == LockStatus.Unlocked || lockStatus == LockStatus.UnlockedAutolock;
+    if (lockStatus == LockStatus.Unlocked) lockStatus = LockStatus.Locked;
+    if (lockStatus == LockStatus.UnlockedAutolock) lockStatus = LockStatus.Autolock;
     sr.sprite = closeImage;
     Door door = this as Door;
     if (door != null) {
-      door.correspondingDoor.Usable = Tstatus.OpenableClosedAutolock;
-      door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
-      if (soundC && door.CloseSound != null && door.Audio != null) {
-        door.Audio.clip = door.CloseSound;
-        door.Audio.Play();
-      }
-      else if (soundUl && door.UnlockSound != null && door.Audio != null) {
-        door.Audio.clip = door.UnlockSound;
-        door.Audio.Play();
+      if (door.correspondingDoor != null) {
+        if (door.correspondingDoor.openStatus == OpenStatus.Open) door.correspondingDoor.openStatus = OpenStatus.Closed;
+        if (door.correspondingDoor.lockStatus == LockStatus.Unlocked) {
+          door.correspondingDoor.lockStatus = LockStatus.Locked;
+          door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+        }
+        else if (door.correspondingDoor.lockStatus == LockStatus.UnlockedAutolock) {
+          door.correspondingDoor.lockStatus = LockStatus.Autolock;
+          door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+        }
+        if (soundC && door.CloseSound != null && door.Audio != null) {
+          door.Audio.clip = door.CloseSound;
+          door.Audio.Play();
+        }
+        else if (soundUl && door.LockSound != null && door.Audio != null) {
+          door.Audio.clip = door.LockSound;
+          door.Audio.Play();
+        }
       }
     }
     else {
@@ -408,62 +357,6 @@ public class Item : GameItem {
         break;
     }
   }
-
-  private void SetAsLocked() {
-    bool soundC = Usable == Tstatus.OpenableOpen || Usable == Tstatus.OpenableOpenAutolock;
-    bool sound = Usable != Tstatus.OpenableLocked && Usable != Tstatus.OpenableLockedAutolock;
-    Usable = Tstatus.OpenableLocked;
-    sr.sprite = lockImage == null ? closeImage : lockImage;
-    Door door = this as Door;
-    if (door != null) {
-      door.correspondingDoor.Usable = Tstatus.OpenableLocked;
-      if (soundC && door.CloseSound != null && door.Audio != null) {
-        door.Audio.clip = door.CloseSound;
-        door.Audio.Play();
-      }
-      else door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage == null ? door.correspondingDoor.closeImage : door.correspondingDoor.lockImage;
-      if (sound && door.LockSound != null && door.Audio != null) {
-        door.Audio.clip = door.LockSound;
-        door.Audio.Play();
-      }
-    }
-    else {
-      Container c = this as Container;
-      if (c != null) {
-        foreach (Item item in c.items)
-          if (item.owner == Chars.None)
-            item.gameObject.SetActive(false);
-      }
-    }
-  }
-  private void SetAsLockedAuto() {
-    bool soundC = Usable == Tstatus.OpenableOpen || Usable == Tstatus.OpenableOpenAutolock;
-    bool sound = Usable != Tstatus.OpenableLocked && Usable != Tstatus.OpenableLockedAutolock;
-    Usable = Tstatus.OpenableLockedAutolock;
-    sr.sprite = lockImage == null ? closeImage : lockImage;
-    Door door = this as Door;
-    if (door != null) {
-      door.correspondingDoor.Usable = Tstatus.OpenableLockedAutolock;
-      door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage == null ? door.correspondingDoor.closeImage : door.correspondingDoor.lockImage;
-      if (soundC && door.CloseSound != null && door.Audio != null) {
-        door.Audio.clip = door.CloseSound;
-        door.Audio.Play();
-      }
-      else if (sound && door.LockSound != null && door.Audio != null) {
-        door.Audio.clip = door.LockSound;
-        door.Audio.Play();
-      }
-    }
-    else {
-      Container c = this as Container;
-      if (c != null) {
-        foreach (Item item in c.items)
-          if (item.owner == Chars.None)
-            item.gameObject.SetActive(false);
-      }
-    }
-  }
-
   internal void Give(Actor giver, Actor receiver) {
     // FIXME here we should check the conditions of the actions
 

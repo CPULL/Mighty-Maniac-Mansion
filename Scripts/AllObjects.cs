@@ -143,6 +143,7 @@ public enum ItemEnum {
   DeveloperBottle,
   Fridge,
   BasementDoor,
+  DungeonDoor,
 }
 
 

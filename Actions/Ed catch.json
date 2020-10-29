@@ -17,7 +17,9 @@
 	
 	"shutdown" : [
 		{ "type":"WalkToPos", "id1":"Ed", "vv":[-87.55,7.58], "dv":"B" },
-		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" }
+		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" },
+		{ "type":"Open", "id1":"DungeonDoor", "sv":"c" },
+		{ "type":"Open", "id1":"DungeonDoor", "sv":"l" }
 	],
 	
 	"sequence":[

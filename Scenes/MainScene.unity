@@ -401,8 +401,10 @@ MonoBehaviour:
   Item: 12
   Name: Front door
   owner: 0
-  Usable: 6
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 3
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -1656,8 +1658,10 @@ MonoBehaviour:
   Item: 0
   Name: 
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -3230,8 +3234,10 @@ MonoBehaviour:
   Item: 0
   Name: Secret Lab
   owner: 0
-  Usable: 5
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 2
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -4304,6 +4310,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -4503,7 +4511,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1072545337}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &117430040
 SpriteRenderer:
@@ -5364,8 +5372,10 @@ MonoBehaviour:
   Item: 0
   Name: 
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -7016,6 +7026,7 @@ Transform:
   - {fileID: 617113686}
   - {fileID: 572392228}
   - {fileID: 1705001484}
+  - {fileID: 384480658}
   m_Father: {fileID: 2059794975}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7456,8 +7467,10 @@ MonoBehaviour:
   Item: 21
   Name: Secret Door
   owner: 0
-  Usable: 6
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 2
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -8516,7 +8529,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.9375, y: 5.9375}
-    newSize: {x: 2.5, y: 5.9375}
+    newSize: {x: 5.9375, y: 5.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -8539,17 +8552,19 @@ MonoBehaviour:
   Item: 0
   Name: To the backyard
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
-  openImage: {fileID: -3737868088585055995, guid: f76a7844d1053d74ebf778ac56b79137, type: 3}
-  closeImage: {fileID: -5238868794693163589, guid: f76a7844d1053d74ebf778ac56b79137, type: 3}
+  openImage: {fileID: -5555467808339667126, guid: f76a7844d1053d74ebf778ac56b79137, type: 3}
+  closeImage: {fileID: 7657664043163678939, guid: f76a7844d1053d74ebf778ac56b79137, type: 3}
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -197.44, y: 17.25}
+  HotSpot: {x: -197.57, y: 17.119999}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -8610,12 +8625,12 @@ SpriteRenderer:
   m_SortingLayerID: -1934202997
   m_SortingLayer: -1
   m_SortingOrder: 1
-  m_Sprite: {fileID: -5238868794693163589, guid: f76a7844d1053d74ebf778ac56b79137, type: 3}
+  m_Sprite: {fileID: 7657664043163678939, guid: f76a7844d1053d74ebf778ac56b79137, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.5, y: 5.9375}
+  m_Size: {x: 5.9375, y: 5.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9322,7 +9337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277348163}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 1.35, y: -2.77, z: 0.28}
+  m_LocalPosition: {x: 1.22, y: -2.9, z: 0.41}
   m_LocalScale: {x: 0.049642358, y: 0.029661363, z: 0.7488408}
   m_Children: []
   m_Father: {fileID: 253436057}
@@ -9408,7 +9423,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1072545337}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &281943058
 SpriteRenderer:
@@ -9543,8 +9558,10 @@ MonoBehaviour:
   Item: 0
   Name: 
   owner: 0
-  Usable: 0
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -9683,7 +9700,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1072545337}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &296832018
 SpriteRenderer:
@@ -13166,6 +13183,175 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &384480657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384480658}
+  - component: {fileID: 384480661}
+  - component: {fileID: 384480660}
+  - component: {fileID: 384480659}
+  m_Layer: 0
+  m_Name: Lose brick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &384480658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384480657}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.078, y: 0.606, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 492435815}
+  m_Father: {fileID: 202005217}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &384480659
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384480657}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4375, y: 1.4375}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2}
+  m_EdgeRadius: 0
+--- !u!114 &384480660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384480657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: 0
+  Name: Lose brick
+  owner: 0
+  Usable: 2
+  UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
+  whatItDoesL: 3
+  whatItDoesR: 0
+  Description: 
+  openImage: {fileID: 0}
+  closeImage: {fileID: 0}
+  lockImage: {fileID: 0}
+  iconImage: {fileID: 0}
+  cursorImage: {fileID: 0}
+  HotSpot: {x: -48.443, y: 18.286}
+  dir: 2
+  overColor:
+    serializedVersion: 2
+    rgba: 4294965760
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  actions:
+  - Condition:
+      type: 0
+      id: 0
+      iv: 0
+      fv: 0
+      sv: 
+      bv: 0
+      msg: 
+      when: 1
+    Action:
+      running: 0
+      msg: 
+      type: 22
+      Repeatable: 0
+      delay: 0
+      id1: 22
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 3
+  sr: {fileID: 0}
+--- !u!212 &384480661
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384480657}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.64, y: 0.64}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &385813111
 GameObject:
   m_ObjectHideFlags: 0
@@ -13722,6 +13908,8 @@ MonoBehaviour:
   owner: 0
   Usable: 1
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 2
   Description: 
@@ -15598,6 +15786,8 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 0
   Description: A common doorbell.
@@ -15765,6 +15955,8 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -16470,7 +16662,7 @@ Transform:
   m_Children:
   - {fileID: 1705691484}
   m_Father: {fileID: 1072545337}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &477730594
 BoxCollider2D:
@@ -16513,8 +16705,10 @@ MonoBehaviour:
   Item: 0
   Name: Corridor
   owner: 0
-  Usable: 0
+  Usable: 3
   UsableWith: 0
+  openStatus: 2
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -17215,6 +17409,88 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490107647}
   m_CullTransparentMesh: 0
+--- !u!1 &492435814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 492435815}
+  - component: {fileID: 492435816}
+  m_Layer: 0
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &492435815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492435814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.029, z: 0}
+  m_LocalScale: {x: 0.28146, y: 0.04101, z: 1.03526}
+  m_Children: []
+  m_Father: {fileID: 384480658}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &492435816
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492435814}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 523da93e515b38b498ae1fb2838778c0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -686658387
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 52583357353966b4eb4595ab1166e919, type: 3}
+  m_Color: {r: 0.9528302, g: 0.0779043, b: 0.77969795, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &496498943
 GameObject:
   m_ObjectHideFlags: 0
@@ -17346,8 +17622,10 @@ MonoBehaviour:
   Item: 0
   Name: Front door
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -17753,6 +18031,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -19090,6 +19370,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -19449,8 +19731,10 @@ MonoBehaviour:
   Item: 0
   Name: Main hall
   owner: 0
-  Usable: 0
+  Usable: 3
   UsableWith: 0
+  openStatus: 2
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -19772,6 +20056,8 @@ MonoBehaviour:
   owner: 0
   Usable: 3
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -20083,6 +20369,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -21435,11 +21723,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7faf4481f2b6efb4ea5de3533a35eeb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: 0
+  Item: 22
   Name: Dungeon Exit
   owner: 0
-  Usable: 6
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 3
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -21819,8 +22109,10 @@ MonoBehaviour:
   Item: 0
   Name: Power box
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -22271,8 +22563,10 @@ MonoBehaviour:
   Item: 0
   Name: Corridor
   owner: 0
-  Usable: 0
+  Usable: 3
   UsableWith: 0
+  openStatus: 2
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -24450,6 +24744,8 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -25075,8 +25371,10 @@ MonoBehaviour:
   Item: 0
   Name: Upstairs corridor
   owner: 0
-  Usable: 0
+  Usable: 3
   UsableWith: 0
+  openStatus: 2
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -25806,8 +26104,10 @@ MonoBehaviour:
   Item: 0
   Name: Door
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -26571,6 +26871,8 @@ MonoBehaviour:
   owner: 0
   Usable: 1
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 2
   Description: Batteries
@@ -26951,6 +27253,8 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -27537,8 +27841,10 @@ MonoBehaviour:
   Item: 0
   Name: 
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -27608,7 +27914,7 @@ SpriteRenderer:
   m_SortingLayerID: -1934202997
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3129323649542365602, guid: 9e8232230d01f7c4a8ad6b1dc879da54, type: 3}
+  m_Sprite: {fileID: 4759855823721518114, guid: 9e8232230d01f7c4a8ad6b1dc879da54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -27841,6 +28147,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 2
   Description: "The liquid that was inside \ndripped under the grate."
@@ -28388,6 +28696,8 @@ MonoBehaviour:
   owner: 0
   Usable: 1
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 2
   Description: Contains added sugar and vitamins.
@@ -28764,6 +29074,8 @@ MonoBehaviour:
   owner: 0
   Usable: 3
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -28818,7 +29130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800636878}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0.006, y: -0.305, z: 0}
+  m_LocalPosition: {x: -0.002, y: -0.352, z: 0.42}
   m_LocalScale: {x: 0.008546796, y: 0.011646415, z: 0.2940294}
   m_Children: []
   m_Father: {fileID: 1754126205}
@@ -30100,7 +30412,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1072545337}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &846863395
 SpriteRenderer:
@@ -31912,6 +32224,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -32684,7 +32998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.039215688}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -34237,7 +34551,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1072545337}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &975824771
 SpriteRenderer:
@@ -34416,6 +34730,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -36003,6 +36319,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -36211,8 +36529,10 @@ MonoBehaviour:
   Item: 0
   Name: Ed's Room
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -38065,12 +38385,12 @@ Transform:
   m_LocalPosition: {x: 20, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 117430039}
   - {fileID: 296832017}
   - {fileID: 281943057}
   - {fileID: 975824770}
   - {fileID: 846863394}
   - {fileID: 477730593}
-  - {fileID: 117430039}
   - {fileID: 1413450993}
   - {fileID: 810068548}
   - {fileID: 1607397061}
@@ -38437,6 +38757,8 @@ MonoBehaviour:
   owner: 0
   Usable: 3
   UsableWith: 0
+  openStatus: 2
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -38908,8 +39230,10 @@ MonoBehaviour:
   Item: 0
   Name: Door to Dungeon
   owner: 0
-  Usable: 8
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 3
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -40156,6 +40480,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -40599,6 +40925,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -42366,6 +42694,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 2
   Description: 
@@ -42902,6 +43232,8 @@ MonoBehaviour:
   owner: 0
   Usable: 1
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 2
   Description: 'A cute little hamster.
@@ -43934,6 +44266,8 @@ MonoBehaviour:
   owner: 0
   Usable: 1
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 2
   Description: Stinky cheese
@@ -44227,6 +44561,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -44978,6 +45314,8 @@ MonoBehaviour:
   owner: 0
   Usable: 3
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -45153,6 +45491,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -46274,6 +46614,8 @@ MonoBehaviour:
   owner: 0
   Usable: 1
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 2
   Description: 
@@ -47817,8 +48159,10 @@ MonoBehaviour:
   Item: 0
   Name: Upstairs
   owner: 0
-  Usable: 0
+  Usable: 3
   UsableWith: 0
+  openStatus: 2
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -47950,6 +48294,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -48158,6 +48504,8 @@ MonoBehaviour:
   owner: 0
   Usable: 4
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -50451,6 +50799,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -52141,6 +52491,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -53296,8 +53648,10 @@ MonoBehaviour:
   Item: 8
   Name: Doormat
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 0
   Description: 'A doormat.
@@ -53667,8 +54021,10 @@ MonoBehaviour:
   Item: 0
   Name: Upstairs
   owner: 0
-  Usable: 0
+  Usable: 3
   UsableWith: 0
+  openStatus: 2
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -57810,6 +58166,8 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -58869,8 +59227,10 @@ MonoBehaviour:
   Item: 0
   Name: 
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -59172,6 +59532,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -59638,7 +60000,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630635145}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -0.31, y: -2.85, z: -0.03}
+  m_LocalPosition: {x: -0.469, y: -3.183, z: 0.303}
   m_LocalScale: {x: 0.049642358, y: 0.029661363, z: 0.7488408}
   m_Children: []
   m_Father: {fileID: 1729243147}
@@ -61282,6 +61644,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 1
   Description: 'It is a grave.
@@ -63147,15 +63511,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729243146}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.84, y: -0.18, z: 0}
+  m_LocalPosition: {x: -11.505, y: 0.175, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1630635146}
   m_Father: {fileID: 1940318745}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &1729243148
-PolygonCollider2D:
+--- !u!61 &1729243148
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -63167,22 +63531,19 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -1.0795975, y: 0.26137543}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.75, y: 6.875}
+    oldSize: {x: 3.75, y: 6.5625}
     newSize: {x: 2.5, y: 5.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.3438187, y: 2.7719135}
-      - {x: 1.2839127, y: -2.9559937}
-      - {x: 0.058135986, y: -1.9571877}
-      - {x: 0.05582428, y: 3.4157314}
+  serializedVersion: 2
+  m_Size: {x: 1.590805, y: 6.039749}
+  m_EdgeRadius: 0
 --- !u!114 &1729243149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63196,19 +63557,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: 0
-  Name: 
+  Name: To diner room
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
-  openImage: {fileID: -3129323649542365602, guid: 9e8232230d01f7c4a8ad6b1dc879da54, type: 3}
-  closeImage: {fileID: 4759855823721518114, guid: 9e8232230d01f7c4a8ad6b1dc879da54, type: 3}
+  openImage: {fileID: -5238868794693163589, guid: b76a5d35602072e47948b5f26a14cd39, type: 3}
+  closeImage: {fileID: -3737868088585055995, guid: b76a5d35602072e47948b5f26a14cd39, type: 3}
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -204.53, y: 16.769999}
+  HotSpot: {x: -204.354, y: 16.792}
   dir: 1
   overColor:
     serializedVersion: 2
@@ -63269,7 +63632,7 @@ SpriteRenderer:
   m_SortingLayerID: -1934202997
   m_SortingLayer: -1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4759855823721518114, guid: 9e8232230d01f7c4a8ad6b1dc879da54, type: 3}
+  m_Sprite: {fileID: -3737868088585055995, guid: b76a5d35602072e47948b5f26a14cd39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -63697,6 +64060,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 1
   Description: Looks like a piece of rock
@@ -64392,6 +64757,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo
@@ -64400,7 +64767,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -197.31577, y: 17.68716}
+  HotSpot: {x: -197.36542, y: 17.264185}
   dir: 0
   overColor:
     serializedVersion: 2
@@ -65592,6 +65959,8 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -66710,6 +67079,8 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 'A grate that seems to go in the basement.
@@ -67504,6 +67875,8 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -68389,8 +68762,10 @@ MonoBehaviour:
   Item: 0
   Name: To the corridor
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
@@ -69624,6 +69999,8 @@ MonoBehaviour:
   owner: 0
   Usable: 3
   UsableWith: 0
+  openStatus: 2
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -69920,6 +70297,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 1
   Description: 'If found please return to the Louvre:
@@ -72801,6 +73180,8 @@ MonoBehaviour:
   owner: 0
   Usable: 4
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 0
   Description: 'A normal mailbox.
@@ -73712,8 +74093,10 @@ MonoBehaviour:
   Item: 20
   Name: Refrigerator
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
+  openStatus: 1
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 0
   Description: 
@@ -75702,6 +76085,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 1
   Description: 'I am impressed by the impression
@@ -75928,6 +76313,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 1
   Description: It is gooey and sticky.
@@ -76292,6 +76679,8 @@ MonoBehaviour:
   owner: 0
   Usable: 3
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 3
   Description: 
@@ -76956,6 +77345,8 @@ MonoBehaviour:
   owner: 0
   Usable: 1
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 2
   Description: A flashlight
@@ -77650,6 +78041,8 @@ MonoBehaviour:
   owner: 0
   Usable: 0
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 1
   Description: This door is not available in the demo.
@@ -78093,6 +78486,8 @@ MonoBehaviour:
   owner: 0
   Usable: 4
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 0
   Description: 
@@ -79097,6 +79492,8 @@ MonoBehaviour:
   owner: 0
   Usable: 1
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 2
   Description: 
@@ -80365,6 +80762,8 @@ MonoBehaviour:
   owner: 0
   Usable: 2
   UsableWith: 0
+  openStatus: 0
+  lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 1
   Description: 'This is the Maniac Mansion.

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b76a5d35602072e47948b5f26a14cd39
+guid: f76a7844d1053d74ebf778ac56b79137
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: -5238868794693163589
     second: Service Door_1
+  - first:
+      213: -5555467808339667126
+    second: Service Door external_0
+  - first:
+      213: 7657664043163678939
+    second: Service Door external_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -107,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Service Door_0
+      name: Service Door external_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 240
-        height: 420
+        width: 380
+        height: 380
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +127,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5019e9a07cc602cc0800000000000000
-      internalID: -3737868088585055995
+      spriteID: a47dbc2667307e2b0800000000000000
+      internalID: -5555467808339667126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Service Door_1
+      name: Service Door external_1
       rect:
         serializedVersion: 2
-        x: 240
+        x: 380
         y: 0
-        width: 240
-        height: 420
+        width: 380
+        height: 380
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,8 +148,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb56f63869ccb47b0800000000000000
-      internalID: -5238868794693163589
+      spriteID: bd87d0e00ec754a60800000000000000
+      internalID: 7657664043163678939
       vertices: []
       indices: 
       edges: []

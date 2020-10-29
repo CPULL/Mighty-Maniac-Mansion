@@ -253,9 +253,9 @@ public class GameAction {
         char ov = (sv.ToLowerInvariant()+"X")[0];
         switch(ov) {
           case 'o': val = 0; break; // Open
-          case 'c': val = 1; break; // Open
-          case 'l': val = 2; break; // Open
-          case 'u': val = 3; break; // Open
+          case 'c': val = 1; break; // Close
+          case 'l': val = 2; break; // Lock
+          case 'u': val = 3; break; // Unlock
           default: Debug.LogError("Unknown Open/Close/Lock/Unlock for " + (ItemEnum)id1); break;
         }
       }
