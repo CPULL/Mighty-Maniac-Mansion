@@ -183,6 +183,7 @@ public enum CutsceneID {
 
 }
 
+[System.Serializable]
 public class PressAction {
   public Actor actor;
   public GameFlag flag;

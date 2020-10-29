@@ -1,9 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
-Have "light off" for room (and whole game)
 Have actors to get light off shader when in a room without lights
-
 
 
 How to have the cutscene running but in background?
@@ -187,5 +185,7 @@ Jeff
 ! improved the pathfinding
 ! Fixed the walking on doors problem
 ! Fixed Ed internal door
+! Have "light off" for room (and whole game)
+
 
 

@@ -267,10 +267,8 @@ public class Controller : MonoBehaviour {
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Walk) || (rmb && overItem.whatItDoesR == WhatItDoes.Walk)) { /* walk */
           if (aDoor == null) {
             WalkAndAction(currentActor, overItem, null);
-            Debug.Log("walk no door");
           }
           else {
-            Debug.Log("Door walking " + aDoor.name);
             WalkAndAction(currentActor, aDoor,
               new System.Action<Actor, Item>((actor, item) => {
                 if (item.Usable == Tstatus.OpenableLocked || item.Usable == Tstatus.OpenableLockedAutolock) {
@@ -859,6 +857,13 @@ public class Controller : MonoBehaviour {
     }
   }
 
+  public static void RemovePressAction(Actor a) {
+    if (GD.c.pressActions[0].actor == a)  GD.c.pressActions[0].Reset(a);
+    if (GD.c.pressActions[1].actor == a)  GD.c.pressActions[1].Reset(a);
+    if (GD.c.pressActions[2].actor == a)  GD.c.pressActions[2].Reset(a);
+  }
+
+
   internal static void SelectActor(Actor actor) {
     if (GD.status != GameStatus.NormalGamePlay) return;
 
@@ -968,6 +973,7 @@ public class Controller : MonoBehaviour {
       PathNode p = hit.collider.GetComponent<PathNode>();
       currentActor.SetScaleAndPosition(door.correspondingDoor.HotSpot, p);
     }
+    currentRoom.UpdateLights();
     yield return null;
 
     while (time < .25f) {
@@ -993,7 +999,7 @@ public class Controller : MonoBehaviour {
       a.gameObject.SetActive(a.currentRoom == currentRoom);
     }
 
-    // Enable gmaeplay
+    // Enable gameplay
     GD.status = GameStatus.NormalGamePlay;
     forcedCursor = CursorTypes.None;
     overItem = null;

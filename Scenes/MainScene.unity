@@ -7408,7 +7408,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211913646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.13, y: 0.9904194, z: 0}
+  m_LocalPosition: {x: 8.0959, y: 0.984, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1346548449}
@@ -7428,18 +7428,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.080513}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.8125, y: 4.625}
-    newSize: {x: 2.8125, y: 4.625}
+    oldSize: {x: 2.75, y: 4.75}
+    newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8125, y: 4.625}
+  m_Size: {x: 2.75, y: 4.588974}
   m_EdgeRadius: 0
 --- !u!114 &211913649
 MonoBehaviour:
@@ -7461,9 +7461,9 @@ MonoBehaviour:
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
-  openImage: {fileID: 0}
-  closeImage: {fileID: 0}
-  lockImage: {fileID: 0}
+  openImage: {fileID: 3153021203217893542, guid: b78e7d2dfc0f0454f861e16b61d5bacb, type: 3}
+  closeImage: {fileID: -5913385373530494366, guid: b78e7d2dfc0f0454f861e16b61d5bacb, type: 3}
+  lockImage: {fileID: -5913385373530494366, guid: b78e7d2dfc0f0454f861e16b61d5bacb, type: 3}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
   HotSpot: {x: -41.87, y: 18.630419}
@@ -7477,9 +7477,9 @@ MonoBehaviour:
   actions: []
   sr: {fileID: 0}
   src: {fileID: 1158860359}
-  dst: {fileID: 0}
-  camerapos: {x: 0, y: 0, z: 0}
-  correspondingDoor: {fileID: 0}
+  dst: {fileID: 677760569}
+  camerapos: {x: -37, y: 11, z: -10}
+  correspondingDoor: {fileID: 1309912225}
   transition: 0
   arrivalDirection: 0
   OpenSound: {fileID: 0}
@@ -7527,15 +7527,15 @@ SpriteRenderer:
   m_SortingLayerID: -1934202997
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -5913385373530494366, guid: b78e7d2dfc0f0454f861e16b61d5bacb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.8125, y: 4.625}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &211990111
@@ -7745,7 +7745,7 @@ MonoBehaviour:
   male: 1
   Description: <b>Ollie</b> todo...
   TentacleSteps: {fileID: 0}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &211990116
 Animator:
@@ -10243,7 +10243,7 @@ MonoBehaviour:
   male: 1
   Description: 
   TentacleSteps: {fileID: 0}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &301252753
 Animator:
@@ -18529,7 +18529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.62, y: 10, z: -10}
+  m_LocalPosition: {x: -37, y: 11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -23619,8 +23619,8 @@ MonoBehaviour:
   RoomName: Basement
   minL: -64.9
   maxR: -36
-  minY: 6.1
-  maxY: 7.6
+  minY: 6.88
+  maxY: 8.4
   scalePerc: 1.4
   CameraGround: 11
   external: 0
@@ -34893,6 +34893,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  pressActions:
+  - actor: {fileID: 0}
+    flag: 0
+    item: {fileID: 0}
+    previous: 0
+  - actor: {fileID: 0}
+    flag: 0
+    item: {fileID: 0}
+    previous: 0
+  - actor: {fileID: 0}
+    flag: 0
+    item: {fileID: 0}
+    previous: 0
   currentRoom: {fileID: 0}
   options: {fileID: 1590990658}
   TextMsg: {fileID: 1516758395}
@@ -39441,7 +39454,7 @@ MonoBehaviour:
   scalePerc: 1.2
   CameraGround: 2
   external: 1
-  lights: 0
+  lights: 1
 --- !u!82 &1117025436
 AudioSource:
   m_ObjectHideFlags: 0
@@ -48960,7 +48973,7 @@ MonoBehaviour:
 
     She relaxes preparing food and petting her animals.'
   TentacleSteps: {fileID: 0}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &1347792469
 Animator:
@@ -50019,7 +50032,7 @@ MonoBehaviour:
     He is a nerd who specializes in fixing electronics.
     He lacks guts and is easily terrified.'
   TentacleSteps: {fileID: 0}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!82 &1379030971
 AudioSource:
@@ -52004,7 +52017,7 @@ MonoBehaviour:
   scalePerc: 1.1
   CameraGround: 2
   external: 1
-  lights: 0
+  lights: 1
 --- !u!1 &1437637026
 GameObject:
   m_ObjectHideFlags: 0
@@ -54734,7 +54747,7 @@ MonoBehaviour:
     has no specific skills, but has good charisma and can prepare some delicious
     food."
   TentacleSteps: {fileID: 0}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &1532743335
 Animator:
@@ -55091,7 +55104,7 @@ MonoBehaviour:
     Some
     of her dialogue hints that she is into sado-masochism and obscene phone calls.'
   TentacleSteps: {fileID: 0}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &1533143415
 Animator:
@@ -57750,7 +57763,7 @@ MonoBehaviour:
       sv: 
       bv: 0
       msg: 
-      when: 0
+      when: 1
     Action:
       running: 0
       msg: 
@@ -63436,7 +63449,7 @@ MonoBehaviour:
     His dream is to achieve success with
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &1730974554
 Animator:
@@ -63898,7 +63911,7 @@ MonoBehaviour:
   male: 0
   Description: <b>Sandy</b> todo...
   TentacleSteps: {fileID: 0}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &1744431311
 Animator:
@@ -65231,7 +65244,7 @@ MonoBehaviour:
     He goes to the gym pretty
     much all the time.'
   TentacleSteps: {fileID: 0}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &1770484596
 Animator:
@@ -65699,7 +65712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785264450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.602, y: 7.38, z: 0}
+  m_LocalPosition: {x: -29.258, y: 6.958, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 890794759}
@@ -65884,7 +65897,7 @@ MonoBehaviour:
     He also has a good knowledge of physical and electronic
     things, and can build, fix, and use pretty much all the things.'
   TentacleSteps: {fileID: 0}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &1785264455
 Animator:
@@ -70312,7 +70325,7 @@ MonoBehaviour:
     He
     will send you to the dungeon if he catches you.'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
-  light: 0
+  lightIsOn: 0
   behaviors: []
 --- !u!95 &1918416704
 Animator:

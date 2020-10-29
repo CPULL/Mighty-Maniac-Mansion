@@ -62,4 +62,11 @@ public class Room : MonoBehaviour {
     foreach (Actor a in GD.c.allActors)
       if (a != null && a.currentRoom == this) a.SetLight(lights);
   }
+
+  internal void UpdateLights() {
+    foreach (SpriteRenderer sr in srs)
+      sr.material = lights ? GD.Normal() : GD.LightOffRoom();
+    foreach (Actor a in GD.c.allActors)
+      if (a != null && a.currentRoom == this) a.SetLight(lights);
+  }
 }

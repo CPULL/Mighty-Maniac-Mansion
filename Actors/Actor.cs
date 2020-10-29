@@ -34,7 +34,7 @@ public class Actor : MonoBehaviour {
   public AudioClip TentacleSteps;
   float blockMinX = -float.MaxValue;
   float blockMaxX = float.MaxValue;
-  public bool light;
+  public bool lightIsOn;
 
   public List<GameScene> behaviors;
 
@@ -60,6 +60,7 @@ public class Actor : MonoBehaviour {
 
     isTentacle = id == Chars.GreenTentacle || id == Chars.PurpleTentacle || id == Chars.BlueTentacle;
     if (isTentacle) audios.clip = TentacleSteps;
+    lightIsOn = true;
 
     if (currentRoom != null) {
       Vector3 startpos = new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY + currentRoom.minY) / 2, 0);
@@ -67,6 +68,7 @@ public class Actor : MonoBehaviour {
         SetScaleAndPosition(startpos);
       else
         SetScaleAndPosition(transform.position);
+      lightIsOn = currentRoom.lights;
     }
 
     idle = id.ToString() + " Idle";
@@ -128,23 +130,24 @@ public class Actor : MonoBehaviour {
 
   void OnMouseEnter() {
     Controller.OverActor(this);
-    Face.material = light ? GD.Outline() : GD.LightOffOutline();
-    Arms.material = light ? GD.Outline() : GD.LightOffOutline();
-    Legs.material = light ? GD.Outline() : GD.LightOffOutline();
+    Face.material = lightIsOn ? GD.Outline() : GD.LightOffOutline();
+    Arms.material = lightIsOn ? GD.Outline() : GD.LightOffOutline();
+    Legs.material = lightIsOn ? GD.Outline() : GD.LightOffOutline();
   }
 
   void OnMouseExit() {
     Controller.OverActor(null);
-    Face.material = light ? GD.Normal() : GD.LightOff();
-    Arms.material = light ? GD.Normal() : GD.LightOff();
-    Legs.material = light ? GD.Normal() : GD.LightOff();
+    Face.material = lightIsOn ? GD.Normal() : GD.LightOff();
+    Arms.material = lightIsOn ? GD.Normal() : GD.LightOff();
+    Legs.material = lightIsOn ? GD.Normal() : GD.LightOff();
   }
 
   public void SetLight(bool lights) {
-    light = lights;
-    Face.material = light ? GD.Normal() : GD.LightOff();
-    Arms.material = light ? GD.Normal() : GD.LightOff();
-    Legs.material = light ? GD.Normal() : GD.LightOff();
+    Debug.LogError("Lights!");
+    lightIsOn = lights;
+    Face.material = lightIsOn ? GD.Normal() : GD.LightOff();
+    Arms.material = lightIsOn ? GD.Normal() : GD.LightOff();
+    Legs.material = lightIsOn ? GD.Normal() : GD.LightOff();
   }
 
   public void Stop() {
@@ -190,6 +193,7 @@ public class Actor : MonoBehaviour {
 
 
   internal bool WalkTo(Transform destActor, Dir side, GameAction action) { // FOLLOWER *********************************
+    Controller.RemovePressAction(this);
     followed = destActor;
     followSide = side;
 
@@ -226,6 +230,7 @@ public class Actor : MonoBehaviour {
   }
 
   internal void WalkToFollower(Vector2 dest, PathNode p) { // DESTINATION of the FOLLOWER *******************************
+    Controller.RemovePressAction(this);
     if (dest.x < blockMinX) dest.x = blockMinX;
     if (dest.x > blockMaxX) dest.x = blockMaxX;
 
@@ -267,6 +272,7 @@ public class Actor : MonoBehaviour {
   internal void WalkTo(Vector2 dest, PathNode p, System.Action<Actor, Item> action = null, Item item = null) { // DESTINATION *******************************
     if (callBack != null && walking != WalkingMode.None) return;
 
+    Controller.RemovePressAction(this);
     if (dest.x < blockMinX) dest.x = blockMinX;
     if (dest.x > blockMaxX) dest.x = blockMaxX;
 

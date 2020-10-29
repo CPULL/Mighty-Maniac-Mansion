@@ -249,12 +249,12 @@ public class Item : GameItem {
 
   internal void SetOpeningStatus(int val) {
     switch (val) {
-      case 0: Usable = Tstatus.OpenableOpen; break;
-      case 1: Usable = Tstatus.OpenableClosed; break;
-      case 2: Usable = Tstatus.OpenableLocked; break;
-      case 3: Usable = Tstatus.OpenableLockedAutolock; break;
-      case 4: Usable = Tstatus.OpenableOpenAutolock; break;
-      case 5: Usable = Tstatus.OpenableClosedAutolock; break;
+      case 0: Usable = Tstatus.OpenableOpen; ForceOpen(true); break;
+      case 1: Usable = Tstatus.OpenableClosed; ForceOpen(false); break;
+      case 2: Usable = Tstatus.OpenableLocked; ForceLock(true); break;
+      case 3: Usable = Tstatus.OpenableLockedAutolock; ForceLock(true); break;
+      case 4: Usable = Tstatus.OpenableOpenAutolock; ForceOpen(true); break;
+      case 5: Usable = Tstatus.OpenableClosedAutolock; ForceOpen(false); ForceLock(true); break;
     }
   }
 
