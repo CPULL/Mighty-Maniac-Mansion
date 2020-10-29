@@ -143,7 +143,6 @@ public class Actor : MonoBehaviour {
   }
 
   public void SetLight(bool lights) {
-    Debug.LogError("Lights!");
     lightIsOn = lights;
     Face.material = lightIsOn ? GD.Normal() : GD.LightOff();
     Arms.material = lightIsOn ? GD.Normal() : GD.LightOff();

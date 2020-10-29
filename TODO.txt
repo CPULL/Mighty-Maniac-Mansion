@@ -1,6 +1,6 @@
 === Mighty Maniac Mansion ===
 
-
+A door may not need to be locked if the other side is locked (front door, basement door)
 
 
 How to have the cutscene running but in background?
@@ -188,5 +188,6 @@ Jeff
 ! Have "light off" for room (and whole game)
 ! Points are not disabled
 ! Have actors to get light off shader when in a room without lights
+! Avoid to select items if we click on actors
 
 

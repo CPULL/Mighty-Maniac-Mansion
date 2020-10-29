@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using SimpleJSON;
 
 public class Controller : MonoBehaviour {
   [HideInInspector] public Camera cam;
@@ -20,6 +19,7 @@ public class Controller : MonoBehaviour {
   }
 
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
+
   void Update() {
     if (Options.IsActive()) return;
     if (GD.status == GameStatus.StartGame) {
@@ -107,19 +107,20 @@ public class Controller : MonoBehaviour {
 
     if (GD.status != GameStatus.NormalGamePlay) return;
 
+
     #region Mouse control
+    bool notOverUI = !EventSystem.current.IsPointerOverGameObject();
     bool lmb = Input.GetMouseButtonDown(0);
     bool rmb = Input.GetMouseButtonDown(1);
 
 
     Door aDoor = null;
-    if ((lmb || rmb) && walkDelay < 0) { // Check if we have a door
+    if ((lmb || rmb) && walkDelay < 0 && notOverUI) { // Check if we have a door
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 10000, doorLayer);
       if (hit.collider != null && hit.collider.gameObject != null) {
         Door d = hit.collider.gameObject.GetComponent<Door>();
         if (d != null) {
           aDoor = d;
-          Dbg(d.name);
         }
         Item i = hit.collider.gameObject.GetComponent<Item>();
         if (i != null) {
@@ -129,7 +130,7 @@ public class Controller : MonoBehaviour {
     }
 
     walkDelay -= Time.deltaTime;
-    if (Input.GetMouseButton(0) && currentActor.IsWalking() && walkDelay < 0) {
+    if (notOverUI && Input.GetMouseButton(0) && currentActor.IsWalking() && walkDelay < 0) {
       walkDelay = .25f;
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
@@ -201,7 +202,7 @@ public class Controller : MonoBehaviour {
       }
 
     }
-    else if (overItem != null) {
+    else if (notOverUI && overItem != null) {
       if (usedItem == overItem) { // Not possible
       }
       else if (usedItem == null) {
@@ -303,7 +304,7 @@ public class Controller : MonoBehaviour {
         }
       }
     }
-    else {
+    else if (notOverUI) {
       if (lmb) {
         if (!currentActor.IsWalking()) { /* lmb - walk */
           if (aDoor != null) {
@@ -338,7 +339,7 @@ public class Controller : MonoBehaviour {
     }
 
 
-    if (overActor != null) {
+    if (notOverUI && overActor != null) {
       if (rmb && usedItem != null) {
         if (currentActor == overActor) return;
         receiverActor = overActor;
@@ -589,6 +590,7 @@ public class Controller : MonoBehaviour {
       if (GD.c.TextMsg.text != "") GD.c.HideName();
       return;
     }
+
     if (item.owner != Chars.None) {
       GD.c.overItem = item;
       return;
