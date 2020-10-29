@@ -9,6 +9,8 @@ public class AllObjects : MonoBehaviour {
   public List<GameScene> cutscenes;
   public List<GameScene> runningCutscenes;
 
+  public static IEnumerable<Room> roomList { get { return GD.a.roomsList; } }
+
   private void Awake() {
     GD.a = this;
 
@@ -151,9 +153,6 @@ public enum GameFlag {
   PowerIsDown,
   PackageIsDeliveredStamps,
   EdnaBrowsingFridge,
-}
-public enum FlagValueOLD {
-  Yes, No, NA
 }
 
 public class FlagStatus {

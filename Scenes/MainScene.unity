@@ -3545,7 +3545,7 @@ GameObject:
   - component: {fileID: 98506184}
   - component: {fileID: 98506183}
   - component: {fileID: 98506182}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Green Puddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3569,8 +3569,8 @@ MonoBehaviour:
   right: {fileID: 2011860436}
   top: {fileID: 0}
   down: {fileID: 0}
-  tl: {x: -62.784073, y: 8.202898}
-  tr: {x: -59.784073, y: 8.202898}
+  tl: {x: -63.322224, y: 7.7544355}
+  tr: {x: -59.981396, y: 7.70062}
   br: {x: -60.979668, y: 6.710868}
   bl: {x: -63.979668, y: 6.710868}
   parent: {fileID: 100199722}
@@ -3604,8 +3604,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.784073, y: -2.797102}
-      - {x: -9.784073, y: -2.797102}
+    - - {x: -13.322224, y: -3.2455645}
+      - {x: -9.981396, y: -3.2993798}
       - {x: -10.979668, y: -4.289132}
       - {x: -13.979668, y: -4.289132}
 --- !u!4 &98506184
@@ -3707,7 +3707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100199721}
   - component: {fileID: 100199722}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7039,6 +7039,8 @@ MonoBehaviour:
   maxY: 7.6
   scalePerc: 1.4
   CameraGround: 10
+  external: 0
+  lights: 1
 --- !u!82 &202005219
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7734,8 +7736,6 @@ MonoBehaviour:
   Face: {fileID: 1576624832}
   Arms: {fileID: 1920150017}
   Legs: {fileID: 1547144315}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 0}
   actorSpeed: 4
   inventory: []
@@ -7745,6 +7745,7 @@ MonoBehaviour:
   male: 1
   Description: <b>Ollie</b> todo...
   TentacleSteps: {fileID: 0}
+  light: 0
   behaviors: []
 --- !u!95 &211990116
 Animator:
@@ -10100,7 +10101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299942024}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.126, y: -2.476, z: 0}
+  m_LocalPosition: {x: 0.126, y: -3.108, z: 0}
   m_LocalScale: {x: 0.14977999, y: 0.10014, z: 1}
   m_Children: []
   m_Father: {fileID: 1783811656}
@@ -10233,8 +10234,6 @@ MonoBehaviour:
   Face: {fileID: 119290669}
   Arms: {fileID: 1579272506}
   Legs: {fileID: 1235580344}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 718837450}
   actorSpeed: 4
   inventory: []
@@ -10244,6 +10243,7 @@ MonoBehaviour:
   male: 1
   Description: 
   TentacleSteps: {fileID: 0}
+  light: 0
   behaviors: []
 --- !u!95 &301252753
 Animator:
@@ -14611,6 +14611,8 @@ MonoBehaviour:
   maxY: 23
   scalePerc: 1.4
   CameraGround: 20
+  external: 0
+  lights: 1
 --- !u!1 &429199945
 GameObject:
   m_ObjectHideFlags: 0
@@ -15296,6 +15298,8 @@ MonoBehaviour:
   maxY: 30
   scalePerc: 1.25
   CameraGround: 30
+  external: 0
+  lights: 1
 --- !u!1 &452136530
 GameObject:
   m_ObjectHideFlags: 0
@@ -17546,7 +17550,7 @@ GameObject:
   - component: {fileID: 500628549}
   - component: {fileID: 500628548}
   - component: {fileID: 500628547}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Connecting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17571,7 +17575,7 @@ MonoBehaviour:
   top: {fileID: 0}
   down: {fileID: 0}
   tl: {x: -64.521645, y: 7.972131}
-  tr: {x: -62.784073, y: 8.202898}
+  tr: {x: -63.322224, y: 7.7544355}
   br: {x: -63.979668, y: 6.710868}
   bl: {x: -66.97967, y: 6.710868}
   parent: {fileID: 100199722}
@@ -17606,7 +17610,7 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -14.521645, y: -3.0278692}
-      - {x: -12.784073, y: -2.797102}
+      - {x: -13.322224, y: -3.2455645}
       - {x: -13.979668, y: -4.289132}
       - {x: -16.979668, y: -4.289132}
 --- !u!4 &500628549
@@ -18346,6 +18350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb4e1f6660837a449d3d545161666cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MatNormal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
+  MatOutline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
+  MatLightOff: {fileID: 2100000, guid: 38eeae0e18c17ee489ca0a0f48dd0571, type: 2}
+  MatLightOffOutline: {fileID: 2100000, guid: 4a1d77a3edf39184b8d1440f0eb36d8d, type: 2}
+  MatLightOffRoom: {fileID: 2100000, guid: 2f98f6505adfa964180e6d8533a31655, type: 2}
   restartFrom: 0
 --- !u!4 &514626085
 Transform:
@@ -18520,7 +18529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.45, y: 10, z: -10}
+  m_LocalPosition: {x: -37.62, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -23614,6 +23623,8 @@ MonoBehaviour:
   maxY: 7.6
   scalePerc: 1.4
   CameraGround: 11
+  external: 0
+  lights: 1
 --- !u!1 &683118583
 GameObject:
   m_ObjectHideFlags: 0
@@ -25203,6 +25214,8 @@ MonoBehaviour:
   maxY: 94
   scalePerc: 1.15
   CameraGround: 90
+  external: 0
+  lights: 1
 --- !u!1 &721397398
 GameObject:
   m_ObjectHideFlags: 0
@@ -25912,7 +25925,7 @@ GameObject:
   - component: {fileID: 737791693}
   - component: {fileID: 737791692}
   - component: {fileID: 737791691}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26088,7 +26101,7 @@ GameObject:
   - component: {fileID: 744367320}
   - component: {fileID: 744367319}
   - component: {fileID: 744367318}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26972,8 +26985,8 @@ MonoBehaviour:
       delay: 0
       id1: 0
       id2: 0
-      str: Upstairs
-      pos: {x: -50, y: 30}
+      str: Basement
+      pos: {x: -40, y: 11}
       dir: 0
       val: 0
   - Condition:
@@ -26993,8 +27006,8 @@ MonoBehaviour:
       delay: 0
       id1: 1
       id2: 0
-      str: Upstairs
-      pos: {x: -55, y: 26}
+      str: Basement
+      pos: {x: -33.75, y: 7.38}
       dir: 2
       val: 0
   sr: {fileID: 0}
@@ -28226,6 +28239,8 @@ MonoBehaviour:
   maxY: 23
   scalePerc: 1.4
   CameraGround: 19.8
+  external: 0
+  lights: 1
 --- !u!82 &791578440
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31117,7 +31132,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
+  - {fileID: 2100000, guid: 38eeae0e18c17ee489ca0a0f48dd0571, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38001,6 +38016,8 @@ MonoBehaviour:
   maxY: 49.8
   scalePerc: 1.25
   CameraGround: 50
+  external: 0
+  lights: 1
 --- !u!1 &1072714356
 GameObject:
   m_ObjectHideFlags: 0
@@ -39423,6 +39440,8 @@ MonoBehaviour:
   maxY: 2.07
   scalePerc: 1.2
   CameraGround: 2
+  external: 1
+  lights: 0
 --- !u!82 &1117025436
 AudioSource:
   m_ObjectHideFlags: 0
@@ -39680,7 +39699,7 @@ GameObject:
   - component: {fileID: 1119598552}
   - component: {fileID: 1119598551}
   - component: {fileID: 1119598550}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39883,7 +39902,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
+  - {fileID: 2100000, guid: 38eeae0e18c17ee489ca0a0f48dd0571, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -41625,6 +41644,8 @@ MonoBehaviour:
   maxY: 23
   scalePerc: 1.3
   CameraGround: 20
+  external: 0
+  lights: 1
 --- !u!1 &1160604577
 GameObject:
   m_ObjectHideFlags: 0
@@ -43504,7 +43525,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
+  - {fileID: 2100000, guid: 38eeae0e18c17ee489ca0a0f48dd0571, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48927,8 +48948,6 @@ MonoBehaviour:
   Face: {fileID: 1218445518}
   Arms: {fileID: 1949218617}
   Legs: {fileID: 1192351239}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 0}
   actorSpeed: 4
   inventory: []
@@ -48941,6 +48960,7 @@ MonoBehaviour:
 
     She relaxes preparing food and petting her animals.'
   TentacleSteps: {fileID: 0}
+  light: 0
   behaviors: []
 --- !u!95 &1347792469
 Animator:
@@ -49986,8 +50006,6 @@ MonoBehaviour:
   Face: {fileID: 471896663}
   Arms: {fileID: 1715637950}
   Legs: {fileID: 68083807}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 0}
   actorSpeed: 4
   inventory: []
@@ -50001,6 +50019,7 @@ MonoBehaviour:
     He is a nerd who specializes in fixing electronics.
     He lacks guts and is easily terrified.'
   TentacleSteps: {fileID: 0}
+  light: 0
   behaviors: []
 --- !u!82 &1379030971
 AudioSource:
@@ -51621,7 +51640,7 @@ GameObject:
   - component: {fileID: 1415340571}
   - component: {fileID: 1415340570}
   - component: {fileID: 1415340569}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ConnectingL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51984,6 +52003,8 @@ MonoBehaviour:
   maxY: 0.29
   scalePerc: 1.1
   CameraGround: 2
+  external: 1
+  lights: 0
 --- !u!1 &1437637026
 GameObject:
   m_ObjectHideFlags: 0
@@ -54702,8 +54723,6 @@ MonoBehaviour:
   Face: {fileID: 1773877622}
   Arms: {fileID: 1061004286}
   Legs: {fileID: 1794288173}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 0}
   actorSpeed: 4
   inventory: []
@@ -54715,6 +54734,7 @@ MonoBehaviour:
     has no specific skills, but has good charisma and can prepare some delicious
     food."
   TentacleSteps: {fileID: 0}
+  light: 0
   behaviors: []
 --- !u!95 &1532743335
 Animator:
@@ -55055,8 +55075,6 @@ MonoBehaviour:
   Face: {fileID: 1232501907}
   Arms: {fileID: 1924005229}
   Legs: {fileID: 1149741276}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 428433903}
   actorSpeed: 1.75
   inventory: []
@@ -55073,6 +55091,7 @@ MonoBehaviour:
     Some
     of her dialogue hints that she is into sado-masochism and obscene phone calls.'
   TentacleSteps: {fileID: 0}
+  light: 0
   behaviors: []
 --- !u!95 &1533143415
 Animator:
@@ -63400,8 +63419,6 @@ MonoBehaviour:
   Face: {fileID: 1416008851}
   Arms: {fileID: 1452544098}
   Legs: {fileID: 899791776}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 1072545338}
   actorSpeed: 1.25
   inventory: []
@@ -63419,6 +63436,7 @@ MonoBehaviour:
     His dream is to achieve success with
     his 8-bit retro music band, named "GT and the Suction Cups".'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
+  light: 0
   behaviors: []
 --- !u!95 &1730974554
 Animator:
@@ -63871,8 +63889,6 @@ MonoBehaviour:
   Face: {fileID: 393241799}
   Arms: {fileID: 610998382}
   Legs: {fileID: 1069438071}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 0}
   actorSpeed: 4
   inventory: []
@@ -63882,6 +63898,7 @@ MonoBehaviour:
   male: 0
   Description: <b>Sandy</b> todo...
   TentacleSteps: {fileID: 0}
+  light: 0
   behaviors: []
 --- !u!95 &1744431311
 Animator:
@@ -64001,7 +64018,7 @@ GameObject:
   - component: {fileID: 1753305330}
   - component: {fileID: 1753305329}
   - component: {fileID: 1753305328}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65199,8 +65216,6 @@ MonoBehaviour:
   Face: {fileID: 606547604}
   Arms: {fileID: 1515709753}
   Legs: {fileID: 1347533381}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 0}
   actorSpeed: 4
   inventory: []
@@ -65216,6 +65231,7 @@ MonoBehaviour:
     He goes to the gym pretty
     much all the time.'
   TentacleSteps: {fileID: 0}
+  light: 0
   behaviors: []
 --- !u!95 &1770484596
 Animator:
@@ -65422,9 +65438,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1783811656}
-  - component: {fileID: 1783811659}
   - component: {fileID: 1783811658}
   - component: {fileID: 1783811657}
+  - component: {fileID: 1783811659}
   m_Layer: 0
   m_Name: Switch
   m_TagString: Untagged
@@ -65440,8 +65456,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783811655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.126, y: -0.307, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 15.1227, y: -0.2603, z: 0}
+  m_LocalScale: {x: 0.7154243, y: 0.84399664, z: 1}
   m_Children:
   - {fileID: 299942025}
   m_Father: {fileID: 677760567}
@@ -65462,7 +65478,7 @@ MonoBehaviour:
   Item: 0
   Name: Light switch
   owner: 0
-  Usable: 0
+  Usable: 2
   UsableWith: 0
   whatItDoesL: 3
   whatItDoesR: 0
@@ -65472,15 +65488,36 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -34.748, y: 8.217}
+  HotSpot: {x: -34.787155, y: 8.116558}
   dir: 2
   overColor:
     serializedVersion: 2
-    rgba: 4278255615
+    rgba: 2516647935
   normalColor:
     serializedVersion: 2
     rgba: 16777215
-  actions: []
+  actions:
+  - Condition:
+      type: 0
+      id: 0
+      iv: 0
+      fv: 0
+      sv: 
+      bv: 0
+      msg: 
+      when: 1
+    Action:
+      running: 0
+      msg: 
+      type: 23
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: Basement
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &1783811658
 SpriteRenderer:
@@ -65546,7 +65583,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006998062, y: 0.04549694}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -65557,7 +65594,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48202896, y: 0.5590248}
+  m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
 --- !u!1 &1783862984
 GameObject:
@@ -65662,7 +65699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785264450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -44.52, y: 17.71, z: 0}
+  m_LocalPosition: {x: -29.602, y: 7.38, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 890794759}
@@ -65832,8 +65869,6 @@ MonoBehaviour:
   Face: {fileID: 1124099423}
   Arms: {fileID: 1199933527}
   Legs: {fileID: 890794760}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 0}
   actorSpeed: 4
   inventory: []
@@ -65849,6 +65884,7 @@ MonoBehaviour:
     He also has a good knowledge of physical and electronic
     things, and can build, fix, and use pretty much all the things.'
   TentacleSteps: {fileID: 0}
+  light: 0
   behaviors: []
 --- !u!95 &1785264455
 Animator:
@@ -66657,7 +66693,7 @@ GameObject:
   - component: {fileID: 1805149913}
   - component: {fileID: 1805149915}
   - component: {fileID: 1805149914}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Under box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70259,8 +70295,6 @@ MonoBehaviour:
   Face: {fileID: 1237755174}
   Arms: {fileID: 1381142173}
   Legs: {fileID: 2079029705}
-  Normal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
-  Outline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
   currentRoom: {fileID: 0}
   actorSpeed: 4
   inventory: []
@@ -70278,6 +70312,7 @@ MonoBehaviour:
     He
     will send you to the dungeon if he catches you.'
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
+  light: 0
   behaviors: []
 --- !u!95 &1918416704
 Animator:
@@ -71425,7 +71460,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71603,6 +71638,8 @@ MonoBehaviour:
   maxY: 23
   scalePerc: 1.4
   CameraGround: 19.8
+  external: 0
+  lights: 1
 --- !u!82 &1940318747
 AudioSource:
   m_ObjectHideFlags: 0
@@ -73006,6 +73043,7 @@ MonoBehaviour:
   - {fileID: 1940318746}
   - {fileID: 1072545338}
   - {fileID: 202005218}
+  - {fileID: 677760569}
   - {fileID: 2124229613}
   - {fileID: 718837450}
   cutscenes: []
@@ -74274,7 +74312,7 @@ GameObject:
   - component: {fileID: 1998816489}
   - component: {fileID: 1998816488}
   - component: {fileID: 1998816487}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stretch down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74362,7 +74400,7 @@ GameObject:
   - component: {fileID: 2003011590}
   - component: {fileID: 2003011589}
   - component: {fileID: 2003011588}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74932,7 +74970,7 @@ GameObject:
   - component: {fileID: 2011860438}
   - component: {fileID: 2011860437}
   - component: {fileID: 2011860436}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LongL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74956,7 +74994,7 @@ MonoBehaviour:
   right: {fileID: 737791691}
   top: {fileID: 0}
   down: {fileID: 0}
-  tl: {x: -59.784073, y: 8.202898}
+  tl: {x: -59.981396, y: 7.70062}
   tr: {x: -58.31799, y: 7.2255383}
   br: {x: -59.404987, y: 6.8058906}
   bl: {x: -60.979668, y: 6.710868}
@@ -74991,7 +75029,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -9.784073, y: -2.797102}
+    - - {x: -9.981396, y: -3.2993798}
       - {x: -8.317989, y: -3.7744617}
       - {x: -9.404987, y: -4.1941094}
       - {x: -10.979668, y: -4.289132}
@@ -76563,6 +76601,8 @@ MonoBehaviour:
   maxY: 30
   scalePerc: 1.25
   CameraGround: 30
+  external: 0
+  lights: 1
 --- !u!1 &2064402699
 GameObject:
   m_ObjectHideFlags: 0
@@ -77370,7 +77410,7 @@ GameObject:
   - component: {fileID: 2090767238}
   - component: {fileID: 2090767237}
   - component: {fileID: 2090767236}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Under door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79109,6 +79149,8 @@ MonoBehaviour:
   maxY: 69.8
   scalePerc: 1.25
   CameraGround: 70
+  external: 0
+  lights: 1
 --- !u!1 &2124792942
 GameObject:
   m_ObjectHideFlags: 0

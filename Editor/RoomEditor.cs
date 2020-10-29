@@ -2,11 +2,13 @@
 using UnityEngine;
 
 [CustomEditor(typeof(Room))]
+[CanEditMultipleObjects]
 public class RoomEditor : Editor {
   SerializedProperty ID, Name;
   SerializedProperty minL, maxR;
   SerializedProperty minY, maxY, scalePerc;
-  SerializedProperty CameraGround;
+  SerializedProperty CameraGround, external, lights;
+  SerializedProperty sr;
 
 
   void OnEnable() {
@@ -18,6 +20,9 @@ public class RoomEditor : Editor {
     maxY = serializedObject.FindProperty("maxY");
     scalePerc = serializedObject.FindProperty("scalePerc");
     CameraGround = serializedObject.FindProperty("CameraGround");
+    external = serializedObject.FindProperty("external");
+    lights = serializedObject.FindProperty("lights");
+    sr = serializedObject.FindProperty("sr");
   }
 
   public override void OnInspectorGUI() {
@@ -47,9 +52,15 @@ public class RoomEditor : Editor {
     EditorGUILayout.PropertyField(scalePerc, new GUIContent("Scale Perc"));
     EditorGUILayout.EndHorizontal();
 
+    EditorGUILayout.BeginHorizontal();
     EditorGUIUtility.labelWidth = 100;
     EditorGUILayout.PropertyField(CameraGround, new GUIContent("Camera Ground"));
+    EditorGUIUtility.labelWidth = 60;
+    EditorGUILayout.PropertyField(external, new GUIContent("Is external"));
+    EditorGUILayout.PropertyField(lights, new GUIContent("Lights"));
+    EditorGUILayout.EndHorizontal();
 
+    EditorGUILayout.BeginHorizontal();
     EditorGUILayout.Space();
     if (GUILayout.Button("Move camera here", GUILayout.Width(160))) {
       Vector3 pos = new Vector3((minL.floatValue + maxR.floatValue) / 2, CameraGround.floatValue, -10);
@@ -57,7 +68,7 @@ public class RoomEditor : Editor {
       SceneView.lastActiveSceneView.pivot = pos;
       SceneView.lastActiveSceneView.Repaint();
     }
-
+    EditorGUILayout.EndHorizontal();
 
   serializedObject.ApplyModifiedProperties();
     EditorGUIUtility.labelWidth = oldw;

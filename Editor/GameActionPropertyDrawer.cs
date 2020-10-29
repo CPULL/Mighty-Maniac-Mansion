@@ -62,6 +62,13 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         }
         break;
 
+
+        case ActionType.SwitchRoomLight: {
+          Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          str.stringValue = EditorGUI.TextField(aRect, str.stringValue);
+        }
+        break;
+
         case ActionType.Teleport: {
           Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
           Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);

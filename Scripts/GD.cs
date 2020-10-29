@@ -9,6 +9,11 @@ public class GD : MonoBehaviour {
   public static Chars actor2;
   public static Chars actor3;
   public static Chars kidnapped;
+  public Material MatNormal;
+  public Material MatOutline;
+  public Material MatLightOff;
+  public Material MatLightOffOutline;
+  public Material MatLightOffRoom;
 
   void Awake() {
     if (gs != null) {
@@ -20,6 +25,13 @@ public class GD : MonoBehaviour {
     DontDestroyOnLoad(this.gameObject);
   }
 
+
+
+  public static Material Normal() { return gs.MatNormal; }
+  public static Material Outline() { return gs.MatOutline; }
+  public static Material LightOff() { return gs.MatLightOff; }
+  public static Material LightOffOutline() { return gs.MatLightOffOutline; }
+  public static Material LightOffRoom() { return gs.MatLightOffRoom; }
 
 
   public static void Log(string s) {

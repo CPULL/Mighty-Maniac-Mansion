@@ -9,8 +9,6 @@ public class Actor : MonoBehaviour {
   public SpriteRenderer Face;
   public SpriteRenderer Arms;
   public SpriteRenderer Legs;
-  public Material Normal;
-  public Material Outline;
   public Room currentRoom;
   public float actorSpeed = 4f;
   Animator anim;
@@ -36,6 +34,7 @@ public class Actor : MonoBehaviour {
   public AudioClip TentacleSteps;
   float blockMinX = -float.MaxValue;
   float blockMaxX = float.MaxValue;
+  public bool light;
 
   public List<GameScene> behaviors;
 
@@ -129,16 +128,23 @@ public class Actor : MonoBehaviour {
 
   void OnMouseEnter() {
     Controller.OverActor(this);
-    Face.material = Outline;
-    Arms.material = Outline;
-    Legs.material = Outline;
+    Face.material = light ? GD.Outline() : GD.LightOffOutline();
+    Arms.material = light ? GD.Outline() : GD.LightOffOutline();
+    Legs.material = light ? GD.Outline() : GD.LightOffOutline();
   }
 
   void OnMouseExit() {
     Controller.OverActor(null);
-    Face.material = Normal;
-    Arms.material = Normal;
-    Legs.material = Normal;
+    Face.material = light ? GD.Normal() : GD.LightOff();
+    Arms.material = light ? GD.Normal() : GD.LightOff();
+    Legs.material = light ? GD.Normal() : GD.LightOff();
+  }
+
+  public void SetLight(bool lights) {
+    light = lights;
+    Face.material = light ? GD.Normal() : GD.LightOff();
+    Arms.material = light ? GD.Normal() : GD.LightOff();
+    Legs.material = light ? GD.Normal() : GD.LightOff();
   }
 
   public void Stop() {

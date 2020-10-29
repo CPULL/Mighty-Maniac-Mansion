@@ -32,6 +32,8 @@ public enum ActionType {
 
   PressAndFlag = 21, // Press an item and set a flag (until the actor moves away)
   PressAndItem = 22, // Press an item and set a door (until the actor moves away)
+
+  SwitchRoomLight = 23, // Turns on and off a light in a room (all rooms in case no room is specified)
 };
 
 
@@ -110,6 +112,8 @@ public class GameAction {
         if (val == 3) return "Press and Unlock " + (ItemEnum)id1;
       }
       break;
+
+      case ActionType.SwitchRoomLight: return "Switch lights on " + (string.IsNullOrEmpty(str) ? "Everywhere" : str);
     }
     return res;
   }
@@ -134,6 +138,7 @@ public class GameAction {
       case ActionType.SetFlag:
       case ActionType.CompleteStep:
       case ActionType.Wait:
+      case ActionType.SwitchRoomLight:
         return;
 
       case ActionType.Speak: {
@@ -691,6 +696,21 @@ public class GameAction {
           Complete();
       }
       break;
+
+      case ActionType.SwitchRoomLight: {
+        if (string.IsNullOrEmpty(str)) {
+          bool lightsOn = !AllObjects.GetRoom("MainHall").lights;
+          foreach (Room r in AllObjects.roomList) {
+            r.SetLights(lightsOn);
+          }
+        }
+        else {
+          Room r = AllObjects.GetRoom(str);
+          if (r != null) r.SetLights(!r.lights);
+        }
+      }
+      break;
+
 
       case ActionType.PressAndFlag: {
         int pos = 0;

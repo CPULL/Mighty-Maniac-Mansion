@@ -1,5 +1,12 @@
 === Mighty Maniac Mansion ===
 
+
+Have "light off" for room (and whole game)
+Have actors to get light off shader when in a room without lights
+
+
+
+How to have the cutscene running but in background?
 Fix Ed catch
 
 [demo] Draw Edna and do the "Check fridge" at start
