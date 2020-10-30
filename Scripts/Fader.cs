@@ -48,4 +48,13 @@ public class Fader : MonoBehaviour {
     }
     canvas.enabled = false;
   }
+
+  public static void RemoveFade() {
+    for (int i = 0; i < f.blocks.Length; i++) {
+      f.blocks[i].color = f.Transparent;
+    }
+    f.canvas.enabled = false;
+  }
+
+
 }

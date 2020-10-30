@@ -21,6 +21,8 @@ public class GameScene {
   public Chars mainChar;
   public List<Chars> participants;
 
+  public bool skippable = false;
+
   /*
    * Global condition:
    *    if switched to true, run the setup actions
@@ -174,8 +176,18 @@ public class GameScene {
     }
     else if (status == GameSceneStatus.Running) { // Run until we have actions and we are valid *********************************************************************************
       bool atLeastOne = false;
-      foreach (GameStep gs in steps)
-        atLeastOne |= gs.Run(this, performer, receiver);
+      skippable = false;
+      foreach (GameStep gs in steps) {
+        bool running = gs.Run(this, performer, receiver);
+        atLeastOne |= running;
+        if (running) {
+          if (gs.skippable)
+            skippable = true;
+          else {
+            Controller.sceneSkipped = false;
+          }
+        }
+      }
 
       if (!atLeastOne) {
         if (AllObjects.SceneRunningWithMe(this, mainChar)) {

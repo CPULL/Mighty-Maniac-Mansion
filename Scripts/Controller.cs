@@ -71,6 +71,7 @@ public class Controller : MonoBehaviour {
       if (!currentCutscene.Run(null, null)) { // Completed
         Debug.Log("Completed cutscene " + currentCutscene.ToString());
         currentCutscene = null;
+        sceneSkipped = false;
         GD.status = GameStatus.NormalGamePlay;
         forcedCursor = CursorTypes.None;
         oldCursor = null;
@@ -82,7 +83,7 @@ public class Controller : MonoBehaviour {
     #endregion
 
     #region Handle camera
-    if (CameraPanningInstance == null && currentCutscene == null) {
+    if (CameraPanningInstance == null && (currentCutscene == null || sceneSkipped)) {
       Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
       if (cam.transform.position.x < currentRoom.minL) {
         Vector3 p = cam.transform.position;
@@ -413,7 +414,9 @@ public class Controller : MonoBehaviour {
 
 
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
-    if (GD.status != GameStatus.NormalGamePlay || Options.IsActive()) return;
+    if (Options.IsActive()) return;
+    if (GD.status != GameStatus.NormalGamePlay && (GD.c.currentCutscene == null || !GD.c.currentCutscene.skippable)) return;
+
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == GD.c.ActorPortrait1) {
       SelectActor(GD.c.actor1);
@@ -504,12 +507,14 @@ public class Controller : MonoBehaviour {
 
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
   GameScene currentCutscene;
+  public static bool sceneSkipped = false;
 
   void StartIntroCutscene() {
     currentCutscene = AllObjects.GetCutscene(CutsceneID.Intro);
     forcedCursor = CursorTypes.Wait;
     oldCursor = null;
     GD.status = GameStatus.NormalGamePlay;
+    sceneSkipped = false;
   }
 
 
@@ -521,10 +526,14 @@ public class Controller : MonoBehaviour {
     GD.c.forcedCursor = CursorTypes.Wait;
     GD.c.oldCursor = null;
     GD.status = GameStatus.NormalGamePlay;
+    sceneSkipped = false;
   }
 
   public static void RemoveCutScene(GameScene scene) {
-    if (GD.c.currentCutscene == scene) GD.c.currentCutscene = null;
+    if (GD.c.currentCutscene == scene) {
+      sceneSkipped = false;
+      GD.c.currentCutscene = null;
+    }
   }
 
   #endregion
@@ -835,8 +844,12 @@ public class Controller : MonoBehaviour {
 
 
   internal static void SelectActor(Actor actor, bool force = false) {
-    if (GD.status != GameStatus.NormalGamePlay && !force) return;
+    if (GD.status != GameStatus.NormalGamePlay && !force && (GD.c.currentCutscene == null || !GD.c.currentCutscene.skippable)) return;
 
+    if (GD.c.currentCutscene != null && GD.c.currentCutscene.skippable) {
+      sceneSkipped = true;
+      Fader.RemoveFade();
+    }
     GD.c.forcedCursor = CursorTypes.None;
     GD.c.oldCursor = null;
     GD.c.usedItem = null;

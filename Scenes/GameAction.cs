@@ -409,6 +409,10 @@ public class GameAction {
     // Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
+        if (Controller.sceneSkipped) {
+          Complete();
+          return;
+        }
         GD.c.currentRoom = AllObjects.GetRoom(str);
         Vector3 rpos = pos;
         rpos.z = -10;
@@ -750,6 +754,10 @@ public class GameAction {
       break;
 
       case ActionType.Fade: {
+        if (Controller.sceneSkipped) {
+          Complete();
+          return;
+        }
         if (val == 0)
           Fader.FadeIn();
         else

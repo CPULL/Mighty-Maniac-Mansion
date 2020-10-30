@@ -36,7 +36,7 @@
 		]
 	}
 	
-	{ "name":"Ed answers doorbell - skippable walking",
+	{ "name":"Ed answers doorbell - skippable walking", "skippable":true,
 		"condition":[ { "type":"FlagValueIs", "id":"EdCheckingPackage", "bv":true, "iv":2 } ],
 		"action":[
 		
