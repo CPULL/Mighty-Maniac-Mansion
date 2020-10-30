@@ -71,7 +71,7 @@ public class AllObjects : MonoBehaviour {
     return null;
   }
 
-  SList<GameScene> toStop = new SList<GameScene>(16);
+  readonly SList<GameScene> toStop = new SList<GameScene>(16);
 
   internal static void StopScenes(Chars main) {
     if (main == Chars.None) return;
@@ -143,6 +143,7 @@ public enum ItemEnum {
   Fridge,
   BasementDoor,
   DungeonDoor,
+  EdDoor,
 }
 
 
@@ -153,6 +154,7 @@ public enum GameFlag {
   PowerIsDown,
   PackageIsDeliveredStamps,
   EdnaBrowsingFridge,
+  EdCheckingPackage,
 }
 
 public class FlagStatus {

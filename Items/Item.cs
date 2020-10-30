@@ -48,7 +48,6 @@ public class Item : GameItem {
     Item item2 = (this == item ? null : item);
 
     foreach (ActionAndCondition ac in actions) {
-      Controller.KnowAction(ac.Action);
       if (ac.Condition.IsValid(actor, secondary, item1, item2, when)) {
         ac.Action.RunAction(actor, secondary, this, item);
         if (res == null) res = new ActionRes { actionDone = true, res = null };

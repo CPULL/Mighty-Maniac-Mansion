@@ -9,30 +9,4 @@ public class ActionAndCondition {
   }
 }
 
-[System.Serializable]
-public class ContextualizedAction {
-  [SerializeField] public GameAction action;
-  [SerializeField] public Actor performer;
-  [SerializeField] public Actor secondary;
-
-  internal void Complete() {
-    action.Complete();
-  }
-
-  internal void Play() {
-    action.Play();
-  }
-
-  internal bool NotStarted() {
-    return action.NotStarted();
-  }
-
-  internal bool IsPlaying() {
-    return action.IsPlaying();
-  }
-
-  internal bool IsCompleted() {
-    return action.IsCompleted();
-  }
-}
 

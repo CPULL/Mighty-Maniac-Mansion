@@ -3,9 +3,26 @@
 	"id":"doorbell", "name":"Ring doorbell","type":"Cutscene","AppliesTo":"Ed",
 
 	"conditions":[],
+	
+	"startup" : [
+		{ "type":"SetFlag", "id1":"EdCheckingPackage", "iv":1 }
+	],
+	"shutdown" : [
+		{ "type":"Open", "id1":"EdRoom", "sv":"o" },
+		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-7.5,89], "dv":"F" },
+		{ "type":"Open", "id1":"FrontDoor", "sv":"c" },
+		{ "type":"Open", "id1":"FrontDoor", "sv":"l" },
+		{ "type":"Wait", "del":.25 },
+		{ "type":"Open", "id1":"EdRoom", "sv":"c" },
+		{ "type":"WalkToPos", "sv":"EdRoom", "id1":"Ed", "vv":[-14,88.5], "dv":"F" },
+		{ "type":"Expression", "id1":"Ed", "id2":"Normal", "dv":"F", "del":0.5 }
+	
+	],
+	
 	"sequence":[
-	{ "name":"Ed answers doorbell",
-		"condition":[],
+	
+	{ "name":"Intro Ed answers doorbell",
+		"condition":[ { "type":"FlagValueIs", "id":"EdCheckingPackage", "bv":true, "iv":1 } ],
 		"action":[
 			{ "type":"Sound", "id1":"Ed", "dv":"R", "id2":"doorbell", "del":0.25 },
 			{ "type":"Fade", "iv":0, "del":0.5 },
@@ -15,9 +32,56 @@
 			{ "type":"Speak", "id1":"Ed", "sv":"The doorbell.\nMaybe it is the package\nI was waiting for.", "dv":"F" },
 			{ "type":"Expression", "id1":"Ed", "id2":"Happy", "dv":"F", "del":0.5 },
 			{ "type":"WalkToPos", "id1":"Ed", "vv":[-7.31,89.3], "dv":"B" },
-			{ "type":"ShowRoom", "sv":"MainHall", "vv":[-52,20] },
-			{ "type":"Teleport", "sv":"MainHall", "id1":"Ed", "vv":[-49.68,23.26], "dv":"F" },
+			{ "type":"SetFlag", "id1":"EdCheckingPackage", "iv":2 }
+		]
+	}
+	
+	{ "name":"Ed answers doorbell - skippable walking",
+		"condition":[ { "type":"FlagValueIs", "id":"EdCheckingPackage", "bv":true, "iv":2 } ],
+		"action":[
+		
+			{ "type":"ShowRoom", "sv":"HumanCorridor", "vv":[8,70] },
+			{ "type":"Wait", "del":1 },
+			{ "type":"Open", "id1":"EdDoor", "sv":"o" },
+			{ "type":"Wait", "del":.25 },
+			
+			{ "type":"Teleport", "sv":"HumanCorridor", "id1":"Ed", "vv":[9.94,69.5], "dv":"F" },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[9,68.2], "dv":"L" },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[2.8,68], "dv":"L" },
+			{ "type":"Fade", "iv":0, "del":0.25 },
+			{ "type":"Wait", "del":0.25 },
+			
+			{ "type":"ShowRoom", "sv":"SuitesCorridor", "vv":[6,50] },
+			{ "type":"Teleport", "sv":"SuitesCorridor", "id1":"Ed", "vv":[8,47.5], "dv":"R" },
+			{ "type":"Fade", "iv":1, "del":0.25 },
+			
+			{ "type":"ShowRoom", "del":3, "sv":"SuitesCorridor", "vv":[33,50], "id2":"1" },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[36.5,49], "dv":"L" },
+			{ "type":"Fade", "iv":0, "del":0.25 },
+			{ "type":"Wait", "del":0.25 },
+
+			{ "type":"ShowRoom", "sv":"Corridor", "vv":[13,30] },
+			{ "type":"Teleport", "sv":"Corridor", "id1":"Ed", "vv":[17.5,27], "dv":"F" },
+			{ "type":"Fade", "iv":1, "del":0.25 },
+			
+			{ "type":"ShowRoom", "del":2.5, "sv":"Corridor", "vv":[-3,30], "id2":"1" },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[-5.2,29], "dv":"B" }
+			{ "type":"Fade", "iv":0, "del":0.25 },
+			{ "type":"Wait", "del":0.25 },
+			
+			
+			{ "type":"ShowRoom", "sv":"MainHall", "vv":[-53,20] },
+			{ "type":"Teleport", "sv":"MainHall", "id1":"Ed", "vv":[-50,20.5], "dv":"F" },
+			{ "type":"Fade", "iv":1, "del":0.25 },
 			{ "type":"WalkToPos", "id1":"Ed", "vv":[-59.28,17.32], "dv":"L" },
+			{ "type":"SetFlag", "id1":"EdCheckingPackage", "iv":3 }
+
+		]
+	}
+	
+	{ "name":"Ed answers doorbell - door",
+		"condition":[ { "type":"FlagValueIs", "id":"EdCheckingPackage", "bv":true, "iv":3 } ],
+		"action":[
 			{ "type":"ShowRoom", "sv":"FrontDoor", "vv":[-50.23,2] },
 			{ "type":"Expression", "id1":"Ed", "id2":"Sad", "dv":"F", "del":0.5 },
 			{ "type":"Open", "id1":"FrontDoor", "sv":"o" },
@@ -27,11 +91,11 @@
 			{ "type":"Speak", "id1":"Ed", "sv":"You are not the delivery guy!\n\nCannot you read the sign?", "dv":"F" },
 			{ "type":"Speak", "id1":"Ed", "sv":"Go away!", "dv":"F" },
 			{ "type":"Expression", "id1":"Ed", "id2":"Sad", "dv":"F", "del":0.5 },
-			{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" },
-			{ "type":"Expression", "id1":"Ed", "id2":"Sad", "dv":"F", "del":0.5 },
-			{ "type":"Open", "id1":"FrontDoor", "sv":"c" },
-			{ "type":"Open", "id1":"FrontDoor", "sv":"l" }
+			{ "type":"SetFlag", "id1":"EdCheckingPackage", "iv":0 }
 		]
 	}
+	
+	
+	
 	]
 }

@@ -1,9 +1,11 @@
 === Mighty Maniac Mansion ===
 
 
+Be sure the step executed when items are not visible will complete
 
 How to have the cutscene running but in background?
-Fix Ed catch
+> to do this we should have a step marked as "skippable", so if we switch an actor (also the one currently selected) the cutscene will run "silently" without changing the rooms
+
 
 [demo] Draw Edna and do the "Check fridge" at start
 [demo] Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here (use behaviors?)
@@ -191,4 +193,5 @@ Jeff
 ! Better management of doors
 ! Enable the "prolonged usage" to simulate the push of the gargoyle head and the loose brick. It should go away when the actor moves.
 ! A door may not need to be locked if the other side is locked (front door, basement door)
+! Fix Ed catch
 

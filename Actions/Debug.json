@@ -1,0 +1,56 @@
+{
+
+	"id":"unused1", "name":"unused1","type":"Cutscene","AppliesTo":"Ed",
+
+	"conditions":[],
+	
+	"startup" : [
+	]
+	
+	"sequence":[
+	
+	{ "name":"Ed answers doorbell - skippable walking",
+		"condition":[],
+		"action":[
+		
+			{ "type":"ShowRoom", "sv":"HumanCorridor", "vv":[8,70] },
+			{ "type":"Teleport", "sv":"HumanCorridor", "id1":"Ed", "vv":[9.94,69.5], "dv":"F" },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[9,68.2], "dv":"L" },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[2.8,68], "dv":"L" },
+			{ "type":"Fade", "iv":0, "del":0.25 },
+			{ "type":"Wait", "del":0.25 },
+			
+			{ "type":"ShowRoom", "sv":"SuitesCorridor", "vv":[6,50] },
+			{ "type":"Teleport", "sv":"SuitesCorridor", "id1":"Ed", "vv":[8,47.5], "dv":"R" },
+			{ "type":"Fade", "iv":1, "del":0.25 },
+			
+			{ "type":"ShowRoom", "del":3, "sv":"SuitesCorridor", "vv":[33,50], "id2":"1" },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[36.5,49], "dv":"L" },
+			{ "type":"Fade", "iv":0, "del":0.25 },
+			{ "type":"Wait", "del":0.25 },
+
+			{ "type":"ShowRoom", "sv":"Corridor", "vv":[13,30] },
+			{ "type":"Teleport", "sv":"Corridor", "id1":"Ed", "vv":[17.5,27], "dv":"F" },
+			{ "type":"Fade", "iv":1, "del":0.25 },
+			
+			{ "type":"ShowRoom", "del":2.5, "sv":"Corridor", "vv":[-3,30], "id2":"1" },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[-5.2,29], "dv":"B" }
+			{ "type":"Fade", "iv":0, "del":0.25 },
+			{ "type":"Wait", "del":0.25 },
+			
+			
+			{ "type":"ShowRoom", "sv":"MainHall", "vv":[-53,20] },
+			{ "type":"Teleport", "sv":"MainHall", "id1":"Ed", "vv":[-50,20.5], "dv":"F" },
+			{ "type":"Fade", "iv":1, "del":0.25 },
+			{ "type":"WalkToPos", "id1":"Ed", "vv":[-59.28,17.32], "dv":"L" }
+			
+		]
+	}
+	],
+	
+	
+	"rrr":{
+			
+			
+}	
+}

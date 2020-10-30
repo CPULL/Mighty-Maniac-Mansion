@@ -48,7 +48,13 @@ public class Actor : MonoBehaviour {
   Dir followSide = Dir.None;
   float nextBehaviorCheck = .5f;
 
-
+  bool IsVisible = false;
+  public void SetVisible(bool v) {
+    IsVisible = v;
+    Face.enabled = v;
+    Arms.enabled = v;
+    Legs.enabled = v;
+  }
 
   public void Player() {
     IAmNPC = false;
@@ -163,11 +169,11 @@ public class Actor : MonoBehaviour {
     float dx = ap.x - mp.x;
     float dy = ap.y - mp.y;
 
-    if (Mathf.Abs(dx) < .025f && Mathf.Abs(dy) < .025f) return dir;
+    if (Mathf.Abs(dx) < .0125f && Mathf.Abs(dy) < .0125f) return dir;
 
     // Vert or Horiz?
     float mult = .75f;
-    if (dir == Dir.F || dir == Dir.B) mult = 1.5f;
+    if (dir == Dir.F || dir == Dir.B) mult = 1.25f;
     if (Mathf.Abs(dx) * mult < Mathf.Abs(dy)) { // Vert
       if (dy < 0) {
         if (dir != Dir.B) lastChangedDir = 0;
@@ -321,8 +327,6 @@ public class Actor : MonoBehaviour {
 
   public void SetScaleAndPosition(Vector3 pos, PathNode p = null) {
     float ty = pos.y;
-    if (ty < currentRoom.minY) ty = currentRoom.minY;
-    if (ty > currentRoom.maxY) ty = currentRoom.maxY;
     if (p == null) {
       if (destination.node == null || !destination.node.isStair) {
         float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
@@ -408,24 +412,19 @@ public class Actor : MonoBehaviour {
     }
 
     nextBehaviorCheck -= Time.deltaTime;
-    if (IAmNPC && nextBehaviorCheck < 0) { // Behaviors checking
+    if (IAmNPC && nextBehaviorCheck < 0 && IsVisible) { // Behaviors checking
       nextBehaviorCheck = .25f;
 
       // If we have a cutscene playing with this actor do not play behaviors
-//      if (!AllObjects.SceneRunningWithMe(null, id)) {
-        // Check if at least one of the behaviors is valid
-        foreach (GameScene b in behaviors) {
-          if (b.IsValid(this, null, null, null, When.Always)) {
-            Controller.Dbg("Behaviros ..." + b.ToString());
-            if (b.Run(this, null)) {
-              nextBehaviorCheck = 0;
-              break;
-            }
+      foreach (GameScene b in behaviors) {
+        if (b.IsValid(this, null, null, null, When.Always)) {
+          Controller.Dbg("Behaviros ..." + b.ToString());
+          if (b.Run(this, null)) {
+            nextBehaviorCheck = 0;
+            break;
           }
-//        }
+        }
       }
-//      else
-//        Controller.Dbg("Scene running with " + id);
     }
 
     lastChangedDir += Time.deltaTime;
@@ -433,8 +432,10 @@ public class Actor : MonoBehaviour {
     switch (walking) {
       case WalkingMode.None:
         if (dir == Dir.None) dir = Dir.F;
-        anim.Play(idle + dir);
-        if (audios.isPlaying) audios.Stop();
+        if (IsVisible) {
+          anim.Play(idle + dir);
+          if (audios.isPlaying) audios.Stop();
+        }
         return;
       case WalkingMode.Position: WalkPosition(); break;
       case WalkingMode.Follower: Follow(); break;
@@ -452,7 +453,7 @@ public class Actor : MonoBehaviour {
 
     ScaleByPosition();
 
-    if (!audios.isPlaying && gameObject.activeSelf) {
+    if (!audios.isPlaying && gameObject.activeSelf && IsVisible) {
       audios.Play();
     }
     anim.speed = Controller.walkSpeed * .8f;
@@ -495,7 +496,7 @@ public class Actor : MonoBehaviour {
 
     ScaleByPosition();
 
-    if (!audios.isPlaying && gameObject.activeSelf) {
+    if (!audios.isPlaying && gameObject.activeSelf && IsVisible) {
       audios.Play();
     }
     anim.speed = Controller.walkSpeed * .8f;
@@ -521,7 +522,7 @@ public class Actor : MonoBehaviour {
   }
 
   void CheckReachingDestination(Vector2 walkDir) {
-    if (walkDir != Vector2.zero) {
+    if (walkDir != Vector2.zero && IsVisible) {
       // Play walk anim
       anim.Play(walk + dir);
     }
@@ -540,7 +541,7 @@ public class Actor : MonoBehaviour {
             if (followSide == Dir.R) dir = Dir.L;
             if (followSide == Dir.F) dir = Dir.B;
             if (followSide == Dir.B) dir = Dir.F;
-            anim.Play(idle + dir);
+            if (IsVisible) anim.Play(idle + dir);
             lastChangedDir = 0;
           }
           return;
@@ -557,7 +558,7 @@ public class Actor : MonoBehaviour {
       destination.pos = parcour[0].pos;
       destination.node = parcour[0].node;
       floor = parcour[0].node.floorType;
-      if (floor != prevFloor && gameObject.activeSelf) {
+      if (floor != prevFloor && gameObject.activeSelf && IsVisible) {
         if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
         audios.Play();
       }

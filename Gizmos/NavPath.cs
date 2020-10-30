@@ -221,7 +221,7 @@ public class NavPath : MonoBehaviour {
     return res;
   }
 
-  private Vector2 FindIntersection(Vector2 p1s, Vector2 p1e, Vector2 p2s, Vector2 p2e) {
+  public static Vector2 FindIntersection(Vector2 p1s, Vector2 p1e, Vector2 p2s, Vector2 p2e) {
     // Get the segments' parameters.
     float dx12 = p1e.x - p1s.x;
     float dy12 = p1e.y - p1s.y;

@@ -82,25 +82,27 @@ public class Controller : MonoBehaviour {
     #endregion
 
     #region Handle camera
-    Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
-    if (cam.transform.position.x < currentRoom.minL) {
-      Vector3 p = cam.transform.position;
-      p.x = currentRoom.minL;
-      cam.transform.position = p;
-    }
-    else if (cam.transform.position.x > currentRoom.maxR) {
-      Vector3 p = cam.transform.position;
-      p.x = currentRoom.maxR;
-      cam.transform.position = p;
-    }
-    else if (cpos.x < .4f * Screen.width) {
-      if (cam.transform.position.x > currentRoom.minL) {
-        cam.transform.position -= cam.transform.right * Time.deltaTime * (.4f * Screen.width - cpos.x) / 10;
+    if (CameraPanningInstance == null && currentCutscene == null) {
+      Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
+      if (cam.transform.position.x < currentRoom.minL) {
+        Vector3 p = cam.transform.position;
+        p.x = currentRoom.minL;
+        cam.transform.position = p;
       }
-    }
-    else if (cpos.x > .6f * Screen.width) {
-      if (cam.transform.position.x < currentRoom.maxR) {
-        cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .6f * Screen.width) / 10;
+      else if (cam.transform.position.x > currentRoom.maxR) {
+        Vector3 p = cam.transform.position;
+        p.x = currentRoom.maxR;
+        cam.transform.position = p;
+      }
+      else if (cpos.x < .4f * Screen.width) {
+        if (cam.transform.position.x > currentRoom.minL) {
+          cam.transform.position -= cam.transform.right * Time.deltaTime * (.4f * Screen.width - cpos.x) / 10;
+        }
+      }
+      else if (cpos.x > .6f * Screen.width) {
+        if (cam.transform.position.x < currentRoom.maxR) {
+          cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .6f * Screen.width) / 10;
+        }
       }
     }
     #endregion
@@ -452,9 +454,9 @@ public class Controller : MonoBehaviour {
       r.gameObject.SetActive(false);
     }
     foreach (Actor a in allEnemies)
-      if (a != null) a.gameObject.SetActive(false);
+      if (a != null) a.SetVisible(false);
     foreach (Actor a in allActors)
-      if (a != null) a.gameObject.SetActive(false);
+      if (a != null) a.SetVisible(false);
     ActorsButtons.SetActive(false);
 
     currentRoom = GD.a.roomsList[0];
@@ -472,11 +474,11 @@ public class Controller : MonoBehaviour {
     GD.status = GameStatus.NormalGamePlay;
     foreach (Actor a in allActors) {
       if (a == null) continue;
-      a.gameObject.SetActive(a.currentRoom == currentRoom);
+      a.SetVisible(a.currentRoom == currentRoom);
     }
     foreach (Actor a in allEnemies) {
       if (a == null) continue;
-      a.gameObject.SetActive(a.currentRoom == currentRoom);
+      a.SetVisible(a.currentRoom == currentRoom);
     }
     SkyBackground.enabled = true;
 
@@ -502,8 +504,6 @@ public class Controller : MonoBehaviour {
 
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
   GameScene currentCutscene;
-  ContextualizedAction currentAction;
-  readonly HashSet<GameAction> allKnownActions = new HashSet<GameAction>();
 
   void StartIntroCutscene() {
     currentCutscene = AllObjects.GetCutscene(CutsceneID.Intro);
@@ -525,10 +525,6 @@ public class Controller : MonoBehaviour {
 
   public static void RemoveCutScene(GameScene scene) {
     if (GD.c.currentCutscene == scene) GD.c.currentCutscene = null;
-  }
-
-  public static void KnowAction(GameAction a) {
-    GD.c.allKnownActions.Add(a);
   }
 
   #endregion
@@ -966,11 +962,11 @@ public class Controller : MonoBehaviour {
     // Disable actors not in current room
     foreach (Actor a in allActors) {
       if (a == null) continue;
-      a.gameObject.SetActive(a.currentRoom == currentRoom);
+      a.SetVisible(a.currentRoom == currentRoom);
     }
     foreach (Actor a in allEnemies) {
       if (a == null) continue;
-      a.gameObject.SetActive(a.currentRoom == currentRoom);
+      a.SetVisible(a.currentRoom == currentRoom);
     }
 
     // Enable gameplay
@@ -1010,11 +1006,11 @@ public class Controller : MonoBehaviour {
     // Disable actors not in current room
     foreach (Actor a in allActors) {
       if (a == null) continue;
-      a.gameObject.SetActive(a.currentRoom == currentRoom);
+      a.SetVisible(a.currentRoom == currentRoom);
     }
     foreach (Actor a in allEnemies) {
       if (a == null) continue;
-      a.gameObject.SetActive(a.currentRoom == currentRoom);
+      a.SetVisible(a.currentRoom == currentRoom);
     }
 
 
@@ -1028,9 +1024,19 @@ public class Controller : MonoBehaviour {
     overItem = null;
   }
 
-  internal static void PanCamera(Vector3 rpos, float del) {
-    GD.c.StartCoroutine(GD.c.CameraPanning(rpos, del));
+  internal static void StopPanningCamera() {
+    if (GD.c.CameraPanningInstance != null) {
+      GD.c.StopCoroutine(GD.c.CameraPanningInstance);
+      GD.c.CameraPanningInstance = null;
+    }
   }
+
+  internal static void PanCamera(Vector3 rpos, float del) {
+    if (del < .1f) del = 1;
+    GD.c.CameraPanningInstance = GD.c.StartCoroutine(GD.c.CameraPanning(rpos, del));
+  }
+
+  Coroutine CameraPanningInstance = null;
 
   IEnumerator CameraPanning(Vector3 pos, float del) {
     Vector3 start = cam.transform.position;
@@ -1045,6 +1051,7 @@ public class Controller : MonoBehaviour {
       yield return null;
     }
     cam.transform.position = pos;
+    GD.c.CameraPanningInstance = null;
   }
 
   #endregion
@@ -1082,9 +1089,7 @@ public class Controller : MonoBehaviour {
 
   #endregion
 
-
-
-
+  #region *********************** Music and Sounds *********************** Music and Sounds *********************** Music and Sounds *********************** Music and Sounds ***********************
   public static void PlayMusic(AudioClip clip) {
     GD.c.MusicPlayer.Stop();
     GD.c.MusicPlayer.clip = clip;
@@ -1102,6 +1107,7 @@ public class Controller : MonoBehaviour {
       GD.c.MusicPlayer.UnPause();
   }
 
+  #endregion
 
 
 }

@@ -406,7 +406,7 @@ public class GameAction {
 
 
   public void RunAction(Actor performer, Actor secondary, Item item1, Item item2) {
-    Debug.Log("Playing: " + ToString());
+    // Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
         GD.c.currentRoom = AllObjects.GetRoom(str);
@@ -417,11 +417,11 @@ public class GameAction {
         GD.c.currentRoom.gameObject.SetActive(true);
         foreach (Actor a in GD.c.allActors) {
           if (a == null) continue;
-          a.gameObject.SetActive(a.currentRoom == GD.c.currentRoom);
+          a.SetVisible(a.currentRoom == GD.c.currentRoom);
         }
         foreach (Actor a in GD.c.allEnemies) {
           if (a == null) continue;
-          a.gameObject.SetActive(a.currentRoom == GD.c.currentRoom);
+          a.SetVisible(a.currentRoom == GD.c.currentRoom);
         }
         GD.c.currentRoom.UpdateLights();
         if (id2 != 0) {
@@ -429,6 +429,7 @@ public class GameAction {
         }
         else {
           GD.c.cam.transform.position = rpos;
+          Controller.StopPanningCamera();
         }
         Complete();
       }
@@ -439,7 +440,7 @@ public class GameAction {
         Room aroom = AllObjects.GetRoom(str);
         if (aroom != null) {
           a.currentRoom = aroom;
-          a.gameObject.SetActive(aroom == GD.c.currentRoom);
+          a.SetVisible(aroom == GD.c.currentRoom);
         }
         a.transform.position = pos;
         a.SetDirection(dir);
@@ -491,8 +492,67 @@ public class GameAction {
           return;
         }
         RaycastHit2D hit = Physics2D.Raycast(pos, GD.c.cam.transform.forward, 10000, GD.c.pathLayer);
+        PathNode p = null;
         if (hit.collider != null) {
-          PathNode p = hit.collider.GetComponent<PathNode>();
+          p = hit.collider.GetComponent<PathNode>();
+        }
+        else {
+          Debug.Log("No path collider");
+          p = a.currentRoom.GetPathNode(pos);
+          if (p != null) {
+            // Fix the pos, it should be closest to the path borders
+            Vector2 p1s = pos;
+            Vector2 p1e = p.Center();
+            Vector2 p2s, p2e;
+            p2s.x = p.tl.x;
+            p2e.x = p.tr.x;
+            p2s.y = p.tl.y;
+            p2e.y = p.tr.y;
+            Vector2 intersectT = NavPath.FindIntersection(p1s, p1e, p2s, p2e);
+
+            p2s.x = p.tl.x;
+            p2e.x = p.bl.x;
+            p2s.y = p.tl.y;
+            p2e.y = p.bl.y;
+            Vector2 intersectL = NavPath.FindIntersection(p1s, p1e, p2s, p2e);
+
+            p2s.x = p.tr.x;
+            p2e.x = p.br.x;
+            p2s.y = p.tr.y;
+            p2e.y = p.br.y;
+            Vector2 intersectR = NavPath.FindIntersection(p1s, p1e, p2s, p2e);
+
+            p2s.x = p.bl.x;
+            p2e.x = p.br.x;
+            p2s.y = p.bl.y;
+            p2e.y = p.br.y;
+            Vector2 intersectB = NavPath.FindIntersection(p1s, p1e, p2s, p2e);
+
+            float mindist = float.PositiveInfinity;
+            Vector2 best = pos;
+            if (intersectT.x != float.NaN && Vector2.Distance(pos, intersectT) < mindist) {
+              mindist = Vector2.Distance(pos, intersectT);
+              best = intersectT;
+            }
+            if (intersectB.x != float.NaN && Vector2.Distance(pos, intersectB) < mindist) {
+              mindist = Vector2.Distance(pos, intersectB);
+              best = intersectB;
+            }
+            if (intersectL.x != float.NaN && Vector2.Distance(pos, intersectL) < mindist) {
+              mindist = Vector2.Distance(pos, intersectL);
+              best = intersectL;
+            }
+            if (intersectR.x != float.NaN && Vector2.Distance(pos, intersectR) < mindist) {
+              mindist = Vector2.Distance(pos, intersectR);
+              best = intersectR;
+            }
+
+            Debug.Log("Updated pos from " + pos.x + "," + pos.y + " to " + best.x + "," + best.y);
+            pos = best;
+          }
+        }
+
+        if (p != null) {
           GameAction copy = this;
           Play();
           a.WalkTo(pos, p,

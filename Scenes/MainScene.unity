@@ -7579,7 +7579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211990111}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -50.01, y: 20.55, z: 0}
+  m_LocalPosition: {x: -50, y: 20.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1547144313}
@@ -18809,7 +18809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -89, y: 11, z: -10}
+  m_LocalPosition: {x: 33, y: 50, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -36527,7 +36527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7faf4481f2b6efb4ea5de3533a35eeb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: 0
+  Item: 23
   Name: Ed's Room
   owner: 0
   Usable: 3
@@ -67910,7 +67910,7 @@ MonoBehaviour:
       type: 11
       Repeatable: 1
       delay: 0
-      id1: 5
+      id1: 2
       id2: 0
       str: EdRoom
       pos: {x: -50, y: 80}
@@ -73527,6 +73527,7 @@ MonoBehaviour:
   - {fileID: 405510474}
   - {fileID: 211913649}
   - {fileID: 617113688}
+  - {fileID: 1016015072}
   roomsList:
   - {fileID: 1432214312}
   - {fileID: 1117025435}
@@ -78746,8 +78747,8 @@ MonoBehaviour:
   right: {fileID: 0}
   top: {fileID: 0}
   down: {fileID: 990589394}
-  tl: {x: 9.141147, y: 71.94791}
-  tr: {x: 10.830496, y: 71.89946}
+  tl: {x: 9.226382, y: 73.33602}
+  tr: {x: 10.720909, y: 73.31193}
   br: {x: 10.763004, y: 69.67081}
   bl: {x: 9.153619, y: 69.80413}
   parent: {fileID: 66713197}
@@ -78781,8 +78782,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -10.858853, y: 1.9479065}
-      - {x: -9.169504, y: 1.8994598}
+    - - {x: -10.773618, y: 3.3360214}
+      - {x: -9.279091, y: 3.3119278}
       - {x: -9.236996, y: -0.32919312}
       - {x: -10.846381, y: -0.19586945}
 --- !u!4 &2111469827

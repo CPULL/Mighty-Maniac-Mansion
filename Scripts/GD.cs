@@ -158,7 +158,7 @@ public class GD : MonoBehaviour {
           JSONNode sequence = js["sequence"];
           for (int i = 0; i < sequence.AsArray.Count; i++) {
             JSONNode jstep = sequence[i];
-            GameStep step = new GameStep(jstep["name"].Value);
+            GameStep step = new GameStep(jstep["name"].Value, jstep["skippable"].AsBool);
 
             if (jstep["condition"].IsArray) {
               JSONNode conditions = jstep["condition"];

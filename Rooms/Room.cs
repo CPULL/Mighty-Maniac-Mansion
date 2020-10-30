@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Room : MonoBehaviour {
@@ -15,10 +14,12 @@ public class Room : MonoBehaviour {
   public bool external;
   public bool lights;
   List<SpriteRenderer> srs;
+  List<PathNode> paths;
 
   private void Start() {
     srs = new List<SpriteRenderer>();
     CollectAllRenderers(transform);
+    CollectAllPaths();
   }
 
   void CollectAllRenderers(Transform tran) {
@@ -33,15 +34,23 @@ public class Room : MonoBehaviour {
       CollectAllRenderers(t);
   }
 
+  void CollectAllPaths() {
+    NavPath path = transform.GetComponentInChildren<NavPath>();
+    if (path == null) {
+      Debug.LogError("Missing path for room: " + ID);
+      return;
+    }
+    paths = path.nodes;
+  }
+
 
   internal PathNode GetPathNode(Vector3 position) {
-    NavPath nav = transform.GetComponentInChildren<NavPath>();
-    if (nav == null) return null;
+    if (paths == null) return null;
     float minDist = float.MaxValue;
     PathNode closest = null;
-    foreach(PathNode pn in nav.nodes) {
+    foreach(PathNode pn in paths) {
       float dist = Vector2.Distance(position, pn.Center());
-      if (dist<minDist) {
+      if (dist < minDist) {
         minDist = dist;
         closest = pn;
       }
