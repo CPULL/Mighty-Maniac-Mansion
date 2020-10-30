@@ -71,13 +71,25 @@ public class AllObjects : MonoBehaviour {
     return null;
   }
 
+  SList<GameScene> toStop = new SList<GameScene>(16);
+
   internal static void StopScenes(Chars main) {
     if (main == Chars.None) return;
-    foreach(GameScene gs in GD.a.runningCutscenes) {
-      if (gs.mainChar == main)
-        gs.ForceStop();
+    GD.a.toStop.Clear();
+    foreach (GameScene gs in GD.a.runningCutscenes) {
+      if (gs.mainChar == main) {
+        gs.ForceStop(false);
+        GD.a.toStop.Add(gs);
+        Controller.RemoveCutScene(gs);
+      }
+    }
+
+    while (GD.a.toStop.Count > 0) {
+      GD.a.runningCutscenes.Remove(GD.a.toStop.GetFirst());
     }
   }
+
+
 
   internal static void SetSceneAsPlaying(GameScene scene) {
     if (!GD.a.runningCutscenes.Contains(scene))

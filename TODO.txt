@@ -2,15 +2,6 @@
 
 
 
-Can we run more than a behavior together? Let's say no. We need.
-And we need better conditions/priorities to run scenes
-
-Ed in a room -> catch
-Doorbell -> Ed moves
-Ed cath -> should override all other scenes with Ed
-
-
-
 How to have the cutscene running but in background?
 Fix Ed catch
 
@@ -38,6 +29,7 @@ Complete Sandy and Ollie descriptions
 
 * BUGS ************************************************************************************************************
 
+If we teleport over stairs we are not zooming correctly the actor
 
 * CHARS ************************************************************************************************************
 

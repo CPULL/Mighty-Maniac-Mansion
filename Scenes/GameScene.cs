@@ -79,6 +79,10 @@ public class GameScene {
     status = GameSceneStatus.NotRunning;
     startupaction = null;
     startupactionnum = -1;
+    shutdownaction = null;
+    shutdownactionnum = -1;
+    foreach (GameStep s in steps)
+      s.Reset();
   }
 
 
@@ -105,7 +109,7 @@ public class GameScene {
     return valid;
   }
 
-  internal void ForceStop() {
+  internal void ForceStop(bool remove = true) {
     foreach (GameAction a in startup) {
       a.Complete();
     }
@@ -120,7 +124,8 @@ public class GameScene {
     status = GameSceneStatus.NotRunning;
     startupaction = null;
     startupactionnum = -1;
-    AllObjects.SetSceneAsStopped(this);
+    if (remove)
+      AllObjects.SetSceneAsStopped(this);
   }
 
   public bool Run(Actor performer, Actor receiver) {
@@ -182,7 +187,9 @@ public class GameScene {
           shutdownaction = null;
           shutdownactionnum = -1;
           status = GameSceneStatus.ShutDown;
+          return true;
         }
+        return false;
       }
       return true;
 
@@ -259,6 +266,12 @@ public class GameStep {
       if (!c.IsValid(performer, receiver, null, null, When.Always)) return false;
 
     return true;
+  }
+
+  internal void Reset() {
+    if (currentAction != null) currentAction.Stop();
+    currentAction = null;
+    actionnum = -1;
   }
 
   internal bool Run(GameScene gameScene, Actor performer, Actor receiver, object p1, object p2) {

@@ -34,6 +34,8 @@ public enum ActionType {
   PressAndItem = 22, // Press an item and set a door (until the actor moves away)
 
   SwitchRoomLight = 23, // Turns on and off a light in a room (all rooms in case no room is specified)
+  StopScenes = 24, // Stops all not unique cutscenes with the given actor
+  SetCurrentRoomActor = 25, // Changes the current actor with the one in the same room of ID1 (ID2 == 0 for any actor, == 1 for player)
 };
 
 
@@ -77,6 +79,8 @@ public class GameAction {
       break;
       case ActionType.EnableDisable: return (ItemEnum)id1 + " " + (val == 0 ? "Enable" : "Disable");
       case ActionType.Cutscene: return "Cutscene: " + (CutsceneID)id1;
+      case ActionType.StopScenes: return "Stop cutscenes for " + (Chars)id1;
+      case ActionType.SetCurrentRoomActor: return "Set current as " + (id2 == 0 ? "any" : "player") + " in same room " + (Chars)id1;
       case ActionType.Sound: return "Sound: " + (Audios)id1;
       case ActionType.ReceiveCutscene: {
         if (val == 0) { // Yes
@@ -130,6 +134,8 @@ public class GameAction {
       case ActionType.Open:
       case ActionType.EnableDisable:
       case ActionType.Cutscene:
+      case ActionType.StopScenes:
+      case ActionType.SetCurrentRoomActor:
       case ActionType.ReceiveCutscene:
       case ActionType.ReceiveFlag:
       case ActionType.Fade:
@@ -315,6 +321,16 @@ public class GameAction {
       }
       break;
 
+      case ActionType.SetCurrentRoomActor: {
+        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
+        if (!System.Enum.IsDefined(typeof(Chars), id)) {
+          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+        int.TryParse(vid2, out id2); // 0 for any, 1 for a player
+      }
+      break;
+
       case ActionType.PressAndFlag: {
         GameFlag id = (GameFlag)System.Enum.Parse(typeof(GameFlag), vid1, true);
         if (!System.Enum.IsDefined(typeof(GameFlag), id)) {
@@ -332,6 +348,15 @@ public class GameAction {
         }
         id1 = (int)id;
         val = iv;
+      }
+      break;
+
+      case ActionType.StopScenes: {
+        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
+        if (!System.Enum.IsDefined(typeof(Chars), id)) {
+          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
       }
       break;
 
@@ -398,7 +423,7 @@ public class GameAction {
           if (a == null) continue;
           a.gameObject.SetActive(a.currentRoom == GD.c.currentRoom);
         }
-
+        GD.c.currentRoom.UpdateLights();
         if (id2 != 0) {
           Controller.PanCamera(rpos, delay); // PAN
         }
@@ -550,6 +575,43 @@ public class GameAction {
         CutsceneID id = (CutsceneID)id1;
         if (id != CutsceneID.NONE) Controller.StartCutScene(AllObjects.GetCutscene(id));
         Complete();
+      }
+      break;
+
+      case ActionType.StopScenes: {
+        Chars id = (Chars)id1;
+        AllObjects.StopScenes(id);
+        Complete();
+      }
+      break;
+
+      case ActionType.SetCurrentRoomActor: {
+        Actor a = Controller.GetActor((Chars)id1);
+        if (a == null) {
+          Complete();
+          return;
+        }
+        if (id2 == 1) {
+          if (GD.c.actor1.currentRoom.Equals(a.currentRoom)) Controller.SelectActor(GD.c.actor1, true);
+          if (GD.c.actor2.currentRoom.Equals(a.currentRoom)) Controller.SelectActor(GD.c.actor2, true);
+          if (GD.c.actor3.currentRoom.Equals(a.currentRoom)) Controller.SelectActor(GD.c.actor3, true);
+          Complete();
+        }
+        else { // Go over all actors
+          foreach (Actor act in GD.c.allActors)
+            if (act.gameObject.activeSelf && act.currentRoom.Equals(a.currentRoom)) {
+              GD.c.receiverActor = act;
+              Complete();
+              return;
+            }
+          foreach (Actor act in GD.c.allEnemies)
+            if (act.gameObject.activeSelf && act.currentRoom.Equals(a.currentRoom)) {
+              GD.c.receiverActor = act;
+              Complete();
+              return;
+            }
+          Complete();
+        }
       }
       break;
 
@@ -710,7 +772,6 @@ public class GameAction {
         }
       }
       break;
-
 
       case ActionType.PressAndFlag: {
         int pos = 0;

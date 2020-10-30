@@ -3,10 +3,11 @@
 
 	"condition":[
 		{ "type":"SameRoom", "id":"Ed", "sv":"Player", "bv":true },
-	],	
+		{ "type":"RoomIsInExt", "id":"Ed", "bv":true },
+	],
 	
 	"shutdown" : [
-//		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" }
+		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" }
 	],
 
 	
@@ -14,6 +15,8 @@
 		{ "name":"Catching",
 			"condition":[],
 			"action":[
+				{ "type":"StopScenes", "id1":"Ed" },
+				{ "type":"SetCurrentRoomActor", "id1":"Ed" , "id2":"1" },
 				{ "type":"Speak", "rep":true, "del":0, "id1":"Ed", "id2":"", "sv":"Who are you?\nYou are not welcome here!", "iv":"", "dv":"None", "vv":[] },
 				{ "type":"Wait", "del":1 },
 				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Ed", "id2":"Current", "sv":"", "iv":"", "dv":"L", "vv":[] },

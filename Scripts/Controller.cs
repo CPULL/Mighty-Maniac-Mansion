@@ -517,12 +517,14 @@ public class Controller : MonoBehaviour {
     Chars main = scene.mainChar;
     AllObjects.StopScenes(main);
     GD.c.currentCutscene = scene;
-    if (GD.c.currentCutscene != null) {
-      GD.c.currentCutscene.Reset();
-      GD.c.forcedCursor = CursorTypes.Wait;
-      GD.c.oldCursor = null;
-      GD.status = GameStatus.NormalGamePlay;
-    }
+    GD.c.currentCutscene.Reset();
+    GD.c.forcedCursor = CursorTypes.Wait;
+    GD.c.oldCursor = null;
+    GD.status = GameStatus.NormalGamePlay;
+  }
+
+  public static void RemoveCutScene(GameScene scene) {
+    if (GD.c.currentCutscene == scene) GD.c.currentCutscene = null;
   }
 
   public static void KnowAction(GameAction a) {
@@ -668,15 +670,15 @@ public class Controller : MonoBehaviour {
   public Actor actor2;
   public Actor actor3;
   public Actor kidnappedActor;
-  Actor receiverActor;
+  public Actor receiverActor;
   public Actor currentActor = null;
   Color32 unselectedActor = new Color32(0x6D, 0x7D, 0x7C, 255);
   Color32 selectedActor = new Color32(200, 232, 152, 255);
   public Actor[] allEnemies;
   public Actor[] allActors;
   public Sprite[] Portraits;
-
   public PressAction[] pressActions;
+  float walkDelay = 0;
 
 
   /// <summary>
@@ -805,22 +807,7 @@ public class Controller : MonoBehaviour {
     return Chars.None;
   }
 
-  /// <summary>
-  /// Checks if the passed actor is an enemy (Fred, Edna, Ed, etc.)
-  /// </summary>
-  public static bool IsEnemy(Actor actor) {
-    foreach (Actor a in GD.c.allEnemies)
-      if (a == actor) return true;
-    return false;
-  }
 
-  /// <summary>
-  /// Checks if the actor is one of the actors of the playing trio
-  /// </summary>
-  internal static bool WeHaveActorPlaying(Chars actor) {
-    return actor == GD.c.actor1.id || actor == GD.c.actor2.id || actor == GD.c.actor3.id;
-  }
-  float walkDelay = 0;
 
   /// <summary>
   /// Moves the actor to the destination and execute the action callback when the destination is reached
@@ -851,8 +838,8 @@ public class Controller : MonoBehaviour {
   }
 
 
-  internal static void SelectActor(Actor actor) {
-    if (GD.status != GameStatus.NormalGamePlay) return;
+  internal static void SelectActor(Actor actor, bool force = false) {
+    if (GD.status != GameStatus.NormalGamePlay && !force) return;
 
     GD.c.forcedCursor = CursorTypes.None;
     GD.c.oldCursor = null;

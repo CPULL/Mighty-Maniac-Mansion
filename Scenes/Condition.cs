@@ -67,6 +67,12 @@ public class Condition {
             iv = (int)ch;
           }
           break;
+
+        case ConditionType.RoomIsInExt:
+          if (System.Enum.TryParse<Chars>(ids, out ch)) {
+            id = (int)ch;
+          }
+          break;
       }
     }
     else
@@ -88,6 +94,7 @@ public class Condition {
       case ConditionType.ActorHasSkill: return "Actor " + (Chars)id1 + " has " + (!bv ? "not skill " : "skill ") + (Skill)iv1;
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
       case ConditionType.SameRoom: return (!bv ? "Not same" : "Same") + " Room " + (Chars)id1 + " & " + (Chars)iv1;
+      case ConditionType.RoomIsInExt: return " Room " + (Chars)id1 + (bv ? " is internal" : " is external");
       case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " == " : " != ") + iv1;
       case ConditionType.ItemCollected: return "Item " + (ItemEnum)id1 + (bv ? " is collected by " : " is not collected by ") + (Chars)iv1;
       case ConditionType.ActorInRoom: return "Actor " + (Chars)id1 + " is " + (!bv ? "not in " : "in ") + sv;
@@ -169,6 +176,25 @@ public class Condition {
           return !res;
       }
 
+      case ConditionType.RoomIsInExt: {
+        Actor a1;
+        if ((Chars)id == Chars.Current) a1 = GD.c.currentActor;
+        else if ((Chars)id == Chars.Actor1) a1 = GD.c.actor1;
+        else if ((Chars)id == Chars.Actor2) a1 = GD.c.actor2;
+        else if ((Chars)id == Chars.Actor3) a1 = GD.c.actor3;
+        else if ((Chars)id == Chars.KidnappedActor) a1 = GD.c.kidnappedActor;
+        else if ((Chars)id == Chars.Player) a1 = GD.c.currentActor;
+        else if ((Chars)id == Chars.Self) a1 = performer;
+        else if ((Chars)id == Chars.Receiver) a1 = receiver;
+        else a1 = Controller.GetActor((Chars)id);
+
+        if (a1 == null) return false;
+        if (bv)
+          return !a1.currentRoom.external;
+        else
+          return a1.currentRoom.external;
+      }
+
       case ConditionType.SameRoom: {
         Actor a1, a2;
         if ((Chars)id == Chars.Current) a1 = GD.c.currentActor;
@@ -181,18 +207,47 @@ public class Condition {
         else if ((Chars)id == Chars.Receiver) a1 = receiver;
         else a1 = Controller.GetActor((Chars)id);
 
-        if ((Chars)iv == Chars.Current) a2 = GD.c.currentActor;
-        else if ((Chars)iv == Chars.Actor1) a2 = GD.c.actor1;
-        else if ((Chars)iv == Chars.Actor2) a2 = GD.c.actor2;
-        else if ((Chars)iv == Chars.Actor3) a2 = GD.c.actor3;
-        else if ((Chars)iv == Chars.KidnappedActor) a2 = GD.c.kidnappedActor;
-        else if ((Chars)iv == Chars.Player) a2 = GD.c.currentActor;
-        else if ((Chars)iv == Chars.Self) a2 = performer;
-        else if ((Chars)iv == Chars.Receiver) a2 = receiver;
-        else a2 = Controller.GetActor((Chars)iv);
+        bool res = false;
+        switch ((Chars)iv) {
+          case Chars.None: return false;
+          case Chars.Current: res = GD.c.currentActor.currentRoom.Equals(a1.currentRoom); break;
+          case Chars.Actor1: res = GD.c.actor1.currentRoom.Equals(a1.currentRoom); break;
+          case Chars.Actor2: res = GD.c.actor2.currentRoom.Equals(a1.currentRoom); break;
+          case Chars.Actor3: res = GD.c.actor3.currentRoom.Equals(a1.currentRoom); break;
+          case Chars.KidnappedActor: res = GD.c.kidnappedActor.currentRoom.Equals(a1.currentRoom); break;
+          case Chars.Receiver: res = (receiver != null && receiver.currentRoom.Equals(a1.currentRoom)); break;
+          case Chars.Self: return true;
+          case Chars.Player: res = (GD.c.actor1.currentRoom.Equals(a1.currentRoom)) || (GD.c.actor2.currentRoom.Equals(a1.currentRoom)) || (GD.c.actor3.currentRoom.Equals(a1.currentRoom)); break;
+          case Chars.Enemy: return false;
+          case Chars.Fred:
+          case Chars.Edna:
+          case Chars.Ted:
+          case Chars.Ed:
+          case Chars.Edwige:
+          case Chars.GreenTentacle:
+          case Chars.PurpleTentacle:
+          case Chars.BlueTentacle:
+          case Chars.PurpleMeteor:
+          case Chars.Dave:
+          case Chars.Bernard:
+          case Chars.Wendy:
+          case Chars.Syd:
+          case Chars.Hoagie:
+          case Chars.Razor:
+          case Chars.Michael:
+          case Chars.Jeff:
+          case Chars.Javid:
+          case Chars.Laverne:
+          case Chars.Ollie:
+          case Chars.Sandy:
+            a2 = Controller.GetActor((Chars)id);
+            if (a2 == null) return false;
+            res = a2.currentRoom.Equals(a1.currentRoom);
+            break;
+          case Chars.Male: return false;
+          case Chars.Female: return false;
+        }
 
-        if (a1 == null || a2 == null) return false;
-        bool res = a1.currentRoom.Equals(a2.currentRoom);
         if (bv)
           return res;
         else
@@ -326,6 +381,7 @@ public enum ConditionType {
   UsedWith,           // ID of items                                                                       (ID1, BV)
   CurrentActorIs,     // ID of actor                                                                       (ID1, BV)
   SameRoom,           // ID f actor, ID of other actor                                                     (ID1, IV1, BV)
+  RoomIsInExt,        // ID f actor, bool to check if internal or external                                 (ID1, BV)
 }
 
 

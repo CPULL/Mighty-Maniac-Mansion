@@ -9,6 +9,7 @@ public class ConditionPropertyDrawer : PropertyDrawer {
   private readonly string[] openLocked = { "Open", "Locked" };
   private readonly string[] withWithNot = { "with not", "with" };
   private readonly string[] equalDifferent = { "==", "!=" };
+  private readonly string[] internalExternal = { "is external", "is intrnal" };
 
 
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
@@ -71,6 +72,14 @@ public class ConditionPropertyDrawer : PropertyDrawer {
           Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
           bv.intValue = EditorGUI.Popup(aRect, bv.intValue, isIsNot);
           sv.stringValue = EditorGUI.TextField(bRect, sv.stringValue);
+        }
+        break;
+
+        case ConditionType.RoomIsInExt: {
+          Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(Chars)));
+          bv.intValue = EditorGUI.Popup(bRect, bv.intValue, internalExternal);
         }
         break;
 
