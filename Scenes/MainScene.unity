@@ -7479,7 +7479,7 @@ MonoBehaviour:
   lockImage: {fileID: -5913385373530494366, guid: b78e7d2dfc0f0454f861e16b61d5bacb, type: 3}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -41.87, y: 18.630419}
+  HotSpot: {x: -41.9041, y: 18.624}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -18809,7 +18809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37, y: 11, z: -10}
+  m_LocalPosition: {x: -44, y: 20, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -48097,7 +48097,7 @@ GameObject:
   - component: {fileID: 1309912225}
   - component: {fileID: 1309912224}
   m_Layer: 9
-  m_Name: Upstairs Invisible Door
+  m_Name: Main hall Invisible Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48181,9 +48181,9 @@ MonoBehaviour:
     rgba: 436207615
   actions: []
   sr: {fileID: 0}
-  src: {fileID: 1158860359}
-  dst: {fileID: 450900029}
-  camerapos: {x: -53, y: 30, z: -10}
+  src: {fileID: 677760569}
+  dst: {fileID: 1158860359}
+  camerapos: {x: -44, y: 20, z: -10}
   correspondingDoor: {fileID: 211913649}
   transition: 2
   arrivalDirection: 0

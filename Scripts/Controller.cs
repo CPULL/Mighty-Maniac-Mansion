@@ -271,11 +271,8 @@ public class Controller : MonoBehaviour {
           else {
             WalkAndAction(currentActor, aDoor,
               new System.Action<Actor, Item>((actor, item) => {
-                if (item.IsLocked()) {
+                if (!item.IsOpen() && item.IsLocked()) {
                   actor.Say("Is locked");
-                  return;
-                }
-                else if (!item.IsOpen()) {
                   return;
                 }
                 StartCoroutine(ChangeRoom(actor, (item as Door)));
@@ -310,11 +307,8 @@ public class Controller : MonoBehaviour {
           if (aDoor != null) {
             WalkAndAction(currentActor, aDoor,
               new System.Action<Actor, Item>((actor, item) => {
-                if (item.IsLocked()) {
+                if (!item.IsOpen() && item.IsLocked()) {
                   actor.Say("Is locked");
-                  return;
-                }
-                else if (!item.IsOpen()) {
                   return;
                 }
                 StartCoroutine(ChangeRoom(actor, (item as Door)));

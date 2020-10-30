@@ -29,7 +29,7 @@
 		},
 		{ "name":"Message F",
 			"condition":[{ "type":"CurrentActorIs", "id":"Female", "bv":true }],
-			"action":[{ "type":"Speak", "id1":"Ed", "sv":"Now you will stay here.\nMaybe my dad exit the Lab,\nand he will decide what\nto do with you.", "dv":"L" },{ "type":"CompleteStep", "del":.2 }]
+			"action":[{ "type":"Speak", "id1":"Ed", "sv":"Now you will stay here.\nMaybe my dad will exit the Lab,\nand he will decide what\nto do with you.", "dv":"L" },{ "type":"CompleteStep", "del":.2 }]
 		}
 	]
 

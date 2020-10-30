@@ -1,15 +1,5 @@
 === Mighty Maniac Mansion ===
 
-
-Doors:
-Not a door
-Open, Close
-Unlocked, Locked, AutoLock
-
-
-
-
-
 A door may not need to be locked if the other side is locked (front door, basement door)
 
 
@@ -33,7 +23,6 @@ Oven with hamster <- path to Ed room <- overn as container <- action with filter
 Piggy bank with coins
 Draw maps
 
-Enable the "prolonged usage" to simulate the push of the gargoyle head and the loose brick. It should go away when the actor moves.
 Complete intro Cutscene, adding variations for each character.
 Define skills and actions that will allow
 FrontDoor -> Backyard entrance on the left
@@ -199,5 +188,6 @@ Jeff
 ! Points are not disabled
 ! Have actors to get light off shader when in a room without lights
 ! Avoid to select items if we click on actors
-
+! Better management of doors
+! Enable the "prolonged usage" to simulate the push of the gargoyle head and the loose brick. It should go away when the actor moves.
 
