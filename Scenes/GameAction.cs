@@ -167,7 +167,7 @@ public class GameAction {
       break;
 
       case ActionType.PressAndItem: {
-        Item item = AllObjects.FindItemByID((ItemEnum)id1);
+        Item item = AllObjects.GetItem((ItemEnum)id1);
         GD.c.pressActions[0].Reset(item);
         GD.c.pressActions[1].Reset(item);
         GD.c.pressActions[2].Reset(item);
@@ -381,7 +381,7 @@ public class GameAction {
 
 
   public void RunAction(Actor performer, Actor secondary, Item item1, Item item2) {
-    // FIXME Debug.Log("Playing: " + ToString());
+    Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
         GD.c.currentRoom = AllObjects.GetRoom(str);
@@ -523,7 +523,7 @@ public class GameAction {
       break;
 
       case ActionType.Open: {
-        Item item = AllObjects.FindItemByID((ItemEnum)id1);
+        Item item = AllObjects.GetItem((ItemEnum)id1);
         if (item == null) {
           Debug.LogError("Item not defined for Open " + ToString());
           Complete();
@@ -535,7 +535,7 @@ public class GameAction {
       break;
 
       case ActionType.EnableDisable: {
-        Item item = AllObjects.FindItemByID((ItemEnum)id1);
+        Item item = AllObjects.GetItem((ItemEnum)id1);
         if (item == null) {
           Debug.LogError("Item not defined for Enable");
           Complete();
@@ -569,7 +569,7 @@ public class GameAction {
       case ActionType.ReceiveCutscene: {
         // Are we accpeting?
         if (val == 0) { // Yes
-          Item item = AllObjects.FindItemByID((ItemEnum)id1);
+          Item item = AllObjects.GetItem((ItemEnum)id1);
           performer.inventory.Remove(item);
           secondary.inventory.Add(item);
           item.owner = Controller.GetCharFromActor(secondary);
@@ -601,7 +601,7 @@ public class GameAction {
       case ActionType.ReceiveFlag: {
         // Are we accpeting?
         if (val == 0) { // Yes
-          Item item = AllObjects.FindItemByID((ItemEnum)id1);
+          Item item = AllObjects.GetItem((ItemEnum)id1);
           performer.inventory.Remove(item);
           secondary.inventory.Add(item);
           item.owner = Controller.GetCharFromActor(secondary);
@@ -643,7 +643,7 @@ public class GameAction {
           Complete();
           return;
         }
-        Item item = AllObjects.FindItemByID((ItemEnum)id2);
+        Item item = AllObjects.GetItem((ItemEnum)id2);
         Animator anim = item.GetComponent<Animator>();
         if (anim == null) {
           Debug.LogError("Missing animator for animated item: " + item.gameObject.name);
@@ -656,7 +656,7 @@ public class GameAction {
       break;
 
       case ActionType.AlterItem: {
-        Item item = AllObjects.FindItemByID((ItemEnum)id2);
+        Item item = AllObjects.GetItem((ItemEnum)id2);
         switch (str[0]) {
           case 'R': item.whatItDoesL = WhatItDoes.Read; break;
           case 'W': item.whatItDoesL = WhatItDoes.Walk; break;
@@ -700,7 +700,7 @@ public class GameAction {
       case ActionType.SwitchRoomLight: {
         if (string.IsNullOrEmpty(str)) {
           bool lightsOn = !AllObjects.GetRoom("MainHall").lights;
-          foreach (Room r in AllObjects.roomList) {
+          foreach (Room r in AllObjects.RoomList) {
             r.SetLights(lightsOn);
           }
         }
@@ -722,7 +722,7 @@ public class GameAction {
       break;
 
       case ActionType.PressAndItem: {
-        Item item = AllObjects.FindItemByID((ItemEnum)id1);
+        Item item = AllObjects.GetItem((ItemEnum)id1);
         int pos = 0;
         if (performer == GD.c.actor2) pos = 1;
         if (performer == GD.c.actor3) pos = 2;

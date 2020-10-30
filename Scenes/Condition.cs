@@ -105,8 +105,8 @@ public class Condition {
   public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when) {
     Actor p = Controller.GetActor(performer);
     Actor r = Controller.GetActor(receiver);
-    Item i1 = AllObjects.FindItemByID(item1);
-    Item i2 = AllObjects.FindItemByID(item2);
+    Item i1 = AllObjects.GetItem(item1);
+    Item i2 = AllObjects.GetItem(item2);
     return IsValid(p, r, i1, i2, when);
   }
 
@@ -117,8 +117,8 @@ public class Condition {
   }
 
   public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when) {
-    Item i1 = AllObjects.FindItemByID(item1);
-    Item i2 = AllObjects.FindItemByID(item2);
+    Item i1 = AllObjects.GetItem(item1);
+    Item i2 = AllObjects.GetItem(item2);
     return IsValid(performer, receiver, i1, i2, when);
   }
 
@@ -207,7 +207,7 @@ public class Condition {
       }
 
       case ConditionType.ItemCollected: {
-        Item item = AllObjects.FindItemByID((ItemEnum)id);
+        Item item = AllObjects.GetItem((ItemEnum)id);
         bool res = item != null && item.owner != Chars.None;
         if (bv)
           return res;

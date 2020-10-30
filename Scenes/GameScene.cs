@@ -6,13 +6,14 @@ public class GameScene {
   public string Name;
   public CutsceneID Id;
   public GameSceneType Type;
+  public GameSceneStatus status = GameSceneStatus.NotRunning;
 
   public List<Condition> globalCondition;
   public List<GameAction> startup;
   public List<GameAction> shutdown;
   public List<GameStep> steps;
-  public bool AmIActive = false;
-  public bool AmIShuttingDown = false;
+//  public bool AmIActive = false;
+//  public bool AmIShuttingDown = false;
   public GameAction startupaction = null;
   public int startupactionnum = -1;
   public GameAction shutdownaction = null;
@@ -36,6 +37,7 @@ public class GameScene {
     if (type[0] == 'c') Type = GameSceneType.Cutscene;
     else if (type[0] == 'a') Type = GameSceneType.ActorBehavior;
     else if (type[0] == 'i') Type = GameSceneType.ItemAction;
+    else if (type[0] == 'u') Type = GameSceneType.Unique;
 
     try {
       Id = (CutsceneID)System.Enum.Parse(typeof(CutsceneID), id, true);
@@ -63,19 +65,18 @@ public class GameScene {
   }
 
   public override string ToString() {
-    return Id + " - " + Name + (AmIActive ? " (running)": "");
+    return Id + " - " + Name + " " + status;
   }
 
   internal void Reset() {
     AllObjects.SetSceneAsStopped(this);
-    if (AmIActive) { // Play quickly all actions
+    if (status != GameSceneStatus.NotRunning) { // Play quickly all actions
       foreach (GameAction a in shutdown) {
         a.RunAction(null, null, null, null);
         a.Complete();
       }
     }
-    AmIActive = false;
-    AmIShuttingDown = false;
+    status = GameSceneStatus.NotRunning;
     startupaction = null;
     startupactionnum = -1;
   }
@@ -85,6 +86,11 @@ public class GameScene {
   /// Check if the main conditions are satisfied
   /// </summary>
   public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when) {
+    if (AllObjects.UniqueScenesPlaying(this)) {
+      status = GameSceneStatus.NotRunning;
+      return false;
+    }
+
     bool valid = true;
     foreach (Condition c in globalCondition)
       if (!c.IsValid(performer, receiver, item1, item2, when)) {
@@ -92,42 +98,10 @@ public class GameScene {
         break;
       }
 
-    if (!valid && AmIActive) {
-      shutdownaction = null;
-      shutdownactionnum = -1;
-      AmIActive = false;
-      AmIShuttingDown = shutdown.Count > 0;
+    if (!valid && (status == GameSceneStatus.Running || status == GameSceneStatus.Startup) && shutdown.Count > 0) {
+      status = GameSceneStatus.ShutDown;
+      return true;
     }
-
-    if (AmIShuttingDown) {
-      if (shutdownaction == null) {
-        shutdownaction = shutdown[0];
-        shutdownaction.running = Running.NotStarted;
-        shutdownactionnum++;
-      }
-
-      if (shutdownaction.running == Running.NotStarted) { // Start the action
-        shutdownaction.RunAction(performer, receiver, null, null);
-      }
-      else if (shutdownaction.running == Running.Running) { // Wait it to complete
-        shutdownaction.CheckTime(.25f);
-      }
-      else if (shutdownaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
-      }
-      else if (shutdownaction.running == Running.Completed) { // Get the next
-        shutdownactionnum++;
-        if (shutdownactionnum < shutdown.Count) {
-          shutdownaction = shutdown[shutdownactionnum];
-          shutdownaction.running = Running.NotStarted;
-        }
-        else {
-          AmIActive = false;
-          AmIShuttingDown = false;
-        }
-      }
-      return false;
-    }
-
     return valid;
   }
 
@@ -143,69 +117,80 @@ public class GameScene {
         a.Complete();
       }
     }
-    AmIActive = false;
-    AmIShuttingDown = false;
+    status = GameSceneStatus.NotRunning;
     startupaction = null;
     startupactionnum = -1;
+    AllObjects.SetSceneAsStopped(this);
   }
 
   public bool Run(Actor performer, Actor receiver) {
     // Are we valid?
     if (!IsValid(performer, receiver, null, null, When.Always)) return false;
 
-    AllObjects.SetSceneAsPlaying(this);
+    if (Type == GameSceneType.Cutscene || Type == GameSceneType.Unique) AllObjects.SetSceneAsPlaying(this);
 
-    if (!AmIActive) {
-      shutdownaction = null;
-      shutdownactionnum = -1;
-      if (startup.Count == 0) {
-        AmIActive = true;
+    if (AllObjects.UniqueScenesPlaying(null)) Controller.Dbg("Unique scene " + ToString());
+
+
+    if (status == GameSceneStatus.NotRunning) { // Startup is present, else Running *********************************************************************************
+      if (startup.Count > 0)
+        status = GameSceneStatus.Startup;
+      else
+        status = GameSceneStatus.Running;
+      return true;
+
+    }
+    else if (status == GameSceneStatus.Startup) { // Run Startup and then go in Running *********************************************************************************
+      if (startupaction == null) {
+        startupaction = startup[0];
+        startupaction.running = Running.NotStarted;
+        startupactionnum++;
       }
-      if (startup.Count > 0) {
-        if (startupaction == null) {
-          startupaction = startup[0];
-          startupaction.running = Running.NotStarted;
-          startupactionnum++;
-        }
 
-        if (startupaction.running == Running.NotStarted) { // Start the action
-          startupaction.RunAction(performer, receiver, null, null);
+      if (startupaction.running == Running.NotStarted) { // Start the action
+        startupaction.RunAction(performer, receiver, null, null);
+      }
+      else if (startupaction.running == Running.Running) { // Wait it to complete
+        startupaction.CheckTime(Time.deltaTime);
+      }
+      else if (startupaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
+      }
+      else if (startupaction.running == Running.Completed) { // Get the next
+        startupactionnum++;
+        if (startupactionnum < startup.Count) {
+          startupaction = startup[startupactionnum];
+          startupaction.running = Running.NotStarted;
         }
-        else if (startupaction.running == Running.Running) { // Wait it to complete
-          startupaction.CheckTime(Time.deltaTime);
+        else
+          status = GameSceneStatus.Running;
+      }
+      return true;
+
+    }
+    else if (status == GameSceneStatus.Running) { // Run until we have actions and we are valid *********************************************************************************
+      bool atLeastOne = false;
+      foreach (GameStep gs in steps)
+        atLeastOne |= gs.Run(this, performer, receiver, null, null);
+
+      if (!atLeastOne) {
+        if (AllObjects.SceneRunningWithMe(this, mainChar)) {
+          AllObjects.SetSceneAsStopped(this);
+          status = GameSceneStatus.NotRunning;
+          return false;
         }
-        else if (startupaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
-        }
-        else if (startupaction.running == Running.Completed) { // Get the next
-          startupactionnum++;
-          if (startupactionnum < startup.Count) {
-            startupaction = startup[startupactionnum];
-            startupaction.running = Running.NotStarted;
-          }
-          else
-            AmIActive = true;
-          return true;
+        if (shutdown.Count > 0) {
+          shutdownaction = null;
+          shutdownactionnum = -1;
+          status = GameSceneStatus.ShutDown;
         }
       }
       return true;
+
     }
-
-
-    // Check all the behaviros that are valid and run all of them
-    bool atLeastOne = false;
-    foreach (GameStep gs in steps)
-      atLeastOne |= gs.Run(this, performer, receiver, null, null);
-
-    if (!atLeastOne && AmIActive) {
-      if (AllObjects.SceneRunningWithMe(this, mainChar)) {
-        AmIActive = false;
-        AllObjects.SetSceneAsStopped(this);
-        return false;
-      }
-
+    else if (status == GameSceneStatus.ShutDown) { // Just shutdown until completed *********************************************************************************
 
       if (shutdown.Count == 0) {
-        AmIActive = false;
+        status = GameSceneStatus.NotRunning;
         AllObjects.SetSceneAsStopped(this);
         return false;
       }
@@ -232,7 +217,7 @@ public class GameScene {
             return true;
           }
           else {
-            AmIActive = false;
+            status = GameSceneStatus.NotRunning;
             AllObjects.SetSceneAsStopped(this);
             return false;
           }
@@ -241,7 +226,8 @@ public class GameScene {
       return true;
     }
 
-    return atLeastOne;
+    Debug.LogError("We should never be here");
+    return false;
   }
 
 
@@ -294,7 +280,7 @@ public class GameStep {
       currentAction.RunAction(performer, receiver, null, null);
       if (currentAction.type == ActionType.Cutscene) {
         // Quickly stop parent scene
-        gameScene.AmIActive = false;
+        gameScene.ForceStop();
       }
     }
     else if (currentAction.running == Running.Running) { // Wait it to complete
@@ -327,5 +313,11 @@ public class GameStep {
 
 
 public enum GameSceneType {
-  Cutscene, ActorBehavior, ItemAction
+  Cutscene, ActorBehavior, ItemAction, Unique
 }
+
+public enum GameSceneStatus {
+  NotRunning, Startup, Running, ShutDown
+}
+
+

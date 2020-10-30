@@ -13270,7 +13270,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -48.443, y: 18.286}
+  HotSpot: {x: -100.078, y: 7.5769997}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -18809,7 +18809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44, y: 20, z: -10}
+  m_LocalPosition: {x: -89, y: 11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -21733,12 +21733,12 @@ MonoBehaviour:
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
-  openImage: {fileID: 1050862964521931252, guid: 120bd2eb110e89e4d85c64022fddb3f4, type: 3}
-  closeImage: {fileID: 898674671520661209, guid: 120bd2eb110e89e4d85c64022fddb3f4, type: 3}
+  openImage: {fileID: -7351661573056778716, guid: 7ae782ad4c7449f4698974e58e0aaddb, type: 3}
+  closeImage: {fileID: -7351661573056778716, guid: 7ae782ad4c7449f4698974e58e0aaddb, type: 3}
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -85.428, y: 17.598001}
+  HotSpot: {x: -87.512, y: 7.3269997}
   dir: 3
   overColor:
     serializedVersion: 2
@@ -21749,12 +21749,12 @@ MonoBehaviour:
   actions: []
   sr: {fileID: 0}
   src: {fileID: 202005218}
-  dst: {fileID: 791578439}
-  camerapos: {x: -158.8, y: 20, z: -10}
-  correspondingDoor: {fileID: 774859338}
-  transition: 1
+  dst: {fileID: 677760569}
+  camerapos: {x: -64.5, y: 11, z: -10}
+  correspondingDoor: {fileID: 1095454602}
+  transition: 4
   arrivalDirection: 1
-  OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
+  OpenSound: {fileID: 8300000, guid: 57eeb70ab2deccc4186aca85017323a6, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
   UnlockSound: {fileID: 0}
   LockSound: {fileID: 0}
@@ -39237,8 +39237,8 @@ MonoBehaviour:
   whatItDoesL: 3
   whatItDoesR: 0
   Description: 
-  openImage: {fileID: 0}
-  closeImage: {fileID: 0}
+  openImage: {fileID: 3153021203217893542, guid: 9b4a5dd07dcba1c4e9a3e5cf63d117db, type: 3}
+  closeImage: {fileID: -5913385373530494366, guid: 9b4a5dd07dcba1c4e9a3e5cf63d117db, type: 3}
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
@@ -39254,8 +39254,8 @@ MonoBehaviour:
   sr: {fileID: 0}
   src: {fileID: 677760569}
   dst: {fileID: 202005218}
-  camerapos: {x: 0, y: 0, z: 0}
-  correspondingDoor: {fileID: 0}
+  camerapos: {x: -89, y: 11, z: -10}
+  correspondingDoor: {fileID: 617113688}
   transition: 0
   arrivalDirection: 3
   OpenSound: {fileID: 0}
@@ -73525,6 +73525,7 @@ MonoBehaviour:
   - {fileID: 1486595613}
   - {fileID: 405510474}
   - {fileID: 211913649}
+  - {fileID: 617113688}
   roomsList:
   - {fileID: 1432214312}
   - {fileID: 1117025435}
@@ -79655,8 +79656,8 @@ MonoBehaviour:
   minL: 5.5
   maxR: 34
   minY: 66
-  maxY: 69.8
-  scalePerc: 1.25
+  maxY: 68.75
+  scalePerc: 1.35
   CameraGround: 70
   external: 0
   lights: 1

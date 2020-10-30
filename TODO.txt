@@ -1,6 +1,14 @@
 === Mighty Maniac Mansion ===
 
-A door may not need to be locked if the other side is locked (front door, basement door)
+
+
+Can we run more than a behavior together? Let's say no. We need.
+And we need better conditions/priorities to run scenes
+
+Ed in a room -> catch
+Doorbell -> Ed moves
+Ed cath -> should override all other scenes with Ed
+
 
 
 How to have the cutscene running but in background?
@@ -190,4 +198,5 @@ Jeff
 ! Avoid to select items if we click on actors
 ! Better management of doors
 ! Enable the "prolonged usage" to simulate the push of the gargoyle head and the loose brick. It should go away when the actor moves.
+! A door may not need to be locked if the other side is locked (front door, basement door)
 

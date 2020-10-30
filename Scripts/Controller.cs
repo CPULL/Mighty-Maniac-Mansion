@@ -657,10 +657,6 @@ public class Controller : MonoBehaviour {
     return false;
   }
 
-  internal static Item GetItem(string item) {
-    if (item == null) return null;
-    return AllObjects.FindItemByID(item);
-  }
   #endregion
 
   #region *********************** Actors *********************** Actors *********************** Actors *********************** Actors *********************** Actors ***********************

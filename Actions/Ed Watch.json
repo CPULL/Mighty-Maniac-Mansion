@@ -6,7 +6,7 @@
 	],	
 	
 	"shutdown" : [
-		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" }
+//		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-13.3,88.24], "dv":"F" }
 	],
 
 	

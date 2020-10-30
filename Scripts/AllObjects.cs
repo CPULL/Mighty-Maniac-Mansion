@@ -9,7 +9,7 @@ public class AllObjects : MonoBehaviour {
   public List<GameScene> cutscenes;
   public List<GameScene> runningCutscenes;
 
-  public static IEnumerable<Room> roomList { get { return GD.a.roomsList; } }
+  public static IEnumerable<Room> RoomList { get { return GD.a.roomsList; } }
 
   private void Awake() {
     GD.a = this;
@@ -29,7 +29,7 @@ public class AllObjects : MonoBehaviour {
     return null;
   }
 
-  internal static Item FindItemByID(ItemEnum id) {
+  internal static Item GetItem(ItemEnum id) {
     foreach (Item i in GD.a.itemsList) {
       if (i.Item == id) {
         return i;
@@ -37,26 +37,6 @@ public class AllObjects : MonoBehaviour {
     }
     Debug.LogWarning("Cannot find Item with id: \"" + id + "\"");
     return null;
-  }
-
-  internal static Item FindItemByID(string sid) {
-    string val = sid.Trim().ToLowerInvariant();
-    ItemEnum id = ItemEnum.Undefined;
-    if (val == "sign") id = ItemEnum.Sign;
-    if (val == "genericinvisibledoor") id = ItemEnum.GenericInvisibleDoor;
-    if (val == "mailbox") id = ItemEnum.Mailbox;
-    if (val == "mailboxflag") id = ItemEnum.MailboxFlag;
-    if (val == "frontdoorkey") id = ItemEnum.FrontDoorKey;
-    if (val == "grass") id = ItemEnum.Grass;
-    if (val == "doorbell") id = ItemEnum.DoorBell;
-    if (val == "doormat") id = ItemEnum.Doormat;
-    if (val == "grate") id = ItemEnum.Grate;
-    if (val == "basementpassage") id = ItemEnum.BasementPassage;
-    if (val == "tedgrave") id = ItemEnum.TedGrave;
-    if (val == "frontdoor") id = ItemEnum.FrontDoor;
-
-    if (id == ItemEnum.Undefined) return null;
-    return FindItemByID(id);
   }
 
   internal static bool CheckFlag(GameFlag flag, int value) {
@@ -108,9 +88,16 @@ public class AllObjects : MonoBehaviour {
       GD.a.runningCutscenes.Remove(scene);
   }
 
-  internal static bool SceneRunningWithMe(GameScene gameScene, Chars mainChar) {
+  internal static bool SceneRunningWithMe(GameScene toExclude, Chars mainChar) {
     foreach(GameScene s in GD.a.runningCutscenes) {
-      if (s != gameScene && s.mainChar == mainChar) return true;
+      if (s != toExclude && s.mainChar == mainChar) return true;
+    }
+    return false;
+  }
+
+  internal static bool UniqueScenesPlaying(GameScene toExclude) {
+    foreach(GameScene s in GD.a.runningCutscenes) {
+      if (s != toExclude && s.Type == GameSceneType.Unique) return true;
     }
     return false;
   }

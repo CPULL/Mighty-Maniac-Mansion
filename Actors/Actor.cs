@@ -411,13 +411,21 @@ public class Actor : MonoBehaviour {
     if (IAmNPC && nextBehaviorCheck < 0) { // Behaviors checking
       nextBehaviorCheck = .25f;
 
-      // Check if at least one of the behaviors is valid
-      foreach (GameScene b in behaviors) {
-        if (b.IsValid(this, null, null, null, When.Always)) {
-          if (b.Run(this, null))
-            nextBehaviorCheck = 0;
+      // If we have a cutscene playing with this actor do not play behaviors
+      if (!AllObjects.SceneRunningWithMe(null, id)) {
+        // Check if at least one of the behaviors is valid
+        foreach (GameScene b in behaviors) {
+          if (b.IsValid(this, null, null, null, When.Always)) {
+            Controller.Dbg("Behaviros ...");
+            if (b.Run(this, null)) {
+              nextBehaviorCheck = 0;
+              break;
+            }
+          }
         }
       }
+      else
+        Controller.Dbg("Scene running with " + id);
     }
 
     lastChangedDir += Time.deltaTime;

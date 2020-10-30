@@ -1,5 +1,5 @@
 {
-	"id":"EdCatch", "name":"Ed Catch player","type":"cutscene","AppliesTo":"Ed",
+	"id":"EdCatch", "name":"Ed Catch player","type":"unique","AppliesTo":"Ed",
 
 	"condition":[
 	],
