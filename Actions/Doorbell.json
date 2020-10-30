@@ -8,12 +8,12 @@
 		{ "type":"SetFlag", "id1":"EdCheckingPackage", "iv":1 }
 	],
 	"shutdown" : [
-		{ "type":"Open", "id1":"EdRoom", "sv":"o" },
+		{ "type":"Open", "id1":"EdDoor", "sv":"o" },
 		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-7.5,89], "dv":"F" },
 		{ "type":"Open", "id1":"FrontDoor", "sv":"c" },
 		{ "type":"Open", "id1":"FrontDoor", "sv":"l" },
 		{ "type":"Wait", "del":.25 },
-		{ "type":"Open", "id1":"EdRoom", "sv":"c" },
+		{ "type":"Open", "id1":"EdDoor", "sv":"c" },
 		{ "type":"WalkToPos", "sv":"EdRoom", "id1":"Ed", "vv":[-14,88.5], "dv":"F" },
 		{ "type":"Expression", "id1":"Ed", "id2":"Normal", "dv":"F", "del":0.5 }
 	
@@ -82,6 +82,7 @@
 	{ "name":"Ed answers doorbell - door",
 		"condition":[ { "type":"FlagValueIs", "id":"EdCheckingPackage", "bv":true, "iv":3 } ],
 		"action":[
+			{ "type":"Wait", "del":0.25 },
 			{ "type":"ShowRoom", "sv":"FrontDoor", "vv":[-50.23,2] },
 			{ "type":"Expression", "id1":"Ed", "id2":"Sad", "dv":"F", "del":0.5 },
 			{ "type":"Open", "id1":"FrontDoor", "sv":"o" },

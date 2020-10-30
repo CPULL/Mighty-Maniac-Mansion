@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Controller : MonoBehaviour {
   [HideInInspector] public Camera cam;
@@ -28,9 +28,7 @@ public class Controller : MonoBehaviour {
     }
     if (GD.status != GameStatus.NormalGamePlay && GD.status != GameStatus.Cutscene) return;
 
-
     HandleCursor();
-
 
     #region Handling of text messages
     if (textMsgTime > 0) {
@@ -68,13 +66,15 @@ public class Controller : MonoBehaviour {
 
     #region Sequences and actions
     if (currentCutscene != null) { // Do we have a sequence?
+      FrontActors.enabled = !currentCutscene.skippable;
       if (!currentCutscene.Run(null, null)) { // Completed
         Debug.Log("Completed cutscene " + currentCutscene.ToString());
         currentCutscene = null;
-        sceneSkipped = false;
+        SceneSkipped = false;
         GD.status = GameStatus.NormalGamePlay;
         forcedCursor = CursorTypes.None;
         oldCursor = null;
+        if (currentActor.currentRoom != currentRoom) StartCoroutine(FadeToRoomActor());
       }
       else {
         GD.status = GameStatus.Cutscene;
@@ -83,7 +83,7 @@ public class Controller : MonoBehaviour {
     #endregion
 
     #region Handle camera
-    if (CameraPanningInstance == null && (currentCutscene == null || sceneSkipped)) {
+    if (!CameraFadingToActor && CameraPanningInstance == null && (currentCutscene == null || SceneSkipped)) {
       Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
       if (cam.transform.position.x < currentRoom.minL) {
         Vector3 p = cam.transform.position;
@@ -108,8 +108,8 @@ public class Controller : MonoBehaviour {
     }
     #endregion
 
-    if (GD.status != GameStatus.NormalGamePlay) return;
-
+    if (GD.status != GameStatus.NormalGamePlay && !SceneSkipped) return;
+    FrontActors.enabled = false;
 
     #region Mouse control
     bool notOverUI = !EventSystem.current.IsPointerOverGameObject();
@@ -368,7 +368,7 @@ public class Controller : MonoBehaviour {
   private Vector2 middle = new Vector2(32, 32);
 
   void HandleCursor() {
-    if (GD.status != GameStatus.NormalGamePlay) {
+    if (GD.status != GameStatus.NormalGamePlay && !SceneSkipped) {
       if (oldCursor != Cursors[(int)CursorTypes.Wait]) {
         Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], middle, CursorMode.Auto);
         oldCursor = Cursors[(int)CursorTypes.Wait];
@@ -442,7 +442,6 @@ public class Controller : MonoBehaviour {
   #endregion
 
 
-
   #region *********************** Initialization
 
   private void Awake() {
@@ -507,18 +506,20 @@ public class Controller : MonoBehaviour {
 
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
   GameScene currentCutscene;
-  public static bool sceneSkipped = false;
+  public static bool SceneSkipped;
 
   void StartIntroCutscene() {
+    FrontActors.enabled = true;
     currentCutscene = AllObjects.GetCutscene(CutsceneID.Intro);
     forcedCursor = CursorTypes.Wait;
     oldCursor = null;
     GD.status = GameStatus.NormalGamePlay;
-    sceneSkipped = false;
+    SceneSkipped = false;
   }
 
 
   public static void StartCutScene(GameScene scene) {
+    GD.c.FrontActors.enabled = true;
     Chars main = scene.mainChar;
     AllObjects.StopScenes(main);
     GD.c.currentCutscene = scene;
@@ -526,13 +527,14 @@ public class Controller : MonoBehaviour {
     GD.c.forcedCursor = CursorTypes.Wait;
     GD.c.oldCursor = null;
     GD.status = GameStatus.NormalGamePlay;
-    sceneSkipped = false;
+    SceneSkipped = false;
   }
 
   public static void RemoveCutScene(GameScene scene) {
     if (GD.c.currentCutscene == scene) {
-      sceneSkipped = false;
+      SceneSkipped = false;
       GD.c.currentCutscene = null;
+      GD.c.FrontActors.enabled = false;
     }
   }
 
@@ -684,6 +686,8 @@ public class Controller : MonoBehaviour {
   public Sprite[] Portraits;
   public PressAction[] pressActions;
   float walkDelay = 0;
+  public RawImage FrontActors;
+
 
 
   /// <summary>
@@ -847,7 +851,7 @@ public class Controller : MonoBehaviour {
     if (GD.status != GameStatus.NormalGamePlay && !force && (GD.c.currentCutscene == null || !GD.c.currentCutscene.skippable)) return;
 
     if (GD.c.currentCutscene != null && GD.c.currentCutscene.skippable) {
-      sceneSkipped = true;
+      SceneSkipped = true;
       Fader.RemoveFade();
     }
     GD.c.forcedCursor = CursorTypes.None;
@@ -989,11 +993,10 @@ public class Controller : MonoBehaviour {
     ShowName(currentRoom.name);
   }
 
-  private IEnumerator FadeToRoomActor() {
-    // Disable gameplay
-    GD.status = GameStatus.Cutscene;
-    yield return null;
+  bool CameraFadingToActor = false;
 
+  private IEnumerator FadeToRoomActor() {
+    CameraFadingToActor = true;
     Room prev = currentRoom;
     currentRoom = currentActor.currentRoom;
 
@@ -1013,7 +1016,6 @@ public class Controller : MonoBehaviour {
     prev.gameObject.SetActive(false);
     currentRoom.gameObject.SetActive(true);
     cam.transform.position = dstp;
-    GD.status = GameStatus.NormalGamePlay; // Enable gmaeplay, this will make the camera to adjust
     yield return null;
 
     // Disable actors not in current room
@@ -1035,6 +1037,7 @@ public class Controller : MonoBehaviour {
     }
     forcedCursor = CursorTypes.None;
     overItem = null;
+    CameraFadingToActor = false;
   }
 
   internal static void StopPanningCamera() {

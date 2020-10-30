@@ -184,7 +184,7 @@ public class GameScene {
           if (gs.skippable)
             skippable = true;
           else {
-            Controller.sceneSkipped = false;
+            Controller.SceneSkipped = false;
           }
         }
       }

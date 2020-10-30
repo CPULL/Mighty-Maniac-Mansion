@@ -207,7 +207,7 @@ public class Item : GameItem {
       }
       if (sound && door.OpenSound != null && door.Audio != null) {
         door.Audio.clip = door.OpenSound;
-        door.Audio.Play();
+        if (door.gameObject.activeSelf) door.Audio.Play();
       }
     }
     else {
@@ -218,7 +218,7 @@ public class Item : GameItem {
             item.gameObject.SetActive(true);
         if (sound && c.OpenSound != null && c.Audio != null) {
           c.Audio.clip = c.OpenSound;
-          c.Audio.Play();
+          if (c.gameObject.activeSelf) c.Audio.Play();
         }
       }
     }
@@ -239,7 +239,7 @@ public class Item : GameItem {
       }
       if (sound && door.OpenSound != null && door.Audio != null) {
         door.Audio.clip = door.OpenSound;
-        door.Audio.Play();
+        if (door.gameObject.activeSelf) door.Audio.Play();
       }
     }
     else {
@@ -250,7 +250,7 @@ public class Item : GameItem {
             item.gameObject.SetActive(true);
         if (sound && c.OpenSound != null && c.Audio != null) {
           c.Audio.clip = c.OpenSound;
-          c.Audio.Play();
+          if (c.gameObject.activeSelf) c.Audio.Play();
         }
       }
     }
@@ -276,11 +276,11 @@ public class Item : GameItem {
         }
         if (soundC && door.CloseSound != null && door.Audio != null) {
           door.Audio.clip = door.CloseSound;
-          door.Audio.Play();
+          if (door.gameObject.activeSelf) door.Audio.Play();
         }
         else if (soundUl && door.UnlockSound != null && door.Audio != null) {
           door.Audio.clip = door.UnlockSound;
-          door.Audio.Play();
+          if (door.gameObject.activeSelf) door.Audio.Play();
         }
       }
     }
@@ -296,7 +296,7 @@ public class Item : GameItem {
         }
         else if (soundUl && c.UnlockSound != null && c.Audio != null) {
           c.Audio.clip = c.UnlockSound;
-          c.Audio.Play();
+          if (c.gameObject.activeSelf) c.Audio.Play();
         }
       }
     }
@@ -322,11 +322,11 @@ public class Item : GameItem {
         }
         if (soundC && door.CloseSound != null && door.Audio != null) {
           door.Audio.clip = door.CloseSound;
-          door.Audio.Play();
+          if (door.gameObject.activeSelf) door.Audio.Play();
         }
         else if (soundUl && door.LockSound != null && door.Audio != null) {
           door.Audio.clip = door.LockSound;
-          door.Audio.Play();
+          if (door.gameObject.activeSelf) door.Audio.Play();
         }
       }
     }

@@ -409,7 +409,7 @@ public class GameAction {
     // Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
-        if (Controller.sceneSkipped) {
+        if (Controller.SceneSkipped) {
           Complete();
           return;
         }
@@ -754,7 +754,7 @@ public class GameAction {
       break;
 
       case ActionType.Fade: {
-        if (Controller.sceneSkipped) {
+        if (Controller.SceneSkipped) {
           Complete();
           return;
         }
