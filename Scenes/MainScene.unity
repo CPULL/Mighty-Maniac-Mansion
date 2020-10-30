@@ -2853,7 +2853,7 @@ MonoBehaviour:
   br: {x: -34.243114, y: 16.316118}
   bl: {x: -36.816486, y: 16.265938}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -3029,7 +3029,7 @@ MonoBehaviour:
   br: {x: -61.443665, y: 16.217964}
   bl: {x: -66.228424, y: 16.158306}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -5164,7 +5164,7 @@ MonoBehaviour:
   br: {x: -53.96119, y: 16.215755}
   bl: {x: -58.443665, y: 16.217964}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1385697415}
   g: 30.231117
   h: 3.4859724
@@ -7579,7 +7579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211990111}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -54.74, y: 27.68, z: 0}
+  m_LocalPosition: {x: -50.01, y: 20.55, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1547144313}
@@ -16108,7 +16108,7 @@ MonoBehaviour:
   br: {x: -57.24382, y: 18.323256}
   bl: {x: -59.846325, y: 18.368673}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -17104,7 +17104,7 @@ MonoBehaviour:
   br: {x: -48.145103, y: 22.834}
   bl: {x: -50.71171, y: 22.877756}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: 0
   h: 11.349839
@@ -19755,7 +19755,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   src: {fileID: 450900029}
   dst: {fileID: 1158860359}
-  camerapos: {x: -50.5, y: 20, z: -10}
+  camerapos: {x: -50.25, y: 20.55, z: -10}
   correspondingDoor: {fileID: 1502791931}
   transition: 3
   arrivalDirection: 2
@@ -32570,7 +32570,7 @@ MonoBehaviour:
   br: {x: -33.225708, y: 17.620838}
   bl: {x: -34.569374, y: 17.796473}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -35225,6 +35225,7 @@ MonoBehaviour:
   actor2: {fileID: 0}
   actor3: {fileID: 0}
   kidnappedActor: {fileID: 0}
+  receiverActor: {fileID: 0}
   currentActor: {fileID: 0}
   allEnemies:
   - {fileID: 0}
@@ -37822,7 +37823,7 @@ MonoBehaviour:
   br: {x: -65.415634, y: 17.856058}
   bl: {x: -66.9758, y: 17.47361}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -41213,7 +41214,7 @@ MonoBehaviour:
   br: {x: -36.816486, y: 16.265938}
   bl: {x: -39.99216, y: 16.31612}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -41631,7 +41632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da6a069a417664088ee17ea356220b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStair: 1
+  isStair: 0
   left: {fileID: 0}
   right: {fileID: 0}
   top: {fileID: 485679110}
@@ -41641,7 +41642,7 @@ MonoBehaviour:
   br: {x: -49.176426, y: 21.10357}
   bl: {x: -51.309258, y: 21.062363}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 485679110}
   g: 10.511743
   h: 10.511743
@@ -42053,8 +42054,8 @@ MonoBehaviour:
   minL: -60.5
   maxR: -39.5
   minY: 16.2
-  maxY: 23
-  scalePerc: 1.3
+  maxY: 18
+  scalePerc: 1.35
   CameraGround: 20
   external: 0
   lights: 1
@@ -44100,7 +44101,7 @@ MonoBehaviour:
   br: {x: -32.17167, y: 16.416481}
   bl: {x: -34.243114, y: 16.316118}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -49079,7 +49080,7 @@ MonoBehaviour:
   br: {x: -40.544277, y: 18.599377}
   bl: {x: -43.067455, y: 18.420027}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -50923,7 +50924,7 @@ MonoBehaviour:
   br: {x: -49.355034, y: 16.265938}
   bl: {x: -53.96119, y: 16.215755}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 2099079231}
   g: 26.745144
   h: 7.59853
@@ -53525,7 +53526,7 @@ MonoBehaviour:
   br: {x: -58.443665, y: 16.217964}
   bl: {x: -61.443665, y: 16.217964}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 140882515}
   g: 30.231117
   h: 0
@@ -61022,7 +61023,7 @@ MonoBehaviour:
   br: {x: -39.99216, y: 16.31612}
   bl: {x: -42.99216, y: 16.31612}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -62329,7 +62330,7 @@ MonoBehaviour:
   - {fileID: 2099079231}
   - {fileID: 1153819200}
   - {fileID: 485679110}
-  ShowSubNodes: 0
+  ShowSubNodes: 1
   DoAStar: 0
   start: {x: -49.879135, y: 23.57528}
   end: {x: -59.391766, y: 17.243635}
@@ -64120,7 +64121,7 @@ MonoBehaviour:
   br: {x: -66.228424, y: 16.158306}
   bl: {x: -67.92779, y: 16.181908}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -66602,7 +66603,7 @@ MonoBehaviour:
   br: {x: -42.99216, y: 16.31612}
   bl: {x: -49.355034, y: 16.265938}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1385697415}
   g: 39.665276
   h: 12.920134
@@ -78326,7 +78327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da6a069a417664088ee17ea356220b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStair: 1
+  isStair: 0
   left: {fileID: 0}
   right: {fileID: 0}
   top: {fileID: 1153819200}
@@ -78336,7 +78337,7 @@ MonoBehaviour:
   br: {x: -50.079884, y: 18.360445}
   bl: {x: -53.385643, y: 18.228333}
   parent: {fileID: 1701435548}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1153819200}
   g: 19.146614
   h: 8.634872
