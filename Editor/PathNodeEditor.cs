@@ -2,6 +2,7 @@
 using UnityEngine;
 
 [CustomEditor(typeof(PathNode))]
+[CanEditMultipleObjects]
 public class PathNodeEditor : Editor {
   PathNode t = null;
   float size = 1;

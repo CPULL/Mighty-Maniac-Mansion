@@ -8,10 +8,15 @@
 		{ "type":"SetFlag", "id1":"EdCheckingPackage", "iv":1 }
 	],
 	"shutdown" : [
-		{ "type":"Open", "id1":"EdDoor", "sv":"o" },
-		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-7.5,89], "dv":"F" },
+		{ "type":"Teleport", "rep":true, "del":0, "id1":"Ed", "id2":"", "sv":"NoRoom", "iv":"", "dv":"B", "vv":[100,100] },
 		{ "type":"Open", "id1":"FrontDoor", "sv":"c" },
 		{ "type":"Open", "id1":"FrontDoor", "sv":"l" },
+		{ "type":"Cursor", "id1":"Normal" },
+		
+		{ "type":"Wait", "del":5 },
+		
+		{ "type":"Open", "id1":"EdDoor", "sv":"o" },
+		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-7.5,89], "dv":"F" },
 		{ "type":"Wait", "del":.25 },
 		{ "type":"Open", "id1":"EdDoor", "sv":"c" },
 		{ "type":"WalkToPos", "sv":"EdRoom", "id1":"Ed", "vv":[-14,88.5], "dv":"F" },

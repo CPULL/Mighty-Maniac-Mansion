@@ -4,7 +4,6 @@ Do a room where we can hide while Ed checks the doorbell
 
 Do arms forward in all characters
 
-
 Icrease resolution of turkey and roast
 Add recycle stuff to the service room
 Split again background sounds and normal sounds
@@ -39,7 +38,6 @@ Purple Meteor
 Hoagie
 Michael
 Razor
-Sandy
 !Syd
 !Wendy
 Jeff

@@ -253,7 +253,7 @@ public class Actor : MonoBehaviour {
       prevFloor = FloorType.None;
       floor = p.floorType;
       if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
-      audios.Play();
+      if (IsVisible) audios.Play();
     }
     else {
       destination.pos = parcour[1].pos;
@@ -264,7 +264,7 @@ public class Actor : MonoBehaviour {
       if (floor != prevFloor || !audios.isPlaying) {
         prevFloor = floor;
         if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
-        audios.Play();
+        if (IsVisible) audios.Play();
       }
     }
     destination.pos.z = (destination.pos.y - currentRoom.CameraGround) / 10f;
@@ -299,7 +299,7 @@ public class Actor : MonoBehaviour {
       prevFloor = FloorType.None;
       floor = p.floorType;
       if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
-      audios.Play();
+      if (IsVisible) audios.Play();
     }
     else {
       destination.pos = parcour[1].pos;
@@ -310,7 +310,7 @@ public class Actor : MonoBehaviour {
       if (floor != prevFloor || !audios.isPlaying) {
         prevFloor = floor;
         if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
-        audios.Play();
+        if (IsVisible) audios.Play();
       }
     }
     destination.pos.z = (destination.pos.y - currentRoom.CameraGround) / 10f;
@@ -326,9 +326,10 @@ public class Actor : MonoBehaviour {
   }
 
   public void SetScaleAndPosition(Vector3 pos) {
-    if (pos.y < currentRoom.minY) pos.y = currentRoom.minY;
-    if (pos.y > currentRoom.maxY) pos.y = currentRoom.maxY;
-    ScaleByPosition(pos.y);
+    float y = pos.y;
+    if (y < currentRoom.minY) y = currentRoom.minY;
+    if (y > currentRoom.maxY) y = currentRoom.maxY;
+    ScaleByPosition(y);
     transform.position = pos;
   }
 
@@ -338,6 +339,8 @@ public class Actor : MonoBehaviour {
   }
 
   private void Update() {
+    IsVisible = currentRoom == GD.c.currentRoom;
+
     if (isSpeaking) {
       speakt += Time.deltaTime;
       if (speakt > .15f) {
