@@ -1,6 +1,9 @@
 === Mighty Maniac Mansion ===
 
 
+Decide how to use the microwave. Probably we need a button somewhere.
+
+
 Do arms forward in all characters
 
 Icrease resolution of turkey and roast

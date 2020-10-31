@@ -306,19 +306,13 @@ public class Condition {
           return !res;
       }
 
-      case ConditionType.ItemOpen:
-        if (iv == 0) {
-          if (bv)
-            return item1.IsOpen();
-          else
-            return !item1.IsOpen();
-        }
-        else {
-          if (bv)
-            return item1.IsLocked();
-          else
-            return !item1.IsLocked();
-        }
+      case ConditionType.ItemOpen: {
+        Item item = AllObjects.GetItem((ItemEnum)id);
+        if (bv)
+          return item.IsOpen();
+        else
+          return !item.IsOpen();
+      }
 
       case ConditionType.RecipientIs: {
         if (receiver == null) return false;

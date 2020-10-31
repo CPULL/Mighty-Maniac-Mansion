@@ -15,6 +15,8 @@ public class DoorEditor : Editor {
   SerializedProperty actions;
   SerializedProperty openSound, closeSound, lockSound, unlockSound;
   SerializedProperty openStatus, lockStatus;
+  bool showDescription = false;
+  SerializedProperty Description, Owner;
 
 
   void OnEnable() {
@@ -44,6 +46,8 @@ public class DoorEditor : Editor {
     unlockSound = serializedObject.FindProperty("UnlockSound");
     openStatus = serializedObject.FindProperty("openStatus");
     lockStatus = serializedObject.FindProperty("lockStatus");
+    Description = serializedObject.FindProperty("Description");
+    Owner = serializedObject.FindProperty("owner");
   }
 
 
@@ -71,6 +75,13 @@ public class DoorEditor : Editor {
     EditorGUILayout.PropertyField(Usable, new GUIContent("Usable"));
     EditorGUILayout.PropertyField(UsableWith, new GUIContent("  with"));
     EditorGUILayout.EndHorizontal();
+
+    // Description and Owner (collapsible)
+    showDescription = EditorGUILayout.Foldout(showDescription, "Description and Owner");
+    if (showDescription) {
+      EditorGUILayout.PropertyField(Description);
+      EditorGUILayout.PropertyField(Owner);
+    }
 
     // Open/Lock status
     EditorGUILayout.BeginHorizontal();

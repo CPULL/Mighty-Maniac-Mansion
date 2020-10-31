@@ -237,8 +237,8 @@ public class Item : GameItem {
         door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
         if (door.correspondingDoor.lockStatus == LockStatus.UnlockedAutolock) door.correspondingDoor.lockStatus = LockStatus.Autolock;
       }
-      if (sound && door.OpenSound != null && door.Audio != null) {
-        door.Audio.clip = door.OpenSound;
+      if (sound && door.CloseSound != null && door.Audio != null) {
+        door.Audio.clip = door.CloseSound;
         if (door.gameObject.activeSelf) door.Audio.Play();
       }
     }
@@ -247,9 +247,9 @@ public class Item : GameItem {
       if (c != null) {
         foreach (Item item in c.items)
           if (item.owner == Chars.None)
-            item.gameObject.SetActive(true);
-        if (sound && c.OpenSound != null && c.Audio != null) {
-          c.Audio.clip = c.OpenSound;
+            item.gameObject.SetActive(false);
+        if (sound && c.CloseSound != null && c.Audio != null) {
+          c.Audio.clip = c.CloseSound;
           if (c.gameObject.activeSelf) c.Audio.Play();
         }
       }

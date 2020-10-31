@@ -143,6 +143,7 @@ public enum ItemEnum {
   BasementDoor,
   DungeonDoor,
   EdDoor,
+  Microwave,
 }
 
 
