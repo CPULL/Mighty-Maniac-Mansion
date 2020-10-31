@@ -275,9 +275,10 @@ public class Controller : MonoBehaviour {
             WalkAndAction(currentActor, aDoor,
               new System.Action<Actor, Item>((actor, item) => {
                 if (!item.IsOpen() && item.IsLocked()) {
-                  actor.Say("Is locked");
+                  actor.Say("It is locked");
                   return;
                 }
+                if (!item.IsOpen()) return;
                 StartCoroutine(ChangeRoom(actor, (item as Door)));
               }));
           }

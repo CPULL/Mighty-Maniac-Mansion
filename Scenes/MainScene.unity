@@ -17598,7 +17598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496498943}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0.169, y: -4.304, z: 0}
+  m_LocalPosition: {x: -1.15, y: -4.304, z: 0}
   m_LocalScale: {x: 0.12410589, y: 0.042373367, z: 1.0697725}
   m_Children: []
   m_Father: {fileID: 1318194158}
@@ -40122,7 +40122,7 @@ MonoBehaviour:
   minL: -66.5
   maxR: -29
   minY: -1.9
-  maxY: 2.07
+  maxY: 0.5
   scalePerc: 1.2
   CameraGround: 2
   external: 1
@@ -48779,7 +48779,7 @@ MonoBehaviour:
   Item: 4
   Name: Mailbox Flag
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
   openStatus: 0
   lockStatus: 0
@@ -48791,8 +48791,8 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -29.988401, y: -0.34560004}
-  dir: 0
+  HotSpot: {x: -30.516, y: -0.34560004}
+  dir: 2
   overColor:
     serializedVersion: 2
     rgba: 4294967040
@@ -73522,28 +73522,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1956777059}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 637f299ffccc9954ca57a113a8a56e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Item: 3
   Name: Mailbox
   owner: 0
-  Usable: 4
+  Usable: 3
   UsableWith: 0
-  openStatus: 0
+  openStatus: 1
   lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 0
-  Description: 'A normal mailbox.
-
-    %open'
+  Description: 
   openImage: {fileID: 1584276219503357356, guid: b159dabee9fbe15469546fed737de0a9, type: 3}
   closeImage: {fileID: -4200121528519567819, guid: b159dabee9fbe15469546fed737de0a9, type: 3}
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
   HotSpot: {x: -28.684801, y: -0.027600005}
-  dir: 0
+  dir: 1
   overColor:
     serializedVersion: 2
     rgba: 4278255615
@@ -73552,6 +73550,12 @@ MonoBehaviour:
     rgba: 4294967295
   actions: []
   sr: {fileID: 0}
+  OpenSound: {fileID: 0}
+  CloseSound: {fileID: 0}
+  UnlockSound: {fileID: 0}
+  LockSound: {fileID: 0}
+  Audio: {fileID: 0}
+  items: []
 --- !u!65 &1956777063
 BoxCollider:
   m_ObjectHideFlags: 0
