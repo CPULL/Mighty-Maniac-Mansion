@@ -325,68 +325,10 @@ public class Actor : MonoBehaviour {
     }
   }
 
-  public void SetScaleAndPosition(Vector3 pos, PathNode p = null) {
-    float ty = pos.y;
-    if (p == null) {
-      if (destination.node == null || !destination.node.isStair) {
-        float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
-        scaley *= currentRoom.scalePerc;
-        transform.localScale = new Vector3(scaley, scaley, 1);
-        int zpos = (int)(scaley * 10000);
-        Face.sortingOrder = zpos + 1;
-        Arms.sortingOrder = zpos + 2;
-        Legs.sortingOrder = zpos;
-      }
-    }
-    else if (!p.isStair) {
-      float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
-      scaley *= currentRoom.scalePerc;
-      transform.localScale = new Vector3(scaley, scaley, 1);
-      int zpos = (int)(scaley * 10000);
-      Face.sortingOrder = zpos + 1;
-      Arms.sortingOrder = zpos + 2;
-      Legs.sortingOrder = zpos;
-    }
-    else {
-      // Find the path going down recursively until we will find a non-stairs node.
-      PathNode node = p;
-      while (node != null && node.isStair)
-        node = node.down;
-
-      if (node == null) { // Check going up
-        node = p;
-        while (node != null && node.isStair)
-          node = node.top;
-      }
-
-      if (node == null) { // Check going left
-        node = p;
-        while (node != null && node.isStair)
-          node = node.left;
-      }
-
-      if (node == null) { // Check going right
-        node = p;
-        while (node != null && node.isStair)
-          node = node.right;
-      }
-
-      if (node == null) {
-        Debug.LogError("Cannot find a sub-non-stairs node!");
-      }
-      else {
-        // Then get the top position and do the scaling with this Y coordinate
-        float subty = (node.tl.y + node.tr.y) * .5f;
-        float scaley = -.05f * (subty - currentRoom.minY - 1.9f) + .39f;
-        scaley *= currentRoom.scalePerc;
-        transform.localScale = new Vector3(scaley, scaley, 1);
-        int zpos = (int)(scaley * 10000);
-        Face.sortingOrder = zpos + 1;
-        Arms.sortingOrder = zpos + 2;
-        Legs.sortingOrder = zpos;
-      }
-    }
-    pos.y = ty;
+  public void SetScaleAndPosition(Vector3 pos) {
+    if (pos.y < currentRoom.minY) pos.y = currentRoom.minY;
+    if (pos.y > currentRoom.maxY) pos.y = currentRoom.maxY;
+    ScaleByPosition(pos.y);
     transform.position = pos;
   }
 
@@ -451,7 +393,7 @@ public class Actor : MonoBehaviour {
     np.z = 0;
     transform.position = np;
 
-    ScaleByPosition();
+    ScaleByPosition(transform.position.y);
 
     if (!audios.isPlaying && gameObject.activeSelf && IsVisible) {
       audios.Play();
@@ -494,7 +436,7 @@ public class Actor : MonoBehaviour {
     np.z = 0;
     transform.position = np;
 
-    ScaleByPosition();
+    ScaleByPosition(transform.position.y);
 
     if (!audios.isPlaying && gameObject.activeSelf && IsVisible) {
       audios.Play();
@@ -506,19 +448,18 @@ public class Actor : MonoBehaviour {
     CheckReachingDestination(walkDir); 
   }
 
-  void ScaleByPosition() {
-    float ty = transform.position.y;
+  void ScaleByPosition(float y) {
+    float ty = y;
     if (ty < currentRoom.minY) ty = currentRoom.minY;
     if (ty > currentRoom.maxY) ty = currentRoom.maxY;
     float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
-    if (destination.node != null && !destination.node.isStair) {
-      scaley *= currentRoom.scalePerc;
-      transform.localScale = new Vector3(scaley, scaley, 1);
-      int zpos = (int)(scaley * 10000);
-      Face.sortingOrder = zpos + 1;
-      Arms.sortingOrder = zpos + 2;
-      Legs.sortingOrder = zpos;
-    }
+
+    scaley *= currentRoom.scalePerc;
+    transform.localScale = new Vector3(scaley, scaley, 1);
+    int zpos = (int)(scaley * 10000);
+    Face.sortingOrder = zpos + 1;
+    Arms.sortingOrder = zpos + 2;
+    Legs.sortingOrder = zpos;
   }
 
   void CheckReachingDestination(Vector2 walkDir) {
