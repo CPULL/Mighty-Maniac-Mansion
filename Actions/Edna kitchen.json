@@ -1,23 +1,22 @@
 {
-	"id":"EdnaBrowsingFridge", "name":"Edna Browsing Fridge","type":"actor","AppliesTo":"Edna",
+	"id":"EdnaBrowsingFridge", "name":"Edna Browsing Fridge","type":"cutscene","AppliesTo":"Edna",
 
-	"condition":[
-		{ "type":"CurrentRoomIs", "sv":"Kitchen", "bv":true },
-		{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":false, "iv":0 }
-	],
+	"condition":[],
 	
 	"startup" : [
+		{ "type":"SetFlag", "id1":"EdnaBrowsingFridge", "iv":1 }
 		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-80.12,17.9] },
-		{ "type":"Open", "rep":true, "del":0, "id1":"Fridge", "id2":"", "sv":"Open", "iv":"", "dv":"", "vv":[] }
+		{ "type":"Open", "rep":true, "del":0, "id1":"Fridge", "id2":"", "sv":"Open", "iv":"", "dv":"", "vv":[] },
+		{ "type":"Cursor", "id1":"Normal" }
 	],
 	
 	"shutdown" : [
-		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-95,7] },
-		{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":0, "dv":"", "vv":[] }
+		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "sv":"NoRoom", "dv":"F", "vv":[100,100] },
+		{ "type":"SetFlag", "id1":"EdnaBrowsingFridge", "iv":0 }
 	],
 	
 	"sequence":[
-		{ "name":"Wait in position < X",
+		{ "name":"Wait in position < X", "skippable":true,
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":1 },
 				{ "type":"ActorXLess", "id":"Current", "fv":-86, "bv":true }
@@ -27,7 +26,7 @@
 			]
 		},
 		
-		{ "name":"Wait in position > X",
+		{ "name":"Wait in position > X", "skippable":true,
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":1 },
 				{ "type":"ActorXLess", "id":"Current", "fv":-86, "bv":false }
@@ -37,7 +36,7 @@
 			]
 		},
 		
-		{ "name":"Start Catching",
+		{ "name":"Start Catching", "skippable":true,
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":2 }
 			],
@@ -48,7 +47,7 @@
 			]
 		},
 		
-		{ "name":"Catching",
+		{ "name":"Catching", "skippable":true,
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":3 }
 			],

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class AllObjects : MonoBehaviour {
@@ -157,6 +156,7 @@ public enum GameFlag {
   EdCheckingPackage,
 }
 
+[System.Serializable]
 public class FlagStatus {
   public GameFlag flag;
   public int value;
@@ -164,6 +164,10 @@ public class FlagStatus {
   public FlagStatus(GameFlag f, int v) {
     flag = f;
     value = v;
+  }
+
+  public override string ToString() {
+    return flag + " = " + value;
   }
 }
 
@@ -173,6 +177,7 @@ public enum CutsceneID {
   Doorbell,
   EdHungryCheese,
   EdnaBrowsingFridge,
+  EdnaWatch,
   EdnaCatch,
   GreenTentaclePatrolling,
   EdWatch,

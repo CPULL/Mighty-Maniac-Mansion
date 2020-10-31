@@ -1,0 +1,33 @@
+{
+	"id":"EdnaWatch", "name":"Edna Watch intruders","type":"actor","AppliesTo":"Edna",
+
+	"condition":[
+		{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":0 }	,
+		{ "type":"SameRoom", "id":"Edna", "sv":"Player", "bv":true },
+		{ "type":"RoomIsInExt", "id":"Edna", "bv":true },
+	],
+	
+	"shutdown" : [
+		{ "type":"Teleport", "sv":"EdRoom", "id1":"Edna", "vv":[-13.3,88.24], "dv":"F" }
+	],
+
+	
+	"sequence":[
+		{ "name":"Catching",
+			"condition":[],
+			"action":[
+				{ "type":"StopScenes", "id1":"Edna" },
+				{ "type":"SetCurrentRoomActor", "id1":"Edna" , "id2":"1" },
+				{ "type":"Speak", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder. #2", "iv":"", "dv":"None", "vv":[] },
+				{ "type":"Wait", "del":1 },
+				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"L", "vv":[] },
+				{ "type":"Cutscene", "id1":"EdnaCatch" }
+			]
+		}
+	]
+
+}
+
+
+
+

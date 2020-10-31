@@ -22,8 +22,6 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     EditorGUI.indentLevel = 1;
 
     SerializedProperty type = property.FindPropertyRelative("type");
-    SerializedProperty Repeatable = property.FindPropertyRelative("Repeatable");
-    SerializedProperty delay = property.FindPropertyRelative("delay");
     SerializedProperty id1 = property.FindPropertyRelative("id1");
     SerializedProperty id2 = property.FindPropertyRelative("id2");
     SerializedProperty str = property.FindPropertyRelative("str");
@@ -264,6 +262,11 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         }
         break;
 
+        case ActionType.Cursor: {
+          Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(CursorTypes)));
+        }
+        break;
       }
     }
 

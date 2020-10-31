@@ -162,7 +162,7 @@ public class Options : MonoBehaviour {
     PlayerPrefs.SetInt("Font", num);
   }
 
-  CursorTypes prevCursor = CursorTypes.None;
+  CursorTypes prevCursor = CursorTypes.Normal;
 
   public static void Activate(bool activate) {
     if (GD.opts == null) return;

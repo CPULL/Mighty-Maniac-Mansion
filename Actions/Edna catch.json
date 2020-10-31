@@ -18,7 +18,7 @@
 	
 	"shutdown" : [
 		{ "type":"WalkToPos", "id1":"Edna", "vv":[-87.55,7.58], "dv":"B" },
-		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-80.12,17.9] },
+		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"NoRoom", "iv":"", "dv":"B", "vv":[100,100] },
 		{ "type":"Open", "id1":"DungeonDoor", "sv":"c" },
 		{ "type":"Open", "id1":"DungeonDoor", "sv":"l" }
 	],

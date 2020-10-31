@@ -1,9 +1,6 @@
 === Mighty Maniac Mansion ===
 
 
-[demo] Draw Edna and do the "Check fridge" at start
-[demo] Have a way for actor to "complete a cutscene" as particular status, that can be used to go in rooms and have the actors to be not here (use behaviors?)
-[demo] disable doors that are not working (do not let to walk over them)
 
 Do arms forward in all characters
 
@@ -25,7 +22,6 @@ Complete Sandy and Ollie descriptions
 
 * BUGS ************************************************************************************************************
 
-If we teleport over stairs we are not zooming correctly the actor
 
 * CHARS ************************************************************************************************************
 
@@ -190,4 +186,7 @@ Jeff
 ! Fix Ed catch
 ! How to have the cutscene running but in background? > to do this we should have a step marked as "skippable", so if we switch an actor (also the one currently selected) the cutscene will run "silently" without changing the rooms
 ! Be sure the step executed when items are not visible will complete
+! Draw Edna and do the "Check fridge" at start
+! If we teleport over stairs we are not zooming correctly the actor
+! If we walk directly to a stairs path we are not scaling
 

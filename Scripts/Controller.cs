@@ -8,7 +8,7 @@ public class Controller : MonoBehaviour {
   [HideInInspector] public Camera cam;
   public LayerMask pathLayer;
   public LayerMask doorLayer;
-  public UnityEngine.UI.Image BlackFade;
+  public Image BlackFade;
   public Transform PickedItems;
   public AudioSource MusicPlayer;
 
@@ -72,7 +72,7 @@ public class Controller : MonoBehaviour {
         currentCutscene = null;
         SceneSkipped = false;
         GD.status = GameStatus.NormalGamePlay;
-        forcedCursor = CursorTypes.None;
+        forcedCursor = CursorTypes.Normal;
         oldCursor = null;
         if (currentActor.currentRoom != currentRoom) StartCoroutine(FadeToRoomActor());
       }
@@ -147,7 +147,7 @@ public class Controller : MonoBehaviour {
     if (overInventoryItem != null) {
       if (usedItem == overInventoryItem) {
         if (lmb) { /* lmb - remove used */
-          forcedCursor = CursorTypes.None;
+          forcedCursor = CursorTypes.Normal;
           oldCursor = null;
           usedItem = null;
           EnableActorSelection(false);
@@ -195,7 +195,7 @@ public class Controller : MonoBehaviour {
           string res = usedItem.UseTogether(currentActor, overInventoryItem);
           if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
           UpdateInventory();
-          forcedCursor = CursorTypes.None;
+          forcedCursor = CursorTypes.Normal;
           oldCursor = null;
           usedItem = null;
           EnableActorSelection(false);
@@ -241,7 +241,7 @@ public class Controller : MonoBehaviour {
                 else if (actor == actor3) item.owner = Chars.Actor3;
                 item.PlayActions(currentActor, null, When.Pick, null);
                 item = null;
-                forcedCursor = CursorTypes.None;
+                forcedCursor = CursorTypes.Normal;
                 if (Inventory.activeSelf) ActivateInventory(currentActor);
               }
               else {
@@ -261,7 +261,7 @@ public class Controller : MonoBehaviour {
               if (!string.IsNullOrEmpty(res))
                 actor.Say(res);
               else {
-                forcedCursor = CursorTypes.None;
+                forcedCursor = CursorTypes.Normal;
                 overItem = null;
               }
             }));
@@ -294,7 +294,7 @@ public class Controller : MonoBehaviour {
               string res = usedItem.UseTogether(currentActor, item);
               if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
               UpdateInventory();
-              forcedCursor = CursorTypes.None;
+              forcedCursor = CursorTypes.Normal;
               oldCursor = null;
               usedItem = null;
               EnableActorSelection(false);
@@ -327,7 +327,7 @@ public class Controller : MonoBehaviour {
           }
         }
         else { /* rmb - do nothing but unselect used items */
-          forcedCursor = CursorTypes.None;
+          forcedCursor = CursorTypes.Normal;
           oldCursor = null;
           usedItem = null;
           EnableActorSelection(false);
@@ -345,7 +345,7 @@ public class Controller : MonoBehaviour {
         usedItem = null;
         EnableActorSelection(false);
         oldCursor = null;
-        forcedCursor = CursorTypes.None;
+        forcedCursor = CursorTypes.Normal;
         return;
       }
       if (lmb) {
@@ -360,7 +360,7 @@ public class Controller : MonoBehaviour {
     #endregion
   }
 
-  private CursorTypes forcedCursor = CursorTypes.None;
+  private CursorTypes forcedCursor = CursorTypes.Normal;
   private Texture2D oldCursor = null;
   public Texture2D[] Cursors;
   float cursorTime = 0;
@@ -385,7 +385,7 @@ public class Controller : MonoBehaviour {
     }
 
 
-    if (forcedCursor == CursorTypes.None) {
+    if (forcedCursor == CursorTypes.Normal) {
       float val = Mathf.Cos(cursorTime * 2.1f + 4.7f) * 4.9f;
       val = Mathf.Clamp(val, 0, 4);
       int c = 4 - Mathf.RoundToInt(val);
@@ -410,6 +410,7 @@ public class Controller : MonoBehaviour {
 
   internal static void SetCursor(CursorTypes cur) {
     GD.c.forcedCursor = cur;
+    GD.c.oldCursor = null;
   }
 
 
@@ -430,7 +431,7 @@ public class Controller : MonoBehaviour {
     else if (h == GD.c.InventoryPortrait) {
       if (GD.c.Inventory.activeSelf) { // Show/Hide inventory of current actor
         GD.c.Inventory.SetActive(false);
-        GD.c.InventoryPortrait.GetComponent<UnityEngine.UI.RawImage>().color = new Color32(0x6D, 0x7D, 0x7C, 0xff);
+        GD.c.InventoryPortrait.GetComponent<RawImage>().color = new Color32(0x6D, 0x7D, 0x7C, 0xff);
         return;
       }
       else
@@ -463,7 +464,7 @@ public class Controller : MonoBehaviour {
 
     currentRoom = GD.a.roomsList[0];
     currentActor = actor1;
-    ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = selectedActor;
+    ActorPortrait1.GetComponent<RawImage>().color = selectedActor;
 
     Options.GetOptions();
     GD.ReadyToStart();
@@ -554,7 +555,7 @@ public class Controller : MonoBehaviour {
 
   private void ActivateInventory(Actor actor) {
     Inventory.SetActive(true);
-    InventoryPortrait.GetComponent<UnityEngine.UI.RawImage>().color = new Color32(0x7D, 0x8D, 0xfC, 0xff);
+    InventoryPortrait.GetComponent<RawImage>().color = new Color32(0x7D, 0x8D, 0xfC, 0xff);
     foreach (Transform t in Inventory.transform)
       GameObject.Destroy(t.gameObject);
 
@@ -588,7 +589,7 @@ public class Controller : MonoBehaviour {
     }
 
     if (item == null) {
-      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.None;
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.Normal;
       GD.c.overItem = null;
       if (GD.c.TextMsg.text != "") GD.c.HideName();
       return;
@@ -601,7 +602,7 @@ public class Controller : MonoBehaviour {
 
     // Right
     if (item.whatItDoesR == WhatItDoes.Walk) {
-      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.None;
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.Normal;
       GD.c.overItem = item;
     }
     else if (item.whatItDoesR == WhatItDoes.Pick) {
@@ -633,7 +634,7 @@ public class Controller : MonoBehaviour {
     }
     // Left
     else if (item.whatItDoesL == WhatItDoes.Walk) {
-      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.None;
+      if (GD.c.forcedCursor != CursorTypes.Item) GD.c.forcedCursor = CursorTypes.Normal;
       GD.c.overItem = item;
     }
     else if (item.whatItDoesL == WhatItDoes.Pick) {
@@ -854,23 +855,23 @@ public class Controller : MonoBehaviour {
       SceneSkipped = true;
       Fader.RemoveFade();
     }
-    GD.c.forcedCursor = CursorTypes.None;
+    GD.c.forcedCursor = CursorTypes.Normal;
     GD.c.oldCursor = null;
     GD.c.usedItem = null;
     GD.c.EnableActorSelection(false);
 
     GD.c.currentActor = actor;
-    GD.c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.unselectedActor;
-    GD.c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.unselectedActor;
-    GD.c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.unselectedActor;
+    GD.c.ActorPortrait1.GetComponent<RawImage>().color = GD.c.unselectedActor;
+    GD.c.ActorPortrait2.GetComponent<RawImage>().color = GD.c.unselectedActor;
+    GD.c.ActorPortrait3.GetComponent<RawImage>().color = GD.c.unselectedActor;
     if (actor == GD.c.actor1) {
-      GD.c.ActorPortrait1.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.selectedActor;
+      GD.c.ActorPortrait1.GetComponent<RawImage>().color = GD.c.selectedActor;
     }
     else if (actor == GD.c.actor2) {
-      GD.c.ActorPortrait2.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.selectedActor;
+      GD.c.ActorPortrait2.GetComponent<RawImage>().color = GD.c.selectedActor;
     }
     if (actor == GD.c.actor3) {
-      GD.c.ActorPortrait3.GetComponent<UnityEngine.UI.RawImage>().color = GD.c.selectedActor;
+      GD.c.ActorPortrait3.GetComponent<RawImage>().color = GD.c.selectedActor;
     }
     GD.c.ShowName("Selected: " + GD.c.currentActor.name);
     if (GD.c.currentActor.currentRoom != GD.c.currentRoom) { // Different room
@@ -955,11 +956,7 @@ public class Controller : MonoBehaviour {
     actor.transform.position = door.correspondingDoor.HotSpot;
     actor.currentRoom = currentRoom;
     actor.SetDirection(door.correspondingDoor.arrivalDirection);
-    RaycastHit2D hit = Physics2D.Raycast(door.correspondingDoor.HotSpot, cam.transform.forward, 10000, pathLayer);
-    if (hit.collider != null) {
-      PathNode p = hit.collider.GetComponent<PathNode>();
-      currentActor.SetScaleAndPosition(door.correspondingDoor.HotSpot, p);
-    }
+    currentActor.SetScaleAndPosition(door.correspondingDoor.HotSpot);
     currentRoom.UpdateLights();
     yield return null;
 
@@ -988,7 +985,7 @@ public class Controller : MonoBehaviour {
 
     // Enable gameplay
     GD.status = GameStatus.NormalGamePlay;
-    forcedCursor = CursorTypes.None;
+    forcedCursor = CursorTypes.Normal;
     overItem = null;
     ShowName(currentRoom.name);
   }
@@ -1035,7 +1032,7 @@ public class Controller : MonoBehaviour {
       time += Time.deltaTime;
       yield return null;
     }
-    forcedCursor = CursorTypes.None;
+    forcedCursor = CursorTypes.Normal;
     overItem = null;
     CameraFadingToActor = false;
   }

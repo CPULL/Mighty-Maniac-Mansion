@@ -36,6 +36,8 @@ public enum ActionType {
   SwitchRoomLight = 23, // Turns on and off a light in a room (all rooms in case no room is specified)
   StopScenes = 24, // Stops all not unique cutscenes with the given actor
   SetCurrentRoomActor = 25, // Changes the current actor with the one in the same room of ID1 (ID2 == 0 for any actor, == 1 for player)
+
+  Cursor = 26, // Used to set the cursor in a specific mode, side effect of skipping the cutscene
 };
 
 
@@ -59,7 +61,7 @@ public class GameAction {
 
 
   public static string StringName(ActionType type, int id1, int id2, string str, Vector2 pos, Dir dir, int val)   {
-  string res = "Action name not yet calculated " + type;
+    string res = "Action name not yet calculated " + type;
     switch (type) {
       case ActionType.None: return "No action";
       case ActionType.ShowRoom: return "Show room " + str + (id2 == 0 ? "" : " [panning]");
@@ -118,6 +120,8 @@ public class GameAction {
       break;
 
       case ActionType.SwitchRoomLight: return "Switch lights on " + (string.IsNullOrEmpty(str) ? "Everywhere" : str);
+
+      case ActionType.Cursor: return "Set currsor as " + (CursorTypes)id1;
     }
     return res;
   }
@@ -145,6 +149,7 @@ public class GameAction {
       case ActionType.CompleteStep:
       case ActionType.Wait:
       case ActionType.SwitchRoomLight:
+      case ActionType.Cursor:
         return;
 
       case ActionType.Speak: {
@@ -360,6 +365,15 @@ public class GameAction {
       }
       break;
 
+      case ActionType.Cursor: {
+        CursorTypes id = (CursorTypes)System.Enum.Parse(typeof(CursorTypes), vid1, true);
+        if (!System.Enum.IsDefined(typeof(CursorTypes), id)) {
+          Debug.LogError("Unknown CursorTypes: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+      }
+      break;
+
     }
   }
 
@@ -406,7 +420,7 @@ public class GameAction {
 
 
   public void RunAction(Actor performer, Actor secondary, Item item1, Item item2) {
-    // Debug.Log("Playing: " + ToString());
+    Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
         if (Controller.SceneSkipped) {
@@ -449,14 +463,7 @@ public class GameAction {
         a.transform.position = pos;
         a.SetDirection(dir);
         if (aroom != null) {
-          RaycastHit2D hit = Physics2D.Raycast(pos, GD.c.cam.transform.forward, 10000, GD.c.pathLayer);
-          if (hit.collider != null) {
-            PathNode p = hit.collider.GetComponent<PathNode>();
-            a.SetScaleAndPosition(pos, p);
-          }
-          else {
-            a.SetScaleAndPosition(pos);
-          }
+          a.SetScaleAndPosition(pos);
         }
         Complete();
       }
@@ -857,6 +864,13 @@ public class GameAction {
         if (performer == GD.c.actor3) pos = 2;
         GD.c.pressActions[pos].Set(performer, item);
         item.ForceStatus(val);
+      }
+      break;
+
+      case ActionType.Cursor: {
+        Controller.SceneSkipped = true;
+        Controller.SetCursor((CursorTypes)id1);
+        Complete();
       }
       break;
 
