@@ -13,7 +13,7 @@
 		{ "type":"Open", "id1":"FrontDoor", "sv":"l" },
 		{ "type":"Cursor", "id1":"Normal" },
 		
-		{ "type":"Wait", "del":5 },
+		{ "type":"Wait", "del":55 },
 		
 		{ "type":"Open", "id1":"EdDoor", "sv":"o" },
 		{ "type":"Teleport", "sv":"EdRoom", "id1":"Ed", "vv":[-7.5,89], "dv":"F" },

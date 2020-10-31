@@ -1,6 +1,5 @@
 === Mighty Maniac Mansion ===
 
-Do a room where we can hide while Ed checks the doorbell
 
 Do arms forward in all characters
 
@@ -188,4 +187,5 @@ Jeff
 ! If we teleport over stairs we are not zooming correctly the actor
 ! If we walk directly to a stairs path we are not scaling
 ! We should not be able to pass thru closed doors
+! Do a room where we can hide while Ed checks the doorbell
 

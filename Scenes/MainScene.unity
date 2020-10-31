@@ -1340,7 +1340,7 @@ MonoBehaviour:
   prev: {fileID: 1406549466}
   g: 178.19582
   h: 14.92345
-  floorType: 4
+  floorType: 6
 --- !u!60 &39611249
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4690,7 +4690,7 @@ MonoBehaviour:
   prev: {fileID: 1038485370}
   g: 123.56125
   h: 24.868755
-  floorType: 4
+  floorType: 6
 --- !u!60 &117644639
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5005,7 +5005,7 @@ MonoBehaviour:
   prev: {fileID: 1038485370}
   g: 127.52388
   h: 28.831388
-  floorType: 4
+  floorType: 0
 --- !u!60 &129901548
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5909,7 +5909,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 14.658261
   h: 4.9760437
-  floorType: 0
+  floorType: 6
 --- !u!60 &151322465
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8208,7 +8208,7 @@ MonoBehaviour:
   br: {x: -2.3191538, y: 86.23881}
   bl: {x: -4.492592, y: 86.26434}
   parent: {fileID: 1134120969}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 772980591}
   g: 11.295731
   h: 0
@@ -10673,7 +10673,7 @@ MonoBehaviour:
   Face: {fileID: 119290669}
   Arms: {fileID: 1579272506}
   Legs: {fileID: 1235580344}
-  currentRoom: {fileID: 718837450}
+  currentRoom: {fileID: 0}
   actorSpeed: 4
   inventory: []
   id: 13
@@ -11321,12 +11321,12 @@ MonoBehaviour:
   right: {fileID: 772980591}
   top: {fileID: 1372057458}
   down: {fileID: 807804526}
-  tl: {x: -8.202133, y: 89.10402}
+  tl: {x: -8.214933, y: 89.20642}
   tr: {x: -6.381998, y: 89.18545}
   br: {x: -5.3727474, y: 87.38398}
   bl: {x: -7.6988525, y: 87.81327}
   parent: {fileID: 1134120969}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 941268145}
   g: 9.682218
   h: 3.7245324
@@ -11356,7 +11356,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.7978668, y: -0.89598083}
+    - - {x: 1.7850666, y: -0.7935791}
       - {x: 3.618002, y: -0.8145523}
       - {x: 4.6272526, y: -2.6160202}
       - {x: 2.3011475, y: -2.1867294}
@@ -13736,7 +13736,7 @@ MonoBehaviour:
   prev: {fileID: 1585800930}
   g: 166.63493
   h: 21.73146
-  floorType: 4
+  floorType: 0
 --- !u!60 &385813113
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -16331,8 +16331,8 @@ MonoBehaviour:
       delay: 0
       id1: 0
       id2: 0
-      str: SuitesCorridor
-      pos: {x: 28, y: 50}
+      str: EdRoom
+      pos: {x: -12, y: 90}
       dir: 0
       val: 0
   - Condition:
@@ -16352,8 +16352,8 @@ MonoBehaviour:
       delay: 0
       id1: 1
       id2: 0
-      str: SuitesCorridor
-      pos: {x: 15, y: 48}
+      str: EdRoom
+      pos: {x: -12, y: 88}
       dir: 2
       val: 0
   sr: {fileID: 0}
@@ -16596,7 +16596,7 @@ MonoBehaviour:
   prev: {fileID: 2010904826}
   g: 69.49321
   h: 33.19187
-  floorType: 4
+  floorType: 6
 --- !u!60 &469110619
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -19172,7 +19172,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 14.658261
   h: 4.9760437
-  floorType: 0
+  floorType: 6
 --- !u!60 &518751640
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -21408,7 +21408,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 14.658261
   h: 4.9760437
-  floorType: 0
+  floorType: 6
 --- !u!60 &600416741
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -27006,7 +27006,7 @@ MonoBehaviour:
   prev: {fileID: 1642668612}
   g: 205.58641
   h: 0
-  floorType: 4
+  floorType: 0
 --- !u!60 &738657639
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -28311,7 +28311,7 @@ MonoBehaviour:
   br: {x: -2.260579, y: 87.40919}
   bl: {x: -5.3727474, y: 87.38398}
   parent: {fileID: 1134120969}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 328017764}
   g: 11.295731
   h: 1.6135131
@@ -29011,7 +29011,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786267915}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -0.87, y: -0.34, z: 0.34}
+  m_LocalPosition: {x: -0.87, y: -0.186, z: 0.494}
   m_LocalScale: {x: 0.04964, y: 0.029660001, z: 0.74884}
   m_Children: []
   m_Father: {fileID: 2099864463}
@@ -30057,7 +30057,7 @@ MonoBehaviour:
   br: {x: -4.492592, y: 86.26434}
   bl: {x: -7.5183716, y: 86.23857}
   parent: {fileID: 1134120969}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 328017764}
   g: 12.399677
   h: 2.7174597
@@ -30890,7 +30890,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 14.658261
   h: 4.9760437
-  floorType: 0
+  floorType: 6
 --- !u!60 &824145109
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -33933,12 +33933,12 @@ MonoBehaviour:
   right: {fileID: 328017764}
   top: {fileID: 0}
   down: {fileID: 1922048004}
-  tl: {x: -10.686481, y: 89.1298}
-  tr: {x: -8.202133, y: 89.10402}
+  tl: {x: -10.667281, y: 89.1938}
+  tr: {x: -8.214933, y: 89.20642}
   br: {x: -7.6988525, y: 87.81327}
   bl: {x: -10.569939, y: 87.82616}
   parent: {fileID: 1134120969}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1446430735}
   g: 5.957685
   h: 5.957685
@@ -33968,8 +33968,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.6864815, y: -0.8702011}
-      - {x: 1.7978668, y: -0.89598083}
+    - - {x: -0.66728115, y: -0.8061981}
+      - {x: 1.7850666, y: -0.7935791}
       - {x: 2.3011475, y: -2.1867294}
       - {x: -0.56993866, y: -2.1738434}
 --- !u!4 &941268147
@@ -36428,7 +36428,7 @@ MonoBehaviour:
   prev: {fileID: 1237123390}
   g: 197.35225
   h: 7.8403883
-  floorType: 4
+  floorType: 6
 --- !u!60 &990589395
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -38004,7 +38004,7 @@ MonoBehaviour:
   prev: {fileID: 469110618}
   g: 98.69249
   h: 29.199282
-  floorType: 4
+  floorType: 6
 --- !u!60 &1038485371
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -41802,7 +41802,7 @@ MonoBehaviour:
   - {fileID: 1922048004}
   - {fileID: 807804526}
   - {fileID: 214386245}
-  ShowSubNodes: 0
+  ShowSubNodes: 1
   DoAStar: 0
   start: {x: -14.85795, y: 88.561134}
   end: {x: -3.8827367, y: 86.73913}
@@ -41995,7 +41995,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140492194}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0.561, y: -1.719, z: 0}
+  m_LocalPosition: {x: 0.561, y: -1.839, z: 0.096}
   m_LocalScale: {x: 0.062052947, y: 0.03295707, z: 0.8320453}
   m_Children: []
   m_Father: {fileID: 1182378096}
@@ -43988,7 +43988,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 0
   h: 36.923454
-  floorType: 4
+  floorType: 0
 --- !u!1 &1182378094
 GameObject:
   m_ObjectHideFlags: 0
@@ -44123,7 +44123,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 21300000, guid: 8defc960b9f7c4d45a9cb5881de9bdbb, type: 3}
   cursorImage: {fileID: 2800000, guid: 54d93b0144fdfa843a193a86e67ee459, type: 3}
-  HotSpot: {x: -9.4532, y: 89.1018}
+  HotSpot: {x: -9.4532, y: 89.0058}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -46743,7 +46743,7 @@ MonoBehaviour:
   prev: {fileID: 39611248}
   g: 189.51186
   h: 11.316035
-  floorType: 4
+  floorType: 6
 --- !u!60 &1237123391
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -51123,9 +51123,9 @@ MonoBehaviour:
   tl: {x: -8.263289, y: 93.11973}
   tr: {x: -6.3785343, y: 93.217896}
   br: {x: -6.381998, y: 89.18545}
-  bl: {x: -8.202133, y: 89.10402}
+  bl: {x: -8.214933, y: 89.20642}
   parent: {fileID: 1134120969}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 328017764}
   g: 14.658261
   h: 4.9760437
@@ -51158,7 +51158,7 @@ PolygonCollider2D:
     - - {x: 1.7367105, y: 3.119728}
       - {x: 3.6214657, y: 3.2178955}
       - {x: 3.618002, y: -0.8145523}
-      - {x: 1.7978668, y: -0.89598083}
+      - {x: 1.7850666, y: -0.7935791}
 --- !u!4 &1372057460
 Transform:
   m_ObjectHideFlags: 0
@@ -52790,7 +52790,7 @@ MonoBehaviour:
   prev: {fileID: 1585800930}
   g: 163.27237
   h: 18.368904
-  floorType: 4
+  floorType: 6
 --- !u!60 &1406549467
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -53795,11 +53795,11 @@ MonoBehaviour:
   top: {fileID: 0}
   down: {fileID: 0}
   tl: {x: -15.97728, y: 89.34322}
-  tr: {x: -10.686481, y: 89.1298}
+  tr: {x: -10.667281, y: 89.1938}
   br: {x: -10.569939, y: 87.82616}
   bl: {x: -17.743874, y: 87.87863}
   parent: {fileID: 1134120969}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: 0
   h: 10.314472
@@ -53830,8 +53830,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -5.9772797, y: -0.6567764}
-      - {x: -0.6864815, y: -0.8702011}
-      - {x: -0.56993866, y: -2.1738396}
+      - {x: -0.66728115, y: -0.8061981}
+      - {x: -0.56993866, y: -2.1738434}
       - {x: -7.7438736, y: -2.1213684}
 --- !u!4 &1446430737
 Transform:
@@ -59001,7 +59001,7 @@ MonoBehaviour:
   prev: {fileID: 117644638}
   g: 144.90347
   h: 21.34222
-  floorType: 4
+  floorType: 6
 --- !u!60 &1585800931
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -61377,7 +61377,7 @@ MonoBehaviour:
   prev: {fileID: 1787017364}
   g: 205.58641
   h: 3.2739868
-  floorType: 4
+  floorType: 6
 --- !u!60 &1642668613
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -67442,7 +67442,7 @@ MonoBehaviour:
   prev: {fileID: 990589394}
   g: 202.31242
   h: 4.960174
-  floorType: 4
+  floorType: 6
 --- !u!60 &1787017365
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -72103,7 +72103,7 @@ MonoBehaviour:
   br: {x: -7.5183716, y: 86.23857}
   bl: {x: -11.08559, y: 86.199905}
   parent: {fileID: 1134120969}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 941268145}
   g: 11.592682
   h: 5.6349974
@@ -73127,7 +73127,7 @@ MonoBehaviour:
   prev: {fileID: 0}
   g: 14.658261
   h: 4.9760437
-  floorType: 0
+  floorType: 6
 --- !u!60 &1937797798
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -74631,6 +74631,7 @@ MonoBehaviour:
   - {fileID: 211913649}
   - {fileID: 617113688}
   - {fileID: 1016015072}
+  - {fileID: 2099864465}
   roomsList:
   - {fileID: 1432214312}
   - {fileID: 1117025435}
@@ -76519,7 +76520,7 @@ MonoBehaviour:
   prev: {fileID: 1181164573}
   g: 36.301334
   h: 36.301334
-  floorType: 4
+  floorType: 6
 --- !u!60 &2010904827
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -79280,7 +79281,7 @@ MonoBehaviour:
   prev: {fileID: 39611248}
   g: 193.0126
   h: 14.8167925
-  floorType: 4
+  floorType: 0
 --- !u!60 &2091634862
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -79594,20 +79595,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item: 17
   Name: Piggy bank
-  owner: 0
-  Usable: 4
+  owner: 13
+  Usable: 3
   UsableWith: 0
-  openStatus: 0
+  openStatus: 1
   lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 0
-  Description: 
+  Description: "A piggy bank.\n\"The pennies are the drops that\n    will create
+    the ocean of wealth\"\n                          Scrooge McDuck"
   openImage: {fileID: 6670086723716395768, guid: b051ea8888efb114c8354cf124f44f99, type: 3}
   closeImage: {fileID: 6965195738201176846, guid: b051ea8888efb114c8354cf124f44f99, type: 3}
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -6.75, y: 86.27}
+  HotSpot: {x: -6.75, y: 86.423996}
   dir: 0
   overColor:
     serializedVersion: 2
@@ -79615,7 +79617,28 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  actions: []
+  actions:
+  - Condition:
+      type: 0
+      id: 0
+      iv: 0
+      fv: 0
+      sv: 
+      bv: 0
+      msg: 
+      when: 1
+    Action:
+      running: 0
+      msg: I broke it.
+      type: 17
+      Repeatable: 0
+      delay: 0
+      id1: 17
+      id2: 3
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 1
   sr: {fileID: 0}
   OpenSound: {fileID: 8300000, guid: 3b77744060984de49bf2873a6373db53, type: 3}
   CloseSound: {fileID: 0}
@@ -79864,7 +79887,7 @@ MonoBehaviour:
   prev: {fileID: 990589394}
   g: 205.11067
   h: 7.758427
-  floorType: 4
+  floorType: 0
 --- !u!60 &2111469826
 PolygonCollider2D:
   m_ObjectHideFlags: 0

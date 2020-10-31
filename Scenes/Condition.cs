@@ -81,14 +81,20 @@ public class Condition {
   }
 
   public override string ToString() {
-    return StringName(type, id, iv, fv, sv, bv);
+    return StringName(type, when, id, iv, fv, sv, bv);
   }
 
-  public static string StringName(ConditionType type, int id1, int iv1, float fv1, string sv, bool bv) {
-    string res = "";
-
+  public static string StringName(ConditionType type, When when, int id1, int iv1, float fv1, string sv, bool bv) {
     switch (type) {
-      case ConditionType.None: return "<none>";
+      case ConditionType.None:
+        switch (when) {
+          case When.Pick: return "<Pick>";
+          case When.Use: return "<Use>";
+          case When.Give: return "<Give>";
+          case When.Cutscene: return "<Cutscene>";
+          case When.Always: return "<none>";
+        }
+        break;
       case ConditionType.ActorIs: return "Actor is " + (!bv ? "not " : "") + (Chars)id1;
       case ConditionType.CurrentActorIs: return "Current Actor is " + (!bv ? "not " : "") + (Chars)id1;
       case ConditionType.ActorHasSkill: return "Actor " + (Chars)id1 + " has " + (!bv ? "not skill " : "skill ") + (Skill)iv1;
@@ -106,7 +112,7 @@ public class Condition {
       case ConditionType.UsedWith: return "Used with " + (bv ? "" : "not ") + (ItemEnum)id1;
     }
 
-    return res;
+    return "Undefined";
   }
 
   public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when) {

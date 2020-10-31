@@ -27,7 +27,7 @@ public class ConditionPropertyDrawer : PropertyDrawer {
     SerializedProperty msg = property.FindPropertyRelative("msg");
     SerializedProperty when = property.FindPropertyRelative("when");
 
-    string name = Condition.StringName((ConditionType)type.intValue, id1.intValue, iv1.intValue, fv1.floatValue, sv.stringValue, bv.boolValue);
+    string name = Condition.StringName((ConditionType)type.intValue, (When)when.intValue, id1.intValue, iv1.intValue, fv1.floatValue, sv.stringValue, bv.boolValue);
 
     float w4 = position.width * .25f;
     float lh = EditorGUIUtility.singleLineHeight;

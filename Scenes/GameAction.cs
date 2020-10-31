@@ -793,19 +793,9 @@ public class GameAction {
       break;
 
       case ActionType.AlterItem: {
-        Item item = AllObjects.GetItem((ItemEnum)id2);
-        switch (str[0]) {
-          case 'R': item.whatItDoesL = WhatItDoes.Read; break;
-          case 'W': item.whatItDoesL = WhatItDoes.Walk; break;
-          case 'P': item.whatItDoesL = WhatItDoes.Pick; break;
-          case 'U': item.whatItDoesL = WhatItDoes.Use; break;
-        }
-        switch (str[1]) {
-          case 'R': item.whatItDoesR = WhatItDoes.Read; break;
-          case 'W': item.whatItDoesR = WhatItDoes.Walk; break;
-          case 'P': item.whatItDoesR = WhatItDoes.Pick; break;
-          case 'U': item.whatItDoesR = WhatItDoes.Use; break;
-        }
+        Item item = AllObjects.GetItem((ItemEnum)id1);
+        item.whatItDoesL = (WhatItDoes)id2;
+        item.whatItDoesR = (WhatItDoes)val;
         item.dir = dir;
         Complete();
       }
@@ -870,6 +860,7 @@ public class GameAction {
       case ActionType.Cursor: {
         Controller.SceneSkipped = true;
         Controller.SetCursor((CursorTypes)id1);
+        GD.c.StartCoroutine(GD.c.FadeToRoomActor());
         Complete();
       }
       break;

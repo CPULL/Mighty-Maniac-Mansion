@@ -993,7 +993,7 @@ public class Controller : MonoBehaviour {
 
   bool CameraFadingToActor = false;
 
-  private IEnumerator FadeToRoomActor() {
+  public IEnumerator FadeToRoomActor() {
     CameraFadingToActor = true;
     Room prev = currentRoom;
     currentRoom = currentActor.currentRoom;
