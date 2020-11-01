@@ -95,25 +95,26 @@ public class Item : GameItem {
     if (c != null) {
       if (c.Usable != Tstatus.Openable && c.openStatus != OpenStatus.Open) return "It is closed";
 
-      if (c.HasItem(this)) {
+      /*
+      we should check for types that can be contained, and a position. Also, a way to specify if the item makes impossible to put other stuff
+       
+       */
+
+      if (c.ValidFor(this)) {
         // Put item back
         actor.inventory.Remove(this);
         transform.parent = c.transform;
-        gameObject.SetActive(true);
         owner = Chars.None;
+        c.Place(this, actor);
         return null;
       }
       else
-        return "it does not fit";
+        return "It does not fit";
     }
 
 
 
     return "It does not work...";
-
-    // FIXME Case of an item and a door
-
-
   }
 
 
@@ -213,9 +214,7 @@ public class Item : GameItem {
     else {
       Container c = this as Container;
       if (c != null) {
-        foreach (Item item in c.items)
-          if (item.owner == Chars.None)
-            item.gameObject.SetActive(true);
+        c.ShowItems();
         if (sound && c.OpenSound != null && c.Audio != null) {
           c.Audio.clip = c.OpenSound;
           if (c.gameObject.activeSelf) c.Audio.Play();
@@ -245,9 +244,7 @@ public class Item : GameItem {
     else {
       Container c = this as Container;
       if (c != null) {
-        foreach (Item item in c.items)
-          if (item.owner == Chars.None)
-            item.gameObject.SetActive(false);
+        c.HideItems();
         if (sound && c.CloseSound != null && c.Audio != null) {
           c.Audio.clip = c.CloseSound;
           if (c.gameObject.activeSelf) c.Audio.Play();
@@ -287,14 +284,7 @@ public class Item : GameItem {
     else {
       Container c = this as Container;
       if (c != null) {
-        foreach (Item item in c.items)
-          if (item.owner == Chars.None)
-            item.gameObject.SetActive(false);
-        if (soundC && c.CloseSound != null && c.Audio != null) {
-          c.Audio.clip = c.CloseSound;
-          c.Audio.Play();
-        }
-        else if (soundUl && c.UnlockSound != null && c.Audio != null) {
+        if (soundUl && c.UnlockSound != null && c.Audio != null) {
           c.Audio.clip = c.UnlockSound;
           if (c.gameObject.activeSelf) c.Audio.Play();
         }
@@ -333,9 +323,7 @@ public class Item : GameItem {
     else {
       Container c = this as Container;
       if (c != null) {
-        foreach (Item item in c.items)
-          if (item.owner == Chars.None)
-            item.gameObject.SetActive(false);
+        c.HideItems();
       }
     }
   }

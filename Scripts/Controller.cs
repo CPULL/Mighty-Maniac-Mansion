@@ -231,8 +231,12 @@ public class Controller : MonoBehaviour {
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
               if (item.Usable == Tstatus.Pickable) {
+                // Do we have a container?
+                Container c = item.transform.parent.GetComponent<Container>();
+                if (c != null) c.Collect(item, currentActor);
                 ShowName(currentActor + " got " + item.Name);
-                actor.inventory.Add(item);
+                if (!actor.inventory.Contains(item))
+                  actor.inventory.Add(item);
                 item.transform.parent = PickedItems;
                 item.gameObject.SetActive(false);
                 item.owner = Chars.None;
@@ -256,13 +260,19 @@ public class Controller : MonoBehaviour {
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Use) || (rmb && overItem.whatItDoesR == WhatItDoes.Use)) { /* use */
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
+              if (item == null) {
+                Debug.Log("Null item in callback");
+                forcedCursor = CursorTypes.Normal;
+                oldCursor = null;
+                return;
+              }
               actor.SetDirection(item.dir);
               string res = item.Use(currentActor);
               if (!string.IsNullOrEmpty(res))
                 actor.Say(res);
               else {
                 forcedCursor = CursorTypes.Normal;
-                overItem = null;
+                oldCursor = null;
               }
             }));
         }

@@ -1,0 +1,49 @@
+{
+
+	"id":"microwave", "name":"Microwave","type":"Cutscene",
+
+	"conditions":[],
+	
+	"startup" : [
+	],
+	"shutdown" : [
+	],
+	
+	"sequence":[
+	
+	{ "name":"Microwave empty",
+		"condition":[
+			{ "type":"ItemContains", "id":"Microwave", "bv":true, "sv":"Undefined" } 
+		],
+		"action":[
+			{ "type":"Speak", "id1":"Current", "sv":"There is nothing\ninside the microwave.", "dv":"F" },
+			{ "type":"Expression", "id1":"Current", "id2":"Sad", "dv":"F", "del":0.5 }
+		]
+	},
+	
+	{ "name":"Hamster",
+		"condition":[
+			{ "type":"ItemContains", "id":"Microwave", "bv":true, "sv":"Hamster" } 
+		],
+		"action":[
+			{ "type":"Speak", "id1":"Current", "sv":"White meat or dark meat?", "dv":"F" },
+			{ "type":"Expression", "id1":"Current", "id2":"BigOpen", "dv":"F", "del":0.5 }
+		]
+	},
+	
+	{ "name":"Cheese",
+		"condition":[
+			{ "type":"ItemContains", "id":"Microwave", "bv":true, "sv":"Cheese" } 
+		],
+		"action":[
+			{ "type":"Speak", "id1":"Current", "sv":"Melted cheese", "dv":"F" },
+			{ "type":"Expression", "id1":"Current", "id2":"Open", "dv":"F", "del":0.5 }
+		]
+	},
+	
+
+	
+	
+	
+	]
+}

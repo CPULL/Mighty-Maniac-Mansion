@@ -30,7 +30,7 @@ public class Condition {
       switch (type) {
         case ConditionType.ActorIs:
         case ConditionType.ActorHasSkill:      // ID of actor and ID of skill                            (ID1, IV1, BV)
-        case ConditionType.ActorInRoom:    // ID of item                                             (ID1, SV, BV)
+        case ConditionType.ActorInRoom:        // ID of item                                             (ID1, SV, BV)
         case ConditionType.ActorDistanceLess:  // ID and dist value                                      (ID1, FV, BV)
         case ConditionType.ActorXLess:         // ID and dist value                                      (ID1, FV, BV)
         case ConditionType.RecipientIs:        // ID of actor                                            (ID1, BV)
@@ -68,11 +68,23 @@ public class Condition {
           }
           break;
 
-        case ConditionType.RoomIsInExt:
+        case ConditionType.RoomIsInExt: {
           if (System.Enum.TryParse<Chars>(ids, out ch)) {
             id = (int)ch;
           }
-          break;
+        }
+        break;
+
+        case ConditionType.ItemContains: {
+          if (System.Enum.TryParse<ItemEnum>(ids, out ie)) {
+            id = (int)ie;
+          }
+          if (System.Enum.TryParse<ItemEnum>(svs, out ie)) {
+            iv = (int)ie;
+          }
+
+        }
+        break;
       }
     }
     else
@@ -113,26 +125,6 @@ public class Condition {
     }
 
     return "Undefined";
-  }
-
-  public bool IsValid(Chars performer, Chars receiver, ItemEnum item1, ItemEnum item2, When when) {
-    Actor p = Controller.GetActor(performer);
-    Actor r = Controller.GetActor(receiver);
-    Item i1 = AllObjects.GetItem(item1);
-    Item i2 = AllObjects.GetItem(item2);
-    return IsValid(p, r, i1, i2, when);
-  }
-
-  public bool IsValid(Chars performer, Chars receiver, Item item1, Item item2, When when) {
-    Actor p = Controller.GetActor(performer);
-    Actor r = Controller.GetActor(receiver);
-    return IsValid(p, r, item1, item2, when);
-  }
-
-  public bool IsValid(Actor performer, Actor receiver, ItemEnum item1, ItemEnum item2, When when) {
-    Item i1 = AllObjects.GetItem(item1);
-    Item i2 = AllObjects.GetItem(item2);
-    return IsValid(performer, receiver, i1, i2, when);
   }
 
 
@@ -358,7 +350,20 @@ public class Condition {
         }
         else return false;
       }
+
+      case ConditionType.ItemContains: {
+        Item itemCon = AllObjects.GetItem((ItemEnum)id);
+        Container con = itemCon as Container;
+        if (con == null || itemCon == null) return false;
+        bool res = con.HasItem((ItemEnum)iv);
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
     }
+
+    Debug.LogError("Fuck me, condition: " + type);
     return false;
   }
 }
@@ -372,7 +377,7 @@ public enum ConditionType {
   CurrentRoomIs,      // String name of the room                                                           (SV, BV)
   FlagValueIs,        // ID of flag, and value                                                             (ID1, IV1, BV)
   ItemCollected,      // ID of item                                                                        (ID1, BV)
-  ActorInRoom,    // ID of item                                                                        (ID1, SV, BV)
+  ActorInRoom,        // ID of item                                                                        (ID1, SV, BV)
   ActorDistanceLess,  // ID and dist value                                                                 (ID1, FV, BV)
   ActorXLess,         // ID and dist value                                                                 (ID1, FV, BV)
   ItemOpen,           // ID of item, value for open, closed, locked                                        (ID1, IV1)
@@ -382,6 +387,7 @@ public enum ConditionType {
   CurrentActorIs,     // ID of actor                                                                       (ID1, BV)
   SameRoom,           // ID f actor, ID of other actor                                                     (ID1, IV1, BV)
   RoomIsInExt,        // ID f actor, bool to check if internal or external                                 (ID1, BV)
+  ItemContains,       // ID of item, ID of item that should be contained  (IV1 is read from SVS)           (ID1, IV1, BV)
 }
 
 

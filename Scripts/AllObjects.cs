@@ -29,11 +29,13 @@ public class AllObjects : MonoBehaviour {
   }
 
   internal static Item GetItem(ItemEnum id) {
+    if (id == ItemEnum.Undefined) return null;
     foreach (Item i in GD.a.itemsList) {
       if (i.Item == id) {
         return i;
       }
     }
+    
     Debug.LogWarning("Cannot find Item with id: \"" + id + "\"");
     return null;
   }
@@ -183,6 +185,7 @@ public enum CutsceneID {
   GreenTentaclePatrolling,
   EdWatch,
   EdCatch,
+  Microwave,
   unused1,
   unused2,
   FredTalkingToKidnapped,

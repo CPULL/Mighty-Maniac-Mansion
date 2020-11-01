@@ -176,6 +176,16 @@ public class ConditionPropertyDrawer : PropertyDrawer {
           id1.intValue = EditorGUI.Popup(bRect, id1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
         }
         break;
+
+        case ConditionType.ItemContains: {
+          Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
+          Rect cRect = new Rect(position.x + w4 * 3, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
+          bv.intValue = EditorGUI.Popup(bRect, bv.intValue, lessMore);
+          iv1.intValue = EditorGUI.Popup(aRect, iv1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
+        }
+        break;
       }
 
     }

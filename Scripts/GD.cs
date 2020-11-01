@@ -87,7 +87,7 @@ public class GD : MonoBehaviour {
 
     foreach (string file in Directory.GetFiles(path, "*.json", SearchOption.TopDirectoryOnly)) {
       try {
-        Debug.Log("GD: " + file);
+//FIXME        Debug.Log("GD: " + file);
         string json = File.ReadAllText(file);
         JSONNode js = JSON.Parse(json);
 

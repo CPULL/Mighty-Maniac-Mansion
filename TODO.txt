@@ -1,7 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
-Decide how to use the microwave. Probably we need a button somewhere.
+Be sure we can put items in a container
 
 
 Do arms forward in all characters
@@ -191,4 +191,4 @@ Jeff
 ! If we walk directly to a stairs path we are not scaling
 ! We should not be able to pass thru closed doors
 ! Do a room where we can hide while Ed checks the doorbell
-
+! Items can now be put in a container

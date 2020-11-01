@@ -35,7 +35,7 @@ public class ContainerEditor : Editor {
     normalColor = serializedObject.FindProperty("normalColor");
     HotSpot = serializedObject.FindProperty("HotSpot");
     dir = serializedObject.FindProperty("dir");
-    items = serializedObject.FindProperty("items");
+    items = serializedObject.FindProperty("containedItems");
     actions = serializedObject.FindProperty("actions");
     openStatus = serializedObject.FindProperty("openStatus");
     lockStatus = serializedObject.FindProperty("lockStatus");
