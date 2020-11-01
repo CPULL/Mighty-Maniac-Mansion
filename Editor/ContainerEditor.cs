@@ -7,7 +7,7 @@ public class ContainerEditor : Editor {
   SerializedProperty itemEnum, Name;
   SerializedProperty whatItDoesL, whatItDoesR;
   SerializedProperty Usable, UsableWith;
-  SerializedProperty openImage, closeImage, lockImage;
+  SerializedProperty openImage, closeImage, lockImage, iconImage;
   SerializedProperty overColor, normalColor;
   SerializedProperty HotSpot, dir;
   SerializedProperty items, actions;
@@ -29,6 +29,7 @@ public class ContainerEditor : Editor {
     closeImage = serializedObject.FindProperty("closeImage");
     closeSound = serializedObject.FindProperty("CloseSound");
     lockImage = serializedObject.FindProperty("lockImage");
+    iconImage = serializedObject.FindProperty("iconImage");
     lockSound = serializedObject.FindProperty("LockSound");
     unlockSound = serializedObject.FindProperty("UnlockSound");
     overColor = serializedObject.FindProperty("overColor");
@@ -89,7 +90,8 @@ public class ContainerEditor : Editor {
     EditorGUIUtility.labelWidth = 35;
     EditorGUILayout.PropertyField(openImage, new GUIContent("Open"));
     EditorGUILayout.PropertyField(closeImage, new GUIContent("Close"));
-    EditorGUILayout.PropertyField(lockImage, new GUIContent("Lock"));
+    EditorGUILayout.PropertyField(lockImage, new GUIContent("Op2"));
+    EditorGUILayout.PropertyField(iconImage, new GUIContent("Cl2"));
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 

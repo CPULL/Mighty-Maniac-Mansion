@@ -54,7 +54,10 @@ public class Sounds : MonoBehaviour {
 /// </summary>
 public enum Audios { 
   Doorbell = 0,
-  BrokenBottle = 1
+  BrokenBottle = 1,
+  Microwave = 2,
+  MicrowaveBeep = 3,
+  EggExplosion = 4
 };
 
 

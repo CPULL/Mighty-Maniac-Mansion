@@ -24,12 +24,10 @@ public class Condition {
 
     if (!string.IsNullOrEmpty(ids)) {
       Chars ch;
-      GameFlag gf;
       ItemEnum ie;
 
       switch (type) {
         case ConditionType.ActorIs:
-        case ConditionType.ActorHasSkill:      // ID of actor and ID of skill                            (ID1, IV1, BV)
         case ConditionType.ActorInRoom:        // ID of item                                             (ID1, SV, BV)
         case ConditionType.ActorDistanceLess:  // ID and dist value                                      (ID1, FV, BV)
         case ConditionType.ActorXLess:         // ID and dist value                                      (ID1, FV, BV)
@@ -39,6 +37,16 @@ public class Condition {
           }
           break;
 
+        case ConditionType.ActorHasSkill: {     // ID of actor and ID of skill                            (ID1, IV1, BV)
+          if (System.Enum.TryParse<Chars>(ids, out ch)) {
+            id = (int)ch;
+          }
+          if (System.Enum.TryParse<Skill>(svs, out Skill sk)) {
+            iv = (int)sk;
+          }
+        }
+        break;
+
         case ConditionType.CurrentActorIs:
           if (System.Enum.TryParse<Chars>(ids, out ch)) {
             id = (int)ch;
@@ -46,7 +54,7 @@ public class Condition {
           break;
 
         case ConditionType.FlagValueIs:
-          if (System.Enum.TryParse<GameFlag>(ids, out gf)) {
+          if (System.Enum.TryParse<GameFlag>(ids, out GameFlag gf)) {
             id = (int)gf;
           }
           break;

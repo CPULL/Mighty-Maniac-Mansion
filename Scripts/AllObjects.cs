@@ -146,6 +146,7 @@ public enum ItemEnum {
   DungeonDoor,
   EdDoor,
   Microwave,
+  RoastedHamster,
 }
 
 

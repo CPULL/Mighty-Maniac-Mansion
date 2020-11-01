@@ -21,13 +21,31 @@
 		]
 	},
 	
-	{ "name":"Hamster",
+	{ "name":"Hamster Not chef",
 		"condition":[
-			{ "type":"ItemContains", "id":"Microwave", "bv":true, "sv":"Hamster" } 
+			{ "type":"ItemContains", "id":"Microwave", "bv":true, "sv":"Hamster" },
+			{ "type":"ActorHasSkill", "id":"Current", "sv":"Chef", "bv":false }
 		],
 		"action":[
+			{ "type":"Speak", "id1":"Current", "sv":"I am NOT going to do it!", "dv":"F" },
+			{ "type":"Expression", "id1":"Current", "id2":"Sad", "dv":"F", "del":0.5 }
+		]
+	},
+	
+	{ "name":"Hamster",
+		"condition":[
+			{ "type":"ItemContains", "id":"Microwave", "bv":true, "sv":"Hamster" },
+			{ "type":"ActorHasSkill", "id":"Current", "sv":"Chef", "bv":true }
+		],
+		"action":[
+			{ "type":"Sound", "del":5.0, "id2":"Microwave" },
+			{ "type":"ChangeSprites", "id1":"Microwave", "id2":2, "iv":3 },
+			{ "type":"Sound", "del":0.28,  "id2":"EggExplosion" },
+			{ "type":"Sound", "del":0.3, "id2":"MicrowaveBeep" },
 			{ "type":"Speak", "id1":"Current", "sv":"White meat or dark meat?", "dv":"F" },
-			{ "type":"Expression", "id1":"Current", "id2":"BigOpen", "dv":"F", "del":0.5 }
+			{ "type":"Expression", "id1":"Current", "id2":"Happy", "dv":"F", "del":0.5 },
+			{ "type":"EnableDisable", "id1":"RoastedHamster", "sv":"true" },
+			{ "type":"EnableDisable", "id1":"Hamster", "sv":"" }
 		]
 	},
 	
@@ -36,6 +54,8 @@
 			{ "type":"ItemContains", "id":"Microwave", "bv":true, "sv":"Cheese" } 
 		],
 		"action":[
+			{ "type":"Sound", "del":6.0, "id2":"Microwave" },
+			{ "type":"Sound", "del":0.3, "id2":"MicrowaveBeep" },
 			{ "type":"Speak", "id1":"Current", "sv":"Melted cheese", "dv":"F" },
 			{ "type":"Expression", "id1":"Current", "id2":"Open", "dv":"F", "del":0.5 }
 		]

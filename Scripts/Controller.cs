@@ -228,6 +228,7 @@ public class Controller : MonoBehaviour {
         }
 
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Pick) || (rmb && overItem.whatItDoesR == WhatItDoes.Pick)) { /* pick */
+          // If we have a container prefer it as hotspot
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
               if (item.Usable == Tstatus.Pickable) {
@@ -837,13 +838,16 @@ public class Controller : MonoBehaviour {
     Vector3 one = actor.transform.position;
     one.z = 0;
     Vector3 two = item.HotSpot;
+    // If we have a container prefer it as hotspot
+    Container c = item.transform.parent.GetComponent<Container>();
+    if (c != null) two = c.HotSpot;
     two.z = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > .2f) { // Need to walk
-      RaycastHit2D hit = Physics2D.Raycast(overItem.HotSpot, cam.transform.forward, 10000, pathLayer);
+      RaycastHit2D hit = Physics2D.Raycast(two, cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
-        currentActor.WalkTo(overItem.HotSpot, p, action, item);
+        currentActor.WalkTo(two, p, action, item);
       }
       return;
     }

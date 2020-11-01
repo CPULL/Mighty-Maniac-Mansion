@@ -91,6 +91,16 @@ public class Container : Item {
 
     return true; // This should generate a "It does not fit" message
   }
+
+  internal void EnableItem(Item item, bool enable) {
+    foreach (ContainedItem ci in containedItems)
+      if (ci.type == item.Item) {
+        ci.inContainer = enable;
+        ci.item.gameObject.SetActive(IsOpen() && enable);
+        return;
+      }
+  }
+
 }
 
 [System.Serializable]

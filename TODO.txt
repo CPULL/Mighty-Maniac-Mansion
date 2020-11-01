@@ -1,6 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
+
 Be sure we can put items in a container
 
 
@@ -192,3 +193,7 @@ Jeff
 ! We should not be able to pass thru closed doors
 ! Do a room where we can hide while Ed checks the doorbell
 ! Items can now be put in a container
+! Items in a container can be activated and deactivated
+! Containers can change the open and closed sprites (with lock and icon)
+! Full working roasting the hamster
+

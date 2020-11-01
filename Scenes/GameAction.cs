@@ -38,6 +38,7 @@ public enum ActionType {
   SetCurrentRoomActor = 25, // Changes the current actor with the one in the same room of ID1 (ID2 == 0 for any actor, == 1 for player)
 
   Cursor = 26, // Used to set the cursor in a specific mode, side effect of skipping the cutscene
+  ChangeSprites = 27, // Changes sprites of items
 };
 
 
@@ -83,7 +84,7 @@ public class GameAction {
       case ActionType.Cutscene: return "Cutscene: " + (CutsceneID)id1;
       case ActionType.StopScenes: return "Stop cutscenes for " + (Chars)id1;
       case ActionType.SetCurrentRoomActor: return "Set current as " + (id2 == 0 ? "any" : "player") + " in same room " + (Chars)id1;
-      case ActionType.Sound: return "Sound: " + (Audios)id1;
+      case ActionType.Sound: return "Sound: " + (Audios)id2;
       case ActionType.ReceiveCutscene: {
         if (val == 0) { // Yes
           return "Accept " + (ItemEnum)id1 + "->" + (CutsceneID)id2 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
@@ -122,6 +123,8 @@ public class GameAction {
       case ActionType.SwitchRoomLight: return "Switch lights on " + (string.IsNullOrEmpty(str) ? "Everywhere" : str);
 
       case ActionType.Cursor: return "Set currsor as " + (CursorTypes)id1;
+
+      case ActionType.ChangeSprites: return "Change " + (ItemEnum)id1 + " op=" + id2 + " cl=" + val;
     }
     return res;
   }
@@ -150,6 +153,7 @@ public class GameAction {
       case ActionType.Wait:
       case ActionType.SwitchRoomLight:
       case ActionType.Cursor:
+      case ActionType.ChangeSprites:
         return;
 
       case ActionType.Speak: {
@@ -272,6 +276,16 @@ public class GameAction {
       }
       break;
 
+      case ActionType.EnableDisable: {
+        ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
+        if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
+          Debug.LogError("Unknown Item: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+        val = string.IsNullOrEmpty(sv) ? 1 : 0;
+      }
+      break;
+
       case ActionType.ShowRoom: {
         int.TryParse(vid2, out id2); // 0 for immediate, not zero for panning
       }
@@ -374,6 +388,39 @@ public class GameAction {
       }
       break;
 
+      case ActionType.Sound: {
+        if (!string.IsNullOrEmpty(vid1)) {
+          Chars c = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
+          if (!System.Enum.IsDefined(typeof(Chars), c)) {
+            Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
+          }
+          id1 = (int)c;
+        }
+        Audios id = (Audios)System.Enum.Parse(typeof(Audios), vid2, true);
+        if (!System.Enum.IsDefined(typeof(Audios), id)) {
+          Debug.LogError("Unknown Sound: \"" + vid2 + "\"");
+        }
+        id2 = (int)id;
+      }
+      break;
+
+      case ActionType.ChangeSprites: {
+        ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
+        if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
+          Debug.LogError("Unknown ItemEnum: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+        int.TryParse(vid2, out id2); // 0-3 to get the other sprite
+        if (id2 < 0 || id2 > 3) {
+          Debug.LogError("Invalid value for id2 (only 0, 1, 2, and 3 are valid values)");
+          id2 = 0;
+        }
+        if (val < 0 || val > 3) {
+          Debug.LogError("Invalid value for val (only 0, 1, 2, and 3 are valid values)");
+          val = 0;
+        }
+      }
+      break;
     }
   }
 
@@ -637,7 +684,13 @@ public class GameAction {
           Complete();
           return;
         }
-        item.gameObject.SetActive(val == 0);
+        // Are we disable inside a container?
+        Container c = item.transform.parent.GetComponent<Container>();
+        if (c != null) {
+          c.EnableItem(item, val == 0);
+        }
+        else
+          item.gameObject.SetActive(val == 0);
         Complete();
       }
       break;
@@ -861,6 +914,25 @@ public class GameAction {
         Controller.SceneSkipped = true;
         Controller.SetCursor((CursorTypes)id1);
         GD.c.StartCoroutine(GD.c.FadeToRoomActor());
+        Complete();
+      }
+      break;
+
+
+      case ActionType.ChangeSprites: {
+        Item item = AllObjects.GetItem((ItemEnum)id1);
+        if (id2 == 1) item.openImage = item.closeImage;
+        if (id2 == 2) item.openImage = item.lockImage;
+        if (id2 == 3) item.openImage = item.iconImage;
+
+        if (val == 0) item.closeImage = item.openImage;
+        if (val == 2) item.closeImage = item.lockImage;
+        if (val == 3) item.closeImage = item.iconImage;
+
+        if (item.IsOpen())
+          item.sr.sprite = item.openImage;
+        else
+          item.sr.sprite = item.closeImage;
         Complete();
       }
       break;
