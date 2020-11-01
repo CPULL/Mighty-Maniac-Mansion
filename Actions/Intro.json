@@ -21,6 +21,34 @@
 	],
 	
 	"sequence":[
+		{ "name":"Classic Dave and Bernard",
+			"condition":[
+				{ "type":"ActorAvailable", "id":"Dave", "iv":1, "bv":true }
+				{ "type":"ActorAvailable", "id":"Bernard", "iv":2, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"Blah, blah", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Blah, blah, again", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.5 },
+				{ "type":"WalkTo", "id1":"Actor2", ", ...littleaway... },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Bernard!\nDon't be a tuna head!", "dv":"F" }
+			]
+		},
+	
+	
+		{ "name":"Sandy goes to rescue",
+			"condition":[
+				{ "type":"ActorAvailable", "id":"Sandy", "iv":1, "bv":true }
+				{ "type":"ActorAvailable", "id":"Dave", "iv":4, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"OK, you knwo, Dave is a useless guy.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"But I like him, so I am going to rescue him.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"For sure the world went upside-down in the last 30 years", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.5 }
+			]
+		},
+		
 		{ "name":"Intro dialogue",
 			"condition":[],
 			"action":[

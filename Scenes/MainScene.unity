@@ -8164,9 +8164,17 @@ MonoBehaviour:
   inventory: []
   id: 30
   mainScale: 1.05
-  skills: 0100000006000000
+  skills: 0700000004000000
   male: 1
-  Description: <b>Ollie</b> todo...
+  Description: '<b>Ollie</b> professional-amateur musician.
+
+    Did many videos
+    as youtuber to create covers for a ton of old games.
+
+    He can fix and use
+    many items.
+
+    If he can, he goes surfing on the shore.'
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -66251,9 +66259,15 @@ MonoBehaviour:
   inventory: []
   id: 31
   mainScale: 0.99
-  skills: 0100000006000000
+  skills: 0200000006000000
   male: 0
-  Description: <b>Sandy</b> todo...
+  Description: '<b>Sandy</b> is a modern girl. Active and energetic, she does not
+    really need help.
+
+    He does not like tentales and hurting live things.
+
+    She
+    loves mangas and animes.'
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
