@@ -113,8 +113,11 @@ public class Item : GameItem {
     }
 
 
-
-    return "It does not work...";
+    if (!done) {
+      if (res != null) return res;
+      return "It does not work...";
+    }
+    return null;
   }
 
 
@@ -346,7 +349,7 @@ public class Item : GameItem {
   }
   internal void Give(Actor giver, Actor receiver) {
     ActionRes res = PlayActions(giver, receiver, When.Give, this);
-    if (!res.actionDone) { // Give it by default
+    if (res == null || !res.actionDone) { // Give it by default
       giver.inventory.Remove(this);
       receiver.inventory.Add(this);
       owner = Controller.GetCharFromActor(receiver);

@@ -511,8 +511,8 @@ public class Controller : MonoBehaviour {
 
 
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
-  GameScene currentCutscene;
-  public static bool SceneSkipped;
+  [HideInInspector] public GameScene currentCutscene;
+  [HideInInspector] public static bool SceneSkipped;
 
   void StartIntroCutscene() {
     FrontActors.enabled = true;

@@ -6,8 +6,6 @@ Coperture for all participants (syd, javid)
 Remove Dbg
 
 [test] batteries and flashlight
-[test] edna catch
-[test] loose brick
 [test] grab hamster while Ed is away
 
 [demo] debug and try all actions
@@ -29,6 +27,7 @@ Define skills and actions that will allow
 FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
+Edna catches also if not in the kitchen (and there is a fade when grabbing the flashlight)
 
 
 * CHARS ************************************************************************************************************

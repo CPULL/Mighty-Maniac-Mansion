@@ -7,7 +7,7 @@
 		{ "type":"SetFlag", "id1":"EdnaBrowsingFridge", "iv":1 }
 		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Kitchen", "iv":"", "dv":"B", "vv":[-80.12,17.9] },
 		{ "type":"Open", "rep":true, "del":0, "id1":"Fridge", "id2":"", "sv":"Open", "iv":"", "dv":"", "vv":[] },
-		{ "type":"Cursor", "id1":"Normal" }
+		{ "type":"Cursor", "id1":"Normal", "iv":0 }
 	],
 	
 	"shutdown" : [
@@ -29,7 +29,8 @@
 		{ "name":"Wait in position > X", "skippable":true,
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":1 },
-				{ "type":"ActorXLess", "id":"Current", "fv":-86, "bv":false }
+				{ "type":"ActorXLess", "id":"Current", "fv":-86, "bv":false },
+				{ "type":"CurrentRoomIs", "id":"Kitchen", "bv":true }
 			],
 			"action":[
 				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":2, "dv":"", "vv":[] }
@@ -38,7 +39,8 @@
 		
 		{ "name":"Start Catching", "skippable":true,
 			"condition":[
-				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":2 }
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":2 },
+				{ "type":"CurrentRoomIs", "id":"Kitchen", "bv":true }
 			],
 			"action":[
 				{ "type":"ShowRoom", "rep":true, "del":.25, "sv":"Kitchen", "vv":[-84, 20], "id2":"1" },
@@ -49,7 +51,8 @@
 		
 		{ "name":"Catching", "skippable":true,
 			"condition":[
-				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":3 }
+				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":3 },
+				{ "type":"CurrentRoomIs", "id":"Kitchen", "bv":true }
 			],
 			"action":[
 				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"R", "vv":[] },

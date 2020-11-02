@@ -30,7 +30,7 @@
 		},
 		{ "name":"Message Bernard",
 			"condition":[{ "type":"CurrentActorIs", "id":"Bernard", "bv":true }],
-			"action":[{ "type":"Speak", "id1":"Edna", "sv":"Here your brain will have time to rot.\nYou can only think about\nall the mangas you read.\n\nHappy dying!", "dv":"L" },{ "type":"CompleteStep", "del":.2 }]
+			"action":[{ "type":"Speak", "id1":"Edna", "sv":"Here your brain will have\ntime to rot.\nYou can only think about\nall the mangas you read.\n\nHappy dying!", "dv":"L" },{ "type":"CompleteStep", "del":.2 }]
 		},
 		{ "name":"Message Wendy",
 			"condition":[{ "type":"CurrentActorIs", "id":"Wendy", "bv":true }],

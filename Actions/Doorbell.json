@@ -11,7 +11,7 @@
 		{ "type":"Teleport", "rep":true, "del":0, "id1":"Ed", "id2":"", "sv":"NoRoom", "iv":"", "dv":"B", "vv":[100,100] },
 		{ "type":"Open", "id1":"FrontDoor", "sv":"c" },
 		{ "type":"Open", "id1":"FrontDoor", "sv":"l" },
-		{ "type":"Cursor", "id1":"Normal" },
+		{ "type":"Cursor", "id1":"Normal", "iv":2 },
 		
 		{ "type":"Wait", "del":55 },
 		

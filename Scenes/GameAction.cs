@@ -915,7 +915,8 @@ public class GameAction {
       case ActionType.Cursor: {
         Controller.SceneSkipped = true;
         Controller.SetCursor((CursorTypes)id1);
-        GD.c.StartCoroutine(GD.c.FadeToRoomActor());
+        if (val == 1 || (val == 2 && !Controller.SceneSkipped))
+          GD.c.StartCoroutine(GD.c.FadeToRoomActor());
         Complete();
       }
       break;

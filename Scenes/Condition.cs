@@ -373,19 +373,11 @@ public class Condition {
       }
 
       case ConditionType.UsedWith: {
-        if (item2 != null) {
-          if (bv)
-            return ((ItemEnum)id == item2.Item);
-          else
-            return ((ItemEnum)id != item2.Item);
-        }
-        else if (item2 != null) {
-          if (bv)
-            return ((ItemEnum)id == item1.Item);
-          else
-            return ((ItemEnum)id != item1.Item);
-        }
-        else return false;
+        if (item1 == null || item2 == null) return false;
+        if (bv)
+          return ((ItemEnum)id == item1.Item || (ItemEnum)id == item2.Item);
+        else
+          return ((ItemEnum)id != item1.Item && (ItemEnum)id != item2.Item);
       }
 
       case ConditionType.ItemContains: {
