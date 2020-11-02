@@ -158,7 +158,7 @@ public class Actor : MonoBehaviour {
 
 
   void OnMouseEnter() {
-    Controller.OverActor(this);
+    if (Controller.OverActor(this)) return;
     Face.material = lightIsOn ? GD.Outline() : GD.LightOffOutline();
     Arms.material = lightIsOn ? GD.Outline() : GD.LightOffOutline();
     Legs.material = lightIsOn ? GD.Outline() : GD.LightOffOutline();

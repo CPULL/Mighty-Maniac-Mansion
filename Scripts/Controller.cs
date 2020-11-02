@@ -889,8 +889,10 @@ public class Controller : MonoBehaviour {
   }
 
   Actor overActor = null;
-  internal static void OverActor(Actor actor) {
+  internal static bool OverActor(Actor actor) {
+    if (actor != GD.c.currentActor) return true;
     GD.c.overActor = actor;
+    return false;
   }
 
   void EnableActorSelection(bool enable) {
