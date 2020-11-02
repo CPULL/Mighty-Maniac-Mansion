@@ -62,6 +62,42 @@
 			]
 		},
 	
+		{ "name":"Dave, no Bernard no Javid",
+			"condition":[
+				{ "type":"ActorSet", "id":"Dave", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Bernard", "iv":5, "bv":false },
+				{ "type":"ActorSet", "id":"Javid", "iv":5, "bv":false }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We may die!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Sad", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Open", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"BigOpen", "dv":"F", "del":1.5 }
+			]
+		},
+	
+		{ "name":"Dave, no Bernard with Javid",
+			"condition":[
+				{ "type":"ActorSet", "id":"Dave", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Bernard", "iv":5, "bv":false },
+				{ "type":"ActorSet", "id":"Javid", "iv":5, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
+				{ "type":"Speak", "id1":"Javid", "sv":"I will help, and I am going\nto use smart pointers...", "dv":"L" },
+				{ "type":"Speak", "id1":"Javid", "sv":"...also if I don't have too.", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We are going to die...", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Sad", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Open", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"BigOpen", "dv":"F", "del":1.5 }
+			]
+		},
+	
 	
 		{ "name":"Sandy goes to rescue",
 			"condition":[
@@ -225,13 +261,67 @@
 			]
 		},
 		
+		
+		{ "name":"Javid Wendy",
+			"condition":[
+				{ "type":"ActorSet", "id":"Javid", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Wendy", "iv":4, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"Hello!", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We should rescue [hrk],", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"she is a wonderful chef,", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"and I love cheese wheels!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"L", "del":.25 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"BigOpen", "dv":"L", "del":1.5 }
+			]
+		},
+		
+		{ "name":"Javid Bernard",
+			"condition":[
+				{ "type":"ActorSet", "id":"Javid", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"Hello!", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Also if webdev is\na waste of cpu cycles,", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"we should rescue [hrk].", "dv":"R" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"L", "del":.25 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Happy", "dv":"L", "del":1.5 }
+			]
+		},
+		
+		{ "name":"Javid Ollie",
+			"condition":[
+				{ "type":"ActorSet", "id":"Javid", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Ollie", "iv":4, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"Hello!", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"I was working on a new video\nfor the OLC PixelGameEngine", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"and I received an\nansynchronous message,", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"saying Ollie disappeared!", "dv":"R" },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Sad", "dv":"L", "del":.25 },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Sad", "dv":"L", "del":.25 },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Let's go rescue him\nin debug mode!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"L", "del":.25 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Happy", "dv":"L", "del":1.5 }
+			]
+		},
+		
+		
+		
+		
 		{ "name":"Intro dialogue",
 			"condition":[
 				{ "type":"ActorSet", "id":"Dave", "iv":1, "bv":false },
 				{ "type":"ActorSet", "id":"Bernard", "iv":1, "bv":false },
 				{ "type":"ActorSet", "id":"Sandy", "iv":1, "bv":false },
 				{ "type":"ActorSet", "id":"Wendy", "iv":1, "bv":false },
-				{ "type":"ActorSet", "id":"Ollie", "iv":1, "bv":false }
+				{ "type":"ActorSet", "id":"Ollie", "iv":1, "bv":false },
+				{ "type":"ActorSet", "id":"Javid", "iv":1, "bv":false }
 			],
 			"action":[
 				{ "type":"Speak", "id1":"Actor1", "sv":"I am [a1], and my dialogue is not yet done.", "dv":"F" }
@@ -242,5 +332,11 @@
 }
 
 
+
+
+
+
+//Syd with Javid pas participant
+//I will help, and I am going to use smart pointers also if I don't have too.
 
 

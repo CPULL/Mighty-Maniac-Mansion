@@ -2,7 +2,7 @@
 
 
 Remove jumpstarts
-Coperture for all participants (syd, javid)
+Coperture for all participants (syd)
 Remove Dbg
 
 
