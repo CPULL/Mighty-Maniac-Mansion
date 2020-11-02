@@ -5,11 +5,6 @@ Remove jumpstarts
 Coperture for all participants (syd, javid)
 Remove Dbg
 
-[test] batteries and flashlight
-[test] grab hamster while Ed is away
-
-[demo] debug and try all actions
-
 
 Do arms forward in all characters
 

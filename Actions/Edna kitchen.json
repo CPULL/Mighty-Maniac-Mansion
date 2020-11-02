@@ -11,6 +11,7 @@
 	],
 	
 	"shutdown" : [
+		{ "type":"Open", "rep":true, "del":0, "id1":"Fridge", "id2":"", "sv":"Close", "iv":"", "dv":"", "vv":[] },
 		{ "type":"Teleport", "rep":true, "del":0, "id1":"Edna", "sv":"NoRoom", "dv":"F", "vv":[100,100] },
 		{ "type":"SetFlag", "id1":"EdnaBrowsingFridge", "iv":0 }
 	],

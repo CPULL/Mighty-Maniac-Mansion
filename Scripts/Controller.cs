@@ -66,8 +66,14 @@ public class Controller : MonoBehaviour {
 
     #region Sequences and actions
     if (currentCutscene != null) { // Do we have a sequence?
-      FrontActors.enabled = !currentCutscene.skippable;
-      if (!currentCutscene.Run(null, null)) { // Completed
+      FrontActors.enabled = !currentCutscene.skippable && currentCutscene.status != GameSceneStatus.ShutDown;
+      if (currentCutscene.Run(null, null)) {
+        GD.status = GameStatus.Cutscene;
+        if (currentCutscene.status == GameSceneStatus.ShutDown) {
+          SceneSkipped = true;
+        }
+      }
+      else { // Completed
         Debug.Log("Completed cutscene " + currentCutscene.ToString());
         currentCutscene = null;
         SceneSkipped = false;
@@ -75,9 +81,6 @@ public class Controller : MonoBehaviour {
         forcedCursor = CursorTypes.Normal;
         oldCursor = null;
         if (currentActor.currentRoom != currentRoom) StartCoroutine(FadeToRoomActor());
-      }
-      else {
-        GD.status = GameStatus.Cutscene;
       }
     }
     #endregion
@@ -110,6 +113,7 @@ public class Controller : MonoBehaviour {
 
     if (GD.status != GameStatus.NormalGamePlay && !SceneSkipped) return;
     FrontActors.enabled = false;
+    if (currentActor.currentRoom != currentRoom) StartCoroutine(FadeToRoomActor());
 
     #region Mouse control
     bool notOverUI = !EventSystem.current.IsPointerOverGameObject();
@@ -421,7 +425,7 @@ public class Controller : MonoBehaviour {
 
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
     if (Options.IsActive()) return;
-    if (GD.status != GameStatus.NormalGamePlay && (GD.c.currentCutscene == null || !GD.c.currentCutscene.skippable)) return;
+    if (GD.status != GameStatus.NormalGamePlay && (GD.c.currentCutscene == null || (!GD.c.currentCutscene.skippable && GD.c.currentCutscene.status != GameSceneStatus.ShutDown))) return;
 
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == GD.c.ActorPortrait1) {
