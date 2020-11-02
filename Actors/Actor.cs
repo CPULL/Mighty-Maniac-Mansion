@@ -106,7 +106,26 @@ public class Actor : MonoBehaviour {
     faceNum = 0;
     speakt = 0;
     fromAction = action;
-    Balloon.Show(message.Replace("\\n", "\n"), transform, CompleteSpeaking);
+    string txt =
+      message.Replace("\\n", "\n")
+      .Replace("[a1]", GD.c.actor1.name)
+      .Replace("[a1]", GD.c.actor2.name)
+      .Replace("[a1]", GD.c.actor3.name)
+      .Replace("[kn]", GD.c.kidnappedActor.name)
+      .Replace("[ca]", GD.c.currentActor.name)
+      .Replace("[hr1]", GD.c.actor1.male ? "him" : "her")
+      .Replace("[hr2]", GD.c.actor2.male ? "him" : "her")
+      .Replace("[hr3]", GD.c.actor3.male ? "him" : "her")
+      .Replace("[hrk]", GD.c.kidnappedActor.male ? "him" : "her")
+      .Replace("[hs1]", GD.c.actor1.male ? "he" : "she")
+      .Replace("[hs2]", GD.c.actor2.male ? "he" : "she")
+      .Replace("[hs3]", GD.c.actor3.male ? "he" : "she")
+      .Replace("[hsk]", GD.c.kidnappedActor.male ? "he" : "she")
+      .Replace("[Hs1]", GD.c.actor1.male ? "He" : "She")
+      .Replace("[Hs2]", GD.c.actor2.male ? "He" : "She")
+      .Replace("[Hs3]", GD.c.actor3.male ? "He" : "She")
+      .Replace("[Hsk]", GD.c.kidnappedActor.male ? "He" : "She");
+    Balloon.Show(txt, transform, CompleteSpeaking);
     return false;
   }
 

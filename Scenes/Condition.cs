@@ -37,6 +37,14 @@ public class Condition {
           }
           break;
 
+        case ConditionType.ActorSet: {
+          if (System.Enum.TryParse<Chars>(ids, out ch)) {
+            id = (int)ch;
+          }
+          if (iv < 1 || iv > 5) Debug.LogError("Invalid actor position specified");
+        }
+        break;
+
         case ConditionType.ActorHasSkill: {     // ID of actor and ID of skill                            (ID1, IV1, BV)
           if (System.Enum.TryParse<Chars>(ids, out ch)) {
             id = (int)ch;
@@ -116,6 +124,13 @@ public class Condition {
         }
         break;
       case ConditionType.ActorIs: return "Actor is " + (!bv ? "not " : "") + (Chars)id1;
+      case ConditionType.ActorSet: {
+        if (iv1==1) return "Actor1 is " + (!bv ? "not " : "") + (Chars)id1;
+        if (iv1==2) return "Actor2 is " + (!bv ? "not " : "") + (Chars)id1;
+        if (iv1==3) return "Actor3 is " + (!bv ? "not " : "") + (Chars)id1;
+        if (iv1==4) return "Kidnapped is " + (!bv ? "not " : "") + (Chars)id1;
+        return (Chars)id1 + (!bv ? "is not " : "is ") + "in any position";
+      }
       case ConditionType.CurrentActorIs: return "Current Actor is " + (!bv ? "not " : "") + (Chars)id1;
       case ConditionType.ActorHasSkill: return "Actor " + (Chars)id1 + " has " + (!bv ? "not skill " : "skill ") + (Skill)iv1;
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
@@ -160,6 +175,19 @@ public class Condition {
 
       case ConditionType.CurrentActorIs: {
         bool res = Controller.ValidActor((Chars)id, GD.c.currentActor);
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
+      case ConditionType.ActorSet: {
+        bool res = false;
+        if (iv == 1) res = Controller.GetActor((Chars)id) == GD.c.actor1;
+        if (iv == 2) res = Controller.GetActor((Chars)id) == GD.c.actor2;
+        if (iv == 3) res = Controller.GetActor((Chars)id) == GD.c.actor3;
+        if (iv == 4) res = Controller.GetActor((Chars)id) == GD.c.kidnappedActor;
+        if (iv == 5) res = (Controller.GetActor((Chars)id) == GD.c.actor1) || (Controller.GetActor((Chars)id) == GD.c.actor2) || (Controller.GetActor((Chars)id) == GD.c.actor3) || (Controller.GetActor((Chars)id) == GD.c.kidnappedActor);
         if (bv)
           return res;
         else
@@ -396,6 +424,7 @@ public enum ConditionType {
   SameRoom,           // ID f actor, ID of other actor                                                     (ID1, IV1, BV)
   RoomIsInExt,        // ID f actor, bool to check if internal or external                                 (ID1, BV)
   ItemContains,       // ID of item, ID of item that should be contained  (IV1 is read from SVS)           (ID1, IV1, BV)
+  ActorSet,           // ID of actor, ID of position (a1, a2, a3, kidnapped)                               (ID1, IV1, BV)
 }
 
 

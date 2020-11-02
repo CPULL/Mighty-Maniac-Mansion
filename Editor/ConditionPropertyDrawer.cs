@@ -10,6 +10,7 @@ public class ConditionPropertyDrawer : PropertyDrawer {
   private readonly string[] withWithNot = { "with not", "with" };
   private readonly string[] equalDifferent = { "==", "!=" };
   private readonly string[] internalExternal = { "is external", "is intrnal" };
+  private readonly string[] participantsArray = { "Nobody", "Actor1", "Actor2", "Actor3", "Kidnapped" };
 
 
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
@@ -54,6 +55,17 @@ public class ConditionPropertyDrawer : PropertyDrawer {
           Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
           bv.intValue = EditorGUI.Popup(aRect, bv.intValue, isIsNot);
           id1.intValue = EditorGUI.Popup(bRect, id1.intValue, System.Enum.GetNames(typeof(Chars)));
+        }
+        break;
+
+        case ConditionType.ActorSet: {
+          Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
+          Rect cRect = new Rect(position.x + w4 * 3, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, participantsArray);
+          bv.intValue = EditorGUI.Popup(bRect, bv.intValue, isIsNot);
+          iv1.intValue = EditorGUI.Popup(cRect, iv1.intValue, System.Enum.GetNames(typeof(Chars)));
+
         }
         break;
 

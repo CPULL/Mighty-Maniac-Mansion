@@ -6,40 +6,63 @@
 	"startup": [
 		{ "type":"ShowRoom", "sv":"StartArea", "vv":[7,2] },
 		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor1", "vv":[8.82,-0.76], "dv":"F" },
-		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor2", "vv":[13.23,-1.43], "dv":"L" },
+		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor2", "vv":[12.7,-0.7], "dv":"L" },
 		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor3", "vv":[11.45,-0.46], "dv":"F" },
 		
-		{ "type":"Expression", "id1":"Actor1", "sv":"Normal", "dv":"F", "del":.01 },
-		{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"F", "del":.01 },
-		{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"F", "del":.75 }
+		{ "type":"Expression", "id1":"Actor1", "sv":"Normal", "dv":"R", "del":0.01 },
+		{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"L", "del":0.01 },
+		{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"L", "del":0.75 }
 	],
 	
 	"shutdown": [
-		{ "type":"Expression", "id1":"Actor1", "sv":"Normal", "dv":"F", "del":.01 },
-		{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"F", "del":.01 },
-		{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"F", "del":.01 }
+		{ "type":"Expression", "id1":"Actor1", "sv":"Normal", "dv":"F", "del":0.01 },
+		{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"F", "del":0.01 },
+		{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"F", "del":0.01 }
 	],
 	
 	"sequence":[
-		{ "name":"Classic Dave and Bernard",
+		{ "name":"Classic Dave and Bernard (not Sandy)",
 			"condition":[
-				{ "type":"ActorAvailable", "id":"Dave", "iv":1, "bv":true }
-				{ "type":"ActorAvailable", "id":"Bernard", "iv":2, "bv":true }
+				{ "type":"ActorSet", "id":"Dave", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Bernard", "iv":5, "bv":true },
+				{ "type":"ActorSet", "id":"Sandy", "iv":4, "bv":false }
 			],
 			"action":[
-				{ "type":"Speak", "id1":"Actor1", "sv":"Blah, blah", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"Blah, blah, again", "dv":"F" },
-				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.5 },
-				{ "type":"WalkTo", "id1":"Actor2", ", ...littleaway... },
-				{ "type":"Speak", "id1":"Actor1", "sv":"Bernard!\nDon't be a tuna head!", "dv":"F" }
+				{ "type":"Speak", "id1":"Actor1", "sv":"[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We should go inside and rescue [hrk].", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We may die!", "dv":"F" },
+				{ "type":"Expression", "id1":"Bernard", "sv":"BigOpen", "dv":"F", "del":1.5 },
+				{ "type":"WalkToPos", "id1":"Bernard", "vv":[13.25,-1.64], "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Bernard!\nDon't be a tuna head!", "dv":"R" }
+			]
+		},
+	
+		{ "name":"Classic Dave and Bernard (with Sandy)",
+			"condition":[
+				{ "type":"ActorSet", "id":"Dave", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Bernard", "iv":5, "bv":true },
+				{ "type":"ActorSet", "id":"Sandy", "iv":4, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We should go inside and rescue [hrk].\nAs you know she is my girlfriend.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We may die!", "dv":"F" },
+				{ "type":"Expression", "id1":"Bernard", "sv":"BigOpen", "dv":"F", "del":1.5 },
+				{ "type":"WalkToPos", "id1":"Bernard", "vv":[13.25,-1.64], "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Bernard!\nDon't be a tuna head!", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We are speaking about Sandy!", "dv":"R" }
 			]
 		},
 	
 	
 		{ "name":"Sandy goes to rescue",
 			"condition":[
-				{ "type":"ActorAvailable", "id":"Sandy", "iv":1, "bv":true }
-				{ "type":"ActorAvailable", "id":"Dave", "iv":4, "bv":true }
+				{ "type":"ActorSet", "id":"Razor", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Dave", "iv":4, "bv":true }
 			],
 			"action":[
 				{ "type":"Speak", "id1":"Actor1", "sv":"OK, you knwo, Dave is a useless guy.", "dv":"R" },
@@ -50,7 +73,9 @@
 		},
 		
 		{ "name":"Intro dialogue",
-			"condition":[],
+			"condition":[
+				{ "type":"ActorSet", "id":"Dave", "iv":1, "bv":false },
+			],
 			"action":[
 				{ "type":"Speak", "id1":"Actor1", "sv":"We may die.", "dv":"F" },
 				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.5 }
