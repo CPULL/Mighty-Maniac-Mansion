@@ -74,7 +74,7 @@ public class GameScene {
     AllObjects.SetSceneAsStopped(this);
     if (status != GameSceneStatus.NotRunning) { // Play quickly all actions
       foreach (GameAction a in shutdown) {
-        a.RunAction(null, null, null, null);
+        a.RunAction(null, null);
         a.Complete();
       }
     }
@@ -132,7 +132,9 @@ public class GameScene {
 
   public bool Run(Actor performer, Actor receiver) {
     // Are we valid?
-    if (!IsValid(performer, receiver, null, null, When.Always)) return false;
+    if (!IsValid(performer, receiver, null, null, When.Always)) {
+      if (status == GameSceneStatus.NotRunning) return false;
+    }
 
     if (Type == GameSceneType.Cutscene || Type == GameSceneType.Unique) AllObjects.SetSceneAsPlaying(this);
 
@@ -155,7 +157,7 @@ public class GameScene {
       }
 
       if (startupaction.running == Running.NotStarted) { // Start the action
-        startupaction.RunAction(performer, receiver, null, null);
+        startupaction.RunAction(performer, receiver);
       }
       else if (startupaction.running == Running.Running) { // Wait it to complete
         startupaction.CheckTime(Time.deltaTime);
@@ -221,7 +223,7 @@ public class GameScene {
         }
 
         if (shutdownaction.running == Running.NotStarted) { // Start the action
-          shutdownaction.RunAction(performer, receiver, null, null);
+          shutdownaction.RunAction(performer, receiver);
         }
         else if (shutdownaction.running == Running.Running) { // Wait it to complete
           shutdownaction.CheckTime(Time.deltaTime);

@@ -16498,7 +16498,7 @@ MonoBehaviour:
       id1: 0
       id2: 0
       str: EdRoom
-      pos: {x: -12, y: 90}
+      pos: {x: -8, y: 90}
       dir: 0
       val: 0
   - Condition:
@@ -16519,7 +16519,7 @@ MonoBehaviour:
       id1: 1
       id2: 0
       str: EdRoom
-      pos: {x: -12, y: 88}
+      pos: {x: -8, y: 87}
       dir: 2
       val: 0
   sr: {fileID: 0}
@@ -23592,8 +23592,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -621.2, y: -25}
-  m_SizeDelta: {x: 621.2418, y: 50}
+  m_AnchoredPosition: {x: -1456.8, y: -25}
+  m_SizeDelta: {x: 1456.85, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &642846252
 MonoBehaviour:
@@ -44748,9 +44748,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1934202997
+  m_SortingLayer: -1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -7886088059920659491, guid: 7f3b71977190adf44963b08cda2f5372, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

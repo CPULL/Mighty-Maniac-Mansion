@@ -54,7 +54,7 @@ public class GameStep {
     }
 
     if (currentAction.running == Running.NotStarted) { // Start the action
-      currentAction.RunAction(performer, receiver, null, null);
+      currentAction.RunAction(performer, receiver);
       if (currentAction.type == ActionType.Cutscene) {
         // Quickly stop parent scene
         gameScene.ForceStop();
@@ -80,7 +80,7 @@ public class GameStep {
       if (actions.Count > actionnum) {
         currentAction = actions[actionnum];
         currentAction.running = Running.NotStarted;
-        Debug.Log(ToString() + " > " + actionnum + ") " + currentAction);
+//FIXME        Debug.Log(ToString() + " > " + actionnum + ") " + currentAction);
       }
       else
         return false;

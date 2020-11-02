@@ -138,7 +138,7 @@ public class Controller : MonoBehaviour {
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
-        currentActor.WalkTo(hit.point, p);
+        currentActor.WalkToPos(hit.point, p);
       }
     }
 
@@ -334,7 +334,7 @@ public class Controller : MonoBehaviour {
           RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
           if (hit.collider != null) {
             PathNode p = hit.collider.GetComponent<PathNode>();
-            currentActor.WalkTo(hit.point, p);
+            currentActor.WalkToPos(hit.point, p);
             walkDelay = 0;
           }
         }
@@ -359,13 +359,6 @@ public class Controller : MonoBehaviour {
         oldCursor = null;
         forcedCursor = CursorTypes.Normal;
         return;
-      }
-      if (lmb) {
-        // FIXME remove from the final build
-        if (overActor != currentActor) {
-          SelectActor(overActor);
-          return;
-        }
       }
     }
 
@@ -847,7 +840,7 @@ public class Controller : MonoBehaviour {
       RaycastHit2D hit = Physics2D.Raycast(two, cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
-        currentActor.WalkTo(two, p, action, item);
+        currentActor.WalkToPos(two, p, action, item);
       }
       return;
     }

@@ -49,7 +49,7 @@ public class Item : GameItem {
 
     foreach (ActionAndCondition ac in actions) {
       if (ac.Condition.IsValid(actor, secondary, item1, item2, when)) {
-        ac.Action.RunAction(actor, secondary, this, item);
+        ac.Action.RunAction(actor, secondary);
         if (res == null) res = new ActionRes { actionDone = true, res = null };
         if (!ac.Action.type.GoodByDefault() && !string.IsNullOrEmpty(ac.Action.msg))
           res.res = ac.Action.msg;
@@ -345,10 +345,13 @@ public class Item : GameItem {
     }
   }
   internal void Give(Actor giver, Actor receiver) {
-    // FIXME here we should check the conditions of the actions
-
-
-    PlayActions(giver, receiver, When.Give, this);
+    ActionRes res = PlayActions(giver, receiver, When.Give, this);
+    if (!res.actionDone) { // Give it by default
+      giver.inventory.Remove(this);
+      receiver.inventory.Add(this);
+      owner = Controller.GetCharFromActor(receiver);
+      Controller.UpdateInventory();
+    }
   }
 }
 

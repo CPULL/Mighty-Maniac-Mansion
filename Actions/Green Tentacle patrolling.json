@@ -3,7 +3,7 @@
 
 	"condition":[
 		{ "type":"CurrentRoomIs", "sv":"SuitesCorridor", "bv":true },
-		{ "type":"FlagValueIs", "id":"GreenTentacleIsFed", "bv":true, "iv":999 }
+		{ "type":"FlagValueIs", "id":"GreenTentacleIsFed", "bv":true, "iv":0 }
 	],
 	
 		"startup" : [
@@ -60,7 +60,3 @@
 	]
 
 }
-
-
-
-

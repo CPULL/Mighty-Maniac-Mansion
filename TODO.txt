@@ -11,6 +11,7 @@ Remove Dbg
 [test] loose brick
 [test] grab hamster while Ed is away
 [test] tentacle feeding with cheese
+[test] check we can still give items
 
 [demo] debug and try all actions
 [demo] write different intros for the different participants

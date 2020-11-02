@@ -67,7 +67,7 @@ public class GameAction {
       case ActionType.None: return "No action";
       case ActionType.ShowRoom: return "Show room " + str + (id2 == 0 ? "" : " [panning]");
       case ActionType.Teleport: return "Teleport " + (Chars)id1 + " [" + pos.x + "," + pos.y + "]";
-      case ActionType.Speak: return (Chars)id1 + " say: \"" + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+      case ActionType.Speak: return (Chars)id1 + " say: \"" + str.Substring(0, str.Length > 15 ? 15 : str.Length).Replace("\n", "");
       case ActionType.Expression: return (Chars)id1 + " " + (Expression)id2;
       case ActionType.WalkToPos: return (Chars)id1 + " walk [" + pos.x + "," + pos.y + "]";
       case ActionType.WalkToActor: return (Chars)id1 + " walk [" + (Chars)id2 + ", " + dir + "]";
@@ -87,18 +87,18 @@ public class GameAction {
       case ActionType.Sound: return "Sound: " + (Audios)id2;
       case ActionType.ReceiveCutscene: {
         if (val == 0) { // Yes
-          return "Accept " + (ItemEnum)id1 + "->" + (CutsceneID)id2 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+          return "Accept " + (ItemEnum)id1 + "->" + (CutsceneID)id2 + ": " + str.Substring(0, str.Length > 15 ? 15 : str.Length).Replace("\n", "");
         }
         else { // No
-          return "Refuse " + (ItemEnum)id1 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+          return "Refuse " + (ItemEnum)id1 + ": " + str.Substring(0, str.Length > 15 ? 15 : str.Length).Replace("\n", "");
         }
       }
       case ActionType.ReceiveFlag: {
         if (val == 0) { // Yes
-          return "Accept " + (ItemEnum)id1 + "->" + (GameFlag)id2 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+          return "Accept " + (ItemEnum)id1 + "->" + (GameFlag)id2 + ": " + str.Substring(0, str.Length > 15 ? 15 : str.Length).Replace("\n", "");
         }
         else { // No
-          return "Refuse " + (ItemEnum)id1 + ": " + str.Substring(0, str.Length > 10 ? 10 : str.Length).Replace("\n", "");
+          return "Refuse " + (ItemEnum)id1 + ": " + str.Substring(0, str.Length > 15 ? 15 : str.Length).Replace("\n", "");
         }
       }
       case ActionType.Fade: return (val == 0) ? "Fade In" : "Fade Out";
@@ -466,8 +466,8 @@ public class GameAction {
   }
 
 
-  public void RunAction(Actor performer, Actor secondary, Item item1, Item item2) {
-    Debug.Log("Playing: " + ToString());
+  public void RunAction(Actor performer, Actor secondary) {
+//    Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
         if (Controller.SceneSkipped) {
@@ -507,6 +507,7 @@ public class GameAction {
           a.currentRoom = aroom;
           a.SetVisible(aroom == GD.c.currentRoom);
         }
+        a.Stop();
         a.transform.position = pos;
         a.SetDirection(dir);
         if (aroom != null) {
@@ -613,7 +614,7 @@ public class GameAction {
         if (p != null) {
           GameAction copy = this;
           Play();
-          a.WalkTo(pos, p,
+          a.WalkToPos(pos, p,
           new System.Action<Actor, Item>((actor, item) => {
             actor.SetDirection(copy.dir);
             copy.Complete();
@@ -633,9 +634,10 @@ public class GameAction {
           return;
         }
         Actor destAct = Controller.GetActor((Chars)id2);
-        if (walker.WalkTo(destAct.transform, dir, val == 0 ? this : null))
-          Complete(); // Not possible to reach
+        walker.Stop();
+        GameAction copy = this;
         Play();
+        walker.WalkToActor(destAct.transform, dir, this);
       }
       break;
 
