@@ -7,16 +7,11 @@ Remove Dbg
 
 [test] batteries and flashlight
 [test] edna catch
-[test] ed catch
 [test] loose brick
 [test] grab hamster while Ed is away
-[test] tentacle feeding with cheese
-[test] check we can still give items
 
 [demo] debug and try all actions
-[demo] write different intros for the different participants
 
-give roasted !has skill curage => refuse
 
 Do arms forward in all characters
 
@@ -208,4 +203,5 @@ Jeff
 ! Containers can change the open and closed sprites (with lock and icon)
 ! Full working roasting the hamster
 ! Complete Sandy and Ollie descriptions
+! give roasted hamster !has skill curage => refuse
 

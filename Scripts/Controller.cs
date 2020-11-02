@@ -575,7 +575,7 @@ public class Controller : MonoBehaviour {
   }
 
   internal static void SetItem(Item item, bool fromInventory = false) {
-    if (GD.status != GameStatus.NormalGamePlay) return;
+    if (GD.status != GameStatus.NormalGamePlay && !SceneSkipped) return;
 
     if (fromInventory) {
       if (item == null) {
@@ -890,7 +890,7 @@ public class Controller : MonoBehaviour {
 
   Actor overActor = null;
   internal static bool OverActor(Actor actor) {
-    if (actor != GD.c.currentActor) return true;
+    if (actor == GD.c.currentActor) return true;
     GD.c.overActor = actor;
     return false;
   }

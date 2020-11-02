@@ -6023,7 +6023,49 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  actions: []
+  actions:
+  - Condition:
+      type: 2
+      id: 6
+      iv: 2
+      fv: 0
+      sv: 
+      bv: 1
+      msg: 
+      when: 2
+    Action:
+      running: 0
+      msg: 
+      type: 13
+      Repeatable: 0
+      delay: 0
+      id1: 25
+      id2: 0
+      str: Poor little guy...
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
+  - Condition:
+      type: 2
+      id: 6
+      iv: 2
+      fv: 0
+      sv: 
+      bv: 0
+      msg: 
+      when: 2
+    Action:
+      running: 0
+      msg: 
+      type: 13
+      Repeatable: 0
+      delay: 0
+      id1: 25
+      id2: 0
+      str: I don't want this nauseating abominion!
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 1
   sr: {fileID: 0}
 --- !u!212 &151499249
 SpriteRenderer:
