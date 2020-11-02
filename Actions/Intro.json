@@ -6,8 +6,8 @@
 	"startup": [
 		{ "type":"ShowRoom", "sv":"StartArea", "vv":[7,2] },
 		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor1", "vv":[8.82,-0.76], "dv":"F" },
-		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor2", "vv":[12.7,-0.7], "dv":"L" },
-		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor3", "vv":[11.45,-0.46], "dv":"F" },
+		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor2", "vv":[12.27,-0.6], "dv":"L" },
+		{ "type":"Teleport", "sv":"StartArea", "id1":"Actor3", "vv":[10.45,-0.46], "dv":"F" },
 		
 		{ "type":"Expression", "id1":"Actor1", "sv":"Normal", "dv":"R", "del":0.01 },
 		{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"L", "del":0.01 },
@@ -35,7 +35,7 @@
 				{ "type":"Speak", "id1":"Actor1", "sv":"We may die!", "dv":"F" },
 				{ "type":"Expression", "id1":"Bernard", "sv":"BigOpen", "dv":"F", "del":1.5 },
 				{ "type":"WalkToPos", "id1":"Bernard", "vv":[13.25,-1.64], "dv":"R" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"Bernard!\nDon't be a tuna head!", "dv":"R" }
+				{ "type":"Speak", "id1":"Actor1", "sv":"Bernard!\n\nDon't be a tuna head!", "dv":"R" }
 			]
 		},
 	
@@ -48,37 +48,193 @@
 			"action":[
 				{ "type":"Speak", "id1":"Actor1", "sv":"[kn] is missing.", "dv":"R" },
 				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"We should go inside and rescue [hrk].\nAs you know she is my girlfriend.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We should go inside and rescue [hrk].\n\nAs you know she is my girlfriend.", "dv":"R" },
 				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
 				{ "type":"Speak", "id1":"Actor1", "sv":"We may die!", "dv":"F" },
 				{ "type":"Expression", "id1":"Bernard", "sv":"BigOpen", "dv":"F", "del":1.5 },
 				{ "type":"WalkToPos", "id1":"Bernard", "vv":[13.25,-1.64], "dv":"R" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"Bernard!\nDon't be a tuna head!", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Bernard!\n\nDon't be a tuna head!", "dv":"R" },
 				{ "type":"Speak", "id1":"Actor1", "sv":"We are speaking about Sandy!", "dv":"R" }
+				{ "type":"Speak", "id1":"Actor1", "sv":"And this is a classic...", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Happy", "dv":"F", "del":1.5 }
 			]
 		},
 	
 	
 		{ "name":"Sandy goes to rescue",
 			"condition":[
-				{ "type":"ActorSet", "id":"Razor", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Sandy", "iv":1, "bv":true },
 				{ "type":"ActorSet", "id":"Dave", "iv":4, "bv":true }
 			],
 			"action":[
-				{ "type":"Speak", "id1":"Actor1", "sv":"OK, you knwo, Dave is a useless guy.", "dv":"R" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"But I like him, so I am going to rescue him.", "dv":"R" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"For sure the world went upside-down in the last 30 years", "dv":"F" },
-				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.5 }
+				{ "type":"Speak", "id1":"Actor1", "sv":"OK, you know, ...\nDave is a useless guy.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"But I like him,\nso I am going to rescue him.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"For sure the world went\nupside-down in the last 30 years", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"BigOpen", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "del":1.5 }
+			]
+		},
+		
+		{ "name":"Sandy generic",
+			"condition":[
+				{ "type":"ActorSet", "id":"Sandy", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Dave", "iv":4, "bv":false }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"OK guys,\n\n[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We should go inside and rescue [hrk].", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Sad", "dv":"L", "del":.5 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Sad", "dv":"F", "del":1.5 }
+			]
+		},
+		
+		{ "name":"Bernard generic",
+			"condition":[
+				{ "type":"ActorSet", "id":"Bernard", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Laverne", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Hoagie", "iv":4, "bv":false }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"I think we have a problem.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[kn] is not here...", "dv":"L" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"I am afraid.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] can be in serious troubles!", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"What we can do?\n[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"L" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Help!", "dv":"L" },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Sad", "dv":"L", "del":.05 }
+				{ "type":"WalkToPos", "id1":"Bernard", "vv":[5.82,-0.76], "dv":"L" },
+				{ "type":"Speak", "id1":"Actor2", "sv":"Bernard!", "dv":"L" },
+				{ "type":"Speak", "id1":"Actor3", "sv":"Don't be a tuna head!", "dv":"L" },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Open", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"BigOpen", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"BigOpen", "dv":"R", "del":.5 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Open", "dv":"R", "del":.5 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Open", "dv":"F", "del":.5 }
+			]
+		},
+		
+		{ "name":"Bernard Day of Tentacle HL",
+			"condition":[
+				{ "type":"ActorSet", "id":"Ollie", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Laverne", "iv":2, "bv":true },
+				{ "type":"ActorSet", "id":"Hoagie", "iv":3, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"I fear this is another classic... FIXME", "dv":"R" },
+			]
+		},
+		
+		{ "name":"Bernard Day of Tentacle LH",
+			"condition":[
+				{ "type":"ActorSet", "id":"Ollie", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Hoagie", "iv":2, "bv":true },
+				{ "type":"ActorSet", "id":"Laverne", "iv":3, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"I fear this is another classic... FIXME", "dv":"R" },
+			]
+		},
+		
+		{ "name":"Ollie generic",
+			"condition":[
+				{ "type":"ActorSet", "id":"Ollie", "iv":1, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"OK guys,\n\n[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We should go inside and rescue [hrk].", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Where is Simon when you need him?", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Open", "dv":"L", "del":.5 },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Open", "dv":"L", "del":.5 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Open", "dv":"F", "del":.75 }
+				{ "type":"Expression", "id1":"Actor2", "sv":"Open", "dv":"F", "del":.75 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "del":1.5 }
+			]
+		},
+		
+		{ "name":"Wendy generic",
+			"condition":[
+				{ "type":"ActorSet", "id":"Wendy", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Ollie", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Javid", "iv":4, "bv":false }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"OK guys,\n\n[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"This is probably related to the meteor\nthat felt a few years ago.", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We should go inside and rescue [hrk].", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"But we can do it together!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"F", "del":0.75 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Happy", "dv":"F", "del":0.75 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "del":0.75 }
+			]
+		},
+		
+		{ "name":"Wendy Ollie",
+			"condition":[
+				{ "type":"ActorSet", "id":"Wendy", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Ollie", "iv":4, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"OK guys,\n\n[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"He is my favorite Youtube musician!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Open", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Open", "dv":"F", "del":.5 },
+				{ "type":"Speak", "id1":"Actor1", "sv":"I cannot live without\nhis covers of old games!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Bigopen", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Bigopen", "dv":"F", "del":.5 },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We should go inside and rescue [hrk].", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"But we can do it together!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"F", "del":0.75 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Happy", "dv":"F", "del":0.75 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "del":0.75 }
+			]
+		},
+		
+		{ "name":"Wendy Javid",
+			"condition":[
+				{ "type":"ActorSet", "id":"Wendy", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Javid", "iv":4, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"OK guys,\n\n[kn] is missing.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"He is my favorite Youtube coder!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Open", "dv":"F", "del":.25 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Open", "dv":"F", "del":.25 },
+				{ "type":"Speak", "id1":"Actor1", "sv":"I cannot live without\nhis OLC videos!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Bigopen", "dv":"F", "del":.35 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Bigopen", "dv":"F", "del":.35 },
+				{ "type":"Speak", "id1":"Actor1", "sv":"We should go inside and rescue [hrk].", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"I am not sure why he\ndidn't build a robot\nto defend himself?", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Sad", "dv":"F", "del":.45 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Sad", "dv":"F", "del":.45 },
+				{ "type":"Speak", "id1":"Actor1", "sv":"But we can do it together!", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"F", "del":0.55 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Happy", "dv":"F", "del":0.55 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "del":1 }
 			]
 		},
 		
 		{ "name":"Intro dialogue",
 			"condition":[
 				{ "type":"ActorSet", "id":"Dave", "iv":1, "bv":false },
+				{ "type":"ActorSet", "id":"Bernard", "iv":1, "bv":false },
+				{ "type":"ActorSet", "id":"Sandy", "iv":1, "bv":false },
+				{ "type":"ActorSet", "id":"Wendy", "iv":1, "bv":false },
+				{ "type":"ActorSet", "id":"Ollie", "iv":1, "bv":false }
 			],
 			"action":[
-				{ "type":"Speak", "id1":"Actor1", "sv":"We may die.", "dv":"F" },
-				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.5 }
+				{ "type":"Speak", "id1":"Actor1", "sv":"I am [a1], and my dialogue is not yet done.", "dv":"F" }
 			]
 		}
 	]

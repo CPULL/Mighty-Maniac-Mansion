@@ -1,6 +1,13 @@
 === Mighty Maniac Mansion ===
 
 
+Remove jumpstarts
+Remove pre-selected actors
+Coperture for all participants (syd, javid)
+Remove Dbg
+
+
+
 [demo] debug and try all actions
 [demo] write different intros for the different participants
 
