@@ -125,10 +125,11 @@ public class Condition {
         break;
       case ConditionType.ActorIs: return "Actor is " + (!bv ? "not " : "") + (Chars)id1;
       case ConditionType.ActorSet: {
-        if (iv1==1) return "Actor1 is " + (!bv ? "not " : "") + (Chars)id1;
-        if (iv1==2) return "Actor2 is " + (!bv ? "not " : "") + (Chars)id1;
-        if (iv1==3) return "Actor3 is " + (!bv ? "not " : "") + (Chars)id1;
-        if (iv1==4) return "Kidnapped is " + (!bv ? "not " : "") + (Chars)id1;
+        if (iv1 == 1) return "Actor1 is " + (!bv ? "not " : "") + (Chars)id1;
+        if (iv1 == 2) return "Actor2 is " + (!bv ? "not " : "") + (Chars)id1;
+        if (iv1 == 3) return "Actor3 is " + (!bv ? "not " : "") + (Chars)id1;
+        if (iv1 == 4) return "Kidnapped is " + (!bv ? "not " : "") + (Chars)id1;
+        if (iv1 == 5) return (Chars)id1 + (!bv ? "is not " : "is") + " a player";
         return (Chars)id1 + (!bv ? "is not " : "is ") + "in any position";
       }
       case ConditionType.CurrentActorIs: return "Current Actor is " + (!bv ? "not " : "") + (Chars)id1;

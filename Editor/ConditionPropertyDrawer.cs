@@ -10,7 +10,7 @@ public class ConditionPropertyDrawer : PropertyDrawer {
   private readonly string[] withWithNot = { "with not", "with" };
   private readonly string[] equalDifferent = { "==", "!=" };
   private readonly string[] internalExternal = { "is external", "is intrnal" };
-  private readonly string[] participantsArray = { "Nobody", "Actor1", "Actor2", "Actor3", "Kidnapped" };
+  private readonly string[] participantsArray = { "Nobody", "Actor1", "Actor2", "Actor3", "Kidnapped", "A Player" };
 
 
   public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
@@ -65,7 +65,6 @@ public class ConditionPropertyDrawer : PropertyDrawer {
           id1.intValue = EditorGUI.Popup(aRect, id1.intValue, participantsArray);
           bv.intValue = EditorGUI.Popup(bRect, bv.intValue, isIsNot);
           iv1.intValue = EditorGUI.Popup(cRect, iv1.intValue, System.Enum.GetNames(typeof(Chars)));
-
         }
         break;
 

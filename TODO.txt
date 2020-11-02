@@ -2,11 +2,15 @@
 
 
 Remove jumpstarts
-Remove pre-selected actors
 Coperture for all participants (syd, javid)
 Remove Dbg
 
-
+[test] batteries and flashlight
+[test] edna catch
+[test] ed catch
+[test] loose brick
+[test] grab hamster while Ed is away
+[test] tentacle feeding with cheese
 
 [demo] debug and try all actions
 [demo] write different intros for the different participants
