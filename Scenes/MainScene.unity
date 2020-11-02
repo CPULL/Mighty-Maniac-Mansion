@@ -10875,7 +10875,7 @@ MonoBehaviour:
   Face: {fileID: 119290669}
   Arms: {fileID: 1579272506}
   Legs: {fileID: 1235580344}
-  currentRoom: {fileID: 0}
+  currentRoom: {fileID: 718837450}
   actorSpeed: 4
   inventory: []
   id: 13
@@ -50413,7 +50413,12 @@ MonoBehaviour:
   lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
-  Description: 
+  Description: 'The mailbox flag.
+
+    I never understood when it should
+
+    be
+    up and when it should be down...'
   openImage: {fileID: -2919622560191674364, guid: eb50c8aa303ca6041ae5f71e549bf190, type: 3}
   closeImage: {fileID: 6839161862081810458, guid: eb50c8aa303ca6041ae5f71e549bf190, type: 3}
   lockImage: {fileID: 0}
@@ -67102,7 +67107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754126204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.973, y: 0.632, z: 0.37}
+  m_LocalPosition: {x: -4.973, y: 0.632, z: -1}
   m_LocalScale: {x: 6.2078633, y: 8.999472, z: 1}
   m_Children:
   - {fileID: 800636879}
@@ -67143,7 +67148,7 @@ MonoBehaviour:
     rgba: 4278255615
   normalColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 33554431
   actions: []
   sr: {fileID: 0}
 --- !u!65 &1754126207
@@ -75892,7 +75897,7 @@ MonoBehaviour:
   lockStatus: 0
   whatItDoesL: 1
   whatItDoesR: 0
-  Description: 
+  Description: A standard mailbox.
   openImage: {fileID: 1584276219503357356, guid: b159dabee9fbe15469546fed737de0a9, type: 3}
   closeImage: {fileID: -4200121528519567819, guid: b159dabee9fbe15469546fed737de0a9, type: 3}
   lockImage: {fileID: 0}

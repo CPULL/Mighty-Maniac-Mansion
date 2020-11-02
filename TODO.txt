@@ -1,9 +1,9 @@
 === Mighty Maniac Mansion ===
 
 
-Remove jumpstarts
+!Remove jumpstarts
 Coperture for all participants (syd)
-Remove Dbg
+!Remove Dbg
 
 
 Do arms forward in all characters
@@ -22,7 +22,23 @@ Define skills and actions that will allow
 FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
-Edna catches also if not in the kitchen (and there is a fade when grabbing the flashlight)
+
+Empty comment for flag and mailbox and ted grave
+Make the balloon to disappear immediately if the speaker is completely off-screen
+Purple tentacle has wrong Z value (no setposition for it)
+Changing the font seems to be not working
+Edna fridge seems to be not working
+
+Missing Javid start case:
+				{ "type":"ActorSet", "id":"Javid", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Wendy", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Ollie", "iv":4, "bv":false }
+
+
+
+
+
 
 
 * CHARS ************************************************************************************************************

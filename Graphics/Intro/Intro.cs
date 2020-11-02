@@ -399,7 +399,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 5f) {
           introTime = 0;
           istep = IntroStep.Credits10;
-          IntroCredits.text = "Remake credits:\n    Testing - <i>Brank</i>";
+          IntroCredits.text = "Remake credits:\n    Testing - <i>Brank</i>, <i>DragonEye</i>";
         }
       }
       break;
