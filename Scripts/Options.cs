@@ -235,6 +235,8 @@ public class Options : MonoBehaviour {
     vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("SoundsVolume", 1) * .74f) * 14.425f - 80;
     GD.opts.mixerMusic.SetFloat("SoundsVolume", vol);
 
+    if (PlayerPrefs.GetFloat("WalkSpeed", 6) <= 1) PlayerPrefs.SetFloat("WalkSpeed", 6);
+    if (PlayerPrefs.GetFloat("TalkSpeed", 6) <= 1) PlayerPrefs.SetFloat("TalkSpeed", 6);
     Controller.walkSpeed = GetFloatValueD(PlayerPrefs.GetFloat("WalkSpeed", 6));
     Controller.textSpeed = GetFloatValueD(PlayerPrefs.GetFloat("TalkSpeed", 6));
 

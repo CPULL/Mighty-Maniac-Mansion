@@ -311,6 +311,18 @@
 			]
 		},
 		
+		{ "name":"Syd",
+			"condition":[
+				{ "type":"ActorSet", "id":"Syd", "iv":1, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"I am Syd,", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"and we are going\nto rescue [kn].", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Plain and simple\n(at least for the demo)", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "del":.5 }
+			]
+		},
+		
 		
 		
 		
@@ -321,7 +333,8 @@
 				{ "type":"ActorSet", "id":"Sandy", "iv":1, "bv":false },
 				{ "type":"ActorSet", "id":"Wendy", "iv":1, "bv":false },
 				{ "type":"ActorSet", "id":"Ollie", "iv":1, "bv":false },
-				{ "type":"ActorSet", "id":"Javid", "iv":1, "bv":false }
+				{ "type":"ActorSet", "id":"Javid", "iv":1, "bv":false },
+				{ "type":"ActorSet", "id":"Syd", "iv":1, "bv":false }
 			],
 			"action":[
 				{ "type":"Speak", "id1":"Actor1", "sv":"I am [a1], and my dialogue is not yet done.", "dv":"F" }

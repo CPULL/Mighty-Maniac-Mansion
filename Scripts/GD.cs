@@ -35,7 +35,7 @@ public class GD : MonoBehaviour {
 
 
   public static void Log(string s) {
-    string path = Path.Combine(Application.dataPath, "error.log");
+    string path = Path.Combine(Application.dataPath, "../error.log");
     StreamWriter sw = new StreamWriter(path, append: true);
     sw.WriteLine(s);
     sw.Flush();
@@ -85,7 +85,22 @@ public class GD : MonoBehaviour {
   private void LoadScenes() {
     string path = Application.dataPath + "/Actions/";
 
-    foreach (string file in Directory.GetFiles(path, "*.json", SearchOption.TopDirectoryOnly)) {
+    string[] jsons = null;
+    try {
+      jsons = Directory.GetFiles(path, "*.json", SearchOption.TopDirectoryOnly);
+      if (jsons == null || jsons.Length == 0) {
+        Log("Path for the actions and cutscene not found!");
+        Log("Expected: " + path);
+        Application.Quit();
+      }
+    } catch(System.Exception) {
+      Log("Path for the actions and cutscene not found!");
+      Log("Expected: " + path);
+      Application.Quit();
+    }
+
+
+    foreach (string file in jsons) {
       try {
 //FIXME        Debug.Log("GD: " + file);
         string json = File.ReadAllText(file);
@@ -193,6 +208,7 @@ public class GD : MonoBehaviour {
                     ga
                   );
                 } catch(System.Exception e) {
+                  GD.Log("Action ERROR in " + file + ", action #" + j +": " + e.Message);
                   Debug.Log("Action ERROR in " + file + ", action #" + j +": " + e.Message);
                 }
               }
@@ -209,6 +225,7 @@ public class GD : MonoBehaviour {
           string at = js["AppliesTo"].Value;
           Chars ch = (Chars)System.Enum.Parse(typeof(Chars), at, true);
           if (!System.Enum.IsDefined(typeof(Chars), ch)) {
+            GD.Log("Unknown Actor: \"" + at + "\" in file " + file);
             Debug.LogError("Unknown Actor: \"" + at + "\" in file " + file);
             continue;
           }
@@ -216,16 +233,21 @@ public class GD : MonoBehaviour {
           actor.behaviors.Add(seq);
         }
 
-        if (seq.steps.Count == 0)
+        if (seq.steps.Count == 0) {
+          GD.Log("Scene without steps: " + file);
           Debug.LogError("Scene without steps: " + file);
+        }
         else {
           for (int i = 0; i < seq.steps.Count; i++) {
-            if (seq.steps[i].actions.Count == 0)
+            if (seq.steps[i].actions.Count == 0) {
+              GD.Log("Scene with steps(" + i + ") without actions: " + file);
               Debug.LogError("Scene with steps(" + i + ") without actions: " + file);
+            }
           }
         }
 
       } catch (System.Exception e) {
+        GD.Log("Main ERROR reading " + file + ": " + e.Message);
         Debug.Log("Main ERROR reading " + file + ": " + e.Message);
         // FIXME here we need a better message
       }

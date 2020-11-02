@@ -15,6 +15,7 @@ public class Controller : MonoBehaviour {
 
   public TextMeshProUGUI DbgMsg;
   public static void Dbg(string txt) {
+    return; // FIXME
     GD.c.DbgMsg.text = txt;
   }
 
