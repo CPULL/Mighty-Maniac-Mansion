@@ -35,14 +35,14 @@ public class Intro : MonoBehaviour {
 
   public float musicLightTime = 0;
 
-  enum IntroStep {
+  public enum IntroStep {
     Init, Wait1,
     FirstText, FadeIn, HideText,
     Meteor, Explosion, Wait2, MansionLights, MusicStart,
     MMTitle1, MMTitle2, MMTitle3, Wait3,
     Credits1, Credits2, Credits3, Credits4, Credits5, Credits6, Credits7, Credits8, Credits9, Credits10, Credits11, Credits12
   };
-  IntroStep istep = IntroStep.Init;
+  public IntroStep istep = IntroStep.Init;
   float introTime = 0;
   bool glowing = false;
   float glowingTime = 0;
@@ -399,7 +399,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 5f) {
           introTime = 0;
           istep = IntroStep.Credits10;
-          IntroCredits.text = "Remake credits:\n    Testing - <i>nobody yet</i>";
+          IntroCredits.text = "Remake credits:\n    Testing - <i>Brank</i>";
         }
       }
       break;

@@ -116,6 +116,27 @@ public class Controller : MonoBehaviour {
     FrontActors.enabled = false;
     if (currentActor.currentRoom != currentRoom) StartCoroutine(FadeToRoomActor());
 
+    if (Input.GetKeyUp(KeyCode.Alpha1)) {
+      SelectActor(GD.c.actor1);
+    }
+    else if (Input.GetKeyUp(KeyCode.Alpha2)) {
+      SelectActor(GD.c.actor2);
+    }
+    else if (Input.GetKeyUp(KeyCode.Alpha3)) {
+      SelectActor(GD.c.actor3);
+    }
+    else if (Input.GetKeyUp(KeyCode.I)) {
+      if (GD.c.Inventory.activeSelf) { // Show/Hide inventory of current actor
+        GD.c.Inventory.SetActive(false);
+        GD.c.InventoryPortrait.GetComponent<RawImage>().color = new Color32(0x6D, 0x7D, 0x7C, 0xff);
+        return;
+      }
+      else
+        GD.c.ActivateInventory(GD.c.currentActor);
+    }
+
+
+
     #region Mouse control
     bool notOverUI = !EventSystem.current.IsPointerOverGameObject();
     bool lmb = Input.GetMouseButtonDown(0);
