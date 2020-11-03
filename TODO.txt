@@ -24,10 +24,7 @@ FrontDoor -> Backyard entrance on the left
 * BUGS ************************************************************************************************************
 
 Empty comment for flag and mailbox and ted grave
-Make the balloon to disappear immediately if the speaker is completely off-screen
-Purple tentacle has wrong Z value (no setposition for it)
 Changing the font seems to be not working
-Edna fridge seems to be not working
 
 Missing Javid start case:
 				{ "type":"ActorSet", "id":"Javid", "iv":1, "bv":true },
@@ -214,4 +211,7 @@ Jeff
 ! Full working roasting the hamster
 ! Complete Sandy and Ollie descriptions
 ! give roasted hamster !has skill curage => refuse
+! Make the balloon to disappear immediately if the speaker is completely off-screen
+! Purple tentacle has wrong Z value (no setposition for it)
+! Fixed Edna fridge scene
 
