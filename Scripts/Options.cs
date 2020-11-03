@@ -261,6 +261,10 @@ public class Options : MonoBehaviour {
 
 
   private void UpdateFonts(int num) {
+    TextFontLabel.font = FontAssets[num];
+    TextFontLabel.fontSharedMaterial = FontMaterials[num];
+    TextFontLabel.text = FontNames[num];
+
     GD.charSel.ActorDescription.font = FontAssets[num];
     GD.charSel.ActorDescription.fontSharedMaterial = FontMaterials[num];
 
