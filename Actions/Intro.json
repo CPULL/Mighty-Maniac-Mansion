@@ -311,6 +311,25 @@
 			]
 		},
 		
+		{ "name":"Javid !Ollie & !Bernard & !Wendy",
+			"condition":[
+				{ "type":"ActorSet", "id":"Javid", "iv":1, "bv":true },
+				{ "type":"ActorSet", "id":"Wendy", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Ollie", "iv":4, "bv":false }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"Hello!", "dv":"F" },
+				{ "type":"Speak", "id1":"Actor1", "sv":" I guess those rust zealots\nfinally got [kn] huh?", "dv":"R" },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Let's go and rescue [hrk]", "dv":"R" },
+				{ "type":"Expression", "id1":"Actor3", "sv":"Happy", "dv":"L", "del":.25 },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"L", "del":.25 },
+				{ "type":"Speak", "id1":"Actor1", "sv":"Faster than a single\nstd::chrono::milliseconds;", "dv":"F" },
+				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "del":.25 },
+				{ "type":"Expression", "id1":"Actor3", "sv":"BigOpen", "dv":"F", "del":1.5 }
+			]
+		},
+		
 		{ "name":"Syd",
 			"condition":[
 				{ "type":"ActorSet", "id":"Syd", "iv":1, "bv":true }
