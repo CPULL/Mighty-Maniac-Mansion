@@ -44,11 +44,19 @@ public class Balloon : MonoBehaviour {
     GD.b.delay = 1 + .25f * GD.b.numWords * Controller.textSpeed * Controller.textSpeed;
 
     GD.b.text.text = message;
-    GD.b.gameObject.SetActive(true);
 
-    GD.b.srAnchor = speaker.GetChild(0).GetComponent<SpriteRenderer>();
+    SpriteRenderer sr = speaker.GetChild(0).GetComponent<SpriteRenderer>();
+
+    if (!sr.isVisible) {
+      GD.b.gameObject.SetActive(false);
+      GD.b.delay = 0;
+      GD.b.speakComplete?.Invoke();
+    }
+
+    GD.b.srAnchor = sr;
     if (maxlen < 8) GD.b.size.x += 1;
     GD.b.boxc.size = GD.b.size;
+    GD.b.gameObject.SetActive(true);
 
     GD.b.size.x += 1.5f;
     GD.b.size.y += 1f;
