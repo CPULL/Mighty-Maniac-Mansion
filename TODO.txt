@@ -15,7 +15,9 @@ Split again background sounds and normal sounds
 * TODO ************************************************************************************************************
 
 Piggy bank with coins
-Draw maps
+Have pool empty/full depending on the valve in the underpassage
+Have the alarm and fred cutscene if the pool has no water for too long
+
 
 Complete intro Cutscene, adding variations for each character.
 Define skills and actions that will allow
