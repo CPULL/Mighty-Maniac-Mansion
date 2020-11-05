@@ -10,7 +10,6 @@ Do arms forward in all characters
 
 Icrease resolution of turkey and roast
 Add recycle stuff to the service room
-Split again background sounds and normal sounds
 
 * TODO ************************************************************************************************************
 
@@ -29,7 +28,7 @@ FrontDoor -> Backyard entrance on the left
 
 * CHARS ************************************************************************************************************
 
-Dr. Fred
+!Dr. Fred
 !Nurse Edna
 Cousin Ted
 !Ed
@@ -206,3 +205,4 @@ Jeff
 ! Empty comment for flag and mailbox and ted grave
 ! Fixed Changing the fonts
 ! Added missing Javid intro
+! Split again background sounds and normal sounds

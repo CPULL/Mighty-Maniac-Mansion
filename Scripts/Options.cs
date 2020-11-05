@@ -11,6 +11,8 @@ public class Options : MonoBehaviour {
   public TextMeshProUGUI MusicVal;
   public Slider SoundVolume;
   public TextMeshProUGUI SoundVal;
+  public Slider BackgroundVolume;
+  public TextMeshProUGUI BackgroundVal;
 
   public Slider TextSpeed;
   public TextMeshProUGUI TextVal;
@@ -136,6 +138,15 @@ public class Options : MonoBehaviour {
       SoundVal.text = (int)(SoundVolume.value * 100) + "%";
   }
 
+  public void ChangeBackgroundVolume() {
+    float vol = 10 * Mathf.Log(1 + BackgroundVolume.value * .74f) * 14.425f - 80;
+    mixerMusic.SetFloat("BackgroundVolume", vol);
+    if (BackgroundVolume.value < .01f)
+      BackgroundVal.text = "<i>disabled</i>";
+    else
+      BackgroundVal.text = (int)(BackgroundVolume.value * 100) + "%";
+  }
+
   public void ChangeMaxWalkSpeed() {
     WalkVal.text = GetStringValueD(WalkSpeed.value);
   }
@@ -181,9 +192,12 @@ public class Options : MonoBehaviour {
       MusicVolume.SetValueWithoutNotify(val);
       val = PlayerPrefs.GetFloat("SoundVolume", 1);
       SoundVolume.SetValueWithoutNotify(val);
+      val = PlayerPrefs.GetFloat("BackgroundVolume", 1);
+      BackgroundVolume.SetValueWithoutNotify(val);
       ChangeMainVolume();
       ChangeMusicVolume();
       ChangeSoundVolume();
+      ChangeBackgroundVolume();
 
       val = PlayerPrefs.GetFloat("WalkSpeed", 6);
       WalkSpeed.SetValueWithoutNotify(val);
@@ -203,6 +217,7 @@ public class Options : MonoBehaviour {
       PlayerPrefs.SetFloat("MasterVolume", MainVolume.value);
       PlayerPrefs.SetFloat("MusicVolume", MusicVolume.value);
       PlayerPrefs.SetFloat("SoundVolume", SoundVolume.value);
+      PlayerPrefs.SetFloat("BackgroundVolume", BackgroundVolume.value);
       PlayerPrefs.SetFloat("TextSpeed", TextSpeed.value);
       PlayerPrefs.SetFloat("WalkSpeed", WalkSpeed.value);
       Controller.walkSpeed = GetFloatValueD(WalkSpeed.value);
@@ -234,6 +249,9 @@ public class Options : MonoBehaviour {
 
     vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("SoundsVolume", 1) * .74f) * 14.425f - 80;
     GD.opts.mixerMusic.SetFloat("SoundsVolume", vol);
+
+    vol = 10 * Mathf.Log(1 + PlayerPrefs.GetFloat("BackgroundVolume", 1) * .74f) * 14.425f - 80;
+    GD.opts.mixerMusic.SetFloat("BackgroundVolume", vol);
 
     if (PlayerPrefs.GetFloat("WalkSpeed", 6) <= 1) PlayerPrefs.SetFloat("WalkSpeed", 6);
     if (PlayerPrefs.GetFloat("TalkSpeed", 6) <= 1) PlayerPrefs.SetFloat("TalkSpeed", 6);
