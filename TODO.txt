@@ -6,9 +6,11 @@ Coperture for all participants (syd)
 !Remove Dbg
 
 
+Add a cutscene for intro with Fred and the kidnapped, varying the sentences based on the actor
+What should be the event to start this cutscene? Entering the home for the first time? Waiting a few minutes of playing?
+
 Do arms forward in all characters
 
-Icrease resolution of turkey and roast
 Add recycle stuff to the service room
 
 * TODO ************************************************************************************************************
