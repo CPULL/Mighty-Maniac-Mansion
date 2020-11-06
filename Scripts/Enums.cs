@@ -34,7 +34,7 @@ public enum GameStatus { NotYetLoaded, IntroVideo, CharSelection, Cutscene, Norm
 /// List of all actors and generic actor references, like Actor1
 /// </summary>
 public enum Chars {
-  None = 0, Current = 1, Actor1 = 2, Actor2 = 3, Actor3 = 4, KidnappedActor = 5, Receiver = 6, Self = 7, Player = 8, Enemy = 9,
+  None = 0, Current = 1, Actor1 = 2, Actor2 = 3, Actor3 = 4, Kidnapped = 5, Receiver = 6, Self = 7, Player = 8, Enemy = 9,
   Fred = 10, Edna = 11, Ted = 12, Ed = 13, Edwige = 14, GreenTentacle = 15, PurpleTentacle = 16, BlueTentacle = 17, PurpleMeteor = 18, Unused19 = 19,
   Dave = 20, Bernard = 21, Wendy = 22, Syd = 23, Hoagie = 24, Razor = 25, Michael = 26, Jeff = 27, Javid = 28, Laverne = 29, Ollie = 30, Sandy = 31,
   Unused32 = 32, Unused33 = 33, Unused34 = 34, Unused35 = 35, Unused36 = 36, Unused37 = 37, Unused38 = 38, Unused39 = 39, 

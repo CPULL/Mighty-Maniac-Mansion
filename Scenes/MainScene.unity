@@ -5334,7 +5334,7 @@ MonoBehaviour:
   br: {x: -170.30688, y: 6.100073}
   bl: {x: -172.41345, y: 6.0530496}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -15226,7 +15226,7 @@ MonoBehaviour:
   br: {x: -184.7616, y: 6.0295367}
   bl: {x: -187.7616, y: 6.0295367}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 1870416221}
   g: 17.393728
   h: 17.393728
@@ -16593,7 +16593,7 @@ MonoBehaviour:
   br: {x: -206.9734, y: 6.1563325}
   bl: {x: -210.04152, y: 6.1909885}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -20630,7 +20630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -154.9, y: 10, z: -10}
+  m_LocalPosition: {x: -191, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20664,7 +20664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520999959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -186.52, y: 6.41, z: 0}
+  m_LocalPosition: {x: -191.5, y: 6.5, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 837982863}
@@ -25033,7 +25033,7 @@ MonoBehaviour:
   br: {x: -195.39337, y: 6.006025}
   bl: {x: -201.88266, y: 6.108622}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 907244231}
   g: 35.46409
   h: 5.891932
@@ -31722,7 +31722,7 @@ MonoBehaviour:
   br: {x: -171.2036, y: 7.454365}
   bl: {x: -172.7459, y: 7.7835255}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -32174,10 +32174,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: SecretLab
   RoomName: Secret Lab
-  minL: -154.9
-  maxR: -145.5
+  minL: -202.5
+  maxR: -177.2
   minY: 6.1
-  maxY: 7.6
+  maxY: 8
   scalePerc: 1.4
   CameraGround: 10
   external: 0
@@ -35127,7 +35127,7 @@ MonoBehaviour:
   br: {x: -201.88266, y: 6.108622}
   bl: {x: -206.9734, y: 6.1563325}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 638478288}
   g: 35.46409
   h: 0
@@ -35678,8 +35678,8 @@ MonoBehaviour:
   - {fileID: 1590480535}
   - {fileID: 137726341}
   - {fileID: 784993774}
-  ShowSubNodes: 1
-  DoAStar: 1
+  ShowSubNodes: 0
+  DoAStar: 0
   start: {x: -176.57108, y: 7.5058475}
   end: {x: -203.6567, y: 7.493344}
 --- !u!1 &875125844
@@ -36749,7 +36749,7 @@ MonoBehaviour:
   br: {x: -187.7616, y: 6.0295367}
   bl: {x: -195.39337, y: 6.006025}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 402496229}
   g: 29.572155
   h: 12.178428
@@ -47663,7 +47663,7 @@ MonoBehaviour:
   br: {x: -207.33585, y: 8.000024}
   bl: {x: -208.47644, y: 7.3818817}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: Infinity
   h: Infinity
@@ -63172,7 +63172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1543915100
 Transform:
   m_ObjectHideFlags: 0
@@ -65922,7 +65922,7 @@ MonoBehaviour:
   br: {x: -172.41345, y: 6.0530496}
   bl: {x: -174.30841, y: 6.170607}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 1870416221}
   g: 30.21056
   h: 30.21056
@@ -76235,7 +76235,7 @@ MonoBehaviour:
       type: 11
       Repeatable: 1
       delay: 0
-      id1: 2
+      id1: 11
       id2: 0
       str: EdRoom
       pos: {x: -50, y: 80}
@@ -77977,7 +77977,7 @@ MonoBehaviour:
   br: {x: -174.30841, y: 6.170607}
   bl: {x: -184.7616, y: 6.0295367}
   parent: {fileID: 875097254}
-  showMeshLocal: 1
+  showMeshLocal: 0
   prev: {fileID: 0}
   g: 0
   h: 24.036499

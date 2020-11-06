@@ -1,14 +1,14 @@
 {
-	"id":"FedWithKidnapped", "name":"Fed with Kidnapped","type":"cutscene","AppliesTo":"None",
+	"id":"FredTalkingToKidnapped", "name":"Fred taliking to Kidnapped","type":"cutscene","AppliesTo":"None",
 
 	"condition":[],
 	
 	"startup": [
-		{ "type":"ShowRoom", "sv":"SecretLab", "vv":[7,2] },
-		{ "type":"Teleport", "sv":"SecretLab", "id1":"Fred", "vv":[8.82,-0.76], "dv":"F" },
-		{ "type":"Teleport", "sv":"SecretLab", "id1":"Kidnapped", "vv":[12.27,-0.6], "dv":"L" }
+		{ "type":"ShowRoom", "sv":"SecretLab", "vv":[-191,10] },
+		{ "type":"Teleport", "sv":"SecretLab", "id1":"Fred", "vv":[-187,6.5], "dv":"F" },
+		{ "type":"Teleport", "sv":"SecretLab", "id1":"Kidnapped", "vv":[-191.5,6.5], "dv":"L" }
 		{ "type":"Expression", "id1":"Fred", "sv":"Normal", "dv":"R", "del":0.01 },
-		{ "type":"Expression", "id1":"Kidnapped", "sv":"Normal", "dv":"L", "del":0.01 }
+		{ "type":"Expression", "id1":"Kidnapped", "sv":"Normal", "dv":"F", "del":0.01 }
 	],
 	
 	"shutdown": [	],
@@ -62,9 +62,11 @@
 			],
 			"action":[ 
 				{ "type":"Speak", "id1":"Kidnapped", "sv":"Ehm, why am I here?", "dv":"F" },
-				{ "type":"Expression", "id1":"Bernard", "sv":"Normal", "dv":"R", "del":1.5 },
+				{ "type":"Expression", "id1":"Bernard", "sv":"Normal", "dv":"R", "del":.2 },
+				{ "type":"Expression", "id1":"Fred", "sv":"Normal", "dv":"F", "del":.1 },
 				{ "type":"Speak", "id1":"Fred", "sv":"I need your brain.", "dv":"L" },
-				{ "type":"Speak", "id1":"Fred", "sv":"You fought many times,\nand solved tons of\npuzzles with the meteor.", "dv":"L" },
+				{ "type":"Expression", "id1":"Bernard", "sv":"Normal", "dv":"R", "del":.2 },
+				{ "type":"Speak", "id1":"Fred", "sv":"You fought many times,\nand solved tons of puzzles\nwith the meteor.", "dv":"L" },
 				{ "type":"Speak", "id1":"Fred", "sv":"For sure you are\nthe smartest guy\nof the possible players.", "dv":"L" },
 				{ "type":"Speak", "id1":"Fred", "sv":"So, I need your brain.", "dv":"L" },
 				{ "type":"Speak", "id1":"Fred", "sv":"Because the meteor\nis quite big.", "dv":"L" },
@@ -76,7 +78,7 @@
 	
 		{ "name":"Wendy",
 			"condition":[
-				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+				{ "type":"ActorSet", "id":"Wendy", "iv":4, "bv":true }
 			],
 			"action":[ 
 				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
@@ -85,7 +87,7 @@
 	
 		{ "name":"Syd",
 			"condition":[
-				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+				{ "type":"ActorSet", "id":"Syd", "iv":4, "bv":true }
 			],
 			"action":[ 
 				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
@@ -94,7 +96,7 @@
 	
 		{ "name":"Ollie",
 			"condition":[
-				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+				{ "type":"ActorSet", "id":"Ollie", "iv":4, "bv":true }
 			],
 			"action":[ 
 				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
@@ -103,7 +105,7 @@
 	
 		{ "name":"Javid",
 			"condition":[
-				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+				{ "type":"ActorSet", "id":"Javid", "iv":4, "bv":true }
 			],
 			"action":[ 
 				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },

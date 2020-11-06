@@ -188,9 +188,12 @@ public enum CutsceneID {
   EdWatch,
   EdCatch,
   Microwave,
+  FredTalkingToKidnapped,
+
+
   unused1,
   unused2,
-  FredTalkingToKidnapped,
+  
   Javidx9 // FIXME
 
 

@@ -56,8 +56,8 @@
 				{ "type":"Speak", "id1":"Actor1", "sv":"Bernard!\n\nDon't be a tuna head!", "dv":"R" },
 				{ "type":"Speak", "id1":"Actor1", "sv":"We are speaking about Sandy!", "dv":"R" }
 				{ "type":"Speak", "id1":"Actor1", "sv":"And this is a classic...", "dv":"F" },
-				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "del":1.5 },
-				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"F", "del":1.0 },
 				{ "type":"Expression", "id1":"Actor3", "sv":"Happy", "dv":"F", "del":1.5 }
 			]
 		},
@@ -73,8 +73,8 @@
 				{ "type":"Speak", "id1":"Actor1", "sv":"[Hsk] was probably kidnapped\nby Dr. Fred.", "dv":"F" },
 				{ "type":"Speak", "id1":"Actor1", "sv":"It will be difficult.", "dv":"R" },
 				{ "type":"Speak", "id1":"Actor1", "sv":"We may die!", "dv":"F" },
-				{ "type":"Expression", "id1":"Actor1", "sv":"Sad", "dv":"F", "del":1.5 },
-				{ "type":"Expression", "id1":"Actor2", "sv":"Open", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Actor1", "sv":"Sad", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Actor2", "sv":"Open", "dv":"F", "del":1.0 },
 				{ "type":"Expression", "id1":"Actor3", "sv":"BigOpen", "dv":"F", "del":1.5 }
 			]
 		},

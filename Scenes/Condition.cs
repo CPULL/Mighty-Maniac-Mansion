@@ -165,7 +165,7 @@ public class Condition {
         else if ((Chars)id == Chars.Actor1) res = (GD.c.actor1 == performer || GD.c.actor1 == receiver);
         else if ((Chars)id == Chars.Actor2) res = (GD.c.actor2 == performer || GD.c.actor2 == receiver);
         else if ((Chars)id == Chars.Actor3) res = (GD.c.actor3 == performer || GD.c.actor3 == receiver);
-        else if ((Chars)id == Chars.KidnappedActor) res = (GD.c.kidnappedActor == performer || GD.c.kidnappedActor == receiver);
+        else if ((Chars)id == Chars.Kidnapped) res = (GD.c.kidnappedActor == performer || GD.c.kidnappedActor == receiver);
         else if ((Chars)id == Chars.Player) res = (GD.c.actor1 == performer || GD.c.actor2 == performer || GD.c.actor3 == performer);
         else res = performer.id == (Chars)id;
         if (bv)
@@ -188,7 +188,7 @@ public class Condition {
         if (iv == 2) res = Controller.GetActor((Chars)id) == GD.c.actor2;
         if (iv == 3) res = Controller.GetActor((Chars)id) == GD.c.actor3;
         if (iv == 4) res = Controller.GetActor((Chars)id) == GD.c.kidnappedActor;
-        if (iv == 5) res = (Controller.GetActor((Chars)id) == GD.c.actor1) || (Controller.GetActor((Chars)id) == GD.c.actor2) || (Controller.GetActor((Chars)id) == GD.c.actor3) || (Controller.GetActor((Chars)id) == GD.c.kidnappedActor);
+        if (iv == 5) res = (Controller.GetActor((Chars)id) == GD.c.actor1) || (Controller.GetActor((Chars)id) == GD.c.actor2) || (Controller.GetActor((Chars)id) == GD.c.actor3);
         if (bv)
           return res;
         else
@@ -217,7 +217,7 @@ public class Condition {
         else if ((Chars)id == Chars.Actor1) a1 = GD.c.actor1;
         else if ((Chars)id == Chars.Actor2) a1 = GD.c.actor2;
         else if ((Chars)id == Chars.Actor3) a1 = GD.c.actor3;
-        else if ((Chars)id == Chars.KidnappedActor) a1 = GD.c.kidnappedActor;
+        else if ((Chars)id == Chars.Kidnapped) a1 = GD.c.kidnappedActor;
         else if ((Chars)id == Chars.Player) a1 = GD.c.currentActor;
         else if ((Chars)id == Chars.Self) a1 = performer;
         else if ((Chars)id == Chars.Receiver) a1 = receiver;
@@ -236,7 +236,7 @@ public class Condition {
         else if ((Chars)id == Chars.Actor1) a1 = GD.c.actor1;
         else if ((Chars)id == Chars.Actor2) a1 = GD.c.actor2;
         else if ((Chars)id == Chars.Actor3) a1 = GD.c.actor3;
-        else if ((Chars)id == Chars.KidnappedActor) a1 = GD.c.kidnappedActor;
+        else if ((Chars)id == Chars.Kidnapped) a1 = GD.c.kidnappedActor;
         else if ((Chars)id == Chars.Player) a1 = GD.c.currentActor;
         else if ((Chars)id == Chars.Self) a1 = performer;
         else if ((Chars)id == Chars.Receiver) a1 = receiver;
@@ -249,7 +249,7 @@ public class Condition {
           case Chars.Actor1: res = GD.c.actor1.currentRoom.Equals(a1.currentRoom); break;
           case Chars.Actor2: res = GD.c.actor2.currentRoom.Equals(a1.currentRoom); break;
           case Chars.Actor3: res = GD.c.actor3.currentRoom.Equals(a1.currentRoom); break;
-          case Chars.KidnappedActor: res = GD.c.kidnappedActor.currentRoom.Equals(a1.currentRoom); break;
+          case Chars.Kidnapped: res = GD.c.kidnappedActor.currentRoom.Equals(a1.currentRoom); break;
           case Chars.Receiver: res = (receiver != null && receiver.currentRoom.Equals(a1.currentRoom)); break;
           case Chars.Self: return true;
           case Chars.Player: res = (GD.c.actor1.currentRoom.Equals(a1.currentRoom)) || (GD.c.actor2.currentRoom.Equals(a1.currentRoom)) || (GD.c.actor3.currentRoom.Equals(a1.currentRoom)); break;

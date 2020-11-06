@@ -731,7 +731,7 @@ public class Controller : MonoBehaviour {
       case Chars.Actor1: return GD.c.actor1;
       case Chars.Actor2: return GD.c.actor2;
       case Chars.Actor3: return GD.c.actor3;
-      case Chars.KidnappedActor: return GD.c.kidnappedActor;
+      case Chars.Kidnapped: return GD.c.kidnappedActor;
       case Chars.Receiver: return GD.c.receiverActor;
       case Chars.Self: return null;
       case Chars.Player: return GD.c.currentActor;
@@ -769,7 +769,7 @@ public class Controller : MonoBehaviour {
       case Chars.Actor1: return actor == GD.c.actor1;
       case Chars.Actor2: return actor == GD.c.actor2;
       case Chars.Actor3: return actor == GD.c.actor3;
-      case Chars.KidnappedActor: return actor == GD.c.kidnappedActor;
+      case Chars.Kidnapped: return actor == GD.c.kidnappedActor;
       case Chars.Receiver: return false;
       case Chars.Self: return false;
       case Chars.Player: return (actor == GD.c.actor1 || actor == GD.c.actor2 || actor == GD.c.actor3);
@@ -821,7 +821,7 @@ public class Controller : MonoBehaviour {
     else if (actor == GD.c.actor1) return Chars.Actor1;
     else if (actor == GD.c.actor2) return Chars.Actor2;
     else if (actor == GD.c.actor3) return Chars.Actor3;
-    else if (actor == GD.c.kidnappedActor) return Chars.KidnappedActor;
+    else if (actor == GD.c.kidnappedActor) return Chars.Kidnapped;
     else if (actor == GD.c.receiverActor) return Chars.Receiver;
     else if (actor == GD.c.allEnemies[0]) return Chars.Fred;
     else if (actor == GD.c.allEnemies[1]) return Chars.Edna;
