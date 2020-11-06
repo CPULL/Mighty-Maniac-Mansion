@@ -99,7 +99,28 @@
 				{ "type":"ActorSet", "id":"Ollie", "iv":4, "bv":true }
 			],
 			"action":[ 
-				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+				{ "type":"Expression", "id1":"Ollie", "sv":"Normal", "dv":"F", "del":.5 },
+				{ "type":"Speak", "id1":"Ollie", "sv":"Ehm, why am I here?", "dv":"F" },
+				{ "type":"Expression", "id1":"Ollie", "sv":"Normal", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Ollie", "sv":"Normal", "dv":"R", "del":.25 },
+				{ "type":"Expression", "id1":"Fred", "sv":"Normal", "dv":"F", "del":.1 },
+				{ "type":"Expression", "id1":"Fred", "sv":"Normal", "dv":"L", "del":.1 },
+				{ "type":"Speak", "id1":"Fred", "sv":"I need to suck out your brain.", "dv":"L" },
+				{ "type":"Expression", "id1":"Ollie", "sv":"Normal", "dv":"F", "del":.25 },
+				{ "type":"Expression", "id1":"Ollie", "sv":"Sad", "dv":"F", "del":.75 },
+				{ "type":"Speak", "id1":"Ollie", "sv":" \n  Why?\n ", "dv":"R" },
+				{ "type":"Speak", "id1":"Fred", "sv":"Cowbells.", "dv":"L" },
+				{ "type":"Speak", "id1":"Ollie", "sv":"Cowbells?", "dv":"R" },
+				{ "type":"Speak", "id1":"Fred", "sv":"Not enough cowbells.", "dv":"L" },
+				{ "type":"Speak", "id1":"Ollie", "sv":"What?", "dv":"R" },
+				{ "type":"Speak", "id1":"Fred", "sv":"I tried to use the\ncowbells with the meteor.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"Not working.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"They where not enough.", "dv":"L" },
+				{ "type":"Speak", "id1":"Ollie", "sv":"Cowbells...", "dv":"R" },
+				{ "type":"Speak", "id1":"Fred", "sv":"So I will use your body\nto host the meteor.", "dv":"F" },
+				{ "type":"Expression", "id1":"Ollie", "sv":"BigOpen", "dv":"F", "del":.5 },
+				{ "type":"Speak", "id1":"Ollie", "sv":"Cowbells...", "dv":"F" },
+				{ "type":"Expression", "id1":"Fred", "sv":"Happy", "dv":"F", "del":1.5 }
 			]
 		},
 	
