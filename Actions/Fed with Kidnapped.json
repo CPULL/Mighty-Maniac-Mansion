@@ -1,0 +1,141 @@
+{
+	"id":"FedWithKidnapped", "name":"Fed with Kidnapped","type":"cutscene","AppliesTo":"None",
+
+	"condition":[],
+	
+	"startup": [
+		{ "type":"ShowRoom", "sv":"SecretLab", "vv":[7,2] },
+		{ "type":"Teleport", "sv":"SecretLab", "id1":"Fred", "vv":[8.82,-0.76], "dv":"F" },
+		{ "type":"Teleport", "sv":"SecretLab", "id1":"Kidnapped", "vv":[12.27,-0.6], "dv":"L" }
+		{ "type":"Expression", "id1":"Fred", "sv":"Normal", "dv":"R", "del":0.01 },
+		{ "type":"Expression", "id1":"Kidnapped", "sv":"Normal", "dv":"L", "del":0.01 }
+	],
+	
+	"shutdown": [	],
+	
+	"sequence":[
+		{ "name":"Sandy (Dave))",
+			"condition":[
+				{ "type":"ActorSet", "id":"Dave", "iv":5, "bv":true },
+				{ "type":"ActorSet", "id":"Sandy", "iv":4, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is missing.", "dv":"R" },
+				{ "type":"Expression", "id1":"Bernard", "sv":"BigOpen", "dv":"F", "del":1.5 },
+				{ "type":"WalkToPos", "id1":"Bernard", "vv":[13.25,-1.64], "dv":"R" }
+			]
+		},
+		
+		{ "name":"Sandy (Not Dave))",
+			"condition":[
+				{ "type":"ActorSet", "id":"Dave", "iv":5, "bv":false },
+				{ "type":"ActorSet", "id":"Sandy", "iv":4, "bv":true }
+			],
+			"action":[ 
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+			]
+		},
+		
+		{ "name":"Dave (Sandy))",
+			"condition":[
+				{ "type":"ActorSet", "id":"Sandy", "iv":5, "bv":true },
+				{ "type":"ActorSet", "id":"Dave", "iv":4, "bv":true }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+			]
+		},
+		
+		{ "name":"Dave (Not Sandy))",
+			"condition":[
+				{ "type":"ActorSet", "id":"Sandy", "iv":5, "bv":false },
+				{ "type":"ActorSet", "id":"Dave", "iv":4, "bv":true }
+			],
+			"action":[ 
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+			]
+		},
+		
+		{ "name":"Bernard",
+			"condition":[
+				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+			],
+			"action":[ 
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"Ehm, why am I here?", "dv":"F" },
+				{ "type":"Expression", "id1":"Bernard", "sv":"Normal", "dv":"R", "del":1.5 },
+				{ "type":"Speak", "id1":"Fred", "sv":"I need your brain.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"You fought many times,\nand solved tons of\npuzzles with the meteor.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"For sure you are\nthe smartest guy\nof the possible players.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"So, I need your brain.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"Because the meteor\nis quite big.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"And it will not fit right\nin a smaller skull.", "dv":"F" },
+				{ "type":"Expression", "id1":"Bernard", "sv":"BigOpen", "dv":"F", "del":1.5 },
+				{ "type":"Expression", "id1":"Fred", "sv":"Happy", "dv":"F", "del":1.5 }
+			]
+		},
+	
+		{ "name":"Wendy",
+			"condition":[
+				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+			],
+			"action":[ 
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+			]
+		},
+	
+		{ "name":"Syd",
+			"condition":[
+				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+			],
+			"action":[ 
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+			]
+		},
+	
+		{ "name":"Ollie",
+			"condition":[
+				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+			],
+			"action":[ 
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+			]
+		},
+	
+		{ "name":"Javid",
+			"condition":[
+				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":true }
+			],
+			"action":[ 
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+			]
+		},
+	
+		
+		
+		{ "name":"Intro dialogue",
+			"condition":[
+				{ "type":"ActorSet", "id":"Dave", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Bernard", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Sandy", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Wendy", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Ollie", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Javid", "iv":4, "bv":false },
+				{ "type":"ActorSet", "id":"Syd", "iv":4, "bv":false }
+			],
+			"action":[
+				{ "type":"Speak", "id1":"Actor1", "sv":"I am [a1], and\nmy dialogue as kidnapped\nis not yet done.", "dv":"F" }
+			]
+		}
+	]
+
+}
+
+
+
+
+
+
+//Syd with Javid pas participant
+//I will help, and I am going to use smart pointers also if I don't have too.
+
+
