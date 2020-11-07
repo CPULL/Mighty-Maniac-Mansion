@@ -67,7 +67,7 @@
 				{ "type":"Speak", "id1":"Fred", "sv":"I need your brain.", "dv":"L" },
 				{ "type":"Expression", "id1":"Bernard", "sv":"Normal", "dv":"R", "del":.2 },
 				{ "type":"Speak", "id1":"Fred", "sv":"You fought many times,\nand solved tons of puzzles\nwith the meteor.", "dv":"L" },
-				{ "type":"Speak", "id1":"Fred", "sv":"For sure you are\nthe smartest guy\nof the possible players.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"For sure, you are\nthe smartest guy\nof the possible players.", "dv":"L" },
 				{ "type":"Speak", "id1":"Fred", "sv":"So, I need your brain.", "dv":"L" },
 				{ "type":"Speak", "id1":"Fred", "sv":"Because the meteor\nis quite big.", "dv":"L" },
 				{ "type":"Speak", "id1":"Fred", "sv":"And it will not fit right\nin a smaller skull.", "dv":"F" },

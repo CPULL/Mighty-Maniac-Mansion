@@ -11,19 +11,23 @@ public class ActionAndConditionDrawer : PropertyDrawer {
     float labw = EditorGUIUtility.labelWidth;
     EditorGUI.indentLevel = 1;
 
-    SerializedProperty Condition = property.FindPropertyRelative("Condition");
-    SerializedProperty Action = property.FindPropertyRelative("Action");
-
+    List<ActionAndCondition> actions;
     Item it = property.serializedObject.targetObject as Item;
-    List<ActionAndCondition> actions = it.actions;
+    if (it != null) actions = it.actions;
+    else {
+      Triggerer tr = property.serializedObject.targetObject as Triggerer;
+      if (tr != null) actions = tr.actions;
+      else return;
+    }
 
     int sbo = property.propertyPath.LastIndexOf('[') + 1;
     int sbc = property.propertyPath.LastIndexOf(']');
     string indexpath = property.propertyPath.Substring(sbo, sbc - sbo);
     int.TryParse(indexpath, out int index);
-    string name = index + ") " + actions[index].Condition.ToString() + " -> " + actions[index].Action.ToString();
+    string name;
+    if (index < 0 || index >= actions.Count) name = "<empty>";
+    else name = index + ") " + actions[index].Condition.ToString() + " -> " + actions[index].Action.ToString();
 
-    float w4 = position.width * .25f;
     float lh = EditorGUIUtility.singleLineHeight;
 
     Rect titleR = new Rect(position.x, position.y, position.width, lh);

@@ -3,7 +3,6 @@
 Intro all participants (syd, razor, jeff, michael)
 Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)
 
-What should be the event to start this cutscene? Entering the home for the first time? Waiting a few minutes of playing?
 
 Do arms forward in all characters
 
@@ -22,7 +21,7 @@ FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
 
-
+Be sure we show the correct name for the actors
 
 * CHARS ************************************************************************************************************
 
@@ -205,3 +204,4 @@ Jeff
 ! Added missing Javid intro
 ! Split again background sounds and normal sounds
 ! Added a cutscene for intro with Fred and the kidnapped
+! Added triggers to start actions (mostly cutscenes)
