@@ -113,8 +113,8 @@ public class Actor : MonoBehaviour {
     string txt =
       message.Replace("\\n", "\n")
       .Replace("[a1]", GD.c.actor1.name)
-      .Replace("[a1]", GD.c.actor2.name)
-      .Replace("[a1]", GD.c.actor3.name)
+      .Replace("[a2]", GD.c.actor2.name)
+      .Replace("[a3]", GD.c.actor3.name)
       .Replace("[kn]", GD.c.kidnappedActor.name)
       .Replace("[ca]", GD.c.currentActor.name)
       .Replace("[hr1]", GD.c.actor1.male ? "him" : "her")

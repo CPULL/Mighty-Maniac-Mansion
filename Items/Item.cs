@@ -24,17 +24,19 @@ public class Item : GameItem {
       if (res == null || !res.actionDone) return "It does not work";
       return null;
     }
-    else if (Usable == Tstatus.Openable && openStatus == OpenStatus.Open) {
-      SetAsClosed(); // FIXME Handle the autolocks here
-      ActionRes res = PlayActions(actor, null, When.Use, null);
-      if (res != null && !res.actionDone) return res.res;
-      return null;
-    }
-    else if (Usable == Tstatus.Openable && openStatus == OpenStatus.Closed) {
-      SetAsOpen();
-      ActionRes res = PlayActions(actor, null, When.Use, null);
-      if (res != null && !res.actionDone) return res.res;
-      return null;
+    else if (Usable == Tstatus.Openable || Usable == Tstatus.Swithchable) {
+      if (openStatus == OpenStatus.Open) {
+        SetAsClosed();
+        ActionRes res = PlayActions(actor, null, When.Use, null);
+        if (res != null && !res.actionDone) return res.res;
+        return null;
+      }
+      else if (openStatus == OpenStatus.Closed) {
+        SetAsOpen();
+        ActionRes res = PlayActions(actor, null, When.Use, null);
+        if (res != null && !res.actionDone) return res.res;
+        return null;
+      }
     }
 
     return "Seems it does nothing";
@@ -191,7 +193,7 @@ public class Item : GameItem {
 
 
   internal bool IsOpen() {
-    return Usable == Tstatus.Openable && openStatus != OpenStatus.Closed;
+    return (Usable == Tstatus.Openable || Usable == Tstatus.Swithchable) && openStatus != OpenStatus.Closed;
   }
 
   internal bool IsLocked() {

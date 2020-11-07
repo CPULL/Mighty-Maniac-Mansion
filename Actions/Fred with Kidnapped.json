@@ -55,7 +55,27 @@
 				{ "type":"ActorSet", "id":"Sandy", "iv":4, "bv":true }
 			],
 			"action":[ 
-				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+				{ "type":"Speak", "id1":"Fred", "sv":"Well, my dear.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"I hope you are having fun.", "dv":"L" },
+				{ "type":"Expression", "id1":"Sandy", "sv":"Sad", "dv":"R", "del":.1 },
+				{ "type":"Speak", "id1":"Fred", "sv":"Within minutes\nit will all be over.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"You'll be hooked up\nto my machine...", "dv":"L" },
+				
+				{ "type":"Speak", "id1":"Sandy", "sv":"Shut up loser.", "dv":"R" },
+				{ "type":"Speak", "id1":"Sandy", "sv":"You still think this will work?", "dv":"R" },
+
+				{ "type":"Speak", "id1":"Fred", "sv":"Brains...", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"...sucked...", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"...out", "dv":"F" },
+				
+				{ "type":"Speak", "id1":"Sandy", "sv":"You learned absolutely nothing\nin more than 30 years\nof playing this game", "dv":"R" },
+				{ "type":"Speak", "id1":"Sandy", "sv":"didn't you?", "dv":"R" },
+				
+				{ "type":"Speak", "id1":"Fred", "sv":"That's what she thinks!", "dv":"R" },
+				{ "type":"WalkToPos", "sv":"SecretLab", "id1":"Fred", "vv":[-182,6.2], "dv":"R" },
+
+				{ "type":"Speak", "id1":"Sandy", "sv":"At least it is not Dave\ncoming to the rescue.", "dv":"F" },
+				{ "type":"Speak", "id1":"Sandy", "sv":"Come on [a1],\nyou can do it!", "dv":"F" }
 			]
 		},
 		
@@ -65,7 +85,7 @@
 				{ "type":"ActorSet", "id":"Dave", "iv":4, "bv":true }
 			],
 			"action":[
-				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.\nDialogue not yet written.", "dv":"F" },
 			]
 		},
 		
@@ -75,7 +95,7 @@
 				{ "type":"ActorSet", "id":"Dave", "iv":4, "bv":true }
 			],
 			"action":[ 
-				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.\nDialogue not yet written.", "dv":"F" },
 			]
 		},
 		
@@ -104,7 +124,7 @@
 				{ "type":"ActorSet", "id":"Wendy", "iv":4, "bv":true }
 			],
 			"action":[ 
-				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.\nDialogue not yet written.", "dv":"F" },
 			]
 		},
 	
@@ -113,7 +133,7 @@
 				{ "type":"ActorSet", "id":"Syd", "iv":4, "bv":true }
 			],
 			"action":[ 
-				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.\nDialogue not yet written.", "dv":"F" },
 			]
 		},
 	
@@ -152,7 +172,7 @@
 				{ "type":"ActorSet", "id":"Javid", "iv":4, "bv":true }
 			],
 			"action":[ 
-				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.", "dv":"F" },
+				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is me.\nDialogue not yet written.", "dv":"F" },
 			]
 		},
 	
@@ -177,11 +197,5 @@
 }
 
 
-
-
-
-
-//Syd with Javid pas participant
-//I will help, and I am going to use smart pointers also if I don't have too.
 
 

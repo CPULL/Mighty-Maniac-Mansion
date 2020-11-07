@@ -6,7 +6,7 @@ public class GameItemEditor : Editor {
 
   SerializedProperty itemEnum, Name;
   SerializedProperty whatItDoesL, whatItDoesR;
-  SerializedProperty Usable, UsableWith;
+  SerializedProperty Usable, openStatus;
   bool showDescription = false;
   SerializedProperty Description, Owner;
   SerializedProperty openImage, closeImage, lockImage, iconImage, cursorImage;
@@ -21,7 +21,7 @@ public class GameItemEditor : Editor {
     whatItDoesL = serializedObject.FindProperty("whatItDoesL");
     whatItDoesR = serializedObject.FindProperty("whatItDoesR");
     Usable = serializedObject.FindProperty("Usable");
-    UsableWith = serializedObject.FindProperty("UsableWith");
+    openStatus = serializedObject.FindProperty("openStatus");
     Description = serializedObject.FindProperty("Description");
     Owner = serializedObject.FindProperty("owner");
     openImage = serializedObject.FindProperty("openImage");
@@ -58,7 +58,7 @@ public class GameItemEditor : Editor {
     // Usable UsableWith
     EditorGUILayout.BeginHorizontal();
     EditorGUILayout.PropertyField(Usable, new GUIContent("Usable"));
-    EditorGUILayout.PropertyField(UsableWith, new GUIContent("  with"));
+    EditorGUILayout.PropertyField(openStatus, new GUIContent("  Open?"));
     EditorGUILayout.EndHorizontal();
 
     // Description and Owner (collapsible)

@@ -6,7 +6,7 @@ public class ContainerEditor : Editor {
 
   SerializedProperty itemEnum, Name;
   SerializedProperty whatItDoesL, whatItDoesR;
-  SerializedProperty Usable, UsableWith;
+  SerializedProperty Usable;
   SerializedProperty openImage, closeImage, lockImage, iconImage;
   SerializedProperty overColor, normalColor;
   SerializedProperty HotSpot, dir;
@@ -23,7 +23,6 @@ public class ContainerEditor : Editor {
     whatItDoesL = serializedObject.FindProperty("whatItDoesL");
     whatItDoesR = serializedObject.FindProperty("whatItDoesR");
     Usable = serializedObject.FindProperty("Usable");
-    UsableWith = serializedObject.FindProperty("UsableWith");
     openImage = serializedObject.FindProperty("openImage");
     openSound = serializedObject.FindProperty("OpenSound");
     closeImage = serializedObject.FindProperty("closeImage");
@@ -67,7 +66,6 @@ public class ContainerEditor : Editor {
     // Usable UsableWith
     EditorGUILayout.BeginHorizontal();
     EditorGUILayout.PropertyField(Usable, new GUIContent("Usable"));
-    EditorGUILayout.PropertyField(UsableWith, new GUIContent("  with"));
     EditorGUILayout.EndHorizontal();
 
     // Description and Owner (collapsible)

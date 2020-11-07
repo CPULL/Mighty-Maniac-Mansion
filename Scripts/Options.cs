@@ -173,8 +173,6 @@ public class Options : MonoBehaviour {
     PlayerPrefs.SetInt("Font", num);
   }
 
-  CursorTypes prevCursor = CursorTypes.Normal;
-
   public static void Activate(bool activate) {
     if (GD.opts == null) return;
     GD.opts.ActualActivation(activate);
@@ -185,7 +183,7 @@ public class Options : MonoBehaviour {
 
     Controller.PauseMusic();
     if (activate) {
-      prevCursor = Controller.GetCursor();
+      CursorHandler.SaveCursor();
       float val = PlayerPrefs.GetFloat("MasterVolume", 1);
       MainVolume.SetValueWithoutNotify(val);
       val = PlayerPrefs.GetFloat("MusicVolume", 1);
@@ -213,7 +211,7 @@ public class Options : MonoBehaviour {
       RestartSameChars.interactable = GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
     }
     else {
-      Controller.SetCursor(prevCursor);
+      CursorHandler.ResetCursor();
       PlayerPrefs.SetFloat("MasterVolume", MainVolume.value);
       PlayerPrefs.SetFloat("MusicVolume", MusicVolume.value);
       PlayerPrefs.SetFloat("SoundVolume", SoundVolume.value);

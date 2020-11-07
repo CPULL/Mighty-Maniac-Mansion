@@ -6,7 +6,7 @@ public class DoorEditor : Editor {
 
   SerializedProperty itemEnum, Name;
   SerializedProperty whatItDoesL, whatItDoesR;
-  SerializedProperty Usable, UsableWith;
+  SerializedProperty Usable;
   SerializedProperty openImage, closeImage, lockImage;
   SerializedProperty overColor, normalColor;
   SerializedProperty HotSpot, dir, arrivaldir;
@@ -25,7 +25,6 @@ public class DoorEditor : Editor {
     whatItDoesL = serializedObject.FindProperty("whatItDoesL");
     whatItDoesR = serializedObject.FindProperty("whatItDoesR");
     Usable = serializedObject.FindProperty("Usable");
-    UsableWith = serializedObject.FindProperty("UsableWith");
     openImage = serializedObject.FindProperty("openImage");
     closeImage = serializedObject.FindProperty("closeImage");
     lockImage = serializedObject.FindProperty("lockImage");
@@ -73,7 +72,6 @@ public class DoorEditor : Editor {
     // Usable UsableWith
     EditorGUILayout.BeginHorizontal();
     EditorGUILayout.PropertyField(Usable, new GUIContent("Usable"));
-    EditorGUILayout.PropertyField(UsableWith, new GUIContent("  with"));
     EditorGUILayout.EndHorizontal();
 
     // Description and Owner (collapsible)

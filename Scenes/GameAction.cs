@@ -912,9 +912,9 @@ public class GameAction {
       }
       break;
 
-      case ActionType.Cursor: {
+      case ActionType.Cursor: { // FIXME we need something right and something left
         Controller.SceneSkipped = true;
-        Controller.SetCursor((CursorTypes)id1);
+        CursorHandler.SetBoth((CursorTypes)id1);
         if (val == 1 || (val == 2 && !Controller.SceneSkipped))
           GD.c.StartCoroutine(GD.c.FadeToRoomActor());
         Complete();
