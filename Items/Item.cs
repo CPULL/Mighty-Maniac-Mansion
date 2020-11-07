@@ -90,18 +90,15 @@ public class Item : GameItem {
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
     }
-    if (!done && res != null) return res;
+    if (res != null) return res;
+    if (done) return null;
+
+    if ((other as Door) != null) return "Not a valid key";
 
     // Case of an item and a container
     Container c = other as Container;
     if (c != null) {
       if (c.Usable != Tstatus.Openable && c.openStatus != OpenStatus.Open) return "It is closed";
-
-      /*
-      we should check for types that can be contained, and a position. Also, a way to specify if the item makes impossible to put other stuff
-       
-       */
-
       if (c.ValidFor(this)) {
         // Put item back
         actor.inventory.Remove(this);

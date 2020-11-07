@@ -8,7 +8,6 @@ public class GameItem : MonoBehaviour {
 
   public Chars owner;
   public Tstatus Usable;
-  private ItemEnum UsableWith;
   public OpenStatus openStatus;
   public LockStatus lockStatus;
 

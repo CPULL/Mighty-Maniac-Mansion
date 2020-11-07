@@ -1,9 +1,13 @@
 === Mighty Maniac Mansion ===
 
+
+
+
+
+
+
 Intro all participants (syd, razor, jeff, michael)
 Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)
-
-
 Do arms forward in all characters
 
 Add recycle stuff to the service room
@@ -21,7 +25,7 @@ FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
 
-Be sure we show the correct name for the actors
+After using an item, re-check the mouse items to update the cursor
 
 * CHARS ************************************************************************************************************
 
@@ -205,3 +209,6 @@ Jeff
 ! Split again background sounds and normal sounds
 ! Added a cutscene for intro with Fred and the kidnapped
 ! Added triggers to start actions (mostly cutscenes)
+! Be sure we show the correct name for the actors
+! Improved the cursors and the used items
+

@@ -194,12 +194,14 @@ public class Controller : MonoBehaviour {
           usedItem = overInventoryItem;
           EnableActorSelection(true);
           overInventoryItem = null;
-          CursorHandler.SetRight(CursorTypes.Object);
-          CursorHandler.SetObject(CursorTypes.Object, usedItem.cursorImage);
+          CursorHandler.SetObject(usedItem.iconImage);
         }
         else { /* rmb - use immediately */
           string res = overInventoryItem.Use(currentActor);
-          if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
+          if (!string.IsNullOrEmpty(res))
+            currentActor.Say(res);
+          else
+            CursorHandler.SetObject(null);
         }
 
       }
@@ -208,15 +210,14 @@ public class Controller : MonoBehaviour {
           usedItem = overInventoryItem;
           EnableActorSelection(true);
           overInventoryItem = null;
-          CursorHandler.SetRight(CursorTypes.Object);
-          CursorHandler.SetObject(CursorTypes.Object, usedItem.cursorImage);
+          CursorHandler.SetObject(usedItem.iconImage);
         }
         else { /* rmb - Use together */
           // Can we use the two items together?
           string res = usedItem.UseTogether(currentActor, overInventoryItem);
           if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
+          CursorHandler.SetObject(null);
           UpdateInventory();
-          CursorHandler.SetBoth(CursorTypes.Normal);
           usedItem = null;
           EnableActorSelection(false);
           Inventory.SetActive(false);
@@ -255,7 +256,7 @@ public class Controller : MonoBehaviour {
                 // Do we have a container?
                 Container c = item.transform.parent.GetComponent<Container>();
                 if (c != null) c.Collect(item, currentActor);
-                ShowName(currentActor + " got " + item.Name);
+                ShowName(currentActor.name + " got " + item.Name);
                 if (!actor.inventory.Contains(item))
                   actor.inventory.Add(item);
                 item.transform.parent = PickedItems;
@@ -291,7 +292,7 @@ public class Controller : MonoBehaviour {
               if (!string.IsNullOrEmpty(res))
                 actor.Say(res);
               else {
-                CursorHandler.SetBoth(CursorTypes.Normal);
+                CursorHandler.SetObject(null);
               }
             }));
         }
@@ -324,7 +325,7 @@ public class Controller : MonoBehaviour {
               string res = usedItem.UseTogether(currentActor, item);
               if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
               UpdateInventory();
-              CursorHandler.SetBoth(CursorTypes.Normal);
+              CursorHandler.SetObject(null);
               usedItem = null;
               EnableActorSelection(false);
               Inventory.SetActive(false);
@@ -626,7 +627,7 @@ public class Controller : MonoBehaviour {
       GD.c.overItem = item;
     }
     else if (item.whatItDoesR == WhatItDoes.Pick) {
-      CursorHandler.SetBoth(CursorTypes.Pick, true);
+      CursorHandler.SetRight(CursorTypes.Pick, true);
       GD.c.overItem = item;
       GD.c.ShowName(item.Name);
     }
@@ -634,8 +635,12 @@ public class Controller : MonoBehaviour {
       CursorTypes cur = CursorTypes.Use;
       if (item.Usable == Tstatus.Swithchable)
         cur = item.IsOpen() ? CursorTypes.Off : CursorTypes.On;
-      else if ((item as Door) != null || (item as Container) != null)
-        cur = item.IsOpen() ? CursorTypes.Close : CursorTypes.Open;
+      else if ((item as Door) != null || (item as Container) != null) {
+        if (GD.c.usedItem == null)
+          cur = item.IsOpen() ? CursorTypes.Close : CursorTypes.Open;
+        else
+          cur = CursorTypes.Use;
+      }
 
       CursorHandler.SetRight(cur, true);
       GD.c.overItem = item;
@@ -675,8 +680,12 @@ public class Controller : MonoBehaviour {
       CursorTypes cur = CursorTypes.Use;
       if (item.Usable == Tstatus.Swithchable)
         cur = item.IsOpen() ? CursorTypes.Off : CursorTypes.On;
-      else if ((item as Door) != null || (item as Container) != null)
-        cur = item.IsOpen() ? CursorTypes.Close : CursorTypes.Open;
+      else if ((item as Door) != null || (item as Container) != null) {
+        if (GD.c.usedItem == null)
+          cur = item.IsOpen() ? CursorTypes.Close : CursorTypes.Open;
+        else
+          cur = CursorTypes.Use;
+      }
 
       CursorHandler.SetLeft(cur, true);
       GD.c.overItem = item;

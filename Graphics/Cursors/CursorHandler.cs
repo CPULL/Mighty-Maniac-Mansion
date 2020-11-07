@@ -52,7 +52,7 @@ public class CursorHandler : MonoBehaviour {
 
     CursorL.enabled = (onLeft != onRight && onLeft != CursorTypes.Normal);
     CursorR.enabled = (onLeft != onRight && onRight != CursorTypes.Normal);
-    if (onLeft == onRight && prevCentral != onLeft) {
+    if (onLeft == onRight && prevCentral != onLeft && onLeft != CursorTypes.Object && onLeft != CursorTypes.Give) {
       prevCentral = onLeft;
       Cursor.sprite = Cursors[(int)prevCentral];
     }
@@ -94,8 +94,16 @@ public class CursorHandler : MonoBehaviour {
 
   public Sprite[] Cursors;
 
-  internal static void SetObject(CursorTypes c, Texture2D cursorImage) {
-    // FIXME
+  internal static void SetObject(Sprite cursorImage) {
+    SetBoth(CursorTypes.Object);
+    if (cursorImage != null) {
+      SetBoth(CursorTypes.Object);
+      me.Cursor.sprite = cursorImage;
+    }
+    else {
+      SetBoth(CursorTypes.Normal);
+      me.Cursor.sprite = me.Cursors[0];
+    }
   }
 
 
