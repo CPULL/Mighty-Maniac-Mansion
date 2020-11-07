@@ -4,11 +4,13 @@
 	"condition":[],
 	
 	"startup": [
+		{ "type":"Fade", "rep":true, "del":1, "iv":"0" },
 		{ "type":"ShowRoom", "sv":"SecretLab", "vv":[-191,10] },
-		{ "type":"Teleport", "sv":"SecretLab", "id1":"Fred", "vv":[-187,6.5], "dv":"F" },
-		{ "type":"Teleport", "sv":"SecretLab", "id1":"Kidnapped", "vv":[-191.5,6.5], "dv":"L" }
+		{ "type":"Teleport", "sv":"SecretLab", "id1":"Fred", "vv":[-187,6.8], "dv":"F" },
+		{ "type":"Teleport", "sv":"SecretLab", "id1":"Kidnapped", "vv":[-191.5,6.8], "dv":"L" }
 		{ "type":"Expression", "id1":"Fred", "sv":"Normal", "dv":"R", "del":0.01 },
 		{ "type":"Expression", "id1":"Kidnapped", "sv":"Normal", "dv":"F", "del":0.01 }
+		{ "type":"Fade", "rep":true, "del":.3, "iv":"1" },
 	],
 	
 	"shutdown": [	],
@@ -20,9 +22,30 @@
 				{ "type":"ActorSet", "id":"Sandy", "iv":4, "bv":true }
 			],
 			"action":[
-				{ "type":"Speak", "id1":"Kidnapped", "sv":"[kn] is missing.", "dv":"R" },
-				{ "type":"Expression", "id1":"Bernard", "sv":"BigOpen", "dv":"F", "del":1.5 },
-				{ "type":"WalkToPos", "id1":"Bernard", "vv":[13.25,-1.64], "dv":"R" }
+				{ "type":"Speak", "id1":"Fred", "sv":"Well, my dear.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"I hope you are having fun.", "dv":"L" },
+				{ "type":"Expression", "id1":"Sandy", "sv":"Sad", "dv":"R", "del":.1 },
+				{ "type":"Speak", "id1":"Fred", "sv":"Within minutes\nit will all be over.", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"You'll be hooked up\nto my machine...", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"...getting your pretty\nbrains sucked out.", "dv":"L" },
+				
+				{ "type":"Speak", "id1":"Sandy", "sv":"You will never\nget away with this!", "dv":"R" },
+				{ "type":"Speak", "id1":"Sandy", "sv":"Dave and his friends\nwill rescue me!", "dv":"R" },
+				{ "type":"Speak", "id1":"Sandy", "sv":"You and your meteor\ncan eat slime!", "dv":"R" },
+				
+				{ "type":"WalkToPos", "sv":"SecretLab", "id1":"Fred", "vv":[-187,6.2], "dv":"F" },
+				{ "type":"Speak", "id1":"Fred", "sv":"That's what she thinks!", "dv":"F" },
+				{ "type":"Speak", "id1":"Fred", "sv":"Heh, heh, heh.", "dv":"R" },
+				{ "type":"WalkToPos", "sv":"SecretLab", "id1":"Fred", "vv":[-182,6.2], "dv":"R" },
+				
+				{ "type":"ShowRoom", "sv":"SecretLab", "vv":[-202.5,10], "del":2, "id2":"1" },
+				{ "type":"WalkToPos", "sv":"SecretLab", "id1":"Sandy", "vv":[-207.4,7.65], "dv":"L" },
+				{ "type":"Speak", "id1":"Sandy", "sv":"Help, help, HELP!", "dv":"L" },
+				
+				{ "type":"Expression", "id1":"Sandy", "sv":"Sad", "dv":"F", "del":.75 },
+				{ "type":"Speak", "id1":"Sandy", "sv":"Damn.\n\nSame stuff again, after 30 years.", "dv":"F" },
+				{ "type":"Speak", "id1":"Sandy", "sv":"That's humiliating.", "dv":"F" }
+				{ "type":"Expression", "id1":"Sandy", "sv":"Sad", "dv":"F", "del":.75 },
 			]
 		},
 		
