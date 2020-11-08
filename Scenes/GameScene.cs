@@ -12,8 +12,6 @@ public class GameScene {
   public List<GameAction> startup;
   public List<GameAction> shutdown;
   public List<GameStep> steps;
-//  public bool AmIActive = false;
-//  public bool AmIShuttingDown = false;
   public GameAction startupaction = null;
   public int startupactionnum = -1;
   public GameAction shutdownaction = null;
@@ -40,6 +38,7 @@ public class GameScene {
     else if (type[0] == 'a') Type = GameSceneType.ActorBehavior;
     else if (type[0] == 'i') Type = GameSceneType.ItemAction;
     else if (type[0] == 'u') Type = GameSceneType.Unique;
+    else if (type[0] == 's') Type = GameSceneType.SetOfActions;
 
     try {
       Id = (CutsceneID)System.Enum.Parse(typeof(CutsceneID), id, true);
@@ -253,7 +252,7 @@ public class GameScene {
 
 
 public enum GameSceneType {
-  Cutscene, ActorBehavior, ItemAction, Unique
+  Cutscene, ActorBehavior, ItemAction, Unique, SetOfActions
 }
 
 public enum GameSceneStatus {

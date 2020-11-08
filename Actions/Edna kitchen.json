@@ -1,5 +1,5 @@
 {
-	"id":"EdnaBrowsingFridge", "name":"Edna Browsing Fridge","type":"cutscene","AppliesTo":"Edna",
+	"id":"EdnaBrowsingFridge", "name":"Edna Browsing Fridge","type":"SetOfActions","AppliesTo":"Edna",
 
 	"condition":[],
 	

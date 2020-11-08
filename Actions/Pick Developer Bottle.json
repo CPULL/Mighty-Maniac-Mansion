@@ -1,5 +1,5 @@
 {
-	"id":"PickDeveloperBottle", "name":"Pick Developer Bottle","type":"cutscene",
+	"id":"PickDeveloperBottle", "name":"Pick Developer Bottle","type":"SetOfActions",
 
 	"condition":[],
 	

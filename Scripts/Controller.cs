@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Concurrent;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -66,7 +67,7 @@ public class Controller : MonoBehaviour {
 
     #region Sequences and actions
     if (currentCutscene != null) { // Do we have a sequence?
-      FrontActors.enabled = !currentCutscene.skippable && currentCutscene.status != GameSceneStatus.ShutDown;
+      FrontActors.enabled = !currentCutscene.skippable && currentCutscene.status != GameSceneStatus.ShutDown && currentCutscene.Type != GameSceneType.SetOfActions;
       if (currentCutscene.Run(null, null)) {
         GD.status = GameStatus.Cutscene;
         if (currentCutscene.status == GameSceneStatus.ShutDown) {
@@ -552,7 +553,8 @@ public class Controller : MonoBehaviour {
     AllObjects.StopScenes(main);
     GD.c.currentCutscene = scene;
     GD.c.currentCutscene.Reset();
-    CursorHandler.SetBoth(CursorTypes.Wait);
+    if (scene.Type != GameSceneType.SetOfActions)
+      CursorHandler.SetBoth(CursorTypes.Wait);
     GD.status = GameStatus.NormalGamePlay;
     SceneSkipped = false;
   }

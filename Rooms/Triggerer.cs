@@ -18,13 +18,10 @@ public class Triggerer : MonoBehaviour {
     Actor actor = col.gameObject.GetComponent<Actor>();
     if (actor == null) return;
 
-    Debug.Log(actor.name + " entered " + name);
-
     bool done = false;
     foreach (ActionAndCondition ac in actions)
       if (ac.Condition.IsValid(actor, null, null, null, When.Always)) {
         ac.Action.RunAction(actor, null);
-        Debug.Log("Starting " + ac.Action + " with " + actor.name);
         done = true;
       }
 

@@ -218,7 +218,7 @@ public class GD : MonoBehaviour {
           }
         }
 
-        if (seq.Type == GameSceneType.Cutscene || seq.Type == GameSceneType.Unique) {
+        if (seq.Type == GameSceneType.Cutscene || seq.Type == GameSceneType.Unique || seq.Type == GameSceneType.SetOfActions) {
           a.cutscenes.Add(seq);
         }
         else if (seq.Type == GameSceneType.ActorBehavior) {

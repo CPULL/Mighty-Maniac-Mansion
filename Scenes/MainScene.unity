@@ -55945,8 +55945,8 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -193.59601, y: 17.247}
-  dir: 2
+  HotSpot: {x: -194.07, y: 16.814999}
+  dir: 3
   overColor:
     serializedVersion: 2
     rgba: 4278255615
@@ -68411,13 +68411,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630635309}
-  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0.066, y: -5.97, z: -4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6, y: -0.395, z: -3.756}
   m_LocalScale: {x: 0.04964, y: 0.029660001, z: 0.74884}
   m_Children: []
   m_Father: {fileID: 1339106922}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1630635311
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -428,10 +428,6 @@ public class Intro : MonoBehaviour {
       break;
     }
 
-    if (Input.GetKeyDown(KeyCode.Keypad1)) Debug.Log("    new Note(1, " + musicLightTime + "f),");
-    if (Input.GetKeyDown(KeyCode.Keypad2)) Debug.Log("    new Note(2, " + musicLightTime + "f),");
-    if (Input.GetKeyDown(KeyCode.Keypad3)) Debug.Log("    new Note(3, " + musicLightTime + "f),");
-
     if (musicLightTime > 54f) {
       Stop();
     }
