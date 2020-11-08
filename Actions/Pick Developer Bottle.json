@@ -1,0 +1,27 @@
+{
+	"id":"PickDeveloperBottle", "name":"Pick Developer Bottle","type":"cutscene",
+
+	"condition":[],
+	
+	"startup" : [],
+	
+	"shutdown" : [],
+	
+	"sequence":[
+		{ "name":"Pick Developer Bottle", "skippable":false,
+			"condition":[ ],
+			"action":[
+				{ "type":"Anim", "del":.25, "id2":"DeveloperBottle", "sv":"Bottle break" },
+				{ "type":"Sound", "id1":"Current", "id2":"BrokenBottle", "del":0.25 },
+				{ "type":"EnableDisable", "id1":"BrokenBottleLiquid", "sv":true },
+				{ "type":"EnableDisable", "id1":"BrokenDeveloperBottle", "sv":true },
+				{ "type":"EnableDisable", "id1":"DeveloperBottle", "sv":"" }
+			]
+		}
+	]
+
+}
+
+
+
+

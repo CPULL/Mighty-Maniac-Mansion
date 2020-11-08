@@ -340,7 +340,7 @@ public class Actor : MonoBehaviour {
       prevFloor = FloorType.None;
       floor = p.floorType;
       if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
-      if (IsVisible) audios.Play();
+      if (IsVisible && !audios.isPlaying) audios.Play();
     }
     else {
       destination.pos = parcour[1].pos;
@@ -351,7 +351,7 @@ public class Actor : MonoBehaviour {
       if (floor != prevFloor || !audios.isPlaying) {
         prevFloor = floor;
         if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
-        if (IsVisible) audios.Play();
+        if (IsVisible && !audios.isPlaying) audios.Play();
       }
     }
     destination.pos.z = (destination.pos.y - currentRoom.CameraGround) / 10f;
@@ -439,7 +439,7 @@ public class Actor : MonoBehaviour {
 
     ScaleByPosition(transform.position.y);
 
-    if (!audios.isPlaying && gameObject.activeSelf && IsVisible) {
+    if (!audios.isPlaying && gameObject.activeSelf && IsVisible && !audios.isPlaying) {
       audios.Play();
     }
     anim.speed = Controller.walkSpeed * .8f;
@@ -572,7 +572,7 @@ public class Actor : MonoBehaviour {
         destination.pos = parcour[0].pos;
         destination.node = parcour[0].node;
         floor = parcour[0].node.floorType;
-        if (floor != prevFloor && gameObject.activeSelf && IsVisible) {
+        if (floor != prevFloor && gameObject.activeSelf && IsVisible && !audios.isPlaying) {
           if (!isTentacle) audios.clip = Sounds.GetStepSound(floor);
           audios.Play();
         }

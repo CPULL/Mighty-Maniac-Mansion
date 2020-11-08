@@ -6823,7 +6823,7 @@ GameObject:
   - component: {fileID: 161848525}
   - component: {fileID: 161848526}
   m_Layer: 10
-  m_Name: PathNodeLL
+  m_Name: Under DoorL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6846,12 +6846,12 @@ MonoBehaviour:
   right: {fileID: 449775649}
   top: {fileID: 727737014}
   down: {fileID: 0}
-  tl: {x: -114.11311, y: 17.41042}
-  tr: {x: -112.85165, y: 17.78528}
-  br: {x: -112.96507, y: 16.296457}
-  bl: {x: -115.3742, y: 16.307816}
+  tl: {x: -105.11311, y: 17.41042}
+  tr: {x: -103.85165, y: 17.78528}
+  br: {x: -103.96507, y: 16.296457}
+  bl: {x: -106.3742, y: 16.307816}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 0}
   g: 0
   h: 29.317486
@@ -9754,7 +9754,7 @@ MonoBehaviour:
   Name: To the backyard
   owner: 0
   Usable: 3
-  openStatus: 1
+  openStatus: 2
   lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
@@ -10518,7 +10518,7 @@ GameObject:
   - component: {fileID: 275907587}
   - component: {fileID: 275907588}
   m_Layer: 10
-  m_Name: PathNodeRRRRR
+  m_Name: Fridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10541,12 +10541,12 @@ MonoBehaviour:
   right: {fileID: 1409355883}
   top: {fileID: 0}
   down: {fileID: 0}
-  tl: {x: -90.63603, y: 18.01247}
-  tr: {x: -85.176834, y: 17.852058}
-  br: {x: -85.76117, y: 16.25102}
-  bl: {x: -90.47697, y: 16.137426}
+  tl: {x: -81.63603, y: 18.01247}
+  tr: {x: -76.176834, y: 17.852058}
+  br: {x: -76.76117, y: 16.25102}
+  bl: {x: -81.47697, y: 16.137426}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 371149834}
   g: 110.680115
   h: 3.9825847
@@ -14435,7 +14435,7 @@ GameObject:
   - component: {fileID: 371149834}
   - component: {fileID: 371149835}
   m_Layer: 10
-  m_Name: PathNodeRRRR
+  m_Name: Kitchen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14458,12 +14458,12 @@ MonoBehaviour:
   right: {fileID: 275907587}
   top: {fileID: 0}
   down: {fileID: 0}
-  tl: {x: -103.22635, y: 18.00111}
-  tr: {x: -90.63603, y: 18.01247}
-  br: {x: -90.47697, y: 16.137426}
-  bl: {x: -103.53316, y: 16.296457}
+  tl: {x: -94.22635, y: 18.00111}
+  tr: {x: -81.63603, y: 18.01247}
+  br: {x: -81.47697, y: 16.137426}
+  bl: {x: -94.53316, y: 16.296457}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1174415050}
   g: 106.69753
   h: 12.533098
@@ -17112,7 +17112,7 @@ GameObject:
   - component: {fileID: 449775649}
   - component: {fileID: 449775650}
   m_Layer: 10
-  m_Name: PathNodeL
+  m_Name: L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17135,12 +17135,12 @@ MonoBehaviour:
   right: {fileID: 2115625198}
   top: {fileID: 0}
   down: {fileID: 0}
-  tl: {x: -112.85165, y: 17.78528}
-  tr: {x: -111.077354, y: 18.356543}
-  br: {x: -111.067474, y: 16.239658}
-  bl: {x: -112.96507, y: 16.296457}
+  tl: {x: -103.85165, y: 17.78528}
+  tr: {x: -102.077354, y: 18.356543}
+  br: {x: -102.067474, y: 16.239658}
+  bl: {x: -103.96507, y: 16.296457}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 161848525}
   g: 27.471075
   h: 27.471075
@@ -23541,7 +23541,7 @@ MonoBehaviour:
   - {fileID: 449775649}
   - {fileID: 161848525}
   - {fileID: 727737014}
-  ShowSubNodes: 0
+  ShowSubNodes: 1
   DoAStar: 0
   start: {x: -113.734184, y: 16.779015}
   end: {x: -84.56526, y: 18.343246}
@@ -29128,7 +29128,7 @@ GameObject:
   - component: {fileID: 727737014}
   - component: {fileID: 727737013}
   m_Layer: 10
-  m_Name: PathNodeLLT
+  m_Name: DoorL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29194,12 +29194,12 @@ MonoBehaviour:
   right: {fileID: 0}
   top: {fileID: 0}
   down: {fileID: 161848525}
-  tl: {x: -114.09038, y: 21.670946}
-  tr: {x: -112.82892, y: 21.705023}
-  br: {x: -112.85165, y: 17.78528}
-  bl: {x: -114.11311, y: 17.41042}
+  tl: {x: -105.09038, y: 21.670946}
+  tr: {x: -103.82892, y: 21.705023}
+  br: {x: -103.85165, y: 17.78528}
+  bl: {x: -105.11311, y: 17.41042}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 161848525}
   g: 28.895428
   h: 28.895428
@@ -32108,9 +32108,11 @@ MonoBehaviour:
   Usable: 0
   openStatus: 0
   lockStatus: 0
-  whatItDoesL: 3
+  whatItDoesL: 1
   whatItDoesR: 2
-  Description: "The liquid that was inside \ndripped under the grate."
+  Description: 'A bottle with some liquid inside.
+
+    It is quite high...'
   openImage: {fileID: 0}
   closeImage: {fileID: 0}
   lockImage: {fileID: 0}
@@ -32137,57 +32139,15 @@ MonoBehaviour:
     Action:
       running: 0
       msg: 
-      type: 16
+      type: 11
       Repeatable: 0
       delay: 0.25
-      id1: 0
+      id1: 12
       id2: 19
       str: Bottle break
       pos: {x: 0, y: 0}
       dir: 0
       val: 0
-  - Condition:
-      type: 0
-      id: 0
-      iv: 0
-      fv: 0
-      sv: 
-      bv: 0
-      msg: 
-      when: 0
-    Action:
-      running: 0
-      msg: 
-      type: 12
-      Repeatable: 0
-      delay: 0.3
-      id1: 0
-      id2: 1
-      str: 
-      pos: {x: 0, y: 0}
-      dir: 4
-      val: 0
-  - Condition:
-      type: 0
-      id: 0
-      iv: 0
-      fv: 0
-      sv: 
-      bv: 0
-      msg: 
-      when: 0
-    Action:
-      running: 0
-      msg: 
-      type: 17
-      Repeatable: 0
-      delay: 1
-      id1: 19
-      id2: 3
-      str: WR
-      pos: {x: 0, y: 0}
-      dir: 0
-      val: 1
   sr: {fileID: 0}
 --- !u!212 &785944030
 SpriteRenderer:
@@ -38479,7 +38439,7 @@ GameObject:
   - component: {fileID: 943267770}
   - component: {fileID: 943267771}
   m_Layer: 10
-  m_Name: PathNodeRRRRRRT
+  m_Name: Door R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38502,12 +38462,12 @@ MonoBehaviour:
   right: {fileID: 0}
   top: {fileID: 0}
   down: {fileID: 1409355883}
-  tl: {x: -85.12483, y: 20.489565}
-  tr: {x: -83.92017, y: 20.307814}
-  br: {x: -83.9429, y: 17.41042}
-  bl: {x: -85.176834, y: 17.852058}
+  tl: {x: -76.12483, y: 20.489565}
+  tr: {x: -74.92017, y: 20.307814}
+  br: {x: -74.9429, y: 17.41042}
+  bl: {x: -76.176834, y: 17.852058}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1409355883}
   g: 112.75438
   h: 0
@@ -45499,6 +45459,7 @@ Transform:
   - {fileID: 2120003144}
   - {fileID: 785944028}
   - {fileID: 798120822}
+  - {fileID: 1339106922}
   m_Father: {fileID: 1940318745}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48688,7 +48649,7 @@ GameObject:
   - component: {fileID: 1174415050}
   - component: {fileID: 1174415051}
   m_Layer: 10
-  m_Name: PathNodeRRR
+  m_Name: Under FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48711,12 +48672,12 @@ MonoBehaviour:
   right: {fileID: 371149834}
   top: {fileID: 0}
   down: {fileID: 0}
-  tl: {x: -105.749466, y: 18.01592}
-  tr: {x: -103.22635, y: 18.00111}
-  br: {x: -103.53316, y: 16.296457}
-  bl: {x: -105.9082, y: 16.330536}
+  tl: {x: -96.749466, y: 18.01592}
+  tr: {x: -94.22635, y: 18.00111}
+  br: {x: -94.53316, y: 16.296457}
+  bl: {x: -96.9082, y: 16.330536}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 1815081016}
   g: 94.16444
   h: 20.108686
@@ -50627,7 +50588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213796228}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13, y: -3.12, z: -1.359}
+  m_LocalPosition: {x: 1.14, y: -3.12, z: -1.359}
   m_LocalScale: {x: 0.18625712, y: 0.04981428, z: 1}
   m_Children: []
   m_Father: {fileID: 1671615972}
@@ -55898,6 +55859,153 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1339106921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1339106922}
+  - component: {fileID: 1339106925}
+  - component: {fileID: 1339106924}
+  - component: {fileID: 1339106923}
+  m_Layer: 0
+  m_Name: Broken Developer Bottle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1339106922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339106921}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.09, y: -2.59, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1630635310}
+  m_Father: {fileID: 1105296443}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1339106923
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339106921}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0034332275, y: -0.0034341812}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.5, y: 1}
+    newSize: {x: 1.5, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.52597046, y: 0.8420315}
+  m_EdgeRadius: 0
+--- !u!114 &1339106924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339106921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: 27
+  Name: Broken Bottle
+  owner: 0
+  Usable: 0
+  openStatus: 0
+  lockStatus: 0
+  whatItDoesL: 3
+  whatItDoesR: 1
+  Description: "The liquid that was inside \ndripped under the grate."
+  openImage: {fileID: 0}
+  closeImage: {fileID: 0}
+  lockImage: {fileID: 0}
+  iconImage: {fileID: 0}
+  cursorImage: {fileID: 0}
+  HotSpot: {x: -193.59601, y: 17.247}
+  dir: 2
+  overColor:
+    serializedVersion: 2
+    rgba: 4278255615
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  actions: []
+  sr: {fileID: 0}
+--- !u!212 &1339106925
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339106921}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -2847341019722276567, guid: adc70eb0294bda34088d7a8b2989b57a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.5, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1341103805
 GameObject:
   m_ObjectHideFlags: 0
@@ -59069,7 +59177,7 @@ GameObject:
   - component: {fileID: 1409355883}
   - component: {fileID: 1409355884}
   m_Layer: 10
-  m_Name: PathNodeRRRRRR
+  m_Name: Under Door R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59092,12 +59200,12 @@ MonoBehaviour:
   right: {fileID: 0}
   top: {fileID: 943267770}
   down: {fileID: 0}
-  tl: {x: -85.176834, y: 17.852058}
-  tr: {x: -83.9429, y: 17.41042}
-  br: {x: -82.64754, y: 16.273739}
-  bl: {x: -85.76117, y: 16.25102}
+  tl: {x: -76.176834, y: 17.852058}
+  tr: {x: -74.9429, y: 17.41042}
+  br: {x: -73.64754, y: 16.273739}
+  bl: {x: -76.76117, y: 16.25102}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 275907587}
   g: 112.75438
   h: 2.0742645
@@ -68279,6 +68387,88 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1630635309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630635310}
+  - component: {fileID: 1630635311}
+  m_Layer: 0
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1630635310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630635309}
+  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: 0.066, y: -5.97, z: -4}
+  m_LocalScale: {x: 0.04964, y: 0.029660001, z: 0.74884}
+  m_Children: []
+  m_Father: {fileID: 1339106922}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!212 &1630635311
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630635309}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 523da93e515b38b498ae1fb2838778c0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -686658387
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 52583357353966b4eb4595ab1166e919, type: 3}
+  m_Color: {r: 0.9528302, g: 0.0779043, b: 0.77969795, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1631182100
 GameObject:
   m_ObjectHideFlags: 0
@@ -69801,8 +69991,8 @@ MonoBehaviour:
   Item: 0
   Name: Pool valve
   owner: 0
-  Usable: 3
-  openStatus: 0
+  Usable: 4
+  openStatus: 1
   lockStatus: 0
   whatItDoesL: 3
   whatItDoesR: 0
@@ -69812,7 +70002,7 @@ MonoBehaviour:
   lockImage: {fileID: 0}
   iconImage: {fileID: 0}
   cursorImage: {fileID: 0}
-  HotSpot: {x: -21.548979, y: -10.394535}
+  HotSpot: {x: -20.659979, y: -10.394535}
   dir: 2
   overColor:
     serializedVersion: 2
@@ -76997,7 +77187,7 @@ GameObject:
   - component: {fileID: 1815081016}
   - component: {fileID: 1815081017}
   m_Layer: 10
-  m_Name: PathNodeRR
+  m_Name: Before Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77020,12 +77210,12 @@ MonoBehaviour:
   right: {fileID: 1174415050}
   top: {fileID: 0}
   down: {fileID: 0}
-  tl: {x: -106.73789, y: 18.341892}
-  tr: {x: -105.749466, y: 18.01592}
-  br: {x: -105.9082, y: 16.330536}
-  bl: {x: -107.59011, y: 16.2283}
+  tl: {x: -97.73789, y: 18.341892}
+  tr: {x: -96.749466, y: 18.01592}
+  br: {x: -96.9082, y: 16.330536}
+  bl: {x: -98.59011, y: 16.2283}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 2115625198}
   g: 74.05575
   h: 21.987349
@@ -78178,7 +78368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1851248656
 Transform:
   m_ObjectHideFlags: 0
@@ -83299,6 +83489,7 @@ MonoBehaviour:
   - {fileID: 1182378098}
   - {fileID: 151499248}
   - {fileID: 1851248657}
+  - {fileID: 1339106924}
   roomsList:
   - {fileID: 1432214312}
   - {fileID: 1117025435}
@@ -85882,7 +86073,7 @@ MonoBehaviour:
     this impressioning painting
     was
 
-    from the impressionim art movement'
+    from the impressionism art movement'
   openImage: {fileID: 0}
   closeImage: {fileID: 0}
   lockImage: {fileID: 0}
@@ -89240,7 +89431,7 @@ GameObject:
   - component: {fileID: 2115625198}
   - component: {fileID: 2115625199}
   m_Layer: 10
-  m_Name: PathNodeR
+  m_Name: Under Window L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89263,12 +89454,12 @@ MonoBehaviour:
   right: {fileID: 1815081016}
   top: {fileID: 0}
   down: {fileID: 0}
-  tl: {x: -111.077354, y: 18.356543}
-  tr: {x: -106.73789, y: 18.341892}
-  br: {x: -107.59011, y: 16.2283}
-  bl: {x: -111.067474, y: 16.239658}
+  tl: {x: -102.077354, y: 18.356543}
+  tr: {x: -97.73789, y: 18.341892}
+  br: {x: -98.59011, y: 16.2283}
+  bl: {x: -102.067474, y: 16.239658}
   parent: {fileID: 596676647}
-  showMeshLocal: 0
+  showMeshLocal: 1
   prev: {fileID: 449775649}
   g: 52.068398
   h: 24.59732

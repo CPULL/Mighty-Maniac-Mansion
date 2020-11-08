@@ -148,6 +148,7 @@ public enum ItemEnum {
   Microwave,
   RoastedHamster,
   BrokenBottleLiquid,
+  BrokenDeveloperBottle,
 }
 
 
@@ -189,6 +190,7 @@ public enum CutsceneID {
   EdCatch,
   Microwave,
   FredTalkingToKidnapped,
+  PickDeveloperBottle,
 
 
   unused1,

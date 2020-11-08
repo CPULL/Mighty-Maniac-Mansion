@@ -20,6 +20,8 @@ FrontDoor -> Backyard entrance on the left
 * BUGS ************************************************************************************************************
 
 
+Add flag to cutscenes to be not "cutscenes" so theyu will not disable actors and they will autoskip
+
 * CHARS ************************************************************************************************************
 
 !Dr. Fred
@@ -205,4 +207,7 @@ Jeff
 ! Be sure we show the correct name for the actors
 ! Improved the cursors and the used items
 ! After using an item, the mouse is checked again
+! Some times (close to the end of room) the walk sound is played again
+! Improved broken dev bottle scene
+
 

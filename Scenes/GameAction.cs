@@ -192,10 +192,6 @@ public class GameAction {
     }
   }
 
-  public GameAction() {
-    type = ActionType.None;
-  }
-
   public GameAction(string stype, bool rep, float del, string vid1, string vid2, string sv, int iv, string dv, Vector2 vv) {
     type = (ActionType)System.Enum.Parse(typeof(ActionType), stype, true);
     if (!System.Enum.IsDefined(typeof(ActionType), type)) {
@@ -421,6 +417,58 @@ public class GameAction {
         }
       }
       break;
+
+
+      case ActionType.Anim: {
+        if (!string.IsNullOrEmpty(vid1)) {
+          Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
+          if (!System.Enum.IsDefined(typeof(Chars), id)) {
+            Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
+          }
+          id1 = (int)id;
+        }
+        if (!string.IsNullOrEmpty(vid2)) {
+          ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid2, true);
+          if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
+            Debug.LogError("Unknown Item: \"" + vid2 + "\"");
+          }
+          id2 = (int)id;
+        }
+      }
+      break;
+
+      case ActionType.AlterItem: {
+        ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
+        if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
+          Debug.LogError("Unknown Item: \"" + vid1 + "\"");
+        }
+        id1 = (int)id;
+        dir = (Dir)System.Enum.Parse(typeof(Dir), dv, true);
+        if (!System.Enum.IsDefined(typeof(Dir), dir)) {
+          Debug.LogError("Unknown Dir: \"" + dv + "\"");
+          dir = Dir.None;
+        }
+
+        char l = (sv + "r").ToLowerInvariant()[0];
+        char r = (sv + "rr").ToLowerInvariant()[1];
+
+        switch(l) {
+          case 'w': id2 = (int)WhatItDoes.Walk; break;
+          case 'r': id2 = (int)WhatItDoes.Read; break;
+          case 'p': id2 = (int)WhatItDoes.Pick; break;
+          case 'u': id2 = (int)WhatItDoes.Use; break;
+        }
+
+        switch(r) {
+          case 'w': val = (int)WhatItDoes.Walk; break;
+          case 'r': val = (int)WhatItDoes.Read; break;
+          case 'p': val = (int)WhatItDoes.Pick; break;
+          case 'u': val = (int)WhatItDoes.Use; break;
+        }
+      }
+      break;
+
+
     }
   }
 
@@ -438,18 +486,6 @@ public class GameAction {
     running = Running.Completed;
   }
 
-  internal bool IsCompleted() {
-    return running == Running.Completed;
-  }
-
-  internal bool IsPlaying() {
-    return running == Running.Running;
-  }
-
-  internal bool NotStarted() {
-    return running == Running.NotStarted;
-  }
-
   internal void CheckTime(float deltaTime) {
     if (time > 0) {
       time -= deltaTime;
@@ -458,11 +494,6 @@ public class GameAction {
         time = delay;
       }
     }
-  }
-
-  internal void Reset() {
-    running = Running.NotStarted;
-    time = delay;
   }
 
 
