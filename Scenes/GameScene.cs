@@ -138,9 +138,6 @@ public class GameScene {
 
     if (Type == GameSceneType.Cutscene || Type == GameSceneType.Unique) AllObjects.SetSceneAsPlaying(this);
 
-    if (AllObjects.UniqueScenesPlaying(null)) Controller.Dbg("Unique scene " + ToString());
-
-
     if (status == GameSceneStatus.NotRunning) { // Startup is present, else Running *********************************************************************************
       if (startup.Count > 0)
         status = GameSceneStatus.Startup;

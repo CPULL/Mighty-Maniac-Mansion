@@ -404,7 +404,6 @@ public class Actor : MonoBehaviour {
       // If we have a cutscene playing with this actor do not play behaviors
       foreach (GameScene b in behaviors) {
         if (b.Run(this, null)) {
-          Controller.Dbg(name + " behavior " + b.ToString());
           nextBehaviorCheck = 0;
           break;
         }

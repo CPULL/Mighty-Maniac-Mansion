@@ -3414,7 +3414,7 @@ MonoBehaviour:
   dst: {fileID: 1158860359}
   camerapos: {x: -60, y: 20, z: -10}
   correspondingDoor: {fileID: 736877155}
-  transition: 0
+  transition: 4
   arrivalDirection: 3
   OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -8506,7 +8506,7 @@ MonoBehaviour:
   dst: {fileID: 677760569}
   camerapos: {x: -37, y: 11, z: -10}
   correspondingDoor: {fileID: 1309912225}
-  transition: 0
+  transition: 4
   arrivalDirection: 0
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
@@ -11117,7 +11117,7 @@ MonoBehaviour:
   dst: {fileID: 0}
   camerapos: {x: 0, y: 0, z: 0}
   correspondingDoor: {fileID: 0}
-  transition: 0
+  transition: 1
   arrivalDirection: 3
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
@@ -22748,8 +22748,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ae2c0e9637ca43541917175dbc497f6c, type: 3}
   - {fileID: 21300000, guid: ce38c6da36c583a4b8bd6b132512a95f, type: 3}
   - {fileID: 21300000, guid: 3e0bdb661f63b6d409593e68587160c6, type: 3}
-  - {fileID: 21300000, guid: ce38c6da36c583a4b8bd6b132512a95f, type: 3}
-  - {fileID: 21300000, guid: 3e0bdb661f63b6d409593e68587160c6, type: 3}
+  - {fileID: 21300000, guid: 91fe5c23db5a2304a878ef7aea307a7c, type: 3}
+  - {fileID: 21300000, guid: 0d9578fef8e328444b1c09d6f4d598a4, type: 3}
   - {fileID: 21300000, guid: 062d294b4aaa017429098ce3fb3cc584, type: 3}
   - {fileID: 21300000, guid: 062d294b4aaa017429098ce3fb3cc584, type: 3}
 --- !u!1 &576215163
@@ -30076,7 +30076,7 @@ MonoBehaviour:
   dst: {fileID: 677760569}
   camerapos: {x: -64.5, y: 11, z: -10}
   correspondingDoor: {fileID: 1095454602}
-  transition: 4
+  transition: 1
   arrivalDirection: 1
   OpenSound: {fileID: 8300000, guid: 57eeb70ab2deccc4186aca85017323a6, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -33403,7 +33403,7 @@ MonoBehaviour:
   dst: {fileID: 1072545338}
   camerapos: {x: 5.25, y: 50, z: -10}
   correspondingDoor: {fileID: 642208847}
-  transition: 1
+  transition: 0
   arrivalDirection: 3
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
@@ -42208,7 +42208,7 @@ MonoBehaviour:
   dst: {fileID: 2124229613}
   camerapos: {x: 15, y: 70, z: -10}
   correspondingDoor: {fileID: 2133863239}
-  transition: 4
+  transition: 1
   arrivalDirection: 1
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
@@ -43584,7 +43584,7 @@ MonoBehaviour:
   dst: {fileID: 1117025435}
   camerapos: {x: -58, y: 2, z: -10}
   correspondingDoor: {fileID: 702021341}
-  transition: 0
+  transition: 4
   arrivalDirection: 2
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
@@ -53021,7 +53021,7 @@ MonoBehaviour:
   dst: {fileID: 0}
   camerapos: {x: -60, y: 20, z: -10}
   correspondingDoor: {fileID: 0}
-  transition: 0
+  transition: 1
   arrivalDirection: 0
   OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -63841,7 +63841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1543915100
 Transform:
   m_ObjectHideFlags: 0
@@ -66490,7 +66490,7 @@ MonoBehaviour:
   dst: {fileID: 1158860359}
   camerapos: {x: -60, y: 20, z: -10}
   correspondingDoor: {fileID: 736877155}
-  transition: 0
+  transition: 4
   arrivalDirection: 0
   OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -72075,7 +72075,7 @@ MonoBehaviour:
   dst: {fileID: 1456936268}
   camerapos: {x: -64.5, y: 11, z: -10}
   correspondingDoor: {fileID: 741887910}
-  transition: 4
+  transition: 0
   arrivalDirection: 1
   OpenSound: {fileID: 8300000, guid: 57eeb70ab2deccc4186aca85017323a6, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -72449,7 +72449,7 @@ MonoBehaviour:
   dst: {fileID: 791578439}
   camerapos: {x: -60, y: 20, z: -10}
   correspondingDoor: {fileID: 143297720}
-  transition: 1
+  transition: 0
   arrivalDirection: 3
   OpenSound: {fileID: 8300000, guid: 3de94f3f86165254986bea61cc183713, type: 3}
   CloseSound: {fileID: 8300000, guid: 53996f3aa5f77e84db3cf7712e90c9ff, type: 3}
@@ -79568,7 +79568,7 @@ MonoBehaviour:
   dst: {fileID: 0}
   camerapos: {x: 0, y: 2, z: -10}
   correspondingDoor: {fileID: 0}
-  transition: 0
+  transition: 4
   arrivalDirection: 0
   OpenSound: {fileID: 0}
   CloseSound: {fileID: 0}
