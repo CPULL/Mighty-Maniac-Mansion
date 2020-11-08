@@ -156,6 +156,8 @@ public class Controller : MonoBehaviour {
       }
     }
 
+    if (usedItem == null) CursorHandler.SoftCleanObject();
+
     walkDelay -= Time.deltaTime;
     if (notOverUI && Input.GetMouseButton(0) && currentActor.IsWalking() && walkDelay < 0) {
       walkDelay = .25f;
@@ -280,6 +282,7 @@ public class Controller : MonoBehaviour {
         }
 
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Use) || (rmb && overItem.whatItDoesR == WhatItDoes.Use)) { /* use */
+          Vector3 worldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
               if (item == null) {
@@ -293,6 +296,13 @@ public class Controller : MonoBehaviour {
                 actor.Say(res);
               else {
                 CursorHandler.SetObject(null);
+              }
+
+              // Here we should raycast and check what should the item be with the actions (if any)
+              RaycastHit2D[] hits = Physics2D.RaycastAll(worldPoint, cam.transform.forward);
+              foreach (RaycastHit2D hit in hits) {
+                Item hitItem = hit.collider.gameObject.GetComponent<Item>();
+                if (hitItem != null) SetItem(hitItem);
               }
             }));
         }
@@ -319,6 +329,7 @@ public class Controller : MonoBehaviour {
           WalkAndAction(currentActor, overItem, null);
         }
         else { /* rmb - Use together */
+          Vector3 worldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
               // Can we use the two items together?
@@ -329,7 +340,13 @@ public class Controller : MonoBehaviour {
               usedItem = null;
               EnableActorSelection(false);
               Inventory.SetActive(false);
-              return;
+
+              // Here we should raycast and check what should the item be with the actions (if any)
+              RaycastHit2D[] hits = Physics2D.RaycastAll(worldPoint, cam.transform.forward);
+              foreach (RaycastHit2D hit in hits) {
+                Item hitItem = hit.collider.gameObject.GetComponent<Item>();
+                if (hitItem != null) SetItem(hitItem);
+              }
             }));
         }
       }

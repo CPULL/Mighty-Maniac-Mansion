@@ -95,12 +95,18 @@ public class CursorHandler : MonoBehaviour {
   public Sprite[] Cursors;
 
   internal static void SetObject(Sprite cursorImage) {
-    SetBoth(CursorTypes.Object);
     if (cursorImage != null) {
       SetBoth(CursorTypes.Object);
       me.Cursor.sprite = cursorImage;
     }
     else {
+      SetBoth(CursorTypes.Normal);
+      me.Cursor.sprite = me.Cursors[0];
+    }
+  }
+
+  internal static void SoftCleanObject() {
+    if (me.prevCentral == CursorTypes.Object) {
       SetBoth(CursorTypes.Normal);
       me.Cursor.sprite = me.Cursors[0];
     }
