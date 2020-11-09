@@ -20,8 +20,6 @@ FrontDoor -> Backyard entrance on the left
 * BUGS ************************************************************************************************************
 
 
-Add flag to cutscenes to be not "cutscenes" so theyu will not disable actors and they will autoskip
-
 * CHARS ************************************************************************************************************
 
 !Dr. Fred
@@ -44,6 +42,7 @@ Jeff
 !Sandy
 !Javid
 !Ollie
+Laverne
 
 
 
