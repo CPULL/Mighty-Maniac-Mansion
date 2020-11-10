@@ -31,7 +31,7 @@ public class Actor : MonoBehaviour {
   FloorType prevFloor = FloorType.None;
   string idle;
   string walk;
-  bool IAmNPC = true;
+  [HideInInspector] public bool IAmNPC = true;
   public AudioClip TentacleSteps;
   float blockMinX = -float.MaxValue;
   float blockMaxX = float.MaxValue;

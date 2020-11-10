@@ -91,6 +91,7 @@ public class GameScene {
   /// Check if the main conditions are satisfied
   /// </summary>
   public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when) {
+    if (Id == CutsceneID.NONE) return false;
     if (AllObjects.UniqueScenesPlaying(this)) {
       status = GameSceneStatus.NotRunning;
       return false;

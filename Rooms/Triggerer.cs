@@ -16,7 +16,7 @@ public class Triggerer : MonoBehaviour {
   private void OnTriggerEnter2D(Collider2D col) {
     if (col.gameObject == null) return;
     Actor actor = col.gameObject.GetComponent<Actor>();
-    if (actor == null) return;
+    if (actor == null || actor.IAmNPC) return;
 
     bool done = false;
     foreach (ActionAndCondition ac in actions)

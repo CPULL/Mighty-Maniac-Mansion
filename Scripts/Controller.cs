@@ -66,7 +66,7 @@ public class Controller : MonoBehaviour {
     #endregion
 
     #region Sequences and actions
-    if (currentCutscene != null) { // Do we have a sequence?
+    if (currentCutscene != null && currentCutscene.Id != CutsceneID.NONE) { // Do we have a sequence?
       FrontActors.enabled = !currentCutscene.skippable && currentCutscene.status != GameSceneStatus.ShutDown && currentCutscene.Type != GameSceneType.SetOfActions;
       if (currentCutscene.Run(null, null)) {
         GD.status = GameStatus.Cutscene;
@@ -86,7 +86,7 @@ public class Controller : MonoBehaviour {
     #endregion
 
     #region Handle camera
-    if (!CameraFadingToActor && CameraPanningInstance == null && (currentCutscene == null || SceneSkipped)) {
+    if (!CameraFadingToActor && CameraPanningInstance == null && (currentCutscene == null || currentCutscene.Id == CutsceneID.NONE || SceneSkipped)) {
       Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
       if (cam.transform.position.x < currentRoom.minL) {
         Vector3 p = cam.transform.position;
@@ -445,7 +445,7 @@ public class Controller : MonoBehaviour {
 
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
     if (Options.IsActive()) return;
-    if (GD.status != GameStatus.NormalGamePlay && (GD.c.currentCutscene == null || (!GD.c.currentCutscene.skippable && GD.c.currentCutscene.status != GameSceneStatus.ShutDown))) return;
+    if (GD.status != GameStatus.NormalGamePlay && (GD.c.currentCutscene == null || GD.c.currentCutscene.Id == CutsceneID.NONE || (!GD.c.currentCutscene.skippable && GD.c.currentCutscene.status != GameSceneStatus.ShutDown))) return;
 
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == GD.c.ActorPortrait1) {
@@ -915,7 +915,7 @@ public class Controller : MonoBehaviour {
 
 
   internal static void SelectActor(Actor actor, bool force = false) {
-    if (GD.status != GameStatus.NormalGamePlay && !force && (GD.c.currentCutscene == null || !GD.c.currentCutscene.skippable)) return;
+    if (GD.status != GameStatus.NormalGamePlay && !force && (GD.c.currentCutscene == null || GD.c.currentCutscene.Id == CutsceneID.NONE || !GD.c.currentCutscene.skippable)) return;
 
     if (GD.c.currentCutscene != null && GD.c.currentCutscene.skippable) {
       SceneSkipped = true;
