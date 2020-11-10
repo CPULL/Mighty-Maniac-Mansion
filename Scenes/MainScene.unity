@@ -8780,6 +8780,7 @@ MonoBehaviour:
     many items.
 
     If he can, he goes surfing on the shore.'
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -11794,6 +11795,7 @@ MonoBehaviour:
   skills: 01000000
   male: 1
   Description: 
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -21101,6 +21103,7 @@ MonoBehaviour:
 
     He is now an archetypal "mad
     scientist" under the influence of the Meteor.'
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -31849,13 +31852,14 @@ MonoBehaviour:
   Arms: {fileID: 458385305}
   Legs: {fileID: 1209768258}
   currentRoom: {fileID: 0}
-  actorSpeed: 3
+  actorSpeed: 3.75
   inventory: []
   id: 26
   mainScale: 1.01
   skills: 
   male: 1
   Description: Michael is an award winning photographer for the college newspaper.
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -56998,6 +57002,7 @@ MonoBehaviour:
     stories.
 
     She relaxes preparing food and petting her animals.'
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -58108,6 +58113,7 @@ MonoBehaviour:
 
     He is a nerd who specializes in fixing electronics.
     He lacks guts and is easily terrified.'
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -63469,6 +63475,7 @@ MonoBehaviour:
   Description: "<b>Dave Miller</b> is a college student who is dating Sandy. \nHe
     has no specific skills, but has good charisma and can prepare some delicious
     food."
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -63875,6 +63882,7 @@ MonoBehaviour:
 
     Some
     of her dialogue hints that she is into sado-masochism and obscene phone calls.'
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -73529,6 +73537,7 @@ MonoBehaviour:
 
     His dream is to achieve success with
     his 8-bit retro music band, named "GT and the Suction Cups".'
+  IAmNPC: 1
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
   lightIsOn: 0
   behaviors: []
@@ -74129,6 +74138,7 @@ MonoBehaviour:
 
     She
     loves mangas and animes.'
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -75512,6 +75522,7 @@ MonoBehaviour:
 
     He goes to the gym pretty
     much all the time.'
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -76215,6 +76226,7 @@ MonoBehaviour:
 
     He also has a good knowledge of physical and electronic
     things, and can build, fix, and use pretty much all the things.'
+  IAmNPC: 1
   TentacleSteps: {fileID: 0}
   lightIsOn: 0
   behaviors: []
@@ -81101,6 +81113,7 @@ MonoBehaviour:
 
     He
     will send you to the dungeon if he catches you.'
+  IAmNPC: 1
   TentacleSteps: {fileID: 8300000, guid: 7bff8aa127ba55546884c01c797c2a26, type: 3}
   lightIsOn: 0
   behaviors: []
