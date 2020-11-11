@@ -1,0 +1,2458 @@
+fileFormatVersion: 2
+guid: 6b1e770b01b867a458e4dce727a3d514
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7888902146871769836
+    second: Dave_0
+  - first:
+      213: 8135646650573657831
+    second: Dave_1
+  - first:
+      213: -747637553039879534
+    second: Dave_2
+  - first:
+      213: -1440088328506575641
+    second: Dave_3
+  - first:
+      213: 4910842507438598899
+    second: Dave_4
+  - first:
+      213: 7363506383079820997
+    second: Dave_5
+  - first:
+      213: -8782635571135245053
+    second: Dave_6
+  - first:
+      213: 3731878887476337298
+    second: Dave_7
+  - first:
+      213: 7546045763806733465
+    second: Dave_8
+  - first:
+      213: -2959794242114279973
+    second: Dave_9
+  - first:
+      213: 5330956352606089964
+    second: Dave_10
+  - first:
+      213: -3175745282777762671
+    second: Dave_11
+  - first:
+      213: -9046547721153642166
+    second: Dave_12
+  - first:
+      213: 4474842964128040499
+    second: Dave_13
+  - first:
+      213: -2065442670624400489
+    second: Dave_14
+  - first:
+      213: 504732061343106302
+    second: Dave_15
+  - first:
+      213: -7460426139253168013
+    second: Dave_16
+  - first:
+      213: -6937367103375319229
+    second: Dave_17
+  - first:
+      213: 2992607042968343019
+    second: Dave_18
+  - first:
+      213: 4106430136202557391
+    second: Dave_19
+  - first:
+      213: -7867146419528734320
+    second: Dave_20
+  - first:
+      213: 5248252073891279038
+    second: Dave_21
+  - first:
+      213: -7479142128241946483
+    second: Dave_22
+  - first:
+      213: 8115595807947430086
+    second: Dave_23
+  - first:
+      213: 3579380359600087385
+    second: Dave_24
+  - first:
+      213: 7196515420006497057
+    second: Dave_25
+  - first:
+      213: -6081496003259615544
+    second: Dave_26
+  - first:
+      213: -5621260984230191386
+    second: Dave_27
+  - first:
+      213: 9028926393286250709
+    second: Dave_28
+  - first:
+      213: 5191425839080472334
+    second: Dave_29
+  - first:
+      213: 4349575693236251115
+    second: Dave_30
+  - first:
+      213: -4090228576586214124
+    second: Dave_31
+  - first:
+      213: 3897520715677047314
+    second: Dave_32
+  - first:
+      213: 6305682278443167625
+    second: Dave_33
+  - first:
+      213: -7313390019080279291
+    second: Dave_34
+  - first:
+      213: 6747765485996531226
+    second: Dave_35
+  - first:
+      213: 8301271887010317657
+    second: Dave_36
+  - first:
+      213: 3737286752727135133
+    second: Dave_37
+  - first:
+      213: -6359221482647622273
+    second: Dave_38
+  - first:
+      213: 8873806063167362163
+    second: Dave_39
+  - first:
+      213: 1010070456023070211
+    second: Dave_40
+  - first:
+      213: 3775120826718300322
+    second: Dave_41
+  - first:
+      213: -3973395767477190763
+    second: Dave_42
+  - first:
+      213: 6325384408593354156
+    second: Dave_43
+  - first:
+      213: -8789017560267634472
+    second: Dave_44
+  - first:
+      213: -5518103293305504867
+    second: Dave_45
+  - first:
+      213: 7343898637269568886
+    second: Dave_46
+  - first:
+      213: 8990550243722228724
+    second: Dave_47
+  - first:
+      213: 8648186765697932861
+    second: Dave_48
+  - first:
+      213: 4168226659324570698
+    second: Dave_49
+  - first:
+      213: -3896855140342960559
+    second: Dave_50
+  - first:
+      213: -5053805227437848470
+    second: Dave_51
+  - first:
+      213: -5029619571608823755
+    second: Dave_52
+  - first:
+      213: 6141925264097652475
+    second: Dave_53
+  - first:
+      213: 8442050147283572108
+    second: Dave_54
+  - first:
+      213: -6427586263114401296
+    second: Dave_55
+  - first:
+      213: -4213635897947632198
+    second: Dave_56
+  - first:
+      213: -4374184652258226299
+    second: Dave_57
+  - first:
+      213: -9149808062453588639
+    second: Dave_58
+  - first:
+      213: 8553650366293852298
+    second: Dave_59
+  - first:
+      213: 9097519068360622649
+    second: Wendy_0
+  - first:
+      213: -5385506310963410737
+    second: Wendy_1
+  - first:
+      213: -1011523690761709622
+    second: Wendy_2
+  - first:
+      213: -7228936477933668777
+    second: Wendy_3
+  - first:
+      213: -5195802297227211514
+    second: Wendy_4
+  - first:
+      213: -3690206035930473114
+    second: Wendy_5
+  - first:
+      213: -1075927679363847451
+    second: Wendy_6
+  - first:
+      213: 5713809788657343767
+    second: Wendy_7
+  - first:
+      213: 7103880906612211788
+    second: Wendy_8
+  - first:
+      213: -5772576216422418284
+    second: Wendy_9
+  - first:
+      213: 3173916692904352112
+    second: Wendy_10
+  - first:
+      213: 6027806964285467349
+    second: Wendy_11
+  - first:
+      213: -3922360597051378687
+    second: Wendy_12
+  - first:
+      213: -8346680908902167969
+    second: Wendy_13
+  - first:
+      213: -7883592819698292202
+    second: Wendy_14
+  - first:
+      213: -1882780385505286686
+    second: Wendy_15
+  - first:
+      213: 6987537041969410396
+    second: Wendy_16
+  - first:
+      213: 6229335067452214066
+    second: Wendy_17
+  - first:
+      213: 1808475849451785463
+    second: Wendy_18
+  - first:
+      213: 7036784918087215727
+    second: Wendy_19
+  - first:
+      213: -6244921748636086016
+    second: Wendy_20
+  - first:
+      213: 181977337346456315
+    second: Wendy_21
+  - first:
+      213: -7596871814267780649
+    second: Wendy_22
+  - first:
+      213: 3593884447467464402
+    second: Wendy_23
+  - first:
+      213: 7799979150398999156
+    second: Wendy_24
+  - first:
+      213: -8156994623423769340
+    second: Wendy_25
+  - first:
+      213: -2377842225930457735
+    second: Wendy_26
+  - first:
+      213: 2586485256959922798
+    second: Wendy_27
+  - first:
+      213: -382390377227390721
+    second: Wendy_28
+  - first:
+      213: 1225916760870541614
+    second: Wendy_29
+  - first:
+      213: -5225196126064850204
+    second: Wendy_30
+  - first:
+      213: -4346487244500300391
+    second: Wendy_31
+  - first:
+      213: -2032432329795052751
+    second: Wendy_32
+  - first:
+      213: 1755778467124365621
+    second: Wendy_33
+  - first:
+      213: 585212248112299782
+    second: Wendy_34
+  - first:
+      213: -8175935895819209281
+    second: Wendy_35
+  - first:
+      213: 8174016552212516200
+    second: Wendy_36
+  - first:
+      213: 5145016507227847931
+    second: Wendy_37
+  - first:
+      213: 1288894957171633056
+    second: Wendy_38
+  - first:
+      213: -2228426028099186227
+    second: Wendy_39
+  - first:
+      213: 8651190826888746101
+    second: Wendy_40
+  - first:
+      213: 6982643930283254049
+    second: Wendy_41
+  - first:
+      213: 9023873966551496933
+    second: Wendy_42
+  - first:
+      213: -2220892848878685986
+    second: Wendy_43
+  - first:
+      213: 2103743746750718721
+    second: Wendy_44
+  - first:
+      213: -3513604926967679946
+    second: Wendy_45
+  - first:
+      213: -172213596046261718
+    second: Wendy_46
+  - first:
+      213: -3190984149865918596
+    second: Wendy_47
+  - first:
+      213: -5226820411319951861
+    second: Wendy_48
+  - first:
+      213: -5446545840133778204
+    second: Wendy_49
+  - first:
+      213: -1251785162340036192
+    second: Wendy_50
+  - first:
+      213: -5161082647543855615
+    second: Wendy_51
+  - first:
+      213: -7353637861635100386
+    second: Wendy_52
+  - first:
+      213: 2731574397790076726
+    second: Wendy_53
+  - first:
+      213: -321868448766324847
+    second: Wendy_54
+  - first:
+      213: 9203703785793977036
+    second: Wendy_55
+  - first:
+      213: -7159503083183920745
+    second: Wendy_56
+  - first:
+      213: 4210522344191879514
+    second: Wendy_57
+  - first:
+      213: 1922067464017243
+    second: Wendy_58
+  - first:
+      213: -5843632031468275764
+    second: Wendy_59
+  - first:
+      213: 6552597437052334498
+    second: Ed_0
+  - first:
+      213: 7014940356137446588
+    second: Ed_1
+  - first:
+      213: -7492661259742037904
+    second: Ed_2
+  - first:
+      213: -1049458826981159308
+    second: Ed_3
+  - first:
+      213: 3897271837053921556
+    second: Ed_4
+  - first:
+      213: 3461550614524124836
+    second: Ed_5
+  - first:
+      213: -8632764550952282787
+    second: Ed_6
+  - first:
+      213: -2272618039092693171
+    second: Ed_7
+  - first:
+      213: 5384418489172392755
+    second: Ed_8
+  - first:
+      213: -3954704490532148464
+    second: Ed_9
+  - first:
+      213: -1670587966868410421
+    second: Ed_10
+  - first:
+      213: -4634183543818123993
+    second: Ed_11
+  - first:
+      213: -263102317116478007
+    second: Ed_12
+  - first:
+      213: 8512703021288724570
+    second: Ed_13
+  - first:
+      213: 2333229163449729582
+    second: Ed_14
+  - first:
+      213: 6141914134425536719
+    second: Ed_15
+  - first:
+      213: -5423994452775408735
+    second: Ed_16
+  - first:
+      213: 4954900670707552591
+    second: Ed_17
+  - first:
+      213: -1312017457528672281
+    second: Ed_18
+  - first:
+      213: 5160999372691883132
+    second: Ed_19
+  - first:
+      213: -5632813212969735250
+    second: Ed_20
+  - first:
+      213: 8238726489043880525
+    second: Ed_21
+  - first:
+      213: -8992267550778077593
+    second: Ed_22
+  - first:
+      213: 552690259448751456
+    second: Ed_23
+  - first:
+      213: 8736555071024014079
+    second: Ed_24
+  - first:
+      213: 5434829284422687933
+    second: Ed_25
+  - first:
+      213: 8822834272371514012
+    second: Ed_26
+  - first:
+      213: 4140740201657373098
+    second: Ed_27
+  - first:
+      213: 8673098156182647229
+    second: Ed_28
+  - first:
+      213: 4640568880063884135
+    second: Ed_29
+  - first:
+      213: 5089791693073927228
+    second: Ed_30
+  - first:
+      213: 7796036123008976693
+    second: Ed_31
+  - first:
+      213: -7085753132241254336
+    second: Ed_32
+  - first:
+      213: -3292744365682321150
+    second: Ed_33
+  - first:
+      213: -3690400785604351241
+    second: Ed_34
+  - first:
+      213: -1310677008598391201
+    second: Ed_35
+  - first:
+      213: 1384015158748915450
+    second: Ed_36
+  - first:
+      213: 8147838046033302316
+    second: Ed_37
+  - first:
+      213: -7497643552566241552
+    second: Ed_38
+  - first:
+      213: -2542328936881858446
+    second: Ed_39
+  - first:
+      213: 4505319544397460115
+    second: Ed_40
+  - first:
+      213: -1586744433899809829
+    second: Ed_41
+  - first:
+      213: 967180187769605349
+    second: Ed_42
+  - first:
+      213: 5141476720214734322
+    second: Ed_43
+  - first:
+      213: -5311005897434253743
+    second: Ed_44
+  - first:
+      213: 9148416971870970968
+    second: Ed_45
+  - first:
+      213: 9180985001706369779
+    second: Ed_46
+  - first:
+      213: -6799480035103539233
+    second: Ed_47
+  - first:
+      213: 4149071109510449074
+    second: Ed_48
+  - first:
+      213: 3912767050715192069
+    second: Ed_49
+  - first:
+      213: -5764297191962698649
+    second: Ed_50
+  - first:
+      213: 1221245959266106770
+    second: Ed_51
+  - first:
+      213: 1208215611660550723
+    second: Ed_52
+  - first:
+      213: 7530845970638983458
+    second: Ed_53
+  - first:
+      213: 4551104798284733157
+    second: Ed_54
+  - first:
+      213: -9064631771695618307
+    second: Ed_55
+  - first:
+      213: -3087340522620528435
+    second: Ed_56
+  - first:
+      213: 480654064038863392
+    second: Ed_57
+  - first:
+      213: 7689119923268050038
+    second: Ed_58
+  - first:
+      213: 2240113156646947798
+    second: Ed_59
+  - first:
+      213: -5616021209200547710
+    second: Fred_0
+  - first:
+      213: 5082137959631201844
+    second: Fred_1
+  - first:
+      213: 9039676152371128785
+    second: Fred_2
+  - first:
+      213: -6231079840041492433
+    second: Fred_3
+  - first:
+      213: 6038248187534272367
+    second: Fred_4
+  - first:
+      213: 4208091782489534837
+    second: Fred_5
+  - first:
+      213: 5830577986784951843
+    second: Fred_6
+  - first:
+      213: -6751508712004307284
+    second: Fred_7
+  - first:
+      213: -6414880042637611753
+    second: Fred_8
+  - first:
+      213: 1426910817453788685
+    second: Fred_9
+  - first:
+      213: -700494998291956438
+    second: Fred_10
+  - first:
+      213: -4540256925963281346
+    second: Fred_11
+  - first:
+      213: -4751694655453803221
+    second: Fred_12
+  - first:
+      213: 8381277047792032184
+    second: Fred_13
+  - first:
+      213: -2036668132744343266
+    second: Fred_14
+  - first:
+      213: 8754992860082489239
+    second: Fred_15
+  - first:
+      213: 7401858226153445050
+    second: Fred_16
+  - first:
+      213: 3832548088829974816
+    second: Fred_17
+  - first:
+      213: -7984073184462999688
+    second: Fred_18
+  - first:
+      213: -3476463125803492527
+    second: Fred_19
+  - first:
+      213: -4488246517001999048
+    second: Fred_20
+  - first:
+      213: -5905055140152338965
+    second: Fred_21
+  - first:
+      213: 5679799539960565525
+    second: Fred_22
+  - first:
+      213: 8012554976967913024
+    second: Fred_23
+  - first:
+      213: 8782278661233218750
+    second: Fred_24
+  - first:
+      213: 3121563624417004496
+    second: Fred_25
+  - first:
+      213: 3986055235372548020
+    second: Fred_26
+  - first:
+      213: 6540781268593820883
+    second: Fred_27
+  - first:
+      213: 5068667303467178455
+    second: Fred_28
+  - first:
+      213: 3575431637948842402
+    second: Fred_29
+  - first:
+      213: -6812987407437447041
+    second: Fred_30
+  - first:
+      213: -5974363783043065179
+    second: Fred_31
+  - first:
+      213: 2106887290678344922
+    second: Fred_32
+  - first:
+      213: -5553321816558294016
+    second: Fred_33
+  - first:
+      213: -7897617666371413454
+    second: Fred_34
+  - first:
+      213: 7492064237349593874
+    second: Fred_35
+  - first:
+      213: -3291846238476366582
+    second: Fred_36
+  - first:
+      213: 1424840585061144812
+    second: Fred_37
+  - first:
+      213: -1988475889940632651
+    second: Fred_38
+  - first:
+      213: -939584289709153441
+    second: Fred_39
+  - first:
+      213: 5618609819436190238
+    second: Fred_40
+  - first:
+      213: 8205734421131218379
+    second: Fred_41
+  - first:
+      213: -8195999020376872444
+    second: Fred_42
+  - first:
+      213: 6917842261127042044
+    second: Fred_43
+  - first:
+      213: -2062085481091058267
+    second: Fred_44
+  - first:
+      213: 1568352858048516608
+    second: Fred_45
+  - first:
+      213: -5564920262252899283
+    second: Fred_46
+  - first:
+      213: 3086009409284810660
+    second: Fred_47
+  - first:
+      213: -4783823952237032678
+    second: Fred_48
+  - first:
+      213: 6635418627462667221
+    second: Fred_49
+  - first:
+      213: -6143701641719072217
+    second: Fred_50
+  - first:
+      213: -3288896643117169363
+    second: Fred_51
+  - first:
+      213: 382118092886929658
+    second: Fred_52
+  - first:
+      213: 7858365558939379656
+    second: Fred_53
+  - first:
+      213: -5805238370415048159
+    second: Fred_54
+  - first:
+      213: 7505208372413793080
+    second: Fred_55
+  - first:
+      213: 8540699940489671177
+    second: Fred_56
+  - first:
+      213: -6108515267027765626
+    second: Fred_57
+  - first:
+      213: 4989902287988667515
+    second: Fred_58
+  - first:
+      213: -3143812438648961877
+    second: Fred_59
+  - first:
+      213: 7376068530686808374
+    second: MIchael_0
+  - first:
+      213: -3104437068074222318
+    second: MIchael_1
+  - first:
+      213: -4166549884616152248
+    second: MIchael_2
+  - first:
+      213: 8797597521329857954
+    second: MIchael_3
+  - first:
+      213: 5845749347203084146
+    second: MIchael_4
+  - first:
+      213: 7804695891374228830
+    second: MIchael_5
+  - first:
+      213: 7881980381199298631
+    second: MIchael_6
+  - first:
+      213: 9211381334840354361
+    second: MIchael_7
+  - first:
+      213: 6518364906232239951
+    second: MIchael_8
+  - first:
+      213: -7345874789147822346
+    second: MIchael_9
+  - first:
+      213: 1871868277953400660
+    second: MIchael_10
+  - first:
+      213: 5730364946000692905
+    second: MIchael_11
+  - first:
+      213: -6420237693326094497
+    second: MIchael_12
+  - first:
+      213: 2487414006908815095
+    second: MIchael_13
+  - first:
+      213: 1851940748433931482
+    second: MIchael_14
+  - first:
+      213: -6221858294448708077
+    second: MIchael_15
+  - first:
+      213: -9211430295990386054
+    second: MIchael_16
+  - first:
+      213: -2120981000751495310
+    second: MIchael_17
+  - first:
+      213: 1181183108823467014
+    second: MIchael_18
+  - first:
+      213: -5523183332931017430
+    second: MIchael_19
+  - first:
+      213: -2598937902443702474
+    second: MIchael_20
+  - first:
+      213: -4929486198275324699
+    second: MIchael_21
+  - first:
+      213: -2305343605658968337
+    second: MIchael_22
+  - first:
+      213: -5324577144216249471
+    second: MIchael_23
+  - first:
+      213: -4920127719137406289
+    second: MIchael_24
+  - first:
+      213: -2822811455351771863
+    second: MIchael_25
+  - first:
+      213: -2199561436421945298
+    second: MIchael_26
+  - first:
+      213: 4857562265627386205
+    second: MIchael_27
+  - first:
+      213: 3376550800749948997
+    second: MIchael_28
+  - first:
+      213: -4297138311474709617
+    second: MIchael_29
+  - first:
+      213: -448191946777080647
+    second: MIchael_30
+  - first:
+      213: 4050479417588666451
+    second: MIchael_31
+  - first:
+      213: 3990190508530883276
+    second: MIchael_32
+  - first:
+      213: -8846782181393998796
+    second: MIchael_33
+  - first:
+      213: -8379376826935280587
+    second: MIchael_34
+  - first:
+      213: -7991381531043974771
+    second: MIchael_35
+  - first:
+      213: -2315189968086320640
+    second: MIchael_36
+  - first:
+      213: 5870881149661806298
+    second: MIchael_37
+  - first:
+      213: -6992524828730902479
+    second: MIchael_38
+  - first:
+      213: 2944692003206913859
+    second: MIchael_39
+  - first:
+      213: 5977015536901590381
+    second: MIchael_40
+  - first:
+      213: -6240782555798675398
+    second: MIchael_41
+  - first:
+      213: -3130640445998813135
+    second: MIchael_42
+  - first:
+      213: 7619501609570864018
+    second: MIchael_43
+  - first:
+      213: -7132472311275778787
+    second: MIchael_44
+  - first:
+      213: 3235924267659056533
+    second: MIchael_45
+  - first:
+      213: 6229132180674893921
+    second: MIchael_46
+  - first:
+      213: -8403220220139658221
+    second: MIchael_47
+  - first:
+      213: 1204448867240662619
+    second: MIchael_48
+  - first:
+      213: -766688746663323764
+    second: MIchael_49
+  - first:
+      213: -168897812390504864
+    second: MIchael_50
+  - first:
+      213: 8378019925815935663
+    second: MIchael_51
+  - first:
+      213: -1352891817559947927
+    second: MIchael_52
+  - first:
+      213: 547577181134132314
+    second: MIchael_53
+  - first:
+      213: 6243985508367190757
+    second: MIchael_54
+  - first:
+      213: -2351930999832210304
+    second: MIchael_55
+  - first:
+      213: 3011973156326548773
+    second: MIchael_56
+  - first:
+      213: 8999868557481967102
+    second: MIchael_57
+  - first:
+      213: -5038562981335704441
+    second: MIchael_58
+  - first:
+      213: -1398797620154558924
+    second: MIchael_59
+  - first:
+      213: 6926301091045095115
+    second: Jeff_0
+  - first:
+      213: 7711827284508901177
+    second: Jeff_1
+  - first:
+      213: -351934525632413342
+    second: Jeff_2
+  - first:
+      213: -5430053840107581936
+    second: Jeff_3
+  - first:
+      213: -265720827158965702
+    second: Jeff_4
+  - first:
+      213: -5818609503379110382
+    second: Jeff_5
+  - first:
+      213: 7458516421346188418
+    second: Jeff_6
+  - first:
+      213: -313173365857586954
+    second: Jeff_7
+  - first:
+      213: 2795122696745949202
+    second: Jeff_8
+  - first:
+      213: -4003629377778523721
+    second: Jeff_9
+  - first:
+      213: 4279663176200293580
+    second: Jeff_10
+  - first:
+      213: 5526182394425600277
+    second: Jeff_11
+  - first:
+      213: 2817651795685922902
+    second: Jeff_12
+  - first:
+      213: 4690509581377047142
+    second: Jeff_13
+  - first:
+      213: -1688576353772972921
+    second: Jeff_14
+  - first:
+      213: -465475481934739067
+    second: Jeff_15
+  - first:
+      213: -4013340453975063334
+    second: Jeff_16
+  - first:
+      213: 5712903505641169083
+    second: Jeff_17
+  - first:
+      213: 7958641444573376732
+    second: Jeff_18
+  - first:
+      213: -4651368869325113780
+    second: Jeff_19
+  - first:
+      213: -3826891922268028645
+    second: Jeff_20
+  - first:
+      213: 7578565300726741755
+    second: Jeff_21
+  - first:
+      213: -363930869914794700
+    second: Jeff_22
+  - first:
+      213: -2558754509862136565
+    second: Jeff_23
+  - first:
+      213: 3980214817451953691
+    second: Jeff_24
+  - first:
+      213: 165822626829575652
+    second: Jeff_25
+  - first:
+      213: -5061008933344633000
+    second: Jeff_26
+  - first:
+      213: -5126872679925459895
+    second: Jeff_27
+  - first:
+      213: -1406369531655540945
+    second: Jeff_28
+  - first:
+      213: 4099414188395425685
+    second: Jeff_29
+  - first:
+      213: 3513605175802492406
+    second: Jeff_30
+  - first:
+      213: -2876881162762217397
+    second: Jeff_31
+  - first:
+      213: 2870267861883880806
+    second: Jeff_32
+  - first:
+      213: -510706854459820467
+    second: Jeff_33
+  - first:
+      213: -1091564187094063295
+    second: Jeff_34
+  - first:
+      213: 5539735473189927389
+    second: Jeff_35
+  - first:
+      213: -6546774403096454615
+    second: Jeff_36
+  - first:
+      213: 3536705390644689337
+    second: Jeff_37
+  - first:
+      213: 1287902338564571446
+    second: Jeff_38
+  - first:
+      213: 4008260472728778308
+    second: Jeff_39
+  - first:
+      213: -4100394782969507102
+    second: Jeff_40
+  - first:
+      213: 1566148685017215332
+    second: Jeff_41
+  - first:
+      213: -5645129816553273158
+    second: Jeff_42
+  - first:
+      213: 2637406651166434039
+    second: Jeff_43
+  - first:
+      213: -616886577341383477
+    second: Jeff_44
+  - first:
+      213: 1703488427411858193
+    second: Jeff_45
+  - first:
+      213: -4127326980250546210
+    second: Jeff_46
+  - first:
+      213: 5657848279761236775
+    second: Jeff_47
+  - first:
+      213: -5481423096003966517
+    second: Jeff_48
+  - first:
+      213: 730467410570811392
+    second: Jeff_49
+  - first:
+      213: -3832049938089286008
+    second: Jeff_50
+  - first:
+      213: -8049613032563356613
+    second: Jeff_51
+  - first:
+      213: 2903449291757974492
+    second: Jeff_52
+  - first:
+      213: 7975660927854890167
+    second: Jeff_53
+  - first:
+      213: -258787858031064741
+    second: Jeff_54
+  - first:
+      213: 5893047569054558916
+    second: Jeff_55
+  - first:
+      213: -265861158282651018
+    second: Jeff_56
+  - first:
+      213: 8670349782259782361
+    second: Jeff_57
+  - first:
+      213: -1690117222500764668
+    second: Jeff_58
+  - first:
+      213: 4405269983704172667
+    second: Jeff_59
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Jeff_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc6b42b252a2f1060800000000000000
+      internalID: 6926301091045095115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93f71566e0ae50b60800000000000000
+      internalID: 7711827284508901177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2610c7fd96dad1bf0800000000000000
+      internalID: -351934525632413342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01e44255dc294a4b0800000000000000
+      internalID: -5430053840107581936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3254c7c058ff4cf0800000000000000
+      internalID: -265720827158965702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21640682c75204fa0800000000000000
+      internalID: -5818609503379110382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28cd1c51b29f18760800000000000000
+      internalID: 7458516421346188418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f0f1f6ab7267abf0800000000000000
+      internalID: -313173365857586954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2189c2398454ac620800000000000000
+      internalID: 2795122696745949202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b161350b404078c0800000000000000
+      internalID: -4003629377778523721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccc0dbfebfa646b30800000000000000
+      internalID: 4279663176200293580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51961c7db91f0bc40800000000000000
+      internalID: 5526182394425600277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 658d99e216f4a1720800000000000000
+      internalID: 2817651795685922902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66a8b85ec99081140800000000000000
+      internalID: 4690509581377047142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 784dc31b0c8f098e0800000000000000
+      internalID: -1688576353772972921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_15
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58940afe38c4a89f0800000000000000
+      internalID: -465475481934739067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_16
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad48c16ee10cd48c0800000000000000
+      internalID: -4013340453975063334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_17
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb063d9587f484f40800000000000000
+      internalID: 5712903505641169083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_18
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd07f762a36c27e60800000000000000
+      internalID: 7958641444573376732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_19
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c46f09848a4037fb0800000000000000
+      internalID: -4651368869325113780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b11076b821624eac0800000000000000
+      internalID: -3826891922268028645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfa3be0fcf87c2960800000000000000
+      internalID: 7578565300726741755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4350eef4dce03faf0800000000000000
+      internalID: -363930869914794700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_23
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b051d34845a7d7cd0800000000000000
+      internalID: -2558754509862136565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_24
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1e48f3d9409c3730800000000000000
+      internalID: 3980214817451953691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_25
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e526efecce1d4200800000000000000
+      internalID: 165822626829575652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_26
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f1ae2803fa3c9b0800000000000000
+      internalID: -5061008933344633000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_27
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94453600670b9d8b0800000000000000
+      internalID: -5126872679925459895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_28
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f2dbabc529b7ce0800000000000000
+      internalID: -1406369531655540945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_29
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f61861c7b04e830800000000000000
+      internalID: 4099414188395425685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f57ea0aa45d2c030800000000000000
+      internalID: 3513605175802492406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b489b8823d34318d0800000000000000
+      internalID: -2876881162762217397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_32
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6650fcdb96d35d720800000000000000
+      internalID: 2870267861883880806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_33
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d46b09b52da99e8f0800000000000000
+      internalID: -510706854459820467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_34
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14768bab72cf9d0f0800000000000000
+      internalID: -1091564187094063295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_35
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd9bd15ef0811ec40800000000000000
+      internalID: 5539735473189927389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_36
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92ad0dedd5f2525a0800000000000000
+      internalID: -6546774403096454615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_37
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b9f59480d6e41130800000000000000
+      internalID: 3536705390644689337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_38
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63149837a5c8fd110800000000000000
+      internalID: 1287902338564571446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_39
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 446fc3cc9a330a730800000000000000
+      internalID: 4008260472728778308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e2dc327ba87817c0800000000000000
+      internalID: -4100394782969507102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_41
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46175e36ee31cb510800000000000000
+      internalID: 1566148685017215332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_42
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab8406d475878a1b0800000000000000
+      internalID: -5645129816553273158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_43
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f2270b2063f99420800000000000000
+      internalID: 2637406651166434039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_44
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc3cd22de06077f0800000000000000
+      internalID: -616886577341383477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_45
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1136fd203b104a710800000000000000
+      internalID: 1703488427411858193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_46
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edfc74e9af9c8b6c0800000000000000
+      internalID: -4127326980250546210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_47
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723393ca807b48e40800000000000000
+      internalID: 5657848279761236775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_48
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc9cf0b6cb21ee3b0800000000000000
+      internalID: -5481423096003966517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_49
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 008921f5d34232a00800000000000000
+      internalID: 730467410570811392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88661a662e2d1dac0800000000000000
+      internalID: -3832049938089286008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_51
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3cc4b678970a4090800000000000000
+      internalID: -8049613032563356613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_52
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd3f79a6fbf1b4820800000000000000
+      internalID: 2903449291757974492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_53
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bcc0c56b5d3fae60800000000000000
+      internalID: 7975660927854890167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_54
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b59cfd170d9986cf0800000000000000
+      internalID: -258787858031064741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_55
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cae9f59a8f48c150800000000000000
+      internalID: 5893047569054558916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_56
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67a1df46fa87f4cf0800000000000000
+      internalID: -265861158282651018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_57
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d2daf18035435870800000000000000
+      internalID: 8670349782259782361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_58
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404721c375f7b88e0800000000000000
+      internalID: -1690117222500764668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jeff_59
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b78c066c5b9a22d30800000000000000
+      internalID: 4405269983704172667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
