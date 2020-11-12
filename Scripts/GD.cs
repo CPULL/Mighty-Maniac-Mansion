@@ -257,12 +257,5 @@ public class GD : MonoBehaviour {
     }
   }
 
-  static LightMode lights = LightMode.LightsOn;
-
-  internal static LightMode SwitchAllLights() {
-    if (lights == LightMode.LightsOn) lights = LightMode.LightsOff;
-    if (lights == LightMode.LightsOff) lights = LightMode.LightsOn;
-    if (lights == LightMode.FlashLights) lights = LightMode.LightsOn;
-    return lights;
-  }
+  public static bool globalLights = true;
 }

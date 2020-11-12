@@ -8,7 +8,6 @@ public class RoomEditor : Editor {
   SerializedProperty minL, maxR;
   SerializedProperty minY, maxY, scalePerc;
   SerializedProperty CameraGround, external, lights;
-  SerializedProperty sr;
 
 
   void OnEnable() {
@@ -20,9 +19,7 @@ public class RoomEditor : Editor {
     maxY = serializedObject.FindProperty("maxY");
     scalePerc = serializedObject.FindProperty("scalePerc");
     CameraGround = serializedObject.FindProperty("CameraGround");
-    external = serializedObject.FindProperty("external");
-    lights = serializedObject.FindProperty("lightsStatus");
-    sr = serializedObject.FindProperty("sr");
+    lights = serializedObject.FindProperty("lights");
   }
 
   public override void OnInspectorGUI() {
@@ -56,7 +53,6 @@ public class RoomEditor : Editor {
     EditorGUIUtility.labelWidth = 100;
     EditorGUILayout.PropertyField(CameraGround, new GUIContent("Camera Ground"));
     EditorGUIUtility.labelWidth = 60;
-    EditorGUILayout.PropertyField(external, new GUIContent("Is external"));
     EditorGUILayout.PropertyField(lights, new GUIContent("Lights"));
     EditorGUILayout.EndHorizontal();
 

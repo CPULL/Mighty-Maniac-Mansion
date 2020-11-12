@@ -60,3 +60,5 @@ crashlytics-build.properties
 
 ~$*.pptx.meta
 ~$*.pptx
+~$*.xlsx.meta
+~$*.xlsx

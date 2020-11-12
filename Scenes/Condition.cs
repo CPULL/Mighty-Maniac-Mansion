@@ -225,9 +225,9 @@ public class Condition {
 
         if (a1 == null) return false;
         if (bv)
-          return !a1.currentRoom.external;
+          return a1.currentRoom.lights != LightMode.External;
         else
-          return a1.currentRoom.external;
+          return a1.currentRoom.lights == LightMode.External;
       }
 
       case ConditionType.SameRoom: {

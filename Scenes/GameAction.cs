@@ -33,7 +33,7 @@ public enum ActionType {
   PressAndFlag = 21, // Press an item and set a flag (until the actor moves away)
   PressAndItem = 22, // Press an item and set a door (until the actor moves away)
 
-  SwitchRoomLight = 23, // Turns on and off a light in a room (all rooms in case no room is specified)
+  SwitchRoomLight = 23, // Turns on and off the lights. A room can be specified or the global light can be specified. The mode can be On or Off.
   StopScenes = 24, // Stops all not unique cutscenes with the given actor
   SetCurrentRoomActor = 25, // Changes the current actor with the one in the same room of ID1 (ID2 == 0 for any actor, == 1 for player)
 
@@ -923,14 +923,19 @@ public class GameAction {
 
       case ActionType.SwitchRoomLight: {
         if (string.IsNullOrEmpty(str)) {
-          LightMode lightsOn = GD.SwitchAllLights();
+          if (val == 0) GD.globalLights = true;
+          else if (val == 1) GD.globalLights = false;
+          else if (val == 2) GD.globalLights = !GD.globalLights;
           foreach (Room r in AllObjects.RoomList) {
-            r.SetLights(lightsOn);
+            r.SetLights(GD.globalLights, GD.c.batteriesUsed != BatteriesUsed.NoBatteries);
           }
         }
         else {
           Room r = AllObjects.GetRoom(str);
-          if (r != null) r.SwitchLights();
+          bool on = true;
+          if (val == 1) on = false;
+          else if (val == 2) on = !r.HasLights();
+          if (r != null) r.SetLights(on, GD.c.batteriesUsed != BatteriesUsed.NoBatteries);
         }
         Complete();
       }

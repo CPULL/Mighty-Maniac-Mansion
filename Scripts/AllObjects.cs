@@ -151,6 +151,7 @@ public enum ItemEnum {
   BrokenDeveloperBottle,
   OldBatteries,
   PlutoniumBatteries,
+  SilverKey,
 }
 
 

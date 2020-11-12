@@ -3,14 +3,11 @@ using UnityEngine;
 
 [CustomPropertyDrawer(typeof(GameAction))]
 public class GameActionPropertyDrawer : PropertyDrawer {
-  readonly GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
-    wordWrap = true,
-    fixedHeight = EditorGUIUtility.singleLineHeight * 2
-  };
   private readonly string[] panNotPan = { "Immediate", "Panning" };
   private readonly string[] openCloseLock = { "Open", "Close", "Lock", "Unlock" };
   private readonly string[] enableDisable = { "Enable", "Disable" };
   private readonly string[] fadeInOut = { "Fade In", "Fade Out" };
+  private readonly string[] turnOnOff = { "Turn On", "Turn Off", "Switch" };
 
 
 
@@ -63,7 +60,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
 
         case ActionType.SwitchRoomLight: {
           Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);
           str.stringValue = EditorGUI.TextField(aRect, str.stringValue);
+          val.intValue = EditorGUI.Popup(bRect, val.intValue, turnOnOff);
         }
         break;
 

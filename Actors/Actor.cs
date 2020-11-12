@@ -70,7 +70,7 @@ public class Actor : MonoBehaviour {
 
     isTentacle = id == Chars.GreenTentacle || id == Chars.PurpleTentacle || id == Chars.BlueTentacle;
     if (isTentacle) audios.clip = TentacleSteps;
-    lightIsOn = LightMode.LightsOn;
+    lightIsOn = LightMode.GlobalLightsOn;
 
     if (currentRoom != null) {
       Vector3 startpos = new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY + currentRoom.minY) / 2, 0);
@@ -78,7 +78,7 @@ public class Actor : MonoBehaviour {
         SetScaleAndPosition(startpos);
       else
         SetScaleAndPosition(transform.position);
-      lightIsOn = currentRoom.lightsStatus;
+      lightIsOn = currentRoom.lights;
     }
 
     idle = id.ToString() + " Idle";
@@ -161,9 +161,13 @@ public class Actor : MonoBehaviour {
     if (Controller.OverActor(this)) return;
     Material m = GD.Outline();
     switch (lightIsOn) {
-      case LightMode.LightsOn: m = GD.Outline(); break;
-      case LightMode.FlashLights: m = GD.FlashLight(); break;
-      case LightMode.LightsOff: m = GD.LightOffOutline(); break;
+      case LightMode.External: m = GD.Normal(); break;
+      case LightMode.GlobalLightsOn: m = GD.Normal(); break;
+      case LightMode.LocalLightsOn: m = GD.Normal(); break;
+      case LightMode.GlobalLightsFlashlight: m = GD.FlashLight(); break;
+      case LightMode.LocalLightsFlashlight: m = GD.FlashLight(); break;
+      case LightMode.GlobalLightsOff: m = GD.LightOffOutline(); break;
+      case LightMode.LocalLightsOff: m = GD.LightOffOutline(); break;
     }
     Face.material = m;
     Arms.material = m;
@@ -172,25 +176,20 @@ public class Actor : MonoBehaviour {
 
   void OnMouseExit() {
     Controller.OverActor(null);
-    Material m = GD.Normal();
-    switch (lightIsOn) {
-      case LightMode.LightsOn: m = GD.Normal(); break;
-      case LightMode.FlashLights: m = GD.FlashLight(); break;
-      case LightMode.LightsOff: m = GD.LightOff(); break;
-    }
-    Face.material = m;
-    Arms.material = m;
-    Legs.material = m;
+    SetLight(lightIsOn);
   }
 
   public void SetLight(LightMode lights) {
     lightIsOn = lights;
-
-    Material m = GD.Normal();
+    Material m = null;
     switch (lights) {
-      case LightMode.LightsOn: m = GD.Normal(); break;
-      case LightMode.FlashLights: m = GD.FlashLight(); break;
-      case LightMode.LightsOff: m = GD.LightOff(); break;
+      case LightMode.External: m = GD.Normal(); break;
+      case LightMode.GlobalLightsOn: m = GD.Normal(); break;
+      case LightMode.LocalLightsOn: m = GD.Normal(); break;
+      case LightMode.GlobalLightsFlashlight: m = GD.FlashLight(); break;
+      case LightMode.LocalLightsFlashlight: m = GD.FlashLight(); break;
+      case LightMode.GlobalLightsOff: m = GD.LightOff(); break;
+      case LightMode.LocalLightsOff: m = GD.LightOff(); break;
     }
     Face.material = m;
     Arms.material = m;
