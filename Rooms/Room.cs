@@ -12,7 +12,7 @@ public class Room : MonoBehaviour {
   public float scalePerc = -.05f;
   public float CameraGround;
   public bool external;
-  public bool lights;
+  public LightMode lightsStatus = LightMode.LightsOn;
   List<SpriteRenderer> srs;
   List<PathNode> paths;
 
@@ -58,25 +58,36 @@ public class Room : MonoBehaviour {
     return closest;
   }
 
-  internal void SetMaterial(Material mat) {
-    foreach(SpriteRenderer sr in srs)
-    sr.material = mat;
+  internal void SetLights(LightMode lightsOn) {
+    lightsStatus = lightsOn;
+    UpdateLights();
   }
 
-  internal void SetLights(bool lightsOn) {
-    lights = lightsOn;
-    foreach (SpriteRenderer sr in srs)
-      sr.material = lights ? GD.Normal() : GD.LightOffRoom();
-
-    // All actors in the room should get the material
-    foreach (Actor a in GD.c.allActors)
-      if (a != null && a.currentRoom == this) a.SetLight(lights);
+  internal void SwitchLights() {
+    if (lightsStatus == LightMode.LightsOn) lightsStatus = LightMode.LightsOff;
+    if (lightsStatus == LightMode.LightsOff) lightsStatus = LightMode.LightsOn;
+    if (lightsStatus == LightMode.FlashLights) lightsStatus = LightMode.LightsOn;
+    UpdateLights();
   }
 
   internal void UpdateLights() {
+    Material m = GD.Normal();
+    switch (lightsStatus) {
+      case LightMode.LightsOn: m = GD.Normal(); break;
+      case LightMode.FlashLights: m = GD.FlashLight(); break;
+      case LightMode.LightsOff: m = GD.LightOffRoom(); break;
+    }
     foreach (SpriteRenderer sr in srs)
-      sr.material = lights ? GD.Normal() : GD.LightOffRoom();
+      sr.material = m;
+
+    // All actors in the room should get the material
     foreach (Actor a in GD.c.allActors)
-      if (a != null && a.currentRoom == this) a.SetLight(lights);
+      if (a != null && a.currentRoom == this) a.SetLight(lightsStatus);
   }
+}
+
+public enum LightMode {
+  LightsOn,
+  FlashLights,
+  LightsOff,
 }

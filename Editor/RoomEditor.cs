@@ -21,7 +21,7 @@ public class RoomEditor : Editor {
     scalePerc = serializedObject.FindProperty("scalePerc");
     CameraGround = serializedObject.FindProperty("CameraGround");
     external = serializedObject.FindProperty("external");
-    lights = serializedObject.FindProperty("lights");
+    lights = serializedObject.FindProperty("lightsStatus");
     sr = serializedObject.FindProperty("sr");
   }
 

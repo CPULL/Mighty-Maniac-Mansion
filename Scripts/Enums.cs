@@ -186,3 +186,7 @@ public enum FloorType {
   Grass1=1, Grass2=2,
   Concrete=3, Wood=4, Marble=5, Carpet=6
 }
+
+public enum BatteriesUsed {
+  NoBatteries, OldBatteries, Batteries, PlutoniumBatteries
+}

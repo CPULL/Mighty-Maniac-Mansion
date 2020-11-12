@@ -149,6 +149,8 @@ public enum ItemEnum {
   RoastedHamster,
   BrokenBottleLiquid,
   BrokenDeveloperBottle,
+  OldBatteries,
+  PlutoniumBatteries,
 }
 
 

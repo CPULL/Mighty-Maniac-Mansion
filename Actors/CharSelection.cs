@@ -220,7 +220,7 @@ public class CharSelection : MonoBehaviour {
     ActorPortraitA.sprite = Arms[num];
     ActorPortraitL.sprite = Legs[num];
     if (a == null)
-      ActorDescription.text = "Not yet available:\n" + (Chars)num;
+      ActorDescription.text = "Not yet available:\n" + (Chars)(num + 20);
     else {
       string descr = a.Description + "\n\n<i>Skills</u>:\n";
       foreach (Skill s in a.skills)

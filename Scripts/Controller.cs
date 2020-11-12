@@ -142,6 +142,58 @@ public class Controller : MonoBehaviour {
     bool rmb = Input.GetMouseButtonDown(1);
 
 
+    if (batteriesUsed != BatteriesUsed.NoBatteries) {
+      Vector2 fl = Input.mousePosition;
+      if (fl.x < 0) fl.x = 0;
+      if (fl.x > 1920) fl.x = 1920;
+      if (fl.y < 0) fl.y = 0;
+      if (fl.y > 1080) fl.y = 1080;
+      FlashLightRT.position = fl;
+    }
+    switch (batteriesUsed) {
+      case BatteriesUsed.OldBatteries:
+        flashlightTimeOld -= Time.deltaTime;
+        if (flashlightTimeOld < 30 && !messageOldBatteries) {
+          currentActor.Say("The flash light batteries are dying");
+          messageOldBatteries = true;
+        }
+        if (flashlightTimeOld <= 0) {
+          batteriesUsed = BatteriesUsed.NoBatteries;
+          FlashLightPanel.enabled = false;
+          Moon.enabled = true;
+          currentRoom.SetLights(LightMode.LightsOff);
+        }
+        break;
+      case BatteriesUsed.Batteries:
+        flashlightTime -= Time.deltaTime;
+        if (flashlightTime < 30 && !messageBatteries) {
+          currentActor.Say("The flash light batteries are dying");
+          messageBatteries = true;
+        }
+        if (flashlightTime <= 0) {
+          batteriesUsed = BatteriesUsed.NoBatteries;
+          FlashLightPanel.enabled = false;
+          Moon.enabled = true;
+          currentRoom.SetLights(LightMode.LightsOff);
+        }
+        break;
+      case BatteriesUsed.PlutoniumBatteries:
+        flashlightTimePlutonium -= Time.deltaTime;
+        if (flashlightTimePlutonium < 30 && !messagePuBatteries) {
+          currentActor.Say("The flash light batteries are dying");
+          messagePuBatteries = true;
+        }
+        if (flashlightTimePlutonium <= 0) {
+          batteriesUsed = BatteriesUsed.NoBatteries;
+          FlashLightPanel.enabled = false;
+          Moon.enabled = true;
+          currentRoom.SetLights(LightMode.LightsOff);
+        }
+        break;
+    }
+
+
+
     Door aDoor = null;
     if ((lmb || rmb) && walkDelay < 0 && notOverUI) { // Check if we have a door
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 10000, doorLayer);
@@ -174,7 +226,7 @@ public class Controller : MonoBehaviour {
     if (overInventoryItem != null) {
       if (usedItem == overInventoryItem) {
         if (lmb) { /* lmb - remove used */
-          CursorHandler.SetBoth(CursorTypes.Normal);
+          CursorHandler.SetObject(null);
           usedItem = null;
           EnableActorSelection(false);
         }
@@ -219,9 +271,10 @@ public class Controller : MonoBehaviour {
           // Can we use the two items together?
           string res = usedItem.UseTogether(currentActor, overInventoryItem);
           if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
-          CursorHandler.SetObject(null);
           UpdateInventory();
           usedItem = null;
+          overInventoryItem = null;
+          CursorHandler.SetObject(null);
           EnableActorSelection(false);
           Inventory.SetActive(false);
           return;
@@ -399,8 +452,8 @@ public class Controller : MonoBehaviour {
     #endregion
   }
 
-//  private CursorTypes forcedCursor = CursorTypes.Normal;
-//  private Texture2D oldCursor = null;
+  //  private CursorTypes forcedCursor = CursorTypes.Normal;
+  //  private Texture2D oldCursor = null;
   public Texture2D[] Cursors; // FIXME remove
 
   void HandleCursor() {
@@ -728,6 +781,58 @@ public class Controller : MonoBehaviour {
       if (item.Item == itemID) return true;
     }
     return false;
+  }
+
+
+  private float flashlightTime = 6 * 60 * 60; // 6 hours
+  private float flashlightTimeOld = 300; // 5 minutes
+  private float flashlightTimePlutonium = 900; // 15 minutes
+  bool messageOldBatteries = false;
+  bool messageBatteries = false;
+  bool messagePuBatteries = false;
+  public RectTransform FlashLightRT;
+  public Canvas FlashLightPanel;
+  public Image Moon;
+  BatteriesUsed batteriesUsed = BatteriesUsed.NoBatteries;
+
+  internal static void SwitchFlashLight(BatteriesUsed batteries) {
+
+    if (batteries == BatteriesUsed.NoBatteries) {
+      if (GD.c.batteriesUsed == BatteriesUsed.NoBatteries) {
+        GD.c.currentActor.Say("No batteries inside...");
+      }
+      else if (GD.c.currentActor.HasItem(ItemEnum.Flashlight)) {
+        GD.c.FlashLightPanel.enabled = false;
+        GD.c.Moon.enabled = true;
+        GD.c.currentRoom.SetLights(LightMode.LightsOn);
+        if (GD.c.batteriesUsed == BatteriesUsed.Batteries)
+          GD.c.currentActor.inventory.Add(AllObjects.GetItem(ItemEnum.Batteries));
+        else if (GD.c.batteriesUsed == BatteriesUsed.OldBatteries)
+          GD.c.currentActor.inventory.Add(AllObjects.GetItem(ItemEnum.OldBatteries));
+        else if (GD.c.batteriesUsed == BatteriesUsed.PlutoniumBatteries)
+          GD.c.currentActor.inventory.Add(AllObjects.GetItem(ItemEnum.PlutoniumBatteries));
+        GD.c.batteriesUsed = BatteriesUsed.NoBatteries;
+      }
+      else {
+        GD.c.currentActor.Say("I do not have a flashlight...");
+      }
+      return;
+    }
+
+
+    if (GD.c.currentRoom.lightsStatus == LightMode.LightsOn && batteries != BatteriesUsed.NoBatteries) {
+      GD.c.currentActor.Say("No need to consume the batteries.");
+      GD.c.batteriesUsed = BatteriesUsed.NoBatteries;
+      return;
+    }
+    GD.c.batteriesUsed = batteries;
+    GD.c.FlashLightPanel.enabled = (batteries != BatteriesUsed.NoBatteries);
+    GD.c.Moon.enabled = !GD.c.FlashLightPanel.enabled;
+    GD.c.currentRoom.SetLights(LightMode.FlashLights);
+
+    if (batteries == BatteriesUsed.OldBatteries) GD.c.currentActor.inventory.Remove(AllObjects.GetItem(ItemEnum.OldBatteries));
+    if (batteries == BatteriesUsed.Batteries) GD.c.currentActor.inventory.Remove(AllObjects.GetItem(ItemEnum.Batteries));
+    if (batteries == BatteriesUsed.PlutoniumBatteries) GD.c.currentActor.inventory.Remove(AllObjects.GetItem(ItemEnum.PlutoniumBatteries));
   }
 
   #endregion

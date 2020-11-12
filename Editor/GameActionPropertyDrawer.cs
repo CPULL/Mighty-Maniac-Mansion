@@ -67,6 +67,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         }
         break;
 
+        case ActionType.SwitchFlashlight: {
+          Rect aRect = new Rect(position.x + 1 * w2, position.y + lh, w2, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(BatteriesUsed)));
+        }
+        break;
+
         case ActionType.Teleport: {
           Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
           Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);

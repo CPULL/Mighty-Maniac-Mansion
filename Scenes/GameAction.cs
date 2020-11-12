@@ -39,6 +39,8 @@ public enum ActionType {
 
   Cursor = 26, // Used to set the cursor in a specific mode, side effect of skipping the cutscene
   ChangeSprites = 27, // Changes sprites of items
+
+  SwitchFlashlight = 28, // Turns on and off the flashlight
 };
 
 
@@ -121,6 +123,7 @@ public class GameAction {
       break;
 
       case ActionType.SwitchRoomLight: return "Switch lights on " + (string.IsNullOrEmpty(str) ? "Everywhere" : str);
+      case ActionType.SwitchFlashlight: return "Switch flashlights on and off";
 
       case ActionType.Cursor: return "Set currsor as " + (CursorTypes)id1;
 
@@ -152,6 +155,7 @@ public class GameAction {
       case ActionType.CompleteStep:
       case ActionType.Wait:
       case ActionType.SwitchRoomLight:
+      case ActionType.SwitchFlashlight:
       case ActionType.Cursor:
       case ActionType.ChangeSprites:
         return;
@@ -883,6 +887,7 @@ public class GameAction {
         item.whatItDoesL = (WhatItDoes)id2;
         item.whatItDoesR = (WhatItDoes)val;
         item.dir = dir;
+        if (item.Usable == Tstatus.Pickable && item.whatItDoesR == WhatItDoes.Use) item.Usable = Tstatus.Usable;
         Complete();
       }
       break;
@@ -910,17 +915,24 @@ public class GameAction {
       }
       break;
 
+      case ActionType.SwitchFlashlight: {
+        Controller.SwitchFlashLight((BatteriesUsed)id1);
+        Complete();
+      }
+      break;
+
       case ActionType.SwitchRoomLight: {
         if (string.IsNullOrEmpty(str)) {
-          bool lightsOn = !AllObjects.GetRoom("MainHall").lights;
+          LightMode lightsOn = GD.SwitchAllLights();
           foreach (Room r in AllObjects.RoomList) {
             r.SetLights(lightsOn);
           }
         }
         else {
           Room r = AllObjects.GetRoom(str);
-          if (r != null) r.SetLights(!r.lights);
+          if (r != null) r.SwitchLights();
         }
+        Complete();
       }
       break;
 
@@ -943,7 +955,7 @@ public class GameAction {
       }
       break;
 
-      case ActionType.Cursor: { // FIXME we need something right and something left
+      case ActionType.Cursor: {
         Controller.SceneSkipped = true;
         CursorHandler.SetBoth((CursorTypes)id1);
         if (val == 1 || (val == 2 && !Controller.SceneSkipped))

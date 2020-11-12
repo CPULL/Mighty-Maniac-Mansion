@@ -7390,6 +7390,7 @@ Transform:
   - {fileID: 1097948121}
   - {fileID: 1395314328}
   - {fileID: 575926161}
+  - {fileID: 810399080}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8063,7 +8064,7 @@ MonoBehaviour:
   scalePerc: 1.4
   CameraGround: 10
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!82 &202005219
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14363,7 +14364,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365737377}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -15722,7 +15723,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e04dc87da2e4d9a48b4d0a08ab3d6b8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16875,7 +16876,7 @@ MonoBehaviour:
   scalePerc: 1.4
   CameraGround: 20
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &429199945
 GameObject:
   m_ObjectHideFlags: 0
@@ -17650,7 +17651,7 @@ MonoBehaviour:
   scalePerc: 1.25
   CameraGround: 30
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &452136530
 GameObject:
   m_ObjectHideFlags: 0
@@ -18379,7 +18380,7 @@ MonoBehaviour:
   scalePerc: 1.15
   CameraGround: 90
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &465841224
 GameObject:
   m_ObjectHideFlags: 0
@@ -21023,6 +21024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MatNormal: {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
   MatOutline: {fileID: 2100000, guid: 233df67dfaeba2b41aa5851d5c97b866, type: 2}
+  MatFlashLight: {fileID: 2100000, guid: e04dc87da2e4d9a48b4d0a08ab3d6b8d, type: 2}
   MatLightOff: {fileID: 2100000, guid: 38eeae0e18c17ee489ca0a0f48dd0571, type: 2}
   MatLightOffOutline: {fileID: 2100000, guid: 4a1d77a3edf39184b8d1440f0eb36d8d, type: 2}
   MatLightOffRoom: {fileID: 2100000, guid: 2f98f6505adfa964180e6d8533a31655, type: 2}
@@ -21173,7 +21175,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e04dc87da2e4d9a48b4d0a08ab3d6b8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21370,7 +21372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60, y: 50, z: -10}
+  m_LocalPosition: {x: 4.175, y: 2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -27728,7 +27730,7 @@ MonoBehaviour:
   scalePerc: 1.4
   CameraGround: 11
   external: 0
-  lights: 0
+  lightsStatus: 2
 --- !u!1 &683118583
 GameObject:
   m_ObjectHideFlags: 0
@@ -28412,7 +28414,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e04dc87da2e4d9a48b4d0a08ab3d6b8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29662,7 +29664,7 @@ MonoBehaviour:
   scalePerc: 1.15
   CameraGround: 90
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &721397398
 GameObject:
   m_ObjectHideFlags: 0
@@ -31346,7 +31348,7 @@ GameObject:
   - component: {fileID: 758301048}
   - component: {fileID: 758301051}
   m_Layer: 0
-  m_Name: Batteries
+  m_Name: Old Batteries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31364,8 +31366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7366924c8dac923418fc80a4bc96f8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: 15
-  Name: Batteries
+  Item: 28
+  Name: Old Batteries
   owner: 0
   Usable: 1
   openStatus: 0
@@ -31404,7 +31406,28 @@ MonoBehaviour:
       delay: 1
       id1: 1
       id2: 0
-      str: These batteries are exausted
+      str: These batteries are almost exausted
+      pos: {x: 0, y: 0}
+      dir: 4
+      val: 0
+  - Condition:
+      type: 12
+      id: 13
+      iv: 0
+      fv: 0
+      sv: 
+      bv: 1
+      msg: 
+      when: 1
+    Action:
+      running: 0
+      msg: 
+      type: 28
+      Repeatable: 1
+      delay: 1
+      id1: 1
+      id2: 0
+      str: These batteries are almost exausted
       pos: {x: 0, y: 0}
       dir: 4
       val: 0
@@ -33876,7 +33899,7 @@ MonoBehaviour:
   scalePerc: 1.4
   CameraGround: 10
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!82 &790319735
 AudioSource:
   m_ObjectHideFlags: 0
@@ -34031,7 +34054,7 @@ MonoBehaviour:
   scalePerc: 1.4
   CameraGround: 19.8
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!82 &791578440
 AudioSource:
   m_ObjectHideFlags: 0
@@ -35159,7 +35182,106 @@ MonoBehaviour:
   scalePerc: 1.3
   CameraGround: 100
   external: 0
-  lights: 0
+  lightsStatus: 0
+--- !u!1 &810399079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 810399080}
+  - component: {fileID: 810399084}
+  - component: {fileID: 810399083}
+  - component: {fileID: 810399082}
+  m_Layer: 0
+  m_Name: FlashLightPanel Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &810399080
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810399079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1665971735}
+  m_Father: {fileID: 185311594}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &810399082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810399079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &810399083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810399079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 64
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0.1
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &810399084
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810399079}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &810752980
 GameObject:
   m_ObjectHideFlags: 0
@@ -38945,7 +39067,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
+  - {fileID: 2100000, guid: e04dc87da2e4d9a48b4d0a08ab3d6b8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -42109,6 +42231,9 @@ MonoBehaviour:
     skippable: 0
   Inventory: {fileID: 411817673}
   InventoryItemTemplate: {fileID: 1650692365}
+  FlashLightRT: {fileID: 1665971735}
+  FlashLightPanel: {fileID: 810399084}
+  Moon: {fileID: 1544750705}
   ActorPortrait1: {fileID: 1687621014}
   ActorPortrait2: {fileID: 1443085112}
   ActorPortrait3: {fileID: 1970159875}
@@ -44718,7 +44843,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
+  - {fileID: 2100000, guid: e04dc87da2e4d9a48b4d0a08ab3d6b8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -45773,7 +45898,7 @@ MonoBehaviour:
   scalePerc: 1.25
   CameraGround: 50
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &1072714356
 GameObject:
   m_ObjectHideFlags: 0
@@ -47364,7 +47489,7 @@ MonoBehaviour:
   scalePerc: 1.2
   CameraGround: 2
   external: 1
-  lights: 1
+  lightsStatus: 0
 --- !u!82 &1117025436
 AudioSource:
   m_ObjectHideFlags: 0
@@ -49525,7 +49650,7 @@ MonoBehaviour:
   scalePerc: 1.35
   CameraGround: 20
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &1160604577
 GameObject:
   m_ObjectHideFlags: 0
@@ -59311,7 +59436,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e04dc87da2e4d9a48b4d0a08ab3d6b8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -61817,7 +61942,7 @@ MonoBehaviour:
   scalePerc: 1.1
   CameraGround: 2
   external: 1
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &1437637026
 GameObject:
   m_ObjectHideFlags: 0
@@ -62548,7 +62673,7 @@ MonoBehaviour:
   scalePerc: 1.4
   CameraGround: 10
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!82 &1456936269
 AudioSource:
   m_ObjectHideFlags: 0
@@ -66058,7 +66183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1543915100
 Transform:
   m_ObjectHideFlags: 0
@@ -67633,7 +67758,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4efa030c1c5218f48b78a27b1d5de1e1, type: 2}
+  - {fileID: 2100000, guid: e04dc87da2e4d9a48b4d0a08ab3d6b8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71389,7 +71514,7 @@ MonoBehaviour:
   scalePerc: 1.6
   CameraGround: -6.85
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!82 &1654903483
 AudioSource:
   m_ObjectHideFlags: 0
@@ -71805,6 +71930,81 @@ Transform:
   m_Father: {fileID: 1701435547}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1665971734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1665971735}
+  - component: {fileID: 1665971737}
+  - component: {fileID: 1665971736}
+  m_Layer: 0
+  m_Name: Black
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1665971735
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665971734}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 810399080}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 4096, y: 2400}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1665971736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665971734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 0.9019608}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4d9085991f75be94284cb00e232c9ade, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1665971737
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665971734}
+  m_CullTransparentMesh: 0
 --- !u!1 &1668513782
 GameObject:
   m_ObjectHideFlags: 0
@@ -75481,7 +75681,7 @@ MonoBehaviour:
   scalePerc: 1.15
   CameraGround: 50
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &1744431306
 GameObject:
   m_ObjectHideFlags: 0
@@ -76501,7 +76701,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757628393}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -84387,7 +84587,7 @@ MonoBehaviour:
   scalePerc: 1.4
   CameraGround: 19.8
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!82 &1940318747
 AudioSource:
   m_ObjectHideFlags: 0
@@ -85002,7 +85202,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953506449}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -89710,7 +89910,7 @@ MonoBehaviour:
   scalePerc: 1.25
   CameraGround: 30
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &2064402699
 GameObject:
   m_ObjectHideFlags: 0
@@ -89969,7 +90169,49 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  actions: []
+  actions:
+  - Condition:
+      type: 0
+      id: 0
+      iv: 0
+      fv: 0
+      sv: 
+      bv: 0
+      msg: 
+      when: 1
+    Action:
+      running: 0
+      msg: 
+      type: 28
+      Repeatable: 0
+      delay: 0
+      id1: 0
+      id2: 0
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
+  - Condition:
+      type: 0
+      id: 0
+      iv: 0
+      fv: 0
+      sv: 
+      bv: 0
+      msg: 
+      when: 0
+    Action:
+      running: 0
+      msg: 
+      type: 17
+      Repeatable: 0
+      delay: 0
+      id1: 13
+      id2: 1
+      str: 
+      pos: {x: 0, y: 0}
+      dir: 0
+      val: 0
   sr: {fileID: 0}
 --- !u!212 &2065761453
 SpriteRenderer:
@@ -92429,7 +92671,7 @@ MonoBehaviour:
   scalePerc: 1.35
   CameraGround: 70
   external: 0
-  lights: 1
+  lightsStatus: 0
 --- !u!1 &2124792942
 GameObject:
   m_ObjectHideFlags: 0

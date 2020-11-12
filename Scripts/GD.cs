@@ -11,6 +11,7 @@ public class GD : MonoBehaviour {
   public static Chars kidnapped;
   public Material MatNormal;
   public Material MatOutline;
+  public Material MatFlashLight;
   public Material MatLightOff;
   public Material MatLightOffOutline;
   public Material MatLightOffRoom;
@@ -30,6 +31,7 @@ public class GD : MonoBehaviour {
   public static Material Normal() { return gs.MatNormal; }
   public static Material Outline() { return gs.MatOutline; }
   public static Material LightOff() { return gs.MatLightOff; }
+  public static Material FlashLight() { return gs.MatFlashLight; }
   public static Material LightOffOutline() { return gs.MatLightOffOutline; }
   public static Material LightOffRoom() { return gs.MatLightOffRoom; }
 
@@ -255,5 +257,12 @@ public class GD : MonoBehaviour {
     }
   }
 
+  static LightMode lights = LightMode.LightsOn;
 
+  internal static LightMode SwitchAllLights() {
+    if (lights == LightMode.LightsOn) lights = LightMode.LightsOff;
+    if (lights == LightMode.LightsOff) lights = LightMode.LightsOn;
+    if (lights == LightMode.FlashLights) lights = LightMode.LightsOn;
+    return lights;
+  }
 }
