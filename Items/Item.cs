@@ -70,23 +70,17 @@ public class Item : GameItem {
     string res = null;
     bool done = false;
     foreach (ActionAndCondition ac in actions) {
-      if (ac.Condition.IsValid(actor, null, this, other, When.Use)) {
-        ActionRes pares = PlayActions(actor, null, When.Use, other);
-        if (pares != null) {
-          done = pares.actionDone;
-          res = pares.res;
-        }
+      if (ac.Condition.IsValid(actor, null, this, other, When.UseTogether)) {
+        ac.Action.RunAction(actor, null);
+        done = true;
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
     }
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
-      if (ac.Condition.IsValid(actor, null, this, other, When.Use)) {
-        ActionRes pares = other.PlayActions(actor, null, When.Use, this);
-        if (pares != null) {
-          done = pares.actionDone;
-          res = pares.res;
-        }
+      if (ac.Condition.IsValid(actor, null, this, other, When.UseTogether)) {
+        ac.Action.RunAction(actor, null);
+        done = true;
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
     }

@@ -70,7 +70,7 @@ public class Actor : MonoBehaviour {
 
     isTentacle = id == Chars.GreenTentacle || id == Chars.PurpleTentacle || id == Chars.BlueTentacle;
     if (isTentacle) audios.clip = TentacleSteps;
-    lightIsOn = LightMode.GlobalLightsOn;
+    lightIsOn = LightMode.On;
 
     if (currentRoom != null) {
       Vector3 startpos = new Vector3((currentRoom.maxR + currentRoom.minL) / 2, (currentRoom.maxY + currentRoom.minY) / 2, 0);
@@ -159,16 +159,10 @@ public class Actor : MonoBehaviour {
 
   void OnMouseEnter() {
     if (Controller.OverActor(this)) return;
-    Material m = GD.Outline();
-    switch (lightIsOn) {
-      case LightMode.External: m = GD.Normal(); break;
-      case LightMode.GlobalLightsOn: m = GD.Normal(); break;
-      case LightMode.LocalLightsOn: m = GD.Normal(); break;
-      case LightMode.GlobalLightsFlashlight: m = GD.FlashLight(); break;
-      case LightMode.LocalLightsFlashlight: m = GD.FlashLight(); break;
-      case LightMode.GlobalLightsOff: m = GD.LightOffOutline(); break;
-      case LightMode.LocalLightsOff: m = GD.LightOffOutline(); break;
-    }
+    Material m;
+    if (lightIsOn == LightMode.External || (lightIsOn == LightMode.On && GD.globalLights)) m = GD.Outline();
+    else if (GD.flashLight) m = GD.FlashLight();
+    else m = GD.LightOffOutline();
     Face.material = m;
     Arms.material = m;
     Legs.material = m;
@@ -181,16 +175,10 @@ public class Actor : MonoBehaviour {
 
   public void SetLight(LightMode lights) {
     lightIsOn = lights;
-    Material m = null;
-    switch (lights) {
-      case LightMode.External: m = GD.Normal(); break;
-      case LightMode.GlobalLightsOn: m = GD.Normal(); break;
-      case LightMode.LocalLightsOn: m = GD.Normal(); break;
-      case LightMode.GlobalLightsFlashlight: m = GD.FlashLight(); break;
-      case LightMode.LocalLightsFlashlight: m = GD.FlashLight(); break;
-      case LightMode.GlobalLightsOff: m = GD.LightOff(); break;
-      case LightMode.LocalLightsOff: m = GD.LightOff(); break;
-    }
+    Material m;
+    if (lightIsOn == LightMode.External || (lightIsOn == LightMode.On && GD.globalLights)) m = GD.Normal();
+    else if (GD.flashLight) m = GD.FlashLight();
+    else m = GD.LightOffOutline();
     Face.material = m;
     Arms.material = m;
     Legs.material = m;

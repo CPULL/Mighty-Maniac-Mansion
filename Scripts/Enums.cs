@@ -177,7 +177,8 @@ public enum When {
   Use,
   Give,
   Cutscene,
-  Always
+  Always,
+  UseTogether
 }
 
 

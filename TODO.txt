@@ -24,13 +24,8 @@ FrontDoor -> Backyard entrance on the left
 
 If a room has windows, make it a little bit less dark
 
-Change the way rooms will alter the lights. Handle all cases.
-On + Flashlight -> On
-On + Off -> Off
-Off + On -> On
-Off + Flashlight -> Flashlight
-Flashlight + On -> On
-Flashlight + Off -> Flashlight
+Change the enum for the lights.
+When shutting lights on and off, check if the global lights are on, and use a combined value
 
 * CHARS ************************************************************************************************************
 

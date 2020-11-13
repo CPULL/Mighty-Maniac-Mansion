@@ -11,7 +11,7 @@ public class Room : MonoBehaviour {
   public float maxY;
   public float scalePerc = -.05f;
   public float CameraGround;
-  public LightMode lights = LightMode.GlobalLightsOn;
+  public LightMode lights = LightMode.On;
   List<SpriteRenderer> srs;
   List<PathNode> paths;
 
@@ -57,115 +57,23 @@ public class Room : MonoBehaviour {
     return closest;
   }
 
-
-  /*
-  If the room is external then there is no need to change the lights
-  If the power is off all rooms should go dark
-  If the current room light is switchable, the power is on of there is global power
-  If we are in a room with windows and the light is off, then there is a little bit more visibility
-  If the lights are off and we have a flash light we should enable the flashlight shader
-
-
-  External
-  GlobalLightsOn
-  GlobalLightsFlashlight
-  GlobalLightsOff
-  LocalLightsOn
-  LocalLightsFlashlight
-  LocalLightsOff
-
-   
-   */
-
   internal bool HasLights() {
-    switch (lights) {
-      case LightMode.External: return true;
-      case LightMode.GlobalLightsOn: return true;
-      case LightMode.GlobalLightsFlashlight: return false;
-      case LightMode.GlobalLightsOff: return false;
-      case LightMode.LocalLightsOn: return true;
-      case LightMode.LocalLightsFlashlight: return false;
-      case LightMode.LocalLightsOff: return false;
-    }
-    return true;
+    return lights == LightMode.External || GD.flashLight || (lights == LightMode.On && GD.globalLights);
   }
 
-  internal void SetLights(bool on, bool flashlightUsed) {
-    switch (lights) {
-      case LightMode.External: return;
-
-      case LightMode.GlobalLightsOn:
-        if (on) lights = LightMode.GlobalLightsOn;
-        if (!on && flashlightUsed) lights = LightMode.GlobalLightsFlashlight;
-        if (!on && !flashlightUsed) lights = LightMode.GlobalLightsOff;
-        break;
-
-      case LightMode.GlobalLightsFlashlight:
-        if (on) lights = LightMode.GlobalLightsOn;
-        if (!on && flashlightUsed) lights = LightMode.GlobalLightsFlashlight;
-        if (!on && !flashlightUsed) lights = LightMode.GlobalLightsOff;
-        break;
-
-      case LightMode.GlobalLightsOff:
-        if (on) lights = LightMode.GlobalLightsOn;
-        if (!on && flashlightUsed) lights = LightMode.GlobalLightsFlashlight;
-        if (!on && !flashlightUsed) lights = LightMode.GlobalLightsOff;
-        break;
-
-      case LightMode.LocalLightsOn:
-        if (on) lights = LightMode.LocalLightsOn;
-        if (!on && flashlightUsed) lights = LightMode.LocalLightsFlashlight;
-        if (!on && !flashlightUsed) lights = LightMode.LocalLightsOff;
-        break;
-
-      case LightMode.LocalLightsFlashlight:
-        if (on) lights = LightMode.LocalLightsOn;
-        if (!on && flashlightUsed) lights = LightMode.LocalLightsFlashlight;
-        if (!on && !flashlightUsed) lights = LightMode.LocalLightsOff;
-        break;
-
-      case LightMode.LocalLightsOff:
-        if (on) lights = LightMode.LocalLightsOn;
-        if (!on && flashlightUsed) lights = LightMode.LocalLightsFlashlight;
-        if (!on && !flashlightUsed) lights = LightMode.LocalLightsOff;
-        break;
-    }
+  internal void SetLights(LightMode light) {
+    if (lights == LightMode.External) return;
+    lights = light;
     UpdateLights();
   }
-
-  internal void RemoveFlashLight() {
-    switch (lights) {
-      case LightMode.External:
-      case LightMode.GlobalLightsOn:
-      case LightMode.GlobalLightsOff:
-      case LightMode.LocalLightsOn:
-      case LightMode.LocalLightsOff:
-        return;
-
-      case LightMode.GlobalLightsFlashlight:
-        lights = LightMode.GlobalLightsOff;
-        break;
-
-      case LightMode.LocalLightsFlashlight:
-        lights = LightMode.LocalLightsOff;
-        break;
-    }
-    UpdateLights();
-  }
-
 
 
   internal void UpdateLights() {
-    Material m = null;
-    switch (lights) {
-      case LightMode.External: m = GD.Normal(); break;
-      case LightMode.GlobalLightsOn: m = GD.Normal(); break;
-      case LightMode.GlobalLightsFlashlight: m = GD.FlashLight(); break;
-      case LightMode.GlobalLightsOff: m = GD.LightOffRoom(); break;
-      case LightMode.LocalLightsOn: m = GD.Normal(); break;
-      case LightMode.LocalLightsFlashlight: m = GD.FlashLight(); break;
-      case LightMode.LocalLightsOff: m = GD.LightOffRoom(); break;
-    }
+    Material m;
+    if (lights == LightMode.External) m = GD.Normal();
+    else if (lights == LightMode.On && GD.globalLights) m = GD.Normal();
+    else if (GD.flashLight) m = GD.FlashLight();
+    else m = GD.LightOffRoom();
     foreach (SpriteRenderer sr in srs)
       sr.material = m;
 
@@ -177,10 +85,6 @@ public class Room : MonoBehaviour {
 
 public enum LightMode {
   External,
-  GlobalLightsOn,
-  GlobalLightsFlashlight,
-  GlobalLightsOff,
-  LocalLightsOn,
-  LocalLightsFlashlight,
-  LocalLightsOff,
+  On,
+  Off
 }

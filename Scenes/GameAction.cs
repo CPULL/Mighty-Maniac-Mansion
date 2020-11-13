@@ -927,15 +927,23 @@ public class GameAction {
           else if (val == 1) GD.globalLights = false;
           else if (val == 2) GD.globalLights = !GD.globalLights;
           foreach (Room r in AllObjects.RoomList) {
-            r.SetLights(GD.globalLights, GD.c.batteriesUsed != BatteriesUsed.NoBatteries);
+            r.UpdateLights();
           }
         }
         else {
           Room r = AllObjects.GetRoom(str);
-          bool on = true;
-          if (val == 1) on = false;
-          else if (val == 2) on = !r.HasLights();
-          if (r != null) r.SetLights(on, GD.c.batteriesUsed != BatteriesUsed.NoBatteries);
+          if (r == null) {
+            Debug.LogError("Unknown room: " + str);
+            return;
+          }
+          if (val == 0) r.SetLights(LightMode.On);
+          if (val == 1) r.SetLights(LightMode.Off);
+          else if (val == 2) { 
+            if (r.lights == LightMode.On)
+              r.SetLights(LightMode.Off);
+            else
+              r.SetLights(LightMode.On);
+          }
         }
         Complete();
       }

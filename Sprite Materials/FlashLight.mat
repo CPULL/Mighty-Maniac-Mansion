@@ -88,7 +88,7 @@ Material:
     - _FishEyeUvAmount: 0.35
     - _FlickerAlpha: 0.1
     - _FlickerFreq: 4.92
-    - _FlickerPercent: 0.02
+    - _FlickerPercent: 0.100002065
     - _GhostColorBoost: 1
     - _GhostTransparency: 0
     - _GlitchAmount: 3

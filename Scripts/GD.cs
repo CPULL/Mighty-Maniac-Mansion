@@ -258,4 +258,5 @@ public class GD : MonoBehaviour {
   }
 
   public static bool globalLights = true;
+  public static bool flashLight = false;
 }
