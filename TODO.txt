@@ -22,10 +22,7 @@ FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
 
-If a room has windows, make it a little bit less dark
-
-Change the enum for the lights.
-When shutting lights on and off, check if the global lights are on, and use a combined value
+If a room has windows, make it a little bit less dark (like flashlight but without outline)
 
 * CHARS ************************************************************************************************************
 

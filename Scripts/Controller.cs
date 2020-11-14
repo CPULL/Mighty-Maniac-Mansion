@@ -113,7 +113,9 @@ public class Controller : MonoBehaviour {
 
     if (GD.status != GameStatus.NormalGamePlay && !SceneSkipped) return;
     FrontActors.enabled = false;
-    if (currentActor.currentRoom != currentRoom) StartCoroutine(FadeToRoomActor());
+    if (currentActor.currentRoom != currentRoom && !CameraFadingToActor) {
+      StartCoroutine(FadeToRoomActor());
+    }
 
     if (Input.GetKeyUp(KeyCode.Alpha1)) {
       SelectActor(GD.c.actor1);

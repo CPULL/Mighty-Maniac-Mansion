@@ -38,7 +38,7 @@ public enum Chars {
   Fred = 10, Edna = 11, Ted = 12, Ed = 13, Edwige = 14, GreenTentacle = 15, PurpleTentacle = 16, BlueTentacle = 17, PurpleMeteor = 18, Unused19 = 19,
   Dave = 20, Bernard = 21, Wendy = 22, Syd = 23, Hoagie = 24, Razor = 25, Michael = 26, Jeff = 27, Javid = 28, Laverne = 29, Ollie = 30, Sandy = 31,
   Unused32 = 32, Unused33 = 33, Unused34 = 34, Unused35 = 35, Unused36 = 36, Unused37 = 37, Unused38 = 38, Unused39 = 39, 
-  otheractorslikepolice = 40, // FIXME this name will change
+  MarkEteer=40, otheractorslikepolice = 41, // FIXME this name will change
 
 
 
@@ -53,30 +53,6 @@ public enum Expression { Normal = 2, Happy = 0, Sad = 1, Open = 3, BigOpen = 4 }
 
 // Define an extension method in a non-nested static class.
 public static class Enums {
-  public static Expression GetExp(string val) {
-    char v = char.ToLowerInvariant((val+" ")[0]);
-    if (v == 'h') return Expression.Happy;
-    if (v == 's') return Expression.Sad;
-    if (v == 'o') return Expression.Open;
-    if (v == 'b') return Expression.BigOpen;
-    return Expression.Normal;
-  }
-
-  public static int GetSnd(string val) {
-    string v = val.ToLowerInvariant();
-    if (v == "doorbell") return 0;
-    return -1;
-  }
-
-  internal static GameStatus GetStatus(string val, GameStatus status) {
-    string v = val.ToLowerInvariant();
-    if (v == "video") return GameStatus.IntroVideo;
-    if (v == "charsel") return GameStatus.CharSelection; 
-    if (v == "cutscene") return GameStatus.Cutscene;
-    if (v == "play") return GameStatus.NormalGamePlay;
-    return status;
-  }
-
   public static bool GoodByDefault(this ActionType type) {
     switch (type) {
       case ActionType.None: return true;
@@ -90,7 +66,6 @@ public static class Enums {
       case ActionType.UnBlockActor: return true;
       case ActionType.Open: return false;
       case ActionType.EnableDisable: return false;
-      //case ActionType.Lockunlock: return false;
       case ActionType.Cutscene: return true;
       case ActionType.Sound: return true;
       case ActionType.ReceiveCutscene: return false;
@@ -99,6 +74,16 @@ public static class Enums {
       case ActionType.Anim: return true;
       case ActionType.AlterItem: return true;
       case ActionType.SetFlag: return true;
+      case ActionType.CompleteStep: return true;
+      case ActionType.Wait: return true;
+      case ActionType.PressAndFlag: return true;
+      case ActionType.PressAndItem: return true;
+      case ActionType.SwitchRoomLight: return true;
+      case ActionType.StopScenes: return true;
+      case ActionType.SetCurrentRoomActor: return true;
+      case ActionType.Cursor: return true;
+      case ActionType.ChangeSprites: return true;
+      case ActionType.SwitchFlashlight: return true;
     }
     return false;
   }
