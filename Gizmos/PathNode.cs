@@ -82,14 +82,14 @@ public class PathNode : MonoBehaviour {
     pcoll.points = new Vector2[] { tl - roomabs, tr - roomabs, br - roomabs, bl - roomabs };
   }
 
-  public void UpdateEdgesFromPoly() {
+  public void UpdateEdgesFromPoly(Vector2 basePos) {
     if (pcoll == null) pcoll = GetComponent<PolygonCollider2D>();
     Vector2[] edges = pcoll.points;
 
-    tl = edges[0] + roomabs;
-    tr = edges[1] + roomabs;
-    br = edges[2] + roomabs;
-    bl = edges[3] + roomabs;
+    tl = edges[0] + basePos;
+    tr = edges[1] + basePos;
+    br = edges[2] + basePos;
+    bl = edges[3] + basePos;
   }
 }
 

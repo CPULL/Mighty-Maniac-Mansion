@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class NavPath : MonoBehaviour {
@@ -7,6 +6,7 @@ public class NavPath : MonoBehaviour {
   public List<PathNode> nodes;
   public bool ShowSubNodes;
   public bool DoAStar;
+  public GameObject EmptyPathNode;
 
   public Vector2 start = Vector2.zero;
   public Vector2 end = Vector2.zero;

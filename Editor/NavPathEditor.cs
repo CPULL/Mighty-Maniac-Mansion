@@ -32,60 +32,64 @@ public class NavPathEditor : Editor {
         if (n != null) t.nodes.Add(n);
       }
     }
-    if (GUILayout.Button("Translate all nodes")) {
-      float maxT = -10000;
-      float minL = -10000;
-      Vector2 min = new Vector2(minL, maxT);
-      foreach (PathNode n in t.nodes) {
-        if (maxT < n.tl.y) maxT = n.tl.y;
-        if (maxT < n.tr.y) maxT = n.tr.y;
-        if (maxT < n.bl.y) maxT = n.bl.y;
-        if (maxT < n.br.y) maxT = n.br.y;
-        if (minL < n.tl.x) minL = n.tl.x;
-        if (minL < n.tr.x) minL = n.tr.x;
-        if (minL < n.bl.x) minL = n.bl.x;
-        if (minL < n.br.x) minL = n.br.x;
+    if (GUILayout.Button("Create node")) {
+      if (t.nodes == null) t.nodes = new List<PathNode>();
+      t.nodes.Clear();
+      foreach (Transform tr in t.transform) {
+        PathNode n = tr.GetComponent<PathNode>();
+        if (n != null) t.nodes.Add(n);
       }
 
-      Vector2 pos = t.transform.parent.position;
-      foreach (PathNode n in t.nodes) {
-        n.tl += pos - min;
-        n.tr += pos - min;
-        n.bl += pos - min;
-        n.br += pos - min;
-      }
+      // Actual creation
+      PathNode pn = Instantiate(t.EmptyPathNode, t.transform).GetComponent<PathNode>();
+      pn.name = "Node";
+      pn.parent = t;
+      t.nodes.Add(pn);
+      pn.UpdateEdgesFromPoly(t.transform.parent.position);
     }
 
 
     if (GUILayout.Button("From colliders")) {
       foreach (PathNode n in t.nodes) {
-        n.UpdateEdgesFromPoly();
+        if (n == null) continue;
+        n.tl.y = 1;
+        n.tr.y = 1;
+        n.bl.y = 0;
+        n.br.y = 0;
+        n.tl.x = -1;
+        n.tr.x = 1;
+        n.bl.x = -1;
+        n.br.x = 1;
+        n.UpdateEdgesFromPoly(t.transform.parent.position);
       }
     }
 
 
     GUILayout.EndHorizontal();
 
-    // Toggle to show/hide nodes
+    // Toggle to show/hide path and path handlers
+    GUILayout.BeginHorizontal();
     bool newval = GUILayout.Toggle(t.ShowSubNodes, "Show paths");
     if (newval != t.ShowSubNodes) {
       foreach (PathNode p in t.nodes)
         p.showMeshLocal = newval;
       t.ShowSubNodes = newval;
     }
+    EditorGUILayout.PropertyField(serializedObject.FindProperty("EmptyPathNode"));
+    GUILayout.EndHorizontal();
 
-    // Toggle to show/hide path and path handlers
+    // A*
+    GUILayout.BeginHorizontal();
     newval = GUILayout.Toggle(t.DoAStar, "A*");
     if (newval != t.DoAStar) {
       t.DoAStar = newval;
     }
 
-    GUILayout.BeginHorizontal();
-    // A*
     if (GUILayout.Button("Calculate A*")) {
       t.DoAStar = true;
       t.EditorCalculatePath();
     }
+
     if (GUILayout.Button("Clean A*")) {
       t.DoAStar = false;
       t.start = t.transform.parent.transform.position + Vector3.right;
