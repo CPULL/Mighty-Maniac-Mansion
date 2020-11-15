@@ -77,7 +77,7 @@ Material:
     - _ClipUvRight: 0
     - _ClipUvUp: 0
     - _ColorChangeLuminosity: 0
-    - _ColorChangeTolerance: 0.25
+    - _ColorChangeTolerance: 1
     - _ColorRampLuminosity: 0
     - _ColorRampOutline: 0
     - _ColorSwapBlueLuminosity: 0.5
@@ -153,7 +153,7 @@ Material:
     - _OutlineTexYSpeed: 0
     - _OutlineWidth: 0.004
     - _PinchUvAmount: 0.35
-    - _PixelateSize: 32
+    - _PixelateSize: 128
     - _PosterizeGamma: 0.75
     - _PosterizeNumColors: 8
     - _PosterizeOutline: 0
@@ -188,8 +188,8 @@ Material:
     - _ZoomUvAmount: 0.5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorChangeNewCol: {r: 1, g: 1, b: 0, a: 1}
-    - _ColorChangeTarget: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorChangeNewCol: {r: 0, g: 0.93488693, b: 1, a: 1}
+    - _ColorChangeTarget: {r: 0.48235297, g: 0.82745105, b: 0.23529413, a: 1}
     - _ColorSwapBlue: {r: 1, g: 1, b: 1, a: 1}
     - _ColorSwapGreen: {r: 1, g: 1, b: 1, a: 1}
     - _ColorSwapRed: {r: 1, g: 1, b: 1, a: 1}

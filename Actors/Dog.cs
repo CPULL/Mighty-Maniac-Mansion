@@ -11,6 +11,8 @@ public class Dog : MonoBehaviour {
   public AudioSource Audio;
   public Room currentRoom;
 
+  public AudioClip[] Barks;
+
   /* FIXME
    
   // Check its own conditions
@@ -25,7 +27,7 @@ public class Dog : MonoBehaviour {
    
    */
 
-  bool friendly = true;
+  bool friendly = false;
   float friendCheck = 1f;
 
   float timeout = 1f;
@@ -44,6 +46,7 @@ public class Dog : MonoBehaviour {
   }
 
   void Update() {
+    if (GD.c == null || GD.c.currentActor == null) return;
     if (!friendly) {
       friendCheck -= Time.deltaTime;
       if (friendCheck < 0) {
@@ -53,7 +56,7 @@ public class Dog : MonoBehaviour {
     }
     dist = Mathf.Abs(GD.c.currentActor.transform.position.x - transform.position.x);
 
-    if (friendly || dist > 20) { // Friend
+    if (friendly || dist > 5.5f) { // Friend
       // If made friend, just stay close to the home, and move tail, toungue randomly
 
       if (walking) {
@@ -126,16 +129,51 @@ public class Dog : MonoBehaviour {
       }
 
     }
-    else if (dist > 10) { // Not friend and too close
+    else if (dist > 3.5f) { // Not friend and too close
 
       // Point actor and grind. Stop wiggle
       // Bark from time to time
 
+      if (!Audio.isPlaying) {
+        BodyAnim.Play("Body Idle");
+        TailAnim.Play("Tail Idle");
+        HeadAnim.Play("Head Grind");
+        walking = false;
+        bool flip = transform.position.x > GD.c.currentActor.transform.position.x;
+        HeadSR.flipX = flip;
+        BodySR.flipX = flip;
+        TailSR.flipX = flip;
+
+        Audio.clip = Barks[0];
+        Audio.Play();
+      }
+
     }
     else { // Not friend and too close
-      // Block actor, let currentactor say something, and then walk away
-      // Point actor and bark
-      // Bark strong
+           // Block actor, let currentactor say something, and then walk away
+           // Point actor and bark
+           // Bark strong
+
+      if (!Audio.isPlaying) {
+        BodyAnim.Play("Body Idle");
+        TailAnim.Play("Tail Idle");
+        HeadAnim.Play("Head Chow");
+        walking = false;
+        bool flip = transform.position.x > GD.c.currentActor.transform.position.x;
+        HeadSR.flipX = flip;
+        BodySR.flipX = flip;
+        TailSR.flipX = flip;
+
+        Audio.clip = Barks[Random.Range(1, Barks.Length)];
+        Audio.Play();
+
+        GD.c.currentActor.Say("Good dog...");
+        GD.c.currentActor.SetExpression(Expression.Sad);
+        GD.c.currentActor.Say("Better to go away...");
+        // Walk away
+        // FIXME do we need a cutscene for this?
+      }
+
 
     }
 
