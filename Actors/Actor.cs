@@ -85,6 +85,10 @@ public class Actor : MonoBehaviour {
     walk = id.ToString() + " Walk";
   }
 
+  private void Start() {
+    SetLight(LightMode.On);
+  }
+
   internal bool HasItem(ItemEnum item) {
     foreach (Item i in inventory)
       if (i.Item == item) return true;
