@@ -117,13 +117,14 @@ public class Controller : MonoBehaviour {
       StartCoroutine(FadeToRoomActor());
     }
 
-    if (Input.GetKeyUp(KeyCode.Alpha1)) {
+    // FIXME
+    if (false && Input.GetKeyUp(KeyCode.Alpha1)) {
       SelectActor(GD.c.actor1);
     }
-    else if (Input.GetKeyUp(KeyCode.Alpha2)) {
+    else if (false && Input.GetKeyUp(KeyCode.Alpha2)) {
       SelectActor(GD.c.actor2);
     }
-    else if (Input.GetKeyUp(KeyCode.Alpha3)) {
+    else if (false && Input.GetKeyUp(KeyCode.Alpha3)) {
       SelectActor(GD.c.actor3);
     }
     else if (Input.GetKeyUp(KeyCode.I)) {

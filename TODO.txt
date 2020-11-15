@@ -1,6 +1,8 @@
 === Mighty Maniac Mansion ===
 
 
+Draw backyard
+
 Add a way to create a new basic pathnode inside a Path (the fix stuff is not good)
 
 Intro all participants (syd, razor, jeff, michael)
