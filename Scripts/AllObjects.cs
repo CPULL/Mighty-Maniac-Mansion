@@ -163,6 +163,7 @@ public enum GameFlag {
   PackageIsDeliveredStamps,
   EdnaBrowsingFridge,
   EdCheckingPackage,
+  SamIsFriend,
 }
 
 [System.Serializable]
