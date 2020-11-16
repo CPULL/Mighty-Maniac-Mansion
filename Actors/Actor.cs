@@ -162,7 +162,7 @@ public class Actor : MonoBehaviour {
 
 
   void OnMouseEnter() {
-    if (Controller.OverActor(this)) return;
+    if (Options.IsActive() || Controller.OverActor(this)) return;
     Material m;
     if (lightIsOn == LightMode.External || (lightIsOn == LightMode.On && GD.globalLights)) m = GD.Outline();
     else if (GD.flashLight) m = GD.FlashLight();
@@ -173,6 +173,7 @@ public class Actor : MonoBehaviour {
   }
 
   void OnMouseExit() {
+    if (Options.IsActive()) return;
     Controller.OverActor(null);
     SetLight(lightIsOn);
   }

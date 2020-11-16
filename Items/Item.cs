@@ -8,10 +8,12 @@ public class Item : GameItem {
   }
 
   private void OnMouseEnter() {
+    if (Options.IsActive()) return;
     Controller.SetItem(this);
     sr.color = overColor;
   }
   private void OnMouseExit() {
+    if (Options.IsActive()) return;
     Controller.SetItem(null);
     sr.color = normalColor;
   }

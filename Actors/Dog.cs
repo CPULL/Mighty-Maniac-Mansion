@@ -58,7 +58,10 @@ public class Dog : MonoBehaviour {
 
     if (friendly == 0 && dist < 7f) { // Do first pan
       AllObjects.SetFlag(GameFlag.SamIsFriend, 1);
-      Controller.PanCamera(new Vector3(-129, 2, -10), 1f);
+      if (GD.c.currentActor.transform.position.x >= transform.position.x)
+        Controller.PanCamera(new Vector3(-128, 2, -10), 1f);
+      else
+        Controller.PanCamera(new Vector3(-130, 2, -10), 1f);
     }
 
     if (friendly == 2 || dist > 6f) { // Friend
@@ -172,7 +175,6 @@ public class Dog : MonoBehaviour {
         AllObjects.GetCutscene(CutsceneID.GoAwayFromDogR) :
         AllObjects.GetCutscene(CutsceneID.GoAwayFromDogL);
       if (scene.status == GameSceneStatus.NotRunning || GD.c.currentCutscene == null) {
-        Debug.Log("Start scene >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         GD.c.currentActor.Stop();
         Controller.StartCutScene(scene);
       }
