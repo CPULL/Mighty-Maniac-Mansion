@@ -259,8 +259,8 @@ public class GD : MonoBehaviour {
     }
   }
 
-  internal static void SetC64Mode(int colors, int pixels, int outline, int scanlines, float slfreq, float slspeed, float slnoise, float slstr) {
-    if (colors == 0 && pixels == 0 && outline == 0 && scanlines == 0) {
+  internal static void SetC64Mode(int colors, int pixels, int outlinesize, float outlinestr, int scanlines, float slfreq, float slspeed, float slnoise, float slstr) {
+    if (colors == 0 && pixels == 0 && outlinesize == 0 && scanlines == 0) {
       gs.MatNormal = gs._MatNormal;
     }
     else {
@@ -280,11 +280,9 @@ public class GD : MonoBehaviour {
       gs.MatNormal.SetFloat("_Res", pixels);
 
       // Outline
-      int ostr = outline / 100;
-      int osiz = (outline / 10) % 10;
-      gs.MatNormal.SetFloat("_UseOutline", outline & 1);
-      gs.MatNormal.SetFloat("_OutlineSize", osiz);
-      gs.MatNormal.SetFloat("_OutlineStrenght", ostr / 100f);
+      gs.MatNormal.SetFloat("_UseOutline", outlinesize != 0 ? 1 : 0);
+      gs.MatNormal.SetFloat("_OutlineSize", outlinesize);
+      gs.MatNormal.SetFloat("_OutlineStrenght", outlinestr);
 
       // Scanlines
       gs.MatNormal.SetFloat("_CRT", (scanlines & 1) == 1 ? 1 : 0);

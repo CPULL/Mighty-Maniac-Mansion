@@ -194,14 +194,15 @@ public class Options : MonoBehaviour {
   public void ChangeOutline() {
     OutlineSizeSL.interactable = OutlineTG.isOn;
     OutlineStrenghtSL.interactable = OutlineTG.isOn;
-    int val = (OutlineTG.isOn ? 1 : 0) + 10 * (int)OutlineSizeSL.value + (int)(100 * OutlineStrenghtSL.value) * 100;
-    PlayerPrefs.SetInt("ShaderOutline", val);
+    if (OutlineTG.isOn && OutlineSizeSL.value == 0) OutlineSizeSL.SetValueWithoutNotify(1);
+    PlayerPrefs.SetInt("OutlineSize", OutlineTG.isOn ? Mathf.RoundToInt(OutlineSizeSL.value) : 0);
+    PlayerPrefs.SetFloat("OutlineStrenght", OutlineStrenghtSL.value);
     ApplyC64Options();
   }
 
   public void ChangeOutlineSizeStrenght() {
-    int val = (OutlineTG.isOn ? 1 : 0) + 10 * (int)OutlineSizeSL.value + (int)(100 * OutlineStrenghtSL.value) * 100;
-    PlayerPrefs.SetInt("ShaderOutline", val);
+    PlayerPrefs.SetInt("OutlineSize", OutlineTG.isOn ? Mathf.RoundToInt(OutlineSizeSL.value) : 0);
+    PlayerPrefs.SetFloat("OutlineStrenght", OutlineStrenghtSL.value);
     OutlineSizeVal.text = ((int)OutlineSizeSL.value).ToString();
     OutlineStrenghtVal.text = (int)(100 * OutlineStrenghtSL.value) + "%";
     ApplyC64Options();
@@ -284,20 +285,23 @@ public class Options : MonoBehaviour {
       PixelizeDD.SetValueWithoutNotify(PlayerPrefs.GetInt("Pixelization", 0));
       UseC64ColorsDD.SetValueWithoutNotify(PlayerPrefs.GetInt("C64Colors", 0));
 
-      int outline = PlayerPrefs.GetInt("ShaderOutline", 0);
-      OutlineTG.SetIsOnWithoutNotify((outline & 1) == 1);
-      OutlineSizeSL.interactable = OutlineTG.isOn;
-      OutlineStrenghtSL.interactable = OutlineTG.isOn;
-      int ostr = outline / 100;
-      OutlineStrenghtSL.SetValueWithoutNotify(ostr / 100f);
-      int osiz = (outline / 10) % 10;
-      OutlineSizeSL.SetValueWithoutNotify(osiz);
+      int outline = PlayerPrefs.GetInt("OutlineSize", 0);
+      if (outline == 0) {
+        OutlineTG.SetIsOnWithoutNotify(false);
+        OutlineSizeSL.SetValueWithoutNotify(0);
+      }
+      else {
+        OutlineTG.SetIsOnWithoutNotify(true);
+        OutlineSizeSL.SetValueWithoutNotify(outline);
+      }
+      OutlineStrenghtSL.SetValueWithoutNotify(PlayerPrefs.GetFloat("OutlineStrenght", .5f));
+      OutlineSizeVal.text = ((int)OutlineSizeSL.value).ToString();
+      OutlineStrenghtVal.text = Mathf.RoundToInt(100 * OutlineStrenghtSL.value) + "%";
 
       int scan = PlayerPrefs.GetInt("Scanlines", 0);
       ScanlinesTG.SetIsOnWithoutNotify((scan & 1) == 1);
       ScanlinesDir.SetValueWithoutNotify((scan & 2) == 2 ? 1 : 0);
       InterlaceTG.SetIsOnWithoutNotify((scan & 4) == 4);
-
       ScanlinesFreqSL.value = PlayerPrefs.GetFloat("ScanlinesFreq", .5f);
       ChangeScanlineFreq();
       ScanlinesSpeedSL.value = PlayerPrefs.GetFloat("ScanlinesSpeed", .5f);
@@ -364,9 +368,33 @@ public class Options : MonoBehaviour {
 
     GD.opts.UseC64ColorsDD.SetValueWithoutNotify(PlayerPrefs.GetInt("C64Colors", 0));
     GD.opts.PixelizeDD.SetValueWithoutNotify(PlayerPrefs.GetInt("Pixelization", 0));
-    float outline = PlayerPrefs.GetFloat("ShaderOutline", 0);
-    GD.opts.OutlineSizeSL.SetValueWithoutNotify((int)outline);
-    GD.opts.OutlineStrenghtSL.SetValueWithoutNotify(outline - (int)outline);
+
+    int outline = PlayerPrefs.GetInt("OutlineSize", 0);
+    if (outline == 0) {
+      GD.opts.OutlineTG.SetIsOnWithoutNotify(false);
+      GD.opts.OutlineSizeSL.SetValueWithoutNotify(1);
+    }
+    else {
+      GD.opts.OutlineTG.SetIsOnWithoutNotify(true);
+      GD.opts.OutlineSizeSL.SetValueWithoutNotify(outline);
+    }
+    GD.opts.OutlineStrenghtSL.SetValueWithoutNotify(PlayerPrefs.GetFloat("OutlineStrenght", .5f));
+    GD.opts.OutlineSizeVal.text = ((int)GD.opts.OutlineSizeSL.value).ToString();
+    GD.opts.OutlineStrenghtVal.text = Mathf.RoundToInt(100 * GD.opts.OutlineStrenghtSL.value) + "%";
+
+    int scan = PlayerPrefs.GetInt("Scanlines", 0);
+    GD.opts.ScanlinesTG.SetIsOnWithoutNotify((scan & 1) == 1);
+    GD.opts.ScanlinesDir.SetValueWithoutNotify((scan & 2) == 2 ? 1 : 0);
+    GD.opts.InterlaceTG.SetIsOnWithoutNotify((scan & 4) == 4);
+    GD.opts.ScanlinesFreqSL.value = PlayerPrefs.GetFloat("ScanlinesFreq", .5f);
+    GD.opts.ChangeScanlineFreq();
+    GD.opts.ScanlinesSpeedSL.value = PlayerPrefs.GetFloat("ScanlinesSpeed", .5f);
+    GD.opts.ChangeScanlineSpeed();
+    GD.opts.ScanlinesNoiseSL.value = PlayerPrefs.GetFloat("ScanlinesNoise", 0);
+    GD.opts.ChangeScanlineNoise();
+    GD.opts.ScanlinesStrenghtSL.value = PlayerPrefs.GetFloat("ScanlinesStrenght", .5f);
+    GD.opts.ChangeScanlineStrenght();
+
     GD.opts.ApplyC64Options();
   }
 
@@ -401,8 +429,8 @@ public class Options : MonoBehaviour {
 
 
   public void ApplyC64Options() {
-    int outline = (OutlineTG.isOn ? 1 : 0) + 10 * (int)OutlineSizeSL.value + (int)(100 * OutlineStrenghtSL.value) * 100;
-    GD.SetC64Mode(UseC64ColorsDD.value, PixelizeDD.value, outline,
+    GD.SetC64Mode(UseC64ColorsDD.value, PixelizeDD.value,
+      (OutlineTG.isOn ? (int)OutlineSizeSL.value : 0), OutlineStrenghtSL.value,
       PlayerPrefs.GetInt("Scanlines", 0), ScanlinesFreqSL.value, ScanlinesSpeedSL.value, ScanlinesNoiseSL.value, ScanlinesStrenghtSL.value
     );
   }
