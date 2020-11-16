@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: C64
   m_Shader: {fileID: 4800000, guid: 5d3b98a8501ff914ba463bcbe4b53683, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _CRT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -65,7 +65,7 @@ Material:
     - _BillboardY: 0
     - _BlurHD: 0
     - _BlurIntensity: 10
-    - _CRT: 0
+    - _CRT: 1
     - _ChromAberrAlpha: 0.4
     - _ChromAberrAmount: 1
     - _ClipUvDown: 0
@@ -153,7 +153,7 @@ Material:
     - _PosterizeOutline: 0
     - _RandomSeed: 0
     - _RectSize: 1
-    - _Res: 320
+    - _Res: 160
     - _RotateUvAmount: 0
     - _RoundWaveSpeed: 2
     - _RoundWaveStrength: 0.7

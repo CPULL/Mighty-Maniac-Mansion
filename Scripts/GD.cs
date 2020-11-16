@@ -9,7 +9,9 @@ public class GD : MonoBehaviour {
   public static Chars actor2;
   public static Chars actor3;
   public static Chars kidnapped;
-  public Material MatNormal;
+  private Material MatNormal;
+  public Material _MatNormal;
+  public Material _MatNormalC64;
   public Material MatOutline;
   public Material MatFlashLight;
   public Material MatLightOff;
@@ -24,6 +26,8 @@ public class GD : MonoBehaviour {
 
     gs = this;
     DontDestroyOnLoad(this.gameObject);
+
+    SetC64Mode(PlayerPrefs.GetInt("C64Mode", 0));
   }
 
 
@@ -255,6 +259,39 @@ public class GD : MonoBehaviour {
       }
 
     }
+  }
+
+  internal static void SetC64Mode(int mode) {
+    /*
+      0 no C64
+      1 not possible
+      2 640 pixels no scanlines
+      3 640 pixels with scanlines
+      4 480 pixels no scanlines
+      5 480 pixels with scanlines
+      6 320 pixels no scanlines
+      7 320 pixels with scanlines
+      8 256 pixels no scanlines
+      9 256 pixels with scanlines
+     10 160 pixels no scanlines
+     11 160 pixels with scanlines
+     */
+    if (mode < 2) {
+      gs.MatNormal = gs._MatNormal;
+    }
+    else {
+      gs.MatNormal = gs._MatNormalC64;
+      gs.MatNormal.SetFloat("_CRT", mode & 1);
+      float res = 320;
+      if (mode == 2 || mode == 3) res = 640;
+      else if (mode == 4 || mode == 5) res = 480;
+      else if (mode == 6 || mode == 7) res = 320;
+      else if (mode == 8 || mode == 9) res = 256;
+      else if (mode == 10 || mode == 11) res = 160;
+      gs.MatNormal.SetFloat("_Res", res);
+    }
+    if (c != null && c.currentRoom != null) c.currentRoom.UpdateLights();
+
   }
 
   public static bool globalLights = true;

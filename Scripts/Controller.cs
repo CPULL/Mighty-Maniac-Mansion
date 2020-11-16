@@ -1272,6 +1272,7 @@ public class Controller : MonoBehaviour {
   #region *********************** UI and Options *********************** UI and Options *********************** UI and Options *********************** UI and Options ***********************
   public static float walkSpeed;
   public static float textSpeed;
+  public static int c64mode;
   public Options options;
 
   public TextMeshProUGUI TextMsg;

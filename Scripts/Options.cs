@@ -29,6 +29,10 @@ public class Options : MonoBehaviour {
   public Material[] FontMaterials;
   public string[] FontNames;
 
+  public Toggle EnableC64;
+  public Toggle ScanLines;
+  public TMP_Dropdown Resolution;
+
   public Button RestartIntro;
   public Button RestartNewChars;
   public Button RestartSameChars;
@@ -173,6 +177,21 @@ public class Options : MonoBehaviour {
     PlayerPrefs.SetInt("Font", num);
   }
 
+  public void EnableC64TG() {
+    if (EnableC64.isOn) {
+      Controller.c64mode = GetC64Mode();
+      if (Controller.c64mode == 0)
+        Controller.c64mode = 7;
+    }
+    else
+      Controller.c64mode = 0;
+    UpdateC64Mode(Controller.c64mode);
+  }
+
+  public void ScanLinesAndResolution() {
+    UpdateC64Mode(GetC64Mode());
+  }
+
   public static void Activate(bool activate) {
     if (GD.opts == null) return;
     GD.opts.ActualActivation(activate);
@@ -206,6 +225,8 @@ public class Options : MonoBehaviour {
 
       UpdateFonts(PlayerPrefs.GetInt("Font", 3));
 
+      UpdateC64Mode(PlayerPrefs.GetInt("C64Mode", 0));
+
       RestartIntro.interactable = GD.status == GameStatus.IntroVideo || GD.status == GameStatus.CharSelection || GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
       RestartNewChars.interactable = GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
       RestartSameChars.interactable = GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
@@ -220,6 +241,8 @@ public class Options : MonoBehaviour {
       PlayerPrefs.SetFloat("WalkSpeed", WalkSpeed.value);
       Controller.walkSpeed = GetFloatValueD(WalkSpeed.value);
       Controller.textSpeed = GetFloatValueD(TextSpeed.value);
+      Controller.c64mode = GetC64Mode();
+      PlayerPrefs.SetInt("C64Mode", Controller.c64mode);
     }
   }
 
@@ -257,6 +280,8 @@ public class Options : MonoBehaviour {
     Controller.textSpeed = GetFloatValueD(PlayerPrefs.GetFloat("TalkSpeed", 6));
 
     GD.opts.UpdateFonts(PlayerPrefs.GetInt("Font", 3));
+
+    GD.SetC64Mode(PlayerPrefs.GetInt("C64Mode", 0));
   }
 
   public void QuitGame() {
@@ -286,5 +311,28 @@ public class Options : MonoBehaviour {
 
     GD.b.text.font = FontAssets[num];
     GD.b.text.fontSharedMaterial = FontMaterials[num];
+  }
+
+  private void UpdateC64Mode(int mode) {
+    Controller.c64mode = mode;
+
+    if (mode == 0) {
+      EnableC64.SetIsOnWithoutNotify(false);
+      ScanLines.interactable = false;
+      Resolution.interactable = false;
+      GD.SetC64Mode(0);
+      return;
+    }
+    EnableC64.SetIsOnWithoutNotify(true);
+    ScanLines.interactable = true;
+    ScanLines.SetIsOnWithoutNotify((mode & 1) == 1);
+    Resolution.interactable = true;
+    Resolution.SetValueWithoutNotify(mode / 2 - 1);
+    GD.SetC64Mode(mode);
+  }
+
+  private int GetC64Mode() {
+    if (!EnableC64.isOn) return 0;
+    return (Resolution.value + 1) * 2 + (ScanLines.isOn ? 1 : 0);
   }
 }
