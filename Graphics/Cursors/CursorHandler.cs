@@ -1,6 +1,4 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class CursorHandler : MonoBehaviour {
@@ -32,6 +30,7 @@ public class CursorHandler : MonoBehaviour {
   }
 
   private void Update() {
+    if (UnityEngine.Cursor.visible) return;
     Vector2 mouse = Input.mousePosition;
     crt.position = mouse;
     mouse.y += 32;
@@ -49,7 +48,6 @@ public class CursorHandler : MonoBehaviour {
     color.b = (byte)val;
 
     Cursor.color = color;
-
     CursorL.enabled = (onLeft != onRight && onLeft != CursorTypes.Normal);
     CursorR.enabled = (onLeft != onRight && onRight != CursorTypes.Normal);
     if (onLeft == onRight && prevCentral != onLeft && onLeft != CursorTypes.Object && onLeft != CursorTypes.Give) {
@@ -64,11 +62,20 @@ public class CursorHandler : MonoBehaviour {
   public static void SaveCursor() {
     me.savedL = me.onLeft;
     me.savedR = me.onRight;
+    UnityEngine.Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    UnityEngine.Cursor.visible = true;
+    me.crt.gameObject.SetActive(false);
+    me.crtl.gameObject.SetActive(false);
+    me.crtr.gameObject.SetActive(false);
   }
   public static void ResetCursor() {
-    me.onLeft=me.savedL;
-    me.onRight= me.savedR;
+    me.onLeft = me.savedL;
+    me.onRight = me.savedR;
     me.prevCentral = me.onLeft;
+    UnityEngine.Cursor.visible = false;
+    me.crt.gameObject.SetActive(true);
+    me.crtl.gameObject.SetActive(true);
+    me.crtr.gameObject.SetActive(true);
   }
 
   public static void SetLeft(CursorTypes c, bool notIfObject = false) {

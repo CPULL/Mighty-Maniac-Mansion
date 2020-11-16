@@ -4,29 +4,46 @@
 	Properties{
 		[HideInInspector] _Color("Tint", Color) = (0, 0, 0, 1)
 		[HideInInspector] _MainTex("Texture", 2D) = "white" {}
-
-		[Header(Pixel size and scanlines)]
-		_Res("Screen Resolution (320 for C64)", Float) = 320
-		[Toggle()] _CRT("CRT scanlines", float) = 0
 		[HideInInspector] _UVCenter("_UVCenter", Vector) = (0,0,0,0)
 
+		[Header(Pixelize)]
+		_Res("Screen Resolution in pixels\n(320 for true C64, 0 to disable)", Float) = 320
+
 		[Header(C64 Colors)]
+		[Toggle()] _UseC64Cols("Use C64 colors", float) = 1
+		[Toggle()] _UseExC64Cols("Use Extended C64 colors", float) = 0
+
+		[Header(C64 Color values)]
 		_ColorBlk("C64 Black", Color) = (0.0000,0.0000,0.0000,1)
 		_ColorWht("C64 White", Color) = (1,1,1,1)
-		_ColorRed("C64 Red", Color) =    (0.5333, 0.0000, 0)
-		_ColorCyn("C64 Cyan", Color) =   (0.6666, 1.0000, 0.9333)
+		_ColorRed("C64 Red", Color) = (0.5333, 0.0000, 0)
+		_ColorCyn("C64 Cyan", Color) = (0.6666, 1.0000, 0.9333)
 		_ColorVio("C64 Violet", Color) = (0.8000, 0.2666, 0.8000)
-		_ColorGrn("C64 Green", Color) =  (0.0000, 0.8000, 0.3330)
-		_ColorBlu("C64 Blue", Color) =   (0.0000, 0.0000, 0.6666)
+		_ColorGrn("C64 Green", Color) = (0.0000, 0.8000, 0.3330)
+		_ColorBlu("C64 Blue", Color) = (0.0000, 0.0000, 0.6666)
 		_ColorYel("C64 Yellow", Color) = (0.9333, 0.9333, 0.4666)
 		_ColorOrn("C64 Orange", Color) = (0.8666, 0.5333, 0.3333)
-		_ColorBrn("C64 Brown", Color) =  (0.4000, 0.2666, 0.0000)
-		_ColorLrd("C64 LRed", Color) =   (1.0000, 0.4666, 0.4666)
-		_ColorGr1("C64 Grey1", Color) =  (0.2000, 0.2000, 0.2000)
-		_ColorGr2("C64 Grey2", Color) =  (0.4666, 0.4666, 0.4666)
+		_ColorBrn("C64 Brown", Color) = (0.4000, 0.2666, 0.0000)
+		_ColorLrd("C64 LRed", Color) = (1.0000, 0.4666, 0.4666)
+		_ColorGr1("C64 Grey1", Color) = (0.2000, 0.2000, 0.2000)
+		_ColorGr2("C64 Grey2", Color) = (0.4666, 0.4666, 0.4666)
 		_ColorLGr("C64 LGreen", Color) = (0.6666, 1.0000, 0.4000)
-		_ColorLBl("C64 LBlue", Color) =  (0.0000, 0.5333, 1.0000)
-		_ColorGr3("C64 Grey3", Color) =  (0.7333, 0.7333, 0.7333)
+		_ColorLBl("C64 LBlue", Color) = (0.0000, 0.5333, 1.0000)
+		_ColorGr3("C64 Grey3", Color) = (0.7333, 0.7333, 0.7333)
+
+		[Header(Outlines)]
+		[Toggle()] _UseOutline("Use Outlines", float) = 0
+		_OutlineSize("Outline size", Range(0, 8)) = 1
+		_OutlineStrenght("Outline Strenght", Range(0, 1)) = 1
+
+		[Header(Scanlines)]
+		[Toggle()] _CRT("Use CRT scanlines", float) = 1
+		_CRTFreq("CRT scanlines frequency", Range(0, .5)) = 0
+		[Toggle()] _CRTDir("Scanlines go down", float) = 1
+		_CRTSpeed("Scanlines Speed", Range(0, 4)) = 0
+		_CRTNoise("CRT noise", Range(0, 10)) = 0
+		_CRTStrenght("Scanlines strenght", Range(0, 1)) = .8
+		[Toggle()] _CRTInternalce("Interlace (Seizure Warning!)", float) = 0
 	}
 
 	SubShader{
@@ -36,7 +53,6 @@
 		}
 
 		Blend SrcAlpha OneMinusSrcAlpha
-
 		ZWrite off
 		Cull off
 
@@ -59,7 +75,9 @@
 
 			uniform half _Res, _TextQual;
 			uniform half4 _UVCenter;
-			float _CRT;
+			float _UseC64Cols, _UseExC64Cols;
+			float _UseOutline, _OutlineSize, _OutlineStrenght;
+			float _CRT, _CRTFreq, _CRTDir, _CRTSpeed, _CRTNoise, _CRTStrenght, _CRTInternalce;
 
 			struct appdata {
 				float4 vertex : POSITION;
@@ -100,116 +118,120 @@
 			}
 
 			fixed4 frag(v2f i) : SV_TARGET{
-				float2 uv = quantToWorld(i.uv - _UVCenter.xy,  _Res) + _UVCenter.xy;
+				fixed4 col; // The final color to use
+				float2 uv; // The uv to use
+
+
+				// Handle quantization -------------------------------------------------------------------------------------------------------------------------------------
+				if (_Res == 0 || _Res == 1920) {
+					uv = i.uv; 
+				}
+				else {
+					uv = quantToWorld(i.uv - _UVCenter.xy, _Res) + _UVCenter.xy;
+				}
+
+
+				// Handle colors -------------------------------------------------------------------------------------------------------------------------------------
 				fixed4 colOrg = tex2D(_MainTex, uv);
+				if (_UseC64Cols == 0) {
+					col = colOrg;
+				}
+				else {
+					fixed4 colors[16];
+					colors[0] = _ColorBlk;
+					colors[1] = _ColorWht;
+					colors[2] = _ColorRed;
+					colors[3] = _ColorCyn;
+					colors[4] = _ColorVio;
+					colors[5] = _ColorGrn;
+					colors[6] = _ColorBlu;
+					colors[7] = _ColorYel;
+					colors[8] = _ColorOrn;
+					colors[9] = _ColorBrn;
+					colors[10] = _ColorLrd;
+					colors[11] = _ColorGr1;
+					colors[12] = _ColorGr2;
+					colors[13] = _ColorLGr;
+					colors[14] = _ColorLBl;
+					colors[15] = _ColorGr3;
 
-				fixed4 col = _ColorBlk;
-				float minDist = cdist(colOrg, _ColorBlk);
+					float minDist = 999999;
+					for (uint pos = 0; pos < 16; pos++) {
+						float dist = cdist(colOrg, colors[pos]);
+						if (dist < minDist) {
+							minDist = dist;
+							col = colors[pos];
+						}
+					}
 
-				float dist = cdist(colOrg, _ColorWht);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorWht;
+					if (_UseExC64Cols != 0) { // Second pass with half colors
+						for (uint pos = 0; pos < 16; pos++) {
+							float dist = cdist(colOrg, colors[pos] * .5);
+							if (dist < minDist) {
+								minDist = dist;
+								col = colors[pos] * .5;
+							}
+						}
+					}
+
 				}
 
-				dist = cdist(colOrg, _ColorRed);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorRed;
+				// Handle outline -------------------------------------------------------------------------------------------------------------------------------------
+				if (_UseOutline != 0) {
+					half4 outlineC = col * _OutlineStrenght;
+					outlineC.a = col.a;
+
+					fixed ua = tex2D(_MainTex, uv + fixed2(0, _MainTex_TexelSize.y) * _OutlineSize).a;
+					fixed da = tex2D(_MainTex, uv - fixed2(0, _MainTex_TexelSize.y) * _OutlineSize).a;
+					fixed la = tex2D(_MainTex, uv - fixed2(_MainTex_TexelSize.x, 0) * _OutlineSize).a;
+					fixed ra = tex2D(_MainTex, uv + fixed2(_MainTex_TexelSize.x, 0) * _OutlineSize).a;
+
+					half4 resc = lerp(outlineC, col, ceil(ua * da * la * ra));
+					resc = (resc + col) * .5;
+					resc.a = col.a;
+
+					col = resc;
 				}
 
-				dist = cdist(colOrg, _ColorCyn);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorCyn;
-				}
 
-				dist = cdist(colOrg, _ColorVio);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorVio;
-				}
-
-				dist = cdist(colOrg, _ColorGrn);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorGrn;
-				}
-
-				dist = cdist(colOrg, _ColorBlu);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorBlu;
-				}
-
-				dist = cdist(colOrg, _ColorYel);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorYel;
-				}
-
-				dist = cdist(colOrg, _ColorOrn);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorOrn;
-				}
-
-				dist = cdist(colOrg, _ColorBrn);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorBrn;
-				}
-
-				dist = cdist(colOrg, _ColorLrd);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorLrd;
-				}
-
-				dist = cdist(colOrg, _ColorGr1);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorGr1;
-				}
-
-				dist = cdist(colOrg, _ColorGr2);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorGr2;
-				}
-
-				dist = cdist(colOrg, _ColorLGr);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorLGr;
-				}
-
-				dist = cdist(colOrg, _ColorLBl);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorLBl;
-				}
-
-				dist = cdist(colOrg, _ColorGr3);
-				if (dist < minDist) {
-					minDist = dist;
-					col = _ColorGr3;
-				}
-
-				col = colOrg;
-
+				// Handle scanlines -------------------------------------------------------------------------------------------------------------------------------------
 				if (_CRT != 0) {
-					int y = (int)(i.position.y * 0.256);
-					if (y % 2 == 1) {
-						col.r *= .8;
-						col.g *= .8;
-						col.b *= .8;
+					int y = 0;
+
+					float noise = clamp(_CRTNoise * (-_Time.z + 3 * _SinTime.y - 4 * _CosTime.z), 0, 1);
+
+					if (_CRTDir == 0) { // Up
+						y = (int)((i.position.y + (_Time.w + noise) * _CRTSpeed) * _CRTFreq);
+
+					}
+					else { // Down
+						y = (int)((i.position.y - (_Time.w + noise) * _CRTSpeed) * _CRTFreq);
+					}
+
+					if (_CRTInternalce == 0) {
+						if (y & 1 == 1) {
+							col.rgb *= _CRTStrenght;
+						}
+					}
+					else {
+						if (_Time.x % 0.00025 < 0.000125) {
+							if (y & 1 == 1) {
+								col.rgb *= _CRTStrenght;
+							}
+						}
+						else {
+							if (y & 1 != 1) {
+								col.rgb *= _CRTStrenght;
+							}
+						}
+
 					}
 				}
 
 				col.a = colOrg.a;
 				col *= _Color;
 				col *= i.color;
+
 				return col;
 			}
 

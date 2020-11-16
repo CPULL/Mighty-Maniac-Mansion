@@ -26,8 +26,6 @@ public class GD : MonoBehaviour {
 
     gs = this;
     DontDestroyOnLoad(this.gameObject);
-
-    SetC64Mode(PlayerPrefs.GetInt("C64Mode", 0));
   }
 
 
@@ -261,37 +259,44 @@ public class GD : MonoBehaviour {
     }
   }
 
-  internal static void SetC64Mode(int mode) {
-    /*
-      0 no C64
-      1 not possible
-      2 640 pixels no scanlines
-      3 640 pixels with scanlines
-      4 480 pixels no scanlines
-      5 480 pixels with scanlines
-      6 320 pixels no scanlines
-      7 320 pixels with scanlines
-      8 256 pixels no scanlines
-      9 256 pixels with scanlines
-     10 160 pixels no scanlines
-     11 160 pixels with scanlines
-     */
-    if (mode < 2) {
+  internal static void SetC64Mode(int colors, int pixels, int outline, int scanlines, float slfreq, float slspeed, float slnoise, float slstr) {
+    if (colors == 0 && pixels == 0 && outline == 0 && scanlines == 0) {
       gs.MatNormal = gs._MatNormal;
     }
     else {
       gs.MatNormal = gs._MatNormalC64;
-      gs.MatNormal.SetFloat("_CRT", mode & 1);
-      float res = 320;
-      if (mode == 2 || mode == 3) res = 640;
-      else if (mode == 4 || mode == 5) res = 480;
-      else if (mode == 6 || mode == 7) res = 320;
-      else if (mode == 8 || mode == 9) res = 256;
-      else if (mode == 10 || mode == 11) res = 160;
-      gs.MatNormal.SetFloat("_Res", res);
-    }
-    if (c != null && c.currentRoom != null) c.currentRoom.UpdateLights();
 
+      // Colors
+      gs.MatNormal.SetFloat("_UseC64Cols", colors != 0 ? 1 : 0);
+      gs.MatNormal.SetFloat("_UseExC64Cols", colors == 2 ? 1 : 0);
+
+      // Pixelize
+      if (pixels == 0) pixels = 0;
+      else if (pixels == 1) pixels = 640;
+      else if (pixels == 2) pixels = 480;
+      else if (pixels == 3) pixels = 320;
+      else if (pixels == 4) pixels = 256;
+      else if (pixels == 5) pixels = 160;
+      gs.MatNormal.SetFloat("_Res", pixels);
+
+      // Outline
+      int ostr = outline / 100;
+      int osiz = (outline / 10) % 10;
+      gs.MatNormal.SetFloat("_UseOutline", outline & 1);
+      gs.MatNormal.SetFloat("_OutlineSize", osiz);
+      gs.MatNormal.SetFloat("_OutlineStrenght", ostr / 100f);
+
+      // Scanlines
+      gs.MatNormal.SetFloat("_CRT", (scanlines & 1) == 1 ? 1 : 0);
+      gs.MatNormal.SetFloat("_CRTDir", (scanlines & 2) == 2 ? 1 : 0);
+      gs.MatNormal.SetFloat("_CRTInternalce", (scanlines & 4) == 4 ? 1 : 0);
+      gs.MatNormal.SetFloat("_CRTStrenght", slstr);
+      gs.MatNormal.SetFloat("_CRTFreq", slfreq);
+      gs.MatNormal.SetFloat("_CRTSpeed", slspeed);
+      gs.MatNormal.SetFloat("_CRTNoise", slnoise);
+    }
+
+    if (c != null && c.currentRoom != null) c.currentRoom.UpdateLights();
   }
 
   public static bool globalLights = true;

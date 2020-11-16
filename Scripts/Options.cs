@@ -14,6 +14,47 @@ public class Options : MonoBehaviour {
   public Slider BackgroundVolume;
   public TextMeshProUGUI BackgroundVal;
 
+  public TMP_Dropdown UseC64ColorsDD;
+  public TMP_Dropdown PixelizeDD;
+  public Toggle OutlineTG;
+  public Slider OutlineSizeSL;
+  public TextMeshProUGUI OutlineSizeVal;
+  public Slider OutlineStrenghtSL;
+  public TextMeshProUGUI OutlineStrenghtVal;
+
+  public Toggle ScanlinesTG;
+  public Slider ScanlinesStrenghtSL;
+  public TextMeshProUGUI ScanlinesStrenghtVal;
+  public Slider ScanlinesFreqSL;
+  public TextMeshProUGUI ScanlinesFreqVal;
+  public Slider ScanlinesSpeedSL;
+  public TextMeshProUGUI ScanlinesSpeedVal;
+  public Slider ScanlinesNoiseSL;
+  public TextMeshProUGUI ScanlinesNoiseVal;
+  public TMP_Dropdown ScanlinesDir;
+  public Toggle InterlaceTG;
+
+
+  public Button[] Tabs;
+  public GameObject[] Parts;
+
+  public void ClickTab(int b) {
+    ColorBlock colors;
+    for (int i = 0; i < 3; i++) {
+      colors = Tabs[i].colors;
+      colors.normalColor = new Color32(255, 255, 255, 255);
+      Tabs[i].colors = colors;
+      Parts[i].SetActive(false);
+    }
+    colors = Tabs[b].colors;
+    colors.normalColor = new Color32(236, 242, 252, 255);
+    colors.selectedColor = new Color32(236, 242, 252, 255);
+    Tabs[b].colors = colors;
+    Parts[b].SetActive(true);
+  }
+
+
+
   public Slider TextSpeed;
   public TextMeshProUGUI TextVal;
   public Slider WalkSpeed;
@@ -29,10 +70,6 @@ public class Options : MonoBehaviour {
   public Material[] FontMaterials;
   public string[] FontNames;
 
-  public Toggle EnableC64;
-  public Toggle ScanLines;
-  public TMP_Dropdown Resolution;
-
   public Button RestartIntro;
   public Button RestartNewChars;
   public Button RestartSameChars;
@@ -41,39 +78,6 @@ public class Options : MonoBehaviour {
     GD.opts = this;
   }
 
-  private string GetStringValue(float val) {
-    if (val == 0) return "<i>disabled</i>";
-    if (val == 1) return "25%";
-    if (val == 2) return "50%";
-    if (val == 3) return "75%";
-    if (val == 4) return "80%";
-    if (val == 5) return "90%";
-    if (val == 6) return "100%";
-    if (val == 7) return "110%";
-    if (val == 8) return "125%";
-    if (val == 9) return "150%";
-    if (val == 10) return "200%";
-    if (val == 11) return "300%";
-    if (val == 12) return "400%";
-    return val + " ???";
-  }
-
-  private static float GetFloatValue(float val) {
-    if (val == 0) return 0;
-    if (val == 1) return .25f;
-    if (val == 2) return .50f;
-    if (val == 3) return .75f;
-    if (val == 4) return .80f;
-    if (val == 5) return .90f;
-    if (val == 6) return 1;
-    if (val == 7) return 1.10f;
-    if (val == 8) return 1.25f;
-    if (val == 9) return 1.50f;
-    if (val == 10) return 2.00f;
-    if (val == 11) return 3.00f;
-    if (val == 12) return 4.00f;
-    return val;
-  }
 
   private string GetStringValueD(float val) {
     if (val <= 1) return "25%";
@@ -177,20 +181,67 @@ public class Options : MonoBehaviour {
     PlayerPrefs.SetInt("Font", num);
   }
 
-  public void EnableC64TG() {
-    if (EnableC64.isOn) {
-      Controller.c64mode = GetC64Mode();
-      if (Controller.c64mode == 0)
-        Controller.c64mode = 7;
-    }
-    else
-      Controller.c64mode = 0;
-    UpdateC64Mode(Controller.c64mode);
+  public void ChangePixels() {
+    PlayerPrefs.SetInt("Pixelization", PixelizeDD.value);
+    ApplyC64Options();
   }
 
-  public void ScanLinesAndResolution() {
-    UpdateC64Mode(GetC64Mode());
+  public void ChangeC64Colors() {
+    PlayerPrefs.SetInt("C64Colors", UseC64ColorsDD.value);
+    ApplyC64Options();
   }
+
+  public void ChangeOutline() {
+    OutlineSizeSL.interactable = OutlineTG.isOn;
+    OutlineStrenghtSL.interactable = OutlineTG.isOn;
+    int val = (OutlineTG.isOn ? 1 : 0) + 10 * (int)OutlineSizeSL.value + (int)(100 * OutlineStrenghtSL.value) * 100;
+    PlayerPrefs.SetInt("ShaderOutline", val);
+    ApplyC64Options();
+  }
+
+  public void ChangeOutlineSizeStrenght() {
+    int val = (OutlineTG.isOn ? 1 : 0) + 10 * (int)OutlineSizeSL.value + (int)(100 * OutlineStrenghtSL.value) * 100;
+    PlayerPrefs.SetInt("ShaderOutline", val);
+    OutlineSizeVal.text = ((int)OutlineSizeSL.value).ToString();
+    OutlineStrenghtVal.text = (int)(100 * OutlineStrenghtSL.value) + "%";
+    ApplyC64Options();
+  }
+
+  public void ChangeScanlines() {
+    ScanlinesStrenghtSL.interactable = ScanlinesTG.isOn;
+    ScanlinesFreqSL.interactable = ScanlinesTG.isOn;
+    ScanlinesSpeedSL.interactable = ScanlinesTG.isOn;
+    ScanlinesNoiseSL.interactable = ScanlinesTG.isOn;
+    ScanlinesDir.interactable = ScanlinesTG.isOn;
+
+    PlayerPrefs.SetInt("Scanlines", (ScanlinesTG.isOn ? 1 : 0) + (ScanlinesDir.value == 1 ? 2 : 0) + (InterlaceTG.isOn ? 4 : 0));
+    ApplyC64Options();
+  }
+
+  public void ChangeScanlineFreq() {
+    PlayerPrefs.SetFloat("ScanlinesFreq", ScanlinesFreqSL.value);
+    ScanlinesFreqVal.text = ((int)(100 * ScanlinesFreqSL.value)) + "%";
+    ApplyC64Options();
+  }
+
+  public void ChangeScanlineSpeed() {
+    PlayerPrefs.SetFloat("ScanlinesSpeed", ScanlinesSpeedSL.value);
+    ScanlinesSpeedVal.text = ((int)(100 * ScanlinesSpeedSL.value)) + "%";
+    ApplyC64Options();
+  }
+
+  public void ChangeScanlineNoise() {
+    PlayerPrefs.SetFloat("ScanlinesNoise", ScanlinesNoiseSL.value);
+    ScanlinesNoiseVal.text = (((int)(100 * ScanlinesNoiseSL.value)) / 100f).ToString();
+    ApplyC64Options();
+  }
+
+  public void ChangeScanlineStrenght() {
+    PlayerPrefs.SetFloat("ScanlinesStrenght", ScanlinesStrenghtSL.value);
+    ScanlinesStrenghtVal.text = ((int)(100 * ScanlinesStrenghtSL.value)) + "%";
+    ApplyC64Options();
+  }
+
 
   public static void Activate(bool activate) {
     if (GD.opts == null) return;
@@ -202,7 +253,10 @@ public class Options : MonoBehaviour {
 
     Controller.PauseMusic();
     if (activate) {
+      ClickTab(0);
       CursorHandler.SaveCursor();
+
+      // Audio
       float val = PlayerPrefs.GetFloat("MasterVolume", 1);
       MainVolume.SetValueWithoutNotify(val);
       val = PlayerPrefs.GetFloat("MusicVolume", 1);
@@ -216,6 +270,7 @@ public class Options : MonoBehaviour {
       ChangeSoundVolume();
       ChangeBackgroundVolume();
 
+      // Gameplay
       val = PlayerPrefs.GetFloat("WalkSpeed", 6);
       WalkSpeed.SetValueWithoutNotify(val);
       ChangeMaxWalkSpeed();
@@ -223,9 +278,37 @@ public class Options : MonoBehaviour {
       TextSpeed.SetValueWithoutNotify(val);
       ChangeTextSpeed();
 
+      // Video
       UpdateFonts(PlayerPrefs.GetInt("Font", 3));
 
-      UpdateC64Mode(PlayerPrefs.GetInt("C64Mode", 0));
+      PixelizeDD.SetValueWithoutNotify(PlayerPrefs.GetInt("Pixelization", 0));
+      UseC64ColorsDD.SetValueWithoutNotify(PlayerPrefs.GetInt("C64Colors", 0));
+
+      int outline = PlayerPrefs.GetInt("ShaderOutline", 0);
+      OutlineTG.SetIsOnWithoutNotify((outline & 1) == 1);
+      OutlineSizeSL.interactable = OutlineTG.isOn;
+      OutlineStrenghtSL.interactable = OutlineTG.isOn;
+      int ostr = outline / 100;
+      OutlineStrenghtSL.SetValueWithoutNotify(ostr / 100f);
+      int osiz = (outline / 10) % 10;
+      OutlineSizeSL.SetValueWithoutNotify(osiz);
+
+      int scan = PlayerPrefs.GetInt("Scanlines", 0);
+      ScanlinesTG.SetIsOnWithoutNotify((scan & 1) == 1);
+      ScanlinesDir.SetValueWithoutNotify((scan & 2) == 2 ? 1 : 0);
+      InterlaceTG.SetIsOnWithoutNotify((scan & 4) == 4);
+
+      ScanlinesFreqSL.value = PlayerPrefs.GetFloat("ScanlinesFreq", .5f);
+      ChangeScanlineFreq();
+      ScanlinesSpeedSL.value = PlayerPrefs.GetFloat("ScanlinesSpeed", .5f);
+      ChangeScanlineSpeed();
+      ScanlinesNoiseSL.value = PlayerPrefs.GetFloat("ScanlinesNoise", 0);
+      ChangeScanlineNoise();
+      ScanlinesStrenghtSL.value = PlayerPrefs.GetFloat("ScanlinesStrenght", .5f);
+      ChangeScanlineStrenght();
+
+      ApplyC64Options();
+
 
       RestartIntro.interactable = GD.status == GameStatus.IntroVideo || GD.status == GameStatus.CharSelection || GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
       RestartNewChars.interactable = GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
@@ -241,8 +324,6 @@ public class Options : MonoBehaviour {
       PlayerPrefs.SetFloat("WalkSpeed", WalkSpeed.value);
       Controller.walkSpeed = GetFloatValueD(WalkSpeed.value);
       Controller.textSpeed = GetFloatValueD(TextSpeed.value);
-      Controller.c64mode = GetC64Mode();
-      PlayerPrefs.SetInt("C64Mode", Controller.c64mode);
     }
   }
 
@@ -281,7 +362,12 @@ public class Options : MonoBehaviour {
 
     GD.opts.UpdateFonts(PlayerPrefs.GetInt("Font", 3));
 
-    GD.SetC64Mode(PlayerPrefs.GetInt("C64Mode", 0));
+    GD.opts.UseC64ColorsDD.SetValueWithoutNotify(PlayerPrefs.GetInt("C64Colors", 0));
+    GD.opts.PixelizeDD.SetValueWithoutNotify(PlayerPrefs.GetInt("Pixelization", 0));
+    float outline = PlayerPrefs.GetFloat("ShaderOutline", 0);
+    GD.opts.OutlineSizeSL.SetValueWithoutNotify((int)outline);
+    GD.opts.OutlineStrenghtSL.SetValueWithoutNotify(outline - (int)outline);
+    GD.opts.ApplyC64Options();
   }
 
   public void QuitGame() {
@@ -313,26 +399,11 @@ public class Options : MonoBehaviour {
     GD.b.text.fontSharedMaterial = FontMaterials[num];
   }
 
-  private void UpdateC64Mode(int mode) {
-    Controller.c64mode = mode;
 
-    if (mode == 0) {
-      EnableC64.SetIsOnWithoutNotify(false);
-      ScanLines.interactable = false;
-      Resolution.interactable = false;
-      GD.SetC64Mode(0);
-      return;
-    }
-    EnableC64.SetIsOnWithoutNotify(true);
-    ScanLines.interactable = true;
-    ScanLines.SetIsOnWithoutNotify((mode & 1) == 1);
-    Resolution.interactable = true;
-    Resolution.SetValueWithoutNotify(mode / 2 - 1);
-    GD.SetC64Mode(mode);
-  }
-
-  private int GetC64Mode() {
-    if (!EnableC64.isOn) return 0;
-    return (Resolution.value + 1) * 2 + (ScanLines.isOn ? 1 : 0);
+  public void ApplyC64Options() {
+    int outline = (OutlineTG.isOn ? 1 : 0) + 10 * (int)OutlineSizeSL.value + (int)(100 * OutlineStrenghtSL.value) * 100;
+    GD.SetC64Mode(UseC64ColorsDD.value, PixelizeDD.value, outline,
+      PlayerPrefs.GetInt("Scanlines", 0), ScanlinesFreqSL.value, ScanlinesSpeedSL.value, ScanlinesNoiseSL.value, ScanlinesStrenghtSL.value
+    );
   }
 }
