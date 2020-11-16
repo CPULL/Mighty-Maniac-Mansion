@@ -1,7 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
-
+Add something to center the camera to the dog when going close and not being a friend
 
 Intro all participants (syd, razor, jeff, michael)
 Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)

@@ -163,7 +163,7 @@ public enum GameFlag {
   PackageIsDeliveredStamps,
   EdnaBrowsingFridge,
   EdCheckingPackage,
-  SamIsFriend,
+  SamIsFriend, // 0=Never seen (do camera pan), 1=not friend, 2=friend
 }
 
 [System.Serializable]
@@ -195,7 +195,8 @@ public enum CutsceneID {
   Microwave,
   FredTalkingToKidnapped,
   PickDeveloperBottle,
-
+  GoAwayFromDogR,
+  GoAwayFromDogL,
 
   unused1,
   unused2,

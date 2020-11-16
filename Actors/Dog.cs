@@ -27,7 +27,7 @@ public class Dog : MonoBehaviour {
    
    */
 
-  bool friendly = false;
+  int friendly = 0;
   float friendCheck = 1f;
 
   float timeout = 1f;
@@ -47,16 +47,21 @@ public class Dog : MonoBehaviour {
 
   void Update() {
     if (GD.c == null || GD.c.currentActor == null) return;
-    if (!friendly) {
+    if (friendly < 2) {
       friendCheck -= Time.deltaTime;
       if (friendCheck < 0) {
-        friendly = AllObjects.GetFlag(GameFlag.SamIsFriend) != 0;
+        friendly = AllObjects.GetFlag(GameFlag.SamIsFriend);
         friendCheck = 1f;
       }
     }
     dist = Mathf.Abs(GD.c.currentActor.transform.position.x - transform.position.x);
 
-    if (friendly || dist > 5.5f) { // Friend
+    if (friendly == 0 && dist < 7f) { // Do first pan
+      AllObjects.SetFlag(GameFlag.SamIsFriend, 1);
+      Controller.PanCamera(new Vector3(-129, 2, -10), 1f);
+    }
+
+    if (friendly == 2 || dist > 6f) { // Friend
       // If made friend, just stay close to the home, and move tail, toungue randomly
 
       if (walking) {
@@ -129,11 +134,8 @@ public class Dog : MonoBehaviour {
       }
 
     }
-    else if (dist > 3.5f) { // Not friend and too close
-
-      // Point actor and grind. Stop wiggle
-      // Bark from time to time
-
+    else if (dist > 4f) { // Not friend and too close
+      // Point actor and grind. Stop wiggle. Bark from time to time
       if (!Audio.isPlaying) {
         BodyAnim.Play("Body Idle");
         TailAnim.Play("Tail Idle");
@@ -150,9 +152,7 @@ public class Dog : MonoBehaviour {
 
     }
     else { // Not friend and too close
-           // Block actor, let currentactor say something, and then walk away
-           // Point actor and bark
-           // Bark strong
+      // Point actor and bark strong
 
       if (!Audio.isPlaying) {
         BodyAnim.Play("Body Idle");
@@ -166,15 +166,16 @@ public class Dog : MonoBehaviour {
 
         Audio.clip = Barks[Random.Range(1, Barks.Length)];
         Audio.Play();
-
-        GD.c.currentActor.Say("Good dog...");
-        GD.c.currentActor.SetExpression(Expression.Sad);
-        GD.c.currentActor.Say("Better to go away...");
-        // Walk away
-        // FIXME do we need a cutscene for this?
       }
 
-
+      GameScene scene = GD.c.currentActor.transform.position.x > transform.position.x ?
+        AllObjects.GetCutscene(CutsceneID.GoAwayFromDogR) :
+        AllObjects.GetCutscene(CutsceneID.GoAwayFromDogL);
+      if (scene.status == GameSceneStatus.NotRunning || GD.c.currentCutscene == null) {
+        Debug.Log("Start scene >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        GD.c.currentActor.Stop();
+        Controller.StartCutScene(scene);
+      }
     }
 
   }
