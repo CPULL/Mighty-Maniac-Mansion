@@ -21,6 +21,10 @@ public class Controller : MonoBehaviour {
 
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
 
+  private void OnApplicationFocus(bool focus) {
+    if (focus && GD.status != GameStatus.NotYetLoaded) CursorHandler.ResetCursor();
+  }
+
   void Update() {
     if (Options.IsActive()) return;
     if (GD.status == GameStatus.StartGame) {

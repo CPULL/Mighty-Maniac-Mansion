@@ -44,6 +44,11 @@
 		_CRTNoise("CRT noise", Range(0, 10)) = 0
 		_CRTStrenght("Scanlines strenght", Range(0, 1)) = .8
 		[Toggle()] _CRTInternalce("Interlace (Seizure Warning!)", float) = 0
+
+		[Header(Luminosity)]
+		[Toggle()] _Selected("Selected", float) = 0
+		[Toggle()] _FlashLight("Flashlight", float) = 0
+		[Toggle()] _NoLights("No lights", float) = 0
 	}
 
 	SubShader{
@@ -78,6 +83,8 @@
 			float _UseC64Cols, _UseExC64Cols;
 			float _UseOutline, _OutlineSize, _OutlineStrenght;
 			float _CRT, _CRTFreq, _CRTDir, _CRTSpeed, _CRTNoise, _CRTStrenght, _CRTInternalce;
+			float _Selected, _FlashLight, _NoLights;
+
 
 			struct appdata {
 				float4 vertex : POSITION;
@@ -228,6 +235,102 @@
 					}
 				}
 
+
+				// _Selected -------------------------------------------------------------------------------------------------------------------------------------
+
+				if (_Selected != 0) {
+					// Outline and glow
+					col = col + _ColorCyn;
+					col *= .5;
+
+					fixed ua = tex2D(_MainTex, uv + fixed2(0, _MainTex_TexelSize.y) * 5).a;
+					fixed da = tex2D(_MainTex, uv - fixed2(0, _MainTex_TexelSize.y) * 5).a;
+					fixed la = tex2D(_MainTex, uv - fixed2(_MainTex_TexelSize.x, 0) * 5).a;
+					fixed ra = tex2D(_MainTex, uv + fixed2(_MainTex_TexelSize.x, 0) * 5).a;
+					half4 resc = lerp(_ColorCyn, col, ceil(ua * da * la * ra));
+					resc = (resc + col) * .5;
+					resc.a = col.a;
+					col = resc;
+				}
+
+				// _FlashLight -------------------------------------------------------------------------------------------------------------------------------------
+
+				if (_FlashLight != 0 && _NoLights == 0) {
+					// Lower saturation, lower luminosity, increase outline but with gray border
+
+					float mean = (col.r + col.g + col.b) / 3;
+					fixed4 mc;
+					mc.r = mean;
+					mc.g = mean;
+					mc.b = mean;
+					mc.a = col.a;
+
+					float size = 3;
+					if (_Selected == 0) {
+						col = col + mc;
+						col *= .35;
+					}
+					else {
+						col = col + col + mc + _ColorCyn;
+						col *= .17;
+						size = 4;
+					}
+
+					half4 outlineC = _ColorWht;
+					outlineC.a = col.a;
+					fixed ua = tex2D(_MainTex, uv + fixed2(0, _MainTex_TexelSize.y) * size).a;
+					fixed da = tex2D(_MainTex, uv - fixed2(0, _MainTex_TexelSize.y) * size).a;
+					fixed la = tex2D(_MainTex, uv - fixed2(_MainTex_TexelSize.x, 0) * size).a;
+					fixed ra = tex2D(_MainTex, uv + fixed2(_MainTex_TexelSize.x, 0) * size).a;
+					half4 resc = lerp(outlineC, col, ceil(ua * da * la * ra));
+					resc = (resc + col) * .5;
+					resc.a = col.a;
+					col = resc;
+				}
+
+				// _NoLights -------------------------------------------------------------------------------------------------------------------------------------
+
+				if (_NoLights != 0) {
+					// Lower saturation, low luminosity, increase outline but with gray border
+
+					float mean = (col.r + col.g + col.b) / 3;
+					fixed4 mc;
+					mc.r = mean;
+					mc.g = mean;
+					mc.b = mean;
+					mc.a = col.a;
+
+					float size = 2;
+					if (_Selected == 0) {
+						col = col + mc + mc + mc;
+						col *= .013;
+					}
+					else {
+						col = col + mc + _ColorCyn;
+						col *= .05;
+						size = 4;
+					}
+
+					half4 outlineC = mc + _ColorWht;
+					outlineC *= .125;
+					outlineC.a = col.a;
+					fixed ua = tex2D(_MainTex, uv + fixed2(0, _MainTex_TexelSize.y) * size).a;
+					fixed da = tex2D(_MainTex, uv - fixed2(0, _MainTex_TexelSize.y) * size).a;
+					fixed la = tex2D(_MainTex, uv - fixed2(_MainTex_TexelSize.x, 0) * size).a;
+					fixed ra = tex2D(_MainTex, uv + fixed2(_MainTex_TexelSize.x, 0) * size).a;
+					half4 resc = lerp(outlineC, col, ceil(ua * da * la * ra));
+					if (_Selected == 0) {
+						resc = (resc + col) * .5;
+					}
+					else {
+						resc = (resc + resc + resc + col) * .25;
+					}
+					resc.a = col.a;
+					col = resc;
+				}
+
+
+				// Finalize
 				col.a = colOrg.a;
 				col *= _Color;
 				col *= i.color;

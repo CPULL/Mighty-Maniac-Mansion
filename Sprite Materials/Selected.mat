@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: C64
+  m_Name: Selected
   m_Shader: {fileID: 4800000, guid: 5d3b98a8501ff914ba463bcbe4b53683, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USEEXC64COLS_ON
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _SELECTED_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -65,14 +65,14 @@ Material:
     - _BillboardY: 0
     - _BlurHD: 0
     - _BlurIntensity: 10
-    - _CRT: 1
+    - _CRT: 0
     - _CRTDir: 0
-    - _CRTFreq: 0.25
+    - _CRTFreq: 0.1079924
     - _CRTI: 0.00025
-    - _CRTInternalce: 1
-    - _CRTNoise: 1.94
-    - _CRTSpeed: 2.54
-    - _CRTStrenght: 0.95
+    - _CRTInternalce: 0
+    - _CRTNoise: 1.9677724
+    - _CRTSpeed: 1.9969003
+    - _CRTStrenght: 0.37682047
     - _ChromAberrAlpha: 0.4
     - _ChromAberrAmount: 1
     - _ClipUvDown: 0
@@ -94,6 +94,7 @@ Material:
     - _FadeBurnTransition: 0.075
     - _FadeBurnWidth: 0.025
     - _FishEyeUvAmount: 0.35
+    - _FlashLight: 0
     - _FlickerAlpha: 0
     - _FlickerFreq: 0.2
     - _FlickerPercent: 0.05
@@ -134,6 +135,7 @@ Material:
     - _MyDstMode: 10
     - _MySrcMode: 5
     - _NegativeAmount: 1
+    - _NoLights: 0
     - _OffsetUvX: 0
     - _OffsetUvY: 0
     - _OnlyInnerOutline: 0
@@ -147,8 +149,8 @@ Material:
     - _OutlineGlow: 1.5
     - _OutlineIsPixel: 0
     - _OutlinePixelWidth: 1
-    - _OutlineSize: 1
-    - _OutlineStrenght: 0.99
+    - _OutlineSize: 0
+    - _OutlineStrenght: 0.27401075
     - _OutlineTexGrey: 0
     - _OutlineTexToggle: 0
     - _OutlineTexXSpeed: 10
@@ -162,10 +164,11 @@ Material:
     - _PosterizeOutline: 0
     - _RandomSeed: 0
     - _RectSize: 1
-    - _Res: 0
+    - _Res: 320
     - _RotateUvAmount: 0
     - _RoundWaveSpeed: 2
     - _RoundWaveStrength: 0.7
+    - _Selected: 1
     - _ShadowAlpha: 0.5
     - _ShadowX: 0.1
     - _ShadowY: -0.05
@@ -183,7 +186,7 @@ Material:
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75
     - _UseC64Cols: 1
-    - _UseExC64Cols: 1
+    - _UseExC64Cols: 0
     - _UseOutline: 0
     - _WaveAmount: 7
     - _WaveSpeed: 10

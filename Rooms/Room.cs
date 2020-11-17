@@ -24,7 +24,7 @@ public class Room : MonoBehaviour {
   void CollectAllRenderers(Transform tran) {
     SpriteRenderer sr = tran.GetComponent<SpriteRenderer>();
     if (sr != null) {
-      if (sr.material.name.IndexOf("SceneSelectionPoint") == -1)
+      if (sr.material.name.IndexOf("SnapPoint") == -1)
         srs.Add(sr);
       else
         sr.enabled = false;
@@ -73,7 +73,7 @@ public class Room : MonoBehaviour {
     if (lights == LightMode.External) m = GD.Normal();
     else if (lights == LightMode.On && GD.globalLights) m = GD.Normal();
     else if (GD.flashLight) m = GD.FlashLight();
-    else m = GD.LightOffRoom();
+    else m = GD.LightOff();
     foreach (SpriteRenderer sr in srs)
       sr.material = m;
 

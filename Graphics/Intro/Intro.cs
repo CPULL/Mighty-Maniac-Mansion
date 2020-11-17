@@ -352,7 +352,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 1f) {
           introTime = 0;
           istep = IntroStep.Credits5;
-          IntroCredits.text = "Remake credits:";
+          IntroCredits.text = "Remake credits";
         }
       }
       break;
@@ -361,7 +361,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 2.5f) {
           introTime = 0;
           istep = IntroStep.Credits6;
-          IntroCredits.text = "Remake credits:\n    Code - <b>CPU</b>";
+          IntroCredits.text = "Code:\n    <b>CPU</b>";
         }
       }
       break;
@@ -370,36 +370,36 @@ public class Intro : MonoBehaviour {
         if (introTime > 5f) {
           introTime = 0;
           istep = IntroStep.Credits7;
-          IntroCredits.text = "Remake credits:\n    Graphics - <b>CPU</b>";
+          IntroCredits.text = "Graphics:\n    <b>CPU</b> <size=42><i>characters and backgrounds</i></size>\n    <b>Rishik</b> <size=42><i>characters</i></size>";
         }
       }
       break;
 
       case IntroStep.Credits7: {
-        if (introTime > 5f) {
+        if (introTime > 7f) {
           introTime = 0;
           istep = IntroStep.Credits8;
-          IntroCredits.text = "Remake credits:\n    Intro Music - <b>BG Ollie</b>";
+          IntroCredits.text = "Intro Music:\n    <b>BG Ollie</b>";
           LogoOllie.enabled = true;
         }
       }
       break;
 
       case IntroStep.Credits8: {
-        if (introTime > 5f) {
+        if (introTime > 4f) {
           introTime = 0;
           istep = IntroStep.Credits9;
-          IntroCredits.text = "Remake credits:\n    Sound effects - <b>CPU</b>";
+          IntroCredits.text = "Sound effects:\n    <b>CPU</b>";
           LogoOllie.enabled = false;
         }
       }
       break;
 
       case IntroStep.Credits9: {
-        if (introTime > 5f) {
+        if (introTime > 4f) {
           introTime = 0;
           istep = IntroStep.Credits10;
-          IntroCredits.text = "Remake credits:\n    Testing - <i>Brank</i>, <i>DragonEye</i>";
+          IntroCredits.text = "Testing:\n    <i>Brank</i>, <i>Danicron</i>, <i>DragonEye</i>";
         }
       }
       break;

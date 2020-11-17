@@ -9,14 +9,11 @@ public class GD : MonoBehaviour {
   public static Chars actor2;
   public static Chars actor3;
   public static Chars kidnapped;
-  private Material MatNormal;
-  public Material _MatNormal;
-  public Material _MatNormalC64;
-  public Material MatOutline;
+  public Material MatNormal;
   public Material MatFlashLight;
   public Material MatLightOff;
-  public Material MatLightOffOutline;
-  public Material MatLightOffRoom;
+  public Material MatOutline; // Used by actors <- normal
+  public Material MatLightOffOutline; // Used by actors <- Lightsoff
 
   void Awake() {
     if (gs != null) {
@@ -35,7 +32,6 @@ public class GD : MonoBehaviour {
   public static Material LightOff() { return gs.MatLightOff; }
   public static Material FlashLight() { return gs.MatFlashLight; }
   public static Material LightOffOutline() { return gs.MatLightOffOutline; }
-  public static Material LightOffRoom() { return gs.MatLightOffRoom; }
 
 
   public static void Log(string s) {
@@ -259,40 +255,41 @@ public class GD : MonoBehaviour {
     }
   }
 
+  internal void SetMaterial(Material mat, int colors, int pixels, int outlinesize, float outlinestr, int scanlines, float slfreq, float slspeed, float slnoise, float slstr) {
+    // Colors
+    mat.SetFloat("_UseC64Cols", colors != 0 ? 1 : 0);
+    mat.SetFloat("_UseExC64Cols", colors == 2 ? 1 : 0);
+
+    // Pixelize
+    if (pixels == 0) pixels = 0;
+    else if (pixels == 1) pixels = 640;
+    else if (pixels == 2) pixels = 480;
+    else if (pixels == 3) pixels = 320;
+    else if (pixels == 4) pixels = 256;
+    else if (pixels == 5) pixels = 160;
+    mat.SetFloat("_Res", pixels);
+
+    // Outline
+    mat.SetFloat("_UseOutline", outlinesize != 0 ? 1 : 0);
+    mat.SetFloat("_OutlineSize", outlinesize);
+    mat.SetFloat("_OutlineStrenght", outlinestr);
+
+    // Scanlines
+    mat.SetFloat("_CRT", (scanlines & 1) == 1 ? 1 : 0);
+    mat.SetFloat("_CRTDir", (scanlines & 2) == 2 ? 1 : 0);
+    mat.SetFloat("_CRTInternalce", (scanlines & 4) == 4 ? 1 : 0);
+    mat.SetFloat("_CRTStrenght", slstr);
+    mat.SetFloat("_CRTFreq", slfreq);
+    mat.SetFloat("_CRTSpeed", slspeed);
+    mat.SetFloat("_CRTNoise", slnoise);
+  }
+
   internal static void SetC64Mode(int colors, int pixels, int outlinesize, float outlinestr, int scanlines, float slfreq, float slspeed, float slnoise, float slstr) {
-    if (colors == 0 && pixels == 0 && outlinesize == 0 && scanlines == 0) {
-      gs.MatNormal = gs._MatNormal;
-    }
-    else {
-      gs.MatNormal = gs._MatNormalC64;
-
-      // Colors
-      gs.MatNormal.SetFloat("_UseC64Cols", colors != 0 ? 1 : 0);
-      gs.MatNormal.SetFloat("_UseExC64Cols", colors == 2 ? 1 : 0);
-
-      // Pixelize
-      if (pixels == 0) pixels = 0;
-      else if (pixels == 1) pixels = 640;
-      else if (pixels == 2) pixels = 480;
-      else if (pixels == 3) pixels = 320;
-      else if (pixels == 4) pixels = 256;
-      else if (pixels == 5) pixels = 160;
-      gs.MatNormal.SetFloat("_Res", pixels);
-
-      // Outline
-      gs.MatNormal.SetFloat("_UseOutline", outlinesize != 0 ? 1 : 0);
-      gs.MatNormal.SetFloat("_OutlineSize", outlinesize);
-      gs.MatNormal.SetFloat("_OutlineStrenght", outlinestr);
-
-      // Scanlines
-      gs.MatNormal.SetFloat("_CRT", (scanlines & 1) == 1 ? 1 : 0);
-      gs.MatNormal.SetFloat("_CRTDir", (scanlines & 2) == 2 ? 1 : 0);
-      gs.MatNormal.SetFloat("_CRTInternalce", (scanlines & 4) == 4 ? 1 : 0);
-      gs.MatNormal.SetFloat("_CRTStrenght", slstr);
-      gs.MatNormal.SetFloat("_CRTFreq", slfreq);
-      gs.MatNormal.SetFloat("_CRTSpeed", slspeed);
-      gs.MatNormal.SetFloat("_CRTNoise", slnoise);
-    }
+    gs.SetMaterial(gs.MatNormal, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);
+    gs.SetMaterial(gs.MatFlashLight, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);
+    gs.SetMaterial(gs.MatLightOff, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);
+    gs.SetMaterial(gs.MatOutline, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);
+    gs.SetMaterial(gs.MatLightOffOutline, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);
 
     if (c != null && c.currentRoom != null) c.currentRoom.UpdateLights();
   }
