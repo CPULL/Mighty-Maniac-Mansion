@@ -1,11 +1,13 @@
 === Mighty Maniac Mansion ===
 
-
-Remove AllIn1Shader and use your own
-Day of Tentacle poster in the Arcade room.
-Add old consoles (NES, Gnesis, etc.) to the arcade room
-Do "flashlight" shader C64 style (high outline, coloring, reducing saturation, lower lights)
-Add credits for Rishik (and Diego?)
+woods: build room (labyrinth style?)
+graveyard: build room
+graveyard: move graves from front door to graveyard
+Add cape to go to the graveyard
+Add dog anims for throwing food and eating food
+Arcade room: Day of Tentacle poster in the Arcade room.
+Arcade room: Add old consoles (NES, Gnesis, etc.) to the arcade room
+Add credits for Diego
 
 
 Intro all participants (syd, razor, jeff, michael)
@@ -16,10 +18,13 @@ Add recycle stuff to the service room
 
 * TODO ************************************************************************************************************
 
-Piggy bank with coins
+Add a lab secret entrance in the home. But use the same system
+Ed room: Piggy bank with coins
 Have pool empty/full depending on the valve in the underpassage
 Have the alarm and fred cutscene if the pool has no water for too long
-
+Dungeon: add open doors sprites
+Dungeon: dungeon door should close automatically when exiting
+Add cutscenes for power off and pool empty
 
 Complete intro Cutscene, adding variations for each character.
 Define skills and actions that will allow

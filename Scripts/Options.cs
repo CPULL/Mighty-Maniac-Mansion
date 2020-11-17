@@ -399,18 +399,22 @@ public class Options : MonoBehaviour {
   }
 
   public void QuitGame() {
+    ActualActivation(false);
     Confirm.Show("Are you sure you want to quit?", 0);
   }
 
   public void RestartGameNew() {
+    ActualActivation(false);
     Confirm.Show("Are you sure you want restart?\n<size=72>You will select new characters</size>", 2);
   }
 
   public void RestartGameSame() {
+    ActualActivation(false);
     Confirm.Show("Are you sure you want restart?\n<size=72>You will use the same party</size>", 1);
   }
 
   public void RestartFromIntro() {
+    ActualActivation(false);
     Confirm.Show("Are you sure you want restart?\n<size=72>From the intro sequence</size>", 3);
   }
 

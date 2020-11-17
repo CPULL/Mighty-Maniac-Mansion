@@ -164,7 +164,7 @@ Material:
     - _PosterizeOutline: 0
     - _RandomSeed: 0
     - _RectSize: 1
-    - _Res: 320
+    - _Res: 0
     - _RotateUvAmount: 0
     - _RoundWaveSpeed: 2
     - _RoundWaveStrength: 0.7
@@ -185,7 +185,7 @@ Material:
     - _TwistUvPosX: 0.5
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75
-    - _UseC64Cols: 1
+    - _UseC64Cols: 0
     - _UseExC64Cols: 0
     - _UseOutline: 0
     - _WaveAmount: 7

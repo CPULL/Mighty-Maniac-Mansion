@@ -7,11 +7,14 @@ using UnityEngine.UI;
 
 public class Controller : MonoBehaviour {
   [HideInInspector] public Camera cam;
+  public Transform Moon;
+  public GameObject BackSky;
   public LayerMask pathLayer;
   public LayerMask doorLayer;
   public Image BlackFade;
   public Transform PickedItems;
   public AudioSource MusicPlayer;
+  private Vector3 MoonPos = new Vector3(4.9f, 2.35f, 10);
 
 
   public TextMeshProUGUI DbgMsg;
@@ -112,6 +115,8 @@ public class Controller : MonoBehaviour {
           cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .6f * Screen.width) / 10;
         }
       }
+      MoonPos.x = 4.9f - cam.transform.position.x / 100;
+      Moon.localPosition = MoonPos;
     }
     #endregion
 
@@ -174,7 +179,7 @@ public class Controller : MonoBehaviour {
             currentActor.Say("The batteries died");
             batteriesUsed = BatteriesUsed.NoBatteries;
             FlashLightPanel.enabled = false;
-            Moon.enabled = true;
+            BackSky.SetActive(true);
             GD.flashLight = false;
             currentRoom.UpdateLights();
           }
@@ -193,7 +198,7 @@ public class Controller : MonoBehaviour {
             currentActor.Say("The batteries died");
             batteriesUsed = BatteriesUsed.NoBatteries;
             FlashLightPanel.enabled = false;
-            Moon.enabled = true;
+            BackSky.SetActive(true);
             GD.flashLight = false;
             currentRoom.UpdateLights();
           }
@@ -212,7 +217,7 @@ public class Controller : MonoBehaviour {
             currentActor.Say("The batteries died");
             batteriesUsed = BatteriesUsed.NoBatteries;
             FlashLightPanel.enabled = false;
-            Moon.enabled = true;
+            BackSky.SetActive(true);
             GD.flashLight = false;
             currentRoom.UpdateLights();
           }
@@ -592,7 +597,7 @@ public class Controller : MonoBehaviour {
       if (a == null) continue;
       a.SetVisible(a.currentRoom == currentRoom);
     }
-    SkyBackground.enabled = true;
+    BackSky.SetActive(true);
 
     actor1 = GetActor(GD.actor1);
     ActorPortrait1.portrait.sprite = GetActorPortrait(GD.actor1);
@@ -819,7 +824,6 @@ public class Controller : MonoBehaviour {
   bool messagePuBatteries = false;
   public RectTransform FlashLightRT;
   public Canvas FlashLightPanel;
-  public Image Moon;
   [HideInInspector] public BatteriesUsed batteriesUsed = BatteriesUsed.NoBatteries;
 
   internal static void SwitchFlashLight(BatteriesUsed batteries) {
@@ -830,7 +834,7 @@ public class Controller : MonoBehaviour {
       }
       else if (GD.c.currentActor.HasItem(ItemEnum.Flashlight)) {
         GD.c.FlashLightPanel.enabled = false;
-        GD.c.Moon.enabled = true;
+        GD.c.BackSky.SetActive(true);
         GD.flashLight = false;
         GD.c.currentRoom.UpdateLights();
         if (GD.c.batteriesUsed == BatteriesUsed.Batteries)
@@ -856,7 +860,7 @@ public class Controller : MonoBehaviour {
       else { // Use flashlight <<< --------------------------------------------------------------------------------
         GD.c.batteriesUsed = batteries;
         GD.c.FlashLightPanel.enabled = (batteries != BatteriesUsed.NoBatteries);
-        GD.c.Moon.enabled = !GD.c.FlashLightPanel.enabled;
+        GD.c.BackSky.SetActive(!GD.c.FlashLightPanel.enabled);
         GD.flashLight = true;
         GD.c.currentRoom.UpdateLights();
         if (batteries == BatteriesUsed.OldBatteries) GD.c.currentActor.inventory.Remove(AllObjects.GetItem(ItemEnum.OldBatteries));
@@ -1287,7 +1291,6 @@ public class Controller : MonoBehaviour {
   float textSizeX = 0;
 
   public GameObject ActorsButtons;
-  public Canvas SkyBackground;
 
   void ShowName(string name) {
     if (TextMsg.text == name) return;
