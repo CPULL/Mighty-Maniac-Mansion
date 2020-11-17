@@ -71,7 +71,7 @@ Material:
     - _ClipUvLeft: 0
     - _ClipUvRight: 0
     - _ClipUvUp: 0
-    - _ColorChangeLuminosity: 0.96342593
+    - _ColorChangeLuminosity: 0.034210414
     - _ColorChangeTolerance: 0.25
     - _ColorRampLuminosity: 0
     - _ColorRampOutline: 0

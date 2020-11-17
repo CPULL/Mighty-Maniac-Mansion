@@ -8,7 +8,7 @@ Add dog anims for throwing food and eating food
 Arcade room: Day of Tentacle poster in the Arcade room.
 Arcade room: Add old consoles (NES, Gnesis, etc.) to the arcade room
 Add credits for Diego
-
+Add lookup in dog room
 
 Intro all participants (syd, razor, jeff, michael)
 Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)
