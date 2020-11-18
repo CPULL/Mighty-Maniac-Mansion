@@ -88,7 +88,6 @@ public class Balloon : MonoBehaviour {
     bool right = tlc.x > Screen.width * .5;
     float y = GD.b.txtrt.sizeDelta.y;
     bool bottom = tlc.y < Screen.height * (y < 3.2f ? .75f : .5f);
-    Controller.Dbg(tlc.y.ToString());
 
     if (right && bottom) {
       Vector3 location = new Vector3(speakerBounds.center.x, speakerBounds.max.y, 0) + Vector3.left * (size.x * .2f + .75f) + Vector3.up * size.y * .25f;

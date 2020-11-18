@@ -161,7 +161,6 @@ public class Controller : MonoBehaviour {
       if (fl.y > 1080) fl.y = 1080;
       fl.z = -7;
       FlashLightRT.localPosition = fl;
-      Dbg(fl.x + "  ,  " + fl.y);
 
       GD.FlashLight().SetFloat("_FlickerPercent", 0);
       switch (batteriesUsed) {
@@ -1204,6 +1203,12 @@ public class Controller : MonoBehaviour {
     if (currentRoom.GetComponent<Woods>() != null) {
       woods.Generate(true, false);
       woods.SetActorRandomDoorPosition(actor);
+      wndebug = 0;
+      StarsBlink.SetWoods(wndebug);
+    }
+    else if (wndebug != -1) {
+//      wndebug = -1;
+//      StarsBlink.SetWoods(-1);
     }
   }
 
@@ -1320,11 +1325,11 @@ public class Controller : MonoBehaviour {
     overItem = null;
     ShowName(currentRoom.name);
 
-    StarsBlink.SetWoods(wndebug++);
-    if (wndebug == 6) wndebug = 4;
+    StarsBlink.SetWoods(++wndebug);
+    if (wndebug == 10) wndebug = 9;
   }
 
-  int wndebug = 0;
+  int wndebug = -1;
 
   #endregion
 

@@ -7,8 +7,8 @@ public class StarsBlink : MonoBehaviour {
   public Image[] bis;
   float time = 0;
   bool byImages = false;
-  public SpriteRenderer[] Lightninghs;
-  public SpriteRenderer Thunder;
+  public SpriteRenderer[] Lightnings;
+  public AudioClip[] Thunders;
   public Material Normal;
   public Transform Moon;
 
@@ -16,9 +16,9 @@ public class StarsBlink : MonoBehaviour {
     byImages = (bis != null && bis.Length == 4 && bis[0] != null);
     if (byImages) return;
     me = this;
-    Lightninghs[0].enabled = false;
-    Lightninghs[1].enabled = false;
-    Thunder.enabled = false;
+    Lightnings[0].enabled = false;
+    Lightnings[1].enabled = false;
+    Lightnings[2].enabled = false;
     Moon.localPosition = new Vector3(5.9f, 3.35f, 10);
     Moon.localScale = new Vector3(.55f, .55f, 1);
     Normal.SetFloat("_Lightning", 0);
@@ -74,26 +74,42 @@ public class StarsBlink : MonoBehaviour {
 
   public static void SetWoods(int level) {
     if (me == null) return;
-    me.Lightninghs[0].enabled = false;
-    me.Lightninghs[1].enabled = false;
-    me.Thunder.enabled = false;
-    if (level > 0) { // Partial luminosity
-      me.Normal.SetFloat("_Lightning", -1f / level);
-      me.Moon.localScale = new Vector3(.25f, .25f, 1);
-      stormProb = level - 1;
-      if (storm == null) {
-        storm = me.StartCoroutine(me.Storm());
-      }
-    }
-    else { // 0=not in woods. Full luminosity
+    me.Lightnings[0].enabled = false;
+    me.Lightnings[1].enabled = false;
+    me.Lightnings[2].enabled = false;
+    if (level < 0) { // not in woods. Full luminosity
       me.Normal.SetFloat("_Lightning", 0);
+
+      Debug.Log("level=0");
+
       me.Moon.localScale = new Vector3(.55f, .55f, 1);
       if (storm != null) {
         me.StopCoroutine(storm);
         storm = null;
-        me.Lightninghs[0].enabled = false;
-        me.Lightninghs[1].enabled = false;
-        me.Thunder.enabled = false;
+        me.Lightnings[0].enabled = false;
+        me.Lightnings[1].enabled = false;
+        me.Lightnings[2].enabled = false;
+      }
+    }
+    else { // Partial luminosity
+      me.Normal.SetFloat("_Lightning", -.15f * level);
+
+      /*
+      0 -> 0
+      1 -> -1/5
+      2 -> -1/4
+      3 -> -1/3
+      4 -> -1/2
+      5 -> -1
+       
+       */
+
+      Debug.Log("level=" + level + " val=" + (-.15f * level));
+
+      me.Moon.localScale = new Vector3(.25f, .25f, 1);
+      stormProb = level - 1;
+      if (storm == null) {
+        storm = me.StartCoroutine(me.Storm());
       }
     }
   }
@@ -109,39 +125,39 @@ public class StarsBlink : MonoBehaviour {
 
         // Then with the specified prob decide if doing a thunder and lightning
         if (Random.Range(0, stormProb) > .9f) {
-          int what = Random.Range(0, 3);
           // FIXME play a sound
-          SpriteRenderer whatsr = null;
-          if (what == 0) { // Thunder
-            whatsr = Thunder;
-          }
-          else if (what == 1) { // Lightningh 1
-            whatsr = Lightninghs[0];
-          }
-          else if (what == 2) { // Lightningh 2
-            whatsr = Lightninghs[1];
-          }
-
+          SpriteRenderer what = Lightnings[Random.Range(0, 3)];
+          AudioClip ac = Thunders[Random.Range(0, 3)];
           // Anim
           float llorig = me.Normal.GetFloat("_Lightning");
           float time = 0;
-          while (time < .1f) {
-            whatsr.color = new Color32(1, 1, 1, (byte)(time * 255));
-            whatsr.enabled = true;
+          float len = Random.Range(.1f, .25f);
+          while (time < len) {
+            what.color = new Color32(255, 255, 255, (byte)(255 * time / len));
+            what.enabled = true;
             me.Normal.SetFloat("_Lightning", time * 10);
             time += Time.deltaTime;
             yield return null;
           }
+          if (!sound.isPlaying) {
+            sound.clip = ac;
+            sound.Play(); 
+          }
+          time = 0;
+          len = what == Lightnings[0] ? .1f : .5f;
+          while (time < .05f) {
+            time += Time.deltaTime;
+            yield return null;
+          }
           while (time > 0) {
-            whatsr.color = new Color32(1, 1, 1, (byte)(time * 255));
+            what.color = new Color32(255, 255, 255, (byte)(200 * time / len));
             time -= Time.deltaTime;
             me.Normal.SetFloat("_Lightning", time * 10);
             yield return null;
           }
-          whatsr.enabled = false;
+          what.enabled = false;
           me.Normal.SetFloat("_Lightning", llorig);
           yield return null;
-          sound.Play();
         }
       }
 
