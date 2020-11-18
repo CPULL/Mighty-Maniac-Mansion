@@ -14,7 +14,7 @@ public class Controller : MonoBehaviour {
   public Image BlackFade;
   public Transform PickedItems;
   public AudioSource MusicPlayer;
-  private Vector3 MoonPos = new Vector3(4.9f, 2.35f, 10);
+  private Vector3 MoonPos = new Vector3(5.9f, 3.35f, 10);
 
 
   public TextMeshProUGUI DbgMsg;
@@ -115,7 +115,7 @@ public class Controller : MonoBehaviour {
           cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .6f * Screen.width) / 10;
         }
       }
-      MoonPos.x = 4.9f - cam.transform.position.x / 100;
+      MoonPos.x = 5.9f - cam.transform.position.x / 100;
       Moon.localPosition = MoonPos;
     }
     #endregion
@@ -1319,8 +1319,12 @@ public class Controller : MonoBehaviour {
     CursorHandler.SetBoth(CursorTypes.Normal);
     overItem = null;
     ShowName(currentRoom.name);
+
+    StarsBlink.SetWoods(wndebug++);
+    if (wndebug == 6) wndebug = 4;
   }
 
+  int wndebug = 0;
 
   #endregion
 

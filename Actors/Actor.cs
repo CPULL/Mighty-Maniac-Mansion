@@ -17,7 +17,7 @@ public class Actor : MonoBehaviour {
   Item callBackItemWalk = null;
   GameAction followAction = null;
   WalkingMode walking = WalkingMode.None;
-  Dir dir = Dir.F;
+  [HideInInspector] public Dir dir = Dir.F;
   private AudioSource audios;
   bool isTentacle = false;
   public List<Item> inventory;
@@ -40,6 +40,7 @@ public class Actor : MonoBehaviour {
 
   public List<GameScene> behaviors;
 
+  private Cape cape = null;
 
   bool isSpeaking = false;
   int faceNum = 0;
@@ -52,7 +53,7 @@ public class Actor : MonoBehaviour {
 
   float nextBehaviorCheck = .5f;
 
-  bool IsVisible = false;
+  [HideInInspector] public bool IsVisible = false;
   public void SetVisible(bool v) {
     IsVisible = v;
     Face.enabled = v;
@@ -503,6 +504,7 @@ public class Actor : MonoBehaviour {
     Face.sortingOrder = zpos + 1;
     Arms.sortingOrder = zpos + 2;
     Legs.sortingOrder = zpos;
+    if (cape) cape.SetSortingOrder(zpos);
   }
 
   void CheckReachingDestination(Vector2 walkDir) {
@@ -593,6 +595,9 @@ public class Actor : MonoBehaviour {
     }
   }
 
+  public void SetCape(Cape c) {
+    cape = c;
+  }
 }
 
 public enum WalkingMode {

@@ -49,6 +49,9 @@
 		[Toggle()] _Selected("Selected", float) = 0
 		[Toggle()] _FlashLight("Flashlight", float) = 0
 		[Toggle()] _NoLights("No lights", float) = 0
+
+		[Header(Lightning)]
+		_Lightning("Lightning", float) = 0
 	}
 
 	SubShader{
@@ -83,7 +86,7 @@
 			float _UseC64Cols, _UseExC64Cols;
 			float _UseOutline, _OutlineSize, _OutlineStrenght;
 			float _CRT, _CRTFreq, _CRTDir, _CRTSpeed, _CRTNoise, _CRTStrenght, _CRTInternalce;
-			float _Selected, _FlashLight, _NoLights;
+			float _Selected, _FlashLight, _NoLights, _Lightning;
 
 
 			struct appdata {
@@ -327,6 +330,21 @@
 					}
 					resc.a = col.a;
 					col = resc;
+				}
+
+				// _Lightning -------------------------------------------------------------------------------------------------------------------------------------
+				if (_Lightning != 0) {
+					float mean = (col.r + col.g + col.b) / 3;
+					if (mean < .1 && _Lightning > 0) {
+						col.r /= 1 + _Lightning;
+						col.g /= 1 + _Lightning;
+						col.b /= 1 + _Lightning;
+					}
+					else {
+						col.r *= 1 + _Lightning;
+						col.g *= 1 + _Lightning;
+						col.b *= 1 + _Lightning;
+					}
 				}
 
 

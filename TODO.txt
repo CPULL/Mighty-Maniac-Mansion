@@ -1,6 +1,8 @@
 === Mighty Maniac Mansion ===
 
-woods: build room (labyrinth style?)
+
+Add some messages for various actors when entering the woods and when going around for too many spots
+Add wearable cape and map
 graveyard: build room
 graveyard: move graves from front door to graveyard
 Add cape to go to the graveyard
@@ -228,4 +230,6 @@ Laverne
 ! Add something to center the camera to the dog when going close and not being a friend
 ! Add credits for Rishik
 ! Do "flashlight" shader C64 style (high outline, coloring, reducing saturation, lower lights)
+! woods are built and are fully navigable
+
 

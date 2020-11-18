@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Woods : MonoBehaviour {
   public Tree[] Trees; // Border trees
@@ -7,8 +8,15 @@ public class Woods : MonoBehaviour {
   public Room room;
   public Tree[] MiddleTrees;
   byte[] spots = new byte[5]; // 0=no door, 1=next random, 2=home, 3=cemetery
+  public bool GenerationAtStart = false;
 
   private void Start() {
+    if (GenerationAtStart) StartCoroutine(DelayedGeneration());
+  }
+
+  IEnumerator DelayedGeneration() {
+    yield return new WaitForSeconds(1);
+    Generate(false, false);
   }
 
   public void Generate(bool home, bool cemetery) {
@@ -20,6 +28,10 @@ public class Woods : MonoBehaviour {
     foreach (Grass g in Grass)
       if (g.gameObject.activeSelf)
         g.Randomize(room.minY, room.maxY, room.scalePerc);
+
+
+    if (GenerationAtStart) return; // Not needed, it is the cemetery
+
 
     // Randomize the spots.
     // Have 3, 4, or 5 doors
