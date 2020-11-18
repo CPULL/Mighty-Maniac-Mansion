@@ -2,39 +2,46 @@
 
 public class WoodsDoor : MonoBehaviour {
   public Tree[] Trees;
-  public Door Door;
+  public Door DoorHome;
+  public Door DoorCemetery;
+  public Item DoorFake;
   public GameObject HomeSign;
-  public uint mode; // 0=no door, 1=next random, 2=home, 3=cemetery
 
-  public void Generate(uint key, float miny, float maxy, float scale) {
-    mode = key;
-
+  public void Generate(byte mode, float miny, float maxy, float scale) {
     if (mode == 0) { // No door, activate trees
-      Door.gameObject.SetActive(false);
-      HomeSign.gameObject.SetActive(false);
+      if (HomeSign != null) HomeSign.gameObject.SetActive(false);
+      if (DoorHome != null) DoorHome.gameObject.SetActive(false);
+      if (DoorCemetery != null) DoorCemetery.gameObject.SetActive(false);
+      DoorFake.gameObject.SetActive(false);
       foreach(Tree t in Trees) {
         t.gameObject.SetActive(true);
         t.Randomize(miny, maxy, scale);
       }
     }
     else if (mode == 1) { // Door, with random woods
-      Door.gameObject.SetActive(true);
-      HomeSign.gameObject.SetActive(false);
+      if (HomeSign != null) HomeSign.gameObject.SetActive(false);
+      if (DoorHome != null) DoorHome.gameObject.SetActive(false);
+      if (DoorCemetery != null) DoorCemetery.gameObject.SetActive(false);
+      DoorFake.gameObject.SetActive(true);
       foreach(Tree t in Trees) {
         t.gameObject.SetActive(false);
       }
     }
     else if (mode == 2) { // Door home
-      Door.gameObject.SetActive(true);
-      HomeSign.gameObject.SetActive(true);
+      if (HomeSign != null) HomeSign.gameObject.SetActive(true);
+      if (DoorHome != null) DoorHome.gameObject.SetActive(true);
+      if (DoorCemetery != null) DoorCemetery.gameObject.SetActive(false);
+      DoorFake.gameObject.SetActive(false);
       foreach(Tree t in Trees) {
         t.gameObject.SetActive(false);
       }
       HomeSign.GetComponent<SpriteRenderer>().sortingOrder = ScaleByPosition(HomeSign.transform.position.y, miny, maxy, scale);
     }
     else if (mode == 3) { // Cemetery
-      Door.gameObject.SetActive(true);
-      HomeSign.gameObject.SetActive(false);
+      if (HomeSign != null) HomeSign.gameObject.SetActive(false);
+      if (DoorHome != null) DoorHome.gameObject.SetActive(false);
+      if (DoorCemetery != null) DoorCemetery.gameObject.SetActive(true);
+      DoorFake.gameObject.SetActive(false);
       foreach (Tree t in Trees) {
         t.gameObject.SetActive(false);
       }

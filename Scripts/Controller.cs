@@ -394,6 +394,11 @@ public class Controller : MonoBehaviour {
 
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Walk) || (rmb && overItem.whatItDoesR == WhatItDoes.Walk)) { /* walk */
           if (aDoor == null) {
+            if (overItem.CompareTag("WoodDoor")) {
+              WalkAndAction(currentActor, overItem, new System.Action<Actor, Item>((actor, item) => {
+                StartCoroutine(ChangeWoods(actor));
+              }));
+            }
             WalkAndAction(currentActor, overItem, null);
           }
           else {
@@ -1163,7 +1168,7 @@ public class Controller : MonoBehaviour {
     actor.transform.position = door.correspondingDoor.HotSpot;
     actor.currentRoom = currentRoom;
     actor.SetDirection(door.correspondingDoor.arrivalDirection);
-    currentActor.SetScaleAndPosition(door.correspondingDoor.HotSpot);
+    actor.SetScaleAndPosition(door.correspondingDoor.HotSpot);
     currentRoom.UpdateLights();
     yield return null;
 
@@ -1195,6 +1200,11 @@ public class Controller : MonoBehaviour {
     CursorHandler.SetBoth(CursorTypes.Normal);
     overItem = null;
     ShowName(currentRoom.name);
+
+    if (currentRoom.GetComponent<Woods>() != null) {
+      woods.Generate(true, false);
+      woods.SetActorRandomDoorPosition(actor);
+    }
   }
 
   bool CameraFadingToActor = false;
@@ -1273,6 +1283,44 @@ public class Controller : MonoBehaviour {
     cam.transform.position = pos;
     GD.c.CameraPanningInstance = null;
   }
+
+  public Woods woods;
+
+  private IEnumerator ChangeWoods(Actor actor) {
+    // Disable gameplay
+    GD.status = GameStatus.Cutscene;
+    yield return null;
+
+    // Fade out
+    float time = 0;
+    while (time < .125f) {
+      // Fade black
+      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (time * 8)));
+      time += Time.deltaTime;
+      yield return null;
+    }
+
+    // Regenerate Woords (but check if we need Home and Cemetery doors)
+    woods.Generate(Random.Range(0, 3) == 0, Random.Range(0, 5) == 0); // FIXME the cematery should be accessible only after a set of valid steps and only when wearing the cape
+
+    // Place the actor on any of the non valid but visible doors
+    woods.SetActorRandomDoorPosition(actor);
+
+    // Fade in
+    while (time < .25f) {
+      // Fade black
+      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (1 - (8 * (time - .125f)))));
+      time += Time.deltaTime;
+      yield return null;
+    }
+
+    // Enable gameplay
+    GD.status = GameStatus.NormalGamePlay;
+    CursorHandler.SetBoth(CursorTypes.Normal);
+    overItem = null;
+    ShowName(currentRoom.name);
+  }
+
 
   #endregion
 
