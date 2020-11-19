@@ -498,11 +498,17 @@ public class Actor : MonoBehaviour {
     if (ty > currentRoom.maxY) ty = currentRoom.maxY;
     float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
 
-    scaley *= currentRoom.scalePerc;
+    scaley *= currentRoom.scalePerc * mainScale;
     transform.localScale = new Vector3(scaley, scaley, 1);
     int zpos = (int)(scaley * 10000);
-    Face.sortingOrder = zpos + 1;
-    Arms.sortingOrder = zpos + 2;
+    if (!male && dir != Dir.F) {
+      Face.sortingOrder = zpos + 2;
+      Arms.sortingOrder = zpos + 1;
+    }
+    else {
+      Face.sortingOrder = zpos + 1;
+      Arms.sortingOrder = zpos + 2;
+    }
     Legs.sortingOrder = zpos;
     if (cape) cape.SetSortingOrder(zpos);
   }

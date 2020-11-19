@@ -1,0 +1,2818 @@
+fileFormatVersion: 2
+guid: 051552999a4b6e842a8a5a194676e2ee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7888902146871769836
+    second: Dave_0
+  - first:
+      213: 8135646650573657831
+    second: Dave_1
+  - first:
+      213: -747637553039879534
+    second: Dave_2
+  - first:
+      213: -1440088328506575641
+    second: Dave_3
+  - first:
+      213: 4910842507438598899
+    second: Dave_4
+  - first:
+      213: 7363506383079820997
+    second: Dave_5
+  - first:
+      213: -8782635571135245053
+    second: Dave_6
+  - first:
+      213: 3731878887476337298
+    second: Dave_7
+  - first:
+      213: 7546045763806733465
+    second: Dave_8
+  - first:
+      213: -2959794242114279973
+    second: Dave_9
+  - first:
+      213: 5330956352606089964
+    second: Dave_10
+  - first:
+      213: -3175745282777762671
+    second: Dave_11
+  - first:
+      213: -9046547721153642166
+    second: Dave_12
+  - first:
+      213: 4474842964128040499
+    second: Dave_13
+  - first:
+      213: -2065442670624400489
+    second: Dave_14
+  - first:
+      213: 504732061343106302
+    second: Dave_15
+  - first:
+      213: -7460426139253168013
+    second: Dave_16
+  - first:
+      213: -6937367103375319229
+    second: Dave_17
+  - first:
+      213: 2992607042968343019
+    second: Dave_18
+  - first:
+      213: 4106430136202557391
+    second: Dave_19
+  - first:
+      213: -7867146419528734320
+    second: Dave_20
+  - first:
+      213: 5248252073891279038
+    second: Dave_21
+  - first:
+      213: -7479142128241946483
+    second: Dave_22
+  - first:
+      213: 8115595807947430086
+    second: Dave_23
+  - first:
+      213: 3579380359600087385
+    second: Dave_24
+  - first:
+      213: 7196515420006497057
+    second: Dave_25
+  - first:
+      213: -6081496003259615544
+    second: Dave_26
+  - first:
+      213: -5621260984230191386
+    second: Dave_27
+  - first:
+      213: 9028926393286250709
+    second: Dave_28
+  - first:
+      213: 5191425839080472334
+    second: Dave_29
+  - first:
+      213: 4349575693236251115
+    second: Dave_30
+  - first:
+      213: -4090228576586214124
+    second: Dave_31
+  - first:
+      213: 3897520715677047314
+    second: Dave_32
+  - first:
+      213: 6305682278443167625
+    second: Dave_33
+  - first:
+      213: -7313390019080279291
+    second: Dave_34
+  - first:
+      213: 6747765485996531226
+    second: Dave_35
+  - first:
+      213: 8301271887010317657
+    second: Dave_36
+  - first:
+      213: 3737286752727135133
+    second: Dave_37
+  - first:
+      213: -6359221482647622273
+    second: Dave_38
+  - first:
+      213: 8873806063167362163
+    second: Dave_39
+  - first:
+      213: 1010070456023070211
+    second: Dave_40
+  - first:
+      213: 3775120826718300322
+    second: Dave_41
+  - first:
+      213: -3973395767477190763
+    second: Dave_42
+  - first:
+      213: 6325384408593354156
+    second: Dave_43
+  - first:
+      213: -8789017560267634472
+    second: Dave_44
+  - first:
+      213: -5518103293305504867
+    second: Dave_45
+  - first:
+      213: 7343898637269568886
+    second: Dave_46
+  - first:
+      213: 8990550243722228724
+    second: Dave_47
+  - first:
+      213: 8648186765697932861
+    second: Dave_48
+  - first:
+      213: 4168226659324570698
+    second: Dave_49
+  - first:
+      213: -3896855140342960559
+    second: Dave_50
+  - first:
+      213: -5053805227437848470
+    second: Dave_51
+  - first:
+      213: -5029619571608823755
+    second: Dave_52
+  - first:
+      213: 6141925264097652475
+    second: Dave_53
+  - first:
+      213: 8442050147283572108
+    second: Dave_54
+  - first:
+      213: -6427586263114401296
+    second: Dave_55
+  - first:
+      213: -4213635897947632198
+    second: Dave_56
+  - first:
+      213: -4374184652258226299
+    second: Dave_57
+  - first:
+      213: -9149808062453588639
+    second: Dave_58
+  - first:
+      213: 8553650366293852298
+    second: Dave_59
+  - first:
+      213: 9097519068360622649
+    second: Wendy_0
+  - first:
+      213: -5385506310963410737
+    second: Wendy_1
+  - first:
+      213: -1011523690761709622
+    second: Wendy_2
+  - first:
+      213: -7228936477933668777
+    second: Wendy_3
+  - first:
+      213: -5195802297227211514
+    second: Wendy_4
+  - first:
+      213: -3690206035930473114
+    second: Wendy_5
+  - first:
+      213: -1075927679363847451
+    second: Wendy_6
+  - first:
+      213: 5713809788657343767
+    second: Wendy_7
+  - first:
+      213: 7103880906612211788
+    second: Wendy_8
+  - first:
+      213: -5772576216422418284
+    second: Wendy_9
+  - first:
+      213: 3173916692904352112
+    second: Wendy_10
+  - first:
+      213: 6027806964285467349
+    second: Wendy_11
+  - first:
+      213: -3922360597051378687
+    second: Wendy_12
+  - first:
+      213: -8346680908902167969
+    second: Wendy_13
+  - first:
+      213: -7883592819698292202
+    second: Wendy_14
+  - first:
+      213: -1882780385505286686
+    second: Wendy_15
+  - first:
+      213: 6987537041969410396
+    second: Wendy_16
+  - first:
+      213: 6229335067452214066
+    second: Wendy_17
+  - first:
+      213: 1808475849451785463
+    second: Wendy_18
+  - first:
+      213: 7036784918087215727
+    second: Wendy_19
+  - first:
+      213: -6244921748636086016
+    second: Wendy_20
+  - first:
+      213: 181977337346456315
+    second: Wendy_21
+  - first:
+      213: -7596871814267780649
+    second: Wendy_22
+  - first:
+      213: 3593884447467464402
+    second: Wendy_23
+  - first:
+      213: 7799979150398999156
+    second: Wendy_24
+  - first:
+      213: -8156994623423769340
+    second: Wendy_25
+  - first:
+      213: -2377842225930457735
+    second: Wendy_26
+  - first:
+      213: 2586485256959922798
+    second: Wendy_27
+  - first:
+      213: -382390377227390721
+    second: Wendy_28
+  - first:
+      213: 1225916760870541614
+    second: Wendy_29
+  - first:
+      213: -5225196126064850204
+    second: Wendy_30
+  - first:
+      213: -4346487244500300391
+    second: Wendy_31
+  - first:
+      213: -2032432329795052751
+    second: Wendy_32
+  - first:
+      213: 1755778467124365621
+    second: Wendy_33
+  - first:
+      213: 585212248112299782
+    second: Wendy_34
+  - first:
+      213: -8175935895819209281
+    second: Wendy_35
+  - first:
+      213: 8174016552212516200
+    second: Wendy_36
+  - first:
+      213: 5145016507227847931
+    second: Wendy_37
+  - first:
+      213: 1288894957171633056
+    second: Wendy_38
+  - first:
+      213: -2228426028099186227
+    second: Wendy_39
+  - first:
+      213: 8651190826888746101
+    second: Wendy_40
+  - first:
+      213: 6982643930283254049
+    second: Wendy_41
+  - first:
+      213: 9023873966551496933
+    second: Wendy_42
+  - first:
+      213: -2220892848878685986
+    second: Wendy_43
+  - first:
+      213: 2103743746750718721
+    second: Wendy_44
+  - first:
+      213: -3513604926967679946
+    second: Wendy_45
+  - first:
+      213: -172213596046261718
+    second: Wendy_46
+  - first:
+      213: -3190984149865918596
+    second: Wendy_47
+  - first:
+      213: -5226820411319951861
+    second: Wendy_48
+  - first:
+      213: -5446545840133778204
+    second: Wendy_49
+  - first:
+      213: -1251785162340036192
+    second: Wendy_50
+  - first:
+      213: -5161082647543855615
+    second: Wendy_51
+  - first:
+      213: -7353637861635100386
+    second: Wendy_52
+  - first:
+      213: 2731574397790076726
+    second: Wendy_53
+  - first:
+      213: -321868448766324847
+    second: Wendy_54
+  - first:
+      213: 9203703785793977036
+    second: Wendy_55
+  - first:
+      213: -7159503083183920745
+    second: Wendy_56
+  - first:
+      213: 4210522344191879514
+    second: Wendy_57
+  - first:
+      213: 1922067464017243
+    second: Wendy_58
+  - first:
+      213: -5843632031468275764
+    second: Wendy_59
+  - first:
+      213: 6552597437052334498
+    second: Ed_0
+  - first:
+      213: 7014940356137446588
+    second: Ed_1
+  - first:
+      213: -7492661259742037904
+    second: Ed_2
+  - first:
+      213: -1049458826981159308
+    second: Ed_3
+  - first:
+      213: 3897271837053921556
+    second: Ed_4
+  - first:
+      213: 3461550614524124836
+    second: Ed_5
+  - first:
+      213: -8632764550952282787
+    second: Ed_6
+  - first:
+      213: -2272618039092693171
+    second: Ed_7
+  - first:
+      213: 5384418489172392755
+    second: Ed_8
+  - first:
+      213: -3954704490532148464
+    second: Ed_9
+  - first:
+      213: -1670587966868410421
+    second: Ed_10
+  - first:
+      213: -4634183543818123993
+    second: Ed_11
+  - first:
+      213: -263102317116478007
+    second: Ed_12
+  - first:
+      213: 8512703021288724570
+    second: Ed_13
+  - first:
+      213: 2333229163449729582
+    second: Ed_14
+  - first:
+      213: 6141914134425536719
+    second: Ed_15
+  - first:
+      213: -5423994452775408735
+    second: Ed_16
+  - first:
+      213: 4954900670707552591
+    second: Ed_17
+  - first:
+      213: -1312017457528672281
+    second: Ed_18
+  - first:
+      213: 5160999372691883132
+    second: Ed_19
+  - first:
+      213: -5632813212969735250
+    second: Ed_20
+  - first:
+      213: 8238726489043880525
+    second: Ed_21
+  - first:
+      213: -8992267550778077593
+    second: Ed_22
+  - first:
+      213: 552690259448751456
+    second: Ed_23
+  - first:
+      213: 8736555071024014079
+    second: Ed_24
+  - first:
+      213: 5434829284422687933
+    second: Ed_25
+  - first:
+      213: 8822834272371514012
+    second: Ed_26
+  - first:
+      213: 4140740201657373098
+    second: Ed_27
+  - first:
+      213: 8673098156182647229
+    second: Ed_28
+  - first:
+      213: 4640568880063884135
+    second: Ed_29
+  - first:
+      213: 5089791693073927228
+    second: Ed_30
+  - first:
+      213: 7796036123008976693
+    second: Ed_31
+  - first:
+      213: -7085753132241254336
+    second: Ed_32
+  - first:
+      213: -3292744365682321150
+    second: Ed_33
+  - first:
+      213: -3690400785604351241
+    second: Ed_34
+  - first:
+      213: -1310677008598391201
+    second: Ed_35
+  - first:
+      213: 1384015158748915450
+    second: Ed_36
+  - first:
+      213: 8147838046033302316
+    second: Ed_37
+  - first:
+      213: -7497643552566241552
+    second: Ed_38
+  - first:
+      213: -2542328936881858446
+    second: Ed_39
+  - first:
+      213: 4505319544397460115
+    second: Ed_40
+  - first:
+      213: -1586744433899809829
+    second: Ed_41
+  - first:
+      213: 967180187769605349
+    second: Ed_42
+  - first:
+      213: 5141476720214734322
+    second: Ed_43
+  - first:
+      213: -5311005897434253743
+    second: Ed_44
+  - first:
+      213: 9148416971870970968
+    second: Ed_45
+  - first:
+      213: 9180985001706369779
+    second: Ed_46
+  - first:
+      213: -6799480035103539233
+    second: Ed_47
+  - first:
+      213: 4149071109510449074
+    second: Ed_48
+  - first:
+      213: 3912767050715192069
+    second: Ed_49
+  - first:
+      213: -5764297191962698649
+    second: Ed_50
+  - first:
+      213: 1221245959266106770
+    second: Ed_51
+  - first:
+      213: 1208215611660550723
+    second: Ed_52
+  - first:
+      213: 7530845970638983458
+    second: Ed_53
+  - first:
+      213: 4551104798284733157
+    second: Ed_54
+  - first:
+      213: -9064631771695618307
+    second: Ed_55
+  - first:
+      213: -3087340522620528435
+    second: Ed_56
+  - first:
+      213: 480654064038863392
+    second: Ed_57
+  - first:
+      213: 7689119923268050038
+    second: Ed_58
+  - first:
+      213: 2240113156646947798
+    second: Ed_59
+  - first:
+      213: -5616021209200547710
+    second: Fred_0
+  - first:
+      213: 5082137959631201844
+    second: Fred_1
+  - first:
+      213: 9039676152371128785
+    second: Fred_2
+  - first:
+      213: -6231079840041492433
+    second: Fred_3
+  - first:
+      213: 6038248187534272367
+    second: Fred_4
+  - first:
+      213: 4208091782489534837
+    second: Fred_5
+  - first:
+      213: 5830577986784951843
+    second: Fred_6
+  - first:
+      213: -6751508712004307284
+    second: Fred_7
+  - first:
+      213: -6414880042637611753
+    second: Fred_8
+  - first:
+      213: 1426910817453788685
+    second: Fred_9
+  - first:
+      213: -700494998291956438
+    second: Fred_10
+  - first:
+      213: -4540256925963281346
+    second: Fred_11
+  - first:
+      213: -4751694655453803221
+    second: Fred_12
+  - first:
+      213: 8381277047792032184
+    second: Fred_13
+  - first:
+      213: -2036668132744343266
+    second: Fred_14
+  - first:
+      213: 8754992860082489239
+    second: Fred_15
+  - first:
+      213: 7401858226153445050
+    second: Fred_16
+  - first:
+      213: 3832548088829974816
+    second: Fred_17
+  - first:
+      213: -7984073184462999688
+    second: Fred_18
+  - first:
+      213: -3476463125803492527
+    second: Fred_19
+  - first:
+      213: -4488246517001999048
+    second: Fred_20
+  - first:
+      213: -5905055140152338965
+    second: Fred_21
+  - first:
+      213: 5679799539960565525
+    second: Fred_22
+  - first:
+      213: 8012554976967913024
+    second: Fred_23
+  - first:
+      213: 8782278661233218750
+    second: Fred_24
+  - first:
+      213: 3121563624417004496
+    second: Fred_25
+  - first:
+      213: 3986055235372548020
+    second: Fred_26
+  - first:
+      213: 6540781268593820883
+    second: Fred_27
+  - first:
+      213: 5068667303467178455
+    second: Fred_28
+  - first:
+      213: 3575431637948842402
+    second: Fred_29
+  - first:
+      213: -6812987407437447041
+    second: Fred_30
+  - first:
+      213: -5974363783043065179
+    second: Fred_31
+  - first:
+      213: 2106887290678344922
+    second: Fred_32
+  - first:
+      213: -5553321816558294016
+    second: Fred_33
+  - first:
+      213: -7897617666371413454
+    second: Fred_34
+  - first:
+      213: 7492064237349593874
+    second: Fred_35
+  - first:
+      213: -3291846238476366582
+    second: Fred_36
+  - first:
+      213: 1424840585061144812
+    second: Fred_37
+  - first:
+      213: -1988475889940632651
+    second: Fred_38
+  - first:
+      213: -939584289709153441
+    second: Fred_39
+  - first:
+      213: 5618609819436190238
+    second: Fred_40
+  - first:
+      213: 8205734421131218379
+    second: Fred_41
+  - first:
+      213: -8195999020376872444
+    second: Fred_42
+  - first:
+      213: 6917842261127042044
+    second: Fred_43
+  - first:
+      213: -2062085481091058267
+    second: Fred_44
+  - first:
+      213: 1568352858048516608
+    second: Fred_45
+  - first:
+      213: -5564920262252899283
+    second: Fred_46
+  - first:
+      213: 3086009409284810660
+    second: Fred_47
+  - first:
+      213: -4783823952237032678
+    second: Fred_48
+  - first:
+      213: 6635418627462667221
+    second: Fred_49
+  - first:
+      213: -6143701641719072217
+    second: Fred_50
+  - first:
+      213: -3288896643117169363
+    second: Fred_51
+  - first:
+      213: 382118092886929658
+    second: Fred_52
+  - first:
+      213: 7858365558939379656
+    second: Fred_53
+  - first:
+      213: -5805238370415048159
+    second: Fred_54
+  - first:
+      213: 7505208372413793080
+    second: Fred_55
+  - first:
+      213: 8540699940489671177
+    second: Fred_56
+  - first:
+      213: -6108515267027765626
+    second: Fred_57
+  - first:
+      213: 4989902287988667515
+    second: Fred_58
+  - first:
+      213: -3143812438648961877
+    second: Fred_59
+  - first:
+      213: 7376068530686808374
+    second: MIchael_0
+  - first:
+      213: -3104437068074222318
+    second: MIchael_1
+  - first:
+      213: -4166549884616152248
+    second: MIchael_2
+  - first:
+      213: 8797597521329857954
+    second: MIchael_3
+  - first:
+      213: 5845749347203084146
+    second: MIchael_4
+  - first:
+      213: 7804695891374228830
+    second: MIchael_5
+  - first:
+      213: 7881980381199298631
+    second: MIchael_6
+  - first:
+      213: 9211381334840354361
+    second: MIchael_7
+  - first:
+      213: 6518364906232239951
+    second: MIchael_8
+  - first:
+      213: -7345874789147822346
+    second: MIchael_9
+  - first:
+      213: 1871868277953400660
+    second: MIchael_10
+  - first:
+      213: 5730364946000692905
+    second: MIchael_11
+  - first:
+      213: -6420237693326094497
+    second: MIchael_12
+  - first:
+      213: 2487414006908815095
+    second: MIchael_13
+  - first:
+      213: 1851940748433931482
+    second: MIchael_14
+  - first:
+      213: -6221858294448708077
+    second: MIchael_15
+  - first:
+      213: -9211430295990386054
+    second: MIchael_16
+  - first:
+      213: -2120981000751495310
+    second: MIchael_17
+  - first:
+      213: 1181183108823467014
+    second: MIchael_18
+  - first:
+      213: -5523183332931017430
+    second: MIchael_19
+  - first:
+      213: -2598937902443702474
+    second: MIchael_20
+  - first:
+      213: -4929486198275324699
+    second: MIchael_21
+  - first:
+      213: -2305343605658968337
+    second: MIchael_22
+  - first:
+      213: -5324577144216249471
+    second: MIchael_23
+  - first:
+      213: -4920127719137406289
+    second: MIchael_24
+  - first:
+      213: -2822811455351771863
+    second: MIchael_25
+  - first:
+      213: -2199561436421945298
+    second: MIchael_26
+  - first:
+      213: 4857562265627386205
+    second: MIchael_27
+  - first:
+      213: 3376550800749948997
+    second: MIchael_28
+  - first:
+      213: -4297138311474709617
+    second: MIchael_29
+  - first:
+      213: -448191946777080647
+    second: MIchael_30
+  - first:
+      213: 4050479417588666451
+    second: MIchael_31
+  - first:
+      213: 3990190508530883276
+    second: MIchael_32
+  - first:
+      213: -8846782181393998796
+    second: MIchael_33
+  - first:
+      213: -8379376826935280587
+    second: MIchael_34
+  - first:
+      213: -7991381531043974771
+    second: MIchael_35
+  - first:
+      213: -2315189968086320640
+    second: MIchael_36
+  - first:
+      213: 5870881149661806298
+    second: MIchael_37
+  - first:
+      213: -6992524828730902479
+    second: MIchael_38
+  - first:
+      213: 2944692003206913859
+    second: MIchael_39
+  - first:
+      213: 5977015536901590381
+    second: MIchael_40
+  - first:
+      213: -6240782555798675398
+    second: MIchael_41
+  - first:
+      213: -3130640445998813135
+    second: MIchael_42
+  - first:
+      213: 7619501609570864018
+    second: MIchael_43
+  - first:
+      213: -7132472311275778787
+    second: MIchael_44
+  - first:
+      213: 3235924267659056533
+    second: MIchael_45
+  - first:
+      213: 6229132180674893921
+    second: MIchael_46
+  - first:
+      213: -8403220220139658221
+    second: MIchael_47
+  - first:
+      213: 1204448867240662619
+    second: MIchael_48
+  - first:
+      213: -766688746663323764
+    second: MIchael_49
+  - first:
+      213: -168897812390504864
+    second: MIchael_50
+  - first:
+      213: 8378019925815935663
+    second: MIchael_51
+  - first:
+      213: -1352891817559947927
+    second: MIchael_52
+  - first:
+      213: 547577181134132314
+    second: MIchael_53
+  - first:
+      213: 6243985508367190757
+    second: MIchael_54
+  - first:
+      213: -2351930999832210304
+    second: MIchael_55
+  - first:
+      213: 3011973156326548773
+    second: MIchael_56
+  - first:
+      213: 8999868557481967102
+    second: MIchael_57
+  - first:
+      213: -5038562981335704441
+    second: MIchael_58
+  - first:
+      213: -1398797620154558924
+    second: MIchael_59
+  - first:
+      213: 6926301091045095115
+    second: Jeff_0
+  - first:
+      213: 7711827284508901177
+    second: Jeff_1
+  - first:
+      213: -351934525632413342
+    second: Jeff_2
+  - first:
+      213: -5430053840107581936
+    second: Jeff_3
+  - first:
+      213: -265720827158965702
+    second: Jeff_4
+  - first:
+      213: -5818609503379110382
+    second: Jeff_5
+  - first:
+      213: 7458516421346188418
+    second: Jeff_6
+  - first:
+      213: -313173365857586954
+    second: Jeff_7
+  - first:
+      213: 2795122696745949202
+    second: Jeff_8
+  - first:
+      213: -4003629377778523721
+    second: Jeff_9
+  - first:
+      213: 4279663176200293580
+    second: Jeff_10
+  - first:
+      213: 5526182394425600277
+    second: Jeff_11
+  - first:
+      213: 2817651795685922902
+    second: Jeff_12
+  - first:
+      213: 4690509581377047142
+    second: Jeff_13
+  - first:
+      213: -1688576353772972921
+    second: Jeff_14
+  - first:
+      213: -465475481934739067
+    second: Jeff_15
+  - first:
+      213: -4013340453975063334
+    second: Jeff_16
+  - first:
+      213: 5712903505641169083
+    second: Jeff_17
+  - first:
+      213: 7958641444573376732
+    second: Jeff_18
+  - first:
+      213: -4651368869325113780
+    second: Jeff_19
+  - first:
+      213: -3826891922268028645
+    second: Jeff_20
+  - first:
+      213: 7578565300726741755
+    second: Jeff_21
+  - first:
+      213: -363930869914794700
+    second: Jeff_22
+  - first:
+      213: -2558754509862136565
+    second: Jeff_23
+  - first:
+      213: 3980214817451953691
+    second: Jeff_24
+  - first:
+      213: 165822626829575652
+    second: Jeff_25
+  - first:
+      213: -5061008933344633000
+    second: Jeff_26
+  - first:
+      213: -5126872679925459895
+    second: Jeff_27
+  - first:
+      213: -1406369531655540945
+    second: Jeff_28
+  - first:
+      213: 4099414188395425685
+    second: Jeff_29
+  - first:
+      213: 3513605175802492406
+    second: Jeff_30
+  - first:
+      213: -2876881162762217397
+    second: Jeff_31
+  - first:
+      213: 2870267861883880806
+    second: Jeff_32
+  - first:
+      213: -510706854459820467
+    second: Jeff_33
+  - first:
+      213: -1091564187094063295
+    second: Jeff_34
+  - first:
+      213: 5539735473189927389
+    second: Jeff_35
+  - first:
+      213: -6546774403096454615
+    second: Jeff_36
+  - first:
+      213: 3536705390644689337
+    second: Jeff_37
+  - first:
+      213: 1287902338564571446
+    second: Jeff_38
+  - first:
+      213: 4008260472728778308
+    second: Jeff_39
+  - first:
+      213: -4100394782969507102
+    second: Jeff_40
+  - first:
+      213: 1566148685017215332
+    second: Jeff_41
+  - first:
+      213: -5645129816553273158
+    second: Jeff_42
+  - first:
+      213: 2637406651166434039
+    second: Jeff_43
+  - first:
+      213: -616886577341383477
+    second: Jeff_44
+  - first:
+      213: 1703488427411858193
+    second: Jeff_45
+  - first:
+      213: -4127326980250546210
+    second: Jeff_46
+  - first:
+      213: 5657848279761236775
+    second: Jeff_47
+  - first:
+      213: -5481423096003966517
+    second: Jeff_48
+  - first:
+      213: 730467410570811392
+    second: Jeff_49
+  - first:
+      213: -3832049938089286008
+    second: Jeff_50
+  - first:
+      213: -8049613032563356613
+    second: Jeff_51
+  - first:
+      213: 2903449291757974492
+    second: Jeff_52
+  - first:
+      213: 7975660927854890167
+    second: Jeff_53
+  - first:
+      213: -258787858031064741
+    second: Jeff_54
+  - first:
+      213: 5893047569054558916
+    second: Jeff_55
+  - first:
+      213: -265861158282651018
+    second: Jeff_56
+  - first:
+      213: 8670349782259782361
+    second: Jeff_57
+  - first:
+      213: -1690117222500764668
+    second: Jeff_58
+  - first:
+      213: 4405269983704172667
+    second: Jeff_59
+  - first:
+      213: -2529804286022096062
+    second: Mark_0
+  - first:
+      213: -934680141037109930
+    second: Mark_1
+  - first:
+      213: -3413157122934242178
+    second: Mark_2
+  - first:
+      213: -1469936343990142085
+    second: Mark_3
+  - first:
+      213: 7396010772315762360
+    second: Mark_4
+  - first:
+      213: 9136381058686670027
+    second: Mark_5
+  - first:
+      213: -2229765306724861107
+    second: Mark_6
+  - first:
+      213: -4413727723544300527
+    second: Mark_7
+  - first:
+      213: -2248500437426177097
+    second: Mark_8
+  - first:
+      213: -1557846368779205071
+    second: Mark_9
+  - first:
+      213: -5213785222524043717
+    second: Mark_10
+  - first:
+      213: -1794893916781049431
+    second: Mark_11
+  - first:
+      213: -7143391041207974240
+    second: Mark_12
+  - first:
+      213: 7953343389108652156
+    second: Mark_13
+  - first:
+      213: -1681618310878404231
+    second: Mark_14
+  - first:
+      213: 2778664282104177968
+    second: Mark_15
+  - first:
+      213: 3444316914028283592
+    second: Mark_16
+  - first:
+      213: 9207298723560316179
+    second: Mark_17
+  - first:
+      213: -5587365810523398742
+    second: Mark_18
+  - first:
+      213: -6477857895406389159
+    second: Mark_19
+  - first:
+      213: 421263837468871772
+    second: Mark_20
+  - first:
+      213: 2385169769646425027
+    second: Mark_21
+  - first:
+      213: 6496832249102470154
+    second: Mark_22
+  - first:
+      213: -4494215638221967194
+    second: Mark_23
+  - first:
+      213: -5440531789255404290
+    second: Mark_24
+  - first:
+      213: -6136108998305903364
+    second: Mark_25
+  - first:
+      213: 6823021419108486928
+    second: Mark_26
+  - first:
+      213: -6678903712972683450
+    second: Mark_27
+  - first:
+      213: -242349262872765656
+    second: Mark_28
+  - first:
+      213: -5333132341934236354
+    second: Mark_29
+  - first:
+      213: 3946219099408806898
+    second: Mark_30
+  - first:
+      213: -2024358766844069646
+    second: Mark_31
+  - first:
+      213: 4061966027022439044
+    second: Mark_32
+  - first:
+      213: 3382395487057900847
+    second: Mark_33
+  - first:
+      213: 2725222116772335359
+    second: Mark_34
+  - first:
+      213: -2959328727486409619
+    second: Mark_35
+  - first:
+      213: -7323871121570923475
+    second: Mark_36
+  - first:
+      213: -1057181763956173649
+    second: Mark_37
+  - first:
+      213: 7512328646341852550
+    second: Mark_38
+  - first:
+      213: -3077530177894012532
+    second: Mark_39
+  - first:
+      213: 2403914338460469079
+    second: Mark_40
+  - first:
+      213: 8269867761081686229
+    second: Mark_41
+  - first:
+      213: 842452781580653664
+    second: Mark_42
+  - first:
+      213: -5892017765924015164
+    second: Mark_43
+  - first:
+      213: 1882417828053751848
+    second: Mark_44
+  - first:
+      213: -6125861428424956476
+    second: Mark_45
+  - first:
+      213: -8762421637722193917
+    second: Mark_46
+  - first:
+      213: 8986796865820242997
+    second: Mark_47
+  - first:
+      213: -3479366843193487687
+    second: Mark_48
+  - first:
+      213: 2955406485348908093
+    second: Mark_49
+  - first:
+      213: 6617322792991125806
+    second: Mark_50
+  - first:
+      213: -3305539583681463707
+    second: Mark_51
+  - first:
+      213: 8277382420611763106
+    second: Mark_52
+  - first:
+      213: -421567751753205774
+    second: Mark_53
+  - first:
+      213: -6943069796251771785
+    second: Mark_54
+  - first:
+      213: -6929146702602591409
+    second: Mark_55
+  - first:
+      213: -3071478215995730048
+    second: Mark_56
+  - first:
+      213: 7299779825725478679
+    second: Mark_57
+  - first:
+      213: -1015589070114209510
+    second: Mark_58
+  - first:
+      213: -108218468282114490
+    second: Mark_59
+  - first:
+      213: 6017707336382760716
+    second: Edwige_0
+  - first:
+      213: -7625854995525805264
+    second: Edwige_1
+  - first:
+      213: -2522979384828006924
+    second: Edwige_2
+  - first:
+      213: -3666865277295728142
+    second: Edwige_3
+  - first:
+      213: -1002299466239595865
+    second: Edwige_4
+  - first:
+      213: 2983105570471539575
+    second: Edwige_5
+  - first:
+      213: -2149826941113788322
+    second: Edwige_6
+  - first:
+      213: 5043474859040712313
+    second: Edwige_7
+  - first:
+      213: 6761643750787756904
+    second: Edwige_8
+  - first:
+      213: 138220145233739727
+    second: Edwige_9
+  - first:
+      213: -6954712893206281589
+    second: Edwige_10
+  - first:
+      213: -5237703793829115827
+    second: Edwige_11
+  - first:
+      213: 7738158087146960968
+    second: Edwige_12
+  - first:
+      213: -5655734297324405004
+    second: Edwige_13
+  - first:
+      213: -1097163952733487572
+    second: Edwige_14
+  - first:
+      213: -8817153526037324052
+    second: Edwige_15
+  - first:
+      213: 5620435546717120134
+    second: Edwige_16
+  - first:
+      213: -1371247017516511526
+    second: Edwige_17
+  - first:
+      213: 5431121661093154710
+    second: Edwige_18
+  - first:
+      213: -7983982810524664728
+    second: Edwige_19
+  - first:
+      213: -2006128307267185813
+    second: Edwige_20
+  - first:
+      213: -2933143260145580125
+    second: Edwige_21
+  - first:
+      213: 9135791181625564614
+    second: Edwige_22
+  - first:
+      213: -874529684868065628
+    second: Edwige_23
+  - first:
+      213: 3471648827919720881
+    second: Edwige_24
+  - first:
+      213: 3511955501282291863
+    second: Edwige_25
+  - first:
+      213: 2856687108899396845
+    second: Edwige_26
+  - first:
+      213: -5726137321061872961
+    second: Edwige_27
+  - first:
+      213: 1073961491843421363
+    second: Edwige_28
+  - first:
+      213: 3878812501306314705
+    second: Edwige_29
+  - first:
+      213: 6533277938786360017
+    second: Edwige_30
+  - first:
+      213: 7844241181096804546
+    second: Edwige_31
+  - first:
+      213: 4334088381213216345
+    second: Edwige_32
+  - first:
+      213: -7471953139552866176
+    second: Edwige_33
+  - first:
+      213: -2459453523391647050
+    second: Edwige_34
+  - first:
+      213: -1668044444844948794
+    second: Edwige_35
+  - first:
+      213: 6341531462651373614
+    second: Edwige_36
+  - first:
+      213: -6583382698036659023
+    second: Edwige_37
+  - first:
+      213: 2704771919081469144
+    second: Edwige_38
+  - first:
+      213: 8760215393224732968
+    second: Edwige_39
+  - first:
+      213: -9054434796907246716
+    second: Edwige_40
+  - first:
+      213: -6621426886673514150
+    second: Edwige_41
+  - first:
+      213: 1891254030693842436
+    second: Edwige_42
+  - first:
+      213: 704682636805623478
+    second: Edwige_43
+  - first:
+      213: -2625863698469683628
+    second: Edwige_44
+  - first:
+      213: -3107037263739883487
+    second: Edwige_45
+  - first:
+      213: 8842585788898339328
+    second: Edwige_46
+  - first:
+      213: 2165856209823233207
+    second: Edwige_47
+  - first:
+      213: -6810108403491526348
+    second: Edwige_48
+  - first:
+      213: -4273033915104653157
+    second: Edwige_49
+  - first:
+      213: 4708900565668598534
+    second: Edwige_50
+  - first:
+      213: -7040563255242160389
+    second: Edwige_51
+  - first:
+      213: 4695222508898816424
+    second: Edwige_52
+  - first:
+      213: 7633508311452672937
+    second: Edwige_53
+  - first:
+      213: 273115694804016549
+    second: Edwige_54
+  - first:
+      213: -1539584339571353303
+    second: Edwige_55
+  - first:
+      213: -6458382559168101064
+    second: Edwige_56
+  - first:
+      213: 697730435703686748
+    second: Edwige_57
+  - first:
+      213: -3713857076251828862
+    second: Edwige_58
+  - first:
+      213: -4153568402265720698
+    second: Edwige_59
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Edwige_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c074b5370f0338350800000000000000
+      internalID: 6017707336382760716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03bdb0bf8458b2690800000000000000
+      internalID: -7625854995525805264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fd61b7ed939cfcd0800000000000000
+      internalID: -2522979384828006924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f9e29b457dac1dc0800000000000000
+      internalID: -3666865277295728142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aaa93422fd1712f0800000000000000
+      internalID: -1002299466239595865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 773f17f06be166920800000000000000
+      internalID: 2983105570471539575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e58195e89c74a22e0800000000000000
+      internalID: -2149826941113788322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9762cbea9a50ef540800000000000000
+      internalID: 5043474859040712313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 863b177aa2f26dd50800000000000000
+      internalID: 6761643750787756904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2560
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcfb5716d7e0be100800000000000000
+      internalID: 138220145233739727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b824c95a875eb7f90800000000000000
+      internalID: -6954712893206281589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d48891a6620ff47b0800000000000000
+      internalID: -5237703793829115827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 848f53028c5736b60800000000000000
+      internalID: 7738158087146960968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fe3cf73f9bc281b0800000000000000
+      internalID: -5655734297324405004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2ef4f0b23716c0f0800000000000000
+      internalID: -1097163952733487572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_15
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cee5676559d23a580800000000000000
+      internalID: -8817153526037324052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_16
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6866d05f95ccffd40800000000000000
+      internalID: 5620435546717120134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_17
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ade4d9d4a1a58fce0800000000000000
+      internalID: -1371247017516511526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_18
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f036d10683f5b40800000000000000
+      internalID: 5431121661093154710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_19
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2048
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c3add4fe1333190800000000000000
+      internalID: -7983982810524664728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63db77feecc824e0800000000000000
+      internalID: -2006128307267185813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a701bfceb16b47d0800000000000000
+      internalID: -2933143260145580125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cd10fa1da9d8ce70800000000000000
+      internalID: 9135791181625564614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_23
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a697e392eb0dd3f0800000000000000
+      internalID: -874529684868065628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_24
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b16e052736cd2030800000000000000
+      internalID: 3471648827919720881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_25
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790f8e8dbe8fcb030800000000000000
+      internalID: 3511955501282291863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_26
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: decd2684acdf4a720800000000000000
+      internalID: 2856687108899396845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_27
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fba0003e17ca880b0800000000000000
+      internalID: -5726137321061872961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_28
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b496c7694a77ee00800000000000000
+      internalID: 1073961491843421363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_29
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1df05ba4b6f44d530800000000000000
+      internalID: 3878812501306314705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dad148abaddaaa50800000000000000
+      internalID: 6533277938786360017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c004cb2bc75cdc60800000000000000
+      internalID: 7844241181096804546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_32
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95e8c537b66c52c30800000000000000
+      internalID: 4334088381213216345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_33
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 080369a253a4e4890800000000000000
+      internalID: -7471953139552866176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_34
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b278ac1d044eddd0800000000000000
+      internalID: -2459453523391647050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_35
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c204734a6ae9d8e0800000000000000
+      internalID: -1668044444844948794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_36
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e286c433445a10850800000000000000
+      internalID: 6341531462651373614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_37
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bc721ff05023a4a0800000000000000
+      internalID: -6583382698036659023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_38
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d47d4bdab7498520800000000000000
+      internalID: 2704771919081469144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_39
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 821b11d8c79829970800000000000000
+      internalID: 8760215393224732968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48b4860568f285280800000000000000
+      internalID: -9054434796907246716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_41
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a51ca911457fb14a0800000000000000
+      internalID: -6621426886673514150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_42
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40e388745851f3a10800000000000000
+      internalID: 1891254030693842436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_43
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be4f26ef1987c900800000000000000
+      internalID: 704682636805623478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_44
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45efe10f0ee0f8bd0800000000000000
+      internalID: -2625863698469683628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_45
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 120f1e6021691e4d0800000000000000
+      internalID: -3107037263739883487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_46
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00ae33bccec27ba70800000000000000
+      internalID: 8842585788898339328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_47
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b476156fbaae0e10800000000000000
+      internalID: 2165856209823233207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_48
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4392cff0d72ad71a0800000000000000
+      internalID: -6810108403491526348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_49
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 512
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b909df03b4223b4c0800000000000000
+      internalID: -4273033915104653157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 603105b9d10695140800000000000000
+      internalID: 4708900565668598534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_51
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf68f989505ea4e90800000000000000
+      internalID: -7040563255242160389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_52
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a11558def7c82140800000000000000
+      internalID: 4695222508898816424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_53
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a3e02e7d5bafe960800000000000000
+      internalID: 7633508311452672937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_54
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad9063074d4ac300800000000000000
+      internalID: 273115694804016549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_55
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9295812433c42aae0800000000000000
+      internalID: -1539584339571353303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_56
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8350539c7473f56a0800000000000000
+      internalID: -6458382559168101064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_57
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c56c8117226dea900800000000000000
+      internalID: 697730435703686748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_58
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d507f7aaab57cc0800000000000000
+      internalID: -3713857076251828862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Edwige_59
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 256
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6883aa07b8f8b56c0800000000000000
+      internalID: -4153568402265720698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
