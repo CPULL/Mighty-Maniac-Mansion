@@ -245,7 +245,8 @@ public class Controller : MonoBehaviour {
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
-        currentActor.WalkToPos(hit.point, p);
+        if (p != null && !p.isStair)
+          currentActor.WalkToPos(hit.point, p);
       }
     }
 
@@ -391,7 +392,7 @@ public class Controller : MonoBehaviour {
 
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Walk) || (rmb && overItem.whatItDoesR == WhatItDoes.Walk)) { /* walk */
           if (aDoor == null) {
-            if (overItem.CompareTag("WoodDoor")) {
+            if (overItem.CompareTag("WoodsDoor")) {
               WalkAndAction(currentActor, overItem, new System.Action<Actor, Item>((actor, item) => {
                 StartCoroutine(ChangeWoods(actor));
               }));

@@ -1,5 +1,6 @@
 === Mighty Maniac Mansion ===
 
+Change position of living room
 
 Add some messages for various actors when entering the woods and when going around for too many spots
 Add wearable cape and map
@@ -34,8 +35,7 @@ FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
 
-Add messages for each participant when wearing the coat
-
+Fix autowalking, some times it goes to not valid places
 
 Moon should not be affected by lightnings shader
 If a room has windows, make it a little bit less dark (like flashlight but without outline) <= use lightning shader
