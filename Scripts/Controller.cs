@@ -36,8 +36,6 @@ public class Controller : MonoBehaviour {
     }
     if (GD.status != GameStatus.NormalGamePlay && GD.status != GameStatus.Cutscene) return;
 
-    HandleCursor();
-
     #region Handling of text messages
     if (textMsgTime > 0) {
       textMsgTime -= Time.deltaTime;
@@ -486,50 +484,6 @@ public class Controller : MonoBehaviour {
 
     #endregion
   }
-
-  //  private CursorTypes forcedCursor = CursorTypes.Normal;
-  //  private Texture2D oldCursor = null;
-  public Texture2D[] Cursors; // FIXME remove
-
-  void HandleCursor() {
-    return;
-
-    /*
-    if (GD.status != GameStatus.NormalGamePlay && !SceneSkipped) {
-      if (oldCursor != Cursors[(int)CursorTypes.Wait]) {
-        Cursor.SetCursor(Cursors[(int)CursorTypes.Wait], middle, CursorMode.Auto);
-        oldCursor = Cursors[(int)CursorTypes.Wait];
-      }
-      return;
-    }
-
-    if (forcedCursor == CursorTypes.Item) return;
-
-    cursorTime += Time.deltaTime * cursorTimeSpeed;
-    if (cursorTime > 1.5f) {
-      cursorTime = 0;
-      cursorTimeSpeed = Random.Range(.9f, 1.5f);
-    }
-
-
-    if (forcedCursor == CursorTypes.Normal) {
-      float val = Mathf.Cos(cursorTime * 2.1f + 4.7f) * 4.9f;
-      val = Mathf.Clamp(val, 0, 4);
-      int c = 4 - Mathf.RoundToInt(val);
-      if (oldCursor != Cursors[c]) {
-        Cursor.SetCursor(Cursors[c], middle, CursorMode.Auto);
-        oldCursor = Cursors[c];
-      }
-      return;
-    }
-
-    if (oldCursor != Cursors[(int)forcedCursor]) {
-      Cursor.SetCursor(Cursors[(int)forcedCursor], new Vector2(Cursors[(int)forcedCursor].width / 2, Cursors[(int)forcedCursor].height / 2), CursorMode.Auto);
-      oldCursor = Cursors[(int)forcedCursor];
-    }
-    */
-  }
-
 
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
     if (Options.IsActive()) return;
