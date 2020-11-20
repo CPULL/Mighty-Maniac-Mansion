@@ -40,7 +40,7 @@ public class Actor : MonoBehaviour {
 
   public List<GameScene> behaviors;
 
-  private Cape cape = null;
+  public Wearable Coat = null;
 
   bool isSpeaking = false;
   int faceNum = 0;
@@ -510,7 +510,7 @@ public class Actor : MonoBehaviour {
       Arms.sortingOrder = zpos + 2;
     }
     Legs.sortingOrder = zpos;
-    if (cape) cape.SetSortingOrder(zpos);
+    if (Coat != null && Coat.gameObject.activeSelf) Coat.SetSortingOrder(zpos);
   }
 
   void CheckReachingDestination(Vector2 walkDir) {
@@ -601,9 +601,26 @@ public class Actor : MonoBehaviour {
     }
   }
 
-  public void SetCape(Cape c) {
-    cape = c;
+  internal void Wear(ItemEnum itemId, bool remove=false) {
+    if (!HasItem(itemId)) {
+      Say("I do not have " + itemId);
+      return;
+    }
+
+    if (itemId == ItemEnum.Coat && Coat == null) {
+      Debug.LogError("Missing coat for " + name);
+      return;
+    }
+
+    if (remove && itemId == ItemEnum.Coat) {
+      Coat.gameObject.SetActive(false);
+    }
+    else if (itemId == ItemEnum.Coat) {
+      Coat.gameObject.SetActive(!Coat.gameObject.activeSelf);
+      SetScaleAndPosition(transform.position);
+    }
   }
+
 }
 
 public enum WalkingMode {

@@ -479,7 +479,7 @@ public class Controller : MonoBehaviour {
         Inventory.SetActive(false);
         usedItem = null;
         EnableActorSelection(false);
-        CursorHandler.SetBoth(CursorTypes.Normal);
+        CursorHandler.SetObject(null);
         return;
       }
     }

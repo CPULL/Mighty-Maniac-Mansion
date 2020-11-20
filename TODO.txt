@@ -34,6 +34,9 @@ FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
 
+Add messages for each participant when wearing the coat
+
+
 Moon should not be affected by lightnings shader
 If a room has windows, make it a little bit less dark (like flashlight but without outline) <= use lightning shader
 
@@ -43,7 +46,7 @@ If a room has windows, make it a little bit less dark (like flashlight but witho
 !Nurse Edna
 Cousin Ted
 !Ed
-Edwige
+!Edwige
 !Green Tentacle
 !Purple Tentacle
 Blue Tentacle
@@ -232,5 +235,5 @@ Laverne
 ! Add credits for Rishik
 ! Do "flashlight" shader C64 style (high outline, coloring, reducing saturation, lower lights)
 ! woods are built and are fully navigable
-
+! Coat is now wearable (Only Javid and Bernard right now)
 

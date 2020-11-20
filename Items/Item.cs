@@ -345,6 +345,7 @@ public class Item : GameItem {
   internal void Give(Actor giver, Actor receiver) {
     ActionRes res = PlayActions(giver, receiver, When.Give, this);
     if (res == null || !res.actionDone) { // Give it by default
+      if (Item == ItemEnum.Coat) giver.Wear(ItemEnum.Coat, true);
       giver.inventory.Remove(this);
       receiver.inventory.Add(this);
       owner = Controller.GetCharFromActor(receiver);

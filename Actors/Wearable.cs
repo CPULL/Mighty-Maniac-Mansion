@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Cape : MonoBehaviour {
+public class Wearable : MonoBehaviour {
   public Sprite F;
   public Sprite B;
   public Sprite L;
@@ -17,15 +17,10 @@ public class Cape : MonoBehaviour {
     srb.sprite = Back;
     srf.enabled = false;
     srb.enabled = false;
-    parent.SetCape(this);
   }
 
   // Update is called once per frame
   void Update() {
-    if (Input.GetKeyDown(KeyCode.Space))
-      GD.c.currentActor.Say("After forbidden C++\nwe have other Forbidden stuff...");
-
-
     srf.enabled = parent.IsVisible;
     transform.position = parent.transform.position;
     if (parent.dir != dir) {

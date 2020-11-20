@@ -41,6 +41,7 @@ public enum ActionType {
   ChangeSprites = 27, // Changes sprites of items
 
   SwitchFlashlight = 28, // Turns on and off the flashlight
+  Wear = 29, // Wear/unwear coat and hazman suite
 };
 
 
@@ -128,6 +129,8 @@ public class GameAction {
       case ActionType.Cursor: return "Set currsor as " + (CursorTypes)id1;
 
       case ActionType.ChangeSprites: return "Change " + (ItemEnum)id1 + " op=" + id2 + " cl=" + val;
+
+      case ActionType.Wear: return "Wear " + (ItemEnum)id1;
     }
     return res;
   }
@@ -158,6 +161,7 @@ public class GameAction {
       case ActionType.SwitchFlashlight:
       case ActionType.Cursor:
       case ActionType.ChangeSprites:
+      case ActionType.Wear:
         return;
 
       case ActionType.Speak: {
@@ -992,6 +996,12 @@ public class GameAction {
           item.sr.sprite = item.openImage;
         else
           item.sr.sprite = item.closeImage;
+        Complete();
+      }
+      break;
+
+      case ActionType.Wear: {
+        performer.Wear((ItemEnum)id1);
         Complete();
       }
       break;

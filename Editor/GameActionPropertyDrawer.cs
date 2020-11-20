@@ -272,6 +272,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(CursorTypes)));
         }
         break;
+
+        case ActionType.Wear: {
+          Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
+        }
+        break;
       }
     }
 
