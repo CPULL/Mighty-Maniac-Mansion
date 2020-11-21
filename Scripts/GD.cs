@@ -10,6 +10,7 @@ public class GD : MonoBehaviour {
   public static Chars actor3;
   public static Chars kidnapped;
   public Material MatNormal;
+  public Material MatBackground;
   public Material MatFlashLight;
   public Material MatLightOff;
   public Material MatOutline; // Used by actors <- normal
@@ -286,6 +287,7 @@ public class GD : MonoBehaviour {
 
   internal static void SetC64Mode(int colors, int pixels, int outlinesize, float outlinestr, int scanlines, float slfreq, float slspeed, float slnoise, float slstr) {
     gs.SetMaterial(gs.MatNormal, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);
+    gs.SetMaterial(gs.MatBackground, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);
     gs.SetMaterial(gs.MatFlashLight, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);
     gs.SetMaterial(gs.MatLightOff, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);
     gs.SetMaterial(gs.MatOutline, colors, pixels, outlinesize, outlinestr, scanlines, slfreq, slspeed, slnoise, slstr);

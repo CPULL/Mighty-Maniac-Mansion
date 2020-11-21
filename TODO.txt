@@ -1,12 +1,10 @@
 === Mighty Maniac Mansion ===
 
-Change position of living room
 
 Add some messages for various actors when entering the woods and when going around for too many spots
-Add wearable cape and map
+Add map for cemetery
 graveyard: build room
-graveyard: move graves from front door to graveyard
-Add cape to go to the graveyard
+graveyard: have graves diggable
 Add dog anims for throwing food and eating food
 Arcade room: Day of Tentacle poster in the Arcade room.
 Arcade room: Add old consoles (NES, Gnesis, etc.) to the arcade room
