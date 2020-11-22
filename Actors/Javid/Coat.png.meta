@@ -32,6 +32,27 @@ TextureImporter:
   - first:
       213: 8173408146670895935
     second: Coat_4
+  - first:
+      213: -6605596703878778927
+    second: Coat_0
+  - first:
+      213: -6127482299512209459
+    second: Coat_1
+  - first:
+      213: -6423338016778209682
+    second: Coat_2
+  - first:
+      213: 3685212897699609200
+    second: Coat_3
+  - first:
+      213: 8983684699073740939
+    second: Coat_5
+  - first:
+      213: 4630254747752806107
+    second: Coat_6
+  - first:
+      213: -2976602089977286135
+    second: Coat_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,96 +152,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Coat_0
+      name: Coat_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 512
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0d6a9d1c03e20bea0800000000000000
-      internalID: -5859132328263440688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Coat_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 512
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df2a160e024777620800000000000000
-      internalID: 2771811780222100221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Coat_2
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 256
-        height: 512
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9de13cc327c31ba70800000000000000
-      internalID: 8840914004848352985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Coat_3
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 256
-        height: 512
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2152161f48667e3e0800000000000000
-      internalID: -2024536786308356846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Coat_4
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 256
+        width: 256.25
         height: 512
       alignment: 9
       pivot: {x: 0.5, y: 0.06}
@@ -231,6 +168,153 @@ TextureImporter:
       bones: []
       spriteID: f334a92a767cd6170800000000000000
       internalID: 8173408146670895935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coat_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256.25
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1df60d7bbc43454a0800000000000000
+      internalID: -6605596703878778927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coat_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256.25
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcfb41a305fc6faa0800000000000000
+      internalID: -6127482299512209459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coat_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256.25
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e663ca52b18bbd6a0800000000000000
+      internalID: -6423338016778209682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coat_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256.25
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ab219fa91842330800000000000000
+      internalID: 3685212897699609200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coat_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256.25
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b80076ed2a57cac70800000000000000
+      internalID: 8983684699073740939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coat_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256.25
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd63f533928f14040800000000000000
+      internalID: 4630254747752806107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coat_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256.25
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 902f73d7b2cf0b6d0800000000000000
+      internalID: -2976602089977286135
       vertices: []
       indices: 
       edges: []
