@@ -16,6 +16,7 @@ Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, m
 Do arms forward in all characters
 
 Add recycle stuff to the service room
+Coats: Ollie, Jeff, Michael, Sandy
 
 * TODO ************************************************************************************************************
 

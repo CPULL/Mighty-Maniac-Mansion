@@ -86,6 +86,7 @@ public class Container : Item {
         ci.item.transform.SetParent(transform);
         ci.item.transform.localPosition = ci.localPos;
         ci.item.gameObject.SetActive(IsOpen());
+        ci.item.whatItDoesR = WhatItDoes.Pick;
         return false;
       }
 

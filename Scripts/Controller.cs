@@ -16,7 +16,6 @@ public class Controller : MonoBehaviour {
   public AudioSource MusicPlayer;
   private Vector3 MoonPos = new Vector3(5.9f, 3.35f, 10);
 
-
   public TextMeshProUGUI DbgMsg;
   public static void Dbg(string txt) {
     GD.c.DbgMsg.text = txt;
@@ -486,6 +485,7 @@ public class Controller : MonoBehaviour {
     #endregion
   }
 
+
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
     if (Options.IsActive()) return;
     if (GD.status != GameStatus.NormalGamePlay && (GD.c.currentCutscene == null || GD.c.currentCutscene.Id == CutsceneID.NONE || (!GD.c.currentCutscene.skippable && GD.c.currentCutscene.status != GameSceneStatus.ShutDown))) return;
@@ -828,6 +828,28 @@ public class Controller : MonoBehaviour {
       }
     }
   }
+
+
+  public GameObject MapImage;
+  public Image[] MapArrows;
+  public float[] MapArrowsAngles; // L=0 R=180 D=270 tr=45 tl=135
+  int[] mapDirections;
+  int mapPos = -1;
+
+  public void ShowMap() {
+    if (mapDirections == null) { // This is the first time the map is shown, generate the random path
+      mapDirections = new int[5];
+      for (int i = 0; i < 4; i++)
+        mapDirections[i] = Random.Range(0, 5);
+      mapDirections[4] = Random.Range(0, 2); // Only Left/Right for the final one
+      mapPos = -1;
+    }
+    for (int i = 0; i < MapArrows.Length; i++) {
+      MapArrows[i].rectTransform.rotation = Quaternion.Euler(0, 0, MapArrowsAngles[mapDirections[i]]);
+    }
+    MapImage.SetActive(!MapImage.activeSelf);
+  }
+
 
   #endregion
 

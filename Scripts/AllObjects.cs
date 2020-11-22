@@ -154,6 +154,7 @@ public enum ItemEnum {
   SilverKey,
   Coat,
   FruitJuice,
+  WoodsMap,
 }
 
 

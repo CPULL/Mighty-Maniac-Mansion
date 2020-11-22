@@ -20,7 +20,7 @@ public class GameItem : MonoBehaviour {
   public Sprite closeImage;
   public Sprite lockImage;
   public Sprite iconImage;
-  public Texture2D cursorImage;
+//  public Texture2D cursorImage;
 
   public Vector2 HotSpot;
   public Dir dir;

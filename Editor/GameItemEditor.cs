@@ -9,7 +9,7 @@ public class GameItemEditor : Editor {
   SerializedProperty Usable, openStatus;
   bool showDescription = false;
   SerializedProperty Description, Owner;
-  SerializedProperty openImage, closeImage, lockImage, iconImage, cursorImage;
+  SerializedProperty openImage, closeImage, lockImage, iconImage;
   SerializedProperty overColor, normalColor;
   SerializedProperty HotSpot, dir;
   SerializedProperty actions;
@@ -28,7 +28,6 @@ public class GameItemEditor : Editor {
     closeImage = serializedObject.FindProperty("closeImage");
     lockImage = serializedObject.FindProperty("lockImage");
     iconImage = serializedObject.FindProperty("iconImage");
-    cursorImage = serializedObject.FindProperty("cursorImage");
     overColor = serializedObject.FindProperty("overColor");
     normalColor = serializedObject.FindProperty("normalColor");
     HotSpot = serializedObject.FindProperty("HotSpot");
@@ -74,9 +73,8 @@ public class GameItemEditor : Editor {
     EditorGUILayout.PropertyField(openImage, new GUIContent("O"));
     EditorGUILayout.PropertyField(closeImage, new GUIContent("C"));
     EditorGUILayout.PropertyField(lockImage, new GUIContent("L"));
-    EditorGUIUtility.labelWidth = 20;
+    EditorGUIUtility.labelWidth = 30;
     EditorGUILayout.PropertyField(iconImage, new GUIContent("Icon"));
-    EditorGUILayout.PropertyField(cursorImage, new GUIContent("Curs"));
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 

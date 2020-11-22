@@ -35,4 +35,5 @@ public class Triggerer : MonoBehaviour {
 public enum TriggerID {
   FredKidnappedDialogue,
   EdnaKitchenStarter,
+  NoMapMessage,
 }

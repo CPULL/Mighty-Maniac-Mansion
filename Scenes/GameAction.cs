@@ -42,6 +42,8 @@ public enum ActionType {
 
   SwitchFlashlight = 28, // Turns on and off the flashlight
   Wear = 29, // Wear/unwear coat and hazman suite
+
+  ShowMap = 30, // Show and hide the Map of the Woods
 };
 
 
@@ -131,6 +133,8 @@ public class GameAction {
       case ActionType.ChangeSprites: return "Change " + (ItemEnum)id1 + " op=" + id2 + " cl=" + val;
 
       case ActionType.Wear: return "Wear " + (ItemEnum)id1;
+
+      case ActionType.ShowMap: return "Show/Hide Woods map";
     }
     return res;
   }
@@ -162,6 +166,7 @@ public class GameAction {
       case ActionType.Cursor:
       case ActionType.ChangeSprites:
       case ActionType.Wear:
+      case ActionType.ShowMap:
         return;
 
       case ActionType.Speak: {
@@ -1002,6 +1007,12 @@ public class GameAction {
 
       case ActionType.Wear: {
         performer.Wear((ItemEnum)id1);
+        Complete();
+      }
+      break;
+
+      case ActionType.ShowMap: {
+        GD.c.ShowMap();
         Complete();
       }
       break;
