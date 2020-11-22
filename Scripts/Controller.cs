@@ -393,7 +393,7 @@ public class Controller : MonoBehaviour {
           if (aDoor == null) {
             if (overItem.CompareTag("WoodsDoor")) {
               WalkAndAction(currentActor, overItem, new System.Action<Actor, Item>((actor, item) => {
-                StartCoroutine(ChangeWoods(actor));
+                StartCoroutine(ChangeWoods(actor, overItem));
               }));
             }
             WalkAndAction(currentActor, overItem, null);
@@ -832,9 +832,10 @@ public class Controller : MonoBehaviour {
 
   public GameObject MapImage;
   public Image[] MapArrows;
-  public float[] MapArrowsAngles; // L=0 R=180 D=270 tr=45 tl=135
+  public float[] MapArrowsAngles; // (0)L=0 (1)R=180 (2)D=270 (3)tr=45 (4)tl=135
   int[] mapDirections;
   int mapPos = -1;
+  int woodSteps = 0;
 
   public void ShowMap() {
     if (mapDirections == null) { // This is the first time the map is shown, generate the random path
@@ -1178,14 +1179,20 @@ public class Controller : MonoBehaviour {
     ShowName(currentRoom.name);
 
     if (currentRoom.GetComponent<Woods>() != null) {
-      woods.Generate(true, false);
-      woods.SetActorRandomDoorPosition(actor);
-      wndebug = 0;
-      StarsBlink.SetWoods(wndebug);
-    }
-    else if (wndebug != -1) {
-//      wndebug = -1;
-//      StarsBlink.SetWoods(-1);
+      if (currentActor.HasItem(ItemEnum.WoodsMap)) {
+        Debug.Log("Generating woods, first step");
+        mapPos = 0;
+        woods.Generate(true, false, mapDirections[mapPos]);
+        woods.SetActorRandomDoorPosition(actor, mapDirections[mapPos]);
+      }
+      else {
+        Debug.Log("Generating woods without map");
+        mapPos = -1;
+        woods.Generate(true, false, -1);
+        woods.SetActorRandomDoorPosition(actor, -1);
+      }
+      woodSteps = 0;
+      StarsBlink.SetWoods(woodSteps);
     }
   }
 
@@ -1268,7 +1275,7 @@ public class Controller : MonoBehaviour {
 
   public Woods woods;
 
-  private IEnumerator ChangeWoods(Actor actor) {
+  private IEnumerator ChangeWoods(Actor actor, Item door) {
     // Disable gameplay
     GD.status = GameStatus.Cutscene;
     yield return null;
@@ -1282,11 +1289,19 @@ public class Controller : MonoBehaviour {
       yield return null;
     }
 
-    // Regenerate Woords (but check if we need Home and Cemetery doors)
-    woods.Generate(Random.Range(0, 3) == 0, Random.Range(0, 5) == 0); // FIXME the cematery should be accessible only after a set of valid steps and only when wearing the cape
-
-    // Place the actor on any of the non valid but visible doors
-    woods.SetActorRandomDoorPosition(actor);
+    // Do we have the map and the path is the right one?
+    bool goodPath = mapDirections[mapPos] == woods.GetDoorPosition(door);
+    if (goodPath && currentActor.HasItem(ItemEnum.WoodsMap)) {
+      //  yes-> check if we are following the right path, and be sure to generate the correct direction
+      mapPos++;
+      woods.Generate(Random.Range(0, 3) == 0, mapPos == 4, mapDirections[mapPos]);
+      woods.SetActorRandomDoorPosition(actor, mapDirections[mapPos]); // Place the actor on any of the doors except the one that is the right direction
+    }
+    else {
+      //  no->do not generate the cemetery, after a few steps say something
+      woods.Generate(Random.Range(0, 3) == 0, false, -1);
+      woods.SetActorRandomDoorPosition(actor, -1); // Place the actor on any of the non valid but visible doors
+    }
 
     // Fade in
     while (time < .25f) {
@@ -1302,11 +1317,14 @@ public class Controller : MonoBehaviour {
     overItem = null;
     ShowName(currentRoom.name);
 
-    StarsBlink.SetWoods(++wndebug);
-    if (wndebug == 10) wndebug = 9;
-  }
+    if (woodSteps > 5 && Random.Range(0, 11 - woodSteps) == 0) {
+      currentActor.Say("I am getting lost.\nBetter to go back...");
+    }
 
-  int wndebug = -1;
+    StarsBlink.SetWoods(woodSteps);
+    woodSteps++;
+    if (woodSteps > 10) woodSteps = 10;
+  }
 
   #endregion
 

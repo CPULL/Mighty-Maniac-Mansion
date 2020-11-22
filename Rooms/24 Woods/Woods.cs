@@ -7,7 +7,7 @@ public class Woods : MonoBehaviour {
   public WoodsDoor[] doors;
   public Room room;
   public Tree[] MiddleTrees;
-  byte[] spots = new byte[5]; // 0=no door, 1=next random, 2=home, 3=cemetery
+  readonly byte[] spots = new byte[5]; // 0=no door, 1=next random, 2=home, 3=cemetery
   public bool GenerationAtStart = false;
 
   private void Start() {
@@ -16,10 +16,10 @@ public class Woods : MonoBehaviour {
 
   IEnumerator DelayedGeneration() {
     yield return new WaitForSeconds(1);
-    Generate(false, false);
+    Generate(false, false, -1);
   }
 
-  public void Generate(bool home, bool cemetery) {
+  public void Generate(bool home, bool cemetery, int nextDirection) {
     foreach (Tree t in MiddleTrees)
       if (t.gameObject.activeSelf) t.Randomize(room.minY, room.maxY, room.scalePerc, 3, 2);
 
@@ -33,8 +33,9 @@ public class Woods : MonoBehaviour {
     if (GenerationAtStart) return; // Not needed, it is the cemetery
 
 
-    // Randomize the spots.
-    // Have 3, 4, or 5 doors
+    // (0)L=0 (1)R=180 (2)D=270 (3)tr=45 (4)tl=135
+
+    // Randomize the spots. Have 3, 4, or 5 doors
     // If home or cemetery are specified, set one of them
     int pos;
     int num = Random.Range(3, 6);
@@ -61,7 +62,9 @@ public class Woods : MonoBehaviour {
       }
     }
     if (home) spots[Random.Range(0, 2)] = 2;
-    if (cemetery) spots[Random.Range(0, 2)] = 3;
+    // If nextDirection is specified set it
+    if (nextDirection != -1) spots[nextDirection] = 1;
+    if (cemetery) spots[nextDirection] = 3;
 
     pos = 0;
     foreach (WoodsDoor wd in doors) {
@@ -70,10 +73,10 @@ public class Woods : MonoBehaviour {
 
   }
 
-  public void SetActorRandomDoorPosition(Actor actor) {
+  public void SetActorRandomDoorPosition(Actor actor, int nextDirection) {
     actor.Stop();
     int pos = Random.Range(0, 5);
-    while (spots[pos] != 1 && spots[pos] != 2)
+    while ((spots[pos] != 1 && spots[pos] != 2) || pos != nextDirection)
       pos = Random.Range(0, 5);
     actor.SetScaleAndPosition(doors[pos].DoorFake.HotSpot);
     switch(doors[pos].DoorFake.dir) {
@@ -83,6 +86,13 @@ public class Woods : MonoBehaviour {
       case Dir.R: actor.SetDirection(Dir.L); break;
       case Dir.None: actor.SetDirection(Dir.None); break;
     }
+  }
+
+  public int GetDoorPosition(Item door) {
+    for (int i = 0; i < doors.Length; i++) {
+      if (doors[i].DoorFake == door || doors[i].DoorHome == door || doors[i].DoorCemetery == door) return i;
+    }
+    return -99;
   }
 }
 
