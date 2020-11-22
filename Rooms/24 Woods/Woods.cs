@@ -76,7 +76,7 @@ public class Woods : MonoBehaviour {
   public void SetActorRandomDoorPosition(Actor actor, int nextDirection) {
     actor.Stop();
     int pos = Random.Range(0, 5);
-    while ((spots[pos] != 1 && spots[pos] != 2) || pos != nextDirection)
+    while ((spots[pos] != 1 && spots[pos] != 2) || pos == nextDirection)
       pos = Random.Range(0, 5);
     actor.SetScaleAndPosition(doors[pos].DoorFake.HotSpot);
     switch(doors[pos].DoorFake.dir) {

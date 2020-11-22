@@ -94,18 +94,6 @@ public class StarsBlink : MonoBehaviour {
     else { // Partial luminosity
       me.Normal.SetFloat("_Lightning", -.15f * level);
 
-      /*
-      0 -> 0
-      1 -> -1/5
-      2 -> -1/4
-      3 -> -1/3
-      4 -> -1/2
-      5 -> -1
-       
-       */
-
-      Debug.Log("level=" + level + " val=" + (-.15f * level));
-
       me.Moon.localScale = new Vector3(.25f, .25f, 1);
       stormProb = level - 1;
       if (storm == null) {

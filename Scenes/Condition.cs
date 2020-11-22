@@ -298,7 +298,7 @@ public class Condition {
 
       case ConditionType.ItemCollected: {
         Item item = AllObjects.GetItem((ItemEnum)id);
-        bool res = item != null && item.owner != Chars.None;
+        bool res = item != null && item.owner != (Chars)iv;
         if (bv)
           return res;
         else

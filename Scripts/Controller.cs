@@ -572,6 +572,13 @@ public class Controller : MonoBehaviour {
 
     ActorsButtons.SetActive(true);
     StartIntroCutscene();
+
+    Item FIXME = AllObjects.GetItem(ItemEnum.WoodsMap);
+    FIXME.whatItDoesR = WhatItDoes.Use;
+    FIXME.Usable = Tstatus.Usable;
+    FIXME.owner = currentActor.id;
+    currentActor.inventory.Add(FIXME);
+
   }
 
   #endregion
@@ -837,7 +844,7 @@ public class Controller : MonoBehaviour {
   int mapPos = -1;
   int woodSteps = 0;
 
-  public void ShowMap() {
+  void GenerateMap() {
     if (mapDirections == null) { // This is the first time the map is shown, generate the random path
       mapDirections = new int[5];
       for (int i = 0; i < 4; i++)
@@ -848,6 +855,10 @@ public class Controller : MonoBehaviour {
     for (int i = 0; i < MapArrows.Length; i++) {
       MapArrows[i].rectTransform.rotation = Quaternion.Euler(0, 0, MapArrowsAngles[mapDirections[i]]);
     }
+  }
+
+  public void ShowMap() {
+    GenerateMap();
     MapImage.SetActive(!MapImage.activeSelf);
   }
 
@@ -1179,6 +1190,7 @@ public class Controller : MonoBehaviour {
     ShowName(currentRoom.name);
 
     if (currentRoom.GetComponent<Woods>() != null) {
+      GenerateMap(); // It will do nothing if the map is already generated
       if (currentActor.HasItem(ItemEnum.WoodsMap)) {
         Debug.Log("Generating woods, first step");
         mapPos = 0;
@@ -1193,6 +1205,9 @@ public class Controller : MonoBehaviour {
       }
       woodSteps = 0;
       StarsBlink.SetWoods(woodSteps);
+    }
+    else {
+      StarsBlink.SetWoods(0);
     }
   }
 
@@ -1290,7 +1305,10 @@ public class Controller : MonoBehaviour {
     }
 
     // Do we have the map and the path is the right one?
-    bool goodPath = mapDirections[mapPos] == woods.GetDoorPosition(door);
+    bool goodPath = mapPos >= 0 && mapPos < 5 && mapDirections[mapPos] == woods.GetDoorPosition(door);
+
+    Debug.Log("g=" + goodPath + " pos=" + mapPos + " " + mapDirections[0] + ", " + mapDirections[1] + ", " + mapDirections[2] + ", " + mapDirections[3] + ", " + mapDirections[4]);
+
     if (goodPath && currentActor.HasItem(ItemEnum.WoodsMap)) {
       //  yes-> check if we are following the right path, and be sure to generate the correct direction
       mapPos++;
@@ -1317,7 +1335,7 @@ public class Controller : MonoBehaviour {
     overItem = null;
     ShowName(currentRoom.name);
 
-    if (woodSteps > 5 && Random.Range(0, 11 - woodSteps) == 0) {
+    if (woodSteps > 3 && Random.Range(0, 11 - woodSteps) == 0) {
       currentActor.Say("I am getting lost.\nBetter to go back...");
     }
 
