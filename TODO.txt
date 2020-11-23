@@ -28,6 +28,8 @@ Add Fred and Purple tentacle cutscenes for power off and pool empty
 
 Define skills and actions that will allow
 
+Add character grave in case one of the players will die (up to two graves)
+
 * BUGS ************************************************************************************************************
 
 If a room has windows, make it a little bit less dark (like flashlight but without outline) <= use lightning shader
