@@ -352,7 +352,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 1f) {
           introTime = 0;
           istep = IntroStep.Credits5;
-          IntroCredits.text = "Remake credits";
+          IntroCredits.text = "Credits for the remake";
         }
       }
       break;
@@ -370,7 +370,7 @@ public class Intro : MonoBehaviour {
         if (introTime > 5f) {
           introTime = 0;
           istep = IntroStep.Credits7;
-          IntroCredits.text = "Graphics:\n    <b>CPU</b> <size=42><i>characters and backgrounds</i></size>\n    <b>Rishik</b> <size=42><i>characters</i></size>";
+          IntroCredits.text = "Graphics:\n    <b>CPU</b> <size=42><i>characters and backgrounds</i></size>\n    <b>Rishik</b> <size=42><i>characters</i></size>\n    <b>Diego</b> <size=42><i>backgrounds</i></size>";
         }
       }
       break;

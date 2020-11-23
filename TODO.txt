@@ -1,8 +1,6 @@
 === Mighty Maniac Mansion ===
 
 Add some messages for various actors when entering the woods and when going around for too many spots
-Add map for cemetery
-graveyard: build room
 graveyard: have graves diggable
 Add dog anims for throwing food and eating food
 Arcade room: Day of Tentacle poster in the Arcade room.
@@ -10,12 +8,13 @@ Arcade room: Add old consoles (NES, Gnesis, etc.) to the arcade room
 Add credits for Diego
 Add lookup in dog room
 
-Intro all participants (syd, razor, jeff, michael)
+Complete intro Cutscene, adding variations for each character (syd, razor, jeff, michael, Hoagie, Laverne)
 Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)
 Do arms forward in all characters
+Do coats for all characters: Ollie, Jeff, Michael, Sandy, Razor, Hoagie, Laverne
+Do dig anim for all characters
 
 Add recycle stuff to the service room
-Coats: Ollie, Jeff, Michael, Sandy
 
 * TODO ************************************************************************************************************
 
@@ -25,11 +24,9 @@ Have pool empty/full depending on the valve in the underpassage
 Have the alarm and fred cutscene if the pool has no water for too long
 Dungeon: add open doors sprites
 Dungeon: dungeon door should close automatically when exiting
-Add cutscenes for power off and pool empty
+Add Fred and Purple tentacle cutscenes for power off and pool empty
 
-Complete intro Cutscene, adding variations for each character.
 Define skills and actions that will allow
-FrontDoor -> Backyard entrance on the left
 
 * BUGS ************************************************************************************************************
 
@@ -231,4 +228,6 @@ Laverne
 ! Do "flashlight" shader C64 style (high outline, coloring, reducing saturation, lower lights)
 ! woods are built and are fully navigable
 ! Coat is now wearable (Only Javid and Bernard right now)
+! Add map for cemetery
+! graveyard: build room
 

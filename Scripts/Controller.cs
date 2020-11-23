@@ -392,8 +392,9 @@ public class Controller : MonoBehaviour {
         else if ((lmb && overItem.whatItDoesL == WhatItDoes.Walk) || (rmb && overItem.whatItDoesR == WhatItDoes.Walk)) { /* walk */
           if (aDoor == null) {
             if (overItem.CompareTag("WoodsDoor")) {
+              Item door = overItem;
               WalkAndAction(currentActor, overItem, new System.Action<Actor, Item>((actor, item) => {
-                StartCoroutine(ChangeWoods(actor, overItem));
+                StartCoroutine(ChangeWoods(actor, door));
               }));
             }
             WalkAndAction(currentActor, overItem, null);
@@ -847,9 +848,15 @@ public class Controller : MonoBehaviour {
   void GenerateMap() {
     if (mapDirections == null) { // This is the first time the map is shown, generate the random path
       mapDirections = new int[5];
-      for (int i = 0; i < 4; i++)
-        mapDirections[i] = Random.Range(0, 5);
-      mapDirections[4] = Random.Range(0, 2); // Only Left/Right for the final one
+
+      int p = 1;
+      for (int i = 0; i < 4; i++) {
+        mapDirections[i] = p++;
+        p =p % 5;
+      }
+//      for (int i = 0; i < 4; i++)
+//        mapDirections[i] = Random.Range(0, 5);
+//      mapDirections[4] = Random.Range(0, 2); // Only Left/Right for the final one
       mapPos = -1;
     }
     for (int i = 0; i < MapArrows.Length; i++) {
@@ -1189,7 +1196,7 @@ public class Controller : MonoBehaviour {
     overItem = null;
     ShowName(currentRoom.name);
 
-    if (currentRoom.GetComponent<Woods>() != null) {
+    if (currentRoom.ID.Equals("Woods")) {
       GenerateMap(); // It will do nothing if the map is already generated
       if (currentActor.HasItem(ItemEnum.WoodsMap)) {
         Debug.Log("Generating woods, first step");
@@ -1205,6 +1212,10 @@ public class Controller : MonoBehaviour {
       }
       woodSteps = 0;
       StarsBlink.SetWoods(woodSteps);
+    }
+    else if (currentRoom.ID.Equals("Cemetery") && !cemetery.Generated) {
+      cemetery.Generate(false, false, -2);
+      StarsBlink.SetWoods(5);
     }
     else {
       StarsBlink.SetWoods(0);
@@ -1289,6 +1300,7 @@ public class Controller : MonoBehaviour {
   }
 
   public Woods woods;
+  public Woods cemetery;
 
   private IEnumerator ChangeWoods(Actor actor, Item door) {
     // Disable gameplay
@@ -1307,7 +1319,7 @@ public class Controller : MonoBehaviour {
     // Do we have the map and the path is the right one?
     bool goodPath = mapPos >= 0 && mapPos < 5 && mapDirections[mapPos] == woods.GetDoorPosition(door);
 
-    Debug.Log("g=" + goodPath + " pos=" + mapPos + " " + mapDirections[0] + ", " + mapDirections[1] + ", " + mapDirections[2] + ", " + mapDirections[3] + ", " + mapDirections[4]);
+    Debug.Log("g=" + goodPath + " pos=" + mapPos + " gdp=" + woods.GetDoorPosition(door) + " " + mapDirections[0] + ", " + mapDirections[1] + ", " + mapDirections[2] + ", " + mapDirections[3] + ", " + mapDirections[4]);
 
     if (goodPath && currentActor.HasItem(ItemEnum.WoodsMap)) {
       //  yes-> check if we are following the right path, and be sure to generate the correct direction

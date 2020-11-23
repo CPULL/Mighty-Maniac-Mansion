@@ -8,18 +8,11 @@ public class Woods : MonoBehaviour {
   public Room room;
   public Tree[] MiddleTrees;
   readonly byte[] spots = new byte[5]; // 0=no door, 1=next random, 2=home, 3=cemetery
-  public bool GenerationAtStart = false;
+  public bool Generated = false;
 
-  private void Start() {
-    if (GenerationAtStart) StartCoroutine(DelayedGeneration());
-  }
-
-  IEnumerator DelayedGeneration() {
-    yield return new WaitForSeconds(1);
-    Generate(false, false, -1);
-  }
 
   public void Generate(bool home, bool cemetery, int nextDirection) {
+    Generated = true;
     foreach (Tree t in MiddleTrees)
       if (t.gameObject.activeSelf) t.Randomize(room.minY, room.maxY, room.scalePerc, 3, 2);
 
@@ -30,7 +23,7 @@ public class Woods : MonoBehaviour {
         g.Randomize(room.minY, room.maxY, room.scalePerc);
 
 
-    if (GenerationAtStart) return; // Not needed, it is the cemetery
+    if (nextDirection == -2) return; // Not needed, it is the cemetery
 
 
     // (0)L=0 (1)R=180 (2)D=270 (3)tr=45 (4)tl=135
@@ -89,6 +82,7 @@ public class Woods : MonoBehaviour {
   }
 
   public int GetDoorPosition(Item door) {
+    if (door == null) return -99;
     for (int i = 0; i < doors.Length; i++) {
       if (doors[i].DoorFake == door || doors[i].DoorHome == door || doors[i].DoorCemetery == door) return i;
     }
