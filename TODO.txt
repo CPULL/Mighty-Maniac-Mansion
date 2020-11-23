@@ -1,5 +1,11 @@
 === Mighty Maniac Mansion ===
 
+shelter with shovel
+woods for treehouse
+treehouse
+ezra berg passage
+pool
+garage
 graveyard: have graves diggable
 Add dog anims for throwing food and eating food
 Arcade room: Day of Tentacle poster in the Arcade room.
@@ -27,6 +33,7 @@ Add Fred and Purple tentacle cutscenes for power off and pool empty
 Define skills and actions that will allow
 
 Add character grave in case one of the players will die (up to two graves)
+Add game over (when it will happen?)
 
 * BUGS ************************************************************************************************************
 
