@@ -155,6 +155,8 @@ public enum ItemEnum {
   Coat,
   FruitJuice,
   WoodsMap,
+  BackDoorInt,
+  BackDoorExt,
 }
 
 
