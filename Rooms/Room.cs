@@ -24,9 +24,11 @@ public class Room : MonoBehaviour {
   void CollectAllRenderers(Transform tran) {
     SpriteRenderer sr = tran.GetComponent<SpriteRenderer>();
     if (sr != null) {
-      if (sr.material.name.IndexOf("SnapPoint") == -1)
+      bool snap = sr.material.name.IndexOf("SnapPoint") != -1;
+      bool water = sr.material.name.IndexOf("Water") != -1;
+      if (!snap && !water)
         srs.Add(sr);
-      else
+      else if (snap)
         sr.enabled = false;
     }
     foreach (Transform t in tran)
