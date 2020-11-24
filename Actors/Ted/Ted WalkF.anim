@@ -31,15 +31,15 @@ AnimationClip:
     - time: 0
       value: {fileID: 2889682393677235639, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - time: 0.1
-      value: {fileID: 695615800970459340, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
-    - time: 0.21666667
       value: {fileID: -7237803749139820276, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
+    - time: 0.21666667
+      value: {fileID: 695615800970459340, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - time: 0.35
       value: {fileID: 2889682393677235639, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - time: 0.46666667
-      value: {fileID: -4609343951184709203, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
-    - time: 0.5833333
       value: {fileID: -301023933926203019, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
+    - time: 0.5833333
+      value: {fileID: -4609343951184709203, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - time: 0.7
       value: {fileID: 2889682393677235639, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     attribute: m_Sprite
@@ -71,11 +71,11 @@ AnimationClip:
     - {fileID: 120040838426099811, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - {fileID: 120040838426099811, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - {fileID: 2889682393677235639, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
-    - {fileID: 695615800970459340, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - {fileID: -7237803749139820276, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
+    - {fileID: 695615800970459340, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - {fileID: 2889682393677235639, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
-    - {fileID: -4609343951184709203, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - {fileID: -301023933926203019, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
+    - {fileID: -4609343951184709203, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
     - {fileID: 2889682393677235639, guid: af92334fb0023cf47b9ece391f371eb6, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2

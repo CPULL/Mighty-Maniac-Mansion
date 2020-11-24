@@ -4,7 +4,9 @@ shelter with shovel
 woods for treehouse
 treehouse
 ezra berg passage
-pool
+pool: make water goes up and down with the wheel in the basement
+pool: draw bottom of the pool, implement self destruction button, radio with batteries
+pool: glass jar with pool water should produce radioactive water jar
 garage
 graveyard: have graves diggable
 Add dog anims for throwing food and eating food
