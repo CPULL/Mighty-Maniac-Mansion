@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Normal
   m_Shader: {fileID: 4800000, guid: 5d3b98a8501ff914ba463bcbe4b53683, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USEC64COLS_ON _USEEXC64COLS_ON
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
