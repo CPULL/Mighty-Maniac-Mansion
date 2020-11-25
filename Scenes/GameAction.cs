@@ -55,7 +55,7 @@ public class GameAction {
 
 
   public ActionType type;
-  public bool Repeatable; // Can the action be repeated?
+  public bool Repeatable; // FIXME <- Do we need it? Can the action be repeated?
   public float delay; // Delay to use when playing the action
 
   public int id1;
@@ -880,15 +880,10 @@ public class GameAction {
           return;
         }
         Item item = AllObjects.GetItem((ItemEnum)id2);
-        Animator anim = item.GetComponent<Animator>();
-        if (anim == null) {
-          Debug.LogError("Missing animator for animated item: " + item.gameObject.name);
-          return;
-        }
-        item.gameObject.SetActive(true); // Required because the animation will fail if the object will be enabled after
-        anim.enabled = true;
-        anim.Play(str);
-        Play();
+        if (item.PlayAnim(str, delay))
+          Complete();
+        else
+          Play();
       }
       break;
 

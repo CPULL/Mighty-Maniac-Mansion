@@ -26,6 +26,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     SerializedProperty dir = property.FindPropertyRelative("dir");
     SerializedProperty val = property.FindPropertyRelative("val");
     SerializedProperty msg = property.FindPropertyRelative("msg");
+    SerializedProperty delay = property.FindPropertyRelative("delay");
 
     string name = GameAction.StringName((ActionType)type.intValue, id1.intValue, id2.intValue, str.stringValue, pos.vector2Value, (Dir)dir.intValue, val.intValue);
 
@@ -276,6 +277,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
         case ActionType.Wear: {
           Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
           id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
+        }
+        break;
+
+        case ActionType.Wait: {
+          Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          delay.floatValue = EditorGUI.FloatField(aRect, delay.floatValue);
         }
         break;
       }

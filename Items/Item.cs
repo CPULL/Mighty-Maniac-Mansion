@@ -30,8 +30,28 @@ public class Item : MonoBehaviour {
   public List<ActionAndCondition> actions;
 
 
+  private string animToPlay = null;
+  private System.DateTime animStartTime;
+  private float timeForAnim;
 
-
+  public bool PlayAnim(string animName, float timer) {
+    Animator anim = GetComponent<Animator>();
+    if (anim == null) {
+      Debug.LogError("Missing animator for animated item: " + gameObject.name);
+      return true;
+    }
+    if (gameObject.activeSelf) {
+      animToPlay = null;
+      anim.enabled = true;
+      anim.Play(animName);
+    }
+    else {
+      animToPlay = animName;
+      animStartTime = System.DateTime.Now;
+      timeForAnim = timer;
+    }
+    return false;
+  }
 
   private void Awake() {
     sr = GetComponent<SpriteRenderer>();
@@ -49,8 +69,14 @@ public class Item : MonoBehaviour {
   }
 
   private void OnEnable() {
-    // Check if we where playing an animation or a delayed event.
-    // In case run it from the specific point in time specified
+    if (animToPlay == null) return;
+    System.TimeSpan elapsed = System.DateTime.Now - animStartTime;
+    if (elapsed.TotalSeconds > timeForAnim) {
+      animToPlay = null;
+      return;
+    }
+    Animator anim = GetComponent<Animator>();
+    anim.Play(animToPlay, 0, (float)elapsed.TotalSeconds);
   }
 
   public string Use(Actor actor) {
