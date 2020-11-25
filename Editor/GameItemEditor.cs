@@ -4,7 +4,7 @@ using UnityEngine;
 [CustomEditor(typeof(Item))]
 public class GameItemEditor : Editor {
 
-  SerializedProperty itemEnum, Name;
+  SerializedProperty ID, Name;
   SerializedProperty whatItDoesL, whatItDoesR;
   SerializedProperty Usable, openStatus;
   bool showDescription = false;
@@ -16,7 +16,7 @@ public class GameItemEditor : Editor {
 
 
   void OnEnable() {
-    itemEnum = serializedObject.FindProperty("Item");
+    ID = serializedObject.FindProperty("ID");
     Name = serializedObject.FindProperty("Name");
     whatItDoesL = serializedObject.FindProperty("whatItDoesL");
     whatItDoesR = serializedObject.FindProperty("whatItDoesR");
@@ -42,7 +42,7 @@ public class GameItemEditor : Editor {
 
     // ID and Name
     EditorGUILayout.BeginHorizontal();
-    EditorGUILayout.PropertyField(itemEnum);
+    EditorGUILayout.PropertyField(ID);
     EditorGUILayout.PropertyField(Name);
     EditorGUILayout.EndHorizontal();
 

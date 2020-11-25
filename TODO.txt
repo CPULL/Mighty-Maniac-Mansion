@@ -1,5 +1,12 @@
 === Mighty Maniac Mansion ===
 
+
+We need a way to track time for events.
+If we start an animation, the anim will last for a few seconds.
+If we enable th eobject after, the anim should be already completed (or we may want to start it middle frame) : Animator.Play("name", 0, time);
+The spanning of time may also trygger other stuff, for example a cuscene
+
+
 shelter with shovel
 woods for treehouse
 treehouse

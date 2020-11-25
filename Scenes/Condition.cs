@@ -375,9 +375,9 @@ public class Condition {
       case ConditionType.UsedWith: {
         if (item1 == null || item2 == null) return false;
         if (bv)
-          return ((ItemEnum)id == item1.Item || (ItemEnum)id == item2.Item);
+          return ((ItemEnum)id == item1.ID || (ItemEnum)id == item2.ID);
         else
-          return ((ItemEnum)id != item1.Item && (ItemEnum)id != item2.Item);
+          return ((ItemEnum)id != item1.ID && (ItemEnum)id != item2.ID);
       }
 
       case ConditionType.ItemContains: {

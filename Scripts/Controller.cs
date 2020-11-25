@@ -770,13 +770,13 @@ public class Controller : MonoBehaviour {
 
   internal static bool IsItemCollected(ItemEnum itemID) {
     foreach(Item item in GD.c.actor1.inventory) {
-      if (item.Item == itemID) return true;
+      if (item.ID == itemID) return true;
     }
     foreach(Item item in GD.c.actor2.inventory) {
-      if (item.Item == itemID) return true;
+      if (item.ID == itemID) return true;
     }
     foreach(Item item in GD.c.actor3.inventory) {
-      if (item.Item == itemID) return true;
+      if (item.ID == itemID) return true;
     }
     return false;
   }

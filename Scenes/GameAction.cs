@@ -885,6 +885,7 @@ public class GameAction {
           Debug.LogError("Missing animator for animated item: " + item.gameObject.name);
           return;
         }
+        item.gameObject.SetActive(true); // Required because the animation will fail if the object will be enabled after
         anim.enabled = true;
         anim.Play(str);
         Play();

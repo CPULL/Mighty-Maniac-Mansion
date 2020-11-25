@@ -92,7 +92,7 @@ public class Actor : MonoBehaviour {
 
   internal bool HasItem(ItemEnum item) {
     foreach (Item i in inventory)
-      if (i.Item == item) return true;
+      if (i.ID == item) return true;
     return false;
   }
   

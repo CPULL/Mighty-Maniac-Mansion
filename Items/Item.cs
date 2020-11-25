@@ -1,7 +1,37 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class Item : GameItem {
+public class Item : MonoBehaviour {
   [HideInInspector] public SpriteRenderer sr;
+
+  public ItemEnum ID;
+  public string Name;
+
+  public Tstatus Usable;
+  public OpenStatus openStatus;
+  public LockStatus lockStatus;
+
+  public WhatItDoes whatItDoesL = WhatItDoes.Walk;
+  public WhatItDoes whatItDoesR = WhatItDoes.Use;
+
+  [TextArea(3, 10)] public string Description;
+  public Chars owner;
+
+  public Vector2 HotSpot;
+  public Dir dir;
+  public Color32 normalColor = new Color32(255, 255, 255, 255);
+  public Color32 overColor = new Color32(255, 255, 0, 255);
+
+  public Sprite openImage;
+  public Sprite closeImage;
+  public Sprite lockImage;
+  public Sprite iconImage;
+
+  public List<ActionAndCondition> actions;
+
+
+
+
 
   private void Awake() {
     sr = GetComponent<SpriteRenderer>();
@@ -16,6 +46,11 @@ public class Item : GameItem {
     if (Options.IsActive()) return;
     Controller.SetItem(null);
     sr.color = normalColor;
+  }
+
+  private void OnEnable() {
+    // Check if we where playing an animation or a delayed event.
+    // In case run it from the specific point in time specified
   }
 
   public string Use(Actor actor) {
@@ -345,7 +380,7 @@ public class Item : GameItem {
   internal void Give(Actor giver, Actor receiver) {
     ActionRes res = PlayActions(giver, receiver, When.Give, this);
     if (res == null || !res.actionDone) { // Give it by default
-      if (Item == ItemEnum.Coat) giver.Wear(ItemEnum.Coat, true);
+      if (ID == ItemEnum.Coat) giver.Wear(ItemEnum.Coat, true);
       giver.inventory.Remove(this);
       receiver.inventory.Add(this);
       owner = Controller.GetCharFromActor(receiver);

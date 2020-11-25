@@ -4,7 +4,7 @@ using UnityEngine;
 [CustomEditor(typeof(Door))]
 public class DoorEditor : Editor {
 
-  SerializedProperty itemEnum, Name;
+  SerializedProperty ID, Name;
   SerializedProperty whatItDoesL, whatItDoesR;
   SerializedProperty Usable;
   SerializedProperty openImage, closeImage, lockImage;
@@ -20,7 +20,7 @@ public class DoorEditor : Editor {
 
 
   void OnEnable() {
-    itemEnum = serializedObject.FindProperty("Item");
+    ID = serializedObject.FindProperty("ID");
     Name = serializedObject.FindProperty("Name");
     whatItDoesL = serializedObject.FindProperty("whatItDoesL");
     whatItDoesR = serializedObject.FindProperty("whatItDoesR");
@@ -57,7 +57,7 @@ public class DoorEditor : Editor {
 
     // ID and Name
     EditorGUILayout.BeginHorizontal();
-    EditorGUILayout.PropertyField(itemEnum);
+    EditorGUILayout.PropertyField(ID);
     EditorGUILayout.PropertyField(Name);
     EditorGUILayout.EndHorizontal();
 

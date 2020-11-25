@@ -79,7 +79,7 @@ public class Container : Item {
 
   internal bool Place(Item item, Actor actor) {
     foreach (ContainedItem ci in containedItems)
-      if (ci.type == item.Item && !ci.inContainer) {
+      if (ci.type == item.ID && !ci.inContainer) {
         ci.inContainer = true;
         if (actor.inventory.Contains(item))
           actor.inventory.Remove(item);
@@ -95,7 +95,7 @@ public class Container : Item {
 
   internal void EnableItem(Item item, bool enable) {
     foreach (ContainedItem ci in containedItems)
-      if (ci.type == item.Item) {
+      if (ci.type == item.ID) {
         ci.inContainer = enable;
         ci.item.gameObject.SetActive(IsOpen() && enable);
         return;

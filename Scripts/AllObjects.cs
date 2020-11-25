@@ -31,7 +31,7 @@ public class AllObjects : MonoBehaviour {
   internal static Item GetItem(ItemEnum id) {
     if (id == ItemEnum.Undefined) return null;
     foreach (Item i in GD.a.itemsList) {
-      if (i.Item == id) {
+      if (i.ID == id) {
         return i;
       }
     }
@@ -155,8 +155,10 @@ public enum ItemEnum {
   Coat,
   FruitJuice,
   WoodsMap,
-  BackDoorInt,
-  BackDoorExt,
+  BackDoor,
+  Radio,
+  PoolValve,
+  PoolWater,
 }
 
 
