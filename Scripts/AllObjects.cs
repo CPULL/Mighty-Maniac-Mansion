@@ -155,8 +155,8 @@ public enum ItemEnum {
   Coat,
   FruitJuice,
   WoodsMap,
-  BackDoor,
-  Radio,
+  BackDoorIn,
+  BackDoorExt,
   PoolValve,
   PoolWater,
 }

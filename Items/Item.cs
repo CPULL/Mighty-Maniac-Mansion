@@ -40,7 +40,7 @@ public class Item : MonoBehaviour {
       Debug.LogError("Missing animator for animated item: " + gameObject.name);
       return true;
     }
-    if (gameObject.activeSelf) {
+    if (gameObject.activeInHierarchy) {
       animToPlay = null;
       anim.enabled = true;
       anim.Play(animName);
