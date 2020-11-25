@@ -55,7 +55,7 @@ public class GameAction {
 
 
   public ActionType type;
-  public bool Repeatable; // FIXME <- Do we need it? Can the action be repeated?
+  public bool xRepeatable; // FIXME <- Do we need it? Can the action be repeated?
   public float delay; // Delay to use when playing the action
 
   public int id1;
@@ -205,12 +205,11 @@ public class GameAction {
     }
   }
 
-  public GameAction(string stype, bool rep, float del, string vid1, string vid2, string sv, int iv, string dv, Vector2 vv) {
+  public GameAction(string stype, float del, string vid1, string vid2, string sv, int iv, string dv, Vector2 vv) {
     type = (ActionType)System.Enum.Parse(typeof(ActionType), stype, true);
     if (!System.Enum.IsDefined(typeof(ActionType), type)) {
       Debug.LogError("Unknown ActionType: \"" + stype + "\"");
     }
-    Repeatable = rep;
     delay = del;
     str = sv;
     val = iv;
@@ -664,8 +663,10 @@ public class GameAction {
             copy.Complete();
           }));
         }
-        else
+        else {
           Debug.LogError("No collider for walk");
+          Complete();
+        }
       }
       break;
 

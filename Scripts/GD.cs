@@ -127,8 +127,6 @@ public class GD : MonoBehaviour {
                 vv.y = action["vv"][1].AsFloat;
               }
               string a = action["type"].Value;
-              bool repeatable = action["rep"].IsNull;
-              if (!repeatable) repeatable = action["rep"].AsBool;
 
               float c = action["del"].AsFloat;
               string d = action["id1"].Value;
@@ -136,7 +134,7 @@ public class GD : MonoBehaviour {
               string f = action["sv"].Value;
               int g = action["iv"].AsInt;
               string h = action["dv"].Value;
-              seq.startup.Add(new GameAction(a, repeatable, c, d, e, f, g, h, vv));
+              seq.startup.Add(new GameAction(a, c, d, e, f, g, h, vv));
             } catch (System.Exception e) {
               Debug.Log("Action ERROR in " + file + ", startup #" + i + ": " + e.Message);
             }
@@ -154,8 +152,6 @@ public class GD : MonoBehaviour {
                 vv.y = action["vv"][1].AsFloat;
               }
               string a = action["type"].Value;
-              bool repeatable = action["rep"].IsNull;
-              if (!repeatable) repeatable = action["rep"].AsBool;
 
               float c = action["del"].AsFloat;
               string d = action["id1"].Value;
@@ -163,7 +159,7 @@ public class GD : MonoBehaviour {
               string f = action["sv"].Value;
               int g = action["iv"].AsInt;
               string h = action["dv"].Value;
-              seq.shutdown.Add(new GameAction(a, repeatable, c, d, e, f, g, h, vv));
+              seq.shutdown.Add(new GameAction(a, c, d, e, f, g, h, vv));
             } catch (System.Exception e) {
               Debug.Log("Action ERROR in " + file + ", shutdown #" + i + ": " + e.Message);
             }
@@ -195,8 +191,6 @@ public class GD : MonoBehaviour {
                     vv.y = action["vv"][1].AsFloat;
                   }
                   string a = action["type"].Value;
-                  bool repeatable = action["rep"].IsNull;
-                  if (!repeatable) repeatable = action["rep"].AsBool;
 
                   float c = action["del"].AsFloat;
                   string d = action["id1"].Value;
@@ -204,7 +198,7 @@ public class GD : MonoBehaviour {
                   string f = action["sv"].Value;
                   int g = action["iv"].AsInt;
                   string h = action["dv"].Value;
-                  GameAction ga = new GameAction(a, repeatable, c, d, e, f, g, h, vv);
+                  GameAction ga = new GameAction(a, c, d, e, f, g, h, vv);
                   step.actions.Add(
                     ga
                   );

@@ -76,7 +76,7 @@ public class Item : MonoBehaviour {
       return;
     }
     Animator anim = GetComponent<Animator>();
-    anim.Play(animToPlay, 0, (float)elapsed.TotalSeconds);
+    anim.Play(animToPlay, 0, (float)elapsed.TotalSeconds / timeForAnim);
   }
 
   public string Use(Actor actor) {

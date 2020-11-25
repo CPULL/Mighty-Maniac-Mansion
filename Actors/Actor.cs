@@ -110,7 +110,7 @@ public class Actor : MonoBehaviour {
 
 
   public bool Say(string message, GameAction action = null) {
-    if (message == null) return true;
+    if (string.IsNullOrEmpty(message)) return true;
     isSpeaking = true;
     faceNum = 0;
     speakt = 0;

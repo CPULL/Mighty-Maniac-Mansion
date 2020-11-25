@@ -36,6 +36,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     float lh = EditorGUIUtility.singleLineHeight;
 
     Rect titleR = new Rect(position.x, position.y, position.width * .5f, lh);
+    Rect delR = new Rect(position.x + position.width * .4f, position.y, position.width * .1f, lh);
     Rect msgR = new Rect(position.x + position.width * .5f, position.y, position.width * .5f, lh);
     EditorGUI.LabelField(titleR, "Action: " + name, EditorStyles.boldLabel);
     msg.stringValue = EditorGUI.TextArea(msgR, msg.stringValue);
@@ -44,8 +45,12 @@ public class GameActionPropertyDrawer : PropertyDrawer {
     if (property.isExpanded) {
       Rect tRect = new Rect(position.x, position.y + lh, w4, lh);
       type.intValue = EditorGUI.Popup(tRect, type.intValue, type.enumDisplayNames);
+      ActionType at = (ActionType)type.intValue;
+      if (at == ActionType.Speak || at == ActionType.Expression || at == ActionType.Sound || at == ActionType.Fade || at == ActionType.Anim)
+        delay.floatValue = EditorGUI.FloatField(delR, delay.floatValue);
 
-      switch ((ActionType)type.intValue) {
+
+      switch (at) {
         case ActionType.None: break;
 
         case ActionType.ShowRoom: {
