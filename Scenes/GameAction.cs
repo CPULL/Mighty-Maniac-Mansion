@@ -509,11 +509,11 @@ public class GameAction {
   }
 
 
-  public void RunAction(Actor performer, Actor secondary) {
-//    Debug.Log("Playing: " + ToString());
+  public void RunAction(Actor performer, Actor secondary, bool skipped) {
+    Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
-        if (Controller.SceneSkipped) {
+        if (skipped) {
           Complete();
           return;
         }
@@ -533,6 +533,7 @@ public class GameAction {
         }
         GD.c.currentRoom.UpdateLights();
         if (id2 != 0) {
+          Debug.Log("Panning show room ------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
           Controller.PanCamera(rpos, delay); // PAN
         }
         else {
@@ -744,14 +745,14 @@ public class GameAction {
 
       case ActionType.Cutscene: {
         CutsceneID id = (CutsceneID)id1;
-        if (id != CutsceneID.NONE) Controller.StartCutScene(AllObjects.GetCutscene(id));
+        if (id != CutsceneID.NONE) GameScenesManager.StartScene(AllObjects.GetCutscene(id));
         Complete();
       }
       break;
 
       case ActionType.StopScenes: {
         Chars id = (Chars)id1;
-        AllObjects.StopScenes(id);
+        GameScenesManager.StopScenesForChar(id);
         Complete();
       }
       break;
@@ -813,7 +814,7 @@ public class GameAction {
             Play();
 
             CutsceneID id = (CutsceneID)id2;
-            if (id != CutsceneID.NONE) Controller.StartCutScene(AllObjects.GetCutscene(id));
+            if (id != CutsceneID.NONE) GameScenesManager.StartScene(AllObjects.GetCutscene(id));
             Complete();
           }
           else
@@ -861,7 +862,7 @@ public class GameAction {
       break;
 
       case ActionType.Fade: {
-        if (Controller.SceneSkipped) {
+        if (skipped) {
           Complete();
           return;
         }
@@ -975,9 +976,8 @@ public class GameAction {
       break;
 
       case ActionType.Cursor: {
-        Controller.SceneSkipped = true;
         CursorHandler.SetBoth((CursorTypes)id1);
-        if (val == 1 || (val == 2 && !Controller.SceneSkipped))
+        if (val == 1 || (val == 2 && !skipped))
           GD.c.StartCoroutine(GD.c.FadeToRoomActor());
         Complete();
       }

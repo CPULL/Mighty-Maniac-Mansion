@@ -48,16 +48,31 @@ public class CursorHandler : MonoBehaviour {
     color.b = (byte)val;
 
     Cursor.color = color;
-    CursorL.enabled = (onLeft != onRight && onLeft != CursorTypes.Normal);
-    CursorR.enabled = (onLeft != onRight && onRight != CursorTypes.Normal);
-    if (onLeft == onRight && prevCentral != onLeft && onLeft != CursorTypes.Object && onLeft != CursorTypes.Give) {
-      prevCentral = onLeft;
-      Cursor.sprite = Cursors[(int)prevCentral];
+    if (!waitMode) {
+      CursorL.enabled = (onLeft != onRight && onLeft != CursorTypes.Normal);
+      CursorR.enabled = (onLeft != onRight && onRight != CursorTypes.Normal);
+      if (onLeft == onRight && prevCentral != onLeft && onLeft != CursorTypes.Object && onLeft != CursorTypes.Give) {
+        prevCentral = onLeft;
+        Cursor.sprite = Cursors[(int)prevCentral];
+      }
     }
   }
 
   CursorTypes savedL;
   CursorTypes savedR;
+
+  bool waitMode = false;
+  public static void WaitMode(bool wait) {
+    if (me.waitMode == wait) return;
+    me.waitMode = wait;
+    if (wait) {
+      me.CursorL.enabled = false;
+      me.CursorR.enabled = false;
+      me.Cursor.sprite = me.Cursors[(int)CursorTypes.Wait];
+    }
+    else
+      me.Cursor.sprite = me.Cursors[(int)CursorTypes.Normal];
+  }
 
   public static void SaveCursor() {
     me.savedL = me.onLeft;

@@ -21,7 +21,7 @@ public class Triggerer : MonoBehaviour {
     bool done = false;
     foreach (ActionAndCondition ac in actions)
       if (ac.Condition.IsValid(actor, null, null, null, When.Always)) {
-        ac.Action.RunAction(actor, null);
+        ac.Action.RunAction(actor, null, false);
         done = true;
       }
 

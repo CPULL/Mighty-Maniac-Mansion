@@ -7,11 +7,11 @@ public class GameStep {
   public List<GameAction> actions;
   public GameAction currentAction;
   public int actionnum = -1;
-  public bool skippable = false;
+  public Skippable skippable = Skippable.NotSkippable;
 
-  public GameStep(string n, bool s) {
+  public GameStep(string n, int s) {
     name = n;
-    skippable = s;
+    skippable = (Skippable)s;
     conditions = new List<Condition>();
     actions = new List<GameAction>();
     currentAction = null;
@@ -37,7 +37,7 @@ public class GameStep {
     actionnum = -1;
   }
 
-  internal bool Run(GameScene gameScene, Actor performer, Actor receiver) {
+  internal bool Run(GameScene gameScene, Actor performer, Actor receiver, bool skipped) {
     if (!IsValid(performer, receiver)) {
       // Stop the actions in case they were running
       if (currentAction != null) currentAction.Stop();
@@ -54,10 +54,10 @@ public class GameStep {
     }
 
     if (currentAction.running == Running.NotStarted) { // Start the action
-      currentAction.RunAction(performer, receiver);
+      currentAction.RunAction(performer, receiver, skipped);
       if (currentAction.type == ActionType.Cutscene) {
         // Quickly stop parent scene
-        gameScene.ForceStop();
+        gameScene.Shutdown(true);
       }
     }
     else if (currentAction.running == Running.Running) { // Wait it to complete

@@ -114,7 +114,7 @@ public class Item : MonoBehaviour {
 
     foreach (ActionAndCondition ac in actions) {
       if (ac.Condition.IsValid(actor, secondary, item1, item2, when)) {
-        ac.Action.RunAction(actor, secondary);
+        ac.Action.RunAction(actor, secondary, false);
         if (res == null) res = new ActionRes { actionDone = true, res = null };
         if (!ac.Action.type.GoodByDefault() && !string.IsNullOrEmpty(ac.Action.msg))
           res.res = ac.Action.msg;
@@ -134,7 +134,7 @@ public class Item : MonoBehaviour {
     bool done = false;
     foreach (ActionAndCondition ac in actions) {
       if (ac.Condition.IsValid(actor, null, this, other, When.UseTogether)) {
-        ac.Action.RunAction(actor, null);
+        ac.Action.RunAction(actor, null, false);
         done = true;
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
@@ -142,7 +142,7 @@ public class Item : MonoBehaviour {
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
       if (ac.Condition.IsValid(actor, null, this, other, When.UseTogether)) {
-        ac.Action.RunAction(actor, null);
+        ac.Action.RunAction(actor, null, false);
         done = true;
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;

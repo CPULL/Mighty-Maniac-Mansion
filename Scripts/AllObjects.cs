@@ -6,7 +6,6 @@ public class AllObjects : MonoBehaviour {
   public List<Room> roomsList;
   public List<FlagStatus> flagsList;
   public List<GameScene> cutscenes;
-  public List<GameScene> runningCutscenes;
 
   public static IEnumerable<Room> RoomList { get { return GD.a.roomsList; } }
 
@@ -16,7 +15,6 @@ public class AllObjects : MonoBehaviour {
     flagsList = new List<FlagStatus>();
     foreach (GameFlag gf in System.Enum.GetValues(typeof(GameFlag)))
       flagsList.Add(new FlagStatus(gf, 0));
-    runningCutscenes = new List<GameScene>();
   }
 
   internal static Room GetRoom(string id) {
@@ -72,48 +70,7 @@ public class AllObjects : MonoBehaviour {
     return null;
   }
 
-  readonly SList<GameScene> toStop = new SList<GameScene>(16);
 
-  internal static void StopScenes(Chars main) {
-    if (main == Chars.None) return;
-    GD.a.toStop.Clear();
-    foreach (GameScene gs in GD.a.runningCutscenes) {
-      if (gs.mainChar == main) {
-        gs.ForceStop(false);
-        GD.a.toStop.Add(gs);
-        Controller.RemoveCutScene(gs);
-      }
-    }
-
-    while (GD.a.toStop.Count > 0) {
-      GD.a.runningCutscenes.Remove(GD.a.toStop.GetFirst());
-    }
-  }
-
-
-
-  internal static void SetSceneAsPlaying(GameScene scene) {
-    if (!GD.a.runningCutscenes.Contains(scene))
-      GD.a.runningCutscenes.Add(scene);
-  }
-  internal static void SetSceneAsStopped(GameScene scene) {
-    if (GD.a.runningCutscenes.Contains(scene))
-      GD.a.runningCutscenes.Remove(scene);
-  }
-
-  internal static bool SceneRunningWithMe(GameScene toExclude, Chars mainChar) {
-    foreach(GameScene s in GD.a.runningCutscenes) {
-      if (s != toExclude && s.mainChar == mainChar) return true;
-    }
-    return false;
-  }
-
-  internal static bool UniqueScenesPlaying(GameScene toExclude) {
-    foreach(GameScene s in GD.a.runningCutscenes) {
-      if (s != toExclude && s.Type == GameSceneType.Unique) return true;
-    }
-    return false;
-  }
 }
 
 

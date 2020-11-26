@@ -1,9 +1,53 @@
-﻿
-public class SList<T> {
+﻿using System.Collections;
+using System.Collections.Generic;
+
+public class SList<T> : IEnumerable<T> {
   T[] vals;
   int first;
   int lastPlusOne;
   readonly object locker;
+
+
+
+  #region Enumerator
+
+  private IEnumerable<T> GetValues() {
+    int num = Count;
+    int i = 0;
+    while (i < num) {
+      if (i < num) {
+        T res = Get(i);
+        if (res == null)
+          UnityEngine.Debug.Log("Debug");
+        yield return res;
+      }
+      i++;
+    }
+  }
+
+  public IEnumerator<T> GetEnumerator() {
+    return GetValues().GetEnumerator();
+  }
+
+  IEnumerator IEnumerable.GetEnumerator() {
+    return GetEnumerator();
+  }
+
+  #endregion Enumerator
+
+  public override string ToString() {
+    string res = "";
+    for (int i = 0; i < vals.Length; i++) {
+      if (vals[i] == null || i < first || i >= lastPlusOne)
+        res += "[] ";
+      else
+        res += "[" + ((i - first) % vals.Length) + "] ";
+    }
+    res += first + ", " + lastPlusOne + ", " + Count;
+    return res;
+  }
+
+
 
   /// <summary>
   /// Initialize a StaticList of the specified size.<br/>No memory allocations until the list is full.<br/>When there is no more space the size of the list is doubled.
@@ -181,7 +225,7 @@ public class SList<T> {
 
   /// <summary>
   /// Remove the element from the list.
-  /// The position of the element will be filles with the last element of the list, if any.
+  /// The position of the element will be filled with the last element of the list, if any.
   /// </summary>
   /// <param name="t">The element to be removed</param>
   internal void Remove(T t) {
@@ -193,6 +237,7 @@ public class SList<T> {
         if (ith.Equals(t)) {
           if (Count == 1) {
             vals[pos] = default;
+            lastPlusOne = 0;
             Count = 0;
             return;
           }

@@ -1,9 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
-Make the delay of actions visible for all types that are not auto-completing
 On steps of cutscenes, have 3 values: non-skippable, skippable, background
-Have at least 3 currentScenes playing in parallel in the Controller
 
 shelter with shovel
 woods for treehouse
@@ -244,4 +242,6 @@ Laverne
 ! Coat is now wearable (Only Javid and Bernard right now)
 ! Add map for cemetery
 ! graveyard: build room
+! Make the delay of actions visible for all types that are not auto-completing
+! Keep list of all scenes in Controller or a SceneManager
 

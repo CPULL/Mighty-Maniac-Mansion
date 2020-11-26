@@ -8,7 +8,7 @@
 	"shutdown" : [],
 	
 	"sequence":[
-		{ "name":"Pick Developer Bottle", "skippable":false,
+		{ "name":"Pick Developer Bottle", "skippable":0,
 			"condition":[ ],
 			"action":[
 				{ "type":"Anim", "del":.25, "id2":"DeveloperBottle", "sv":"Bottle break" },

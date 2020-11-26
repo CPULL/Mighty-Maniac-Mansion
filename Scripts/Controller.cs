@@ -15,6 +15,7 @@ public class Controller : MonoBehaviour {
   public Transform PickedItems;
   public AudioSource MusicPlayer;
   private Vector3 MoonPos = new Vector3(5.9f, 3.35f, 10);
+  bool blockingScenesPlaying = false;
 
   public TextMeshProUGUI DbgMsg;
   public static void Dbg(string txt) {
@@ -69,28 +70,13 @@ public class Controller : MonoBehaviour {
     }
     #endregion
 
-    #region Sequences and actions
-    if (currentCutscene != null && currentCutscene.Id != CutsceneID.NONE) { // Do we have a sequence?
-      FrontActors.enabled = !currentCutscene.skippable && currentCutscene.status != GameSceneStatus.ShutDown && currentCutscene.Type != GameSceneType.SetOfActions;
-      if (currentCutscene.Run(null, null)) {
-        GD.status = GameStatus.Cutscene;
-        if (currentCutscene.status == GameSceneStatus.ShutDown) {
-          SceneSkipped = true;
-        }
-      }
-      else { // Completed
-        Debug.Log("Completed cutscene " + currentCutscene.ToString());
-        currentCutscene = null;
-        SceneSkipped = false;
-        GD.status = GameStatus.NormalGamePlay;
-        CursorHandler.SetBoth(CursorTypes.Normal);
-        if (currentActor.currentRoom != currentRoom) StartCoroutine(FadeToRoomActor());
-      }
-    }
-    #endregion
+    blockingScenesPlaying = GameScenesManager.NoUserControl();
+    CursorHandler.WaitMode(blockingScenesPlaying);
+    FrontActors.enabled = blockingScenesPlaying;
+    if (blockingScenesPlaying) return;
 
     #region Handle camera
-    if (!CameraFadingToActor && CameraPanningInstance == null && (currentCutscene == null || currentCutscene.Id == CutsceneID.NONE || SceneSkipped)) {
+    if (!CameraFadingToActor && CameraPanningInstance == null) {
       Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
       if (cam.transform.position.x < currentRoom.minL) {
         Vector3 p = cam.transform.position;
@@ -117,8 +103,6 @@ public class Controller : MonoBehaviour {
     }
     #endregion
 
-    if (GD.status != GameStatus.NormalGamePlay && !SceneSkipped) return;
-    FrontActors.enabled = false;
     if (currentActor.currentRoom != currentRoom && !CameraFadingToActor) {
       StartCoroutine(FadeToRoomActor());
     }
@@ -489,7 +473,7 @@ public class Controller : MonoBehaviour {
 
   internal static void HandleToolbarClicks(IPointerClickHandler handler) {
     if (Options.IsActive()) return;
-    if (GD.status != GameStatus.NormalGamePlay && (GD.c.currentCutscene == null || GD.c.currentCutscene.Id == CutsceneID.NONE || (!GD.c.currentCutscene.skippable && GD.c.currentCutscene.status != GameSceneStatus.ShutDown))) return;
+    if (GameScenesManager.BlockingScene()) return;
 
     PortraitClickHandler h = (PortraitClickHandler)handler;
     if (h == GD.c.ActorPortrait1) {
@@ -586,37 +570,17 @@ public class Controller : MonoBehaviour {
 
 
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
-  [HideInInspector] public GameScene currentCutscene;
-  [HideInInspector] public static bool SceneSkipped;
+
+  [HideInInspector] public GameScene currentCutscene; // REMOVE FIXME
 
   void StartIntroCutscene() {
     FrontActors.enabled = true;
-    currentCutscene = AllObjects.GetCutscene(CutsceneID.Intro);
+    GameScene introScene = AllObjects.GetCutscene(CutsceneID.Intro);
     CursorHandler.SetBoth(CursorTypes.Wait);
-    GD.status = GameStatus.NormalGamePlay;
-    SceneSkipped = false;
+    GameScenesManager.StartScene(introScene);
   }
 
 
-  public static void StartCutScene(GameScene scene) {
-    GD.c.FrontActors.enabled = true;
-    Chars main = scene.mainChar;
-    AllObjects.StopScenes(main);
-    GD.c.currentCutscene = scene;
-    GD.c.currentCutscene.Reset();
-    if (scene.Type != GameSceneType.SetOfActions)
-      CursorHandler.SetBoth(CursorTypes.Wait);
-    GD.status = GameStatus.NormalGamePlay;
-    SceneSkipped = false;
-  }
-
-  public static void RemoveCutScene(GameScene scene) {
-    if (GD.c.currentCutscene == scene) {
-      SceneSkipped = false;
-      GD.c.currentCutscene = null;
-      GD.c.FrontActors.enabled = false;
-    }
-  }
 
   #endregion
 
@@ -649,7 +613,7 @@ public class Controller : MonoBehaviour {
   }
 
   internal static void SetItem(Item item, bool fromInventory = false) {
-    if (GD.status != GameStatus.NormalGamePlay && !SceneSkipped) return;
+    if (GD.status != GameStatus.NormalGamePlay && GD.c.blockingScenesPlaying) return;
 
     if (fromInventory) {
       if (item == null) {
@@ -1055,10 +1019,7 @@ public class Controller : MonoBehaviour {
 
 
   internal static void SelectActor(Actor actor, bool force = false) {
-    if (GD.status != GameStatus.NormalGamePlay && !force && (GD.c.currentCutscene == null || GD.c.currentCutscene.Id == CutsceneID.NONE || !GD.c.currentCutscene.skippable)) return;
-
-    if (GD.c.currentCutscene != null && GD.c.currentCutscene.skippable) {
-      SceneSkipped = true;
+    if (GameScenesManager.SkipScenes()) {
       Fader.RemoveFade();
     }
     CursorHandler.SetBoth(CursorTypes.Normal);
@@ -1225,6 +1186,7 @@ public class Controller : MonoBehaviour {
   bool CameraFadingToActor = false;
 
   public IEnumerator FadeToRoomActor() {
+    if (currentRoom == null || currentActor == null || currentActor.currentRoom == null) yield break;
     CameraFadingToActor = true;
     Room prev = currentRoom;
     currentRoom = currentActor.currentRoom;
@@ -1415,3 +1377,6 @@ public class Controller : MonoBehaviour {
 }
 
 
+public enum SceneStatus {
+  NoScenes, NonSkippableCutscene, SkippableCutscene, SkippedCutscene, BackgroundScenes
+}

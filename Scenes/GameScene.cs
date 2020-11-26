@@ -7,6 +7,7 @@ public class GameScene {
   public CutsceneID Id;
   public GameSceneType Type;
   public GameSceneStatus status = GameSceneStatus.NotRunning;
+  public bool skipped = false;
 
   public List<Condition> globalCondition;
   public List<GameAction> startup;
@@ -19,16 +20,7 @@ public class GameScene {
   public Chars mainChar;
   public List<Chars> participants;
 
-  public bool skippable = false;
-
-  /*
-   * Global condition:
-   *    if switched to true, run the setup actions
-   *    if switched to false, run the shutdown actions
-   * 
-   * Run all steps in parallel, all the time their condition is true. Stop their action in case the condition become false
-   * 
-   */
+  public Skippable skippable = Skippable.NotSkippable;
 
 
   public GameScene(string id, string name, string type, string main) {
@@ -66,14 +58,13 @@ public class GameScene {
   }
 
   public override string ToString() {
-    return Id + " - " + Name + " " + status;
+    return Id + " - " + " " + status + " " + skippable.ToString() + " " + skipped;
   }
 
-  internal void Reset() {
-    AllObjects.SetSceneAsStopped(this);
+  internal void Reset() { // FIXME not used?
     if (status != GameSceneStatus.NotRunning) { // Play quickly all actions
       foreach (GameAction a in shutdown) {
-        a.RunAction(null, null);
+        a.RunAction(null, null, skipped);
         a.Complete();
       }
     }
@@ -82,6 +73,7 @@ public class GameScene {
     startupactionnum = -1;
     shutdownaction = null;
     shutdownactionnum = -1;
+    skipped = false;
     foreach (GameStep s in steps)
       s.Reset();
   }
@@ -92,7 +84,7 @@ public class GameScene {
   /// </summary>
   public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when) {
     if (Id == CutsceneID.NONE) return false;
-    if (AllObjects.UniqueScenesPlaying(this)) {
+    if (GameScenesManager.UniqueScenesPlaying(this)) {
       status = GameSceneStatus.NotRunning;
       return false;
     }
@@ -111,11 +103,8 @@ public class GameScene {
     return valid;
   }
 
-  internal void ForceStop(bool remove = true) {
+  internal void Shutdown(bool brutal) {
     foreach (GameAction a in startup) {
-      a.Complete();
-    }
-    foreach (GameAction a in shutdown) {
       a.Complete();
     }
     foreach(GameStep s in steps) {
@@ -123,20 +112,50 @@ public class GameScene {
         a.Complete();
       }
     }
+    if (brutal) {
+      foreach (GameAction a in shutdown) {
+        a.Complete();
+      }
+    }
+    else {
+      foreach (GameAction a in shutdown) {
+        a.RunAction(null, null, skipped);
+        a.Complete();
+      }
+    }
     status = GameSceneStatus.NotRunning;
     startupaction = null;
     startupactionnum = -1;
-    if (remove)
-      AllObjects.SetSceneAsStopped(this);
   }
+
+  public void Start() {
+    if (!IsValid(null, null, null, null, When.Always)) return;
+
+    skipped = Type == GameSceneType.SetOfActions;
+    if (startup.Count > 0) {
+      status = GameSceneStatus.Startup;
+      startupaction = null;
+      startupactionnum = -1;
+    }
+    else {
+      status = GameSceneStatus.Running;
+    }
+  }
+
+  public bool Skip() {
+    if (skippable != Skippable.NotSkippable && !skipped) {
+      skipped = true;
+      return true;
+    }
+    return false;
+  }
+
 
   public bool Run(Actor performer, Actor receiver) {
     // Are we valid?
     if (!IsValid(performer, receiver, null, null, When.Always)) {
       if (status == GameSceneStatus.NotRunning) return false;
     }
-
-    if (Type == GameSceneType.Cutscene || Type == GameSceneType.Unique) AllObjects.SetSceneAsPlaying(this);
 
     if (status == GameSceneStatus.NotRunning) { // Startup is present, else Running *********************************************************************************
       if (startup.Count > 0)
@@ -154,7 +173,7 @@ public class GameScene {
       }
 
       if (startupaction.running == Running.NotStarted) { // Start the action
-        startupaction.RunAction(performer, receiver);
+        startupaction.RunAction(performer, receiver, skipped);
       }
       else if (startupaction.running == Running.Running) { // Wait it to complete
         startupaction.CheckTime(Time.deltaTime);
@@ -175,22 +194,19 @@ public class GameScene {
     }
     else if (status == GameSceneStatus.Running) { // Run until we have actions and we are valid *********************************************************************************
       bool atLeastOne = false;
-      skippable = false;
+      skippable = Skippable.NotSkippable;
       foreach (GameStep gs in steps) {
-        bool running = gs.Run(this, performer, receiver);
-        atLeastOne |= running;
-        if (running) {
-          if (gs.skippable)
-            skippable = true;
-          else {
-            Controller.SceneSkipped = false;
-          }
+        bool run = gs.Run(this, performer, receiver, skipped);
+        atLeastOne |= run;
+        if (run) {
+          skippable = gs.skippable;
+          if (skippable == Skippable.NotSkippable) skipped = false;
         }
       }
 
       if (!atLeastOne) {
-        if (AllObjects.SceneRunningWithMe(this, mainChar)) {
-          AllObjects.SetSceneAsStopped(this);
+        if (GameScenesManager.SceneRunningWithMe(this, mainChar)) {
+          GameScenesManager.RemoveScene(this);
           status = GameSceneStatus.NotRunning;
           return false;
         }
@@ -209,7 +225,7 @@ public class GameScene {
 
       if (shutdown.Count == 0) {
         status = GameSceneStatus.NotRunning;
-        AllObjects.SetSceneAsStopped(this);
+        GameScenesManager.RemoveScene(this);
         return false;
       }
       if (shutdown.Count > 0) {
@@ -220,7 +236,7 @@ public class GameScene {
         }
 
         if (shutdownaction.running == Running.NotStarted) { // Start the action
-          shutdownaction.RunAction(performer, receiver);
+          shutdownaction.RunAction(performer, receiver, skipped);
         }
         else if (shutdownaction.running == Running.Running) { // Wait it to complete
           shutdownaction.CheckTime(Time.deltaTime);
@@ -236,7 +252,7 @@ public class GameScene {
           }
           else {
             status = GameSceneStatus.NotRunning;
-            AllObjects.SetSceneAsStopped(this);
+            GameScenesManager.RemoveScene(this);
             return false;
           }
         }
@@ -251,6 +267,10 @@ public class GameScene {
 
 }
 
+
+public enum Skippable {
+  NotSkippable = 0, Skippable = 1, Silent = 2
+}
 
 public enum GameSceneType {
   Cutscene, ActorBehavior, ItemAction, Unique, SetOfActions

@@ -17,7 +17,7 @@
 	],
 	
 	"sequence":[
-		{ "name":"Wait in position < X", "skippable":true,
+		{ "name":"Wait in position < X", "skippable":2,
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":1 },
 				{ "type":"ActorXLess", "id":"Current", "fv":-86, "bv":true }
@@ -27,18 +27,19 @@
 			]
 		},
 		
-		{ "name":"Wait in position > X", "skippable":true,
+		{ "name":"Wait in position > X", "skippable":0,
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":1 },
 				{ "type":"ActorXLess", "id":"Current", "fv":-86, "bv":false },
 				{ "type":"CurrentRoomIs", "sv":"Kitchen", "bv":true }
 			],
 			"action":[
+				{ "type":"ShowRoom", "rep":true, "del":.25, "sv":"Kitchen", "vv":[-84, 20], "id2":"1" },
 				{ "type":"SetFlag", "rep":true, "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":2, "dv":"", "vv":[] }
 			]
 		},
 		
-		{ "name":"Start Catching", "skippable":true,
+		{ "name":"Start Catching", "skippable":0,
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":2 },
 				{ "type":"CurrentRoomIs", "sv":"Kitchen", "bv":true }
@@ -50,7 +51,7 @@
 			]
 		},
 		
-		{ "name":"Catching", "skippable":true,
+		{ "name":"Catching", "skippable":0,
 			"condition":[
 				{ "type":"FlagValueIs", "id":"EdnaBrowsingFridge", "bv":true, "iv":3 },
 				{ "type":"CurrentRoomIs", "sv":"Kitchen", "bv":true }

@@ -176,7 +176,7 @@ public class Dog : MonoBehaviour {
         AllObjects.GetCutscene(CutsceneID.GoAwayFromDogL);
       if (scene.status == GameSceneStatus.NotRunning || GD.c.currentCutscene == null) {
         GD.c.currentActor.Stop();
-        Controller.StartCutScene(scene);
+        GameScenesManager.StartScene(scene);
       }
     }
 
