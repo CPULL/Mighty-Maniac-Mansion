@@ -7,18 +7,18 @@
 	],
 	
 		"startup" : [
-		{ "type":"Teleport", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"", "sv":"SuitesCorridor", "iv":"", "dv":"R", "vv":[22.7,46.8] },
-		{ "type":"BlockActorX", "rep":true, "del":0, "id1":"Player", "id2":"", "sv":"", "iv":"", "dv":"None", "vv":[26,2500] }
+		{ "type":"Teleport", "del":0, "id1":"GreenTentacle", "id2":"", "sv":"SuitesCorridor", "iv":"", "dv":"R", "vv":[22.7,46.8] },
+		{ "type":"BlockActorX", "del":0, "id1":"Player", "id2":"", "sv":"", "iv":"", "dv":"None", "vv":[26,2500] }
 	],
 	
 	"shutdown" : [
-		{ "type":"UnBlockActor", "rep":true, "del":0, "id1":"Player", "id2":"", "sv":"", "iv":"", "dv":"None", "vv":[] },
+		{ "type":"UnBlockActor", "del":0, "id1":"Player", "id2":"", "sv":"", "iv":"", "dv":"None", "vv":[] },
 		{ "type":"Wait", "del":0.5 },
 		{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[21,49], "dv":"F" },
 		{ "type":"Wait", "del":1.1 },
 		{ "type":"WalkToPos", "id1":"GreenTentacle", "vv":[32,47], "dv":"F" },
 		{ "type":"Wait", "del":0.001 },
-		{ "type":"Speak", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"", "sv":"I should write\nsome music now...", "iv":"", "dv":"None", "vv":[] },
+		{ "type":"Speak", "del":0, "id1":"GreenTentacle", "id2":"", "sv":"I should write\nsome music now...", "iv":"", "dv":"None", "vv":[] },
 	],
 
 	
@@ -35,7 +35,7 @@
 		{ "name":"Say shall not pass",
 			"condition":[ { "type":"ActorXLess", "id":"Player", "fv":29, "bv":false } ],
 			"action":[
-				{ "type":"Speak", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"", "sv":"You shall not pass!", "iv":"", "dv":"None", "vv":[] },
+				{ "type":"Speak", "del":0, "id1":"GreenTentacle", "id2":"", "sv":"You shall not pass!", "iv":"", "dv":"None", "vv":[] },
 				{ "type":"CompleteStep", "del":7.2, "id2":1 }
 			]
 		},
@@ -43,7 +43,7 @@
 		{ "name":"Block player",
 			"condition":[ { "type":"ActorXLess", "id":"Player", "fv":29, "bv":true } ],
 			"action":[
-				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"Current", "sv":"", "iv":"1", "dv":"L", "vv":[] },
+				{ "type":"WalkToActor", "del":0, "id1":"GreenTentacle", "id2":"Current", "sv":"", "iv":"1", "dv":"L", "vv":[] },
 				{ "type":"CompleteStep", "id2":1 }
 			]
 		},
@@ -52,7 +52,7 @@
 			"condition":[ { "type":"ActorXLess", "id":"Player", "fv":29, "bv":true } ],
 			"action":[
 				{ "type":"Wait", "del":2.1 },
-				{ "type":"Speak", "rep":true, "del":0, "id1":"GreenTentacle", "id2":"", "sv":"I am hungry...", "iv":"", "dv":"None", "vv":[] },
+				{ "type":"Speak", "del":0, "id1":"GreenTentacle", "id2":"", "sv":"I am hungry...", "iv":"", "dv":"None", "vv":[] },
 				{ "type":"CompleteStep", "del":3.2, "id2":1 },
 			]
 		},

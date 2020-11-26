@@ -35,6 +35,7 @@ public class Intro : MonoBehaviour {
 
   public float musicLightTime = 0;
 
+
   public enum IntroStep {
     Init, Wait1,
     FirstText, FadeIn, HideText,
@@ -55,6 +56,7 @@ public class Intro : MonoBehaviour {
   }
 
   public void Init() {
+    StarsBlink.Disable(true);
     glowing = false;
     IntroBlackFade.color = new Color32(0, 0, 0, 255);
     MeteorRT.anchoredPosition = new Vector2(2200, 1024);
@@ -89,7 +91,6 @@ public class Intro : MonoBehaviour {
     flash[5].enabled = false;
   }
 
-
   private void Update() {
     if (GD.status != GameStatus.IntroVideo) return;
     if (Options.IsActive()) return;
@@ -112,6 +113,7 @@ public class Intro : MonoBehaviour {
     meteorSound.Stop();
     GD.status = GameStatus.CharSelection;
     IntroCanvas.enabled = false;
+    StarsBlink.Disable(false);
   }
 
   public void PlayIntro(float deltaTime) {

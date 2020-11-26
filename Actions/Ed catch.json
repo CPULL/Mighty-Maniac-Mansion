@@ -6,11 +6,11 @@
 	
 	"startup" : [
 		{ "type":"Speak", "id1":"Ed", "sv":"Gotcha!\nI am bringing you to\nthe dungeon!", "dv":"F" },
-		{ "type":"Fade", "rep":true, "del":0.5, "iv":"0" },
-		{ "type":"ShowRoom", "rep":true, "del":0, "sv":"Dungeon", "vv":[-93, 10] },
-		{ "type":"Teleport", "rep":true, "del":0, "id1":"Ed", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-91,6.9] },
-		{ "type":"Teleport", "rep":true, "del":0, "id1":"current", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-93,6.9] },
-		{ "type":"Fade", "rep":true, "del":0.5, "iv":"1" },
+		{ "type":"Fade", "del":0.5, "iv":"0" },
+		{ "type":"ShowRoom", "del":0, "sv":"Dungeon", "vv":[-93, 10] },
+		{ "type":"Teleport", "del":0, "id1":"Ed", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-91,6.9] },
+		{ "type":"Teleport", "del":0, "id1":"current", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-93,6.9] },
+		{ "type":"Fade", "del":0.5, "iv":"1" },
 		{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"R", "del":.01 },
 		{ "type":"Expression", "id1":"Ed", "sv":"Happy", "dv":"L", "del":.01 }
 	],

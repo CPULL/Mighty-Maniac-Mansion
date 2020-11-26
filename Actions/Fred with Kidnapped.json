@@ -4,13 +4,13 @@
 	"condition":[],
 	
 	"startup": [
-		{ "type":"Fade", "rep":true, "del":1, "iv":"0" },
+		{ "type":"Fade", "del":1, "iv":"0" },
 		{ "type":"ShowRoom", "sv":"SecretLab", "vv":[-191,10] },
 		{ "type":"Teleport", "sv":"SecretLab", "id1":"Fred", "vv":[-187,6.8], "dv":"F" },
 		{ "type":"Teleport", "sv":"SecretLab", "id1":"Kidnapped", "vv":[-191.5,6.8], "dv":"L" }
 		{ "type":"Expression", "id1":"Fred", "sv":"Normal", "dv":"R", "del":0.01 },
 		{ "type":"Expression", "id1":"Kidnapped", "sv":"Normal", "dv":"F", "del":0.01 }
-		{ "type":"Fade", "rep":true, "del":.3, "iv":"1" },
+		{ "type":"Fade", "del":.3, "iv":"1" },
 	],
 	
 	"shutdown": [	],

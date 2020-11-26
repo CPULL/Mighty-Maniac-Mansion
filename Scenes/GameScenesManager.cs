@@ -20,6 +20,7 @@ public class GameScenesManager : MonoBehaviour {
 
     // Here we will play the scenes that are active
     foreach (GameScene s in scenes) {
+      if (s == null) continue;
       // Is the scene valid?
       if (!s.IsValid(null, null, null, null, When.Always)) {
         RemoveScene(s);

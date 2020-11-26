@@ -18,9 +18,9 @@
 			"action":[
 				{ "type":"StopScenes", "id1":"Edna" },
 				{ "type":"SetCurrentRoomActor", "id1":"Edna" , "id2":"1" },
-				{ "type":"Speak", "rep":true, "del":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder. #2", "iv":"", "dv":"None", "vv":[] },
+				{ "type":"Speak", "del":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder. #2", "iv":"", "dv":"None", "vv":[] },
 				{ "type":"Wait", "del":1 },
-				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"L", "vv":[] },
+				{ "type":"WalkToActor", "del":0, "id1":"Edna", "id2":"Current", "sv":"", "iv":"", "dv":"L", "vv":[] },
 				{ "type":"Cutscene", "id1":"EdnaCatch" }
 			]
 		}

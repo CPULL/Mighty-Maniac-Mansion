@@ -161,6 +161,8 @@ public enum CutsceneID {
   PickDeveloperBottle,
   GoAwayFromDogR,
   GoAwayFromDogL,
+  PoolEmpty,
+  WaterDownAlarm,
 
   unused1,
   unused2,

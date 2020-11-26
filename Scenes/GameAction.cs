@@ -506,11 +506,14 @@ public class GameAction {
         time = delay;
       }
     }
+    else if (!(type == ActionType.Speak || type == ActionType.Expression || type == ActionType.WalkToPos || type == ActionType.WalkToActor || 
+        type == ActionType.Sound || type == ActionType.Fade || type == ActionType.Anim || type == ActionType.CompleteStep || type == ActionType.Wait))
+      running = Running.Completed;
   }
 
 
   public void RunAction(Actor performer, Actor secondary, bool skipped) {
-    Debug.Log("Playing: " + ToString());
+//    Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
         if (skipped) {
@@ -533,7 +536,6 @@ public class GameAction {
         }
         GD.c.currentRoom.UpdateLights();
         if (id2 != 0) {
-          Debug.Log("Panning show room ------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
           Controller.PanCamera(rpos, delay); // PAN
         }
         else {

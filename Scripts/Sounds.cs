@@ -57,7 +57,11 @@ public enum Audios {
   BrokenBottle = 1,
   Microwave = 2,
   MicrowaveBeep = 3,
-  EggExplosion = 4
+  EggExplosion = 4,
+  WaterDown = 5,
+  WaterUp = 6,
+  WheelValve = 7,
+  Alarm = 8
 };
 
 

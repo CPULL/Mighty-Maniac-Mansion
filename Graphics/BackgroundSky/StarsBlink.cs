@@ -11,6 +11,7 @@ public class StarsBlink : MonoBehaviour {
   public AudioClip[] Thunders;
   public Material Normal;
   public Transform Moon;
+  bool disable = false;
 
   private void Awake() {
     byImages = (bis != null && bis.Length == 4 && bis[0] != null);
@@ -28,7 +29,17 @@ public class StarsBlink : MonoBehaviour {
     }
   }
 
+  public static void Disable(bool d) {
+    if (me == null) return;
+    me.disable = d;
+
+    foreach (SpriteRenderer sr in me.bsrs)
+      sr.enabled = !d;
+    me.Moon.gameObject.SetActive(!d);
+  }
+
   void Update() {
+    if (disable) return;
     time += 10 * Time.deltaTime;
 
     if (byImages) {

@@ -35,7 +35,7 @@ public class GameScene {
     try {
       Id = (CutsceneID)System.Enum.Parse(typeof(CutsceneID), id, true);
     } catch (System.Exception) { 
-      Debug.LogError("Unknown GameScene ID: \"" + id + "\"");
+      //Debug.LogError("Unknown GameScene ID: \"" + id + "\"");
     }
 
     if (!string.IsNullOrEmpty(main)) {

@@ -18,7 +18,7 @@ public class SList<T> : IEnumerable<T> {
       if (i < num) {
         T res = Get(i);
         if (res == null)
-          UnityEngine.Debug.Log("Debug");
+          UnityEngine.Debug.Log("Debug: (" + i + ") " + ToString());
         yield return res;
       }
       i++;

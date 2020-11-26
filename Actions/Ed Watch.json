@@ -17,9 +17,9 @@
 			"action":[
 				{ "type":"StopScenes", "id1":"Ed" },
 				{ "type":"SetCurrentRoomActor", "id1":"Ed" , "id2":"1" },
-				{ "type":"Speak", "rep":true, "del":0, "id1":"Ed", "id2":"", "sv":"Who are you?\nYou are not welcome here!", "iv":"", "dv":"None", "vv":[] },
+				{ "type":"Speak", "del":0, "id1":"Ed", "id2":"", "sv":"Who are you?\nYou are not welcome here!", "iv":"", "dv":"None", "vv":[] },
 				{ "type":"Wait", "del":1 },
-				{ "type":"WalkToActor", "rep":true, "del":0, "id1":"Ed", "id2":"Current", "sv":"", "iv":"", "dv":"L", "vv":[] },
+				{ "type":"WalkToActor", "del":0, "id1":"Ed", "id2":"Current", "sv":"", "iv":"", "dv":"L", "vv":[] },
 				{ "type":"Cutscene", "id1":"EdCatch" }
 			]
 		}

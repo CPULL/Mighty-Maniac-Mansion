@@ -1,0 +1,42 @@
+{
+	"id":"PoolEmpty", "name":"Pool Empty","type":"Cutscene",
+
+	"condition":[],
+	
+	"startup" : [
+		{ "type":"Sound", "del":1, "id2":"WheelValve" },
+		{ "type":"Wait", "del":1 }
+	],
+	
+	"shutdown" : [],
+	
+	"sequence":[
+		{ "name":"Water down", "skippable":2,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":true, "iv":0 }
+			],
+			"action":[
+				{ "type":"Sound", "del":10, "id2":"WaterDown" },
+				{ "type":"Wait", "del":15 },
+				{ "type":"Sound", "del":2, "id2":"Alarm" },
+				{ "type":"Cutscene", "id1":"WaterDownAlarm" }
+			]
+		},
+		
+		{ "name":"Water up", "skippable":2,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 }
+			],
+			"action":[
+				{ "type":"Wait", "del":0.5 },
+				{ "type":"Sound", "del":10, "id2":"WaterUp" },
+				{ "type":"Speak", "del":0, "id1":"Current", "id2":"", "sv":"Water up", "iv":"", "dv":"L", "vv":[] }
+			]
+		}
+	]
+
+}
+
+
+
+

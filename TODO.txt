@@ -1,7 +1,6 @@
 === Mighty Maniac Mansion ===
 
-
-On steps of cutscenes, have 3 values: non-skippable, skippable, background
+Try to fix wrong cursors
 
 shelter with shovel
 woods for treehouse
