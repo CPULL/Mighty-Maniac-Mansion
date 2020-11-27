@@ -3,9 +3,6 @@
 Make meltdown anim and game over when pressing red button
 Purple Tentacle should go first to the basement to check the reactor then to the pool then to the valve and close it.
 In case too much time will pass make an explosion (for example purple will catch two players)
-Have glass jar to be filled in pool, replace with radioactive glass jar
-Have alarm sound to loop forever
-
 
 We need a way to walk on ladders. Probably from the back. Do we need a new anim?
 Fix the cursor when stay over items and using them
@@ -15,8 +12,7 @@ shelter with shovel
 woods for treehouse
 treehouse
 ezra berg passage
-pool: make water goes up and down with the wheel in the basement
-pool: draw bottom of the pool, implement self destruction button, radio with batteries
+pool: implement self destruction button
 pool: glass jar with pool water should produce radioactive water jar
 garage
 graveyard: have graves diggable
