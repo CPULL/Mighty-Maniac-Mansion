@@ -35,17 +35,14 @@ public class GameScenesManager : MonoBehaviour {
       else { // Completed
         Debug.Log("Completed cutscene " + s.ToString());
         RemoveScene(s);
-
-        // FIXME
-
-        //        CursorHandler.SetBoth(CursorTypes.Normal);
-        //        if (currentActor.currentRoom != currentRoom) StartCoroutine(FadeToRoomActor());
       }
     }
 
-    CalculateSkippedStatus();
+    if (CalculateSkippedStatus()) {
+      CursorHandler.SetBoth(CursorTypes.Normal);
+    }
 
-
+    // FIXME remove
     string dbg = "";
     foreach (GameScene s in scenes) {
       dbg += s + "\n";
@@ -126,10 +123,10 @@ public class GameScenesManager : MonoBehaviour {
     return sceneStatus == SceneStatus.NonSkippableCutscene || sceneStatus == SceneStatus.SkippableCutscene;
   }
 
-  static void CalculateSkippedStatus() {
+  static bool CalculateSkippedStatus() {
     if (scenes.Count == 0) {
       sceneStatus = SceneStatus.NoScenes;
-      return;
+      return true;
     }
 
     sceneStatus = SceneStatus.BackgroundScenes;
@@ -139,7 +136,7 @@ public class GameScenesManager : MonoBehaviour {
 
       if (s.skippable == Skippable.NotSkippable) {
         sceneStatus = SceneStatus.NonSkippableCutscene;
-        return;
+        return false;
       }
       if (s.skippable == Skippable.Skippable) {
         if (!s.skipped) { 
@@ -152,6 +149,8 @@ public class GameScenesManager : MonoBehaviour {
       }
     }
     if (allSkipped) sceneStatus = SceneStatus.SkippedCutscene;
+
+    return allSkipped;
   }
 
 

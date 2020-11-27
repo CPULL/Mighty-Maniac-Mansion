@@ -44,6 +44,7 @@ public enum ActionType {
   Wear = 29, // Wear/unwear coat and hazman suite
 
   ShowMap = 30, // Show and hide the Map of the Woods
+  Pick = 31, // Acts like a player picked an item
 };
 
 
@@ -135,6 +136,7 @@ public class GameAction {
       case ActionType.Wear: return "Wear " + (ItemEnum)id1;
 
       case ActionType.ShowMap: return "Show/Hide Woods map";
+      case ActionType.Pick: return "Pick item " + (ItemEnum)id2 + " by " + (Chars)id1;
     }
     return res;
   }
@@ -167,6 +169,7 @@ public class GameAction {
       case ActionType.ChangeSprites:
       case ActionType.Wear:
       case ActionType.ShowMap:
+      case ActionType.Pick:
         return;
 
       case ActionType.Speak: {
@@ -480,6 +483,18 @@ public class GameAction {
       }
       break;
 
+      case ActionType.Pick: {
+        Chars c = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
+        if (!System.Enum.IsDefined(typeof(Chars), c)) {
+          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
+        }
+        ItemEnum i = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid2, true);
+        if (!System.Enum.IsDefined(typeof(ItemEnum), i)) {
+          Debug.LogError("Unknown Item: \"" + vid2 + "\"");
+        }
+        id2 = (int)i;
+      }
+      break;
 
     }
   }
@@ -1012,6 +1027,19 @@ public class GameAction {
 
       case ActionType.ShowMap: {
         GD.c.ShowMap();
+        Complete();
+      }
+      break;
+
+      case ActionType.Pick: {
+        Item item = AllObjects.GetItem((ItemEnum)id2);
+        if (item.owner == GD.actor1 || item.owner == GD.actor2 || item.owner == GD.actor3) {
+          Complete();
+          return;
+        }
+        Actor a = Controller.GetActor((Chars)id1);
+        a.inventory.Add(item);
+        item.owner = a.id;
         Complete();
       }
       break;

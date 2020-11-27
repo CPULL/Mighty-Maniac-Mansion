@@ -34,7 +34,7 @@ public class Controller : MonoBehaviour {
       StartGame();
       return;
     }
-    if (GD.status != GameStatus.NormalGamePlay && GD.status != GameStatus.Cutscene) return;
+    if (GD.status != GameStatus.NormalGamePlay) return;
 
     #region Handling of text messages
     if (textMsgTime > 0) {
@@ -1071,10 +1071,6 @@ public class Controller : MonoBehaviour {
       yield break;
     }
 
-    // Disable gameplay
-    GD.status = GameStatus.Cutscene;
-    yield return null;
-
     // Enable dst
     door.dst.gameObject.SetActive(true);
 
@@ -1152,7 +1148,6 @@ public class Controller : MonoBehaviour {
     }
 
     // Enable gameplay
-    GD.status = GameStatus.NormalGamePlay;
     CursorHandler.SetBoth(CursorTypes.Normal);
     overItem = null;
     ShowName(currentRoom.name);
@@ -1265,10 +1260,6 @@ public class Controller : MonoBehaviour {
   public Woods cemetery;
 
   private IEnumerator ChangeWoods(Actor actor, Item door) {
-    // Disable gameplay
-    GD.status = GameStatus.Cutscene;
-    yield return null;
-
     // Fade out
     float time = 0;
     while (time < .125f) {
@@ -1304,7 +1295,6 @@ public class Controller : MonoBehaviour {
     }
 
     // Enable gameplay
-    GD.status = GameStatus.NormalGamePlay;
     CursorHandler.SetBoth(CursorTypes.Normal);
     overItem = null;
     ShowName(currentRoom.name);

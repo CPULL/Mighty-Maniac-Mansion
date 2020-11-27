@@ -314,9 +314,9 @@ public class Options : MonoBehaviour {
       ApplyC64Options();
 
 
-      RestartIntro.interactable = GD.status == GameStatus.IntroVideo || GD.status == GameStatus.CharSelection || GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
-      RestartNewChars.interactable = GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
-      RestartSameChars.interactable = GD.status == GameStatus.Cutscene || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
+      RestartIntro.interactable = GD.status == GameStatus.IntroVideo || GD.status == GameStatus.CharSelection || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
+      RestartNewChars.interactable = GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
+      RestartSameChars.interactable = GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
     }
     else {
       CursorHandler.ResetCursor();

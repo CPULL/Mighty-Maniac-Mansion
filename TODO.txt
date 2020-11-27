@@ -1,6 +1,15 @@
 === Mighty Maniac Mansion ===
 
-Try to fix wrong cursors
+Make meltdown anim and game over when pressing red button
+Purple Tentacle should go first to the basement to check the reactor then to the pool then to the valve and close it.
+In case too much time will pass make an explosion (for example purple will catch two players)
+Have glass jar to be filled in pool, replace with radioactive glass jar
+Have alarm sound to loop forever
+
+
+We need a way to walk on ladders. Probably from the back. Do we need a new anim?
+Fix the cursor when stay over items and using them
+Fix the global GD status, cutscenes should be no more visible
 
 shelter with shovel
 woods for treehouse
@@ -28,20 +37,18 @@ Add recycle stuff to the service room
 
 Add a lab secret entrance in the home. But use the same system
 Ed room: Piggy bank with coins
-Have pool empty/full depending on the valve in the underpassage
-Have the alarm and fred cutscene if the pool has no water for too long
 Dungeon: add open doors sprites
 Dungeon: dungeon door should close automatically when exiting
-Add Fred and Purple tentacle cutscenes for power off and pool empty
 
 Define skills and actions that will allow
 
 Add character grave in case one of the players will die (up to two graves)
 Add game over (when it will happen?)
 
-* BUGS ************************************************************************************************************
-
 If a room has windows, make it a little bit less dark (like flashlight but without outline) <= use lightning shader
+
+
+* BUGS ************************************************************************************************************
 
 * CHARS ************************************************************************************************************
 
@@ -243,4 +250,6 @@ Laverne
 ! graveyard: build room
 ! Make the delay of actions visible for all types that are not auto-completing
 ! Keep list of all scenes in Controller or a SceneManager
+! Check message "easy" when opening the grate
+! Give batteries when picking up radio
 

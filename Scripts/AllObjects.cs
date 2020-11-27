@@ -116,6 +116,7 @@ public enum ItemEnum {
   BackDoorExt,
   PoolValve,
   PoolWater,
+  Radio,
 }
 
 
