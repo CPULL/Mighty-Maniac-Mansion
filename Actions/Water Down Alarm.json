@@ -13,7 +13,7 @@
 	],
 	
 	"shutdown" : [
-		{ "type":"Sound", "id2":"Alarm", "dv":"None", "vv":[-180, 10] }
+		{ "type":"Sound", "id2":"Alarm", "dv":"None" }
 	],
 	
 	"sequence":[
@@ -22,7 +22,7 @@
 				{ "type":"ItemOpen", "id":"PoolValve", "bv":true, "iv":0 }
 			],
 			"action":[
-				{ "type":"Expression", "id1":"Fred", "sv":"Sad", "dv":"F", "del":0.5 },
+				{ "type":"Expression", "id1":"Fred", "sv":"Sad", "dv":"F", "del":1.5 },
 				{ "type":"Speak", "id1":"Fred", "sv":"Oh no!\n\nThe pool is empty again!", "dv":"B" },
 				{ "type":"Speak", "del":2, "id1":"Fred", "sv":"We are going to\nhave another meltdown!", "dv":"B" },
 				{ "type":"WalkToPos", "id1":"Fred", "dv":"B", "vv":[-151,7.5] },

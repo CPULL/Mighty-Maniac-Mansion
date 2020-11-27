@@ -335,7 +335,15 @@ public class GameAction {
       break;
 
       case ActionType.StopScenes: {
-        id1 = SafeParse(typeof(Chars), vid1);
+        if (!string.IsNullOrEmpty(vid1)) {
+          id1 = SafeParse(typeof(Chars), vid1);
+        }
+        else if (!string.IsNullOrEmpty(vid2)) {
+          id2 = SafeParse(typeof(CutsceneID), vid2);
+        }
+        else {
+          throw new System.Exception("Unspecified scene to stop");
+        }
       }
       break;
 
@@ -380,7 +388,7 @@ public class GameAction {
           id1 = SafeParse(typeof(Chars), vid1);
         }
         if (!string.IsNullOrEmpty(vid2)) {
-          id2 = SafeParse(typeof(ItemEnum), vid1);
+          id2 = SafeParse(typeof(ItemEnum), vid2);
         }
       }
       break;
@@ -700,8 +708,14 @@ public class GameAction {
       break;
 
       case ActionType.StopScenes: {
-        Chars id = (Chars)id1;
-        GameScenesManager.StopScenesForChar(id);
+        if (id1 != 0) {
+          Chars id = (Chars)id1;
+          GameScenesManager.StopScenesForChar(id);
+        }
+        else {
+          CutsceneID id = (CutsceneID)id2;
+          GameScenesManager.StopScene(AllObjects.GetCutscene(id), false);
+        }
         Complete();
       }
       break;
@@ -741,6 +755,7 @@ public class GameAction {
         if (a != null) { // Play on an actor
           if (dir != Dir.None) a.SetDirection(dir);
           Sounds.Play((Audios)id2, a.transform.position);
+          Play();
         }
         else { // Play continously somewhere or stop it (depending on the Dir value)
           if (dir == Dir.None) { // Stop it
@@ -749,8 +764,8 @@ public class GameAction {
           else { // Play it
             Sounds.PlayContinously((Audios)id2, pos);
           }
+          Complete();
         }
-        Play();
       }
       break;
 

@@ -24,6 +24,9 @@ public class Balloon : MonoBehaviour {
   }
 
   public static void Show(string message, Transform speaker, System.Action completeSpeaking) {
+    GD.b.text.text = "";
+    GD.b.gameObject.SetActive(false);
+
     GD.b.delay = 1;
     GD.b.speakComplete = completeSpeaking;
     GD.b.anchor = speaker;
@@ -132,11 +135,7 @@ public class Balloon : MonoBehaviour {
     Vector3 pos = transform.position;
 
     if (tlc.x < -Screen.width || tlc.x > 2 * Screen.width || tlc.y < -Screen.height || tlc.y > 2 * Screen.height) {
-      pos.x = pos.x + anchor.position.x;
-      pos.x *= .5f;
-      pos.y = pos.y + anchor.position.y;
-      pos.y *= .5f;
-      transform.position = pos;
+      SetPosition();
     }
 
     if (tlc.x < 0) {

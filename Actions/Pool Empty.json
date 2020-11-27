@@ -4,7 +4,7 @@
 	"condition":[],
 	
 	"startup" : [
-		{ "type":"Sound", "del":1, "id2":"WheelValve" },
+		{ "type":"Sound", "del":1, "id2":"WheelValve", "id1":"Current" },
 		{ "type":"Wait", "del":1 }
 	],
 	
@@ -16,10 +16,10 @@
 				{ "type":"ItemOpen", "id":"PoolValve", "bv":true, "iv":0 }
 			],
 			"action":[
-				{ "type":"Sound", "del":10, "id2":"WaterDown" },
+				{ "type":"Sound", "del":8, "id1":"Current", "id2":"WaterDown" },
 				{ "type":"Wait", "del":15 },
-				{ "type":"Sound", "del":2, "id2":"Alarm" },
-				{ "type":"Cutscene", "id1":"WaterDownAlarm" }
+				{ "type":"Cutscene", "id1":"WaterDownAlarm" },
+				{ "type":"StopScenes", "id2":"PoolEmpty" }
 			]
 		},
 		
@@ -29,8 +29,46 @@
 			],
 			"action":[
 				{ "type":"Wait", "del":0.5 },
-				{ "type":"Sound", "del":10, "id2":"WaterUp" },
-				{ "type":"Speak", "del":0, "id1":"Current", "id2":"", "sv":"Water up", "iv":"", "dv":"L", "vv":[] }
+				{ "type":"Sound", "del":8, "id1":"Current", "id2":"WaterUp" },
+				{ "type":"Speak", "del":0, "id1":"Current", "id2":"", "sv":"Water up", "iv":"", "dv":"L", "vv":[] },
+				{ "type":"StopScenes", "id2":"WaterDownAlarm" },
+				{ "type":"StopScenes", "id2":"PoolEmpty" }
+			]
+		},
+		
+		{ "name":"Water up with player1 in pool", "skippable":2,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
+				{ "type":"ActorInRoom", "id":"Actor1", "bv":true, "sv":"PoolBottom" },
+				
+			],
+			"action":[
+				{ "type":"ShowRoom", "sv":"PoolBottom", "vv":[-200,-10] },
+				{ "type":"Speak", "del":0, "id1":"Current", "sv":"I should die now", "dv":"F" },
+			]
+		},
+		
+		{ "name":"Water up with player2 in pool", "skippable":2,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
+				{ "type":"ActorInRoom", "id":"Actor2", "bv":true, "sv":"PoolBottom" },
+				
+			],
+			"action":[
+				{ "type":"ShowRoom", "sv":"PoolBottom", "vv":[-200,-10] },
+				{ "type":"Speak", "del":0, "id1":"Current", "sv":"I should die now", "dv":"F" },
+			]
+		},
+		
+		{ "name":"Water up with player3 in pool", "skippable":2,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
+				{ "type":"ActorInRoom", "id":"Actor3", "bv":true, "sv":"PoolBottom" },
+				
+			],
+			"action":[
+				{ "type":"ShowRoom", "sv":"PoolBottom", "vv":[-200,-10] },
+				{ "type":"Speak", "del":0, "id1":"Current", "sv":"I should die now", "dv":"F" },
 			]
 		}
 	]
