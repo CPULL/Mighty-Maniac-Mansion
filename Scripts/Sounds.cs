@@ -5,6 +5,9 @@ public class Sounds : MonoBehaviour {
   public AudioClip[] StepSounds;
   public AudioClip TentacleSteps;
   AudioSource source;
+  public Transform ContinousSound;
+  public AudioSource ContinousSoundSource;
+  Audios continuosSound;
 
   private void Awake() {
     GD.s = this;
@@ -45,6 +48,35 @@ public class Sounds : MonoBehaviour {
 
   public static AudioClip GetTentacle() {
     return GD.s.TentacleSteps;
+  }
+
+  internal static void PlayContinously(Audios sound, Vector2 pos) {
+    if (GD.s == null) return;
+
+    Debug.Log("Start sound " + sound);
+    GD.s.ContinousSound.transform.position = pos;
+    int num = (int)sound;
+    if (num < 0 || num >= GD.s.sounds.Length) return;
+
+    GD.s.continuosSound = sound;
+    GD.s.ContinousSoundSource.clip = GD.s.sounds[num];
+    GD.s.ContinousSoundSource.loop = true;
+    GD.s.ContinousSoundSource.Play();
+  }
+
+  internal static void StopContinously(Audios sound) {
+    Debug.Log("Stop sound " + sound);
+    if (GD.s.continuosSound == sound)
+      GD.s.ContinousSoundSource.Stop();
+  }
+
+  private void Update() {
+    if (!ContinousSoundSource.isPlaying || GD.c == null || GD.c.currentActor == null) return;
+
+    float vol = (ContinousSound.position - GD.c.currentActor.transform.position).sqrMagnitude * .00001f;
+    if (vol > 1) vol = 1;
+    if (vol < .1f) vol = .1f;
+    ContinousSoundSource.volume = vol;
   }
 
 }

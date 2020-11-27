@@ -54,9 +54,7 @@ public class GameAction {
   private float time;
   public string msg;
 
-
   public ActionType type;
-  public bool xRepeatable; // FIXME <- Do we need it? Can the action be repeated?
   public float delay; // Delay to use when playing the action
 
   public int id1;
@@ -225,30 +223,14 @@ public class GameAction {
       case ActionType.BlockActorX:
       case ActionType.UnBlockActor:
       case ActionType.WalkToPos: {
-        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
-        if (!System.Enum.IsDefined(typeof(Chars), id)) {
-          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
-        dir = (Dir)System.Enum.Parse(typeof(Dir), dv, true);
-        if (!System.Enum.IsDefined(typeof(Dir), dir)) {
-          Debug.LogError("Unknown Dir: \"" + dv + "\"");
-          dir = Dir.None;
-        }
+        id1 = SafeParse(typeof(Chars), vid1);
+        dir = (Dir)SafeParse(typeof(Dir), dv);
       }
       break;
 
       case ActionType.Expression: {
-        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
-        if (!System.Enum.IsDefined(typeof(Chars), id)) {
-          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
-        dir = (Dir)System.Enum.Parse(typeof(Dir), dv, true);
-        if (!System.Enum.IsDefined(typeof(Dir), dir)) {
-          Debug.LogError("Unknown Dir: \"" + dv + "\"");
-          dir = Dir.None;
-        }
+        id1 = SafeParse(typeof(Chars), vid1);
+        dir = (Dir)SafeParse(typeof(Dir), dv);
 
         id2 = (int)Expression.Normal;
         char ex = (sv.ToLowerInvariant() + "!")[0];
@@ -270,12 +252,7 @@ public class GameAction {
       break;
 
       case ActionType.Open: {
-        ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
-        if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
-          Debug.LogError("Unknown Item: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
-
+        id1 = SafeParse(typeof(ItemEnum), vid1);
         char ov = (sv.ToLowerInvariant()+"X")[0];
         switch(ov) {
           case 'o': val = 0; break; // Open
@@ -288,11 +265,7 @@ public class GameAction {
       break;
 
       case ActionType.EnableDisable: {
-        ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
-        if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
-          Debug.LogError("Unknown Item: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
+        id1 = SafeParse(typeof(ItemEnum), vid1);
         val = string.IsNullOrEmpty(sv) ? 1 : 0;
       }
       break;
@@ -303,21 +276,9 @@ public class GameAction {
       break;
 
       case ActionType.WalkToActor: {
-        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
-        if (!System.Enum.IsDefined(typeof(Chars), id)) {
-          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
-        id = (Chars)System.Enum.Parse(typeof(Chars), vid2, true);
-        if (!System.Enum.IsDefined(typeof(Chars), id)) {
-          Debug.LogError("Unknown Chars: \"" + vid2 + "\"");
-        }
-        id2 = (int)id;
-        dir = (Dir)System.Enum.Parse(typeof(Dir), dv, true);
-        if (!System.Enum.IsDefined(typeof(Dir), dir)) {
-          Debug.LogError("Unknown Dir: \"" + dv + "\"");
-          dir = Dir.None;
-        }
+        id1 = SafeParse(typeof(Chars), vid1);
+        id2 = SafeParse(typeof(Chars), vid2);
+        dir = (Dir)SafeParse(typeof(Dir), dv);
       }
       break;
 
@@ -352,11 +313,7 @@ public class GameAction {
       break;
 
       case ActionType.SetCurrentRoomActor: {
-        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
-        if (!System.Enum.IsDefined(typeof(Chars), id)) {
-          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
+        id1 = SafeParse(typeof(Chars), vid1);
         int.TryParse(vid2, out id2); // 0 for any, 1 for a player
       }
       break;
@@ -372,21 +329,13 @@ public class GameAction {
       break;
 
       case ActionType.PressAndItem: {
-        ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
-        if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
-          Debug.LogError("Unknown ItemEnum: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
+        id1 = SafeParse(typeof(ItemEnum), vid1);
         val = iv;
       }
       break;
 
       case ActionType.StopScenes: {
-        Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
-        if (!System.Enum.IsDefined(typeof(Chars), id)) {
-          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
+        id1 = SafeParse(typeof(Chars), vid1);
       }
       break;
 
@@ -401,26 +350,18 @@ public class GameAction {
 
       case ActionType.Sound: {
         if (!string.IsNullOrEmpty(vid1)) {
-          Chars c = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
-          if (!System.Enum.IsDefined(typeof(Chars), c)) {
-            Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
-          }
-          id1 = (int)c;
+          id1 = SafeParse(typeof(Chars), vid1);
         }
-        Audios id = (Audios)System.Enum.Parse(typeof(Audios), vid2, true);
-        if (!System.Enum.IsDefined(typeof(Audios), id)) {
-          Debug.LogError("Unknown Sound: \"" + vid2 + "\"");
-        }
-        id2 = (int)id;
+        id2 = SafeParse(typeof(Audios), vid2);
+        if (!string.IsNullOrEmpty(dv))
+          dir = (Dir)SafeParse(typeof(Dir), dv);
+        else
+          dir = Dir.None;
       }
       break;
 
       case ActionType.ChangeSprites: {
-        ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
-        if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
-          Debug.LogError("Unknown ItemEnum: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
+        id1 = SafeParse(typeof(ItemEnum), vid1);
         int.TryParse(vid2, out id2); // 0-3 to get the other sprite
         if (id2 < 0 || id2 > 3) {
           Debug.LogError("Invalid value for id2 (only 0, 1, 2, and 3 are valid values)");
@@ -436,33 +377,17 @@ public class GameAction {
 
       case ActionType.Anim: {
         if (!string.IsNullOrEmpty(vid1)) {
-          Chars id = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
-          if (!System.Enum.IsDefined(typeof(Chars), id)) {
-            Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
-          }
-          id1 = (int)id;
+          id1 = SafeParse(typeof(Chars), vid1);
         }
         if (!string.IsNullOrEmpty(vid2)) {
-          ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid2, true);
-          if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
-            Debug.LogError("Unknown Item: \"" + vid2 + "\"");
-          }
-          id2 = (int)id;
+          id2 = SafeParse(typeof(ItemEnum), vid1);
         }
       }
       break;
 
       case ActionType.AlterItem: {
-        ItemEnum id = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid1, true);
-        if (!System.Enum.IsDefined(typeof(ItemEnum), id)) {
-          Debug.LogError("Unknown Item: \"" + vid1 + "\"");
-        }
-        id1 = (int)id;
-        dir = (Dir)System.Enum.Parse(typeof(Dir), dv, true);
-        if (!System.Enum.IsDefined(typeof(Dir), dir)) {
-          Debug.LogError("Unknown Dir: \"" + dv + "\"");
-          dir = Dir.None;
-        }
+        id1 = SafeParse(typeof(ItemEnum), vid1);
+        dir = (Dir)SafeParse(typeof(Dir), dv);
 
         char l = (sv + "r").ToLowerInvariant()[0];
         char r = (sv + "rr").ToLowerInvariant()[1];
@@ -484,20 +409,27 @@ public class GameAction {
       break;
 
       case ActionType.Pick: {
-        Chars c = (Chars)System.Enum.Parse(typeof(Chars), vid1, true);
-        if (!System.Enum.IsDefined(typeof(Chars), c)) {
-          Debug.LogError("Unknown Chars: \"" + vid1 + "\"");
-        }
-        ItemEnum i = (ItemEnum)System.Enum.Parse(typeof(ItemEnum), vid2, true);
-        if (!System.Enum.IsDefined(typeof(ItemEnum), i)) {
-          Debug.LogError("Unknown Item: \"" + vid2 + "\"");
-        }
-        id2 = (int)i;
+        id1 = SafeParse(typeof(Chars), vid1);
+        id2 = SafeParse(typeof(ItemEnum), vid1);
       }
       break;
 
     }
   }
+
+  private int SafeParse(System.Type type, string val) {
+    try {
+      object en = System.Enum.Parse(type, val, true);
+      if (!System.Enum.IsDefined(type, en)) {
+        Debug.LogError("Unknown " + type + ": \"" + val + "\"");
+        return 0;
+      }
+      return (int)en;
+    } catch (System.Exception) {
+      throw new System.Exception("Failed enum parsing: " + type + " \"" + val + "\"");
+    }
+  }
+
 
   public override string ToString() {
     return StringName(type, id1, id2, str, pos, dir, val);
@@ -806,13 +738,18 @@ public class GameAction {
 
       case ActionType.Sound: {
         Actor a = Controller.GetActor((Chars)id1);
-        if (a == null) a = performer;
-        if (a != null) {
+        if (a != null) { // Play on an actor
           if (dir != Dir.None) a.SetDirection(dir);
           Sounds.Play((Audios)id2, a.transform.position);
         }
-        else
-          Sounds.Play((Audios)id2, GD.c.currentActor.transform.position);
+        else { // Play continously somewhere or stop it (depending on the Dir value)
+          if (dir == Dir.None) { // Stop it
+            Sounds.StopContinously((Audios)id2);
+          }
+          else { // Play it
+            Sounds.PlayContinously((Audios)id2, pos);
+          }
+        }
         Play();
       }
       break;

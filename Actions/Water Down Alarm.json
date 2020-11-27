@@ -9,10 +9,12 @@
 		{ "type":"ShowRoom", "sv":"SecretLabEntrance", "vv":[-151.5,10] },
 		{ "type":"Teleport", "id1":"Fred", "sv":"SecretLabEntrance", "dv":"F", "vv":[-153.5,6.5] },
 		{ "type":"Teleport", "id1":"PurpleTentacle", "sv":"SecretLabEntrance", "dv":"F", "vv":[-141,7] },
-		{ "type":"Sound", "id1":"Fred", "del":2, "id2":"Alarm" }
+		{ "type":"Sound", "id2":"Alarm", "dv":"F", "vv":[-180, 10] }
 	],
 	
-	"shutdown" : [],
+	"shutdown" : [
+		{ "type":"Sound", "id2":"Alarm", "dv":"None", "vv":[-180, 10] }
+	],
 	
 	"sequence":[
 		{ "name":"Alarm", "skippable":0,

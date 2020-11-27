@@ -181,10 +181,12 @@ public class GD : MonoBehaviour {
             }
 
             if (jstep["action"].IsArray) {
+              string debugWrongActions = "";
               JSONNode actions = jstep["action"];
               for (int j = 0; j < actions.AsArray.Count; j++) {
                 try {
                   JSONNode action = actions[j];
+                  debugWrongActions = action.ToString();
                   Vector2 vv = Vector2.zero;
                   if (action["vv"].IsArray) {
                     vv.x = action["vv"][0].AsFloat;
@@ -199,12 +201,11 @@ public class GD : MonoBehaviour {
                   int g = action["iv"].AsInt;
                   string h = action["dv"].Value;
                   GameAction ga = new GameAction(a, c, d, e, f, g, h, vv);
-                  step.actions.Add(
-                    ga
-                  );
+                  step.actions.Add(ga);
                 } catch(System.Exception e) {
-                  GD.Log("Action ERROR in " + file + ", action #" + j +": " + e.Message);
-                  Debug.Log("Action ERROR in " + file + ", action #" + j +": " + e.Message);
+                  Log("Action ERROR in " + file + ", action #" + j +": " + e.Message);
+                  Log(debugWrongActions);
+                  Debug.Log("Action ERROR in " + file + ", action #" + j +": " + e.Message + " -> " + debugWrongActions);
                 }
               }
             }
