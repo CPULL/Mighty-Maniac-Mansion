@@ -20,6 +20,8 @@ public class Confirm : MonoBehaviour {
   }
 
   public void Yes() {
+    AllObjects.ResetFlags();
+    GameOver.Reset();
     if (mode==0) // Quit game
       Application.Quit();
     else if (mode == 1) // Restart same chars

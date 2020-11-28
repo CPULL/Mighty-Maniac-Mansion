@@ -36,6 +36,9 @@ public class Controller : MonoBehaviour {
     }
     if (GD.status != GameStatus.NormalGamePlay) return;
 
+
+    if (Input.GetKeyDown(KeyCode.Space)) GameOver.RunGameOver(true);
+
     #region Handling of text messages
     if (textMsgTime > 0) {
       textMsgTime -= Time.deltaTime;
@@ -816,11 +819,8 @@ public class Controller : MonoBehaviour {
       int p = 1;
       for (int i = 0; i < 4; i++) {
         mapDirections[i] = p++;
-        p =p % 5;
+        p = p % 5;
       }
-//      for (int i = 0; i < 4; i++)
-//        mapDirections[i] = Random.Range(0, 5);
-//      mapDirections[4] = Random.Range(0, 2); // Only Left/Right for the final one
       mapPos = -1;
     }
     for (int i = 0; i < MapArrows.Length; i++) {

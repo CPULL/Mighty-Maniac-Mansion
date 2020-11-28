@@ -28,7 +28,7 @@ public enum Axis { X, Y, Z };
 /// <summary>
 /// Global status of the game
 /// </summary>
-public enum GameStatus { NotYetLoaded, IntroVideo, CharSelection, NormalGamePlay, StartGame, Confirming };
+public enum GameStatus { NotYetLoaded, IntroVideo, CharSelection, NormalGamePlay, StartGame, Confirming, GameOver };
 
 /// <summary>
 /// List of all actors and generic actor references, like Actor1

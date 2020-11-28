@@ -45,6 +45,13 @@ public class AllObjects : MonoBehaviour {
   }
 
   internal static void SetFlag(GameFlag flag, int val) {
+    if (flag == GameFlag.GameOver) {
+      if (val == 1) 
+        GameOver.RunGameOver(true);
+      else
+        GameOver.RunGameOver(false);
+    }
+
     foreach (FlagStatus fs in GD.a.flagsList)
       if (fs.flag == flag) {
         fs.value = val;
@@ -58,6 +65,11 @@ public class AllObjects : MonoBehaviour {
         return fs.value;
       }
     return 0;
+  }
+
+  public static void ResetFlags() {
+    foreach (FlagStatus fs in GD.a.flagsList)
+        fs.value = 0;
   }
 
   public static GameScene GetCutscene(CutsceneID id) {
@@ -129,6 +141,7 @@ public enum GameFlag {
   EdnaBrowsingFridge,
   EdCheckingPackage,
   SamIsFriend, // 0=Never seen (do camera pan), 1=not friend, 2=friend
+  GameOver, // 0=no, 1=nuclear, 2=noplayers
 }
 
 [System.Serializable]
