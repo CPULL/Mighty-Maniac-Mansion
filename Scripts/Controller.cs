@@ -227,7 +227,7 @@ public class Controller : MonoBehaviour {
 
     walkDelay -= Time.deltaTime;
     if (notOverUI && Input.GetMouseButton(0) && currentActor.IsWalking() && walkDelay < 0) {
-      walkDelay = .25f;
+      walkDelay = .25f / walkSpeed;
       RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
       if (hit.collider != null) {
         PathNode p = hit.collider.GetComponent<PathNode>();
