@@ -93,7 +93,8 @@ public enum Audios {
   WaterDown = 5,
   WaterUp = 6,
   WheelValve = 7,
-  Alarm = 8
+  Alarm = 8,
+  ButtonClick = 9,
 };
 
 

@@ -39,6 +39,7 @@ public class GameOver : MonoBehaviour {
     Audio.Play();
     time = 2f;
     status = GameOverStatus.PreTime;
+    CursorHandler.SetBoth(CursorTypes.Normal);
   }
 
   private void Update() {
@@ -61,7 +62,7 @@ public class GameOver : MonoBehaviour {
         status = GameOverStatus.GameOverTitle;
         Title.SetActive(true);
         Buttons.SetActive(true);
-        time = 10f;
+        time = 5f;
       }
       else if (status==GameOverStatus.GameOverTitle) {
         status = GameOverStatus.No;
