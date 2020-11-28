@@ -520,6 +520,9 @@ public class GameAction {
 
       case ActionType.Speak: {
         Actor a = Controller.GetActor((Chars)id1);
+
+        Debug.Log(">>>> " + a.name + ": " + str);
+
         if (a == null) a = performer;
         if (a == null) {
           Complete();

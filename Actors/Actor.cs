@@ -49,10 +49,8 @@ public class Actor : MonoBehaviour {
   float lastChangedDir = 0;
   Transform followed = null;
   Dir followSide = Dir.None;
-
-
   float nextBehaviorCheck = .5f;
-
+  [HideInInspector] public bool dead = false;
   [HideInInspector] public bool IsVisible = false;
   public void SetVisible(bool v) {
     IsVisible = v;
@@ -63,6 +61,7 @@ public class Actor : MonoBehaviour {
 
   public void Player() {
     IAmNPC = false;
+    dead = false;
   }
 
   private void Awake() {

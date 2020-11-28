@@ -37,8 +37,6 @@ public class Controller : MonoBehaviour {
     if (GD.status != GameStatus.NormalGamePlay) return;
 
 
-    if (Input.GetKeyDown(KeyCode.Space)) GameOver.RunGameOver(true);
-
     #region Handling of text messages
     if (textMsgTime > 0) {
       textMsgTime -= Time.deltaTime;
@@ -479,13 +477,13 @@ public class Controller : MonoBehaviour {
     if (GameScenesManager.BlockingScene()) return;
 
     PortraitClickHandler h = (PortraitClickHandler)handler;
-    if (h == GD.c.ActorPortrait1) {
+    if (h == GD.c.ActorPortrait1 && GD.c.actor1 != null) {
       SelectActor(GD.c.actor1);
     }
-    else if (h == GD.c.ActorPortrait2) {
+    else if (h == GD.c.ActorPortrait2 && GD.c.actor2 != null) {
       SelectActor(GD.c.actor2);
     }
-    else if (h == GD.c.ActorPortrait3) {
+    else if (h == GD.c.ActorPortrait3 && GD.c.actor3 != null) {
       SelectActor(GD.c.actor3);
     }
     else if (h == GD.c.InventoryPortrait) {
@@ -1030,13 +1028,13 @@ public class Controller : MonoBehaviour {
     GD.c.ActorPortrait1.GetComponent<RawImage>().color = GD.c.unselectedActor;
     GD.c.ActorPortrait2.GetComponent<RawImage>().color = GD.c.unselectedActor;
     GD.c.ActorPortrait3.GetComponent<RawImage>().color = GD.c.unselectedActor;
-    if (actor == GD.c.actor1) {
+    if (actor == GD.c.actor1 && !GD.c.actor1.dead) {
       GD.c.ActorPortrait1.GetComponent<RawImage>().color = GD.c.selectedActor;
     }
-    else if (actor == GD.c.actor2) {
+    else if (actor == GD.c.actor2 && !GD.c.actor1.dead) {
       GD.c.ActorPortrait2.GetComponent<RawImage>().color = GD.c.selectedActor;
     }
-    if (actor == GD.c.actor3) {
+    if (actor == GD.c.actor3 && !GD.c.actor1.dead) {
       GD.c.ActorPortrait3.GetComponent<RawImage>().color = GD.c.selectedActor;
     }
     GD.c.ShowName("Selected: " + GD.c.currentActor.name);
