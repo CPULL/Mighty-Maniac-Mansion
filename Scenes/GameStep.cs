@@ -50,7 +50,8 @@ public class GameStep {
       currentAction = actions[0];
       currentAction.running = Running.NotStarted;
       actionnum = 0;
-//FIXME      Debug.Log(ToString() + " => " + actionnum + ") " + currentAction);
+//FIXME      
+      Debug.Log(ToString() + " => " + actionnum + ") " + currentAction);
     }
 
     if (currentAction.running == Running.NotStarted) { // Start the action
@@ -80,7 +81,8 @@ public class GameStep {
       if (actions.Count > actionnum) {
         currentAction = actions[actionnum];
         currentAction.running = Running.NotStarted;
-//FIXME   Debug.Log(ToString() + " > " + actionnum + ") " + currentAction);
+//FIXME   
+        Debug.Log(ToString() + " > " + actionnum + ") " + currentAction);
       }
       else
         return false;
