@@ -1,7 +1,5 @@
 === Mighty Maniac Mansion ===
 
-Cursor on the water valve is not right
-
 Purple Tentacle should go first to the basement to check the reactor then to the pool then to the valve and close it.
 In case too much time will pass make an explosion (for example purple will catch two players)
 

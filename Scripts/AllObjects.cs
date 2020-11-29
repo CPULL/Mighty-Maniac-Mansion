@@ -133,6 +133,7 @@ public enum ItemEnum {
   PoolValve,
   PoolWater,
   Radio,
+  RadioactivePoolWater,
 }
 
 
