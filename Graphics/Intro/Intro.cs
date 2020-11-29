@@ -57,6 +57,7 @@ public class Intro : MonoBehaviour {
 
   public void Init() {
     StarsBlink.Disable(true);
+    CursorHandler.Set();
     glowing = false;
     IntroBlackFade.color = new Color32(0, 0, 0, 255);
     MeteorRT.anchoredPosition = new Vector2(2200, 1024);

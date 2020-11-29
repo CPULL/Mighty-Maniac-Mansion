@@ -50,7 +50,7 @@ public class GameOver : MonoBehaviour {
     Audio.Play();
     time = 2f;
     status = GameOverStatus.PreTime;
-    CursorHandler.SetBoth(CursorTypes.Normal);
+    CursorHandler.Set();
   }
 
   private void Update() {

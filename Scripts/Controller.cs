@@ -22,6 +22,17 @@ public class Controller : MonoBehaviour {
     GD.c.DbgMsg.text = txt;
   }
 
+  static string dbgu, dbgc;
+  public static void DbgU(string txt) {
+    dbgu = txt;
+//    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
+  }
+
+  public static void DbgC(string txt) {
+    dbgc = txt;
+//    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
+  }
+
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
 
   private void OnApplicationFocus(bool focus) {
@@ -221,8 +232,6 @@ public class Controller : MonoBehaviour {
       }
     }
 
-    if (usedItem == null) CursorHandler.SoftCleanObject();
-
     walkDelay -= Time.deltaTime;
     if (notOverUI && Input.GetMouseButton(0) && currentActor.IsWalking() && walkDelay < 0) {
       walkDelay = .25f / walkSpeed;
@@ -239,8 +248,8 @@ public class Controller : MonoBehaviour {
     if (overInventoryItem != null) {
       if (usedItem == overInventoryItem) {
         if (lmb) { /* lmb - remove used */
-          CursorHandler.SetObject(null);
           usedItem = null;
+          DbgU("Update 251");
           EnableActorSelection(false);
         }
         else { /* rmb - read */
@@ -262,14 +271,13 @@ public class Controller : MonoBehaviour {
           usedItem = overInventoryItem;
           EnableActorSelection(true);
           overInventoryItem = null;
-          CursorHandler.SetObject(usedItem.iconImage);
+          CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, usedItem);
+          DbgC("Update 274 norm");
         }
         else { /* rmb - use immediately */
           string res = overInventoryItem.Use(currentActor);
           if (!string.IsNullOrEmpty(res))
             currentActor.Say(res);
-          else
-            CursorHandler.SetObject(null);
         }
 
       }
@@ -278,7 +286,8 @@ public class Controller : MonoBehaviour {
           usedItem = overInventoryItem;
           EnableActorSelection(true);
           overInventoryItem = null;
-          CursorHandler.SetObject(usedItem.iconImage);
+          CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, usedItem);
+          DbgC("Update 289 norm");
         }
         else { /* rmb - Use together */
           // Can we use the two items together?
@@ -286,8 +295,8 @@ public class Controller : MonoBehaviour {
           if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
           UpdateInventory();
           usedItem = null;
+          DbgU("Update 295");
           overInventoryItem = null;
-          CursorHandler.SetObject(null);
           EnableActorSelection(false);
           Inventory.SetActive(false);
           return;
@@ -336,7 +345,8 @@ public class Controller : MonoBehaviour {
                 else if (actor == actor3) item.owner = Chars.Actor3;
                 item.PlayActions(currentActor, null, When.Pick, null);
                 item = null;
-                CursorHandler.SetBoth(CursorTypes.Normal);
+                CursorHandler.Set();
+                DbgC("Update 348");
                 if (Inventory.activeSelf) ActivateInventory(currentActor);
               }
               else {
@@ -354,16 +364,13 @@ public class Controller : MonoBehaviour {
             new System.Action<Actor, Item>((actor, item) => {
               if (item == null) {
                 Debug.Log("Null item in callback");
-                CursorHandler.SetBoth(CursorTypes.Normal);
+                CursorHandler.Set();
                 return;
               }
               actor.SetDirection(item.dir);
               string res = item.Use(currentActor);
               if (!string.IsNullOrEmpty(res))
                 actor.Say(res);
-              else {
-                CursorHandler.SetObject(null);
-              }
 
               // Here we should raycast and check what should the item be with the actions (if any)
               RaycastHit2D[] hits = Physics2D.RaycastAll(worldPoint, cam.transform.forward);
@@ -409,8 +416,8 @@ public class Controller : MonoBehaviour {
               string res = usedItem.UseTogether(currentActor, item);
               if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
               UpdateInventory();
-              CursorHandler.SetObject(null);
               usedItem = null;
+              DbgU("Update 416");
               EnableActorSelection(false);
               Inventory.SetActive(false);
 
@@ -447,8 +454,10 @@ public class Controller : MonoBehaviour {
           }
         }
         else { /* rmb - do nothing but unselect used items */
-          CursorHandler.SetBoth(CursorTypes.Normal);
+          CursorHandler.Set();
+          DbgC("Update 457");
           usedItem = null;
+          DbgU("Update 455");
           EnableActorSelection(false);
         }
       }
@@ -462,8 +471,10 @@ public class Controller : MonoBehaviour {
         usedItem.Give(currentActor, receiverActor);
         Inventory.SetActive(false);
         usedItem = null;
+        DbgU("Update 469");
+        CursorHandler.Set();
+        DbgC("Update 475");
         EnableActorSelection(false);
-        CursorHandler.SetObject(null);
         return;
       }
     }
@@ -577,7 +588,7 @@ public class Controller : MonoBehaviour {
   void StartIntroCutscene() {
     FrontActors.enabled = true;
     GameScene introScene = AllObjects.GetCutscene(CutsceneID.Intro);
-    CursorHandler.SetBoth(CursorTypes.Wait);
+    CursorHandler.WaitMode(true);
     GameScenesManager.StartScene(introScene);
   }
 
@@ -621,11 +632,14 @@ public class Controller : MonoBehaviour {
         GD.c.overItem = null;
         GD.c.overInventoryItem = null;
         if (GD.c.TextMsg.text != "") GD.c.HideName();
+        CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, GD.c.usedItem);
+        DbgC("SetItem 633 norm");
         return;
       }
       GD.c.overInventoryItem = item;
       if (GD.c.usedItem == null) {
-        CursorHandler.SetRight(CursorTypes.Pick);
+        CursorHandler.Set(CursorTypes.Pick, CursorTypes.Use);
+        DbgC("SetItem 639 norm");
         GD.c.overInventoryItem = item;
         GD.c.ShowName(item.Name);
       }
@@ -633,7 +647,10 @@ public class Controller : MonoBehaviour {
     }
 
     if (item == null) {
-      CursorHandler.SetBoth(CursorTypes.Normal, true);
+      if (GD.c.usedItem == null) {
+        CursorHandler.Set();
+        DbgC("SetItem 649");
+      }
       GD.c.overItem = null;
       if (GD.c.TextMsg.text != "") GD.c.HideName();
       return;
@@ -644,45 +661,45 @@ public class Controller : MonoBehaviour {
       return;
     }
 
+    CursorTypes onL = CursorTypes.Normal;
+    CursorTypes onR = CursorTypes.Normal;
+
     // Right
     if (item.whatItDoesR == WhatItDoes.Walk) {
       Door d = item as Door;
       if (d != null) {
         switch (d.transition) {
-          case TransitionDirection.Left: CursorHandler.SetRight(CursorTypes.WalkAwayL, true); break;
-          case TransitionDirection.Right: CursorHandler.SetRight(CursorTypes.WalkAwayR, true); break;
-          case TransitionDirection.Up: CursorHandler.SetRight(CursorTypes.WalkAwayU, true); break;
-          case TransitionDirection.Down: CursorHandler.SetRight(CursorTypes.WalkAwayD, true); break;
-          case TransitionDirection.In: CursorHandler.SetRight(CursorTypes.WalkAwayI, true); break;
-          case TransitionDirection.Out: CursorHandler.SetRight(CursorTypes.WalkAwayO, true); break;
+          case TransitionDirection.Left:  onR = CursorTypes.WalkAwayL; break;
+          case TransitionDirection.Right: onR = CursorTypes.WalkAwayR; break;
+          case TransitionDirection.Up:    onR = CursorTypes.WalkAwayU; break;
+          case TransitionDirection.Down:  onR = CursorTypes.WalkAwayD; break;
+          case TransitionDirection.In:    onR = CursorTypes.WalkAwayI; break;
+          case TransitionDirection.Out:   onR = CursorTypes.WalkAwayO; break;
         }
       }
-      else
-        CursorHandler.SetRight(CursorTypes.Normal, true);
       GD.c.overItem = item;
     }
     else if (item.whatItDoesR == WhatItDoes.Pick) {
-      CursorHandler.SetRight(CursorTypes.Pick, true);
+      onR = CursorTypes.Pick;
       GD.c.overItem = item;
       GD.c.ShowName(item.Name);
     }
     else if (item.whatItDoesR == WhatItDoes.Use) {
-      CursorTypes cur = CursorTypes.Use;
+      onR = CursorTypes.Use;
       if (item.Usable == Tstatus.Swithchable)
-        cur = item.IsOpen() ? CursorTypes.Off : CursorTypes.On;
+        onR = item.IsOpen() ? CursorTypes.Off : CursorTypes.On;
       else if ((item as Door) != null || (item as Container) != null) {
         if (GD.c.usedItem == null)
-          cur = item.IsOpen() ? CursorTypes.Close : CursorTypes.Open;
+          onR = item.IsOpen() ? CursorTypes.Close : CursorTypes.Open;
         else
-          cur = CursorTypes.Use;
+          onR = CursorTypes.Use;
       }
 
-      CursorHandler.SetRight(cur, true);
       GD.c.overItem = item;
       GD.c.ShowName(item.Name);
     }
     else if (item.whatItDoesR == WhatItDoes.Read) {
-      CursorHandler.SetRight(CursorTypes.Read, true);
+      onR = CursorTypes.Read;
       GD.c.overItem = item;
       GD.c.ShowName(item.Name);
     }
@@ -694,43 +711,43 @@ public class Controller : MonoBehaviour {
       Door d = item as Door;
       if (d != null) {
         switch (d.transition) {
-          case TransitionDirection.Left: CursorHandler.SetLeft(CursorTypes.WalkAwayL, true); break;
-          case TransitionDirection.Right: CursorHandler.SetLeft(CursorTypes.WalkAwayR, true); break;
-          case TransitionDirection.Up: CursorHandler.SetLeft(CursorTypes.WalkAwayU, true); break;
-          case TransitionDirection.Down: CursorHandler.SetLeft(CursorTypes.WalkAwayD, true); break;
-          case TransitionDirection.In: CursorHandler.SetLeft(CursorTypes.WalkAwayI, true); break;
-          case TransitionDirection.Out: CursorHandler.SetLeft(CursorTypes.WalkAwayO, true); break;
+          case TransitionDirection.Left:  onL = CursorTypes.WalkAwayL; break;
+          case TransitionDirection.Right: onL = CursorTypes.WalkAwayR; break;
+          case TransitionDirection.Up:    onL = CursorTypes.WalkAwayU; break;
+          case TransitionDirection.Down:  onL = CursorTypes.WalkAwayD; break;
+          case TransitionDirection.In:    onL = CursorTypes.WalkAwayI; break;
+          case TransitionDirection.Out:   onL = CursorTypes.WalkAwayO; break;
         }
       }
-      else
-        CursorHandler.SetLeft(CursorTypes.Normal, true);
       GD.c.overItem = item;
     }
     else if (item.whatItDoesL == WhatItDoes.Pick) {
-      CursorHandler.SetLeft(CursorTypes.Pick, true);
+      onL = CursorTypes.Pick;
       GD.c.overItem = item;
       GD.c.ShowName(item.Name);
     }
     else if (item.whatItDoesL == WhatItDoes.Use) {
-      CursorTypes cur = CursorTypes.Use;
+      onL = CursorTypes.Use;
       if (item.Usable == Tstatus.Swithchable)
-        cur = item.IsOpen() ? CursorTypes.Off : CursorTypes.On;
+        onL = item.IsOpen() ? CursorTypes.Off : CursorTypes.On;
       else if ((item as Door) != null || (item as Container) != null) {
         if (GD.c.usedItem == null)
-          cur = item.IsOpen() ? CursorTypes.Close : CursorTypes.Open;
+          onL = item.IsOpen() ? CursorTypes.Close : CursorTypes.Open;
         else
-          cur = CursorTypes.Use;
+          onL = CursorTypes.Use;
       }
 
-      CursorHandler.SetLeft(cur, true);
       GD.c.overItem = item;
       GD.c.ShowName(item.Name);
     }
     else if (item.whatItDoesL == WhatItDoes.Read) {
-      CursorHandler.SetLeft(CursorTypes.Read, true);
+      onL = CursorTypes.Read;
       GD.c.overItem = item;
       GD.c.ShowName(item.Name);
     }
+
+    CursorHandler.Set(onL, onR, GD.c.usedItem);
+    DbgC("SetItem 747");
   }
 
   internal static bool IsItemCollected(ItemEnum itemID) {
@@ -1020,8 +1037,10 @@ public class Controller : MonoBehaviour {
     if (GameScenesManager.SkipScenes()) {
       Fader.RemoveFade();
     }
-    CursorHandler.SetBoth(CursorTypes.Normal);
+    CursorHandler.Set();
+    DbgC("SelActor 1038");
     GD.c.usedItem = null;
+    DbgU("SelActor 1029");
     GD.c.EnableActorSelection(false);
 
     GD.c.currentActor = actor;
@@ -1046,8 +1065,12 @@ public class Controller : MonoBehaviour {
 
   Actor overActor = null;
   internal static bool OverActor(Actor actor) {
-    if (actor == GD.c.currentActor) return true;
+    if (actor != null && actor == GD.c.currentActor) return true;
     GD.c.overActor = actor;
+    if (actor != null && GD.c.usedItem != null)
+      CursorHandler.Set(CursorTypes.Normal, CursorTypes.Give, GD.c.usedItem);
+    else
+      CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, GD.c.usedItem);
     return false;
   }
 
@@ -1146,7 +1169,7 @@ public class Controller : MonoBehaviour {
     }
 
     // Enable gameplay
-    CursorHandler.SetBoth(CursorTypes.Normal);
+    CursorHandler.Set();
     overItem = null;
     ShowName(currentRoom.name);
 
@@ -1174,6 +1197,9 @@ public class Controller : MonoBehaviour {
     else {
       StarsBlink.SetWoods(0);
     }
+
+
+    BlackFade.color = new Color32(0, 0, 0, 0);
   }
 
   bool CameraFadingToActor = false;
@@ -1219,9 +1245,10 @@ public class Controller : MonoBehaviour {
       time += Time.deltaTime;
       yield return null;
     }
-    CursorHandler.SetBoth(CursorTypes.Normal);
+    CursorHandler.Set();
     overItem = null;
     CameraFadingToActor = false;
+    BlackFade.color = new Color32(0, 0, 0, 0);
   }
 
   internal static void StopPanningCamera() {
@@ -1293,7 +1320,7 @@ public class Controller : MonoBehaviour {
     }
 
     // Enable gameplay
-    CursorHandler.SetBoth(CursorTypes.Normal);
+    CursorHandler.Set();
     overItem = null;
     ShowName(currentRoom.name);
 

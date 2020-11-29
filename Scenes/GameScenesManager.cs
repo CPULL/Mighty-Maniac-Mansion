@@ -38,10 +38,6 @@ public class GameScenesManager : MonoBehaviour {
       }
     }
 
-    if (CalculateSkippedStatus()) {
-      CursorHandler.SetBoth(CursorTypes.Normal);
-    }
-
     // FIXME remove
     string dbg = "";
     foreach (GameScene s in scenes) {

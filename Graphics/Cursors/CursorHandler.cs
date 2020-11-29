@@ -14,7 +14,7 @@ public class CursorHandler : MonoBehaviour {
   Color32 color;
   CursorTypes onLeft = CursorTypes.Normal;
   CursorTypes onRight = CursorTypes.Normal;
-  CursorTypes prevCentral = CursorTypes.Normal;
+  CursorTypes onCenter = CursorTypes.Normal;
 
   private void Awake() {
     me = this;
@@ -46,20 +46,12 @@ public class CursorHandler : MonoBehaviour {
     color.r = (byte)val;
     color.g = (byte)val;
     color.b = (byte)val;
-
     Cursor.color = color;
-    if (!waitMode) {
-      CursorL.enabled = (onLeft != onRight && onLeft != CursorTypes.Normal);
-      CursorR.enabled = (onLeft != onRight && onRight != CursorTypes.Normal);
-      if (onLeft == onRight && prevCentral != onLeft && onLeft != CursorTypes.Object && onLeft != CursorTypes.Give) {
-        prevCentral = onLeft;
-        Cursor.sprite = Cursors[(int)prevCentral];
-      }
-    }
   }
 
   CursorTypes savedL;
   CursorTypes savedR;
+  CursorTypes savedC;
 
   bool waitMode = false;
   public static void WaitMode(bool wait) {
@@ -77,6 +69,7 @@ public class CursorHandler : MonoBehaviour {
   public static void SaveCursor() {
     me.savedL = me.onLeft;
     me.savedR = me.onRight;
+    me.savedC = me.onCenter;
     UnityEngine.Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     UnityEngine.Cursor.visible = true;
     me.crt.gameObject.SetActive(false);
@@ -86,58 +79,79 @@ public class CursorHandler : MonoBehaviour {
   public static void ResetCursor() {
     me.onLeft = me.savedL;
     me.onRight = me.savedR;
-    me.prevCentral = me.onLeft;
+    me.onCenter = me.savedC;
     UnityEngine.Cursor.visible = false;
     me.crt.gameObject.SetActive(true);
     me.crtl.gameObject.SetActive(true);
     me.crtr.gameObject.SetActive(true);
   }
 
-  public static void SetLeft(CursorTypes c, bool notIfObject = false) {
-    if (notIfObject && me.prevCentral == CursorTypes.Object) return;
-    if (me.onLeft == c) return;
-    me.onLeft = c;
-    me.CursorL.sprite = me.Cursors[(int)c];
-  }
 
-  public static void SetRight(CursorTypes c, bool notIfObject = false) {
-    if (notIfObject && me.prevCentral == CursorTypes.Object) return;
-    if (me.onRight == c) return;
-    me.onRight = c;
-    me.CursorR.sprite = me.Cursors[(int)c];
-  }
+  public static void Set(CursorTypes l = CursorTypes.Normal, CursorTypes r = CursorTypes.Normal, Item item = null) {
+    System.Diagnostics.StackTrace st = new System.Diagnostics.StackTrace();
+    string str = "";
+    int num = st.FrameCount;
+    if (num > 3) num = 3;
+    for (int i = 1; i < num; i++) {
+      var sf = st.GetFrame(i);
+      str += sf.GetFileName() + ": " + sf.GetMethod() + ": " + sf.GetFileLineNumber() + "\n";
+    }
+    Controller.Dbg((item == null?"[]":"[XXX]")+ str);
 
-  public static void SetBoth(CursorTypes c, bool notIfObject = false) {
-    if (notIfObject && me.prevCentral == CursorTypes.Object) return;
-    me.onLeft = c;
-    me.onRight = c;
+    /*
+
+    If we have an usedObject we should keep it until we do some "Use" or "Give"
+    If we go over another object and we have an object we can open/close thigs (doors and containers) in all other cases the action should be walk/use
+    If we click onthe same object in the inventory we remove it wihout using it
+
+     */
+
+    if (l == CursorTypes.Normal) {
+      me.CursorL.enabled = false;
+      me.onLeft = CursorTypes.Normal;
+    }
+    else {
+      me.CursorL.enabled = true;
+      if (me.onLeft != l) {
+        me.onLeft = l;
+        me.CursorL.sprite = me.Cursors[(int)l];
+      }
+    }
+
+    if (r == CursorTypes.Normal) {
+      me.CursorR.enabled = false;
+      me.onRight = CursorTypes.Normal;
+    }
+    else {
+      me.CursorR.enabled = true;
+      if (me.onRight != r) {
+        me.onRight = r;
+        me.CursorR.sprite = me.Cursors[(int)r];
+      }
+    }
+
+    if (item == null && l == r && me.onCenter != l) {
+      me.CursorL.enabled = false;
+      me.CursorR.enabled = false;
+      me.onCenter = l;
+      me.Cursor.sprite = me.Cursors[(int)l];
+    }
+    else if (item != null && item.iconImage != null) {
+      if (me.Cursor.sprite != item.iconImage) {
+        me.Cursor.sprite = item.iconImage;
+        me.onCenter = CursorTypes.Object;
+      }
+    }
+    else if (me.Cursor.sprite != me.Cursors[0]) {
+      me.Cursor.sprite = me.Cursors[0];
+      me.onCenter = CursorTypes.Normal;
+    }
+
   }
 
 
   public Sprite[] Cursors;
 
-  internal static void SetObject(Sprite cursorImage) {
-    if (cursorImage != null) {
-      SetBoth(CursorTypes.Object);
-      me.Cursor.sprite = cursorImage;
-    }
-    else {
-      SetBoth(CursorTypes.Normal);
-      me.Cursor.sprite = me.Cursors[0];
-    }
-  }
-
-  internal static void SoftCleanObject() {
-    if (me.prevCentral == CursorTypes.Object) {
-      SetBoth(CursorTypes.Normal);
-      me.Cursor.sprite = me.Cursors[0];
-    }
-  }
-
-
-  internal static bool IsItemCursor() {
-    return me.prevCentral == CursorTypes.Object;
-  }
 }
 
 public enum CursorTypes {
