@@ -12,16 +12,24 @@ public class GameOver : MonoBehaviour {
   public AudioClip ManiacMansionMusic;
   public GameObject Title;
   public GameObject Buttons;
+  public GameObject Blackbackground;
+  public GameObject Panel;
 
-  public GameObject PlayerGrave;
-  public SpriteRenderer PlayerPortrait;
-  public TextMeshPro PlayerName;
+  public GameObject Player1Grave;
+  public SpriteRenderer Player1Portrait;
+  public TextMeshPro Player1Name;
+  bool Player1Dead = false;
+  public GameObject Player2Grave;
+  public SpriteRenderer Player2Portrait;
+  public TextMeshPro Player2Name;
   public Woods woods;
   public Sprite Grave;
   public Room NoRoom;
+  public Room PoolBottom;
 
   float time = -1f;
   GameOverStatus status = GameOverStatus.No;
+  bool triggerGameOver = false;
   Room oldCurrentRoom;
 
   private void Awake() {
@@ -33,7 +41,8 @@ public class GameOver : MonoBehaviour {
     go.Audio.Stop();
     go.Audio.clip = null;
     go.status = GameOverStatus.No;
-    go.PlayerGrave.SetActive(false);
+    go.Player1Grave.SetActive(false);
+    go.Player2Grave.SetActive(false);
   }
 
   public static void RunGameOver(bool nuclear = true) {
@@ -46,6 +55,8 @@ public class GameOver : MonoBehaviour {
     canvas.enabled = true;
     Title.SetActive(false);
     Buttons.SetActive(false);
+    Blackbackground.SetActive(true);
+    Panel.SetActive(true);
     Audio.clip = CricketsAudioClip;
     Audio.Play();
     time = 2f;
@@ -89,6 +100,19 @@ public class GameOver : MonoBehaviour {
         time = 8f;
       }
       else if (status==GameOverStatus.PlayerDeath2) {
+        if (triggerGameOver) {
+          triggerGameOver = false;
+          status = GameOverStatus.GameOverTitle;
+          Title.SetActive(true);
+          Buttons.SetActive(true);
+          Blackbackground.SetActive(false);
+          Panel.SetActive(false);
+          canvas.enabled = true;
+          time = 5f;
+          CursorHandler.Set();
+          return;
+        }
+
         Fader.FadeIn();
         oldCurrentRoom = GD.c.currentRoom;
         GD.c.currentRoom = null;
@@ -107,28 +131,76 @@ public class GameOver : MonoBehaviour {
     }
   }
 
-  public static void PlayerDeath(Actor a) {
-    if (a == GD.c.actor1) {
+  public static void PlayerDeath() {
+    // Let's find who is dead.
+    // In case of a single player just do the normal sequence
+    // In case of a second one or two at the same time do a final gameover
+    Actor dead1 = null;
+    Actor dead2 = null;
+    if (!GD.c.actor1.dead && GD.c.actor1.currentRoom == go.PoolBottom) {
       GD.c.ActorPortrait1.portrait.sprite = go.Grave;
+      dead1 = GD.c.actor1;
     }
-    else if (a == GD.c.actor2) {
+    if (!GD.c.actor2.dead && GD.c.actor2.currentRoom == go.PoolBottom) {
       GD.c.ActorPortrait2.portrait.sprite = go.Grave;
+      if (dead1 == null)      
+        dead1 = GD.c.actor2;
+      else
+        dead2 = GD.c.actor2;
     }
-    else if (a == GD.c.actor3) {
+    if (!GD.c.actor3.dead && GD.c.actor3.currentRoom == go.PoolBottom) {
       GD.c.ActorPortrait3.portrait.sprite = go.Grave;
+      if (dead1 == null)
+        dead1 = GD.c.actor3;
+      else
+        dead2 = GD.c.actor3;
     }
-    a.currentRoom = go.NoRoom;
-    a.transform.position = new Vector3(100, 100, 0);
-    a.IsVisible = false;
-    go.StartCoroutine(go.DrawCemetery(a.name, a.id));
+
+    if (dead1 != null) {
+      dead1.currentRoom = go.NoRoom;
+      dead1.transform.position = new Vector3(100, 100, 0);
+      dead1.IsVisible = false;
+    }
+    if (dead2 != null) {
+      dead2.currentRoom = go.NoRoom;
+      dead2.transform.position = new Vector3(100, 100, 0);
+      dead2.IsVisible = false;
+    }
+
+    go.StartCoroutine(go.DrawCemetery(dead1, dead2));
   }
 
-  IEnumerator DrawCemetery(string name, Chars id) {
+  IEnumerator DrawCemetery(Actor dead1, Actor dead2) {
     Fader.FadeIn();
     yield return null;
-    go.PlayerPortrait.sprite = GD.c.Portraits[(int)id - 10];
-    go.PlayerName.text = name;
-    go.PlayerGrave.SetActive(true);
+
+    if (dead1 != null && dead2 != null) {
+      // Both graves togheter, then GameOver
+      go.Player1Portrait.sprite = GD.c.Portraits[(int)dead1.id - 10];
+      go.Player1Name.text = dead1.name;
+      go.Player1Grave.SetActive(true);
+      go.Player2Portrait.sprite = GD.c.Portraits[(int)dead2.id - 10];
+      go.Player2Name.text = dead2.name;
+      go.Player2Grave.SetActive(true);
+      triggerGameOver = true;
+    }
+    else {
+      if (!go.Player1Dead) {
+        // Single grave
+        go.Player1Portrait.sprite = GD.c.Portraits[(int)dead1.id - 10];
+        go.Player1Name.text = dead1.name;
+        go.Player1Grave.SetActive(true);
+        go.Player1Dead = true;
+      }
+      else {
+        // Fill second grave and then GameOver
+        go.Player2Portrait.sprite = GD.c.Portraits[(int)dead1.id - 10];
+        go.Player2Name.text = dead1.name;
+        go.Player2Grave.SetActive(true);
+        triggerGameOver = true;
+      }
+    }
+
     go.woods.gameObject.SetActive(true);
     yield return new WaitForSeconds(.25f);
     go.woods.Generate(false, false, -2);

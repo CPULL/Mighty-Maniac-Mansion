@@ -23,10 +23,13 @@
 			]
 		},
 		
-		{ "name":"Water up", "skippable":2,
+		{ "name":"Water up no deaths", "skippable":2,
 			"condition":[
 				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
-				{ "type":"ActorInRoom", "id":"Player", "bv":false, "sv":"PoolBottom" }
+				{ "type":"ActorInRoom", "id":"Actor1", "bv":false, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor2", "bv":false, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor3", "bv":false, "sv":"PoolBottom" },
+				{ "type":"FlagValueIs", "id":"GameOver", "bv":true, "iv":0 }
 			],
 			"action":[
 				{ "type":"Wait", "del":0.5 },
@@ -37,18 +40,36 @@
 			]
 		},
 		
-		{ "name":"Water up with player1 in pool", "skippable":0,
+		{ "name":"Water up with deaths", "skippable":2,
 			"condition":[
 				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
-				{ "type":"ActorInRoom", "id":"Actor1", "bv":true, "sv":"PoolBottom" }
+				{ "type":"ActorInRoom", "id":"Actor1", "bv":false, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor2", "bv":false, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor3", "bv":false, "sv":"PoolBottom" },
+				{ "type":"FlagValueIs", "id":"GameOver", "bv":true, "iv":2 }
 			],
 			"action":[
 				{ "type":"Wait", "del":0.5 },
-				{ "type":"Sound", "del":8, "id1":"Current", "id2":"WaterUp" },
+				{ "type":"StopScenes", "id2":"WaterDownAlarm" },
+				{ "type":"StopScenes", "id2":"PoolEmpty" }
+			]
+		},
+		
+		{ "name":"Water up with player1 in pool", "skippable":0,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
+				{ "type":"ActorInRoom", "id":"Actor1", "bv":true, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor2", "bv":false, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor3", "bv":false, "sv":"PoolBottom" }
+			],
+			"action":[
+				{ "type":"Wait", "del":0.5 },
+				{ "type":"Sound", "del":4, "id1":"Current", "id2":"WaterUp" },
 				{ "type":"Speak", "del":0, "id1":"Current", "id2":"", "sv":"Water up", "iv":"", "dv":"L", "vv":[] },
 				{ "type":"Wait", "del":1 },
 				{ "type":"Speak", "del":0, "id1":"Current", "sv":"I fear somebody had\na really bad time", "dv":"F" },
-				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"F", "del":1.5 }
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"F", "del":1.5 },
+				{ "type":"Anim", "del":0.5, "id2":"PoolWater", "sv":"Pool Water Animation Idle Up" },
 				{ "type":"SetFlag", "id1":"GameOver", "iv":2 },
 				{ "type":"StopScenes", "id2":"WaterDownAlarm" },
 				{ "type":"StopScenes", "id2":"PoolEmpty" }
@@ -58,16 +79,19 @@
 		{ "name":"Water up with player2 in pool", "skippable":0,
 			"condition":[
 				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
-				{ "type":"ActorInRoom", "id":"Actor2", "bv":true, "sv":"PoolBottom" }
+				{ "type":"ActorInRoom", "id":"Actor1", "bv":false, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor2", "bv":true, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor3", "bv":false, "sv":"PoolBottom" }
 			],
 			"action":[
 				{ "type":"Wait", "del":0.5 },
-				{ "type":"Sound", "del":8, "id1":"Current", "id2":"WaterUp" },
+				{ "type":"Sound", "del":4, "id1":"Current", "id2":"WaterUp" },
 				{ "type":"Speak", "del":0, "id1":"Current", "id2":"", "sv":"Water up", "iv":"", "dv":"L", "vv":[] },
 				{ "type":"Wait", "del":1 },
 				{ "type":"Speak", "del":0, "id1":"Current", "sv":"I fear somebody had\na really bad time", "dv":"F" },
-				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"F", "del":1.5 }
-				{ "type":"SetFlag", "id1":"GameOver", "iv":3 },
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"F", "del":1.5 },
+				{ "type":"Anim", "del":0.5, "id2":"PoolWater", "sv":"Pool Water Animation Idle Up" },
+				{ "type":"SetFlag", "id1":"GameOver", "iv":2 },
 				{ "type":"StopScenes", "id2":"WaterDownAlarm" },
 				{ "type":"StopScenes", "id2":"PoolEmpty" }
 			]
@@ -76,20 +100,80 @@
 		{ "name":"Water up with player3 in pool", "skippable":0,
 			"condition":[
 				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
+				{ "type":"ActorInRoom", "id":"Actor1", "bv":false, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor2", "bv":false, "sv":"PoolBottom" },
 				{ "type":"ActorInRoom", "id":"Actor3", "bv":true, "sv":"PoolBottom" }
 			],
 			"action":[
 				{ "type":"Wait", "del":0.5 },
-				{ "type":"Sound", "del":8, "id1":"Current", "id2":"WaterUp" },
+				{ "type":"Sound", "del":4, "id1":"Current", "id2":"WaterUp" },
 				{ "type":"Speak", "del":0, "id1":"Current", "id2":"", "sv":"Water up", "iv":"", "dv":"L", "vv":[] },
 				{ "type":"Wait", "del":1 },
 				{ "type":"Speak", "del":0, "id1":"Current", "sv":"I fear somebody had\na really bad time", "dv":"F" },
-				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"F", "del":1.5 }
-				{ "type":"SetFlag", "id1":"GameOver", "iv":4 },
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"F", "del":1.5 },
+				{ "type":"Anim", "del":0.5, "id2":"PoolWater", "sv":"Pool Water Animation Idle Up" },
+				{ "type":"SetFlag", "id1":"GameOver", "iv":2 },
+				{ "type":"StopScenes", "id2":"WaterDownAlarm" },
+				{ "type":"StopScenes", "id2":"PoolEmpty" }
+			]
+		},
+		
+		{ "name":"Water up with player1&2 in pool", "skippable":0,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
+				{ "type":"ActorInRoom", "id":"Actor1", "bv":true, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor2", "bv":true, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor3", "bv":false, "sv":"PoolBottom" }
+			],
+			"action":[
+				{ "type":"Wait", "del":0.5 },
+				{ "type":"Sound", "del":2, "id1":"Current", "id2":"WaterUp" },
+				{ "type":"Wait", "del":1 },
+				{ "type":"Speak", "del":0, "id1":"Current", "sv":"I fear somebody had\na really bad time", "dv":"F" },
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"F", "del":2.5 }
+				{ "type":"SetFlag", "id1":"GameOver", "iv":2 },
+				{ "type":"StopScenes", "id2":"WaterDownAlarm" },
+				{ "type":"StopScenes", "id2":"PoolEmpty" }
+			]
+		},
+		{ "name":"Water up with player1&3 in pool", "skippable":0,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
+				{ "type":"ActorInRoom", "id":"Actor1", "bv":true, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor2", "bv":false, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor3", "bv":true, "sv":"PoolBottom" }
+			],
+			"action":[
+				{ "type":"Wait", "del":0.5 },
+				{ "type":"Sound", "del":2, "id1":"Current", "id2":"WaterUp" },
+				{ "type":"Wait", "del":1 },
+				{ "type":"Speak", "del":0, "id1":"Current", "sv":"I fear somebody had\na really bad time", "dv":"F" },
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"F", "del":2.5 }
+				{ "type":"SetFlag", "id1":"GameOver", "iv":2 },
+				{ "type":"StopScenes", "id2":"WaterDownAlarm" },
+				{ "type":"StopScenes", "id2":"PoolEmpty" }
+			]
+		},
+		{ "name":"Water up with player2&3 in pool", "skippable":0,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
+				{ "type":"ActorInRoom", "id":"Actor1", "bv":false, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor2", "bv":true, "sv":"PoolBottom" },
+				{ "type":"ActorInRoom", "id":"Actor3", "bv":true, "sv":"PoolBottom" }
+			],
+			"action":[
+				{ "type":"Wait", "del":0.5 },
+				{ "type":"Sound", "del":2, "id1":"Current", "id2":"WaterUp" },
+				{ "type":"Wait", "del":1 },
+				{ "type":"Speak", "del":0, "id1":"Current", "sv":"I fear somebody had\na really bad time", "dv":"F" },
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"F", "del":2.5 }
+				{ "type":"SetFlag", "id1":"GameOver", "iv":2 },
 				{ "type":"StopScenes", "id2":"WaterDownAlarm" },
 				{ "type":"StopScenes", "id2":"PoolEmpty" }
 			]
 		}
+		
+		
 	]
 
 }

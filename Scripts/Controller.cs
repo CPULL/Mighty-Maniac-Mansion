@@ -1198,6 +1198,25 @@ public class Controller : MonoBehaviour {
       StarsBlink.SetWoods(0);
     }
 
+    if (currentRoom.ID.Equals("Pool")) {
+      Item water = AllObjects.GetItem(ItemEnum.PoolWater);
+      Item watervalve = AllObjects.GetItem(ItemEnum.PoolValve);
+      Animator anim = water.GetComponent<Animator>();
+      if (watervalve.IsOpen()) {
+        AnimatorStateInfo si = anim.GetCurrentAnimatorStateInfo(0);
+        if (si.IsName("Pool Water Animation Up") || si.IsName("Pool Water Animation Idle Up") || si.IsName("Pool Water Animation Idle")) {
+          anim.Play("Pool Water Animation Idle Down");
+          Debug.Log("-------------------------------------------------> Pool Water Animation Idle Down");
+        }
+      }
+      else {
+        AnimatorStateInfo si = anim.GetCurrentAnimatorStateInfo(0);
+        if (si.IsName("Pool Water Animation Down") || si.IsName("Pool Water Animation Idle Down") || si.IsName("Pool Water Animation Idle")) {
+          anim.Play("Pool Water Animation Idle Up");
+          Debug.Log("-------------------------------------------------> Pool Water Animation Idle Up");
+        }
+      }
+    }
 
     BlackFade.color = new Color32(0, 0, 0, 0);
   }
@@ -1248,6 +1267,25 @@ public class Controller : MonoBehaviour {
     CursorHandler.Set();
     overItem = null;
     CameraFadingToActor = false;
+    if (currentRoom.ID.Equals("Pool")) {
+      Item water = AllObjects.GetItem(ItemEnum.PoolWater);
+      Item watervalve = AllObjects.GetItem(ItemEnum.PoolValve);
+      Animator anim = water.GetComponent<Animator>();
+      if (watervalve.IsOpen()) {
+        AnimatorStateInfo si = anim.GetCurrentAnimatorStateInfo(0);
+        if (si.IsName("Pool Water Animation Up") || si.IsName("Pool Water Animation Idle Up") || si.IsName("Pool Water Animation Idle")) {
+          anim.Play("Pool Water Animation Idle Down");
+          Debug.Log("-------------------------------------------------> Pool Water Animation Idle Down");
+        }
+      }
+      else {
+        AnimatorStateInfo si = anim.GetCurrentAnimatorStateInfo(0);
+        if (si.IsName("Pool Water Animation Down") || si.IsName("Pool Water Animation Idle Down") || si.IsName("Pool Water Animation Idle")) {
+          anim.Play("Pool Water Animation Idle Up");
+          Debug.Log("-------------------------------------------------> Pool Water Animation Idle Up");
+        }
+      }
+    }
     BlackFade.color = new Color32(0, 0, 0, 0);
   }
 

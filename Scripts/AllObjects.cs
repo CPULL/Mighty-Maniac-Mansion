@@ -48,12 +48,8 @@ public class AllObjects : MonoBehaviour {
     if (flag == GameFlag.GameOver) {
       if (val == 1)
         GameOver.RunGameOver(true);
-      else if (val == 2)
-        GameOver.PlayerDeath(GD.c.actor1);
-      else if (val == 3)
-        GameOver.PlayerDeath(GD.c.actor2);
-      else if (val == 4)
-        GameOver.PlayerDeath(GD.c.actor3);
+      else if (val == 2) // Player dead
+        GameOver.PlayerDeath();
     }
 
     foreach (FlagStatus fs in GD.a.flagsList)
