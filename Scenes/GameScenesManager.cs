@@ -17,7 +17,6 @@ public class GameScenesManager : MonoBehaviour {
 
 
   void Update() {
-
     // Here we will play the scenes that are active
     foreach (GameScene s in scenes) {
       if (s == null) continue;
@@ -38,8 +37,10 @@ public class GameScenesManager : MonoBehaviour {
       }
     }
 
+    CalculateSkippedStatus();
+
     // FIXME remove
-    string dbg = "";
+    string dbg = "sceneStatus = " + sceneStatus + "\n";
     foreach (GameScene s in scenes) {
       dbg += s + "\n";
     }

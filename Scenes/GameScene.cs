@@ -57,27 +57,12 @@ public class GameScene {
     shutdown = new List<GameAction>();
   }
 
+
+  string lastaction = "";
+
   public override string ToString() {
-    return Id + " - " + " " + status + " " + skippable.ToString() + " " + skipped;
+    return Id + " - " + " " + status + " " + skippable.ToString().Substring(0,6) + " " + (skipped?"[skipped]":"") + " " + lastaction;
   }
-
-  internal void Reset() { // FIXME not used?
-    if (status != GameSceneStatus.NotRunning) { // Play quickly all actions
-      foreach (GameAction a in shutdown) {
-        a.RunAction(null, null, skipped);
-        a.Complete();
-      }
-    }
-    status = GameSceneStatus.NotRunning;
-    startupaction = null;
-    startupactionnum = -1;
-    shutdownaction = null;
-    shutdownactionnum = -1;
-    skipped = false;
-    foreach (GameStep s in steps)
-      s.Reset();
-  }
-
 
   /// <summary>
   /// Check if the main conditions are satisfied
@@ -174,9 +159,11 @@ public class GameScene {
 
       if (startupaction.running == Running.NotStarted) { // Start the action
         startupaction.RunAction(performer, receiver, skipped);
+        lastaction = startupaction.ToString();
       }
       else if (startupaction.running == Running.Running) { // Wait it to complete
         startupaction.CheckTime(Time.deltaTime);
+        lastaction = startupaction.ToString();
       }
       else if (startupaction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
       }
@@ -199,6 +186,8 @@ public class GameScene {
         bool run = gs.Run(this, performer, receiver, skipped);
         atLeastOne |= run;
         if (run) {
+          lastaction = gs.ToString();
+
           skippable = gs.skippable;
           if (skippable == Skippable.NotSkippable) skipped = false;
         }

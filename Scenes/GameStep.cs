@@ -18,8 +18,9 @@ public class GameStep {
     actionnum = -1;
   }
 
+  string lastaction = "";
   public override string ToString() {
-    return name;
+    return name + ": " + lastaction;
   }
 
   public bool IsValid(Actor performer, Actor receiver) {
@@ -56,6 +57,7 @@ public class GameStep {
 
     if (currentAction.running == Running.NotStarted) { // Start the action
       currentAction.RunAction(performer, receiver, skipped);
+      lastaction = currentAction.ToString();
       if (currentAction.type == ActionType.Cutscene) {
         // Quickly stop parent scene
         gameScene.Shutdown(true);
@@ -63,6 +65,7 @@ public class GameStep {
     }
     else if (currentAction.running == Running.Running) { // Wait it to complete
       currentAction.CheckTime(Time.deltaTime);
+      lastaction = currentAction.ToString();
     }
     else if (currentAction.running == Running.WaitingToCompleteAsync) { // Wait it to complete
     }

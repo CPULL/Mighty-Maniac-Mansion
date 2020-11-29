@@ -1,20 +1,41 @@
 {
-	"id":"RedButton", "name":"Pool Red Button push","type":"Cutscene",
+	"id":"WaterDownAlarm", "name":"Water Down Alarm","type":"Cutscene","AppliesTo":"Fred",
 
-	"condition":[],
+	"condition":[
+		{ "type":"ItemOpen", "id":"PoolValve", "bv":true, "iv":0 }
+	],
 	
-	"startup" : [],
+	"startup" : [
+		{ "type":"ShowRoom", "sv":"SecretLabEntrance", "vv":[-151.5,10] },
+		{ "type":"Teleport", "id1":"Fred", "sv":"SecretLabEntrance", "dv":"F", "vv":[-153.5,6.5] },
+		{ "type":"Teleport", "id1":"PurpleTentacle", "sv":"SecretLabEntrance", "dv":"F", "vv":[-141,7] },
+		{ "type":"Sound", "id2":"Alarm", "dv":"F", "vv":[-180, 10] }
+	],
 	
-	"shutdown" : [],
+	"shutdown" : [
+		{ "type":"Sound", "id2":"Alarm", "dv":"None" }
+	],
 	
 	"sequence":[
-		{ "name":"Push", "skippable":0,
+		{ "name":"Alarm", "skippable":0,
+			"condition":[
+				{ "type":"ItemOpen", "id":"PoolValve", "bv":true, "iv":0 }
+			],
 			"action":[
-				{ "type":"Speak", "id1":"Current", "sv":"There should be a reason\nfor this button to be here!", "dv":"B" },
-				{ "type":"Sound", "del":2, "id1":"Current", "id2":"ButtonClick" },
-				{ "type":"Speak", "id1":"Current", "sv":"See?\n\nNothing interesting.", "dv":"F" },
-				{ "type":"Speak", "id1":"Current", "sv":"Let's go back\nto the adventure...", "dv":"L" },
-				{ "type":"SetFlag", "id1":"GameOver", "iv":1 }
+				{ "type":"Expression", "id1":"Fred", "sv":"Sad", "dv":"F", "del":1.5 },
+				{ "type":"Speak", "id1":"Fred", "sv":"Oh no!\n\nThe pool is empty again!", "dv":"B" },
+				{ "type":"Speak", "del":2, "id1":"Fred", "sv":"We are going to\nhave another meltdown!", "dv":"B" },
+				{ "type":"WalkToPos", "id1":"Fred", "dv":"B", "vv":[-151,7.5] },
+				{ "type":"Speak", "id1":"Fred", "sv":"How can I take over the world\nwhen I am on a budget?", "dv":"F" },
+				{ "type":"Speak", "id1":"Fred", "sv":"Tentace!\n\nFront aaaaand Center!", "dv":"R" },
+				{ "type":"WalkToPos", "id1":"PurpleTentacle", "dv":"L", "vv":[-149,7.5] },
+				{ "type":"Speak", "id1":"PurpleTentacle", "sv":"Sir!\nYessir!", "dv":"L" },
+				{ "type":"Speak", "id1":"Fred", "sv":"Quickly!\nGo check the reactor\nand the pool!", "dv":"R" },
+				{ "type":"Speak", "id1":"PurpleTentacle", "sv":"Right away,  Sir!", "dv":"L" },
+				{ "type":"WalkToPos", "id1":"PurpleTentacle", "dv":"L", "vv":[-150.3,6.3] },
+				{ "type":"WalkToPos", "id1":"PurpleTentacle", "dv":"L", "vv":[-156.6,8.07] },
+				
+				//...do other actions with the tentacle but use a separate cutscene
 			]
 		}
 	]

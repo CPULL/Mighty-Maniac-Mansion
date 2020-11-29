@@ -86,7 +86,7 @@ public class GameOver : MonoBehaviour {
       else if (status==GameOverStatus.PlayerDeath1) {
         Fader.FadeOut();
         status = GameOverStatus.PlayerDeath2;
-        time = 5f;
+        time = 8f;
       }
       else if (status==GameOverStatus.PlayerDeath2) {
         Fader.FadeIn();
