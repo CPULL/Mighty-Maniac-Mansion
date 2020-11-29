@@ -1,5 +1,7 @@
 === Mighty Maniac Mansion ===
 
+Cursor on the water valve is not right
+
 Purple Tentacle should go first to the basement to check the reactor then to the pool then to the valve and close it.
 In case too much time will pass make an explosion (for example purple will catch two players)
 
@@ -249,3 +251,4 @@ Laverne
 ! Fix the global GD status, cutscenes should be no more visible
 ! Make meltdown anim and game over when pressing red button
 ! Improved autowalking when walking speed is really fast
+! Handle the death players without disabling the actor or we will have problems with further actions.

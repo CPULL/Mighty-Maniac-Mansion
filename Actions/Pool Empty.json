@@ -37,7 +37,7 @@
 			]
 		},
 		
-		{ "name":"Water up with player1 in pool", "skippable":2,
+		{ "name":"Water up with player1 in pool", "skippable":0,
 			"condition":[
 				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
 				{ "type":"ActorInRoom", "id":"Actor1", "bv":true, "sv":"PoolBottom" }
@@ -55,7 +55,7 @@
 			]
 		},
 		
-		{ "name":"Water up with player2 in pool", "skippable":2,
+		{ "name":"Water up with player2 in pool", "skippable":0,
 			"condition":[
 				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
 				{ "type":"ActorInRoom", "id":"Actor2", "bv":true, "sv":"PoolBottom" }
@@ -73,7 +73,7 @@
 			]
 		},
 		
-		{ "name":"Water up with player3 in pool", "skippable":2,
+		{ "name":"Water up with player3 in pool", "skippable":0,
 			"condition":[
 				{ "type":"ItemOpen", "id":"PoolValve", "bv":false, "iv":0 },
 				{ "type":"ActorInRoom", "id":"Actor3", "bv":true, "sv":"PoolBottom" }

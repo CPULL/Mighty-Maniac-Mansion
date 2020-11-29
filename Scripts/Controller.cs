@@ -477,13 +477,13 @@ public class Controller : MonoBehaviour {
     if (GameScenesManager.BlockingScene()) return;
 
     PortraitClickHandler h = (PortraitClickHandler)handler;
-    if (h == GD.c.ActorPortrait1 && GD.c.actor1 != null) {
+    if (h == GD.c.ActorPortrait1 && !GD.c.actor1.dead) {
       SelectActor(GD.c.actor1);
     }
-    else if (h == GD.c.ActorPortrait2 && GD.c.actor2 != null) {
+    else if (h == GD.c.ActorPortrait2 && !GD.c.actor2.dead) {
       SelectActor(GD.c.actor2);
     }
-    else if (h == GD.c.ActorPortrait3 && GD.c.actor3 != null) {
+    else if (h == GD.c.ActorPortrait3 && !GD.c.actor3.dead) {
       SelectActor(GD.c.actor3);
     }
     else if (h == GD.c.InventoryPortrait) {

@@ -391,7 +391,7 @@ public class Actor : MonoBehaviour {
   }
 
   private void Update() {
-    IsVisible = currentRoom == GD.c.currentRoom;
+    IsVisible = currentRoom == GD.c.currentRoom && currentRoom != null;
 
     if (isSpeaking) {
       speakt += Time.deltaTime;
