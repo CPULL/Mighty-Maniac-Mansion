@@ -23,6 +23,17 @@ public class GameScene {
   public Skippable skippable = Skippable.NotSkippable;
 
 
+  public GameScene(string name, GameSceneType type, Chars main) {
+    Id = CutsceneID.NONE;
+    Type = type;
+    Name = name;
+    mainChar = main;
+    globalCondition = new List<Condition>();
+    steps = new List<GameStep>();
+    startup = new List<GameAction>();
+    shutdown = new List<GameAction>();
+  }
+
   public GameScene(string id, string name, string type, string main) {
     Name = name;
     type = type.ToLowerInvariant()+"c";
@@ -61,14 +72,17 @@ public class GameScene {
   string lastaction = "";
 
   public override string ToString() {
-    return Id + " - " + " " + status + " " + skippable.ToString().Substring(0,6) + " " + (skipped?"[skipped]":"") + " " + lastaction;
+    if (Id == CutsceneID.NONE)
+      return Name + " - " + " " + status + " " + skippable.ToString().Substring(0, 4) + " " + (skipped ? "[sk]" : "") + " " + lastaction;
+    else
+      return Id + " - " + " " + status + " " + skippable.ToString().Substring(0, 4) + " " + (skipped ? "[sk]" : "") + " " + lastaction;
   }
 
   /// <summary>
   /// Check if the main conditions are satisfied
   /// </summary>
   public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when) {
-    if (Id == CutsceneID.NONE) return false;
+    if (Id == CutsceneID.NONE && Type != GameSceneType.SetOfActions) return false;
     if (GameScenesManager.UniqueScenesPlaying(this)) {
       status = GameSceneStatus.NotRunning;
       return false;

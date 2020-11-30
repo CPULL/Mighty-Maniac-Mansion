@@ -116,12 +116,10 @@ public class Item : MonoBehaviour {
 
     foreach (ActionAndCondition ac in actions) {
       if (ac.Condition.IsValid(actor, secondary, item1, item2, when)) {
-        foreach (GameAction a in ac.Actions) {
-          a.RunAction(actor, secondary, false);
-          if (res == null) res = new ActionRes { actionDone = true, res = null };
-          if (!a.type.GoodByDefault() && !string.IsNullOrEmpty(a.msg))
-            res.res = a.msg;
-        }
+        res = new ActionRes { 
+          actionDone = true, 
+          res = ac.RunAsSequence(Name, actor.id)
+        };
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg)) {
         if (res == null) res = new ActionRes();
@@ -138,9 +136,7 @@ public class Item : MonoBehaviour {
     bool done = false;
     foreach (ActionAndCondition ac in actions) {
       if (ac.Condition.IsValid(actor, null, this, other, When.UseTogether)) {
-        foreach (GameAction a in ac.Actions) {
-          a.RunAction(actor, null, false);
-        }
+        ac.RunAsSequence(Name, actor.id);
         done = true;
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
@@ -148,9 +144,7 @@ public class Item : MonoBehaviour {
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
       if (ac.Condition.IsValid(actor, null, this, other, When.UseTogether)) {
-        foreach (GameAction a in ac.Actions) {
-          a.RunAction(actor, null, false);
-        }
+        ac.RunAsSequence(Name, actor.id);
         done = true;
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
@@ -186,7 +180,6 @@ public class Item : MonoBehaviour {
 
 
   public void ForceOpen(bool val) {
-    if (Usable != Tstatus.Openable) return;
     if (val) { // Open
       SetAsOpen();
     }

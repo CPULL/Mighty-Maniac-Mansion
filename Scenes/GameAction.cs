@@ -848,8 +848,10 @@ public class GameAction {
       case ActionType.Anim: {
         if (id1 != 0) {
           Actor a = Controller.GetActor((Chars)id1);
-          Debug.LogError("FIXME anim actor not implemented!"); // FIXME
-          Complete();
+          if (a.PlayAnim(str, delay))
+            Complete();
+          else
+            Play();
           return;
         }
         Item item = AllObjects.GetItem((ItemEnum)id2);

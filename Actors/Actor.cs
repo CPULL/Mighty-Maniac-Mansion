@@ -620,6 +620,34 @@ public class Actor : MonoBehaviour {
     }
   }
 
+
+  private string animToPlay = null;
+  private System.DateTime animStartTime;
+  private float timeForAnim;
+  public bool PlayAnim(string animName, float timer) {
+    if (gameObject.activeInHierarchy) {
+      animToPlay = null;
+      anim.enabled = true;
+      anim.Play(id.ToString() + " " + animName.Trim());
+    }
+    else {
+      animToPlay = id.ToString() + " " + animName.Trim();
+      animStartTime = System.DateTime.Now;
+      timeForAnim = timer;
+    }
+    return timer == 0;
+  }
+
+  private void OnEnable() {
+    if (animToPlay == null) return;
+    System.TimeSpan elapsed = System.DateTime.Now - animStartTime;
+    if (elapsed.TotalSeconds > timeForAnim) {
+      animToPlay = null;
+      return;
+    }
+    anim.Play(animToPlay, 0, (float)elapsed.TotalSeconds / timeForAnim);
+  }
+
 }
 
 public enum WalkingMode {
