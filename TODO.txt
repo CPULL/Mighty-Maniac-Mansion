@@ -54,14 +54,14 @@ Purple Meteor
 !Bernard
 Hoagie
 !Michael
-Razor
+!Razor
 !Syd
 !Wendy
 !Jeff
 !Sandy
 !Javid
 !Ollie
-Laverne
+!Laverne
 
 
 

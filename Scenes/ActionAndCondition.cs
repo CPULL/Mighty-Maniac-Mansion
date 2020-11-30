@@ -3,10 +3,9 @@
 [System.Serializable]
 public class ActionAndCondition {
   [SerializeField] public Condition Condition;
-  [SerializeField] public GameAction Action;
-  public string Name {
-    get { return "[" + Condition.ToString() + "] " + Action.ToString(); }
-  }
+  [SerializeField] public int NumActions;
+  [SerializeField] public GameAction[] Actions;
+
 }
 
 
