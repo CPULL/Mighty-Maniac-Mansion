@@ -98,14 +98,6 @@ public class CursorHandler : MonoBehaviour {
     }
     Controller.Dbg((item == null?"[]":"[XXX]")+ str);
 
-    /*
-
-    If we have an usedObject we should keep it until we do some "Use" or "Give"
-    If we go over another object and we have an object we can open/close thigs (doors and containers) in all other cases the action should be walk/use
-    If we click onthe same object in the inventory we remove it wihout using it
-
-     */
-
     if (l == CursorTypes.Normal) {
       me.CursorL.enabled = false;
       me.onLeft = CursorTypes.Normal;
@@ -130,23 +122,33 @@ public class CursorHandler : MonoBehaviour {
       }
     }
 
-    if (item == null && l == r && me.onCenter != l) {
-      me.CursorL.enabled = false;
-      me.CursorR.enabled = false;
-      me.onCenter = l;
-      me.Cursor.sprite = me.Cursors[(int)l];
-    }
-    else if (item != null && item.iconImage != null) {
-      if (me.Cursor.sprite != item.iconImage) {
-        me.Cursor.sprite = item.iconImage;
-        me.onCenter = CursorTypes.Object;
+    if (l == r) {
+      if (item == null || item.iconImage == null) {
+        me.CursorL.enabled = false;
+        me.CursorR.enabled = false;
+        me.onCenter = l;
+        me.Cursor.sprite = me.Cursors[(int)l];
+        me.onCenter = CursorTypes.Normal;
+      }
+      else {
+        if (me.Cursor.sprite != item.iconImage) {
+          me.Cursor.sprite = item.iconImage;
+          me.onCenter = CursorTypes.Object;
+        }
       }
     }
-    else if (me.Cursor.sprite != me.Cursors[0]) {
-      me.Cursor.sprite = me.Cursors[0];
-      me.onCenter = CursorTypes.Normal;
+    else {
+      if (item != null && item.iconImage != null) {
+        if (me.Cursor.sprite != item.iconImage) {
+          me.Cursor.sprite = item.iconImage;
+          me.onCenter = CursorTypes.Object;
+        }
+      }
+      else if (me.Cursor.sprite != me.Cursors[0]) {
+        me.Cursor.sprite = me.Cursors[0];
+        me.onCenter = CursorTypes.Normal;
+      }
     }
-
   }
 
 

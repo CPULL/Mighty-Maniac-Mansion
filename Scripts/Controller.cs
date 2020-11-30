@@ -25,12 +25,12 @@ public class Controller : MonoBehaviour {
   static string dbgu, dbgc;
   public static void DbgU(string txt) {
     dbgu = txt;
-//    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
+    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
   }
 
   public static void DbgC(string txt) {
     dbgc = txt;
-//    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
+    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
   }
 
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
@@ -273,6 +273,7 @@ public class Controller : MonoBehaviour {
           overInventoryItem = null;
           CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, usedItem);
           DbgC("Update 274 norm");
+          if (!string.IsNullOrEmpty(usedItem.Description)) currentActor.Say(usedItem.Description);
         }
         else { /* rmb - use immediately */
           string res = overInventoryItem.Use(currentActor);
@@ -343,6 +344,9 @@ public class Controller : MonoBehaviour {
                 if (actor == actor1) item.owner = Chars.Actor1;
                 else if (actor == actor2) item.owner = Chars.Actor2;
                 else if (actor == actor3) item.owner = Chars.Actor3;
+                // Change the default actions to Read/Use
+                item.whatItDoesL = WhatItDoes.Read;
+                item.whatItDoesR = WhatItDoes.Use;
                 item.PlayActions(currentActor, null, When.Pick, null);
                 item = null;
                 CursorHandler.Set();
@@ -747,6 +751,11 @@ public class Controller : MonoBehaviour {
       GD.c.ShowName(item.Name);
     }
 
+    if (GD.c.overItem != null && GD.c.usedItem != null) {
+      onL = CursorTypes.Normal;
+      onR = CursorTypes.Use;
+    }
+
     CursorHandler.Set(onL, onR, GD.c.usedItem);
     DbgC("SetItem 747");
   }
@@ -1066,8 +1075,10 @@ public class Controller : MonoBehaviour {
 
   Actor overActor = null;
   internal static bool OverActor(Actor actor) {
-    if (!actor.IsVisible || !actor.gameObject.activeSelf) return false;
-    if (actor != null && actor == GD.c.currentActor) return true;
+    if (actor != null) {
+      if (!actor.IsVisible || !actor.gameObject.activeSelf) return false;
+      if (actor == GD.c.currentActor) return true;
+    }
     GD.c.overActor = actor;
     if (actor != null && GD.c.usedItem != null)
       CursorHandler.Set(CursorTypes.Normal, CursorTypes.Give, GD.c.usedItem);
