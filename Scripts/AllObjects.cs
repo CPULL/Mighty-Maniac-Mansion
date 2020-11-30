@@ -130,6 +130,9 @@ public enum ItemEnum {
   PoolWater,
   Radio,
   RadioactivePoolWater,
+  GlassCan,
+  GlassCanRadioactive,
+  GlassCanWater,
 }
 
 

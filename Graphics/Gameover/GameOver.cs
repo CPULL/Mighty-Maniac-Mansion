@@ -200,6 +200,8 @@ public class GameOver : MonoBehaviour {
         triggerGameOver = true;
       }
     }
+    while (Fader.IsFading())
+      yield return null;
 
     go.woods.gameObject.SetActive(true);
     yield return new WaitForSeconds(.25f);

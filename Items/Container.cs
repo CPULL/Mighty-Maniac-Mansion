@@ -98,6 +98,7 @@ public class Container : Item {
       if (ci.type == item.ID) {
         ci.inContainer = enable;
         ci.item.gameObject.SetActive(IsOpen() && enable);
+        ci.item.isEnabled = IsOpen() && enable;
         return;
       }
   }

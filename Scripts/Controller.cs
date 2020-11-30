@@ -615,6 +615,7 @@ public class Controller : MonoBehaviour {
       GameObject.Destroy(t.gameObject);
 
     foreach (Item item in actor.inventory) {
+      if (!item.isEnabled) continue;
       GameObject ii = Instantiate(InventoryItemTemplate, Inventory.transform);
       ii.gameObject.SetActive(true);
       InventoryItem it = ii.GetComponent<InventoryItem>();
@@ -1065,6 +1066,7 @@ public class Controller : MonoBehaviour {
 
   Actor overActor = null;
   internal static bool OverActor(Actor actor) {
+    if (!actor.IsVisible || !actor.gameObject.activeSelf) return false;
     if (actor != null && actor == GD.c.currentActor) return true;
     GD.c.overActor = actor;
     if (actor != null && GD.c.usedItem != null)
@@ -1198,7 +1200,7 @@ public class Controller : MonoBehaviour {
       StarsBlink.SetWoods(0);
     }
 
-    if (currentRoom.ID.Equals("Pool")) {
+    if (currentRoom.ID.Equals("Pool")) { // Code specific for the pool
       Item water = AllObjects.GetItem(ItemEnum.PoolWater);
       Item watervalve = AllObjects.GetItem(ItemEnum.PoolValve);
       Animator anim = water.GetComponent<Animator>();
@@ -1206,14 +1208,12 @@ public class Controller : MonoBehaviour {
         AnimatorStateInfo si = anim.GetCurrentAnimatorStateInfo(0);
         if (si.IsName("Pool Water Animation Up") || si.IsName("Pool Water Animation Idle Up") || si.IsName("Pool Water Animation Idle")) {
           anim.Play("Pool Water Animation Idle Down");
-          Debug.Log("-------------------------------------------------> Pool Water Animation Idle Down");
         }
       }
       else {
         AnimatorStateInfo si = anim.GetCurrentAnimatorStateInfo(0);
         if (si.IsName("Pool Water Animation Down") || si.IsName("Pool Water Animation Idle Down") || si.IsName("Pool Water Animation Idle")) {
           anim.Play("Pool Water Animation Idle Up");
-          Debug.Log("-------------------------------------------------> Pool Water Animation Idle Up");
         }
       }
     }
@@ -1267,7 +1267,8 @@ public class Controller : MonoBehaviour {
     CursorHandler.Set();
     overItem = null;
     CameraFadingToActor = false;
-    if (currentRoom.ID.Equals("Pool")) {
+
+    if (currentRoom.ID.Equals("Pool")) { // Code specific for the pool
       Item water = AllObjects.GetItem(ItemEnum.PoolWater);
       Item watervalve = AllObjects.GetItem(ItemEnum.PoolValve);
       Animator anim = water.GetComponent<Animator>();
@@ -1275,14 +1276,12 @@ public class Controller : MonoBehaviour {
         AnimatorStateInfo si = anim.GetCurrentAnimatorStateInfo(0);
         if (si.IsName("Pool Water Animation Up") || si.IsName("Pool Water Animation Idle Up") || si.IsName("Pool Water Animation Idle")) {
           anim.Play("Pool Water Animation Idle Down");
-          Debug.Log("-------------------------------------------------> Pool Water Animation Idle Down");
         }
       }
       else {
         AnimatorStateInfo si = anim.GetCurrentAnimatorStateInfo(0);
         if (si.IsName("Pool Water Animation Down") || si.IsName("Pool Water Animation Idle Down") || si.IsName("Pool Water Animation Idle")) {
           anim.Play("Pool Water Animation Idle Up");
-          Debug.Log("-------------------------------------------------> Pool Water Animation Idle Up");
         }
       }
     }

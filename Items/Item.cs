@@ -33,6 +33,7 @@ public class Item : MonoBehaviour {
   private string animToPlay = null;
   private System.DateTime animStartTime;
   private float timeForAnim;
+  [HideInInspector] public bool isEnabled = true;
 
   public bool PlayAnim(string animName, float timer) {
     Animator anim = GetComponent<Animator>();
@@ -55,6 +56,7 @@ public class Item : MonoBehaviour {
 
   private void Awake() {
     sr = GetComponent<SpriteRenderer>();
+    isEnabled = gameObject.activeSelf;
   }
 
   private void OnMouseEnter() {

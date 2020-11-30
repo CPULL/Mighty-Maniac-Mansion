@@ -689,13 +689,15 @@ public class GameAction {
           Complete();
           return;
         }
-        // Are we disable inside a container?
+        // Are we disabling inside a container?
         Container c = item.transform.parent.GetComponent<Container>();
         if (c != null) {
           c.EnableItem(item, val == 0);
         }
-        else
+        else {
           item.gameObject.SetActive(val == 0);
+          item.isEnabled = val == 0;
+        }
         Complete();
       }
       break;

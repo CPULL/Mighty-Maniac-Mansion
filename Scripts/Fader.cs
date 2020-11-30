@@ -9,6 +9,7 @@ public class Fader : MonoBehaviour {
   Color32 Transparent;
   Color32 Semi;
   Color32 Black;
+  bool fading = false;
 
   private void Awake() {
     f = this;
@@ -20,6 +21,7 @@ public class Fader : MonoBehaviour {
   }
 
   public static void FadeIn() {
+    f.fading = true;
     f.StartCoroutine(f.FadeInCR());
   }
   IEnumerator FadeInCR() {
@@ -32,9 +34,11 @@ public class Fader : MonoBehaviour {
       if (b >= 0) blocks[b].color = f.Black;
       yield return null;
     }
+    f.fading = false;
   }
 
   public static void FadeOut() {
+    f.fading = true;
     f.StartCoroutine(f.FadeOutCR());
   }
   IEnumerator FadeOutCR() {
@@ -47,6 +51,7 @@ public class Fader : MonoBehaviour {
       yield return null;
     }
     canvas.enabled = false;
+    f.fading = false;
   }
 
   public static void RemoveFade() {
@@ -54,7 +59,11 @@ public class Fader : MonoBehaviour {
       f.blocks[i].color = f.Transparent;
     }
     f.canvas.enabled = false;
+    f.fading = false;
   }
 
+  public static bool IsFading() {
+    return f.fading;
+  }
 
 }

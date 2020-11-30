@@ -5,13 +5,11 @@ Purple Tentacle should go first to the basement to check the reactor then to the
 In case too much time will pass make an explosion (for example purple will catch two players)
 
 We need a way to walk on ladders. Probably from the back. Do we need a new anim?
-Fix the cursor when stay over items and using them
 
 shelter with shovel
 woods for treehouse
 treehouse
 ezra berg passage
-pool: implement self destruction button
 pool: glass jar with pool water should produce radioactive water jar
 garage
 graveyard: have graves diggable
