@@ -33,6 +33,7 @@ public class Options : MonoBehaviour {
   public TextMeshProUGUI ScanlinesNoiseVal;
   public TMP_Dropdown ScanlinesDir;
   public Toggle InterlaceTG;
+  public Toggle CloseInventoryTG;
 
 
   public Button[] Tabs;
@@ -163,6 +164,12 @@ public class Options : MonoBehaviour {
     TextVal.text = GetStringValueD(TextSpeed.value);
   }
 
+  public void ChangeCloseInventory() {
+    PlayerPrefs.SetInt("CloseInventory", CloseInventoryTG.isOn ? 1 : 0);
+    Controller.closeInventory = CloseInventoryTG.isOn;
+  }
+
+
 
   public void ChangeFontTG() {
     FontsContainer.SetActive(TextFontTG.isOn);
@@ -278,6 +285,7 @@ public class Options : MonoBehaviour {
       val = PlayerPrefs.GetFloat("TextSpeed", 6);
       TextSpeed.SetValueWithoutNotify(val);
       ChangeTextSpeed();
+      CloseInventoryTG.SetIsOnWithoutNotify(GetFloatValueD(PlayerPrefs.GetInt("CloseInventory", 0)) == 1);
 
       // Video
       UpdateFonts(PlayerPrefs.GetInt("Font", 3));
@@ -328,6 +336,7 @@ public class Options : MonoBehaviour {
       PlayerPrefs.SetFloat("WalkSpeed", WalkSpeed.value);
       Controller.walkSpeed = GetFloatValueD(WalkSpeed.value);
       Controller.textSpeed = GetFloatValueD(TextSpeed.value);
+      Controller.closeInventory = GetFloatValueD(PlayerPrefs.GetInt("CloseInventory", 0)) == 1;
     }
   }
 
@@ -363,6 +372,8 @@ public class Options : MonoBehaviour {
     if (PlayerPrefs.GetFloat("TalkSpeed", 6) <= 1) PlayerPrefs.SetFloat("TalkSpeed", 6);
     Controller.walkSpeed = GetFloatValueD(PlayerPrefs.GetFloat("WalkSpeed", 6));
     Controller.textSpeed = GetFloatValueD(PlayerPrefs.GetFloat("TalkSpeed", 6));
+    Controller.closeInventory = GetFloatValueD(PlayerPrefs.GetInt("CloseInventory", 0)) == 1;
+    GD.opts.CloseInventoryTG.SetIsOnWithoutNotify(Controller.closeInventory);
 
     GD.opts.UpdateFonts(PlayerPrefs.GetInt("Font", 3));
 

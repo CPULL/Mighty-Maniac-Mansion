@@ -274,11 +274,13 @@ public class Controller : MonoBehaviour {
           CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, usedItem);
           DbgC("Update 274 norm");
           if (!string.IsNullOrEmpty(usedItem.Description)) currentActor.Say(usedItem.Description);
+          if (closeInventory) Inventory.SetActive(false);
         }
         else { /* rmb - use immediately */
           string res = overInventoryItem.Use(currentActor);
           if (!string.IsNullOrEmpty(res))
             currentActor.Say(res);
+          if (closeInventory) Inventory.SetActive(false);
         }
 
       }
@@ -1386,6 +1388,7 @@ public class Controller : MonoBehaviour {
   #region *********************** UI and Options *********************** UI and Options *********************** UI and Options *********************** UI and Options ***********************
   public static float walkSpeed;
   public static float textSpeed;
+  public static bool closeInventory;
   public static int c64mode;
   public Options options;
 
