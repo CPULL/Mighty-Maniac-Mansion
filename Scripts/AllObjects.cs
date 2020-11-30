@@ -133,6 +133,8 @@ public enum ItemEnum {
   GlassCan,
   GlassCanRadioactive,
   GlassCanWater,
+  Shovel,
+  PlayerGrave,
 }
 
 

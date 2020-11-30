@@ -349,6 +349,7 @@ public class Controller : MonoBehaviour {
                 // Change the default actions to Read/Use
                 item.whatItDoesL = WhatItDoes.Read;
                 item.whatItDoesR = WhatItDoes.Use;
+                if (item.Usable == Tstatus.Pickable) item.Usable = Tstatus.Usable;
                 item.PlayActions(currentActor, null, When.Pick, null);
                 item = null;
                 CursorHandler.Set();
