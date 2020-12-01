@@ -44,7 +44,7 @@ public class GameScenesManager : MonoBehaviour {
     foreach (GameScene s in scenes) {
       dbg += s + "\n";
     }
-//    Controller.Dbg(dbg);
+    Controller.Dbg(dbg);
   }
 
   public static void StartScene(GameScene scene) {

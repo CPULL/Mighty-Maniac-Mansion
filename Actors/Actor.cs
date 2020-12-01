@@ -41,6 +41,7 @@ public class Actor : MonoBehaviour {
   public List<GameScene> behaviors;
 
   public Wearable Coat = null;
+  public Animator CoatAnim;
 
   bool isSpeaking = false;
   int faceNum = 0;
@@ -291,6 +292,7 @@ public class Actor : MonoBehaviour {
     if (lastanim != walk + dir) {
       anim.Play(walk + dir);
       lastanim = walk + dir;
+      if (CoatAnim != null) CoatAnim.enabled = false;
     }
     walking = WalkingMode.Follower;
   }
@@ -331,6 +333,7 @@ public class Actor : MonoBehaviour {
     if (lastanim != walk + dir) {
       anim.Play(walk + dir);
       lastanim = walk + dir;
+      if (CoatAnim != null) CoatAnim.enabled = false;
     }
     walking = WalkingMode.Position;
   }
@@ -371,6 +374,7 @@ public class Actor : MonoBehaviour {
     if (lastanim != walk + dir) {
       anim.Play(walk + dir);
       lastanim = walk + dir;
+      if (CoatAnim != null) CoatAnim.enabled = false;
     }
     walking = WalkingMode.Follower;
   }
@@ -430,6 +434,7 @@ public class Actor : MonoBehaviour {
           if (lastanim != idle + dir) {
             anim.Play(idle + dir);
             lastanim = idle + dir;
+            if (CoatAnim != null) CoatAnim.enabled = false;
           }
           if (audios.isPlaying) audios.Stop();
         }
@@ -526,6 +531,7 @@ public class Actor : MonoBehaviour {
       if (lastanim != walk + dir) {
         anim.Play(walk + dir);
         lastanim = walk + dir;
+        if (CoatAnim != null) CoatAnim.enabled = false;
       }
     }
 
@@ -634,10 +640,38 @@ public class Actor : MonoBehaviour {
     if (gameObject.activeInHierarchy) {
       animToPlay = null;
       anim.enabled = true;
+      if (string.IsNullOrEmpty(animName)) { // Stop the anims
+        anim.StopPlayback();
+        lastanim = null;
+        if (Coat.gameObject.activeSelf && CoatAnim != null) {
+          CoatAnim.StopPlayback();
+          CoatAnim.enabled = false;
+        }
+        return true;
+      }
+
       anim.Play(id.ToString() + " " + animName.Trim());
+      if (Coat.gameObject.activeSelf) {
+        if (CoatAnim != null) CoatAnim.enabled = true;
+        CoatAnim.Play("Coat " + animName.Trim());
+        CoatAnim.speed = anim.speed;
+      }
     }
     else {
-      animToPlay = id.ToString() + " " + animName.Trim();
+      if (string.IsNullOrEmpty(animName)) { // Stop the anims
+        animToPlay = null;
+        animStartTime = System.DateTime.Now;
+        timeForAnim = 0;
+        anim.StopPlayback();
+        lastanim = null;
+        if (Coat.gameObject.activeSelf && CoatAnim != null) {
+          CoatAnim.StopPlayback();
+          CoatAnim.enabled = false;
+        }
+        return true;
+      }
+
+      animToPlay = animName.Trim();
       animStartTime = System.DateTime.Now;
       timeForAnim = timer;
     }
@@ -651,7 +685,12 @@ public class Actor : MonoBehaviour {
       animToPlay = null;
       return;
     }
-    anim.Play(animToPlay, 0, (float)elapsed.TotalSeconds / timeForAnim);
+    anim.Play(id.ToString() + " " + animToPlay, 0, (float)elapsed.TotalSeconds / timeForAnim);
+    if (Coat.gameObject.activeSelf) {
+      if (CoatAnim != null) CoatAnim.enabled = true;
+      CoatAnim.Play("Coat " + animToPlay);
+      CoatAnim.speed = anim.speed;
+    }
   }
 
   public SpriteRenderer UsedItemSR;

@@ -184,6 +184,7 @@ public enum CutsceneID {
   PoolEmpty,
   WaterDownAlarm,
   RedButton,
+  BackgroundSetOfActions,
 
   unused1,
   unused2,

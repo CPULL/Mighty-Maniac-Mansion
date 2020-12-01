@@ -19,18 +19,18 @@ public class Controller : MonoBehaviour {
 
   public TextMeshProUGUI DbgMsg;
   public static void Dbg(string txt) {
-//    GD.c.DbgMsg.text = txt;
+    GD.c.DbgMsg.text = txt;
   }
 
   static string dbgu, dbgc;
   public static void DbgU(string txt) {
     dbgu = txt;
-    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
+//    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
   }
 
   public static void DbgC(string txt) {
     dbgc = txt;
-    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
+//    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
   }
 
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
@@ -298,6 +298,7 @@ public class Controller : MonoBehaviour {
           if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
           UpdateInventory();
           usedItem = null;
+          overItem = null;
           DbgU("Update 295");
           overInventoryItem = null;
           EnableActorSelection(false);
@@ -424,6 +425,7 @@ public class Controller : MonoBehaviour {
               if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
               UpdateInventory();
               usedItem = null;
+              overItem = null;
               DbgU("Update 416");
               EnableActorSelection(false);
               Inventory.SetActive(false);
@@ -582,6 +584,11 @@ public class Controller : MonoBehaviour {
     FIXME.Usable = Tstatus.Usable;
     FIXME.owner = currentActor.id;
     currentActor.inventory.Add(FIXME);
+    FIXME = AllObjects.GetItem(ItemEnum.Coat);
+    FIXME.whatItDoesR = WhatItDoes.Use;
+    FIXME.Usable = Tstatus.Usable;
+    FIXME.owner = currentActor.id;
+    currentActor.inventory.Add(FIXME);
 
   }
 
@@ -609,6 +616,12 @@ public class Controller : MonoBehaviour {
   private Item overItem = null; // Items we are over with the mouse
   private Item overInventoryItem = null; // Items we are over with the mouse in the inventory
   private Item usedItem = null; // Item that is being used (and visible on the cursor)
+
+  public void ResetItems() {
+    usedItem = null;
+    overInventoryItem = null;
+    overItem = null;
+  }
 
   internal static void UpdateInventory() {
     if (GD.c.Inventory.activeSelf)

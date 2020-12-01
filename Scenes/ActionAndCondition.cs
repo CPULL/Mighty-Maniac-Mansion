@@ -4,6 +4,7 @@
 public class ActionAndCondition {
   [SerializeField] public Condition Condition;
   [SerializeField] public int NumActions;
+  [SerializeField] public bool Blocking;
   [SerializeField] public GameAction[] Actions;
 
   internal string RunAsSequence(string name, Chars performer) {
@@ -12,7 +13,17 @@ public class ActionAndCondition {
       if (!a.type.GoodByDefault() && !string.IsNullOrEmpty(a.msg)) res = a.msg;
     }
 
-    GameScene scene = new GameScene("A&C from " + name, GameSceneType.SetOfActions, performer);
+    if (Actions.Length < 2) {
+      Actions[0].RunAction(Controller.GetActor(performer), null, false);
+      return res;
+    }
+
+    GameScene scene = new GameScene() {
+      Id = CutsceneID.BackgroundSetOfActions,
+      Type = Blocking ? GameSceneType.Cutscene : GameSceneType.SetOfActions,
+      Name = "A&C from " + name,
+      mainChar = performer
+    };
     foreach (GameAction a in Actions) {
       scene.startup.Add(a);
     }

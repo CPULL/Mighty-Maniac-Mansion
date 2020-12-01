@@ -38,9 +38,12 @@ public class ActionAndConditionDrawer : PropertyDrawer {
       Rect cRect = new Rect(position.x + 30, position.y + 1 * lh, position.width - 30, 2 * lh);
       EditorGUI.PropertyField(cRect, property.FindPropertyRelative("Condition"));
 
-      Rect nRect = new Rect(position.x + 30, position.y + 3 * lh, position.width - 30, 1 * lh);
+      Rect nRect = new Rect(position.x + 30, position.y + 3 * lh, position.width / 2 - 30, 1 * lh);
+      Rect bRect = new Rect(position.x + position.width / 2 + 30, position.y + 3 * lh, position.width / 2 - 30, 1 * lh);
       SerializedProperty num = property.FindPropertyRelative("NumActions");
+      SerializedProperty block = property.FindPropertyRelative("Blocking");
       EditorGUI.PropertyField(nRect, num);
+      EditorGUI.PropertyField(bRect, block);
       if (num.intValue > 0) {
         SerializedProperty acts = property.FindPropertyRelative("Actions");
         while (num.intValue < acts.arraySize) {

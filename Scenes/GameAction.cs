@@ -967,6 +967,7 @@ public class GameAction {
 
       case ActionType.Cursor: {
         CursorHandler.Set((CursorTypes)id1, (CursorTypes)id1);
+        GD.c.ResetItems();
         if (val == 1 || (val == 2 && !skipped))
           GD.c.StartCoroutine(GD.c.FadeToRoomActor());
         Complete();

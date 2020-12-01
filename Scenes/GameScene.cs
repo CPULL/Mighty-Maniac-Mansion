@@ -23,11 +23,11 @@ public class GameScene {
   public Skippable skippable = Skippable.NotSkippable;
 
 
-  public GameScene(string name, GameSceneType type, Chars main) {
+  public GameScene() {
     Id = CutsceneID.NONE;
-    Type = type;
-    Name = name;
-    mainChar = main;
+    Type = GameSceneType.Cutscene;
+    Name = "NoName";
+    mainChar = Chars.None;
     globalCondition = new List<Condition>();
     steps = new List<GameStep>();
     startup = new List<GameAction>();
