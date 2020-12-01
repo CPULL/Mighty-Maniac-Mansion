@@ -650,11 +650,11 @@ public class Actor : MonoBehaviour {
         return true;
       }
 
-      anim.Play(id.ToString() + " " + animName.Trim());
+      anim.Play(id.ToString() + " " + animName.Trim(), -1, 0);
       if (Coat.gameObject.activeSelf) {
         if (CoatAnim != null) CoatAnim.enabled = true;
-        CoatAnim.Play("Coat " + animName.Trim());
         CoatAnim.speed = anim.speed;
+        CoatAnim.Play("Coat " + animName.Trim(), -1, 0);
       }
     }
     else {
@@ -685,11 +685,11 @@ public class Actor : MonoBehaviour {
       animToPlay = null;
       return;
     }
-    anim.Play(id.ToString() + " " + animToPlay, 0, (float)elapsed.TotalSeconds / timeForAnim);
+    anim.Play(id.ToString() + " " + animToPlay, -1, (float)elapsed.TotalSeconds / timeForAnim);
     if (Coat.gameObject.activeSelf) {
       if (CoatAnim != null) CoatAnim.enabled = true;
-      CoatAnim.Play("Coat " + animToPlay);
       CoatAnim.speed = anim.speed;
+      CoatAnim.Play("Coat " + animToPlay, -1, (float)elapsed.TotalSeconds / timeForAnim);
     }
   }
 

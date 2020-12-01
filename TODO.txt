@@ -1,7 +1,5 @@
 === Mighty Maniac Mansion ===
 
-On Anim for actors, use the Direction. Check why it was still running
-Add something to enable the shovel (items usable by actors, maybe guitar, maybe flashlight)
 
 Purple Tentacle should go first to the basement to check the reactor then to the pool then to the valve and close it.
 In case too much time will pass make an explosion (for example purple will catch two players)
@@ -23,7 +21,7 @@ Complete intro Cutscene, adding variations for each character (syd, razor, jeff,
 Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)
 Do arms forward in all characters
 Do coats for all characters: Ollie, Jeff, Michael, Sandy, Razor, Hoagie, Laverne
-Do dig anim for all characters
+Do dig for all characters: Ollie, Jeff, Michael, Sandy, Razor, Hoagie, Laverne
 
 Add recycle stuff to the service room
 
