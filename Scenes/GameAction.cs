@@ -45,6 +45,7 @@ public enum ActionType {
 
   ShowMap = 30, // Show and hide the Map of the Woods
   Pick = 31, // Acts like a player picked an item
+  WearItem = 32, // Adds shovel, meteorite, flashlight, and all items that can be hold in hands
 };
 
 
@@ -135,6 +136,15 @@ public class GameAction {
 
       case ActionType.ShowMap: return "Show/Hide Woods map";
       case ActionType.Pick: return "Pick item " + (ItemEnum)id2 + " by " + (Chars)id1;
+      case ActionType.WearItem: 
+        switch(val) {
+          case 0: return (Chars)id1 + " removes " + (ItemEnum)id2;
+          case 1: return (Chars)id1 + " uses if has " + (ItemEnum)id2 + " front";
+          case 2: return (Chars)id1 + " uses if has " + (ItemEnum)id2 + " back";
+          case 3: return (Chars)id1 + " uses " + (ItemEnum)id2 + " front";
+          case 4: return (Chars)id1 + " uses " + (ItemEnum)id2 + " back";
+          default: return (Chars)id1 + " uses ERROR " + (ItemEnum)id2;
+        }
     }
     return res;
   }
@@ -168,6 +178,7 @@ public class GameAction {
       case ActionType.Wear:
       case ActionType.ShowMap:
       case ActionType.Pick:
+      case ActionType.WearItem:
         return;
 
       case ActionType.Speak: {
@@ -417,6 +428,12 @@ public class GameAction {
       break;
 
       case ActionType.Pick: {
+        id1 = SafeParse(typeof(Chars), vid1);
+        id2 = SafeParse(typeof(ItemEnum), vid1);
+      }
+      break;
+
+      case ActionType.WearItem: {
         id1 = SafeParse(typeof(Chars), vid1);
         id2 = SafeParse(typeof(ItemEnum), vid1);
       }
@@ -999,6 +1016,16 @@ public class GameAction {
         Complete();
       }
       break;
+
+      case ActionType.WearItem: {
+        Actor a = Controller.GetActor((Chars)id1);
+        a.WearItem((ItemEnum)id2, val);
+        Complete();
+      }
+      break;
+
+
+
 
       default: {
         // FIXME do the other actions

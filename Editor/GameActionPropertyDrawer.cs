@@ -8,6 +8,7 @@ public class GameActionPropertyDrawer : PropertyDrawer {
   private readonly string[] enableDisable = { "Enable", "Disable" };
   private readonly string[] fadeInOut = { "Fade In", "Fade Out" };
   private readonly string[] turnOnOff = { "Turn On", "Turn Off", "Switch" };
+  private readonly string[] itemUsage = { "remove", "use (front, has)", "use (back, has)", "use (front)", "use (back)" };
 
 
 
@@ -296,6 +297,16 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);
           id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(Chars)));
           id2.intValue = EditorGUI.Popup(bRect, id2.intValue, System.Enum.GetNames(typeof(ItemEnum)));
+        }
+        break;
+
+        case ActionType.WearItem: {
+          Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);
+          Rect cRect = new Rect(position.x + 3 * w4, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(Chars)));
+          val.intValue = EditorGUI.Popup(bRect, val.intValue, itemUsage);
+          id2.intValue = EditorGUI.Popup(cRect, id2.intValue, System.Enum.GetNames(typeof(ItemEnum)));
         }
         break;
       }

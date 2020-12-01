@@ -510,6 +510,12 @@ public class Actor : MonoBehaviour {
     }
     Legs.sortingOrder = zpos;
     if (Coat != null && Coat.gameObject.activeSelf) Coat.SetSortingOrder(zpos);
+    if (UsedItemSR.enabled) {
+      if (UsedItemFront)
+        UsedItemSR.sortingOrder = zpos + 4;
+      else
+        UsedItemSR.sortingOrder = zpos - 2;
+    }
   }
 
   void CheckReachingDestination(Vector2 walkDir) {
@@ -648,6 +654,34 @@ public class Actor : MonoBehaviour {
     anim.Play(animToPlay, 0, (float)elapsed.TotalSeconds / timeForAnim);
   }
 
+  public SpriteRenderer UsedItemSR;
+  bool UsedItemFront = true;
+
+  /// <summary>
+  /// Uses an item
+  /// </summary>
+  /// <param name="id"></param>
+  /// <param name="wear">
+  /// 0 = Remove
+  /// 1 = use but only if owned, and put on front
+  /// 2 = use but only if owned, and put on back
+  /// 3 = use in all cases, and put on front
+  /// 4 = use in all cases, and put on back
+  /// </param>
+  internal void WearItem(ItemEnum id, int wear) {
+    if (wear == 0) {
+      UsedItemSR.enabled = false;
+      return;
+    }
+
+    if ((wear == 1 || wear == 2) && !HasItem(id)) return; // The item is not here
+
+    // Get the item
+    Item item = AllObjects.GetItem(id);
+    UsedItemSR.enabled = true;
+    UsedItemSR.sprite = item.GetComponent<SpriteRenderer>().sprite;
+    UsedItemFront = wear == 1 || wear == 3;
+  }
 }
 
 public enum WalkingMode {
