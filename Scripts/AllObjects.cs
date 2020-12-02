@@ -135,6 +135,11 @@ public enum ItemEnum {
   GlassCanWater,
   Shovel,
   PlayerGrave,
+  ReedCoffin,
+  TedCoffin,
+  Bone,
+  TedCellPhone,
+  TedNote,
 }
 
 
