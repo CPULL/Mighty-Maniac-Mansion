@@ -19,6 +19,7 @@ public class Room : MonoBehaviour {
     srs = new List<SpriteRenderer>();
     CollectAllRenderers(transform);
     CollectAllPaths();
+    UpdateLights();
   }
 
   void CollectAllRenderers(Transform tran) {

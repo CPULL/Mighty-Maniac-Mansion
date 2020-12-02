@@ -20,8 +20,8 @@ Add lookup in dog room
 Complete intro Cutscene, adding variations for each character (syd, razor, jeff, michael, Hoagie, Laverne)
 Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)
 Do arms forward in all characters
-Do coats for all characters: Ollie, Jeff, Michael, Sandy, Razor, Hoagie, Laverne
-Do dig for all characters: Ollie, Jeff, Michael, Sandy, Razor, Hoagie, Laverne
+Do coats for all characters: Jeff, Michael, Sandy, Razor, Hoagie, Laverne
+Do dig for all characters: Jeff, Michael, Sandy, Razor, Hoagie, Laverne
 
 Add recycle stuff to the service room
 
