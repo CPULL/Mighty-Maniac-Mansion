@@ -140,6 +140,8 @@ public enum ItemEnum {
   Bone,
   TedCellPhone,
   TedNote,
+  NedGrave,
+  ReedGrave,
 }
 
 

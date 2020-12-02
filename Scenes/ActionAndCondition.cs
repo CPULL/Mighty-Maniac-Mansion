@@ -3,6 +3,7 @@
 [System.Serializable]
 public class ActionAndCondition {
   [SerializeField] public Condition Condition;
+  [SerializeField] public Condition Condition2;
   [SerializeField] public int NumActions;
   [SerializeField] public bool Blocking;
   [SerializeField] public GameAction[] Actions;
@@ -30,6 +31,20 @@ public class ActionAndCondition {
     GameScenesManager.StartScene(scene);
 
     return res;
+  }
+
+  internal bool IsValid(Actor actor, Actor secondary, Item item1, Item item2, When when) {
+    if (Condition.type == ConditionType.None) return true;
+    bool valid = Condition.IsValid(actor, secondary, item1, item2, when);
+    if (!valid) return false;
+    return Condition2.IsValid(actor, secondary, item1, item2, when);
+  }
+
+  internal string GetConditionMsg(Actor actor, Actor secondary, When when, Item item1, Item item2) {
+    if (Condition.type == ConditionType.None) return null;
+    if (!Condition.IsValid(actor, secondary, item1, item2, when) && !string.IsNullOrEmpty(Condition.msg)) return Condition.msg;
+    if (!Condition2.IsValid(actor, secondary, item1, item2, when) && !string.IsNullOrEmpty(Condition2.msg)) return Condition2.msg;
+    return null;
   }
 }
 

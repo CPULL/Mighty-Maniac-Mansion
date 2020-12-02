@@ -36,10 +36,17 @@ public class ActionAndConditionDrawer : PropertyDrawer {
 
     if (property.isExpanded) {
       Rect cRect = new Rect(position.x + 30, position.y + 1 * lh, position.width - 30, 2 * lh);
-      EditorGUI.PropertyField(cRect, property.FindPropertyRelative("Condition"));
+      SerializedProperty cond = property.FindPropertyRelative("Condition");
+      EditorGUI.PropertyField(cRect, cond);
+      int extra = 0;
+      if (cond.FindPropertyRelative("type").intValue != 0) {
+        extra = 2;
+        Rect c2Rect = new Rect(position.x + 30, position.y + 3 * lh, position.width - 30, 2 * lh);
+        EditorGUI.PropertyField(c2Rect, property.FindPropertyRelative("Condition2"));
+      }
 
-      Rect nRect = new Rect(position.x + 30, position.y + 3 * lh, position.width / 2 - 30, 1 * lh);
-      Rect bRect = new Rect(position.x + position.width / 2 + 30, position.y + 3 * lh, position.width / 2 - 30, 1 * lh);
+      Rect nRect = new Rect(position.x + 30, position.y + (3 + extra) * lh, position.width / 2 - 30, 1 * lh);
+      Rect bRect = new Rect(position.x + position.width / 2 + 30, position.y + (3 + extra) * lh, position.width / 2 - 30, 1 * lh);
       SerializedProperty num = property.FindPropertyRelative("NumActions");
       SerializedProperty block = property.FindPropertyRelative("Blocking");
       EditorGUI.PropertyField(nRect, num);
@@ -53,7 +60,7 @@ public class ActionAndConditionDrawer : PropertyDrawer {
           acts.InsertArrayElementAtIndex(acts.arraySize);
         }
         for (int i = 0; i < num.intValue; i++) {
-          Rect asRect = new Rect(position.x + 30, position.y + (4 + i * 2) * lh, position.width - 30, 2 * lh);
+          Rect asRect = new Rect(position.x + 30, position.y + (4 + i * 2 + extra) * lh, position.width - 30, 2 * lh);
           SerializedProperty sa = acts.GetArrayElementAtIndex(i);
           EditorGUI.PropertyField(asRect, sa);
         }
@@ -68,9 +75,10 @@ public class ActionAndConditionDrawer : PropertyDrawer {
 
   public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
     float h = base.GetPropertyHeight(property, label);
+    int extra = property.FindPropertyRelative("Condition").FindPropertyRelative("type").intValue != 0 ? 2 : 0;
     if (property.isExpanded) {
       SerializedProperty num = property.FindPropertyRelative("NumActions");
-      return h + (3 + num.intValue * 2) * EditorGUIUtility.singleLineHeight;
+      return h + (3 + num.intValue * 2 + extra) * EditorGUIUtility.singleLineHeight;
     }
     return h;
   }

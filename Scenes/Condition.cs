@@ -13,6 +13,7 @@ public class Condition {
 
   public Condition(string stype, int idi, string ids, int siv, bool sbv, string svs, float svf) {
     type = (ConditionType)System.Enum.Parse(typeof(ConditionType), stype, true);
+    when = When.Always;
     if (!System.Enum.IsDefined(typeof(ConditionType), type)) {
       Debug.LogError("Unknown ConditionType: \"" + stype + "\"");
     }
@@ -114,15 +115,7 @@ public class Condition {
 
   public static string StringName(ConditionType type, When when, int id1, int iv1, float fv1, string sv, bool bv) {
     switch (type) {
-      case ConditionType.None:
-        switch (when) {
-          case When.Pick: return "<Pick>";
-          case When.Use: return "<Use>";
-          case When.Give: return "<Give>";
-          case When.Cutscene: return "<Cutscene>";
-          case When.Always: return "<none>";
-        }
-        break;
+      case ConditionType.None: return "<none>"; 
       case ConditionType.ActorIs: return "Actor is " + (!bv ? "not " : "") + (Chars)id1;
       case ConditionType.ActorSet: {
         if (iv1 == 1) return "Actor1 is " + (!bv ? "not " : "") + (Chars)id1;
@@ -153,8 +146,9 @@ public class Condition {
 
 
   public bool IsValid(Actor performer, Actor receiver, Item item1, Item item2, When when) {
+    if (type == ConditionType.None) return true;
     if (this.when != When.Always && this.when != when) return false;
-    if (item1 != null && item2 != null && type != ConditionType.UsedWith) return false;
+    if ((item1 == null || item2 == null) && type == ConditionType.UsedWith) return false;
 
     switch (type) {
       case ConditionType.None: return true;

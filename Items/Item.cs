@@ -115,7 +115,7 @@ public class Item : MonoBehaviour {
     Item item2 = (this == item ? null : item);
 
     foreach (ActionAndCondition ac in actions) {
-      if (ac.Condition.IsValid(actor, secondary, item1, item2, when)) {
+      if (ac.IsValid(actor, secondary, item1, item2, when)) {
         res = new ActionRes { 
           actionDone = true, 
           res = ac.RunAsSequence(Name, actor.id)
@@ -135,19 +135,19 @@ public class Item : MonoBehaviour {
     string res = null;
     bool done = false;
     foreach (ActionAndCondition ac in actions) {
-      if (ac.Condition.IsValid(actor, null, this, other, When.UseTogether)) {
+      if (ac.IsValid(actor, null, this, other, When.UseTogether)) {
         ac.RunAsSequence(Name, actor.id);
         done = true;
       }
-      else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
+      else res = ac.GetConditionMsg(actor, null, When.UseTogether, this, other);
     }
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
-      if (ac.Condition.IsValid(actor, null, this, other, When.UseTogether)) {
+      if (ac.IsValid(actor, null, this, other, When.UseTogether)) {
         ac.RunAsSequence(Name, actor.id);
         done = true;
       }
-      else if (!string.IsNullOrEmpty(ac.Condition.msg) && res == null) res = ac.Condition.msg;
+      else res = ac.GetConditionMsg(actor, null, When.UseTogether, this, other);
     }
     if (res != null) return res;
     if (done) return null;
@@ -248,7 +248,8 @@ public class Item : MonoBehaviour {
 
 
   internal bool IsOpen() {
-    return (Usable == Tstatus.Openable || Usable == Tstatus.Swithchable) && openStatus != OpenStatus.Closed;
+    return openStatus != OpenStatus.Closed;
+// FIXME    return (Usable == Tstatus.Openable || Usable == Tstatus.Swithchable) && openStatus != OpenStatus.Closed;
   }
 
   internal bool IsLocked() {

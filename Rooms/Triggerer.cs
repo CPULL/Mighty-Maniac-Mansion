@@ -20,7 +20,7 @@ public class Triggerer : MonoBehaviour {
 
     bool done = false;
     foreach (ActionAndCondition ac in actions)
-      if (ac.Condition.IsValid(actor, null, null, null, When.Always)) {
+      if (ac.IsValid(actor, null, null, null, When.Always)) {
         foreach (GameAction a in ac.Actions) {
           a.RunAction(actor, null, false);
         }
