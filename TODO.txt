@@ -10,17 +10,16 @@ woods for treehouse
 treehouse
 ezra berg passage
 garage
-graveyard: have graves diggable
 Add dog anims for throwing food and eating food
 Arcade room: Day of Tentacle poster in the Arcade room.
-Arcade room: Add old consoles (NES, Gnesis, etc.) to the arcade room, on the C64 there will be a cassette player with a cassette tape inside
+Arcade room: Add old consoles (C64, NES, Genesis, etc.) to the arcade room, on the C64 there will be a cassette player with a cassette tape inside
 Add lookup in dog room
 
 Complete intro Cutscene, adding variations for each character (syd, razor, jeff, michael, Hoagie, Laverne)
 Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)
 Do arms forward in all characters
-Do coats for all characters: Jeff, Michael, Sandy, Razor, Hoagie, Laverne
-Do dig for all characters: Jeff, Michael, Sandy, Razor, Hoagie, Laverne
+Do coats for all characters: Jeff, Michael, Razor, Hoagie
+Do dig for all characters: Jeff, Michael, Razor, Hoagie
 
 Add recycle stuff to the service room
 
@@ -246,3 +245,4 @@ Hoagie
 ! Handle the death players without disabling the actor or we will have problems with further actions.
 ! GameOver when 2 players will die
 ! The set of actions in an A&C should be executed as cutscene, in sequence
+! Graves in the cemetery are diggable
