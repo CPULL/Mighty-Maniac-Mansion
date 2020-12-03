@@ -26,7 +26,9 @@ public class GD : MonoBehaviour {
     DontDestroyOnLoad(this.gameObject);
   }
 
-
+  private void OnApplicationQuit() {
+    MatNormal.SetFloat("_Lightning", 0);
+  }
 
   public static Material Normal() { return gs.MatNormal; }
   public static Material Outline() { return gs.MatOutline; }
