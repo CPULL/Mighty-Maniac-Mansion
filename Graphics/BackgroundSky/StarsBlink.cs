@@ -113,6 +113,9 @@ public class StarsBlink : MonoBehaviour {
     }
   }
 
+  public Room cemetery;
+  public Actor Ted;
+
   IEnumerator Storm() {
     while (true) {
       if (stormProb == 0) {
@@ -124,13 +127,23 @@ public class StarsBlink : MonoBehaviour {
 
         // Then with the specified prob decide if doing a thunder and lightning
         if (Random.Range(0, stormProb) > .9f) {
-          // FIXME play a sound
           SpriteRenderer what = Lightnings[Random.Range(0, 3)];
           AudioClip ac = Thunders[Random.Range(0, 3)];
           // Anim
           float llorig = me.Normal.GetFloat("_Lightning");
           float time = 0;
           float len = Random.Range(.1f, .25f);
+          if (GD.c.currentRoom == cemetery) {
+            Ted.transform.position = new Vector3(Random.Range(-86.5f, -75), Random.Range(-19.02f, -18.99f), 0);
+            Ted.transform.localScale = new Vector3(.15f, .15f, 1);
+            Ted.Legs.sortingOrder = 0;
+            Ted.Face.sortingOrder = 1;
+            Ted.Arms.sortingOrder = 2;
+            Ted.Legs.enabled = true;
+            Ted.Face.enabled = true;
+            Ted.Arms.enabled = true;
+            Ted.gameObject.SetActive(true);
+          }
           while (time < len) {
             what.color = new Color32(255, 255, 255, (byte)(255 * time / len));
             what.enabled = true;
@@ -142,6 +155,7 @@ public class StarsBlink : MonoBehaviour {
             sound.clip = ac;
             sound.Play(); 
           }
+          yield return new WaitForSeconds(Random.Range(.1f, .2f));
           time = 0;
           len = what == Lightnings[0] ? .1f : .5f;
           while (time < .05f) {
@@ -153,6 +167,12 @@ public class StarsBlink : MonoBehaviour {
             time -= Time.deltaTime;
             me.Normal.SetFloat("_Lightning", time * 10);
             yield return null;
+          }
+          if (GD.c.currentRoom == cemetery) {
+            Ted.gameObject.SetActive(false);
+            Ted.Legs.enabled = false;
+            Ted.Face.enabled = false;
+            Ted.Arms.enabled = false;
           }
           what.enabled = false;
           me.Normal.SetFloat("_Lightning", llorig);

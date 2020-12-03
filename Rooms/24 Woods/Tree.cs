@@ -41,8 +41,6 @@ public class Tree : MonoBehaviour {
 
   int ScaleByPosition(float y) {
     float ty = y;
-    if (ty < minY) ty = minY;
-    if (ty > maxY) ty = maxY;
     float scaley = -.05f * (ty - minY - 1.9f) + .39f;
     scaley *= scalePerc;
     return (int)(scaley * 10000);

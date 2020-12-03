@@ -1222,7 +1222,7 @@ public class Controller : MonoBehaviour {
     }
     else if (currentRoom.ID.Equals("Cemetery") && !cemetery.Generated) {
       cemetery.Generate(false, false, -2);
-      StarsBlink.SetWoods(3);
+      StarsBlink.SetWoods(4);
     }
     else {
       StarsBlink.SetWoods(0);
