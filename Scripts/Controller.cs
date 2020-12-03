@@ -857,13 +857,14 @@ public class Controller : MonoBehaviour {
     if (mapDirections == null) { // This is the first time the map is shown, generate the random path
       mapDirections = new int[5];
 
-      int p = 1;
       for (int i = 0; i < 4; i++) {
-        mapDirections[i] = p++;
-        p = p % 5;
+        mapDirections[i] = Random.Range(0, 5);
+        while (i > 0 && mapDirections[i] == mapDirections[i - 1])
+          mapDirections[i] = Random.Range(0, 5);
       }
       mapPos = -1;
     }
+    mapDirections[4] = Random.Range(0, 2);
     for (int i = 0; i < MapArrows.Length; i++) {
       MapArrows[i].rectTransform.rotation = Quaternion.Euler(0, 0, MapArrowsAngles[mapDirections[i]]);
     }
@@ -1221,7 +1222,7 @@ public class Controller : MonoBehaviour {
     }
     else if (currentRoom.ID.Equals("Cemetery") && !cemetery.Generated) {
       cemetery.Generate(false, false, -2);
-      StarsBlink.SetWoods(5);
+      StarsBlink.SetWoods(3);
     }
     else {
       StarsBlink.SetWoods(0);
