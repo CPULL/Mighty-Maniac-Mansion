@@ -151,6 +151,7 @@ public class Actor : MonoBehaviour {
       return;
     }
     dir = d;
+    UsedItemFront = (d == Dir.F || d == Dir.R);
   }
 
   internal void SetExpression(Expression exp) {
@@ -515,12 +516,10 @@ public class Actor : MonoBehaviour {
     }
     Legs.sortingOrder = zpos;
     if (Coat != null && Coat.gameObject.activeSelf) Coat.SetSortingOrder(zpos);
-    if (UsedItemSR.enabled) {
-      if (UsedItemFront)
-        UsedItemSR.sortingOrder = zpos + 4;
-      else
-        UsedItemSR.sortingOrder = zpos - 2;
-    }
+    if (UsedItemFront)
+      UsedItemSR.sortingOrder = zpos + 4;
+    else
+      UsedItemSR.sortingOrder = zpos - 2;
   }
 
   void CheckReachingDestination(Vector2 walkDir) {
@@ -636,7 +635,8 @@ public class Actor : MonoBehaviour {
   private string animToPlay = null;
   private System.DateTime animStartTime;
   private float timeForAnim;
-  public bool PlayAnim(string animName, float timer) {
+  private Dir animDir;
+  public bool PlayAnim(string animName, Dir d, float timer) {
     if (gameObject.activeInHierarchy) {
       animToPlay = null;
       anim.enabled = true;
@@ -650,6 +650,8 @@ public class Actor : MonoBehaviour {
         return true;
       }
 
+      SetDirection(d);
+      SetScaleAndPosition(transform.position);
       anim.Play(id.ToString() + " " + animName.Trim(), -1, 0);
       if (Coat.gameObject.activeSelf) {
         if (CoatAnim != null) CoatAnim.enabled = true;
@@ -660,6 +662,7 @@ public class Actor : MonoBehaviour {
     else {
       if (string.IsNullOrEmpty(animName)) { // Stop the anims
         animToPlay = null;
+        animDir = d;
         animStartTime = System.DateTime.Now;
         timeForAnim = 0;
         anim.StopPlayback();
@@ -685,6 +688,8 @@ public class Actor : MonoBehaviour {
       animToPlay = null;
       return;
     }
+    SetDirection(animDir);
+    SetScaleAndPosition(transform.position);
     anim.Play(id.ToString() + " " + animToPlay, -1, (float)elapsed.TotalSeconds / timeForAnim);
     if (Coat.gameObject.activeSelf) {
       if (CoatAnim != null) CoatAnim.enabled = true;

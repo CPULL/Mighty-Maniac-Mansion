@@ -235,6 +235,9 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           if (id1.intValue == 0) {
             id2.intValue = EditorGUI.Popup(bRect, id2.intValue, System.Enum.GetNames(typeof(ItemEnum)));
           }
+          else {
+            dir.intValue = EditorGUI.Popup(bRect, dir.intValue, System.Enum.GetNames(typeof(Dir)));
+          }
           str.stringValue = EditorGUI.TextField(cRect, str.stringValue);
         }
         break;

@@ -865,7 +865,7 @@ public class GameAction {
       case ActionType.Anim: {
         if (id1 != 0) {
           Actor a = Controller.GetActor((Chars)id1);
-          if (a.PlayAnim(str, delay))
+          if (a.PlayAnim(str, dir, delay))
             Complete();
           else
             Play();
