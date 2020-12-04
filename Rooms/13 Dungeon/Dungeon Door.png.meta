@@ -5,6 +5,15 @@ TextureImporter:
   - first:
       213: -7351661573056778716
     second: Dungeon Door_0
+  - first:
+      213: -6589440635060907998
+    second: Dungeon Door_0
+  - first:
+      213: 8499792271501473777
+    second: Dungeon Door_1
+  - first:
+      213: -6918200445789170650
+    second: Dungeon Door_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,8 +127,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42eaf0500c6a9f990800000000000000
-      internalID: -7351661573056778716
+      spriteID: 2209bae97aa9d84a0800000000000000
+      internalID: -6589440635060907998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon Door_1
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 0
+        width: 276
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f7b47f790455f570800000000000000
+      internalID: 8499792271501473777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon Door_2
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 0
+        width: 276
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62499c7495d9dff90800000000000000
+      internalID: -6918200445789170650
       vertices: []
       indices: 
       edges: []
