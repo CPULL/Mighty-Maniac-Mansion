@@ -40,6 +40,8 @@ If a room has windows, make it a little bit less dark (like flashlight but witho
 
 * BUGS ************************************************************************************************************
 
+Be sure to reset the "lights" on characters when the game starts
+
 * CHARS ************************************************************************************************************
 
 !Dr. Fred

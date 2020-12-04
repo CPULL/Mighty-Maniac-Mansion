@@ -16,8 +16,10 @@ public class Room : MonoBehaviour {
   List<PathNode> paths;
 
   private void Start() {
-    srs = new List<SpriteRenderer>();
-    CollectAllRenderers(transform);
+    if (srs == null) {
+      srs = new List<SpriteRenderer>();
+      CollectAllRenderers(transform);
+    }
     CollectAllPaths();
     UpdateLights();
   }
@@ -72,6 +74,10 @@ public class Room : MonoBehaviour {
 
 
   internal void UpdateLights() {
+    if (srs == null) {
+      srs = new List<SpriteRenderer>();
+      CollectAllRenderers(transform);
+    }
     Material m;
     if (lights == LightMode.External) m = GD.Normal();
     else if (lights == LightMode.On && GD.globalLights) m = GD.Normal();

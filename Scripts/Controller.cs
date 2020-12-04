@@ -668,9 +668,24 @@ public class Controller : MonoBehaviour {
     currentActor = actor1;
     EnableActorSelection(false);
 
+    Material normal = GD.Normal();
+    foreach (Actor a in allActors)
+      if (a != null) {
+        a.Face.material = normal;
+        a.Arms.material = normal;
+        a.Legs.material = normal;
+      }
+    foreach (Actor a in allEnemies)
+      if (a != null) {
+        a.Face.material = normal;
+        a.Arms.material = normal;
+        a.Legs.material = normal;
+      }
+
     ActorsButtons.SetActive(true);
     StartIntroCutscene();
 
+    /*
     Item FIXME = AllObjects.GetItem(ItemEnum.WoodsMap);
     FIXME.whatItDoesR = WhatItDoes.Use;
     FIXME.Usable = Tstatus.Usable;
@@ -695,7 +710,7 @@ public class Controller : MonoBehaviour {
       FIXME.owner = currentActor.id;
       currentActor.inventory.Add(FIXME);
     }
-
+    */
   }
 
   #endregion
