@@ -39,6 +39,47 @@ public class Controller : MonoBehaviour {
     if (focus && GD.status != GameStatus.NotYetLoaded) CursorHandler.ResetCursor();
   }
 
+  private void SelectInventoryItem() {
+    usedItem = overInventoryItem;
+    overInventoryItem = null;
+    EnableActorSelection(true);
+    CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, usedItem);
+    if (!string.IsNullOrEmpty(usedItem.Description)) currentActor.Say(usedItem.Description);
+  }
+
+  private void UseInventoryItem() {
+    if (overInventoryItem.HasActions(When.Use)) {
+      ActionRes res = overInventoryItem.PlayActions(currentActor, null, When.Use, null);
+      if (res == null || res.actionDone)
+        currentActor.Say(overInventoryItem.Description); // By default read what is written in the description of the object
+      else
+        currentActor.Say(res.res);
+    }
+    else {
+      string msg = overInventoryItem.Description.Replace("%open", overInventoryItem.GetOpenStatus());
+      currentActor.Say(msg);
+    }
+    UpdateInventory();
+  }
+
+  private void UseInventoryItemTogether() {
+    // Can we use the two items together?
+    string res = usedItem.UseTogether(currentActor, overInventoryItem);
+    if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
+    UpdateInventory();
+    usedItem = null;
+    overItem = null;
+    overInventoryItem = null;
+    EnableActorSelection(false);
+    Inventory.SetActive(false);
+  }
+
+  bool prevlmb = false;
+  bool prevrmb = false;
+  float lastClickTimeL = 0;
+  float lastClickTimeR = 0;
+  float doubleClickDelay = .35f;
+
   void Update() {
     if (Options.IsActive()) return;
     if (GD.status == GameStatus.StartGame) {
@@ -140,11 +181,46 @@ public class Controller : MonoBehaviour {
 
 
 
-    #region Mouse control
     bool notOverUI = !EventSystem.current.IsPointerOverGameObject();
-    bool lmb = Input.GetMouseButtonDown(0);
-    bool rmb = Input.GetMouseButtonDown(1);
+    bool lmb = false;
+    bool rmb = false;
+    bool dblL = false;
+    bool dblR = false;
+    bool nowlmb = Input.GetMouseButtonDown(0);
+    bool nowrmb = Input.GetMouseButtonDown(1);
 
+    if (nowlmb) {
+      if (Time.time - lastClickTimeL < doubleClickDelay) {
+        lmb = true;
+        dblL = true;
+        prevlmb = false;
+      }
+      else {
+        prevlmb = true;
+        lastClickTimeL = Time.time;
+      }
+    }
+    else if (Time.time - lastClickTimeL > doubleClickDelay) {
+      lmb = prevlmb;
+      prevlmb = false;
+    }
+    if (nowrmb) {
+      if (Time.time - lastClickTimeR < doubleClickDelay) {
+        rmb = true;
+        dblR = true;
+        prevrmb = false;
+      }
+      else {
+        prevrmb = true;
+        lastClickTimeR = Time.time;
+      }
+    }
+    else if (Time.time - lastClickTimeR > doubleClickDelay) {
+      rmb = prevrmb;
+      prevrmb = false;
+    }
+
+    #region FlashLight
 
     if (GD.flashLight) {
       Vector3 fl = Input.mousePosition;
@@ -216,6 +292,7 @@ public class Controller : MonoBehaviour {
       }
     }
 
+    #endregion
 
     Door aDoor = null;
     if ((lmb || rmb) && walkDelay < 0 && notOverUI) { // Check if we have a door
@@ -243,71 +320,86 @@ public class Controller : MonoBehaviour {
       }
     }
 
+    #region Mouse control
     if (!lmb && !rmb) return;
 
-    if (overInventoryItem != null) {
-      if (usedItem == overInventoryItem) {
-        if (lmb) { /* lmb - remove used */
-          usedItem = null;
-          DbgU("Update 251");
-          EnableActorSelection(false);
-        }
-        else { /* rmb - read */
-          if (overInventoryItem.HasActions(When.Use)) {
-            ActionRes res = overInventoryItem.PlayActions(currentActor, null, When.Use, null);
-            if (res == null || res.actionDone)
-              currentActor.Say(overInventoryItem.Description); // By default read what is written in the description of the object
-            else
-              currentActor.Say(res.res);
-          }
-          else {
-            string msg = overInventoryItem.Description.Replace("%open", overInventoryItem.GetOpenStatus());
-            currentActor.Say(msg);
-          }
-        }
-      }
-      else if (usedItem == null) {
-        if (lmb) { /* lmb - set as used */
-          usedItem = overInventoryItem;
-          EnableActorSelection(true);
-          overInventoryItem = null;
-          CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, usedItem);
-          DbgC("Update 274 norm");
-          if (!string.IsNullOrEmpty(usedItem.Description)) currentActor.Say(usedItem.Description);
-          if (closeInventory) Inventory.SetActive(false);
-        }
-        else { /* rmb - use immediately */
-          string res = overInventoryItem.Use(currentActor);
-          if (!string.IsNullOrEmpty(res))
-            currentActor.Say(res);
-          if (closeInventory) Inventory.SetActive(false);
-        }
 
-      }
-      else {
-        if (lmb) { /* lmb - Swap */
-          usedItem = overInventoryItem;
-          EnableActorSelection(true);
-          overInventoryItem = null;
-          CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, usedItem);
-          DbgC("Update 289 norm");
-        }
-        else { /* rmb - Use together */
-          // Can we use the two items together?
-          string res = usedItem.UseTogether(currentActor, overInventoryItem);
-          if (!string.IsNullOrEmpty(res)) currentActor.Say(res);
-          UpdateInventory();
-          usedItem = null;
-          overItem = null;
-          DbgU("Update 295");
-          overInventoryItem = null;
-          EnableActorSelection(false);
-          Inventory.SetActive(false);
-          return;
-        }
-      }
-
+    if ((lmb || rmb) && overInventoryItem == null && (inventoryMode == 1 || inventoryMode == 4)) { // click not on items will close the inventory
+      Inventory.SetActive(false);
     }
+
+    if (overInventoryItem != null) {
+      if (inventoryMode == 0 || inventoryMode == 1) { // no auto-close -------------------------------------------------------------------------------------------------------------------------------------------------
+        if (lmb && usedItem == null) { // LClick and no item -> select
+          SelectInventoryItem();
+        }
+        else if (lmb && usedItem != null) { // LClick and item -> select or unselect if the same
+          if (usedItem == overInventoryItem) {
+            usedItem = null;
+            EnableActorSelection(false);
+            CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, null);
+          }
+          else
+            SelectInventoryItem();
+        }
+        else if (rmb && usedItem == null) { // RClick and no item -> use
+          UseInventoryItem();
+        }
+        else if (rmb && usedItem != null) { // RClick and item -> use together
+          UseInventoryItemTogether();
+        }
+      }
+      else if (inventoryMode == 2) { // double-click select and close----------------------------------------------------------------------------------------------------------------------------
+        if (lmb && usedItem == null) { // LClick and no item -> select
+          SelectInventoryItem();
+          if (dblL) Inventory.SetActive(false);
+        }
+        else if (lmb && usedItem != null) { // LClick and item -> select or unselect if the same
+          if (usedItem == overInventoryItem) {
+            usedItem = null;
+            EnableActorSelection(false);
+            CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, null);
+          }
+          else
+            SelectInventoryItem();
+          if (dblL) Inventory.SetActive(false);
+        }
+        else if (rmb && usedItem == null) { // RClick and no item -> use
+          UseInventoryItem();
+        }
+        else if (rmb && usedItem != null) { // RClick and item -> use together
+          UseInventoryItemTogether();
+        }
+
+      }
+      else if (inventoryMode == 3 || inventoryMode == 4) {
+        // 3 double-click select and close, double right click use and close -------------------------------------------------------------------------------------------
+        // 4 Double-click and clicking outside close inventory ----------------------------------------------------------------------------------------------------------
+        if (lmb && usedItem == null) { // LClick and no item -> select
+          SelectInventoryItem();
+          if (dblL) Inventory.SetActive(false);
+        }
+        else if (lmb && usedItem != null) { // LClick and item -> select or unselect if the same
+          if (usedItem == overInventoryItem) {
+            usedItem = null;
+            EnableActorSelection(false);
+            CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, null);
+          }
+          else
+            SelectInventoryItem();
+          if (dblL) Inventory.SetActive(false);
+        }
+        else if (rmb && usedItem == null) { // RClick and no item -> use
+          UseInventoryItem();
+          if (dblR) Inventory.SetActive(false);
+        }
+        else if (rmb && usedItem != null) { // RClick and item -> use together
+          UseInventoryItemTogether();
+          if (dblR) Inventory.SetActive(false);
+        }
+      }
+    }
+
     else if (notOverUI && overItem != null) {
       if (usedItem == overItem) { // Not possible
       }
@@ -1417,7 +1509,7 @@ public class Controller : MonoBehaviour {
   #region *********************** UI and Options *********************** UI and Options *********************** UI and Options *********************** UI and Options ***********************
   public static float walkSpeed;
   public static float textSpeed;
-  public static bool closeInventory;
+  public static int inventoryMode = 0;
   public static int c64mode;
   public Options options;
 

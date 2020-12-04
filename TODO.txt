@@ -1,5 +1,19 @@
 === Mighty Maniac Mansion ===
 
+
+inventory use:
+!no auto-close
+!click not on items will close
+!double-click select and close
+!double-click select and close, right click use and close
+single-click select and close, right click use and close, drag'n'drop combine (use together)
+
+
+Do coats and dig for all characters: Michael, Razor, Hoagie
+
+
+* TODO ************************************************************************************************************
+
 Purple Tentacle should go first to the basement to check the reactor then to the pool then to the valve and close it.
 In case too much time will pass make an explosion (for example purple will catch two players)
 
@@ -18,12 +32,9 @@ Add lookup in dog room
 Complete intro Cutscene, adding variations for each character (syd, razor, jeff, michael, Hoagie, Laverne)
 Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)
 Do arms forward in all characters
-Do coats for all characters: Jeff, Michael, Razor, Hoagie
-Do dig for all characters: Jeff, Michael, Razor, Hoagie
 
 Add recycle stuff to the service room
 
-* TODO ************************************************************************************************************
 
 Add a lab secret entrance in the home. But use the same system
 Ed room: Piggy bank with coins
