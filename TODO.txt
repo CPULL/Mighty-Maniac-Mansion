@@ -5,7 +5,7 @@ In case too much time will pass make an explosion (for example purple will catch
 
 We need a way to walk on ladders. Probably from the back. Do we need a new anim?
 
-shelter with shovel
+greenhouse
 woods for treehouse
 treehouse
 ezra berg passage
@@ -246,3 +246,4 @@ Hoagie
 ! GameOver when 2 players will die
 ! The set of actions in an A&C should be executed as cutscene, in sequence
 ! Graves in the cemetery are diggable
+! shelter with shovel

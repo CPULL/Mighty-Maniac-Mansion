@@ -589,6 +589,20 @@ public class Controller : MonoBehaviour {
     FIXME.Usable = Tstatus.Usable;
     FIXME.owner = currentActor.id;
     currentActor.inventory.Add(FIXME);
+    FIXME = AllObjects.GetItem(ItemEnum.Shovel);
+    FIXME.whatItDoesR = WhatItDoes.Use;
+    FIXME.Usable = Tstatus.Usable;
+    FIXME.owner = currentActor.id;
+    currentActor.inventory.Add(FIXME);
+
+    for (int i = 0; i < (int)ItemEnum.ReedGrave; i++) {
+      FIXME = AllObjects.GetItem((ItemEnum)i);
+      if (FIXME == null) continue;
+      FIXME.whatItDoesR = WhatItDoes.Use;
+      FIXME.Usable = Tstatus.Usable;
+      FIXME.owner = currentActor.id;
+      currentActor.inventory.Add(FIXME);
+    }
 
   }
 
