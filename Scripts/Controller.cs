@@ -200,7 +200,7 @@ public class Controller : MonoBehaviour {
         lastClickTimeL = Time.time;
       }
     }
-    else if (Time.time - lastClickTimeL > doubleClickDelay) {
+    else if (prevlmb && Time.time - lastClickTimeL > doubleClickDelay * .25f) {
       lmb = prevlmb;
       prevlmb = false;
     }
@@ -215,7 +215,7 @@ public class Controller : MonoBehaviour {
         lastClickTimeR = Time.time;
       }
     }
-    else if (Time.time - lastClickTimeR > doubleClickDelay) {
+    else if (prevrmb && Time.time - lastClickTimeR > doubleClickDelay * .25f) {
       rmb = prevrmb;
       prevrmb = false;
     }

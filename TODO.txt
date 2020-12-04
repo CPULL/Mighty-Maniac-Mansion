@@ -1,14 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
-inventory use:
-!no auto-close
-!click not on items will close
-!double-click select and close
-!double-click select and close, right click use and close
-single-click select and close, right click use and close, drag'n'drop combine (use together)
-
-
+Reduce tits for Razor
 Do coats and dig for all characters: Michael, Razor, Hoagie
 
 
@@ -258,3 +251,4 @@ Hoagie
 ! The set of actions in an A&C should be executed as cutscene, in sequence
 ! Graves in the cemetery are diggable
 ! shelter with shovel
+! new inventory close methods
