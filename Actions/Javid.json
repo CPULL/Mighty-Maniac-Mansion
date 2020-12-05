@@ -11,57 +11,71 @@
 		{ "name":"PGE", "skippable":0,
 			"condition":[],
 			"action":[
+				{ "type":"Teleport", "sv":"NoRoom", "id1":"Ed", "vv":[100,100], "dv":"F" },
 				{ "type":"ShowRoom", "sv":"EdRoom", "vv":[-10,90] },
-				{ "type":"Teleport", "sv":"EdRoom", "id1":"Actor1", "vv":[-12.5,88], "dv":"F" },
-				{ "type":"Teleport", "sv":"EdRoom", "id1":"Actor2", "vv":[-9,87], "dv":"F" },
-				{ "type":"Teleport", "sv":"EdRoom", "id1":"Actor3", "vv":[-8,88.5], "dv":"R" },
+				{ "type":"Teleport", "sv":"EdRoom", "id1":"Javid", "vv":[-13,88], "dv":"F" },
+				{ "type":"Teleport", "sv":"EdRoom", "id1":"Bernard", "vv":[-9,87], "dv":"F" },
+				{ "type":"Teleport", "sv":"EdRoom", "id1":"Syd", "vv":[-5.75,88.5], "dv":"R" },
 				
-				{ "type":"Expression", "id1":"Actor1", "sv":"Normal", "dv":"F", "wait":.01 },
-				{ "type":"Expression", "id1":"Actor2", "sv":"Normal", "dv":"F", "wait":.01 },
-				{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"R", "wait":.75 },
+				{ "type":"Expression", "id1":"Javid", "sv":"Normal", "dv":"F", "del":.01 },
+				{ "type":"Expression", "id1":"Bernard", "sv":"Normal", "dv":"F", "del":.01 },
+				{ "type":"Expression", "id1":"Syd", "sv":"Normal", "dv":"R", "del":.75 },
 				
-				{ "type":"WalkToPos", "id1":"Actor2", "vv":[-11,88], "dv":"L" },
-				{ "type":"Speak", "id1":"Actor2", "sv":"Hey Javid.", "dv":"L" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"Hello!", "dv":"R" },
+				{ "type":"WalkToPos", "id1":"Bernard", "vv":[-10.5,88], "dv":"L" },
+				{ "type":"Speak", "id1":"Bernard", "sv":"Hey Javid.", "dv":"L" },
+				{ "type":"Speak", "id1":"Javid", "sv":"Hello!", "dv":"R" },
 				
-				{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"F", "wait":.25 },
-				{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"L", "wait":.25 },
+				{ "type":"Expression", "id1":"Syd", "sv":"Normal", "dv":"F", "del":.25 },
+				{ "type":"Expression", "id1":"Syd", "sv":"Normal", "dv":"L", "del":.25 },
 
-				{ "type":"Speak", "id1":"Actor2", "sv":"I cannot compile PGE!", "dv":"L" },
-				{ "type":"Expression", "id1":"Actor1", "sv":"Sad", "dv":"R", "wait":.01 },
-				{ "type":"Speak", "id1":"Actor2", "sv":"Please help!", "dv":"L" },
-				{ "type":"Expression", "id1":"Actor2", "sv":"Sad", "dv":"L", "wait":.01 },
-				{ "type":"Expression", "id1":"Actor3", "sv":"BigOpen", "dv":"R", "wait":.05 },
+				{ "type":"Speak", "id1":"Bernard", "sv":"I cannot compile PGE!", "dv":"L" },
+				{ "type":"Expression", "id1":"Javid", "sv":"Sad", "dv":"R", "del":.01 },
+				{ "type":"Speak", "id1":"Bernard", "sv":"Please help!", "dv":"L" },
+				{ "type":"Expression", "id1":"Bernard", "sv":"Sad", "dv":"L", "del":.01 },
+				{ "type":"Expression", "id1":"Syd", "sv":"Normal", "dv":"F", "del":.25 },
+				{ "type":"Expression", "id1":"Syd", "sv":"Normal", "dv":"R", "del":.05 },
 
-				{ "type":"Speak", "id1":"Actor1", "sv":"Have you included unicode?", "dv":"R" },
-				{ "type":"Speak", "id1":"Actor2", "sv":"Yes", "dv":"L" },
+				{ "type":"Speak", "id1":"Javid", "sv":"Have you included unicode?", "dv":"R" },
+				{ "type":"Speak", "id1":"Bernard", "sv":"Yes", "dv":"L" },
+				{ "type":"Expression", "id1":"Syd", "sv":"Open", "dv":"R", "del":.05 },
 				
-				{ "type":"Speak", "id1":"Actor1", "sv":"Do you have\n<i>#include \"olcPixelGameEngine.h\"</i>?", "dv":"R" },
-				{ "type":"Speak", "id1":"Actor2", "sv":"Yes!", "dv":"L" },
+				{ "type":"Speak", "id1":"Javid", "sv":"Do you have\n<i>#include \"olcPixelGameEngine.h\"</i>?", "dv":"R" },
+				{ "type":"Speak", "id1":"Bernard", "sv":"Yes!", "dv":"L" },
+				{ "type":"Expression", "id1":"Syd", "sv":"BigOpen", "dv":"R", "del":.05 },
 
-				{ "type":"Speak", "id1":"Actor1", "sv":"Have you add\n<i><i>#define OLC_PGE_APPLICATION</i>?", "dv":"R" },
-				{ "type":"Speak", "id1":"Actor2", "sv":"No!", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"Have you add\n<i><i>#define OLC_PGE_APPLICATION</i>?", "dv":"R" },
+				{ "type":"Speak", "id1":"Bernard", "sv":"No!", "dv":"F" },
 
-				{ "type":"Expression", "id1":"Actor1", "sv":"Happy", "dv":"F", "wait":.5 },
-				{ "type":"Expression", "id1":"Actor2", "sv":"BigOpen", "dv":"F", "wait":.5 },
-				{ "type":"Expression", "id1":"Actor3", "sv":"Happy", "dv":"F", "wait":2.5 },
-
+				{ "type":"Expression", "id1":"Javid", "sv":"Happy", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Bernard", "sv":"BigOpen", "dv":"F", "del":.5 },
+				{ "type":"Expression", "id1":"Syd", "sv":"Happy", "dv":"F", "del":2.5 },
 
 				
-				{ "type":"Speak", "id1":"Actor1", "sv":"Saty tuned for the\nupdates on this game\nmade by CPU.", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"I hope you have\nenjoyed this video, ...", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"if you did, give me\na big thumbs up, ...", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"have a think about subscribing, ...", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"come to have a chat\non the Discord server, ...", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"all the source code for\nthis video will be\non the GitHub.", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"See you next time", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"Take care", "dv":"F" },
-				{ "type":"Speak", "id1":"Actor1", "sv":"Bye bye", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"Stay tuned for the\nupdates on this game\nmade by CPU.", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"I hope you have\nenjoyed this video, ...", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"if you did, give me\na big thumbs up, ...", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"have a think about subscribing, ...", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"come to have a chat\non the Discord server, ...", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"all the source code for\nthis video will be\non the GitHub.", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"See you next time", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"Take care", "dv":"F" },
+				{ "type":"Speak", "id1":"Javid", "sv":"Bye bye", "dv":"F" },
 				
-				{ "type":"WalkToPos", "id1":"Actor1", "vv":[-9.25,89.3], "dv":"B" },
-				{ "type":"Teleport", "sv":"StartArea", "id1":"Actor1", "vv":[1,2], "dv":"F" },
-				{ "type":"Expression", "id1":"Actor2", "sv":"Happy", "dv":"F", "wait":.1 },
-				{ "type":"Expression", "id1":"Actor3", "sv":"Normal", "dv":"F", "wait":2.5 }
+				{ "type":"WalkToPos", "id1":"Javid", "vv":[-7.5,89], "dv":"B" },
+				{ "type":"Expression", "id1":"Javid", "sv":"Normal", "dv":"B", "del":.5 }
+				{ "type":"Wear", "id1":"Javid", "id2":"Coat", "dv":"B" },
+				{ "type":"Expression", "id1":"Javid", "sv":"Normal", "dv":"B", "del":.5 }
+				{ "type":"Speak", "id1":"Javid", "sv":"I am ready\nfor some forbidden C++", "dv":"F" },
+				{ "type":"Expression", "id1":"Javid", "sv":"Normal", "dv":"B", "del":.1 }
+				{ "type":"Expression", "id1":"Bernard", "sv":"Normal", "dv":"R", "del":.1 }
+				{ "type":"Expression", "id1":"Syd", "sv":"Normal", "dv":"L", "del":.1 }
+				{ "type":"Open", "id1":"EdDoor", "sv":"open", "del":.1 }
+				{ "type":"Expression", "id1":"Javid", "sv":"Normal", "dv":"B", "del":.5 }
+				
+				{ "type":"Teleport", "sv":"StartArea", "id1":"Javid", "vv":[1,2], "dv":"F" },
+				{ "type":"Expression", "id1":"Bernard", "sv":"Happy", "dv":"F", "del":.1 },
+				{ "type":"Open", "id1":"EdDoor", "sv":"close", "del":.1 }
+				{ "type":"Expression", "id1":"Syd", "sv":"Normal", "dv":"F", "del":5 }
 		]
 		}
 	]

@@ -2,6 +2,7 @@
 
 public class Dog : MonoBehaviour {
 
+  public Animator SamAnim;
   public Animator HeadAnim;
   public Animator TailAnim;
   public Animator BodyAnim;
@@ -63,6 +64,17 @@ public class Dog : MonoBehaviour {
       else
         Controller.PanCamera(new Vector3(-130, 2, -10), 1f);
     }
+
+    if (Input.GetKeyDown(KeyCode.Space)) {
+      SamAnim.enabled = true;
+      BodyAnim.enabled = false;
+      TailAnim.enabled = false;
+      HeadAnim.enabled = false;
+      SamAnim.StopPlayback();
+      SamAnim.Play("Sam Jump", -1, 0);
+    }
+    return; // FIMXE
+
 
     if (friendly == 2 || dist > 6f) { // Friend
       // If made friend, just stay close to the home, and move tail, toungue randomly

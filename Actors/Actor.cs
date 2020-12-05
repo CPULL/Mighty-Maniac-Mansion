@@ -611,7 +611,7 @@ public class Actor : MonoBehaviour {
     }
   }
 
-  internal void Wear(ItemEnum itemId, bool remove=false) {
+  internal void Wear(ItemEnum itemId, bool remove = false) {
     if (!HasItem(itemId)) {
       Say("I do not have " + itemId);
       return;
@@ -622,12 +622,14 @@ public class Actor : MonoBehaviour {
       return;
     }
 
-    if (remove && itemId == ItemEnum.Coat) {
-      Coat.gameObject.SetActive(false);
-    }
-    else if (itemId == ItemEnum.Coat) {
-      Coat.gameObject.SetActive(!Coat.gameObject.activeSelf);
-      SetScaleAndPosition(transform.position);
+    if (itemId == ItemEnum.Coat) {
+      if (remove) {
+        Coat.gameObject.SetActive(false);
+      }
+      else {
+        Coat.gameObject.SetActive(!Coat.gameObject.activeSelf);
+        SetScaleAndPosition(transform.position);
+      }
     }
   }
 

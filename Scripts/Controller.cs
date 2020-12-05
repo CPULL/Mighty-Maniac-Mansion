@@ -78,7 +78,7 @@ public class Controller : MonoBehaviour {
   bool prevrmb = false;
   float lastClickTimeL = 0;
   float lastClickTimeR = 0;
-  float doubleClickDelay = .35f;
+  readonly float doubleClickDelay = .35f;
 
   void Update() {
     if (Options.IsActive()) return;
@@ -141,14 +141,14 @@ public class Controller : MonoBehaviour {
         p.x = currentRoom.maxR;
         cam.transform.position = p;
       }
-      else if (cpos.x < .4f * Screen.width) {
+      else if (cpos.x < .3f * Screen.width) {
         if (cam.transform.position.x > currentRoom.minL) {
-          cam.transform.position -= cam.transform.right * Time.deltaTime * (.4f * Screen.width - cpos.x) / 10;
+          cam.transform.position -= cam.transform.right * Time.deltaTime * (.4f * Screen.width - cpos.x) / 25;
         }
       }
-      else if (cpos.x > .6f * Screen.width) {
+      else if (cpos.x > .7f * Screen.width) {
         if (cam.transform.position.x < currentRoom.maxR) {
-          cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .6f * Screen.width) / 10;
+          cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .6f * Screen.width) / 25;
         }
       }
       MoonPos.x = 5.9f - cam.transform.position.x / 100;
@@ -1393,6 +1393,23 @@ public class Controller : MonoBehaviour {
     }
     prev.gameObject.SetActive(false);
     currentRoom.gameObject.SetActive(true);
+    Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
+    if (cpos.x < .3f * Screen.width) {
+      if (dstp.x > currentRoom.minL) {
+        dstp -= cam.transform.right * (.3f * Screen.width - cpos.x);
+      }
+    }
+    else if (cpos.x > .7f * Screen.width) {
+      if (dstp.x < currentRoom.maxR) {
+        dstp += cam.transform.right * (cpos.x - .7f * Screen.width);
+      }
+    }
+    if (dstp.x < currentRoom.minL) {
+      dstp.x = currentRoom.minL;
+    }
+    else if (dstp.x > currentRoom.maxR) {
+      dstp.x = currentRoom.maxR;
+    }
     cam.transform.position = dstp;
     yield return null;
 

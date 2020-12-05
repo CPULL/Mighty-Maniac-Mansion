@@ -294,7 +294,7 @@ public class Item : MonoBehaviour {
     if (door != null) {
       if (door.correspondingDoor != null && door.correspondingDoor.openStatus == OpenStatus.Open) {
         door.correspondingDoor.openStatus = OpenStatus.Closed;
-        door.correspondingDoor.sr.sprite = door.correspondingDoor.openImage;
+        door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
         if (door.correspondingDoor.lockStatus == LockStatus.UnlockedAutolock) door.correspondingDoor.lockStatus = LockStatus.Autolock;
       }
       if (sound && door.CloseSound != null && door.Audio != null) {

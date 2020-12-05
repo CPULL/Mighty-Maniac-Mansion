@@ -132,7 +132,7 @@ public class GameAction {
 
       case ActionType.ChangeSprites: return "Change " + (ItemEnum)id1 + " op=" + id2 + " cl=" + val;
 
-      case ActionType.Wear: return "Wear " + (ItemEnum)id1;
+      case ActionType.Wear: return (Chars)id1 + " wears " + (ItemEnum)id2;
 
       case ActionType.ShowMap: return "Show/Hide Woods map";
       case ActionType.Pick: return "Pick item " + (ItemEnum)id2 + " by " + (Chars)id1;
@@ -433,9 +433,10 @@ public class GameAction {
       }
       break;
 
+      case ActionType.Wear:
       case ActionType.WearItem: {
         id1 = SafeParse(typeof(Chars), vid1);
-        id2 = SafeParse(typeof(ItemEnum), vid1);
+        id2 = SafeParse(typeof(ItemEnum), vid2);
       }
       break;
 
@@ -994,7 +995,10 @@ public class GameAction {
       break;
 
       case ActionType.Wear: {
-        performer.Wear((ItemEnum)id1);
+        Actor a = Controller.GetActor((Chars)id1);
+        if (a == null) a = performer;
+        if (a != null)
+          a.Wear((ItemEnum)id2);
         Complete();
       }
       break;
