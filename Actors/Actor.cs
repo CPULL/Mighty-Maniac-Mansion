@@ -33,8 +33,8 @@ public class Actor : MonoBehaviour {
   string walk;
   [HideInInspector] public bool IAmNPC = true;
   public AudioClip TentacleSteps;
-  public float blockMinX = -float.MaxValue;
-  public float blockMaxX = float.MaxValue;
+  float blockMinX = -float.MaxValue;
+  float blockMaxX = float.MaxValue;
   public LightMode lightIsOn;
   string lastanim = null;
 
@@ -177,6 +177,7 @@ public class Actor : MonoBehaviour {
   void OnMouseExit() {
     if (Options.IsActive()) return;
     Controller.OverActor(null);
+    Debug.Log("null from actor exit");
     SetLight(lightIsOn);
   }
 

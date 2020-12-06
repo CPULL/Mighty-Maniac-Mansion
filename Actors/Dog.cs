@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-public class Dog : MonoBehaviour {
-
+public class Dog : Actor {
   public Animator SamAnim;
   public Animator HeadAnim;
   public Animator TailAnim;
@@ -10,23 +9,8 @@ public class Dog : MonoBehaviour {
   public SpriteRenderer TailSR;
   public SpriteRenderer BodySR;
   public AudioSource Audio;
-  public Room currentRoom;
 
   public AudioClip[] Barks;
-
-  /* FIXME
-   
-  // Check its own conditions
-
-
-  If not friend, stay put if the player is far away, use grind if closer
-  From time to time move and grind
-  Bark also.
-
-
-   
-   
-   */
 
   int friendly = 0;
   float friendCheck = 1f;
@@ -35,12 +19,16 @@ public class Dog : MonoBehaviour {
   bool sit = false;
   bool tail = false;
   bool tongue = false;
-  bool walking = false;
+  bool isWalking = false;
   float walkTime = 0;
   float walkedTime = 0;
   Vector3 startpos, endpos;
 
-  public float dist = 0;
+  float dist = 0;
+
+  private void Awake() {
+    // Do nothing
+  }
 
   private void Start() {
     ScaleByPosition(transform.position.y);
@@ -48,6 +36,8 @@ public class Dog : MonoBehaviour {
 
   void Update() {
     if (GD.c == null || GD.c.currentActor == null) return;
+
+    IsVisible = true;
     if (friendly < 2) {
       friendCheck -= Time.deltaTime;
       if (friendCheck < 0) {
@@ -66,16 +56,14 @@ public class Dog : MonoBehaviour {
       SamAnim.Play("Sam Jump", -1, 0);
     }
 
-    if (friendly == 2) { // Friend
-      // If made friend, just stay close to the home, and move tail, toungue randomly
-
-      if (walking) {
+    if (friendly == 2) { // Friend. If made friend, just stay close to the home, and move tail, toungue randomly
+      if (isWalking) {
         transform.localPosition = Vector3.Lerp(startpos, endpos, walkedTime / walkTime);
         ScaleByPosition(transform.position.y);
         walkedTime += Time.deltaTime;
         if (walkedTime >= walkTime) {
           BodyAnim.Play("Body Idle");
-          walking = false;
+          isWalking = false;
         }
       }
 
@@ -85,7 +73,7 @@ public class Dog : MonoBehaviour {
 
 
       int rnd = Random.Range(0, 5);
-      if (rnd == 0 && !walking) { // Stay idle --------------------------------------------------------------------------------------------------
+      if (rnd == 0 && !isWalking) { // Stay idle --------------------------------------------------------------------------------------------------
         if (sit) {
           sit = false;
           Vector3 pos = transform.localPosition;
@@ -94,7 +82,7 @@ public class Dog : MonoBehaviour {
         }
         BodyAnim.Play("Body Idle");
       }
-      else if (rnd == 1 && !walking) { // Walk to random pos --------------------------------------------------------------------------------------------------
+      else if (rnd == 1 && !isWalking) { // Walk to random pos --------------------------------------------------------------------------------------------------
         if (sit) {
           sit = false;
           Vector3 pos = transform.localPosition;
@@ -111,11 +99,11 @@ public class Dog : MonoBehaviour {
         HeadSR.flipX = flip;
         BodySR.flipX = flip;
         TailSR.flipX = flip;
-        walking = true;
+        isWalking = true;
         walkTime = (endpos - startpos).magnitude;
         walkedTime = 0;
       }
-      else if (rnd == 2 && !walking) { // Stay put --------------------------------------------------------------------------------------------------
+      else if (rnd == 2 && !isWalking) { // Stay put --------------------------------------------------------------------------------------------------
         if (sit) return;
         sit = true;
         Vector3 pos = transform.localPosition;
@@ -154,7 +142,7 @@ public class Dog : MonoBehaviour {
           BodyAnim.Play("Body Idle");
           TailAnim.Play("Tail Idle");
           HeadAnim.Play("Head Grind");
-          walking = false;
+          isWalking = false;
           bool flip = transform.position.x > GD.c.currentActor.transform.position.x;
           HeadSR.flipX = flip;
           BodySR.flipX = flip;
@@ -170,7 +158,7 @@ public class Dog : MonoBehaviour {
           BodyAnim.Play("Body Idle");
           TailAnim.Play("Tail Idle");
           HeadAnim.Play("Head Chow");
-          walking = false;
+          isWalking = false;
           bool flip = transform.position.x > GD.c.currentActor.transform.position.x;
           HeadSR.flipX = flip;
           BodySR.flipX = flip;
@@ -181,11 +169,29 @@ public class Dog : MonoBehaviour {
         }
       }
     }
-
   }
 
+  void OnMouseEnter() {
+    if (Controller.NotItemUsed() || Options.IsActive() || Controller.OverActor(this)) return;
+    Material m = GD.Outline();
+    HeadSR.material = m;
+    TailSR.material = m;
+    BodySR.material = m;
+  }
+
+  void OnMouseExit() {
+    if (Options.IsActive()) return;
+    Controller.OverActor(null);
+Debug.Log("null from dog exit");
+    Material m = GD.Normal();
+    HeadSR.material = m;
+    TailSR.material = m;
+    BodySR.material = m;
+  }
+
+
   private void CheckActorBlocking(Actor a, bool block) {
-    if (a.currentRoom == Patio) {
+    if (a.currentRoom == currentRoom) {
       if (block) {
         if (a.transform.position.x > transform.position.x)
           a.SetMinMaxX(-126, -113);
@@ -211,6 +217,4 @@ public class Dog : MonoBehaviour {
     BodySR.sortingOrder = zpos + 2;
   }
 
-
-  public Room Patio;
 }

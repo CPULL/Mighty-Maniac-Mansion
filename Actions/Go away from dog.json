@@ -28,7 +28,7 @@
 			],
 			"action":[
 				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"L", "del":.5 },
-				{ "type":"Speak", "id1":"Current", "sv":"R Good dog...", "dv":"L" },
+				{ "type":"Speak", "id1":"Current", "sv":"Good dog...", "dv":"L" },
 				{ "type":"WalkToPos", "id1":"Current", "vv":[-122,-0.2], "dv":"L" },
 				{ "type":"Speak", "id1":"Current", "sv":"Better to stay far away...", "dv":"L" },
 				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"L", "del":.5 },
@@ -43,7 +43,7 @@
 			],
 			"action":[
 				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"R", "del":.5 },
-				{ "type":"Speak", "id1":"Current", "sv":"L Good dog...", "dv":"R" },
+				{ "type":"Speak", "id1":"Current", "sv":"Good dog...", "dv":"R" },
 				{ "type":"WalkToPos", "id1":"Current", "vv":[-138,-0.2], "dv":"R" },
 				{ "type":"Speak", "id1":"Current", "sv":"Better to stay far away...", "dv":"R" },
 				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"R", "del":.5 },

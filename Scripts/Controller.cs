@@ -22,17 +22,6 @@ public class Controller : MonoBehaviour {
     GD.c.DbgMsg.text = txt;
   }
 
-  static string dbgu, dbgc;
-  public static void DbgU(string txt) {
-    dbgu = txt;
-//    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
-  }
-
-  public static void DbgC(string txt) {
-    dbgc = txt;
-//    GD.c.DbgMsg.text = "UsedItem = " + dbgu + "\nCursor = " + dbgc;
-  }
-
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
 
   private void OnApplicationFocus(bool focus) {
@@ -448,7 +437,6 @@ public class Controller : MonoBehaviour {
                 item.PlayActions(currentActor, null, When.Pick, null);
                 item = null;
                 CursorHandler.Set();
-                DbgC("Update 348");
                 if (Inventory.activeSelf) ActivateInventory(currentActor);
               }
               else {
@@ -520,7 +508,6 @@ public class Controller : MonoBehaviour {
               UpdateInventory();
               usedItem = null;
               overItem = null;
-              DbgU("Update 416");
               EnableActorSelection(false);
               Inventory.SetActive(false);
               // Here we should raycast and check what should the item be with the actions (if any)
@@ -557,14 +544,14 @@ public class Controller : MonoBehaviour {
         }
         else { /* rmb - do nothing but unselect used items */
           CursorHandler.Set();
-          DbgC("Update 457");
           usedItem = null;
-          DbgU("Update 455");
           EnableActorSelection(false);
         }
       }
     }
 
+
+    Dbg("notOverUI" + notOverUI + " overActor=" + overActor + " usedItem=" + usedItem + " rmb" + rmb + " currentActor=" + currentActor);
 
     if (notOverUI && overActor != null) {
       if (rmb && usedItem != null) {
@@ -573,9 +560,7 @@ public class Controller : MonoBehaviour {
         usedItem.Give(currentActor, receiverActor);
         Inventory.SetActive(false);
         usedItem = null;
-        DbgU("Update 469");
         CursorHandler.Set();
-        DbgC("Update 475");
         EnableActorSelection(false);
         return;
       }
@@ -702,6 +687,11 @@ public class Controller : MonoBehaviour {
     FIXME.Usable = Tstatus.Usable;
     FIXME.owner = currentActor.id;
     currentActor.inventory.Add(FIXME);
+    FIXME = AllObjects.GetItem(ItemEnum.Bone);
+    FIXME.whatItDoesR = WhatItDoes.Use;
+    FIXME.Usable = Tstatus.Usable;
+    FIXME.owner = currentActor.id;
+    currentActor.inventory.Add(FIXME);
 
     /*
     for (int i = 0; i < (int)ItemEnum.ReedGrave; i++) {
@@ -783,13 +773,11 @@ public class Controller : MonoBehaviour {
         GD.c.overInventoryItem = null;
         if (GD.c.TextMsg.text != "") GD.c.HideName();
         CursorHandler.Set(CursorTypes.Normal, CursorTypes.Normal, GD.c.usedItem);
-        DbgC("SetItem 633 norm");
         return;
       }
       GD.c.overInventoryItem = item;
       if (GD.c.usedItem == null) {
         CursorHandler.Set(CursorTypes.Pick, CursorTypes.Use);
-        DbgC("SetItem 639 norm");
         GD.c.overInventoryItem = item;
         GD.c.ShowName(item.Name);
       }
@@ -799,7 +787,6 @@ public class Controller : MonoBehaviour {
     if (item == null) {
       if (GD.c.usedItem == null) {
         CursorHandler.Set();
-        DbgC("SetItem 649");
       }
       GD.c.overItem = null;
       if (GD.c.TextMsg.text != "") GD.c.HideName();
@@ -902,7 +889,6 @@ public class Controller : MonoBehaviour {
     }
 
     CursorHandler.Set(onL, onR, GD.c.usedItem);
-    DbgC("SetItem 747");
   }
 
   internal static bool IsItemCollected(ItemEnum itemID) {
@@ -1052,6 +1038,7 @@ public class Controller : MonoBehaviour {
       case Chars.PurpleTentacle: return GD.c.allEnemies[6];
       case Chars.BlueTentacle: return GD.c.allEnemies[7];
       case Chars.PurpleMeteor: return GD.c.allEnemies[8];
+      case Chars.Sam: return GD.c.allEnemies[9];
       case Chars.Dave: return GD.c.allActors[0];
       case Chars.Bernard: return GD.c.allActors[1];
       case Chars.Wendy: return GD.c.allActors[2];
