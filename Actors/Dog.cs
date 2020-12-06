@@ -28,17 +28,19 @@ public class Dog : Actor {
 
   private void Awake() {
     // Do nothing
+    inventory = new System.Collections.Generic.List<Item>();
   }
 
   private void Start() {
     ScaleByPosition(transform.position.y);
   }
 
+
   void Update() {
     if (GD.c == null || GD.c.currentActor == null) return;
 
     IsVisible = true;
-    if (friendly < 2) {
+    if (friendly != 1) {
       friendCheck -= Time.deltaTime;
       if (friendCheck < 0) {
         friendly = AllObjects.GetFlag(GameFlag.SamIsFriend);
@@ -56,7 +58,7 @@ public class Dog : Actor {
       SamAnim.Play("Sam Jump", -1, 0);
     }
 
-    if (friendly == 2) { // Friend. If made friend, just stay close to the home, and move tail, toungue randomly
+    if (friendly == 1) { // Friend. If made friend, just stay close to the home, and move tail, toungue randomly
       if (isWalking) {
         transform.localPosition = Vector3.Lerp(startpos, endpos, walkedTime / walkTime);
         ScaleByPosition(transform.position.y);
@@ -182,7 +184,6 @@ public class Dog : Actor {
   void OnMouseExit() {
     if (Options.IsActive()) return;
     Controller.OverActor(null);
-Debug.Log("null from dog exit");
     Material m = GD.Normal();
     HeadSR.material = m;
     TailSR.material = m;
@@ -209,9 +210,9 @@ Debug.Log("null from dog exit");
     if (ty > currentRoom.maxY) ty = currentRoom.maxY;
     float scaley = -.05f * (ty - currentRoom.minY - 1.9f) + .39f;
 
-    scaley *= currentRoom.scalePerc * 1.25f;
-    transform.localScale = new Vector3(scaley, scaley, 1);
     int zpos = (int)(scaley * 10000);
+    scaley *= currentRoom.scalePerc * mainScale;
+    transform.localScale = new Vector3(scaley, scaley, 1);
     TailSR.sortingOrder = zpos;
     HeadSR.sortingOrder = zpos + 1;
     BodySR.sortingOrder = zpos + 2;

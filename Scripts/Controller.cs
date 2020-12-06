@@ -550,9 +550,6 @@ public class Controller : MonoBehaviour {
       }
     }
 
-
-    Dbg("notOverUI" + notOverUI + " overActor=" + overActor + " usedItem=" + usedItem + " rmb" + rmb + " currentActor=" + currentActor);
-
     if (notOverUI && overActor != null) {
       if (rmb && usedItem != null) {
         if (currentActor == overActor) return;
@@ -1206,7 +1203,6 @@ public class Controller : MonoBehaviour {
 
   Actor overActor = null;
   internal static bool OverActor(Actor actor) {
-    Dbg("over " + actor);
     if (actor != null) {
       if (!actor.IsVisible || !actor.gameObject.activeSelf) return false;
       if (actor == GD.c.currentActor) return true;

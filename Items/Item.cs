@@ -118,7 +118,7 @@ public class Item : MonoBehaviour {
       if (ac.IsValid(actor, secondary, item1, item2, when)) {
         res = new ActionRes { 
           actionDone = true, 
-          res = ac.RunAsSequence(Name, actor.id)
+          res = ac.RunAsSequence(actor, secondary, item1, Name)
         };
       }
       else if (!string.IsNullOrEmpty(ac.Condition.msg)) {
@@ -136,7 +136,7 @@ public class Item : MonoBehaviour {
     bool done = false;
     foreach (ActionAndCondition ac in actions) {
       if (ac.IsValid(actor, null, this, other, When.UseTogether)) {
-        ac.RunAsSequence(Name, actor.id);
+        ac.RunAsSequence(actor, null, this, Name);
         done = true;
       }
       else res = ac.GetConditionMsg(actor, null, When.UseTogether, this, other);
@@ -144,7 +144,7 @@ public class Item : MonoBehaviour {
     if (res != null) return res;
     foreach (ActionAndCondition ac in other.actions) {
       if (ac.IsValid(actor, null, this, other, When.UseTogether)) {
-        ac.RunAsSequence(Name, actor.id);
+        ac.RunAsSequence(actor, null, this, Name);
         done = true;
       }
       else res = ac.GetConditionMsg(actor, null, When.UseTogether, this, other);
@@ -407,12 +407,20 @@ public class Item : MonoBehaviour {
   }
   internal void Give(Actor giver, Actor receiver) {
     ActionRes res = PlayActions(giver, receiver, When.Give, this);
-    if (res == null || !res.actionDone) { // Give it by default
-      if (ID == ItemEnum.Coat) giver.Wear(ItemEnum.Coat, true);
-      giver.inventory.Remove(this);
-      receiver.inventory.Add(this);
-      owner = Controller.GetCharFromActor(receiver);
-      Controller.UpdateInventory();
+    if (res == null || !res.actionDone) { // Give it by default if the receiver is not an NPC
+      if (receiver.IAmNPC) {
+        if (receiver as Dog)
+          receiver.Say("Grrrrrr!");
+        else
+          receiver.Say("I don't want that!");
+      }
+      else {
+        if (ID == ItemEnum.Coat) giver.Wear(ItemEnum.Coat, true);
+        giver.inventory.Remove(this);
+        receiver.inventory.Add(this);
+        owner = Controller.GetCharFromActor(receiver);
+        Controller.UpdateInventory();
+      }
     }
   }
 }

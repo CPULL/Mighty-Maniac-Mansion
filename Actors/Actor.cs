@@ -177,7 +177,6 @@ public class Actor : MonoBehaviour {
   void OnMouseExit() {
     if (Options.IsActive()) return;
     Controller.OverActor(null);
-    Debug.Log("null from actor exit");
     SetLight(lightIsOn);
   }
 
@@ -420,7 +419,8 @@ public class Actor : MonoBehaviour {
 
       // If we have a cutscene playing with this actor do not play behaviors
       foreach (GameScene b in behaviors) {
-        if (b.Run(this, null)) {
+        b.performer = this;
+        if (b.Run()) {
           nextBehaviorCheck = 0;
           break;
         }

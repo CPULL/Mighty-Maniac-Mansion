@@ -23,10 +23,9 @@ public class GameScenesManager : MonoBehaviour {
       // Is the scene valid?
       if (!s.IsValid(null, null, null, null, When.Always)) {
         RemoveScene(s);
-        Debug.Log("Removed invalid scene " + s);
         continue;
       }
-      if (s.Run(null, null)) {
+      if (s.Run()) {
         if (s.status == GameSceneStatus.ShutDown) {
           s.skipped = true;
         }
@@ -47,7 +46,7 @@ public class GameScenesManager : MonoBehaviour {
 //FIXME    Controller.Dbg(dbg);
   }
 
-  public static void StartScene(GameScene scene) {
+  public static void StartScene(GameScene scene, Actor performer = null, Actor receiver = null, Item item = null) {
     Debug.Log("--> Starting scene: " + scene);
     // Stop other scenes with the same main character
     Chars c = scene.mainChar;
@@ -60,11 +59,17 @@ public class GameScenesManager : MonoBehaviour {
 
     foreach (GameScene s in scenes) {
       if (s == scene) {
+        s.performer = performer;
+        s.receiver = receiver;
+        s.sceneItem = item;
         s.Start();
         CalculateSkippedStatus();
         return;
       }
     }
+    scene.performer = performer;
+    scene.receiver = receiver;
+    scene.sceneItem = item;
     scenes.Add(scene);
     scene.Start();
     CalculateSkippedStatus();
@@ -84,7 +89,7 @@ public class GameScenesManager : MonoBehaviour {
   public static void RemoveScene(GameScene scene) {
     foreach (GameScene s in scenes) {
       if (s == scene) {
-        Debug.Log("--> Removing scene: " + scene);
+//FIXME        Debug.Log("--> Removing scene: " + scene);
         scenes.Remove(s);
         return;
       }

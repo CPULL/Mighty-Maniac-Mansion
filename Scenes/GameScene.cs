@@ -21,7 +21,9 @@ public class GameScene {
   public List<Chars> participants;
 
   public Skippable skippable = Skippable.NotSkippable;
-
+  public Actor performer;
+  public Actor receiver;
+  public Item sceneItem;
 
   public GameScene() {
     Id = CutsceneID.NONE;
@@ -150,7 +152,7 @@ public class GameScene {
   }
 
 
-  public bool Run(Actor performer, Actor receiver) {
+  public bool Run() {
     // Are we valid?
     if (!IsValid(performer, receiver, null, null, When.Always)) {
       if (status == GameSceneStatus.NotRunning) return false;

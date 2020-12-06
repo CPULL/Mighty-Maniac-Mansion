@@ -8,14 +8,14 @@ public class ActionAndCondition {
   [SerializeField] public bool Blocking;
   [SerializeField] public GameAction[] Actions;
 
-  internal string RunAsSequence(string name, Chars performer) {
+  internal string RunAsSequence(Actor performer, Actor secondary, Item item, string name) {
     string res = null;
     foreach (GameAction a in Actions) {
       if (!a.type.GoodByDefault() && !string.IsNullOrEmpty(a.msg)) res = a.msg;
     }
 
     if (Actions.Length < 2) {
-      Actions[0].RunAction(Controller.GetActor(performer), null, false);
+      Actions[0].RunAction(performer, secondary, false);
       return res;
     }
 
@@ -23,12 +23,12 @@ public class ActionAndCondition {
       Id = CutsceneID.BackgroundSetOfActions,
       Type = Blocking ? GameSceneType.Cutscene : GameSceneType.SetOfActions,
       Name = "A&C from " + name,
-      mainChar = performer
+      mainChar = (performer == null ? Chars.None : performer.id)
     };
     foreach (GameAction a in Actions) {
       scene.startup.Add(a);
     }
-    GameScenesManager.StartScene(scene);
+    GameScenesManager.StartScene(scene, performer, secondary, item);
 
     return res;
   }
