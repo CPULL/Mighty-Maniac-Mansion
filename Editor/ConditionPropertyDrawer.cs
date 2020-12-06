@@ -8,7 +8,7 @@ public class ConditionPropertyDrawer : PropertyDrawer {
   private readonly string[] lessMore = { "is More", "is Less" };
   private readonly string[] openLocked = { "Open", "Locked" };
   private readonly string[] withWithNot = { "with not", "with" };
-  private readonly string[] equalDifferent = { "==", "!=" };
+  private readonly string[] equalDifferent = { "!=", "==" };
   private readonly string[] internalExternal = { "is external", "is intrnal" };
   private readonly string[] participantsArray = { "Nobody", "Actor1", "Actor2", "Actor3", "Kidnapped", "A Player" };
 

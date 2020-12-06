@@ -1,0 +1,59 @@
+{
+	"id":"GoAwayFromDog", "name":"Go away from dog","type":"cutscene",
+
+	"condition":[
+		{ "type":"FlagValueIs", "id":"SamIsFriend", "bv":false, "iv":2 }
+	],
+	
+	"startup" : [],
+	
+	"shutdown" : [],
+	
+	"sequence":[
+		{ "name":"Pan camera", "skippable":0,
+			"condition":[ 
+				{ "type":"FlagValueIs", "id":"SamIsFriend", "bv":false, "iv":1 }
+			],
+			"action":[
+				{ "type":"ShowRoom", "del":1.0, "sv":"Patio", "vv":[-128, 2], "id2":"1" },
+				{ "type":"wait", "del":1.1 },
+				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":1 }
+			]
+		},
+		
+		{ "name":"Go away from dog R", "skippable":0,
+			"condition":[ 
+				{ "type":"FlagValueIs", "id":"SamIsFriend", "bv":true, "iv":1 },
+				{ "type":"ActorXLess", "id":"Current", "fv":-129, "bv":false }
+			],
+			"action":[
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"L", "del":.5 },
+				{ "type":"Speak", "id1":"Current", "sv":"R Good dog...", "dv":"L" },
+				{ "type":"WalkToPos", "id1":"Current", "vv":[-122,-0.2], "dv":"L" },
+				{ "type":"Speak", "id1":"Current", "sv":"Better to stay far away...", "dv":"L" },
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"L", "del":.5 },
+				{ "type":"CompleteStep", "del":0.1, "id2":0 }
+			]
+		},
+		
+		{ "name":"Go away from dog L", "skippable":0,
+			"condition":[ 
+				{ "type":"FlagValueIs", "id":"SamIsFriend", "bv":true, "iv":1 },
+				{ "type":"ActorXLess", "id":"Current", "fv":-129, "bv":true }
+			],
+			"action":[
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"R", "del":.5 },
+				{ "type":"Speak", "id1":"Current", "sv":"L Good dog...", "dv":"R" },
+				{ "type":"WalkToPos", "id1":"Current", "vv":[-138,-0.2], "dv":"R" },
+				{ "type":"Speak", "id1":"Current", "sv":"Better to stay far away...", "dv":"R" },
+				{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"R", "del":.5 },
+				{ "type":"CompleteStep", "del":0.1, "id2":0 }
+			]
+		}
+	]
+
+}
+
+
+
+

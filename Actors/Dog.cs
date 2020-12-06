@@ -57,14 +57,6 @@ public class Dog : MonoBehaviour {
     }
     dist = Mathf.Abs(GD.c.currentActor.transform.position.x - transform.position.x);
 
-    if (friendly == 0 && dist < 7f) { // Do first pan
-      AllObjects.SetFlag(GameFlag.SamIsFriend, 1);
-      if (GD.c.currentActor.transform.position.x >= transform.position.x)
-        Controller.PanCamera(new Vector3(-128, 2, -10), 1f);
-      else
-        Controller.PanCamera(new Vector3(-130, 2, -10), 1f);
-    }
-
     if (Input.GetKeyDown(KeyCode.Space)) {
       SamAnim.enabled = true;
       BodyAnim.enabled = false;
@@ -73,10 +65,8 @@ public class Dog : MonoBehaviour {
       SamAnim.StopPlayback();
       SamAnim.Play("Sam Jump", -1, 0);
     }
-    return; // FIMXE
 
-
-    if (friendly == 2 || dist > 6f) { // Friend
+    if (friendly == 2) { // Friend
       // If made friend, just stay close to the home, and move tail, toungue randomly
 
       if (walking) {
@@ -115,7 +105,7 @@ public class Dog : MonoBehaviour {
 
         startpos = transform.localPosition;
         endpos = Vector3.zero;
-        endpos.x += Random.Range(-3, 0);
+        endpos.x += Random.Range(-2.5f, 1.5f);
         endpos.y += Random.Range(-.9f, .5f);
         bool flip = endpos.x < startpos.x;
         HeadSR.flipX = flip;
@@ -148,50 +138,63 @@ public class Dog : MonoBehaviour {
           HeadAnim.Play("Head Idle");
       }
 
-    }
-    else if (dist > 4f) { // Not friend and too close
-      // Point actor and grind. Stop wiggle. Bark from time to time
-      if (!Audio.isPlaying) {
-        BodyAnim.Play("Body Idle");
-        TailAnim.Play("Tail Idle");
-        HeadAnim.Play("Head Grind");
-        walking = false;
-        bool flip = transform.position.x > GD.c.currentActor.transform.position.x;
-        HeadSR.flipX = flip;
-        BodySR.flipX = flip;
-        TailSR.flipX = flip;
-
-        Audio.clip = Barks[0];
-        Audio.Play();
-      }
+      CheckActorBlocking(GD.c.actor1, false);
+      CheckActorBlocking(GD.c.actor2, false);
+      CheckActorBlocking(GD.c.actor3, false);
 
     }
-    else { // Not friend and too close
-      // Point actor and bark strong
+    else {
 
-      if (!Audio.isPlaying) {
-        BodyAnim.Play("Body Idle");
-        TailAnim.Play("Tail Idle");
-        HeadAnim.Play("Head Chow");
-        walking = false;
-        bool flip = transform.position.x > GD.c.currentActor.transform.position.x;
-        HeadSR.flipX = flip;
-        BodySR.flipX = flip;
-        TailSR.flipX = flip;
+      CheckActorBlocking(GD.c.actor1, true);
+      CheckActorBlocking(GD.c.actor2, true);
+      CheckActorBlocking(GD.c.actor3, true);
 
-        Audio.clip = Barks[Random.Range(1, Barks.Length)];
-        Audio.Play();
+      if (dist > 4f) { // Not friend and too close. Point actor and grind. Stop wiggle. Bark from time to time
+        if (!Audio.isPlaying) {
+          BodyAnim.Play("Body Idle");
+          TailAnim.Play("Tail Idle");
+          HeadAnim.Play("Head Grind");
+          walking = false;
+          bool flip = transform.position.x > GD.c.currentActor.transform.position.x;
+          HeadSR.flipX = flip;
+          BodySR.flipX = flip;
+          TailSR.flipX = flip;
+
+          Audio.clip = Barks[0];
+          Audio.Play();
+        }
+
       }
+      else { // Not friend and too close, point actor and bark strong
+        if (!Audio.isPlaying) {
+          BodyAnim.Play("Body Idle");
+          TailAnim.Play("Tail Idle");
+          HeadAnim.Play("Head Chow");
+          walking = false;
+          bool flip = transform.position.x > GD.c.currentActor.transform.position.x;
+          HeadSR.flipX = flip;
+          BodySR.flipX = flip;
+          TailSR.flipX = flip;
 
-      GameScene scene = GD.c.currentActor.transform.position.x > transform.position.x ?
-        AllObjects.GetCutscene(CutsceneID.GoAwayFromDogR) :
-        AllObjects.GetCutscene(CutsceneID.GoAwayFromDogL);
-      if (scene.status == GameSceneStatus.NotRunning || GD.c.currentCutscene == null) {
-        GD.c.currentActor.Stop();
-        GameScenesManager.StartScene(scene);
+          Audio.clip = Barks[Random.Range(1, Barks.Length)];
+          Audio.Play();
+        }
       }
     }
 
+  }
+
+  private void CheckActorBlocking(Actor a, bool block) {
+    if (a.currentRoom == Patio) {
+      if (block) {
+        if (a.transform.position.x > transform.position.x)
+          a.SetMinMaxX(-126, -113);
+        else
+          a.SetMinMaxX(-142, -135);
+      }
+      else
+        a.SetMinMaxX(float.NegativeInfinity, float.PositiveInfinity);
+    }
   }
 
   void ScaleByPosition(float y) {
@@ -208,4 +211,6 @@ public class Dog : MonoBehaviour {
     BodySR.sortingOrder = zpos + 2;
   }
 
+
+  public Room Patio;
 }

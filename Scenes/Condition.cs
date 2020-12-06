@@ -130,7 +130,7 @@ public class Condition {
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
       case ConditionType.SameRoom: return (!bv ? "Not same" : "Same") + " Room " + (Chars)id1 + " & " + (Chars)iv1;
       case ConditionType.RoomIsInExt: return " Room " + (Chars)id1 + (bv ? " is internal" : " is external");
-      case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " == " : " != ") + iv1;
+      case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " != " : " == ") + iv1;
       case ConditionType.ItemCollected: return "Item " + (ItemEnum)id1 + (bv ? " is collected by " : " is not collected by ") + (Chars)iv1;
       case ConditionType.ActorInRoom: return "Actor " + (Chars)id1 + " is " + (!bv ? "not in " : "in ") + sv;
       case ConditionType.ActorDistanceLess: return "Actor " + (Chars)id1 + " dist " + (bv ? "< " : "> ") + fv1;

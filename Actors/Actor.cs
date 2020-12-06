@@ -33,8 +33,8 @@ public class Actor : MonoBehaviour {
   string walk;
   [HideInInspector] public bool IAmNPC = true;
   public AudioClip TentacleSteps;
-  float blockMinX = -float.MaxValue;
-  float blockMaxX = float.MaxValue;
+  public float blockMinX = -float.MaxValue;
+  public float blockMaxX = float.MaxValue;
   public LightMode lightIsOn;
   string lastanim = null;
 

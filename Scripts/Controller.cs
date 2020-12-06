@@ -19,7 +19,7 @@ public class Controller : MonoBehaviour {
 
   public TextMeshProUGUI DbgMsg;
   public static void Dbg(string txt) {
-//    GD.c.DbgMsg.text = txt;
+    GD.c.DbgMsg.text = txt;
   }
 
   static string dbgu, dbgc;

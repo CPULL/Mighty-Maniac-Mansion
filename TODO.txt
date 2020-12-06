@@ -1,7 +1,7 @@
 === Mighty Maniac Mansion ===
 
+Fix the "give" for green tentacle
 Do coats and dig for all characters: Michael, Hoagie
-
 
 * TODO ************************************************************************************************************
 

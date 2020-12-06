@@ -51,8 +51,7 @@ public class GameStep {
       currentAction = actions[0];
       currentAction.running = Running.NotStarted;
       actionnum = 0;
-//FIXME      
-      Debug.Log(ToString() + " => " + actionnum + ") " + currentAction);
+//FIXME Debug.Log(ToString() + " => " + actionnum + ") " + currentAction);
     }
 
     if (currentAction.running == Running.NotStarted) { // Start the action
