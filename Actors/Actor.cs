@@ -164,7 +164,7 @@ public class Actor : MonoBehaviour {
 
 
   void OnMouseEnter() {
-    if (Options.IsActive() || Controller.OverActor(this)) return;
+    if (Controller.NotItemUsed() || Options.IsActive() || Controller.OverActor(this)) return;
     Material m;
     if (lightIsOn == LightMode.External || (lightIsOn == LightMode.On && GD.globalLights)) m = GD.Outline();
     else if (GD.flashLight) m = GD.FlashLight();
@@ -453,7 +453,6 @@ public class Actor : MonoBehaviour {
     Vector3 np = transform.position + wdir * actorSpeed * Controller.walkSpeed * Time.deltaTime;
     np.z = 0;
     transform.position = np;
-
     ScaleByPosition(transform.position.y);
 
     if (!audios.isPlaying && gameObject.activeSelf && IsVisible && !audios.isPlaying) {

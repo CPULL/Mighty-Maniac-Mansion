@@ -96,7 +96,6 @@ public class CursorHandler : MonoBehaviour {
       var sf = st.GetFrame(i);
       str += sf.GetFileName() + ": " + sf.GetMethod() + ": " + sf.GetFileLineNumber() + "\n";
     }
-    Controller.Dbg((item == null?"[]":"[XXX]")+ str);
 
     if (l == CursorTypes.Normal) {
       me.CursorL.enabled = false;

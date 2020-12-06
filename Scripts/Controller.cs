@@ -324,9 +324,11 @@ public class Controller : MonoBehaviour {
     if (!lmb && !rmb) return;
 
 
-    if ((lmb || rmb) && overInventoryItem == null && (inventoryMode == 1 || inventoryMode == 4)) { // click not on items will close the inventory
+    if ((lmb || rmb) && overInventoryItem == null && !justActivatedInventory && (inventoryMode == 1 || inventoryMode == 4)) { // click not on items will close the inventory
       Inventory.SetActive(false);
     }
+    else
+      justActivatedInventory = false;
 
     if (overInventoryItem != null) {
       if (inventoryMode == 0 || inventoryMode == 1) { // no auto-close -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -521,7 +523,6 @@ public class Controller : MonoBehaviour {
               DbgU("Update 416");
               EnableActorSelection(false);
               Inventory.SetActive(false);
-
               // Here we should raycast and check what should the item be with the actions (if any)
               RaycastHit2D[] hits = Physics2D.RaycastAll(worldPoint, cam.transform.forward);
               foreach (RaycastHit2D hit in hits) {
@@ -599,13 +600,14 @@ public class Controller : MonoBehaviour {
       SelectActor(GD.c.actor3);
     }
     else if (h == GD.c.InventoryPortrait) {
-      if (GD.c.Inventory.activeSelf) { // Show/Hide inventory of current actor
+      if (GD.c.Inventory.activeSelf && inventoryMode == 0) { // Show/Hide inventory of current actor
         GD.c.Inventory.SetActive(false);
         GD.c.InventoryPortrait.GetComponent<RawImage>().color = new Color32(0x6D, 0x7D, 0x7C, 0xff);
         return;
       }
-      else
+      else {
         GD.c.ActivateInventory(GD.c.currentActor);
+      }
     }
   }
 
@@ -685,7 +687,6 @@ public class Controller : MonoBehaviour {
     ActorsButtons.SetActive(true);
     StartIntroCutscene();
 
-    /*
     Item FIXME = AllObjects.GetItem(ItemEnum.WoodsMap);
     FIXME.whatItDoesR = WhatItDoes.Use;
     FIXME.Usable = Tstatus.Usable;
@@ -702,6 +703,7 @@ public class Controller : MonoBehaviour {
     FIXME.owner = currentActor.id;
     currentActor.inventory.Add(FIXME);
 
+    /*
     for (int i = 0; i < (int)ItemEnum.ReedGrave; i++) {
       FIXME = AllObjects.GetItem((ItemEnum)i);
       if (FIXME == null) continue;
@@ -734,9 +736,14 @@ public class Controller : MonoBehaviour {
   #region *********************** Inventory and Items *********************** Inventory and Items *********************** Inventory and Items ***********************
   public GameObject Inventory;
   public GameObject InventoryItemTemplate;
+  bool justActivatedInventory = false;
   private Item overItem = null; // Items we are over with the mouse
   private Item overInventoryItem = null; // Items we are over with the mouse in the inventory
   private Item usedItem = null; // Item that is being used (and visible on the cursor)
+
+  public static bool NotItemUsed() {
+    return GD.c.usedItem == null;
+  }
 
   public void ResetItems() {
     usedItem = null;
@@ -750,6 +757,7 @@ public class Controller : MonoBehaviour {
   }
 
   private void ActivateInventory(Actor actor) {
+    justActivatedInventory = true;
     Inventory.SetActive(true);
     InventoryPortrait.GetComponent<RawImage>().color = new Color32(0x7D, 0x8D, 0xfC, 0xff);
     foreach (Transform t in Inventory.transform)
@@ -1186,9 +1194,7 @@ public class Controller : MonoBehaviour {
       Fader.RemoveFade();
     }
     CursorHandler.Set();
-    DbgC("SelActor 1038");
     GD.c.usedItem = null;
-    DbgU("SelActor 1029");
     GD.c.EnableActorSelection(false);
 
     GD.c.currentActor = actor;
@@ -1208,11 +1214,12 @@ public class Controller : MonoBehaviour {
     if (GD.c.currentActor.currentRoom != GD.c.currentRoom) { // Different room
       GD.c.StartCoroutine(GD.c.FadeToRoomActor());
     }
-    if (GD.c.Inventory.activeSelf) GD.c.ActivateInventory(GD.c.currentActor);
+    if (GD.c.Inventory.activeSelf && inventoryMode == 0) GD.c.ActivateInventory(GD.c.currentActor);
   }
 
   Actor overActor = null;
   internal static bool OverActor(Actor actor) {
+    Dbg("over " + actor);
     if (actor != null) {
       if (!actor.IsVisible || !actor.gameObject.activeSelf) return false;
       if (actor == GD.c.currentActor) return true;
