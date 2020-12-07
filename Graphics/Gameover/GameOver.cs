@@ -116,7 +116,7 @@ public class GameOver : MonoBehaviour {
         Fader.FadeIn();
         oldCurrentRoom = GD.c.currentRoom;
         GD.c.currentRoom = null;
-        StarsBlink.SetWoods(0);
+        StarsBlink.SetWoods(0, GD.c.currentRoom.MoonSize);
         time = 1f;
         status = GameOverStatus.PlayerDeath3;
       }
@@ -210,7 +210,7 @@ public class GameOver : MonoBehaviour {
     // Stop game, fade to cemetery, generate cemetery, add lightnights, stay 5 seconds, hide cemetery go back to gameplay
     go.status = GameOverStatus.PlayerDeath1;
     go.woods.gameObject.SetActive(true);
-    StarsBlink.SetWoods(8);
+    StarsBlink.SetWoods(8, GD.c.currentRoom.MoonSize);
     go.time = 1;
     yield return null;
     GD.c.cam.transform.position = new Vector3(-80, -20, -10);

@@ -83,17 +83,14 @@ public class StarsBlink : MonoBehaviour {
   static float stormProb = 0;
   public AudioSource sound;
 
-  public static void SetWoods(int level) {
+  public static void SetWoods(int level, float moonScale) {
     if (me == null) return;
     me.Lightnings[0].enabled = false;
     me.Lightnings[1].enabled = false;
     me.Lightnings[2].enabled = false;
+    me.Moon.localScale = new Vector3(moonScale, moonScale, 1);
     if (level < 0) { // not in woods. Full luminosity
       me.Normal.SetFloat("_Lightning", 0);
-
-      Debug.Log("level=0");
-
-      me.Moon.localScale = new Vector3(.55f, .55f, 1);
       if (storm != null) {
         me.StopCoroutine(storm);
         storm = null;
@@ -104,8 +101,6 @@ public class StarsBlink : MonoBehaviour {
     }
     else { // Partial luminosity
       me.Normal.SetFloat("_Lightning", -.15f * level);
-
-      me.Moon.localScale = new Vector3(.25f, .25f, 1);
       stormProb = level - 1;
       if (storm == null) {
         storm = me.StartCoroutine(me.Storm());

@@ -60,12 +60,11 @@ public class Item : MonoBehaviour {
   }
 
   private void OnMouseEnter() {
-    if (Options.IsActive()) return;
+    if (Options.IsActive() || Controller.InventoryActive()) return;
     Controller.SetItem(this);
     sr.color = overColor;
   }
   private void OnMouseExit() {
-    if (Options.IsActive()) return;
     Controller.SetItem(null);
     sr.color = normalColor;
   }

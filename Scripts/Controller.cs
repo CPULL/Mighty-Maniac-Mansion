@@ -732,6 +732,10 @@ public class Controller : MonoBehaviour {
     return GD.c.usedItem == null;
   }
 
+  public static bool InventoryActive() {
+    return GD.c.Inventory.activeSelf;
+  }
+
   public void ResetItems() {
     usedItem = null;
     overInventoryItem = null;
@@ -1329,14 +1333,14 @@ public class Controller : MonoBehaviour {
         woods.SetActorRandomDoorPosition(actor, -1);
       }
       woodSteps = 0;
-      StarsBlink.SetWoods(woodSteps);
+      StarsBlink.SetWoods(woodSteps, GD.c.currentRoom.MoonSize);
     }
     else if (currentRoom.ID.Equals("Cemetery") && !cemetery.Generated) {
       cemetery.Generate(false, false, -2);
-      StarsBlink.SetWoods(4);
+      StarsBlink.SetWoods(4, GD.c.currentRoom.MoonSize);
     }
     else {
-      StarsBlink.SetWoods(0);
+      StarsBlink.SetWoods(0, GD.c.currentRoom.MoonSize);
     }
 
     if (currentRoom.ID.Equals("Pool")) { // Code specific for the pool
@@ -1521,7 +1525,7 @@ public class Controller : MonoBehaviour {
       currentActor.Say("I am getting lost.\nBetter to go back...");
     }
 
-    StarsBlink.SetWoods(woodSteps);
+    StarsBlink.SetWoods(woodSteps, GD.c.currentRoom.MoonSize);
     woodSteps++;
     if (woodSteps > 10) woodSteps = 10;
   }

@@ -74,7 +74,7 @@ public class Door : Item {
   }
 
   private void OnMouseEnter() {
-    if (Options.IsActive()) return;
+    if (Options.IsActive() || Controller.InventoryActive()) return;
     if (isSR) {
       Controller.SetItem(this);
       sr.color = overColor;
@@ -86,7 +86,6 @@ public class Door : Item {
   }
 
   private void OnMouseExit() {
-    if (Options.IsActive()) return;
     Controller.SetItem(null);
     if (isSR) {
       sr.color = normalColor;

@@ -7,7 +7,7 @@ public class RoomEditor : Editor {
   SerializedProperty ID, Name;
   SerializedProperty minL, maxR;
   SerializedProperty minY, maxY, scalePerc;
-  SerializedProperty CameraGround, external, lights;
+  SerializedProperty CameraGround, MoonSize, lights;
 
 
   void OnEnable() {
@@ -19,6 +19,7 @@ public class RoomEditor : Editor {
     maxY = serializedObject.FindProperty("maxY");
     scalePerc = serializedObject.FindProperty("scalePerc");
     CameraGround = serializedObject.FindProperty("CameraGround");
+    MoonSize = serializedObject.FindProperty("MoonSize");
     lights = serializedObject.FindProperty("lights");
   }
 
@@ -52,7 +53,9 @@ public class RoomEditor : Editor {
     EditorGUILayout.BeginHorizontal();
     EditorGUIUtility.labelWidth = 100;
     EditorGUILayout.PropertyField(CameraGround, new GUIContent("Camera Ground"));
-    EditorGUIUtility.labelWidth = 60;
+    EditorGUIUtility.labelWidth = 65;
+    EditorGUILayout.PropertyField(MoonSize, new GUIContent("Moon Size"));
+    EditorGUIUtility.labelWidth = 55;
     EditorGUILayout.PropertyField(lights, new GUIContent("Lights"));
     EditorGUILayout.EndHorizontal();
 

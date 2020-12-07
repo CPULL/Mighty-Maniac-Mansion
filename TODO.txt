@@ -1,6 +1,8 @@
 === Mighty Maniac Mansion ===
 
 
+Entering woods is not generating the correct position of items
+Exiting woods brings to a wrong position
 Alter all doors with the new mash and polygon
 
 Fix the "give" for green tentacle
@@ -255,3 +257,5 @@ Hoagie
 ! Graves in the cemetery are diggable
 ! shelter with shovel
 ! new inventory close methods
+! moon has a size specific to each room
+! We should not set items if the inventory is open (items and Doors onmouseneter)

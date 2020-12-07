@@ -23,7 +23,7 @@
 				{ "type":"EnableDisable", "id1":"Bone", "sv":"1" },
 				{ "type":"SetLocation", "id1":"Bone", "sv":"Patio", "vv":[-119.5,-0.3] },
 				{ "type":"Anim", "id2":"Bone", "sv":"Throw bone", "dv":"L", "del":.5 },
-				{ "type":"Anim", "id1":"Sam", "sv":"Sam Jump", "dv":"L", "del":.5 },
+				{ "type":"Anim", "id1":"Sam", "sv":"Sam Jump", "dv":"L", "del":1 },
 				{ "type":"EnableDisable", "id1":"Bone", "sv":"" },
 				{ "type":"Wait", "del":2 },
 				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":3 }

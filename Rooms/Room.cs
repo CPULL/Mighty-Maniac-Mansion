@@ -14,6 +14,7 @@ public class Room : MonoBehaviour {
   public LightMode lights = LightMode.On;
   List<SpriteRenderer> srs;
   List<PathNode> paths;
+  public float MoonSize = 1;
 
   private void Start() {
     if (srs == null) {
