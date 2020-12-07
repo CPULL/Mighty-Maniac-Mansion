@@ -9,6 +9,7 @@ public class ConditionPropertyDrawer : PropertyDrawer {
   private readonly string[] openLocked = { "Open", "Locked" };
   private readonly string[] withWithNot = { "with not", "with" };
   private readonly string[] equalDifferent = { "!=", "==" };
+  private readonly string[] comparison = { "", "!=", "==", "<", ">" };
   private readonly string[] internalExternal = { "is external", "is intrnal" };
   private readonly string[] participantsArray = { "Nobody", "Actor1", "Actor2", "Actor3", "Kidnapped", "A Player" };
 
@@ -28,7 +29,7 @@ public class ConditionPropertyDrawer : PropertyDrawer {
     SerializedProperty msg = property.FindPropertyRelative("msg");
     SerializedProperty when = property.FindPropertyRelative("when");
 
-    string name = Condition.StringName((ConditionType)type.intValue, (When)when.intValue, id1.intValue, iv1.intValue, fv1.floatValue, sv.stringValue, bv.boolValue);
+    string name = Condition.StringName((ConditionType)type.intValue, id1.intValue, iv1.intValue, fv1.floatValue, sv.stringValue, bv.boolValue);
 
     float w4 = position.width * .25f;
     float lh = EditorGUIUtility.singleLineHeight;
@@ -105,11 +106,21 @@ public class ConditionPropertyDrawer : PropertyDrawer {
         break;
 
         case ConditionType.FlagValueIs: {
+          float wh = w4 * .5f;
           Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
-          Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
+          Rect b1Rect = new Rect(position.x + w4 * 2, position.y + lh, wh, lh);
+          Rect b2Rect = new Rect(position.x + w4 * 2 + wh, position.y + lh, wh, lh);
           Rect cRect = new Rect(position.x + w4 * 3, position.y + lh, w4, lh);
           id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(GameFlag)));
-          bv.intValue = EditorGUI.Popup(bRect, bv.intValue, equalDifferent);
+          int pos = 0;
+          switch(sv.stringValue) {
+            case "==": pos = 1; break;
+            case "!=": pos = 2; break;
+            case "<": pos = 3; break;
+            case ">": pos = 4; break;
+          }
+          if (pos == 0) bv.intValue = EditorGUI.Popup(b1Rect, bv.intValue, equalDifferent);
+          sv.stringValue = comparison[EditorGUI.Popup(b2Rect, pos, comparison)];
           iv1.intValue = EditorGUI.IntField(cRect, iv1.intValue);
         }
         break;

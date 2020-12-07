@@ -12,7 +12,7 @@ public class Dog : Actor {
 
   public AudioClip[] Barks;
 
-  int friendly = 0;
+  public int friendly = 0;
   float friendCheck = 1f;
 
   float timeout = 1f;
@@ -58,16 +58,24 @@ public class Dog : Actor {
     }
 
     IsVisible = true;
-    if (friendly != 1) {
+    if (friendly != 3) {
       friendCheck -= Time.deltaTime;
       if (friendCheck < 0) {
         friendly = AllObjects.GetFlag(GameFlag.SamIsFriend);
-        friendCheck = 1f;
+        friendCheck = .5f;
       }
     }
     dist = Mathf.Abs(GD.c.currentActor.transform.position.x - transform.position.x);
 
-    if (friendly == 1 || friendly == 3) { // Friend. If made friend, just stay close to the home, and move tail, toungue randomly
+    /*
+    SamIsFriend
+    0 -> not friend panning not done
+    1 -> not friend panning done
+    2 -> throwing bone
+    3 -> friend
+    */
+
+    if (friendly == 3) { // Friend. If made friend, just stay close to the home, and move tail, toungue randomly
       if (isWalking) {
         transform.localPosition = Vector3.Lerp(startpos, endpos, walkedTime / walkTime);
         ScaleByPosition(transform.position.y);
@@ -81,13 +89,6 @@ public class Dog : Actor {
       timeout -= Time.deltaTime;
       if (timeout > 0) return;
       timeout = 1;
-
-      if (friendly == 3) {
-        HeadSR.flipX = false;
-        BodySR.flipX = false;
-        TailSR.flipX = false;
-        return;
-      }
 
       int rnd = Random.Range(0, 5);
       if (rnd == 0 && !isWalking) { // Stay idle --------------------------------------------------------------------------------------------------
@@ -148,8 +149,26 @@ public class Dog : Actor {
       CheckActorBlocking(GD.c.actor3, false);
 
     }
-    else {
+    else if (friendly == 2) { // Throwing bone (or any other anim)
+      if (isWalking) {
+        transform.localPosition = Vector3.Lerp(startpos, endpos, walkedTime / walkTime);
+        ScaleByPosition(transform.position.y);
+        walkedTime += Time.deltaTime;
+        if (walkedTime >= walkTime) {
+          BodyAnim.Play("Body Idle");
+          isWalking = false;
+        }
+      }
 
+      HeadSR.flipX = false;
+      BodySR.flipX = false;
+      TailSR.flipX = false;
+      timeout -= Time.deltaTime;
+      if (timeout > 0) return;
+      timeout = 1;
+
+    }
+    else {
       CheckActorBlocking(GD.c.actor1, true);
       CheckActorBlocking(GD.c.actor2, true);
       CheckActorBlocking(GD.c.actor3, true);

@@ -1,9 +1,7 @@
 === Mighty Maniac Mansion ===
 
-The "give/receive" should be handled better:
--> condition:giver/receiver
--> what to do, in case of "accepting" is missing the actors
 
+The throw bone does not work if coming from the left
 
 Fix the "give" for green tentacle
 Do coats and dig for all characters: Michael, Hoagie

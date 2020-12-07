@@ -11,8 +11,12 @@
 		{ "name":"Throw", "skippable":0,
 			"condition":[ ],
 			"action":[
+				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":2 },
+				{ "type":"Wait", "del":.2 },
 				{ "type":"ShowRoom", "del":0.6, "sv":"Patio", "vv":[-124.5, 2], "id2":"1" },
-				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":3 },
+				{ "type":"Wait", "del":.2 },
+				{ "type":"BlockActorX", "id1":"Current", "vv":[-1000,1000], "dv":"None" },
+				{ "type":"Wait", "del":.2 },
 				{ "type":"WalkToPos", "id1":"Sam", "vv":[0.35,-0.325], "dv":"R" },
 				{ "type":"WalkToPos", "id1":"Current", "vv":[-119.5,-0.3], "dv":"L" },
 				{ "type":"Speak", "id1":"Sam", "sv":"Woof!", "dv":"R" },
@@ -22,7 +26,7 @@
 				{ "type":"Anim", "id1":"Sam", "sv":"Sam Jump", "dv":"L", "del":.5 },
 				{ "type":"EnableDisable", "id1":"Bone", "sv":"" },
 				{ "type":"Wait", "del":2 },
-				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":1 }
+				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":3 }
 			]
 		}
 	]

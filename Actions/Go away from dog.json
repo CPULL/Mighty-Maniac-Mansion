@@ -1,8 +1,8 @@
 {
 	"id":"GoAwayFromDog", "name":"Go away from dog","type":"cutscene",
 
-	"condition":[
-		{ "type":"FlagValueIs", "id":"SamIsFriend", "bv":false, "iv":1 }
+	"condition":[,
+		{ "type":"FlagValueIs", "id":"SamIsFriend", "sv":"<", "iv":2 }
 	],
 	
 	"startup" : [],
@@ -10,20 +10,33 @@
 	"shutdown" : [],
 	
 	"sequence":[
-		{ "name":"Pan camera", "skippable":0,
+		{ "name":"Pan camera R", "skippable":0,
 			"condition":[ 
-				{ "type":"FlagValueIs", "id":"SamIsFriend", "bv":false, "iv":2 }
+				{ "type":"FlagValueIs", "id":"SamIsFriend", "sv":"<", "iv":2 },
+				{ "type":"ActorXLess", "id":"Current", "fv":-129, "bv":false }
 			],
 			"action":[
 				{ "type":"ShowRoom", "del":1.0, "sv":"Patio", "vv":[-128, 2], "id2":"1" },
 				{ "type":"wait", "del":1.1 },
-				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":2 }
+				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":1 }
+			]
+		},
+		
+		{ "name":"Pan camera L", "skippable":0,
+			"condition":[ 
+				{ "type":"FlagValueIs", "id":"SamIsFriend", "sv":"<", "iv":2 },
+				{ "type":"ActorXLess", "id":"Current", "fv":-129, "bv":true }
+			],
+			"action":[
+				{ "type":"ShowRoom", "del":1.0, "sv":"Patio", "vv":[-131, 2], "id2":"1" },
+				{ "type":"wait", "del":1.1 },
+				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":1 }
 			]
 		},
 		
 		{ "name":"Go away from dog R", "skippable":0,
 			"condition":[ 
-				{ "type":"FlagValueIs", "id":"SamIsFriend", "bv":true, "iv":2 },
+				{ "type":"FlagValueIs", "id":"SamIsFriend", "sv":"<", "iv":2 },
 				{ "type":"ActorXLess", "id":"Current", "fv":-129, "bv":false }
 			],
 			"action":[
@@ -38,7 +51,7 @@
 		
 		{ "name":"Go away from dog L", "skippable":0,
 			"condition":[ 
-				{ "type":"FlagValueIs", "id":"SamIsFriend", "bv":true, "iv":2 },
+				{ "type":"FlagValueIs", "id":"SamIsFriend", "sv":"<", "iv":2 },
 				{ "type":"ActorXLess", "id":"Current", "fv":-129, "bv":true }
 			],
 			"action":[

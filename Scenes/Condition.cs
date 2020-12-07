@@ -110,10 +110,10 @@ public class Condition {
   }
 
   public override string ToString() {
-    return StringName(type, when, id, iv, fv, sv, bv);
+    return StringName(type, id, iv, fv, sv, bv);
   }
 
-  public static string StringName(ConditionType type, When when, int id1, int iv1, float fv1, string sv, bool bv) {
+  public static string StringName(ConditionType type, int id1, int iv1, float fv1, string sv, bool bv) {
     switch (type) {
       case ConditionType.None: return "<none>"; 
       case ConditionType.ActorIs: return "Actor is " + (!bv ? "not " : "") + (Chars)id1;
@@ -130,7 +130,15 @@ public class Condition {
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
       case ConditionType.SameRoom: return (!bv ? "Not same" : "Same") + " Room " + (Chars)id1 + " & " + (Chars)iv1;
       case ConditionType.RoomIsInExt: return " Room " + (Chars)id1 + (bv ? " is internal" : " is external");
-      case ConditionType.FlagValueIs: return "Flag " + (GameFlag)id1 + (bv ? " != " : " == ") + iv1;
+      case ConditionType.FlagValueIs: {
+        switch(sv) {
+          case "==": return "Flag " + (GameFlag)id1 + " == " + iv1;
+          case "!=": return "Flag " + (GameFlag)id1 + " != " + iv1;
+          case "<": return "Flag " + (GameFlag)id1 + " < " + iv1;
+          case ">": return "Flag " + (GameFlag)id1 + " > " + iv1;
+          default: return "Flag " + (GameFlag)id1 + (bv ? " != " : " == ") + iv1;
+        }
+      }
       case ConditionType.ItemCollected: return "Item " + (ItemEnum)id1 + (bv ? " is collected by " : " is not collected by ") + (Chars)iv1;
       case ConditionType.ActorInRoom: return "Actor " + (Chars)id1 + " is " + (!bv ? "not in " : "in ") + sv;
       case ConditionType.ActorDistanceLess: return "Actor " + (Chars)id1 + " dist " + (bv ? "< " : "> ") + fv1;
@@ -284,6 +292,12 @@ public class Condition {
       }
 
       case ConditionType.FlagValueIs: {
+        switch (sv) {
+          case "==": return AllObjects.GetFlag((GameFlag)id) == iv;
+          case "!=": return AllObjects.GetFlag((GameFlag)id) != iv;
+          case "<": return AllObjects.GetFlag((GameFlag)id) < iv;
+          case ">": return AllObjects.GetFlag((GameFlag)id) > iv;
+        }
         if (bv)
           return AllObjects.CheckFlag((GameFlag)id, iv);
         else
