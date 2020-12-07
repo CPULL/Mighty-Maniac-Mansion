@@ -187,7 +187,7 @@ public enum CutsceneID {
   FredTalkingToKidnapped,
   PickDeveloperBottle,
   GoAwayFromDog,
-  GoAwayFromDogUNUSED,
+  ThrowBone,
   PoolEmpty,
   WaterDownAlarm,
   RedButton,

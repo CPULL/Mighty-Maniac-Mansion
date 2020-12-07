@@ -1,0 +1,34 @@
+{
+	"id":"ThrowBone", "name":"Throw bone to dog","type":"cutscene",
+
+	"condition":[],
+	
+	"startup" : [],
+	
+	"shutdown" : [],
+	
+	"sequence":[
+		{ "name":"Throw", "skippable":0,
+			"condition":[ ],
+			"action":[
+				{ "type":"ShowRoom", "del":0.6, "sv":"Patio", "vv":[-124.5, 2], "id2":"1" },
+				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":3 },
+				{ "type":"WalkToPos", "id1":"Sam", "vv":[0.35,-0.325], "dv":"R" },
+				{ "type":"WalkToPos", "id1":"Current", "vv":[-119.5,-0.3], "dv":"L" },
+				{ "type":"Speak", "id1":"Sam", "sv":"Woof!", "dv":"R" },
+				{ "type":"EnableDisable", "id1":"Bone", "sv":"1" },
+				{ "type":"SetLocation", "id1":"Bone", "sv":"Patio", "vv":[-119.5,-0.3] },
+				{ "type":"Anim", "id2":"Bone", "sv":"Throw bone", "dv":"L", "del":.5 },
+				{ "type":"Anim", "id1":"Sam", "sv":"Sam Jump", "dv":"L", "del":.5 },
+				{ "type":"EnableDisable", "id1":"Bone", "sv":"" },
+				{ "type":"Wait", "del":2 },
+				{ "type":"SetFlag", "del":0, "id1":"SamIsFriend", "iv":1 }
+			]
+		}
+	]
+
+}
+
+
+
+

@@ -25,6 +25,7 @@ public class Dog : Actor {
   Vector3 startpos, endpos;
 
   float dist = 0;
+  float animDelay = 0;
 
   private void Awake() {
     // Do nothing
@@ -39,6 +40,23 @@ public class Dog : Actor {
   void Update() {
     if (GD.c == null || GD.c.currentActor == null) return;
 
+    if (animDelay > 0) {
+      animDelay -= Time.deltaTime;
+      if (animDelay <= 0) {
+        SamAnim.enabled = false;
+        BodyAnim.enabled = true;
+        TailAnim.enabled = true;
+        HeadAnim.enabled = true;
+        HeadSR.transform.localPosition = Vector3.zero;
+        TailSR.transform.localPosition = Vector3.zero;
+        BodySR.transform.localPosition = Vector3.zero;
+        HeadSR.transform.localRotation = Quaternion.identity;
+        TailSR.transform.localRotation = Quaternion.identity;
+        BodySR.transform.localRotation = Quaternion.identity;
+      }
+      return;
+    }
+
     IsVisible = true;
     if (friendly != 1) {
       friendCheck -= Time.deltaTime;
@@ -49,16 +67,7 @@ public class Dog : Actor {
     }
     dist = Mathf.Abs(GD.c.currentActor.transform.position.x - transform.position.x);
 
-    if (Input.GetKeyDown(KeyCode.Space)) {
-      SamAnim.enabled = true;
-      BodyAnim.enabled = false;
-      TailAnim.enabled = false;
-      HeadAnim.enabled = false;
-      SamAnim.StopPlayback();
-      SamAnim.Play("Sam Jump", -1, 0);
-    }
-
-    if (friendly == 1) { // Friend. If made friend, just stay close to the home, and move tail, toungue randomly
+    if (friendly == 1 || friendly == 3) { // Friend. If made friend, just stay close to the home, and move tail, toungue randomly
       if (isWalking) {
         transform.localPosition = Vector3.Lerp(startpos, endpos, walkedTime / walkTime);
         ScaleByPosition(transform.position.y);
@@ -73,6 +82,12 @@ public class Dog : Actor {
       if (timeout > 0) return;
       timeout = 1;
 
+      if (friendly == 3) {
+        HeadSR.flipX = false;
+        BodySR.flipX = false;
+        TailSR.flipX = false;
+        return;
+      }
 
       int rnd = Random.Range(0, 5);
       if (rnd == 0 && !isWalking) { // Stay idle --------------------------------------------------------------------------------------------------
@@ -218,4 +233,21 @@ public class Dog : Actor {
     BodySR.sortingOrder = zpos + 2;
   }
 
+  internal void WalkToPos(Vector2 dest) {
+    startpos = transform.localPosition;
+    endpos = dest;
+    isWalking = true;
+    walkedTime = 0;
+    walkTime = (endpos - startpos).magnitude * .5f;
+  }
+
+  internal void PlayAnim(string anim, float delay) {
+    SamAnim.enabled = true;
+    BodyAnim.enabled = false;
+    TailAnim.enabled = false;
+    HeadAnim.enabled = false;
+    SamAnim.StopPlayback();
+    SamAnim.Play(anim, -1, 0);
+    animDelay = delay;
+  }
 }

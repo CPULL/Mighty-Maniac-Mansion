@@ -46,6 +46,7 @@ public enum ActionType {
   ShowMap = 30, // Show and hide the Map of the Woods
   Pick = 31, // Acts like a player picked an item
   WearItem = 32, // Adds shovel, meteorite, flashlight, and all items that can be hold in hands
+  SetLocation = 33, // Set parent transform and position to an object
 };
 
 
@@ -145,6 +146,7 @@ public class GameAction {
           case 4: return (Chars)id1 + " uses " + (ItemEnum)id2 + " back";
           default: return (Chars)id1 + " uses ERROR " + (ItemEnum)id2;
         }
+      case ActionType.SetLocation: return (ItemEnum)id1 + " at [" + pos + "] " + str;
     }
     return res;
   }
@@ -179,6 +181,7 @@ public class GameAction {
       case ActionType.ShowMap:
       case ActionType.Pick:
       case ActionType.WearItem:
+      case ActionType.SetLocation:
         return;
 
       case ActionType.Speak: {
@@ -440,6 +443,11 @@ public class GameAction {
       }
       break;
 
+      case ActionType.SetLocation: {
+        id1 = SafeParse(typeof(ItemEnum), vid1);
+      }
+      break;
+
     }
   }
 
@@ -566,6 +574,12 @@ public class GameAction {
         Actor a = Controller.GetActor((Chars)id1);
         if (a == null) a = performer;
         if (a == null) {
+          Complete();
+          return;
+        }
+        
+        if (a.id == Chars.Sam) {
+          (a as Dog).WalkToPos(pos);
           Complete();
           return;
         }
@@ -866,6 +880,11 @@ public class GameAction {
       case ActionType.Anim: {
         if (id1 != 0) {
           Actor a = Controller.GetActor((Chars)id1);
+          if (a.id == Chars.Sam) {
+            (a as Dog).PlayAnim(str, delay);
+            Play();
+            return;
+          }
           if (a.PlayAnim(str, dir, delay))
             Complete();
           else
@@ -1029,6 +1048,14 @@ public class GameAction {
       }
       break;
 
+      case ActionType.SetLocation: {
+        Item item = AllObjects.GetItem((ItemEnum)id1);
+        Room room = AllObjects.GetRoom(str);
+        item.transform.parent = room.transform;
+        item.transform.localPosition = pos;
+        Complete();
+      }
+      break;
 
 
 

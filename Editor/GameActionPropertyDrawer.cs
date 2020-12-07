@@ -314,6 +314,16 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           id2.intValue = EditorGUI.Popup(cRect, id2.intValue, System.Enum.GetNames(typeof(ItemEnum)));
         }
         break;
+
+        case ActionType.SetLocation: {
+          Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);
+          Rect cRect = new Rect(position.x + 3 * w4, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
+          pos.vector2Value = EditorGUI.Vector2Field(bRect, "", pos.vector2Value);
+          str.stringValue = EditorGUI.TextField(cRect, str.stringValue);
+        }
+        break;
       }
     }
 
