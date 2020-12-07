@@ -1,7 +1,7 @@
 === Mighty Maniac Mansion ===
 
 
-The throw bone does not work if coming from the left
+Alter all doors with the new mash and polygon
 
 Fix the "give" for green tentacle
 Do coats and dig for all characters: Michael, Hoagie

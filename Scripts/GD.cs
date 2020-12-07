@@ -36,6 +36,8 @@ public class GD : MonoBehaviour {
   public static Material FlashLight() { return gs.MatFlashLight; }
   public static Material LightOffOutline() { return gs.MatLightOffOutline; }
 
+  public static Color32 DoorColor = new Color32(52, 167, 207, 100);
+  public static Color32 OverColor = new Color32(72, 187, 227, 200);
 
   public static void Log(string s) {
     string path = Path.Combine(Application.dataPath, "../error.log");
