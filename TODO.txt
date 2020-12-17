@@ -1,5 +1,6 @@
 === Mighty Maniac Mansion ===
 
+Have a flag to have the face in front of the body.
 
 Entering woods is not generating the correct position of items
 Exiting woods brings to a wrong position

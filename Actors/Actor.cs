@@ -25,6 +25,7 @@ public class Actor : MonoBehaviour {
   public float mainScale = 1f;
   public List<Skill> skills;
   public bool male;
+  public bool faceFront = false;
   List<Parcour> parcour;
   [TextArea(3, 12)] public string Description;
   FloorType floor = FloorType.None;
@@ -506,7 +507,7 @@ public class Actor : MonoBehaviour {
     int zpos = (int)(scaley * 10000);
     scaley *= currentRoom.scalePerc * mainScale;
     transform.localScale = new Vector3(scaley, scaley, 1);
-    if (!male && dir != Dir.F) {
+    if (faceFront || (!male && dir != Dir.F)) {
       Face.sortingOrder = zpos + 2;
       Arms.sortingOrder = zpos + 1;
     }
