@@ -1,8 +1,5 @@
 === Mighty Maniac Mansion ===
 
-Have a flag to have the face in front of the body.
-
-Entering woods is not generating the correct position of items
 Exiting woods brings to a wrong position
 Alter all doors with the new mash and polygon
 
@@ -45,8 +42,6 @@ If a room has windows, make it a little bit less dark (like flashlight but witho
 
 * BUGS ************************************************************************************************************
 
-Be sure to reset the "lights" on characters when the game starts
-
 * CHARS ************************************************************************************************************
 
 !Dr. Fred
@@ -60,7 +55,7 @@ Blue Tentacle
 Purple Meteor
 !Dave
 !Bernard
-Hoagie
+!Hoagie
 !Michael
 !Razor
 !Syd
@@ -260,3 +255,6 @@ Hoagie
 ! new inventory close methods
 ! moon has a size specific to each room
 ! We should not set items if the inventory is open (items and Doors onmouseneter)
+! Have a flag to have the face in front of the body.
+! Entering woods is not generating the correct position of items
+

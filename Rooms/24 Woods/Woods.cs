@@ -13,13 +13,13 @@ public class Woods : MonoBehaviour {
   public void Generate(bool home, bool cemetery, int nextDirection) {
     Generated = true;
     foreach (Tree t in MiddleTrees)
-      if (t.gameObject.activeSelf) t.Randomize(room.minY, room.maxY, room.scalePerc, 3, 2);
+      if (t.gameObject.activeSelf) t.Randomize(room.minY, 3, 2);
 
     foreach (Tree t in Trees)
-      if (t.gameObject.activeSelf) t.Randomize(room.minY, room.maxY, room.scalePerc);
+      if (t.gameObject.activeSelf) t.Randomize(room.minY);
     foreach (Grass g in Grass)
       if (g.gameObject.activeSelf)
-        g.Randomize(room.minY, room.maxY, room.scalePerc);
+        g.Randomize(room.minY);
 
 
     if (nextDirection == -2) return; // Not needed, it is the cemetery

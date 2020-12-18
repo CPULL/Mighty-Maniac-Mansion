@@ -5,7 +5,7 @@ public class Tree : MonoBehaviour {
   public Sprite[] Trunks;
   public SpriteRenderer Trunk;
   public SpriteRenderer[] Leafs;
-  float minY, maxY, scalePerc;
+  float minY;
 
   Vector3 pos = Vector3.zero;
 
@@ -13,10 +13,8 @@ public class Tree : MonoBehaviour {
     pos = transform.localPosition;
   }
 
-  public void Randomize(float miny, float maxy, float scale, float w=1, float h = 1) {
+  public void Randomize(float miny, float w=1, float h = 1) {
     minY = miny;
-    maxY = maxy;
-    scalePerc = scale;
     transform.localPosition = pos + h * Vector3.up * Random.Range(-.15f, .15f) + w * Vector3.right * Random.Range(-.3f, .3f);
     transform.localScale = new Vector3((Random.Range(0, 2) == 0 ? 1 : -1) * Random.Range(.45f, .55f), Random.Range(.95f, 1.05f), 1);
 
@@ -42,7 +40,6 @@ public class Tree : MonoBehaviour {
   int ScaleByPosition(float y) {
     float ty = y;
     float scaley = -.05f * (ty - minY - 1.9f) + .39f;
-    scaley *= scalePerc;
     return (int)(scaley * 10000);
   }
 
@@ -56,9 +53,4 @@ public class Tree : MonoBehaviour {
     }
   }
 
-
-  // FIXME
-  void Update() {
-    if (Input.GetKeyDown(KeyCode.Z)) Randomize(minY, maxY, scalePerc);
-  }
 }
