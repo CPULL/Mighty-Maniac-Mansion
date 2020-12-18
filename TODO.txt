@@ -1,6 +1,5 @@
 === Mighty Maniac Mansion ===
 
-Exiting woods brings to a wrong position
 Alter all doors with the new mash and polygon
 
 Fix the "give" for green tentacle
@@ -257,4 +256,5 @@ Purple Meteor
 ! We should not set items if the inventory is open (items and Doors onmouseneter)
 ! Have a flag to have the face in front of the body.
 ! Entering woods is not generating the correct position of items
+! Exiting woods brings to a wrong position
 

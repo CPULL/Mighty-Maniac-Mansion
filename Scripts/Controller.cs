@@ -1290,44 +1290,15 @@ public class Controller : MonoBehaviour {
     currentRoom.UpdateLights();
     yield return null;
 
-    while (time < .25f) {
-      // Fade black
-      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (1 - (8 * (time - .125f)))));
-      cam.transform.position = (1 - time * 4) * orgp + (time * 4) * dstp;
-      cam.orthographicSize = (1 - time * 4) * orthos + (time * 4) * orthod;
-      time += Time.deltaTime;
-      yield return null;
-    }
-    cam.transform.position = dstp;
-
-    // Disable src
-    door.src.gameObject.SetActive(false);
-
-    // Disable actors not in current room
-    foreach (Actor a in allActors) {
-      if (a == null) continue;
-      a.SetVisible(a.currentRoom == currentRoom);
-    }
-    foreach (Actor a in allEnemies) {
-      if (a == null) continue;
-      a.SetVisible(a.currentRoom == currentRoom);
-    }
-
-    // Enable gameplay
-    CursorHandler.Set();
-    overItem = null;
-    ShowName(currentRoom.name);
-
+    // Specific room changes
     if (currentRoom.ID.Equals("Woods")) {
       GenerateMap(); // It will do nothing if the map is already generated
       if (currentActor.HasItem(ItemEnum.WoodsMap)) {
-        Debug.Log("Generating woods, first step");
         mapPos = 0;
         woods.Generate(true, false, mapDirections[mapPos]);
         woods.SetActorRandomDoorPosition(actor, mapDirections[mapPos]);
       }
       else {
-        Debug.Log("Generating woods without map");
         mapPos = -1;
         woods.Generate(true, false, -1);
         woods.SetActorRandomDoorPosition(actor, -1);
@@ -1360,6 +1331,35 @@ public class Controller : MonoBehaviour {
         }
       }
     }
+
+    // Fade back
+    while (time < .25f) {
+      // Fade black
+      BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (1 - (8 * (time - .125f)))));
+      cam.transform.position = (1 - time * 4) * orgp + (time * 4) * dstp;
+      cam.orthographicSize = (1 - time * 4) * orthos + (time * 4) * orthod;
+      time += Time.deltaTime;
+      yield return null;
+    }
+    cam.transform.position = dstp;
+
+    // Disable src
+    door.src.gameObject.SetActive(false);
+
+    // Disable actors not in current room
+    foreach (Actor a in allActors) {
+      if (a == null) continue;
+      a.SetVisible(a.currentRoom == currentRoom);
+    }
+    foreach (Actor a in allEnemies) {
+      if (a == null) continue;
+      a.SetVisible(a.currentRoom == currentRoom);
+    }
+
+    // Enable gameplay
+    CursorHandler.Set();
+    overItem = null;
+    ShowName(currentRoom.name);
 
     BlackFade.color = new Color32(0, 0, 0, 0);
   }
@@ -1493,8 +1493,6 @@ public class Controller : MonoBehaviour {
 
     // Do we have the map and the path is the right one?
     bool goodPath = mapPos >= 0 && mapPos < 5 && mapDirections[mapPos] == woods.GetDoorPosition(door);
-
-    Debug.Log("g=" + goodPath + " pos=" + mapPos + " gdp=" + woods.GetDoorPosition(door) + " " + mapDirections[0] + ", " + mapDirections[1] + ", " + mapDirections[2] + ", " + mapDirections[3] + ", " + mapDirections[4]);
 
     if (goodPath && currentActor.HasItem(ItemEnum.WoodsMap)) {
       //  yes-> check if we are following the right path, and be sure to generate the correct direction
