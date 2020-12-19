@@ -65,7 +65,6 @@ public class Container : Item {
         if (!actor.inventory.Contains(item))
           actor.inventory.Add(ci.item);
         ci.item.gameObject.SetActive(false);
-        // FIXME add to the right parent?
       }
   }
   internal void Collect(ItemEnum type, Actor actor) {
@@ -77,7 +76,7 @@ public class Container : Item {
       }
   }
 
-  internal bool Place(Item item, Actor actor) {
+  internal void Place(Item item, Actor actor) {
     foreach (ContainedItem ci in containedItems)
       if (ci.type == item.ID && !ci.inContainer) {
         ci.inContainer = true;
@@ -87,10 +86,7 @@ public class Container : Item {
         ci.item.transform.localPosition = ci.localPos;
         ci.item.gameObject.SetActive(IsOpen());
         ci.item.whatItDoesR = WhatItDoes.Pick;
-        return false;
       }
-
-    return true; // This should generate a "It does not fit" message
   }
 
   internal void EnableItem(Item item, bool enable) {

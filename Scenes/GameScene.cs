@@ -120,7 +120,7 @@ public class GameScene {
     }
     else {
       foreach (GameAction a in shutdown) {
-        a.RunAction(null, null, skipped);
+        a.RunAction(null, null, null, skipped);
         a.Complete();
       }
     }
@@ -174,7 +174,7 @@ public class GameScene {
       }
 
       if (startupaction.running == Running.NotStarted) { // Start the action
-        startupaction.RunAction(performer, receiver, skipped);
+        startupaction.RunAction(performer, receiver, sceneItem, skipped);
         lastaction = startupaction.ToString();
       }
       else if (startupaction.running == Running.Running) { // Wait it to complete
@@ -199,7 +199,7 @@ public class GameScene {
       bool atLeastOne = false;
       skippable = Skippable.NotSkippable;
       foreach (GameStep gs in steps) {
-        bool run = gs.Run(this, performer, receiver, skipped);
+        bool run = gs.Run(this, performer, receiver, sceneItem, skipped);
         atLeastOne |= run;
         if (run) {
           lastaction = gs.ToString();
@@ -241,7 +241,7 @@ public class GameScene {
         }
 
         if (shutdownaction.running == Running.NotStarted) { // Start the action
-          shutdownaction.RunAction(performer, receiver, skipped);
+          shutdownaction.RunAction(performer, receiver, sceneItem, skipped);
         }
         else if (shutdownaction.running == Running.Running) { // Wait it to complete
           shutdownaction.CheckTime(Time.deltaTime);

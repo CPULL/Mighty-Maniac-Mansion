@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
   [HideInInspector] public SpriteRenderer sr;
+  [HideInInspector] public SpriteRenderer[] srs;
 
   public ItemEnum ID;
   public string Name;
@@ -56,17 +57,43 @@ public class Item : MonoBehaviour {
 
   private void Awake() {
     sr = GetComponent<SpriteRenderer>();
+    if (sr == null) { // Item is composed of sub-items
+      int num = 0;
+      foreach(Transform t in transform) {
+        SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
+        if (sr != null && sr.material.name != "SnapPoint") num++;
+      }
+      srs = new SpriteRenderer[num];
+      num = 0;
+      foreach (Transform t in transform) {
+        SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
+        if (sr != null && sr.material.name != "SnapPoint") {
+          srs[num] = sr;
+          num++;
+        }
+      }
+    }
     isEnabled = gameObject.activeSelf;
   }
 
   private void OnMouseEnter() {
     if (Options.IsActive() || Controller.InventoryActive()) return;
     Controller.SetItem(this);
-    sr.color = overColor;
+    if (sr != null)
+      sr.color = overColor;
+    else if (srs!=null) {
+      foreach(SpriteRenderer sr in srs)
+        sr.color = overColor;
+    }
   }
   private void OnMouseExit() {
     Controller.SetItem(null);
-    sr.color = normalColor;
+    if (sr != null)
+      sr.color = normalColor;
+    else if (srs != null) {
+      foreach (SpriteRenderer sr in srs)
+        sr.color = normalColor;
+    }
   }
 
   private void OnEnable() {
@@ -156,7 +183,7 @@ public class Item : MonoBehaviour {
     // Case of an item and a container
     Container c = other as Container;
     if (c != null) {
-      if (c.Usable != Tstatus.Openable && c.openStatus != OpenStatus.Open) return "It is closed";
+      if (c.openStatus != OpenStatus.Open) return "It is closed";
       if (c.ValidFor(this)) {
         // Put item back
         actor.inventory.Remove(this);
@@ -259,7 +286,8 @@ public class Item : MonoBehaviour {
   private void SetAsOpen() {
     bool sound = openStatus == OpenStatus.Closed;
     openStatus = OpenStatus.Open;
-    sr.sprite = openImage;
+    if (sr != null && openImage != null)
+      sr.sprite = openImage;
     Door door = this as Door;
     if (door != null) {
       if (door.correspondingDoor != null) {
@@ -286,7 +314,8 @@ public class Item : MonoBehaviour {
     bool sound = openStatus == OpenStatus.Open;
     if (openStatus == OpenStatus.Open) {
       openStatus = OpenStatus.Closed;
-      sr.sprite = closeImage;
+      if (sr != null && closeImage != null)
+        sr.sprite = closeImage;
       if (lockStatus == LockStatus.UnlockedAutolock) lockStatus = LockStatus.Autolock;
     }
     Door door = this as Door;
@@ -318,7 +347,8 @@ public class Item : MonoBehaviour {
     bool soundUl = lockStatus == LockStatus.Locked || lockStatus == LockStatus.Autolock;
     if (lockStatus == LockStatus.Locked) lockStatus = LockStatus.Unlocked;
     if (lockStatus == LockStatus.Autolock) lockStatus = LockStatus.UnlockedAutolock;
-    sr.sprite = closeImage;
+    if (sr != null && closeImage != null)
+      sr.sprite = closeImage;
     Door door = this as Door;
     if (door != null) {
       if (door.correspondingDoor != null) {
@@ -357,7 +387,8 @@ public class Item : MonoBehaviour {
     bool soundUl = lockStatus == LockStatus.Unlocked || lockStatus == LockStatus.UnlockedAutolock;
     if (lockStatus == LockStatus.Unlocked) lockStatus = LockStatus.Locked;
     if (lockStatus == LockStatus.UnlockedAutolock) lockStatus = LockStatus.Autolock;
-    sr.sprite = closeImage;
+    if (sr != null && closeImage != null)
+      sr.sprite = closeImage;
     Door door = this as Door;
     if (door != null) {
       if (door.correspondingDoor != null) {

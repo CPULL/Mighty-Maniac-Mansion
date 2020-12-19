@@ -38,7 +38,7 @@ public class GameStep {
     actionnum = -1;
   }
 
-  internal bool Run(GameScene gameScene, Actor performer, Actor receiver, bool skipped) {
+  internal bool Run(GameScene gameScene, Actor performer, Actor receiver, Item item, bool skipped) {
     if (!IsValid(performer, receiver)) {
       // Stop the actions in case they were running
       if (currentAction != null) currentAction.Stop();
@@ -51,11 +51,12 @@ public class GameStep {
       currentAction = actions[0];
       currentAction.running = Running.NotStarted;
       actionnum = 0;
-//FIXME Debug.Log(ToString() + " => " + actionnum + ") " + currentAction);
+//FIXME 
+      Debug.Log(ToString() + " => " + actionnum + ") " + currentAction);
     }
 
     if (currentAction.running == Running.NotStarted) { // Start the action
-      currentAction.RunAction(performer, receiver, skipped);
+      currentAction.RunAction(performer, receiver, item, skipped);
       lastaction = currentAction.ToString();
       if (currentAction.type == ActionType.Cutscene) {
         // Quickly stop parent scene
@@ -83,7 +84,8 @@ public class GameStep {
       if (actions.Count > actionnum) {
         currentAction = actions[actionnum];
         currentAction.running = Running.NotStarted;
-//FIXME Debug.Log(ToString() + " > " + actionnum + ") " + currentAction);
+//FIXME 
+        Debug.Log(ToString() + " > " + actionnum + ") " + currentAction);
       }
       else
         return false;

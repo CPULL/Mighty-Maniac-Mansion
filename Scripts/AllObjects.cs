@@ -142,6 +142,10 @@ public enum ItemEnum {
   TedNote,
   NedGrave,
   ReedGrave,
+  BathroomCurtain,
+  WaterHandle,
+  WaterHandleSocket,
+  Shower,
 }
 
 

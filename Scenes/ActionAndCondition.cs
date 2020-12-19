@@ -15,7 +15,7 @@ public class ActionAndCondition {
     }
 
     if (Actions.Length < 2) {
-      Actions[0].RunAction(performer, secondary, false);
+      Actions[0].RunAction(performer, secondary, item, false);
       return res;
     }
 

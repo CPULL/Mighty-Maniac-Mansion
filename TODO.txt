@@ -1,6 +1,8 @@
 === Mighty Maniac Mansion ===
 
-Alter all doors with the new mash and polygon
+
+Have a trigger or something to set Ted in the bathroom if needed (probably we need a set of actions to be associated with the room directly)
+
 
 Fix the "give" for green tentacle
 Do coats and dig for all characters: Michael, Hoagie
@@ -17,7 +19,6 @@ woods for treehouse
 treehouse
 ezra berg passage
 garage
-Add dog anims for throwing food and eating food
 Arcade room: Day of Tentacle poster in the Arcade room.
 Arcade room: Add old consoles (C64, NES, Genesis, etc.) to the arcade room, on the C64 there will be a cassette player with a cassette tape inside
 Add lookup in dog room

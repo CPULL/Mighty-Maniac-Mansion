@@ -47,6 +47,7 @@ public enum ActionType {
   Pick = 31, // Acts like a player picked an item
   WearItem = 32, // Adds shovel, meteorite, flashlight, and all items that can be hold in hands
   SetLocation = 33, // Set parent transform and position to an object
+  SelfDestroy = 34, // Removes the i
 };
 
 
@@ -147,6 +148,7 @@ public class GameAction {
           default: return (Chars)id1 + " uses ERROR " + (ItemEnum)id2;
         }
       case ActionType.SetLocation: return (ItemEnum)id1 + " at [" + pos + "] " + str;
+      case ActionType.SelfDestroy: return "SelfDestroy current item";
     }
     return res;
   }
@@ -182,6 +184,7 @@ public class GameAction {
       case ActionType.Pick:
       case ActionType.WearItem:
       case ActionType.SetLocation:
+      case ActionType.SelfDestroy:
         return;
 
       case ActionType.Speak: {
@@ -448,6 +451,10 @@ public class GameAction {
       }
       break;
 
+      case ActionType.SelfDestroy: {
+      }
+      break;
+
     }
   }
 
@@ -493,7 +500,7 @@ public class GameAction {
   }
 
 
-  public void RunAction(Actor performer, Actor secondary, bool skipped) {
+  public void RunAction(Actor performer, Actor secondary, Item sceneItem, bool skipped) {
 //    Debug.Log("Playing: " + ToString());
     switch (type) {
       case ActionType.ShowRoom: {
@@ -994,7 +1001,6 @@ public class GameAction {
       }
       break;
 
-
       case ActionType.ChangeSprites: {
         Item item = AllObjects.GetItem((ItemEnum)id1);
         if (id2 == 1) item.openImage = item.closeImage;
@@ -1057,7 +1063,20 @@ public class GameAction {
       }
       break;
 
-
+      case ActionType.SelfDestroy: {
+        if (sceneItem == null) {
+          Complete();
+          Debug.LogError("Missing scene item in slefdestroy!");
+          return;
+        }
+        sceneItem.enabled = false;
+        sceneItem.gameObject.SetActive(false);
+        GD.c.actor1.inventory.Remove(sceneItem);
+        GD.c.actor2.inventory.Remove(sceneItem);
+        GD.c.actor3.inventory.Remove(sceneItem);
+        Complete();
+      }
+      break;
 
       default: {
         // FIXME do the other actions
