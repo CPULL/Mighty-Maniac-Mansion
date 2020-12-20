@@ -154,31 +154,12 @@ public class DoorEditor : Editor {
 
     EditorGUILayout.PropertyField(actions);
 
-
-    // FIXME
     EditorGUILayout.BeginHorizontal();
-    if (GUILayout.Button("Meshize!", GUILayout.Width(80))) {
-      GameObject d = (target as Door).gameObject;
-      SpriteRenderer sr = d.GetComponent<SpriteRenderer>();
-      if (sr == null) return;
-      DestroyImmediate(sr);
-      BoxCollider2D bc = d.GetComponent<BoxCollider2D>();
-      if (bc != null) DestroyImmediate(bc);
-      MeshRenderer mr = d.AddComponent<MeshRenderer>();
-
-      var thePath = "Assets/Sprite Materials/Doors Highlight.mat";
-      Material loadedMaterial = (Material)AssetDatabase.LoadAssetAtPath(thePath, typeof(Material));
-      Debug.Log("Just loaded this material: " + loadedMaterial.name);
-      mr.material = loadedMaterial;
-      d.AddComponent<MeshFilter>();
-      PolygonCollider2D poly = d.AddComponent<PolygonCollider2D>();
-      poly.points = new Vector2[] {
-        new Vector2(0,0), new Vector2(1,0), new Vector2(1,1), new Vector2(0,1)
-      };
-      d.transform.localScale = new Vector3(1, 1, 1);
-      Vector3 pos = d.transform.localPosition;
-      pos.z = -1;
-      d.transform.localPosition = pos;
+    if (GUILayout.Button("Meshize! (Destroy)", GUILayout.Width(150))) {
+      Meshize(true);
+    }
+    if (GUILayout.Button("Meshize! (Don't destroy)", GUILayout.Width(150))) {
+      Meshize(false);
     }
     EditorGUILayout.EndHorizontal();
 
@@ -188,6 +169,31 @@ public class DoorEditor : Editor {
     serializedObject.ApplyModifiedProperties();
     EditorGUIUtility.labelWidth = oldw;
   }
+
+  void Meshize(bool destroy) {
+    GameObject d = (target as Door).gameObject;
+    SpriteRenderer sr = d.GetComponent<SpriteRenderer>();
+    if (sr == null) return;
+    if (destroy) DestroyImmediate(sr);
+    BoxCollider2D bc = d.GetComponent<BoxCollider2D>();
+    if (bc != null) DestroyImmediate(bc);
+    MeshRenderer mr = d.AddComponent<MeshRenderer>();
+
+    var thePath = "Assets/Sprite Materials/Doors Highlight.mat";
+    Material loadedMaterial = (Material)AssetDatabase.LoadAssetAtPath(thePath, typeof(Material));
+    Debug.Log("Just loaded this material: " + loadedMaterial.name);
+    mr.material = loadedMaterial;
+    d.AddComponent<MeshFilter>();
+    PolygonCollider2D poly = d.AddComponent<PolygonCollider2D>();
+    poly.points = new Vector2[] {
+        new Vector2(0,0), new Vector2(1,0), new Vector2(1,1), new Vector2(0,1)
+      };
+    d.transform.localScale = new Vector3(1, 1, 1);
+    Vector3 pos = d.transform.localPosition;
+    pos.z = -1;
+    d.transform.localPosition = pos;
+  }
+
 }
 
 

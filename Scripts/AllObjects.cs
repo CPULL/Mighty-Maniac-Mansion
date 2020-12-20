@@ -147,6 +147,7 @@ public enum ItemEnum {
   WaterHandleSocket,
   Shower,
   DoorToDungeon,
+  Sponge,
 }
 
 
