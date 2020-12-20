@@ -158,13 +158,7 @@ public class DoorEditor : Editor {
     if (GUILayout.Button("Meshize! (Destroy)", GUILayout.Width(150))) {
       Meshize(true);
     }
-    if (GUILayout.Button("Meshize! (Don't destroy)", GUILayout.Width(150))) {
-      Meshize(false);
-    }
     EditorGUILayout.EndHorizontal();
-
-
-
 
     serializedObject.ApplyModifiedProperties();
     EditorGUIUtility.labelWidth = oldw;
