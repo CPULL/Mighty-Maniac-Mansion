@@ -15,6 +15,7 @@ public class Room : MonoBehaviour {
   List<SpriteRenderer> srs;
   List<PathNode> paths;
   public float MoonSize = 1;
+  public List<ActionAndCondition> actions;
 
   private void Start() {
     if (srs == null) {

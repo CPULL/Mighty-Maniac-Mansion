@@ -17,7 +17,11 @@ public class ActionAndConditionDrawer : PropertyDrawer {
     else {
       Triggerer tr = property.serializedObject.targetObject as Triggerer;
       if (tr != null) actions = tr.actions;
-      else return;
+      else {
+        Room rm = property.serializedObject.targetObject as Room;
+        if (rm != null) actions = rm.actions;
+        else return;
+      }
     }
 
     int sbo = property.propertyPath.LastIndexOf('[') + 1;

@@ -37,4 +37,5 @@ public enum TriggerID {
   FredKidnappedDialogue,
   EdnaKitchenStarter,
   NoMapMessage,
+  DungeonDoorAutoclose,
 }

@@ -47,7 +47,8 @@ public enum ActionType {
   Pick = 31, // Acts like a player picked an item
   WearItem = 32, // Adds shovel, meteorite, flashlight, and all items that can be hold in hands
   SetLocation = 33, // Set parent transform and position to an object
-  SelfDestroy = 34, // Removes the i
+  SelfDestroy = 34, // Removes the item
+  SetZPos = 35, // Force a specific ZPos on an item or actor
 };
 
 
@@ -149,6 +150,7 @@ public class GameAction {
         }
       case ActionType.SetLocation: return (ItemEnum)id1 + " at [" + pos + "] " + str;
       case ActionType.SelfDestroy: return "SelfDestroy current item";
+      case ActionType.SetZPos: return "Set Z pos = " + pos.x + " [" + (id1 == 0 ? ((ItemEnum)id2).ToString() : ((Chars)id1).ToString()) + "]";
     }
     return res;
   }
@@ -185,6 +187,7 @@ public class GameAction {
       case ActionType.WearItem:
       case ActionType.SetLocation:
       case ActionType.SelfDestroy:
+      case ActionType.SetZPos:
         return;
 
       case ActionType.Speak: {
@@ -452,6 +455,13 @@ public class GameAction {
       break;
 
       case ActionType.SelfDestroy: {
+      }
+      break;
+
+      case ActionType.SetZPos: {
+        id1 = SafeParse(typeof(Chars), vid1);
+        id2 = SafeParse(typeof(ItemEnum), vid2);
+        dir = (Dir)SafeParse(typeof(Dir), dv);
       }
       break;
 
@@ -899,7 +909,7 @@ public class GameAction {
           return;
         }
         Item item = AllObjects.GetItem((ItemEnum)id2);
-        if (item.PlayAnim(str, delay))
+        if (item.PlayAnim(str, delay, out delay))
           Complete();
         else
           Play();
@@ -1074,6 +1084,20 @@ public class GameAction {
         GD.c.actor1.inventory.Remove(sceneItem);
         GD.c.actor2.inventory.Remove(sceneItem);
         GD.c.actor3.inventory.Remove(sceneItem);
+        Complete();
+      }
+      break;
+
+      case ActionType.SetZPos: {
+        if (id1 != 0) {
+          Actor a = Controller.GetActor((Chars)id1);
+          if (a == null) return;
+          a.SetZPos(pos.x, dir);
+        }
+        else {
+          Item item = AllObjects.GetItem((ItemEnum)id2);
+          item.SetZPos(pos.x);
+        }
         Complete();
       }
       break;

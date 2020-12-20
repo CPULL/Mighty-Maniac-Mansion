@@ -729,6 +729,25 @@ public class Actor : MonoBehaviour {
     UsedItemSR.sprite = item.GetComponent<SpriteRenderer>().sprite;
     UsedItemFront = wear == 1 || wear == 3;
   }
+
+  internal void SetZPos(float z, Dir d) {
+    dir = d;
+    int zpos = (int)z;
+    if (faceFront || (!male && dir != Dir.F)) {
+      Face.sortingOrder = zpos + 2;
+      Arms.sortingOrder = zpos + 1;
+    }
+    else {
+      Face.sortingOrder = zpos + 1;
+      Arms.sortingOrder = zpos + 2;
+    }
+    Legs.sortingOrder = zpos;
+    if (Coat != null && Coat.gameObject.activeSelf) Coat.SetSortingOrder(zpos);
+    if (UsedItemFront)
+      UsedItemSR.sortingOrder = zpos + 4;
+    else
+      UsedItemSR.sortingOrder = zpos - 2;
+  }
 }
 
 public enum WalkingMode {

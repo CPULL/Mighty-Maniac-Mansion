@@ -114,8 +114,8 @@ public class ConditionPropertyDrawer : PropertyDrawer {
           id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(GameFlag)));
           int pos = 0;
           switch(sv.stringValue) {
-            case "==": pos = 1; break;
-            case "!=": pos = 2; break;
+            case "!=": pos = 1; break;
+            case "==": pos = 2; break;
             case "<": pos = 3; break;
             case ">": pos = 4; break;
           }

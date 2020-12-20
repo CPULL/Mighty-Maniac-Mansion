@@ -36,21 +36,30 @@ public class Item : MonoBehaviour {
   private float timeForAnim;
   [HideInInspector] public bool isEnabled = true;
 
-  public bool PlayAnim(string animName, float timer) {
+  public bool PlayAnim(string animName, float timer, out float length) {
     Animator anim = GetComponent<Animator>();
     if (anim == null) {
       Debug.LogError("Missing animator for animated item: " + gameObject.name);
+      length = 0;
       return true;
     }
     if (gameObject.activeInHierarchy) {
       animToPlay = null;
       anim.enabled = true;
       anim.Play(animName);
+      length = anim.GetCurrentAnimatorStateInfo(0).length;
     }
     else {
       animToPlay = animName;
       animStartTime = System.DateTime.Now;
       timeForAnim = timer;
+      length = timer;
+      foreach(AnimationClip clip in anim.runtimeAnimatorController.animationClips) {
+        if (clip.name.Equals(animName, System.StringComparison.InvariantCultureIgnoreCase)) {
+          length = clip.length;
+          break;
+        }
+      }
     }
     return false;
   }
@@ -271,11 +280,18 @@ public class Item : MonoBehaviour {
     }
   }
 
-
+  internal void SetZPos(float z) {
+    if (sr != null) {
+      sr.sortingOrder = (int)z;
+    }
+    else {
+      foreach(SpriteRenderer sr in srs)
+        sr.sortingOrder = (int)z;
+    }
+  }
 
   internal bool IsOpen() {
     return openStatus != OpenStatus.Closed;
-// FIXME    return (Usable == Tstatus.Openable || Usable == Tstatus.Swithchable) && openStatus != OpenStatus.Closed;
   }
 
   internal bool IsLocked() {
@@ -435,6 +451,7 @@ public class Item : MonoBehaviour {
         break;
     }
   }
+  
   internal void Give(Actor giver, Actor receiver) {
     ActionRes res = PlayActions(giver, receiver, When.Give, this);
     if (res == null || !res.actionDone) { // Give it by default if the receiver is not an NPC

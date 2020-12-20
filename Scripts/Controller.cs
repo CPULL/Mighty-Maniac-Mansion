@@ -1332,6 +1332,23 @@ public class Controller : MonoBehaviour {
       }
     }
 
+    // Actions for the room
+    if (currentRoom.actions != null) {
+      foreach(ActionAndCondition ac in currentRoom.actions) {
+        if (ac.IsValid(currentActor, null, null, null, When.Always)) {
+          for (int num = 0; num < ac.NumActions; num++) {
+            ac.Actions[num].RunAction(currentActor, null, null, false);
+            while (ac.Actions[num].running != Running.Completed)
+              yield return null;
+          }
+        }
+      }
+
+
+
+    }
+
+
     // Fade back
     while (time < .25f) {
       // Fade black

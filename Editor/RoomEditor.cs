@@ -7,7 +7,7 @@ public class RoomEditor : Editor {
   SerializedProperty ID, Name;
   SerializedProperty minL, maxR;
   SerializedProperty minY, maxY, scalePerc;
-  SerializedProperty CameraGround, MoonSize, lights;
+  SerializedProperty CameraGround, MoonSize, lights, actions;
 
 
   void OnEnable() {
@@ -21,6 +21,7 @@ public class RoomEditor : Editor {
     CameraGround = serializedObject.FindProperty("CameraGround");
     MoonSize = serializedObject.FindProperty("MoonSize");
     lights = serializedObject.FindProperty("lights");
+    actions = serializedObject.FindProperty("actions");
   }
 
   public override void OnInspectorGUI() {
@@ -69,7 +70,10 @@ public class RoomEditor : Editor {
     }
     EditorGUILayout.EndHorizontal();
 
-  serializedObject.ApplyModifiedProperties();
+    EditorGUIUtility.labelWidth = 120;
+    EditorGUILayout.PropertyField(actions);
+
+    serializedObject.ApplyModifiedProperties();
     EditorGUIUtility.labelWidth = oldw;
   }
 }

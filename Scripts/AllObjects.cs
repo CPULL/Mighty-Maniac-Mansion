@@ -146,6 +146,7 @@ public enum ItemEnum {
   WaterHandle,
   WaterHandleSocket,
   Shower,
+  DoorToDungeon,
 }
 
 
@@ -159,6 +160,7 @@ public enum GameFlag {
   EdCheckingPackage,
   SamIsFriend, // 0=Never seen (do camera pan), 1=not friend, 2=friend
   GameOver, // 0=no, 1=nuclear, 2=noplayers
+  TedMoved, // 0=not moved, 1=moved in the shower
 }
 
 [System.Serializable]

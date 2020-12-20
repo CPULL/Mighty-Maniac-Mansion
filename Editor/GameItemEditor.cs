@@ -107,29 +107,7 @@ public class GameItemEditor : Editor {
     EditorGUILayout.EndHorizontal();
 
     EditorGUIUtility.labelWidth = 120;
-
-
     EditorGUILayout.PropertyField(actions);
-
-
-    /*/ Actions detailed
-    actions.isExpanded = EditorGUILayout.Foldout(actions.isExpanded, "Actions");
-    if (actions.isExpanded) {
-      EditorGUI.indentLevel++;
-      SerializedProperty arraySizeProp = actions.FindPropertyRelative("Array.size");
-      EditorGUILayout.PropertyField(arraySizeProp);
-
-      for (int i = 0; i < arraySizeProp.intValue; i++) {
-        SerializedProperty actionLine = actions.GetArrayElementAtIndex(i);
-        SerializedProperty cond = actionLine.FindPropertyRelative("Condition");
-        SerializedProperty act = actionLine.FindPropertyRelative("Action");
-        string name = GetTargetObjectName(cond) + " -> " + GetTargetObjectName(act);
-        EditorGUILayout.PropertyField(actionLine, new GUIContent(i.ToString() + ") " + name), true);
-      }
-      EditorGUI.indentLevel--;
-    }
-    */
-
 
     serializedObject.ApplyModifiedProperties();
     EditorGUIUtility.labelWidth = oldw;

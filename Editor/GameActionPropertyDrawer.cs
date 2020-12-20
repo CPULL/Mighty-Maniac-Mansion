@@ -324,6 +324,22 @@ public class GameActionPropertyDrawer : PropertyDrawer {
           str.stringValue = EditorGUI.TextField(cRect, str.stringValue);
         }
         break;
+
+        case ActionType.SetZPos: {
+          Rect aRect = new Rect(position.x + 1 * w4, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + 2 * w4, position.y + lh, w4, lh);
+          Rect c1Rect = new Rect(position.x + 3 * w4, position.y + lh, w4 * .5f, lh);
+          Rect c2Rect = new Rect(position.x + 3.5f * w4, position.y + lh, w4 * .5f, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(Chars)));
+          if (id1.intValue == 0) 
+            id2.intValue = EditorGUI.Popup(bRect, id2.intValue, System.Enum.GetNames(typeof(ItemEnum)));
+          else
+            dir.intValue = EditorGUI.Popup(c2Rect, dir.intValue, System.Enum.GetNames(typeof(Dir)));
+          Vector2 zv = Vector2.zero;
+          zv.x = EditorGUI.FloatField(c1Rect, "", pos.vector2Value.x);
+          pos.vector2Value = zv;
+        }
+        break;
       }
     }
 
