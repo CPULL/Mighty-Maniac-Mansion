@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Controller : MonoBehaviour {
   [HideInInspector] public Camera cam;
+  [Header("Global")]
   public Transform Moon;
   public GameObject BackSky;
   public LayerMask pathLayer;
@@ -666,6 +667,16 @@ public class Controller : MonoBehaviour {
         a.Legs.material = normal;
       }
 
+
+    ednaNumbers = new int[4];
+    safeNumbers = new int[4];
+    labNumbers = new int[4];
+    for (int i = 0; i < 4; i++) {
+      int num = Random.Range(0, 10);
+      EdnaBathNumbers[i].sprite = Numbers[num];
+      ednaNumbers[i] = num;
+    }
+
     ActorsButtons.SetActive(true);
     StartIntroCutscene();
 
@@ -707,8 +718,6 @@ public class Controller : MonoBehaviour {
 
   #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
 
-  [HideInInspector] public GameScene currentCutscene; // REMOVE FIXME
-
   void StartIntroCutscene() {
     FrontActors.enabled = true;
     GameScene introScene = AllObjects.GetCutscene(CutsceneID.Intro);
@@ -721,12 +730,18 @@ public class Controller : MonoBehaviour {
   #endregion
 
   #region *********************** Inventory and Items *********************** Inventory and Items *********************** Inventory and Items ***********************
+  [Header("Items")]
   public GameObject Inventory;
   public GameObject InventoryItemTemplate;
   bool justActivatedInventory = false;
   private Item overItem = null; // Items we are over with the mouse
   private Item overInventoryItem = null; // Items we are over with the mouse in the inventory
   private Item usedItem = null; // Item that is being used (and visible on the cursor)
+  private int[] ednaNumbers = null;
+  public Sprite[] Numbers;
+  public SpriteRenderer[] EdnaBathNumbers;
+  private int[] safeNumbers = null;
+  private int[] labNumbers = null;
 
   public static bool NotItemUsed() {
     return GD.c.usedItem == null;
@@ -995,6 +1010,7 @@ public class Controller : MonoBehaviour {
   #endregion
 
   #region *********************** Actors *********************** Actors *********************** Actors *********************** Actors *********************** Actors ***********************
+  [Header("Actors")]
   public PortraitClickHandler ActorPortrait1;
   public PortraitClickHandler ActorPortrait2;
   public PortraitClickHandler ActorPortrait3;
@@ -1226,9 +1242,10 @@ public class Controller : MonoBehaviour {
       if (a != null) a.GetComponent<BoxCollider2D>().enabled = enable;
   }
 
-#endregion
+  #endregion
 
   #region *********************** Rooms and Transitions *********************** Rooms and Transitions *********************** Rooms and Transitions ***********************
+  [Header("Rooms")]
   public Room currentRoom;
 
   private IEnumerator ChangeRoom(Actor actor, Door door) {
@@ -1553,6 +1570,7 @@ public class Controller : MonoBehaviour {
   public static float textSpeed;
   public static int inventoryMode = 0;
   public static int c64mode;
+  [Header("UI and Options")]
   public Options options;
 
   public TextMeshProUGUI TextMsg;
