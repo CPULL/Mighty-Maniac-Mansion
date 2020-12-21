@@ -257,7 +257,6 @@ public class Actor : MonoBehaviour {
     // Get the pathnode of where we are (at least the closest one)
     PathNode p = currentRoom.GetPathNode(destActor.position);
     if (p == null || p.isStair) {  // Not following on stairs
-      action?.Complete();
       return;
     }
 

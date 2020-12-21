@@ -8,18 +8,21 @@
 		{ "type":"SetFlag", "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":0, "dv":"", "vv":[] },
 		{ "type":"Speak", "id1":"Edna", "sv":"Gotcha!", "dv":"F" },
 		{ "type":"Fade", "del":0.5, "iv":"0" },
-		{ "type":"ShowRoom", "del":0, "sv":"Dungeon", "vv":[-93, 10] },
-		{ "type":"Teleport", "del":0, "id1":"Edna", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-91,6.9] },
-		{ "type":"Teleport", "del":0, "id1":"current", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-93,6.9] },
+		{ "type":"ShowRoom", "del":0, "sv":"Dungeon", "vv":[-93, 11] },
+		{ "type":"Teleport", "del":0, "id1":"Edna", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-91,7.9] },
+		{ "type":"Teleport", "del":0, "id1":"current", "id2":"", "sv":"Dungeon", "iv":"", "dv":"B", "vv":[-93,7.9] },
 		{ "type":"Fade", "del":0.5, "iv":"1" },
 		{ "type":"Expression", "id1":"Current", "sv":"Sad", "dv":"R", "del":.01 },
 		{ "type":"Expression", "id1":"Edna", "sv":"Normal", "dv":"L", "del":.01 }
 	],
 	
 	"shutdown" : [
-		{ "type":"WalkToPos", "id1":"Edna", "vv":[-87.55,7.58], "dv":"B" },
-		{ "type":"Teleport", "del":0, "id1":"Edna", "id2":"", "sv":"NoRoom", "iv":"", "dv":"B", "vv":[100,100] },
+		{ "type":"WalkToPos", "id1":"Edna", "vv":[-87.55,8.08], "dv":"B" },
+		{ "type":"Open", "id1":"DungeonDoor", "sv":"o" },
+		{ "type":"Wait", "del":0.5 },
+		{ "type":"Teleport", "sv":"EdnaRoom", "id1":"Edna", "vv":[59,86.3], "dv":"F" }
 		{ "type":"Open", "id1":"DungeonDoor", "sv":"c" },
+		{ "type":"Wait", "del":0.5 },
 		{ "type":"Open", "id1":"DungeonDoor", "sv":"l" }
 	],
 	
@@ -47,6 +50,10 @@
 		{ "name":"Message Ollie",
 			"condition":[{ "type":"CurrentActorIs", "id":"Ollie", "bv":true }],
 			"action":[{ "type":"Speak", "id1":"Edna", "sv":"Here you will have time\nto play some music.\nSadly there are no waves\nto go surfing.\n\nAnd, please, no more Castelvania!", "dv":"L" },{ "type":"CompleteStep", "del":.2 }]
+		},
+		{ "name":"Message Hoagie",
+			"condition":[{ "type":"CurrentActorIs", "id":"Hoagie", "bv":true }],
+			"action":[{ "type":"Speak", "id1":"Edna", "sv":"With the limited food you will\nhave, you may become skinny.\nLike the guest on the left.\n\nControl your weight!", "dv":"L" },{ "type":"CompleteStep", "del":.2 }]
 		}
 		
 	]

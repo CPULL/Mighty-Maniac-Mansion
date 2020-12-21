@@ -51,9 +51,7 @@ public class Balloon : MonoBehaviour {
     SpriteRenderer sr = speaker.GetChild(0).GetComponent<SpriteRenderer>();
 
     if (!sr.isVisible) {
-      GD.b.gameObject.SetActive(false);
-      GD.b.delay = 0;
-      GD.b.speakComplete?.Invoke();
+      GD.b.delay += .25f;
     }
 
     GD.b.srAnchor = sr;
@@ -69,6 +67,8 @@ public class Balloon : MonoBehaviour {
   }
 
   private void Update() {
+    Controller.Dbg((int)(GD.b.delay * 100) + "->" + GD.b.text.text);
+
     if (GD.b.delay <= 0) return;
     GD.b.delay -= Time.deltaTime;
     if (GD.b.delay <= 0) {
@@ -158,6 +158,7 @@ public class Balloon : MonoBehaviour {
   }
 
   internal static void Stop() {
+    Debug.LogError("FUCK2!");
     GD.b.delay = -1;
     GD.b.gameObject.SetActive(false);
   }

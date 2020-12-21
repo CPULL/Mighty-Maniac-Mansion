@@ -403,19 +403,18 @@ public class Item : MonoBehaviour {
     bool soundUl = lockStatus == LockStatus.Unlocked || lockStatus == LockStatus.UnlockedAutolock;
     if (lockStatus == LockStatus.Unlocked) lockStatus = LockStatus.Locked;
     if (lockStatus == LockStatus.UnlockedAutolock) lockStatus = LockStatus.Autolock;
-    if (sr != null && closeImage != null)
-      sr.sprite = closeImage;
+    if (sr != null && lockImage != null) sr.sprite = lockImage; else sr.sprite = closeImage;
     Door door = this as Door;
     if (door != null) {
       if (door.correspondingDoor != null) {
         if (door.correspondingDoor.openStatus == OpenStatus.Open) door.correspondingDoor.openStatus = OpenStatus.Closed;
         if (door.correspondingDoor.lockStatus == LockStatus.Unlocked) {
           door.correspondingDoor.lockStatus = LockStatus.Locked;
-          door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+          if (door.correspondingDoor.sr != null && door.correspondingDoor.lockImage != null) door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage; else door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
         }
         else if (door.correspondingDoor.lockStatus == LockStatus.UnlockedAutolock) {
           door.correspondingDoor.lockStatus = LockStatus.Autolock;
-          door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
+          if (door.correspondingDoor.sr != null && door.correspondingDoor.lockImage != null) door.correspondingDoor.sr.sprite = door.correspondingDoor.lockImage; else door.correspondingDoor.sr.sprite = door.correspondingDoor.closeImage;
         }
         if (soundC && door.CloseSound != null && door.Audio != null) {
           door.Audio.clip = door.CloseSound;

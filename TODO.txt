@@ -1,7 +1,7 @@
 === Mighty Maniac Mansion ===
 
 Try to remove pathnodes from doors
-
+When changing the room from a door, do not pre-set the camera. Make it go according to the dest position of the actor
 
 Do coats and dig for all characters: Michael, Hoagie
 

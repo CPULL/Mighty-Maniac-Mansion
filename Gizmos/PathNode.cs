@@ -9,7 +9,8 @@ public class PathNode : MonoBehaviour {
   private Vector2 roomabs = Vector2.up;
   public NavPath parent;
   public bool showMeshLocal;
-  private Color yellowish = new Color32(100, 10, 220, 50);
+  private Color purpleish = new Color32(100, 10, 220, 50);
+  private Color greenish = new Color32(10, 220, 100, 50);
   public PathNode prev;
   public float g;
   public float h;
@@ -31,7 +32,7 @@ public class PathNode : MonoBehaviour {
     mesh.RecalculateNormals();
     mesh.RecalculateBounds();
 
-    Gizmos.color = yellowish;
+    Gizmos.color = isStair ? greenish : purpleish;
     Gizmos.DrawMesh(mesh);
   }
 

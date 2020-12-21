@@ -46,8 +46,8 @@
 			],
 			"action":[
 				{ "type":"ShowRoom", "del":.25, "sv":"Kitchen", "vv":[-84, 20], "id2":"1" },
-				{ "type":"Speak", "del":0, "id1":"Edna", "id2":"", "sv":"Oh, look.\nAn unwelcome intruder.", "iv":"", "dv":"L", "vv":[] },
-				{ "type":"SetFlag", "del":0, "id1":"EdnaBrowsingFridge", "id2":"", "sv":"", "iv":3, "dv":"", "vv":[] }
+				{ "type":"Speak", "del":0, "id1":"Edna", "sv":"Oh, look.\nAn unwelcome intruder.", "dv":"L" },
+				{ "type":"SetFlag", "del":0, "id1":"EdnaBrowsingFridge", "iv":3 }
 			]
 		},
 		
