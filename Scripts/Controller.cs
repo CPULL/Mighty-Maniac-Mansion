@@ -1267,7 +1267,11 @@ public class Controller : MonoBehaviour {
     actor.transform.position = door.correspondingDoor.HotSpot;
     yield return null;
 
-    dstp = door.camerapos;
+    dstp.x = door.correspondingDoor.HotSpot.x;
+    dstp.y = door.dst.CameraGround;
+    dstp.z = -10;
+    if (dstp.x < door.dst.minL) dstp.x = door.dst.minL;
+    if (dstp.x > door.dst.maxR) dstp.x = door.dst.maxR;
     orgp = dstp;
     orthos = 4;
     orthod = 4;
@@ -1343,9 +1347,6 @@ public class Controller : MonoBehaviour {
           }
         }
       }
-
-
-
     }
 
 

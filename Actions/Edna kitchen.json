@@ -12,7 +12,7 @@
 	
 	"shutdown" : [
 		{ "type":"Open", "del":0, "id1":"Fridge", "id2":"", "sv":"Close", "iv":"", "dv":"", "vv":[] },
-		{ "type":"Teleport", "del":0, "id1":"Edna", "sv":"NoRoom", "dv":"F", "vv":[100,100] },
+		{ "type":"Teleport", "sv":"EdnaRoom", "id1":"Edna", "vv":[59,86.3], "dv":"F" }
 		{ "type":"SetFlag", "id1":"EdnaBrowsingFridge", "iv":0 }
 	],
 	

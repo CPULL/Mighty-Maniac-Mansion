@@ -1,7 +1,6 @@
 === Mighty Maniac Mansion ===
 
 Try to remove pathnodes from doors
-When changing the room from a door, do not pre-set the camera. Make it go according to the dest position of the actor
 
 Do coats and dig for all characters: Michael, Hoagie
 
@@ -258,4 +257,5 @@ Purple Meteor
 ! Entering woods is not generating the correct position of items
 ! Exiting woods brings to a wrong position
 ! Have a trigger or something to set Ted in the bathroom if needed (probably we need a set of actions to be associated with the room directly)
+! When changing the room from a door, do not pre-set the camera. Make it go according to the dest position of the actor
 
