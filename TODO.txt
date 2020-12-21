@@ -1,16 +1,15 @@
 === Mighty Maniac Mansion ===
 
+Try to remove pathnodes from doors
 
-Have a trigger or something to set Ted in the bathroom if needed (probably we need a set of actions to be associated with the room directly)
 
-
-Fix the "give" for green tentacle
 Do coats and dig for all characters: Michael, Hoagie
 
 * TODO ************************************************************************************************************
 
 Purple Tentacle should go first to the basement to check the reactor then to the pool then to the valve and close it.
 In case too much time will pass make an explosion (for example purple will catch two players)
+Fix the "give" for green tentacle
 
 We need a way to walk on ladders. Probably from the back. Do we need a new anim?
 
@@ -258,4 +257,5 @@ Purple Meteor
 ! Have a flag to have the face in front of the body.
 ! Entering woods is not generating the correct position of items
 ! Exiting woods brings to a wrong position
+! Have a trigger or something to set Ted in the bathroom if needed (probably we need a set of actions to be associated with the room directly)
 
