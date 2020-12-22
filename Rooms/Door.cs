@@ -3,7 +3,6 @@
 public class Door : Item {
   public Room src;
   public Room dst;
-  public Vector3 camerapos;
   public Door correspondingDoor;
   public TransitionDirection transition;
   public Dir arrivalDirection;

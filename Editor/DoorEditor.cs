@@ -109,11 +109,6 @@ public class DoorEditor : Editor {
     EditorGUILayout.BeginHorizontal();
     EditorGUIUtility.labelWidth = 50;
     EditorGUILayout.PropertyField(HotSpot, new GUIContent("HotSpot"));
-    EditorGUIUtility.labelWidth = 20;
-    EditorGUILayout.PropertyField(dir, new GUIContent("Dir"), GUILayout.Width(70));
-    EditorGUIUtility.labelWidth = 40;
-    EditorGUILayout.PropertyField(arrivaldir, new GUIContent("ToDir"), GUILayout.Width(70));
-    EditorGUILayout.Space(30, false);
     if (GUILayout.Button("Set", GUILayout.Width(40))) {
       Item door = target as Door;
       if (door.transform.childCount == 0) {
@@ -124,6 +119,11 @@ public class DoorEditor : Editor {
       Debug.Log(spawn.name + " is at " + spawn.transform.position);
       door.HotSpot = spawn.transform.position;
     }
+    EditorGUILayout.Space(50, false);
+    EditorGUIUtility.labelWidth = 20;
+    EditorGUILayout.PropertyField(dir, new GUIContent("Dir"), GUILayout.Width(70));
+    EditorGUIUtility.labelWidth = 40;
+    EditorGUILayout.PropertyField(arrivaldir, new GUIContent("ToDir"), GUILayout.Width(70));
     EditorGUIUtility.labelWidth = 40;
     EditorGUILayout.EndHorizontal();
 
@@ -138,7 +138,6 @@ public class DoorEditor : Editor {
     EditorGUILayout.BeginHorizontal();
     EditorGUIUtility.labelWidth = 50;
     EditorGUILayout.PropertyField(correspondingDoor, new GUIContent("Door"));
-    EditorGUILayout.PropertyField(camerapos, new GUIContent("Cam"));
     EditorGUILayout.PropertyField(transition, new GUIContent("Trans"));
     EditorGUILayout.EndHorizontal();
 
