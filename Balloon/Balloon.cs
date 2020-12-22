@@ -45,9 +45,7 @@ public class Balloon : MonoBehaviour {
     }
 
     GD.b.delay = 1 + .25f * GD.b.numWords * Controller.textSpeed * Controller.textSpeed;
-
     GD.b.text.text = message;
-
     SpriteRenderer sr = speaker.GetChild(0).GetComponent<SpriteRenderer>();
 
     if (!sr.isVisible) {
@@ -67,8 +65,6 @@ public class Balloon : MonoBehaviour {
   }
 
   private void Update() {
-    Controller.Dbg((int)(GD.b.delay * 100) + "->" + GD.b.text.text);
-
     if (GD.b.delay <= 0) return;
     GD.b.delay -= Time.deltaTime;
     if (GD.b.delay <= 0) {

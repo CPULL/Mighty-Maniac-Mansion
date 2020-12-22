@@ -95,6 +95,7 @@ public enum Audios {
   WheelValve = 7,
   Alarm = 8,
   ButtonClick = 9,
+  BombTheBass = 10,
 };
 
 

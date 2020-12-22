@@ -713,19 +713,12 @@ public class Controller : MonoBehaviour {
     */
   }
 
-  #endregion
-
-
-  #region *********************** Cutscenes and Actions *********************** Cutscenes and Actions *********************** Cutscenes and Actions ***********************
-
   void StartIntroCutscene() {
     FrontActors.enabled = true;
     GameScene introScene = AllObjects.GetCutscene(CutsceneID.Intro);
     CursorHandler.WaitMode(true);
     GameScenesManager.StartScene(introScene);
   }
-
-
 
   #endregion
 
