@@ -6,4 +6,4 @@
  Some of the characters look similar to the original ones. But they are more modern (like 2020 young guys, so no "Cassete tape" or landline phones.)
 
 
-![MMM Logo](https://github.com/CPULL/Mighty-Maniac-Mansion/blob/master/Graphics/Extras/Logo.png)
+![MMM Logo](https://github.com/CPULL/Mighty-Maniac-Mansion/blob/master/Graphics/Extras/MMM%20Logo%20Intro.png?raw=true)
