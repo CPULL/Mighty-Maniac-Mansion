@@ -267,11 +267,11 @@ public class Options : MonoBehaviour {
       // Audio
       float val = PlayerPrefs.GetFloat("MasterVolume", 1);
       MainVolume.SetValueWithoutNotify(val);
-      val = PlayerPrefs.GetFloat("MusicVolume", 1);
+      val = PlayerPrefs.GetFloat("MusicVolume", .75f);
       MusicVolume.SetValueWithoutNotify(val);
-      val = PlayerPrefs.GetFloat("SoundVolume", 1);
+      val = PlayerPrefs.GetFloat("SoundVolume", .80f);
       SoundVolume.SetValueWithoutNotify(val);
-      val = PlayerPrefs.GetFloat("BackgroundVolume", 1);
+      val = PlayerPrefs.GetFloat("BackgroundVolume", .70f);
       BackgroundVolume.SetValueWithoutNotify(val);
       ChangeMainVolume();
       ChangeMusicVolume();
@@ -322,9 +322,9 @@ public class Options : MonoBehaviour {
       ApplyC64Options();
 
 
-      RestartIntro.interactable = GD.status == GameStatus.IntroVideo || GD.status == GameStatus.CharSelection || GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
-      RestartNewChars.interactable = GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
-      RestartSameChars.interactable = GD.status == GameStatus.NormalGamePlay || GD.status == GameStatus.StartGame;
+      RestartIntro.interactable = GD.theStatus == GameStatus.IntroVideo || GD.theStatus == GameStatus.CharSelection || GD.theStatus == GameStatus.NormalGamePlay || GD.theStatus == GameStatus.StartGame;
+      RestartNewChars.interactable = GD.theStatus == GameStatus.NormalGamePlay || GD.theStatus == GameStatus.StartGame;
+      RestartSameChars.interactable = GD.theStatus == GameStatus.NormalGamePlay || GD.theStatus == GameStatus.StartGame;
     }
     else {
       CursorHandler.ResetCursor();

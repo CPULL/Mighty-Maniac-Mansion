@@ -13,8 +13,8 @@ public class Confirm : MonoBehaviour {
 
   public static void Show(string msg, int mode) {
     GD.confirm.Message.text = msg;
-    GD.confirm.previous = GD.status;
-    GD.status = GameStatus.Confirming;
+    GD.confirm.previous = GD.theStatus;
+    GD.theStatus = GameStatus.Confirming;
     GD.confirm.canvas.enabled = true;
     GD.confirm.mode = mode;
   }
@@ -34,6 +34,6 @@ public class Confirm : MonoBehaviour {
 
   public void No() {
     GD.confirm.canvas.enabled = false;
-    GD.status = GD.confirm.previous;
+    GD.theStatus = GD.confirm.previous;
   }
 }

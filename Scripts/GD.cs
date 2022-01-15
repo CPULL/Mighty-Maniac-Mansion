@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GD : MonoBehaviour {
   public static GD gs;
-  public static GameStatus status = GameStatus.NotYetLoaded;
+  public static GameStatus theStatus = GameStatus.NotYetLoaded;
   public static Chars actor1;
   public static Chars actor2;
   public static Chars actor3;
@@ -18,12 +18,12 @@ public class GD : MonoBehaviour {
 
   void Awake() {
     if (gs != null) {
-      Destroy(this.gameObject);
+      Destroy(gameObject);
       return;
     }
 
     gs = this;
-    DontDestroyOnLoad(this.gameObject);
+    DontDestroyOnLoad(gameObject);
   }
 
   private void OnApplicationQuit() {
@@ -50,7 +50,7 @@ public class GD : MonoBehaviour {
 
   // Static instances
   public static CharSelection charSel;
-  public static Intro intro;
+  public static IntroHandler intro;
   public static Controller c;
   public static Balloon b;
   public static Options opts;
@@ -69,16 +69,18 @@ public class GD : MonoBehaviour {
   public static void ReadyToStart() {
     switch (gs.restartFrom) {
       case RestartFrom.NotStarted:
-        status = GameStatus.IntroVideo;
+        theStatus = GameStatus.IntroVideo;
+        intro.Init();
         break;
       case RestartFrom.Intro:
-        status = GameStatus.IntroVideo;
+        theStatus = GameStatus.IntroVideo;
+        intro.Init();
         break;
       case RestartFrom.CharSel:
-        status = GameStatus.CharSelection;
+        theStatus = GameStatus.CharSelection;
         break;
       case RestartFrom.Game:
-        status = GameStatus.StartGame;
+        theStatus = GameStatus.StartGame;
         break;
     }
   }

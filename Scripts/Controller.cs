@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Concurrent;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -26,7 +25,7 @@ public class Controller : MonoBehaviour {
   #region *********************** Mouse and Interaction *********************** Mouse and Interaction *********************** Mouse and Interaction ***********************
 
   private void OnApplicationFocus(bool focus) {
-    if (focus && GD.status != GameStatus.NotYetLoaded) CursorHandler.ResetCursor();
+    if (focus && GD.theStatus != GameStatus.NotYetLoaded) CursorHandler.ResetCursor();
   }
 
   private void SelectInventoryItem() {
@@ -72,11 +71,11 @@ public class Controller : MonoBehaviour {
 
   void Update() {
     if (Options.IsActive()) return;
-    if (GD.status == GameStatus.StartGame) {
+    if (GD.theStatus == GameStatus.StartGame) {
       StartGame();
       return;
     }
-    if (GD.status != GameStatus.NormalGamePlay) return;
+    if (GD.theStatus != GameStatus.NormalGamePlay) return;
 
 
     #region Handling of text messages
@@ -629,7 +628,7 @@ public class Controller : MonoBehaviour {
     foreach (Room r in GD.a.roomsList) {
       r.gameObject.SetActive(r == currentRoom);
     }
-    GD.status = GameStatus.NormalGamePlay;
+    GD.theStatus = GameStatus.NormalGamePlay;
     foreach (Actor a in allActors) {
       if (a == null) continue;
       a.SetVisible(a.currentRoom == currentRoom);
@@ -774,7 +773,7 @@ public class Controller : MonoBehaviour {
   }
 
   internal static void SetItem(Item item, bool fromInventory = false) {
-    if (GD.status != GameStatus.NormalGamePlay && GD.c.blockingScenesPlaying) return;
+    if (GD.theStatus != GameStatus.NormalGamePlay && GD.c.blockingScenesPlaying) return;
 
     if (fromInventory) {
       if (item == null) {

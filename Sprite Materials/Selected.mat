@@ -67,12 +67,12 @@ Material:
     - _BlurIntensity: 10
     - _CRT: 0
     - _CRTDir: 0
-    - _CRTFreq: 0.1079924
+    - _CRTFreq: 0.5
     - _CRTI: 0.00025
     - _CRTInternalce: 0
-    - _CRTNoise: 1.9677724
-    - _CRTSpeed: 1.9969003
-    - _CRTStrenght: 0.37682047
+    - _CRTNoise: 0
+    - _CRTSpeed: 0.5
+    - _CRTStrenght: 0.5
     - _ChromAberrAlpha: 0.4
     - _ChromAberrAmount: 1
     - _ClipUvDown: 0
@@ -151,7 +151,7 @@ Material:
     - _OutlineIsPixel: 0
     - _OutlinePixelWidth: 1
     - _OutlineSize: 0
-    - _OutlineStrenght: 0.27401075
+    - _OutlineStrenght: 0.5
     - _OutlineTexGrey: 0
     - _OutlineTexToggle: 0
     - _OutlineTexXSpeed: 10

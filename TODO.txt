@@ -16,7 +16,7 @@ Arcade room: Add old consoles (C64, NES, Genesis, etc.) to the arcade room, on t
 Add lookup in dog room
 
 Complete intro Cutscene, adding variations for each character (syd, razor, jeff, michael, Hoagie, Laverne)
-Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, javid, jeff, michael)
+Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, jeff, michael)
 Do arms forward in all characters
 
 Add recycle stuff to the service room
@@ -54,10 +54,14 @@ Purple Meteor
 !Wendy
 !Jeff
 !Sandy
-!Javid
+!Javid <- remove
 !Ollie
 !Laverne
 
+Josh?
+OutsideXbox?
+ChefJohn?
+DavidMurray?
 
 
 * DONE ************************************************************************************************************

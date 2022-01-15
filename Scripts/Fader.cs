@@ -20,6 +20,13 @@ public class Fader : MonoBehaviour {
       b.color = Transparent;
   }
 
+  public static void AllBlack() {
+    f.canvas.enabled = true;
+    for (int i = 0; i <= f.blocks.Length; i++)
+      f.blocks[i].color = f.Black;
+    f.fading = false;
+  }
+
   public static void FadeIn() {
     f.fading = true;
     f.StartCoroutine(f.FadeInCR());
@@ -37,11 +44,12 @@ public class Fader : MonoBehaviour {
     f.fading = false;
   }
 
-  public static void FadeOut() {
+  public static void FadeOut(System.Action cb = null) {
     f.fading = true;
-    f.StartCoroutine(f.FadeOutCR());
+    f.StartCoroutine(f.FadeOutCR(cb));
   }
-  IEnumerator FadeOutCR() {
+
+  IEnumerator FadeOutCR(System.Action callBack) {
     for (int i = blocks.Length; i >= 0 ; i--) {
       int a = i;
       int b = i - 1;
@@ -52,6 +60,7 @@ public class Fader : MonoBehaviour {
     }
     canvas.enabled = false;
     f.fading = false;
+    if (callBack != null) callBack();
   }
 
   public static void RemoveFade() {

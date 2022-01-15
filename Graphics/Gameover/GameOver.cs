@@ -46,9 +46,8 @@ public class GameOver : MonoBehaviour {
   }
 
   public static void RunGameOver(bool nuclear = true) {
-    GD.status = GameStatus.GameOver;
-    if (nuclear)
-      go.GameOverNuclear();
+    GD.theStatus = GameStatus.GameOver;
+    if (nuclear) go.GameOverNuclear();
   }
 
   void GameOverNuclear() {
@@ -126,7 +125,7 @@ public class GameOver : MonoBehaviour {
         status = GameOverStatus.No;
         GD.c.currentRoom = oldCurrentRoom;
         GD.c.cam.transform.position = new Vector3((oldCurrentRoom.minL + oldCurrentRoom.maxR) * .5f, oldCurrentRoom.CameraGround, -10);
-        GD.status = GameStatus.NormalGamePlay;
+        GD.theStatus = GameStatus.NormalGamePlay;
       }
     }
   }
@@ -206,7 +205,7 @@ public class GameOver : MonoBehaviour {
     go.woods.gameObject.SetActive(true);
     yield return new WaitForSeconds(.25f);
     go.woods.Generate(false, false, -2);
-    GD.status = GameStatus.GameOver;
+    GD.theStatus = GameStatus.GameOver;
     // Stop game, fade to cemetery, generate cemetery, add lightnights, stay 5 seconds, hide cemetery go back to gameplay
     go.status = GameOverStatus.PlayerDeath1;
     go.woods.gameObject.SetActive(true);

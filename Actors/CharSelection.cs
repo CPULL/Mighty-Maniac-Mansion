@@ -36,7 +36,7 @@ public class CharSelection : MonoBehaviour {
   }
 
   private void Update() {
-    if (GD.status != GameStatus.CharSelection) return;
+    if (GD.theStatus != GameStatus.CharSelection) return;
     if (!charSelectionCanvas.enabled) SelectCharacters();
     if (Options.IsActive()) return;
 
@@ -235,7 +235,7 @@ public class CharSelection : MonoBehaviour {
     GD.actor3 = (Chars)a3;
     GD.kidnapped = (Chars)ak;
     charSelectionCanvas.enabled = false;
-    GD.status = GameStatus.StartGame;
+    GD.theStatus = GameStatus.StartGame;
   }
 
   public void OptionsButton() {
