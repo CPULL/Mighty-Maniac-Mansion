@@ -34,6 +34,9 @@ If a room has windows, make it a little bit less dark (like flashlight but witho
 
 * BUGS ************************************************************************************************************
 
+Sprite priority is a big mess
+
+
 * CHARS ************************************************************************************************************
 
 !Dr. Fred
@@ -257,3 +260,4 @@ DavidMurray?
 ! Have a trigger or something to set Ted in the bathroom if needed (probably we need a set of actions to be associated with the room directly)
 ! When changing the room from a door, do not pre-set the camera. Make it go according to the dest position of the actor
 ! Removed pathnodes from doors
+! Replaced intro done by code with intro done by animation
