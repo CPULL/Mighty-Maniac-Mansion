@@ -24,6 +24,8 @@ public class IntroHandler : MonoBehaviour {
     IntroBlackFade.enabled = true;
     IntroBlackFade.color = new Color32(0, 0, 0, 255);
     anim.Play("Intro Animation");
+
+    if (GD.gs.AutoSkipDebug) Stop();
   }
 
   void Stop() {

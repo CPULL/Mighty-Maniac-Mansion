@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 
 public class GD : MonoBehaviour {
+  public bool AutoSkipDebug = true;
   public static GD gs;
   public static GameStatus theStatus = GameStatus.NotYetLoaded;
   public static Chars actor1;
