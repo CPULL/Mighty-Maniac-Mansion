@@ -5,12 +5,18 @@
 
 * THINKERING ******************************************************************************************************
 
-Replace shaders for wave on the ladder
-Do a file somewhere (the Excel is gone) with the quests/stories
+Fix all sorting orders of the rooms, they are screwed up.
+Change the camera movement, use some sort of proportional lerping
 
+Change the way we pick/use items in inventory, we need to see them (over?), use them directly, pick them from inventory (and close inv), drop them (maybe not)
+
+Make the movements/panning smoother, the actor walk and the pan should synchronize (actors should not have retrograde movements)
 
 
 * TODO ************************************************************************************************************
+
+
+
 
 Purple Tentacle should go first to the basement to check the reactor then to the pool then to the valve and close it.
 In case too much time will pass make an explosion (for example purple will catch two players)

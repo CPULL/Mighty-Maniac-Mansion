@@ -126,7 +126,7 @@ Material:
     - _InnerOutlineAlpha: 1
     - _InnerOutlineGlow: 1
     - _InnerOutlineThickness: 1
-    - _Lightning: -0
+    - _Lightning: 0
     - _MaxXUV: 1
     - _MaxYUV: 1
     - _MinXUV: 0

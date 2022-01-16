@@ -285,7 +285,7 @@ public class Options : MonoBehaviour {
       val = PlayerPrefs.GetFloat("TextSpeed", 6);
       TextSpeed.SetValueWithoutNotify(val);
       ChangeTextSpeed();
-      InventoryMode.SetValueWithoutNotify(PlayerPrefs.GetInt("InventoryMode", 0));
+      InventoryMode.SetValueWithoutNotify(PlayerPrefs.GetInt("InventoryMode", 1));
 
       // Video
       UpdateFonts(PlayerPrefs.GetInt("Font", 3));
@@ -336,7 +336,7 @@ public class Options : MonoBehaviour {
       PlayerPrefs.SetFloat("WalkSpeed", WalkSpeed.value);
       Controller.walkSpeed = GetFloatValueD(WalkSpeed.value);
       Controller.textSpeed = GetFloatValueD(TextSpeed.value);
-      Controller.inventoryMode = PlayerPrefs.GetInt("InventoryMode", 0);
+      Controller.inventoryMode = PlayerPrefs.GetInt("InventoryMode", 1);
     }
   }
 
