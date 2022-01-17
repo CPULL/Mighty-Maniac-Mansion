@@ -451,7 +451,7 @@ public class Actor : MonoBehaviour {
     Vector2 walkDir = (destination.pos - transform.position);
     Vector3 wdir = walkDir.normalized;
     wdir.y *= .65f;
-    Vector3 np = transform.position + wdir * actorSpeed * Controller.walkSpeed * Time.deltaTime;
+    Vector3 np = transform.position + wdir * actorSpeed * 1.2f * Controller.walkSpeed * Time.deltaTime;
     np.z = 0;
     transform.position = np;
     ScaleByPosition(transform.position.y);
@@ -459,7 +459,7 @@ public class Actor : MonoBehaviour {
     if (!audios.isPlaying && gameObject.activeSelf && IsVisible && !audios.isPlaying) {
       audios.Play();
     }
-    anim.speed = Controller.walkSpeed * .8f;
+    anim.speed = Controller.walkSpeed * .9f;
 
     // Check if we reached the destination
     CheckReachingDestination(walkDir);

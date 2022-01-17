@@ -5,8 +5,6 @@
 
 * THINKERING ******************************************************************************************************
 
-Fix all sorting orders of the rooms, they are screwed up.
-Change the camera movement, use some sort of proportional lerping
 
 Change the way we pick/use items in inventory, we need to see them (over?), use them directly, pick them from inventory (and close inv), drop them (maybe not)
 
@@ -279,3 +277,6 @@ DavidMurray?
 ! Removed AllInOne shader from water and pool ladder
 ! If the actions showroom and teleport do not have a position (0,0) then the position is calculated as center of the room
 ! Set back the layer of sprite renderers to Default for all objects
+! Fixed all sorting orders of the rooms
+! Change the camera movement, now lerp is used
+! Slightly increased the default walk speed

@@ -119,7 +119,7 @@ public class Controller : MonoBehaviour {
 
     #region Handle camera
     if (!CameraFadingToActor && CameraPanningInstance == null) {
-      Vector2 cpos = cam.WorldToScreenPoint(currentActor.transform.position);
+      Vector2 cpos = cam.WorldToViewportPoint(currentActor.transform.position);
       if (cam.transform.position.x < currentRoom.minL) {
         Vector3 p = cam.transform.position;
         p.x = currentRoom.minL;
@@ -130,14 +130,18 @@ public class Controller : MonoBehaviour {
         p.x = currentRoom.maxR;
         cam.transform.position = p;
       }
-      else if (cpos.x < .3f * Screen.width) {
+      else if (cpos.x < .3f) {
         if (cam.transform.position.x > currentRoom.minL) {
-          cam.transform.position -= cam.transform.right * Time.deltaTime * (.4f * Screen.width - cpos.x) / 25;
+          Vector3 cnp = cam.transform.position;
+          cnp.x = Mathf.Lerp(cnp.x, currentActor.transform.position.x, 2 * Time.deltaTime);
+          cam.transform.position = cnp;
         }
       }
-      else if (cpos.x > .7f * Screen.width) {
+      else if (cpos.x > .7f) {
         if (cam.transform.position.x < currentRoom.maxR) {
-          cam.transform.position += cam.transform.right * Time.deltaTime * (cpos.x - .6f * Screen.width) / 25;
+          Vector3 cnp = cam.transform.position;
+          cnp.x = Mathf.Lerp(cnp.x, currentActor.transform.position.x, 2 * Time.deltaTime);
+          cam.transform.position = cnp;
         }
       }
       MoonPos.x = 5.9f - cam.transform.position.x / 100;
