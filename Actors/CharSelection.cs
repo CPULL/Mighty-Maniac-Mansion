@@ -66,7 +66,7 @@ public class CharSelection : MonoBehaviour {
     ak = -1;
 
     if (GD.gs.AutoSkipDebug) {
-      a1 = 23; // FIXME
+      a1 = 25; // FIXME
       a2 = 22;
       a3 = 21;
       ak = 20;

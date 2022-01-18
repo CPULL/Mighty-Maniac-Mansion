@@ -278,5 +278,5 @@ DavidMurray?
 ! If the actions showroom and teleport do not have a position (0,0) then the position is calculated as center of the room
 ! Set back the layer of sprite renderers to Default for all objects
 ! Fixed all sorting orders of the rooms
-! Change the camera movement, now lerp is used
+! Changed the camera movement, now lerp is used
 ! Slightly increased the default walk speed

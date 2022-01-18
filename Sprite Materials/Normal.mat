@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Normal
   m_Shader: {fileID: 4800000, guid: 5d3b98a8501ff914ba463bcbe4b53683, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USEOUTLINE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -188,7 +188,7 @@ Material:
     - _TwistUvRadius: 0.75
     - _UseC64Cols: 0
     - _UseExC64Cols: 0
-    - _UseOutline: 0
+    - _UseOutline: 1
     - _WaveAmount: 7
     - _WaveSpeed: 10
     - _WaveStrength: 7.5
