@@ -49,6 +49,8 @@ Do coats and dig for all characters: Michael, Hoagie
 
 * BUGS ************************************************************************************************************
 
+If the inventory is open, the charselection may show as mistake
+
 
 * CHARS ************************************************************************************************************
 
@@ -283,3 +285,5 @@ DavidMurray?
 ! Slightly increased the default walk speed
 ! Added a development button in inspector of doors to jump to corresponding doors
 ! Started the Look Up room
+! Fixed a problem where old doors were using a layer that does not exist anymore
+! Removed an unused layer and improved some GetComponent

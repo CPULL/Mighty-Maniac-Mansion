@@ -596,11 +596,9 @@ public class GameAction {
             Complete();
             return;
           }
-          RaycastHit2D hit = Physics2D.Raycast(pos, GD.c.cam.transform.forward, 10000, GD.c.pathLayer);
+          RaycastHit2D hit = Physics2D.Raycast(pos, GD.c.cam.transform.forward, 10000);
           PathNode p = null;
-          if (hit.collider != null) {
-            p = hit.collider.GetComponent<PathNode>();
-          } else {
+          if (hit.collider == null || !hit.collider.TryGetComponent(out p)) {
             Debug.Log("No path collider");
             p = a.currentRoom.GetPathNode(pos);
             if (p != null) {
@@ -770,9 +768,9 @@ public class GameAction {
             return;
           }
           if (id2 == 1) {
-            if (GD.c.actor1.currentRoom.Equals(a.currentRoom)) Controller.SelectActor(GD.c.actor1, true);
-            if (GD.c.actor2.currentRoom.Equals(a.currentRoom)) Controller.SelectActor(GD.c.actor2, true);
-            if (GD.c.actor3.currentRoom.Equals(a.currentRoom)) Controller.SelectActor(GD.c.actor3, true);
+            if (GD.c.actor1.currentRoom.Equals(a.currentRoom)) Controller.SelectActor(GD.c.actor1);
+            if (GD.c.actor2.currentRoom.Equals(a.currentRoom)) Controller.SelectActor(GD.c.actor2);
+            if (GD.c.actor3.currentRoom.Equals(a.currentRoom)) Controller.SelectActor(GD.c.actor3);
             Complete();
           } else { // Go over all actors
             foreach (Actor act in GD.c.allActors)

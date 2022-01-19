@@ -9,8 +9,6 @@ public class Controller : MonoBehaviour {
   [Header("Global")]
   public Transform Moon;
   public GameObject BackSky;
-  public LayerMask pathLayer;
-  public LayerMask doorLayer;
   public Image BlackFade;
   public Transform PickedItems;
   public AudioSource MusicPlayer;
@@ -289,26 +287,19 @@ public class Controller : MonoBehaviour {
 
     Door aDoor = null;
     if ((lmb || rmb) && walkDelay < 0 && notOverUI) { // Check if we have a door
-      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 10000, doorLayer);
+      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 10000);
       if (hit.collider != null && hit.collider.gameObject != null) {
-        Door d = hit.collider.gameObject.GetComponent<Door>();
-        if (d != null) {
-          aDoor = d;
-        }
-        Item i = hit.collider.gameObject.GetComponent<Item>();
-        if (i != null) {
-          overItem = i;
-        }
+        if (hit.collider.gameObject.TryGetComponent(out Door d)) aDoor = d;
+        if (hit.collider.gameObject.TryGetComponent(out Item i)) overItem = i;
       }
     }
 
     walkDelay -= Time.deltaTime;
     if (notOverUI && Input.GetMouseButton(0) && currentActor.IsWalking() && walkDelay < 0) {
       walkDelay = .25f / walkSpeed;
-      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
+      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000);
       if (hit.collider != null) {
-        PathNode p = hit.collider.GetComponent<PathNode>();
-        if (p != null && !p.isStair)
+        if (hit.collider.TryGetComponent(out PathNode p) && !p.isStair)
           currentActor.WalkToPos(hit.point, p);
       }
     }
@@ -423,8 +414,7 @@ public class Controller : MonoBehaviour {
             new System.Action<Actor, Item>((actor, item) => {
               if (item.Usable == Tstatus.Pickable) {
                 // Do we have a container?
-                Container c = item.transform.parent.GetComponent<Container>();
-                if (c != null) c.Collect(item, currentActor);
+                if (item.transform.parent.TryGetComponent(out Container c)) c.Collect(item, currentActor);
                 ShowName(currentActor.name + " got " + item.Name);
                 if (!actor.inventory.Contains(item))
                   actor.inventory.Add(item);
@@ -469,8 +459,7 @@ public class Controller : MonoBehaviour {
               // Here we should raycast and check what should the item be with the actions (if any)
               RaycastHit2D[] hits = Physics2D.RaycastAll(worldPoint, cam.transform.forward);
               foreach (RaycastHit2D hit in hits) {
-                Item hitItem = hit.collider.gameObject.GetComponent<Item>();
-                if (hitItem != null) SetItem(hitItem);
+                if (hit.collider.gameObject.TryGetComponent(out Item hitItem)) SetItem(hitItem);
               }
             }));
         }
@@ -517,8 +506,7 @@ public class Controller : MonoBehaviour {
               // Here we should raycast and check what should the item be with the actions (if any)
               RaycastHit2D[] hits = Physics2D.RaycastAll(worldPoint, cam.transform.forward);
               foreach (RaycastHit2D hit in hits) {
-                Item hitItem = hit.collider.gameObject.GetComponent<Item>();
-                if (hitItem != null) SetItem(hitItem);
+                if (hit.collider.gameObject.TryGetComponent(out Item hitItem)) SetItem(hitItem);
               }
             }));
         }
@@ -539,11 +527,12 @@ public class Controller : MonoBehaviour {
             return;
           }
 
-          RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, pathLayer);
+          RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000);
           if (hit.collider != null) {
-            PathNode p = hit.collider.GetComponent<PathNode>();
-            currentActor.WalkToPos(hit.point, p);
-            walkDelay = 0;
+            if (hit.collider.TryGetComponent(out PathNode p)) {
+              currentActor.WalkToPos(hit.point, p);
+              walkDelay = 0;
+            }
           }
         }
         else { /* rmb - do nothing but unselect used items */
@@ -1170,9 +1159,8 @@ public class Controller : MonoBehaviour {
     two.z = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > .2f) { // Need to walk
-      RaycastHit2D hit = Physics2D.Raycast(two, cam.transform.forward, 10000, pathLayer);
-      if (hit.collider != null) {
-        PathNode p = hit.collider.GetComponent<PathNode>();
+      RaycastHit2D hit = Physics2D.Raycast(two, cam.transform.forward, 10000);
+      if (hit.collider != null && hit.collider.TryGetComponent(out PathNode p)) {
         currentActor.WalkToPos(two, p, action, item);
       }
       return;
@@ -1189,7 +1177,7 @@ public class Controller : MonoBehaviour {
   }
 
 
-  internal static void SelectActor(Actor actor, bool force = false) {
+  internal static void SelectActor(Actor actor) {
     if (GameScenesManager.SkipScenes()) {
       Fader.RemoveFade();
     }
