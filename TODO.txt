@@ -5,16 +5,15 @@
 
 * THINKERING ******************************************************************************************************
 
+Skills: Strenght, Courage, Culinary, Handyman, Science (Geek), Retro (Nerd), Music
 
-Change the way we pick/use items in inventory, we need to see them (over?), use them directly, pick them from inventory (and close inv), drop them (maybe not)
-
-Make the movements/panning smoother, the actor walk and the pan should synchronize (actors should not have retrograde movements)
+Draw look up room, it may be just an image scrolling (???)
 
 
 * TODO ************************************************************************************************************
 
 
-
+Add some extra stuff in the barbecue room
 
 Purple Tentacle should go first to the basement to check the reactor then to the pool then to the valve and close it.
 In case too much time will pass make an explosion (for example purple will catch two players)
@@ -32,9 +31,11 @@ Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, jeff, michael)
 Do arms forward in all characters
 
 Add recycle stuff to the service room
+Add trashcan to barbecue to the service room
+Add ketchup not broken to barbecue
 
 
-Add a lab secret entrance in the home. But use the same system
+Add a lab secret entrance in the home. But use the same system. Maybe in the temp room
 Ed room: Piggy bank with coins
 Dungeon: add lab door sprites
 Dungeon: dungeon door should close automatically when exiting
@@ -280,3 +281,5 @@ DavidMurray?
 ! Fixed all sorting orders of the rooms
 ! Changed the camera movement, now lerp is used
 ! Slightly increased the default walk speed
+! Added a development button in inspector of doors to jump to corresponding doors
+! Started the Look Up room

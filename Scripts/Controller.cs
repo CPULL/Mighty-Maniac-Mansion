@@ -1349,6 +1349,18 @@ public class Controller : MonoBehaviour {
       }
     }
 
+    if (currentRoom.ID.Equals("Lookup")) { // Code specific for the Lookup
+      // No actors should be visible
+      foreach (Actor a in allActors) {
+        if (a != null) a.SetVisible(false);
+      }
+      foreach (Actor a in allEnemies) {
+        if (a != null) a.SetVisible(false);
+      }
+
+
+    }
+
     // Actions for the room
     if (currentRoom.actions != null) {
       foreach(ActionAndCondition ac in currentRoom.actions) {

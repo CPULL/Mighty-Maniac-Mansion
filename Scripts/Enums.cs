@@ -112,7 +112,7 @@ public enum Skill {
   None,
   Strenght,
   Courage,
-  Chef,
+  Culinary,
   Handyman,
   Geek,
   Nerd,

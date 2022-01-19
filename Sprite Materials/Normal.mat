@@ -188,7 +188,7 @@ Material:
     - _TwistUvRadius: 0.75
     - _UseC64Cols: 0
     - _UseExC64Cols: 0
-    - _UseOutline: 1
+    - _UseOutline: 0
     - _WaveAmount: 7
     - _WaveSpeed: 10
     - _WaveStrength: 7.5

@@ -109,6 +109,29 @@ public class DoorEditor : Editor {
     EditorGUILayout.BeginHorizontal();
     EditorGUIUtility.labelWidth = 50;
     EditorGUILayout.PropertyField(HotSpot, new GUIContent("HotSpot"));
+    if (GUILayout.Button("Jump", GUILayout.Width(40))) {
+      Door door = target as Door;
+      Door other = door.correspondingDoor;
+      if (other != null) {
+        // Find the parent room
+        Room parent = other.transform.parent.GetComponent<Room>();
+        if (parent == null) parent = other.transform.parent.parent.GetComponent<Room>();
+        if (parent == null) parent = other.transform.parent.parent.parent.GetComponent<Room>();
+        if (parent == null) {
+          Debug.LogError("No room found for corresponding door! " + door.name);
+          return;
+        }
+        Vector3 pos = new Vector3(other.transform.position.x, parent.CameraGround, -10);
+        if (pos.x < parent.minL) pos.x = parent.minL;
+        if (pos.x > parent.maxR) pos.x = parent.maxR;
+        Camera.main.transform.position = pos;
+        SceneView.lastActiveSceneView.pivot = pos;
+        SceneView.lastActiveSceneView.Repaint();
+        Selection.activeTransform = other.transform;
+      } else {
+        Debug.LogError("Corresponding door not set! " + door.name);
+      }
+    }
     if (GUILayout.Button("Set", GUILayout.Width(40))) {
       Item door = target as Door;
       if (door.transform.childCount == 0) {
