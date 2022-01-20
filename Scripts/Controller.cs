@@ -297,11 +297,9 @@ public class Controller : MonoBehaviour {
     walkDelay -= Time.deltaTime;
     if (notOverUI && Input.GetMouseButton(0) && currentActor.IsWalking() && walkDelay < 0) {
       walkDelay = .25f / walkSpeed;
-      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000);
-      if (hit.collider != null) {
-        if (hit.collider.TryGetComponent(out PathNode p) && !p.isStair)
-          currentActor.WalkToPos(hit.point, p);
-      }
+      RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, PathLayer);
+      if (hit.collider != null && hit.collider.TryGetComponent(out PathNode p) && !p.isStair)
+        currentActor.WalkToPos(hit.point, p);
     }
 
     #region Mouse control
@@ -527,12 +525,10 @@ public class Controller : MonoBehaviour {
             return;
           }
 
-          RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000);
-          if (hit.collider != null) {
-            if (hit.collider.TryGetComponent(out PathNode p)) {
-              currentActor.WalkToPos(hit.point, p);
-              walkDelay = 0;
-            }
+          RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), cam.transform.forward, 10000, PathLayer);
+          if (hit.collider != null && hit.collider.TryGetComponent(out PathNode p)) {
+            currentActor.WalkToPos(hit.point, p);
+            walkDelay = 0;
           }
         }
         else { /* rmb - do nothing but unselect used items */
@@ -1144,7 +1140,7 @@ public class Controller : MonoBehaviour {
     return Chars.None;
   }
 
-
+  public LayerMask PathLayer;
 
   /// <summary>
   /// Moves the actor to the destination and execute the action callback when the destination is reached
@@ -1159,7 +1155,7 @@ public class Controller : MonoBehaviour {
     two.z = 0;
     float dist = Vector3.Distance(one, two);
     if (dist > .2f) { // Need to walk
-      RaycastHit2D hit = Physics2D.Raycast(two, cam.transform.forward, 10000);
+      RaycastHit2D hit = Physics2D.Raycast(two, cam.transform.forward, 10000, PathLayer);
       if (hit.collider != null && hit.collider.TryGetComponent(out PathNode p)) {
         currentActor.WalkToPos(two, p, action, item);
       }
@@ -1302,20 +1298,21 @@ public class Controller : MonoBehaviour {
         mapPos = 0;
         woods.Generate(true, false, mapDirections[mapPos]);
         woods.SetActorRandomDoorPosition(actor, mapDirections[mapPos]);
-      }
-      else {
+      } else {
         mapPos = -1;
         woods.Generate(true, false, -1);
         woods.SetActorRandomDoorPosition(actor, -1);
       }
       woodSteps = 0;
       StarsBlink.SetWoods(woodSteps, GD.c.currentRoom.MoonSize);
-    }
-    else if (currentRoom.ID.Equals("Cemetery") && !cemetery.Generated) {
+    } else if (currentRoom.ID.Equals("Cemetery") && !cemetery.Generated) {
       cemetery.Generate(false, false, -2);
       StarsBlink.SetWoods(4, GD.c.currentRoom.MoonSize);
-    }
-    else {
+    } else if (currentRoom.ID.Equals("Patio")) {
+      if (actor1.currentRoom.ID == "Lookup") { actor1.currentRoom = currentRoom; actor1.transform.position = new Vector3(Random.Range(-132f, -129f), Random.Range(.5f, .6f), 0); }
+      if (actor2.currentRoom.ID == "Lookup") { actor2.currentRoom = currentRoom; actor2.transform.position = new Vector3(Random.Range(-132f, -129f), Random.Range(.5f, .6f), 0); }
+      if (actor3.currentRoom.ID == "Lookup") { actor3.currentRoom = currentRoom; actor3.transform.position = new Vector3(Random.Range(-132f, -129f), Random.Range(.5f, .6f), 0); }
+    } else {
       StarsBlink.SetWoods(0, GD.c.currentRoom.MoonSize);
     }
 
@@ -1410,8 +1407,7 @@ public class Controller : MonoBehaviour {
 
     // Move camera quickly from current to dst
     float time = 0;
-    while (time < .125f) {
-      // Fade black
+    while (time < .125f) { // Fade black
       BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (time * 8)));
       time += Time.deltaTime;
       yield return null;
@@ -1438,19 +1434,21 @@ public class Controller : MonoBehaviour {
     cam.transform.position = dstp;
     yield return null;
 
+    if (currentRoom.ID.Equals("Patio")) { // Code specific to move back to patio actor in LookUp room
+      if (actor1.currentRoom.ID == "Lookup") { actor1.currentRoom = currentRoom; actor1.SetScaleAndPosition(new Vector3(Random.Range(-132f, -129f), Random.Range(.5f, .6f), 0)); }
+      if (actor2.currentRoom.ID == "Lookup") { actor2.currentRoom = currentRoom; actor2.SetScaleAndPosition(new Vector3(Random.Range(-132f, -129f), Random.Range(.5f, .6f), 0)); }
+      if (actor3.currentRoom.ID == "Lookup") { actor3.currentRoom = currentRoom; actor3.SetScaleAndPosition(new Vector3(Random.Range(-132f, -129f), Random.Range(.5f, .6f), 0)); }
+    }
+
     // Disable actors not in current room
     foreach (Actor a in allActors) {
-      if (a == null) continue;
-      a.SetVisible(a.currentRoom == currentRoom);
+      if (a != null) a.SetVisible(a.currentRoom == currentRoom);
     }
     foreach (Actor a in allEnemies) {
-      if (a == null) continue;
-      a.SetVisible(a.currentRoom == currentRoom);
+      if (a != null) a.SetVisible(a.currentRoom == currentRoom);
     }
 
-
-    while (time < .25f) {
-      // Fade black
+    while (time < .25f) { // Remove black fade
       BlackFade.color = new Color32(0, 0, 0, (byte)(255 * (1 - (8 * (time - .125f)))));
       time += Time.deltaTime;
       yield return null;

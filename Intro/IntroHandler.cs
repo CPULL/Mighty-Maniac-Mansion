@@ -19,17 +19,22 @@ public class IntroHandler : MonoBehaviour {
   public void Init() {
     StarsBlink.Disable(true);
     CursorHandler.Set();
+    if (GD.gs.AutoSkipDebug) {
+      Stop();
+      return;
+    }
+
     cam.transform.position = new Vector3(1000, 1000, -2.296684f);
     IntroCanvas.enabled = true;
     IntroBlackFade.enabled = true;
     IntroBlackFade.color = new Color32(0, 0, 0, 255);
+    anim.enabled = true;
     anim.Play("Intro Animation");
-
-    if (GD.gs.AutoSkipDebug) Stop();
   }
 
   void Stop() {
     anim.StopPlayback();
+    anim.enabled = false;
     Controller.StopMusic();
     IntroEffects.Stop();
     MeteorSound.Stop();

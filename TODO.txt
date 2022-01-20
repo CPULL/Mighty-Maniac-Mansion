@@ -7,7 +7,6 @@
 
 Skills: Strenght, Courage, Culinary, Handyman, Science (Geek), Retro (Nerd), Music
 
-Draw look up room, it may be just an image scrolling (???)
 
 
 * TODO ************************************************************************************************************
@@ -50,7 +49,7 @@ Do coats and dig for all characters: Michael, Hoagie
 * BUGS ************************************************************************************************************
 
 If the inventory is open, the charselection may show as mistake
-
+Actors do not react to the dog (they go away but they say nothing)
 
 * CHARS ************************************************************************************************************
 
@@ -287,3 +286,6 @@ DavidMurray?
 ! Started the Look Up room
 ! Fixed a problem where old doors were using a layer that does not exist anymore
 ! Removed an unused layer and improved some GetComponent
+! Fixed a problem in finding pathnodes
+! Completed drawing of look up room
+! Fixed the problem of the intro canvas playing also if in debug mode
