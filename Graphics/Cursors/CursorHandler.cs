@@ -88,14 +88,10 @@ public class CursorHandler : MonoBehaviour {
 
 
   public static void Set(CursorTypes l = CursorTypes.Normal, CursorTypes r = CursorTypes.Normal, Item item = null) {
-    System.Diagnostics.StackTrace st = new System.Diagnostics.StackTrace();
-    string str = "";
-    int num = st.FrameCount;
-    if (num > 3) num = 3;
-    for (int i = 1; i < num; i++) {
-      var sf = st.GetFrame(i);
-      str += sf.GetFileName() + ": " + sf.GetMethod() + ": " + sf.GetFileLineNumber() + "\n";
-    }
+    me.Cursor.enabled = (l != CursorTypes.Hidden);
+    me.CursorL.enabled = (l != CursorTypes.Hidden);
+    me.CursorR.enabled = (l != CursorTypes.Hidden);
+    if (l == CursorTypes.Hidden) return;
 
     if (l == CursorTypes.Normal) {
       me.CursorL.enabled = false;
@@ -156,6 +152,7 @@ public class CursorHandler : MonoBehaviour {
 }
 
 public enum CursorTypes {
+  Hidden=-1,
   Normal=0,
   Wait=1,
   Object=2,

@@ -25,8 +25,8 @@ Arcade room: Day of Tentacle poster in the Arcade room.
 Arcade room: Add old consoles (C64, NES, Genesis, etc.) to the arcade room, on the C64 there will be a cassette player with a cassette tape inside
 Add lookup in dog room
 
-Complete intro Cutscene, adding variations for each character (syd, razor, jeff, michael, Hoagie, Laverne)
-Add messages for other kidnapped (sandy, dave, wendy, ollie, syd, jeff, michael)
+Complete intro Cutscene, adding variations for each character (Syd, Razor, Jeff, Michael, Hoagie, Laverne)
+Add messages for other kidnapped (Sandy, Dave, Wendy, Ollie, Syd, Jeff, Michael)
 Do arms forward in all characters
 
 Add recycle stuff to the service room
@@ -44,6 +44,11 @@ Define skills and the actions that they will allow
 If a room has windows, make it a little bit less dark (like flashlight but without outline) <= use lightning shader
 
 Do coats and dig for all characters: Michael, Hoagie
+
+Have arcades be playable with very simple games
+
+Add secret door from Arcade room to go to the old 8bit storage area (C64, Spectrum, MSX, NES items will be here)
+Decide how to open the door
 
 
 * BUGS ************************************************************************************************************
