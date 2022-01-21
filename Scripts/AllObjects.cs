@@ -148,6 +148,11 @@ public enum ItemEnum {
   Shower,
   DoorToDungeon,
   Sponge,
+  SmallKey,
+  CabinetMeteorMiss,
+  CabinetA,
+  CabinetB,
+  CabinetC,
 }
 
 

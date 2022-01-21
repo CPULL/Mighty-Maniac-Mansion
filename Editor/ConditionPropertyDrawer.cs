@@ -79,6 +79,16 @@ public class ConditionPropertyDrawer : PropertyDrawer {
         }
         break;
 
+        case ConditionType.ActorHas: {
+          Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
+          Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);
+          Rect cRect = new Rect(position.x + w4 * 3, position.y + lh, w4, lh);
+          id1.intValue = EditorGUI.Popup(aRect, id1.intValue, System.Enum.GetNames(typeof(Chars)));
+          bv.intValue = EditorGUI.Popup(bRect, bv.intValue, hasHasNot);
+          iv1.intValue = EditorGUI.Popup(cRect, iv1.intValue, System.Enum.GetNames(typeof(ItemEnum)));
+        }
+        break;
+
         case ConditionType.CurrentRoomIs: {
           Rect aRect = new Rect(position.x + w4 * 1, position.y + lh, w4, lh);
           Rect bRect = new Rect(position.x + w4 * 2, position.y + lh, w4, lh);

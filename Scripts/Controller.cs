@@ -671,17 +671,17 @@ public class Controller : MonoBehaviour {
     ActorsButtons.SetActive(true);
     StartIntroCutscene();
 
-    Item FIXME = AllObjects.GetItem(ItemEnum.WoodsMap);
+    Item FIXME = AllObjects.GetItem(ItemEnum.Coin);
     FIXME.whatItDoesR = WhatItDoes.Use;
     FIXME.Usable = Tstatus.Usable;
     FIXME.owner = currentActor.id;
     currentActor.inventory.Add(FIXME);
-    FIXME = AllObjects.GetItem(ItemEnum.Coat);
+    FIXME = AllObjects.GetItem(ItemEnum.Coin);
     FIXME.whatItDoesR = WhatItDoes.Use;
     FIXME.Usable = Tstatus.Usable;
     FIXME.owner = currentActor.id;
     currentActor.inventory.Add(FIXME);
-    FIXME = AllObjects.GetItem(ItemEnum.Shovel);
+    FIXME = AllObjects.GetItem(ItemEnum.SmallKey);
     FIXME.whatItDoesR = WhatItDoes.Use;
     FIXME.Usable = Tstatus.Usable;
     FIXME.owner = currentActor.id;

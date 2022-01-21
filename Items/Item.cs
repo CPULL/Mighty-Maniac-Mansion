@@ -183,6 +183,7 @@ public class Item : MonoBehaviour {
     foreach (ActionAndCondition ac in other.actions) {
       if (ac.IsValid(actor, null, this, other, When.UseTogether)) {
         ac.RunAsSequence(actor, null, this, Name);
+        if (ac.Blocking) return null; // To stop processing the other actions
         done = true;
       }
       else res = ac.GetConditionMsg(actor, null, When.UseTogether, this, other);

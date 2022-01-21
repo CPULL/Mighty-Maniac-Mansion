@@ -4,7 +4,6 @@
 
 * BUGS ************************************************************************************************************
 
-If the inventory is open, the charselection may show as mistake
 Actors do not react to the dog (they go away but they say nothing)
 
 
@@ -307,3 +306,5 @@ DavidMurray?
 ! Fixed the problem of the intro canvas playing also if in debug mode
 ! Fixed the character selection screen
 ! In case of actions specific for a user, in case of read, if something is read the default action (read destription) is not performed (it will be performed as backup only)
+! Added ActorHasItem condition
+! The Cabinet for Meteor Miss responds to the actions correctly

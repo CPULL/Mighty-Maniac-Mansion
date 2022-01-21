@@ -56,6 +56,16 @@ public class Condition {
         }
         break;
 
+        case ConditionType.ActorHas: {     // ID of actor and ID of item                            (ID1, IV1, BV)
+          if (System.Enum.TryParse<Chars>(ids, out ch)) {
+            id = (int)ch;
+          }
+          if (System.Enum.TryParse<ItemEnum>(svs, out ie)) {
+            iv = (int)ie;
+          }
+        }
+        break;
+
         case ConditionType.CurrentActorIs:
           if (System.Enum.TryParse<Chars>(ids, out ch)) {
             id = (int)ch;
@@ -127,6 +137,7 @@ public class Condition {
       }
       case ConditionType.CurrentActorIs: return "Current Actor is " + (!bv ? "not " : "") + (Chars)id1;
       case ConditionType.ActorHasSkill: return "Actor " + (Chars)id1 + " has " + (!bv ? "not skill " : "skill ") + (Skill)iv1;
+      case ConditionType.ActorHas: return "Actor " + (Chars)id1 + " has " + (!bv ? "not skill " : "skill ") + (ItemEnum)iv1;
       case ConditionType.CurrentRoomIs: return "Room is " + (!bv ? "not " : "") + sv;
       case ConditionType.SameRoom: return (!bv ? "Not same" : "Same") + " Room " + (Chars)id1 + " & " + (Chars)iv1;
       case ConditionType.RoomIsInExt: return " Room " + (Chars)id1 + (bv ? " is internal" : " is external");
@@ -199,6 +210,14 @@ public class Condition {
 
       case ConditionType.ActorHasSkill: {
         bool res = Controller.GetActor((Chars)id).HasSkill((Skill)iv);
+        if (bv)
+          return res;
+        else
+          return !res;
+      }
+
+      case ConditionType.ActorHas: {
+        bool res = Controller.GetActor((Chars)id).HasItem((ItemEnum)iv);
         if (bv)
           return res;
         else
@@ -426,6 +445,7 @@ public enum ConditionType {
   RoomIsInExt,        // ID f actor, bool to check if internal or external                                 (ID1, BV)
   ItemContains,       // ID of item, ID of item that should be contained  (IV1 is read from SVS)           (ID1, IV1, BV)
   ActorSet,           // ID of actor, ID of position (a1, a2, a3, kidnapped)                               (ID1, IV1, BV)
+  ActorHas,           // ID of actor, ID of item to have                                                   (ID1, IV1, BV)
 }
 
 
