@@ -2,11 +2,25 @@
 
 
 
+* BUGS ************************************************************************************************************
+
+Cannot select the party in charselection (click on a selected char should remove it from the selection)
+If the inventory is open, the charselection may show as mistake
+Actors do not react to the dog (they go away but they say nothing)
+
+
 
 * THINKERING ******************************************************************************************************
 
 Skills: Strenght, Courage, Culinary, Handyman, Science (Geek), Retro (Nerd), Music
 
+
+Add door to arcade
+Decide how open it, maybe by using a specific key only, or maybe with a handyman and some specific tools we can find somewhere
+Add comment on the poster, depending on the character
+Allow to pickup coins, some coins should be already there, every time we play a coin should be put in the container (coins are not visible)
+When picking coins all of them is collected
+Do some fade/zoom when playing
 
 
 * TODO ************************************************************************************************************
@@ -49,12 +63,6 @@ Have arcades be playable with very simple games
 
 Add secret door from Arcade room to go to the old 8bit storage area (C64, Spectrum, MSX, NES items will be here)
 Decide how to open the door
-
-
-* BUGS ************************************************************************************************************
-
-If the inventory is open, the charselection may show as mistake
-Actors do not react to the dog (they go away but they say nothing)
 
 * CHARS ************************************************************************************************************
 

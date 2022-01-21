@@ -121,7 +121,10 @@ public class Item : MonoBehaviour {
 
     if (Usable == Tstatus.Usable) {
       ActionRes res = PlayActions(actor, null, When.Use, this);
-      if (res == null || !res.actionDone) return "It does not work";
+      if (res == null || !res.actionDone) {
+        if (string.IsNullOrWhiteSpace(res.res)) return "It does not work";
+        return res.res;
+      }
       return null;
     }
     else if (Usable == Tstatus.Openable || Usable == Tstatus.Swithchable) {
