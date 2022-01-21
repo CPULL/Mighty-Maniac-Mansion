@@ -4,7 +4,6 @@
 
 * BUGS ************************************************************************************************************
 
-Cannot select the party in charselection (click on a selected char should remove it from the selection)
 If the inventory is open, the charselection may show as mistake
 Actors do not react to the dog (they go away but they say nothing)
 
@@ -302,3 +301,4 @@ DavidMurray?
 ! Fixed a problem in finding pathnodes
 ! Completed drawing of look up room
 ! Fixed the problem of the intro canvas playing also if in debug mode
+! Fixed the character selection screen

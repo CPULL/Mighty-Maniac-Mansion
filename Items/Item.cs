@@ -237,9 +237,9 @@ public class Item : MonoBehaviour {
     }
   }
 
-  internal bool HasActions(When when) {
+  internal bool HasActionsForWhen(When when) {
     foreach(ActionAndCondition ac in actions) {
-      if (ac.Condition.type != ConditionType.None && (When)ac.Condition.id == when) return true;
+      if (ac.Condition.type != ConditionType.None && (ac.Condition.when == when || ac.Condition.when == When.Always)) return true;
     }
     return false;
   }

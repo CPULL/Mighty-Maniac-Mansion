@@ -35,7 +35,7 @@ public class Controller : MonoBehaviour {
   }
 
   private void UseInventoryItem() {
-    if (overInventoryItem.HasActions(When.Use)) {
+    if (overInventoryItem.HasActionsForWhen(When.Use)) {
       ActionRes res = overInventoryItem.PlayActions(currentActor, null, When.Use, null);
       if (res == null || res.actionDone)
         currentActor.Say(overInventoryItem.Description); // By default read what is written in the description of the object
@@ -392,7 +392,7 @@ public class Controller : MonoBehaviour {
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
               actor.SetDirection(item.dir);
-              if (item.HasActions(When.Use)) {
+              if (item.HasActionsForWhen(When.Use)) {
                 ActionRes res = item.PlayActions(currentActor, null, When.Use, null);
                 if (res == null || res.actionDone)
                   actor.Say(item.Description); // By default read what is written in the description of the object
@@ -1096,11 +1096,6 @@ public class Controller : MonoBehaviour {
     return false;
   }
 
-
-  public static Actor GetActorForSelection(int num) {
-    if (num < 9) return GD.c.allEnemies[num];
-    return GD.c.allActors[num - 9];
-  }
 
   public Sprite GetActorPortrait(Chars actor) {
     int idx = (int)actor;
