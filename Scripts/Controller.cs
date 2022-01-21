@@ -392,7 +392,10 @@ public class Controller : MonoBehaviour {
           WalkAndAction(currentActor, overItem,
             new System.Action<Actor, Item>((actor, item) => {
               actor.SetDirection(item.dir);
-              if (item.HasActionsForWhen(When.Use)) {
+              if (item.HasActionsForActor(currentActor, When.Use)) {
+                item.PlayActions(currentActor, null, When.Use, null);
+              }
+              else if (item.HasActionsForWhen(When.Use)) {
                 ActionRes res = item.PlayActions(currentActor, null, When.Use, null);
                 if (res == null || res.actionDone)
                   actor.Say(item.Description); // By default read what is written in the description of the object

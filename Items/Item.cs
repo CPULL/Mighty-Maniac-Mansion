@@ -244,6 +244,15 @@ public class Item : MonoBehaviour {
     return false;
   }
 
+  internal bool HasActionsForActor(Actor a, When when) {
+    foreach(ActionAndCondition ac in actions) {
+      if (ac.Condition.type != ConditionType.None && 
+        (ac.Condition.when == when || ac.Condition.when == When.Always) && 
+        ac.Condition.IsValid(a, null, this, null, when)) return true;
+    }
+    return false;
+  }
+
   internal string GetOpenStatus() {
     if (Usable != Tstatus.Openable) return "";
 

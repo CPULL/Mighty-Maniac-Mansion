@@ -11,6 +11,10 @@ Actors do not react to the dog (they go away but they say nothing)
 
 * THINKERING ******************************************************************************************************
 
+
+
+
+
 Skills: Strenght, Courage, Culinary, Handyman, Science (Geek), Retro (Nerd), Music
 
 
@@ -302,3 +306,4 @@ DavidMurray?
 ! Completed drawing of look up room
 ! Fixed the problem of the intro canvas playing also if in debug mode
 ! Fixed the character selection screen
+! In case of actions specific for a user, in case of read, if something is read the default action (read destription) is not performed (it will be performed as backup only)
